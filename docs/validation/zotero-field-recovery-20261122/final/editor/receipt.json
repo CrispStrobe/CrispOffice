@@ -1,0 +1,51 @@
+{
+  "gate": "editor",
+  "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "cwd": "packages/quds_office_editor",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=4",
+    "test/word_zotero_recovery_controller_test.dart",
+    "test/word_zotero_recovery_dialog_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_field_context_controller_test.dart",
+    "test/word_zotero_field_context_dialog_test.dart",
+    "test/word_zotero_field_context_render_test.dart",
+    "test/word_zotero_writing_position_test.dart",
+    "test/word_zotero_adjacent_citations_controller_test.dart",
+    "test/word_zotero_document_actions_test.dart",
+    "test/word_zotero_unlink_all_test.dart",
+    "test/word_zotero_direct_command_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_navigation_dialog_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_transfer_controller_test.dart",
+    "test/word_zotero_note_target_test.dart"
+  ],
+  "started_utc": "2026-11-22T06:15:26.320082+00:00",
+  "input_scope": "Tracked local Dart libraries/tests, package manifests, analysis configuration, fonts and root lock/configuration",
+  "input_count": 2471,
+  "exit_code": 0,
+  "finished_utc": "2026-11-22T06:16:57.615562+00:00",
+  "changed_inputs": [],
+  "stdout.jsonl_sha256": "80cb341fd4e19a09ea8f358cbd0d4cf34d34175a77f4d9d254f81ef2ed8a388c",
+  "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "counts": {
+    "success": 347,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "errors": [],
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 88862
+  },
+  "accepted": true
+}

@@ -1,0 +1,1065 @@
+[
+  {
+    "test": {
+      "id": 7,
+      "name": "Studio online catalog GET keeps the cloud client and key",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 47,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 7,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7811
+    }
+  },
+  {
+    "test": {
+      "id": 8,
+      "name": "Studio local catalog GET stays direct with validated API headers",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 79,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 8,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7835
+    }
+  },
+  {
+    "test": {
+      "id": 9,
+      "name": "saved-search reads stay on direct loopback with the pinned database",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 132,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 9,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7863
+    }
+  },
+  {
+    "test": {
+      "id": 10,
+      "name": "saved-search writes and encoded route injection are refused before sending",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 192,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 10,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7871
+    }
+  },
+  {
+    "test": {
+      "id": 11,
+      "name": "citing execCommand sends only local UTF-8 JSON without redirects",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 240,
+      "column": 5,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 11,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7878
+    }
+  },
+  {
+    "test": {
+      "id": 12,
+      "name": "citing respond sends only local UTF-8 JSON without redirects",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 240,
+      "column": 5,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 12,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7882
+    }
+  },
+  {
+    "test": {
+      "id": 13,
+      "name": "citing rejects other origins and protocol routes before sending",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 281,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 13,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7888
+    }
+  },
+  {
+    "test": {
+      "id": 14,
+      "name": "citing requires POST and rejects cloud or catalog request bodies",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 322,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 14,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7893
+    }
+  },
+  {
+    "test": {
+      "id": 15,
+      "name": "citing accepts case-insensitive names but no secrets or extra headers",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 352,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 15,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7904
+    }
+  },
+  {
+    "test": {
+      "id": 16,
+      "name": "citing request bodies are valid JSON with a UTF-8 byte bound",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 404,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 16,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7913
+    }
+  },
+  {
+    "test": {
+      "id": 17,
+      "name": "citing redirects return once without forwarding document data",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 438,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 17,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7917
+    }
+  },
+  {
+    "test": {
+      "id": 18,
+      "name": "citing responses reject declared and streamed excess bytes",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 462,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 18,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7924
+    }
+  },
+  {
+    "test": {
+      "id": 19,
+      "name": "native dialog uses its own longer timeout",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 499,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 19,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7961
+    }
+  },
+  {
+    "test": {
+      "id": 20,
+      "name": "request timeout can shorten but cannot extend host limit",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 515,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 20,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7985
+    }
+  },
+  {
+    "test": {
+      "id": 21,
+      "name": "dispose settles pending citing immediately and ignores late response",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 541,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 21,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7990
+    }
+  },
+  {
+    "test": {
+      "id": 22,
+      "name": "dispose cancels a response body already being read",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 580,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 22,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 7994
+    }
+  },
+  {
+    "test": {
+      "id": 23,
+      "name": "citing network failures never expose document or credential data",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 602,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 23,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 8000
+    }
+  },
+  {
+    "test": {
+      "id": 24,
+      "name": "citing and catalog limits must be positive before client creation",
+      "suiteID": 0,
+      "groupIDs": [
+        6
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 628,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+    },
+    "result": {
+      "testID": 24,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 8005
+    }
+  },
+  {
+    "test": {
+      "id": 28,
+      "name": "Zotero copy names select ODT without changing the source name",
+      "suiteID": 4,
+      "groupIDs": [
+        27
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 125,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+    },
+    "result": {
+      "testID": 28,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 10426
+    }
+  },
+  {
+    "test": {
+      "id": 26,
+      "name": "Ctrl Alt C dispatches addEditCitation from the Word caret",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 260,
+      "root_column": 7,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 26,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14870
+    }
+  },
+  {
+    "test": {
+      "id": 29,
+      "name": "exports an active Zotero copy and keeps normal save as DOCX (variant: TargetPlatform.windows)",
+      "suiteID": 4,
+      "groupIDs": [
+        27
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 136,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+    },
+    "result": {
+      "testID": 29,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16598
+    }
+  },
+  {
+    "test": {
+      "id": 30,
+      "name": "Ctrl Alt R dispatches refresh from the Word caret",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 260,
+      "root_column": 7,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 30,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16792
+    }
+  },
+  {
+    "test": {
+      "id": 31,
+      "name": "picker cancellation preserves dirty edits and re-enables export (variant: TargetPlatform.windows)",
+      "suiteID": 4,
+      "groupIDs": [
+        27
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 184,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+    },
+    "result": {
+      "testID": 31,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18011
+    }
+  },
+  {
+    "test": {
+      "id": 32,
+      "name": "Cmd Alt C dispatches addEditCitation from the Word caret",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 260,
+      "root_column": 7,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 32,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18369
+    }
+  },
+  {
+    "test": {
+      "id": 33,
+      "name": "edits during picking do not change the detached exported copy (variant: TargetPlatform.windows)",
+      "suiteID": 4,
+      "groupIDs": [
+        27
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 211,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+    },
+    "result": {
+      "testID": 33,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19736
+    }
+  },
+  {
+    "test": {
+      "id": 34,
+      "name": "Cmd Alt R dispatches refresh from the Word caret",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 260,
+      "root_column": 7,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 34,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19829
+    }
+  },
+  {
+    "test": {
+      "id": 35,
+      "name": "invalid active Zotero data refuses before choosing a destination (variant: TargetPlatform.windows)",
+      "suiteID": 4,
+      "groupIDs": [
+        27
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 247,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+    },
+    "result": {
+      "testID": 35,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20888
+    }
+  },
+  {
+    "test": {
+      "id": 36,
+      "name": "body composition blocks shortcuts and saved ribbon callbacks",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 307,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 36,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21182
+    }
+  },
+  {
+    "test": {
+      "id": 37,
+      "name": "successive shortcuts return directly to the writing caret",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 340,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 37,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22638
+    }
+  },
+  {
+    "test": {
+      "id": 38,
+      "name": "Add Zotero note ribbon invokes its native picker",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 370,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 38,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 24008
+    }
+  },
+  {
+    "test": {
+      "id": 39,
+      "name": "Add Zotero annotation ribbon invokes its native picker",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 370,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 39,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 25464
+    }
+  },
+  {
+    "test": {
+      "id": 40,
+      "name": "Ctrl Alt C finds the citation in the focused Notes editor",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 396,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 40,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 27124
+    }
+  },
+  {
+    "test": {
+      "id": 41,
+      "name": "citation shortcuts and saved ribbon callbacks respect viewing mode",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 446,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 41,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 29002
+    }
+  },
+  {
+    "test": {
+      "id": 42,
+      "name": "Mail navigation invalidates a pending Zotero publication",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 495,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 42,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 30384
+    }
+  },
+  {
+    "test": {
+      "id": 43,
+      "name": "Mail navigation and return invalidates a pending Zotero publication",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 495,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 43,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 31672
+    }
+  },
+  {
+    "test": {
+      "id": 44,
+      "name": "citation commands stay inactive in other Studio applications",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 554,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 33706
+    }
+  },
+  {
+    "test": {
+      "id": 45,
+      "name": "a covering modal blocks Zotero even when Word retains focus",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 575,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 45,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 35042
+    }
+  },
+  {
+    "test": {
+      "id": 46,
+      "name": "rapid ribbon and shortcut activation opens one Zotero workspace",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 607,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 46,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 36344
+    }
+  },
+  {
+    "test": {
+      "id": 47,
+      "name": "citation ribbon shows shortcuts for linux",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 646,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 47,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 37488
+    }
+  },
+  {
+    "test": {
+      "id": 48,
+      "name": "citation ribbon shows shortcuts for macOS",
+      "suiteID": 2,
+      "groupIDs": [
+        25
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 646,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+    },
+    "result": {
+      "testID": 48,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 38698
+    }
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "byte_identical": false,
+  "parsed_json_equal": true,
+  "vm_bytes": 956,
+  "js_bytes": 946,
+  "vm_sha256": "f54e3399b472d84f71307393df512a645e9fe05460402c2e4d746351df16a537",
+  "js_sha256": "e60104f4e03421bd2aee94fcf789c8ea4b25b08d9aa6b0d6e9b8f294c68a0f77",
+  "numeric_representation_differences": [
+    {
+      "path": "/state/0/after",
+      "vm": 6.0,
+      "vm_type": "float",
+      "js": 6,
+      "js_type": "int"
+    },
+    {
+      "path": "/state/1/after",
+      "vm": 3.0,
+      "vm_type": "float",
+      "js": 3,
+      "js_type": "int"
+    },
+    {
+      "path": "/state/2/after",
+      "vm": 3.0,
+      "vm_type": "float",
+      "js": 3,
+      "js_type": "int"
+    },
+    {
+      "path": "/state/3/after",
+      "vm": 3.0,
+      "vm_type": "float",
+      "js": 3,
+      "js_type": "int"
+    },
+    {
+      "path": "/state/4/after",
+      "vm": 3.0,
+      "vm_type": "float",
+      "js": 3,
+      "js_type": "int"
+    }
+  ],
+  "workflow_fix_commit": "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9"
+}

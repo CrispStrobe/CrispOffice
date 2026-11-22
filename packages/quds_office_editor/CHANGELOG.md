@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Offer Repair in Zotero and confirmed, undoable Convert to text for damaged
+  reference metadata with safe native field ownership. Keep original-source
+  context visible during repair, preserve the document until completion, and
+  retain rich cached text when explicitly converting a field to ordinary text.
+  Guard incomplete/shared packets and stale host targets; qualify repaired and
+  converted fields through DOCX save/reopen.
+
 - Journal connected single-message Move/Delete with exact destination identity,
   pre-dispatch persistence, conservative interruption recovery and localized
   activity history. Add capability-checked native IMAP Move and Mark deleted

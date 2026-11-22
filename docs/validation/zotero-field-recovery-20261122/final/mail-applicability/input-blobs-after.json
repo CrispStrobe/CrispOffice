@@ -1,0 +1,2342 @@
+{
+  ".fvmrc": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+  },
+  "analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+  },
+  "apps/quds_report_studio/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "204267d16c883b9df1129be1967d0899bd30597f"
+  },
+  "apps/quds_report_studio/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ac479981a30f9917e0817de6c79f2392b6f4bf87"
+  },
+  "docs/validation/mail-recipients-20261119/mail-source-harness/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f3dfbbeb29a2940c1a2378190a404fb45fb05fe4"
+  },
+  "docs/validation/mail-recipients-20261119/mail-source-harness/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2c0fae303d585ffc226fb4afb45eb3a10107fe74"
+  },
+  "docs/validation/proofing-20261116/final/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bafa332db4f09903cbd975e0f9b48fe12df35b6d"
+  },
+  "docs/validation/proofing-en-de-20261117/integration/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bafa332db4f09903cbd975e0f9b48fe12df35b6d"
+  },
+  "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bafa332db4f09903cbd975e0f9b48fe12df35b6d"
+  },
+  "docs/validation/word-vba-numeric-20261121/independent/engine-harness/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "98a575f6b557c93c29703e38da5806eeca04fa0f"
+  },
+  "docs/validation/word-vba-numeric-20261121/independent/engine-harness/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "70455fd4adafa0ba1288d0b17254eeb9bf9f3ac8"
+  },
+  "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "51c26f3b0569da9d97d155696ad37b1d1e539ac6"
+  },
+  "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3e00fab2b9cb671503c4465f343a2e9d7016084f"
+  },
+  "docs/validation/zotero-desktop-20261115/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4ae485e5e93fcd421a93a0f01ec685dfa57e2ace"
+  },
+  "docs/validation/zotero-desktop-20261115/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b40490037b826e648a7a2eea22e000a6d51956f6"
+  },
+  "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dc418f296d0e1926782c92ccd0c8d0c9c0236acb"
+  },
+  "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4ca8a77a7e1d3c21032d546f8ce3de685cf28487"
+  },
+  "packages/legacy_doc_parser/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "572dd239d0976799433e2a9c56e7e02be86d61b1"
+  },
+  "packages/legacy_doc_parser/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f0389f352656d281988db1d853d6e86df67b51e7"
+  },
+  "packages/quds_arabic_morph/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6309deb778d8ee14eba53749c5bf659dcf9d9e7a"
+  },
+  "packages/quds_language_id/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "257f013b06939de9e598e1a68d5b2d2678673d91"
+  },
+  "packages/quds_mail_core/lib/quds_mail_core.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "121948f9343c7bce86e6a9101efc24a68a27798a"
+  },
+  "packages/quds_mail_core/lib/src/model/bytes.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d3694b4e79a684ce66cee4eda6811801f012fcf7"
+  },
+  "packages/quds_mail_core/lib/src/model/capabilities.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "98f17fa634f04c8bca50514f5df8840bc1d0f904"
+  },
+  "packages/quds_mail_core/lib/src/model/compose_settings.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1b6673a6a514d03f7219df8e01589948a84fb57c"
+  },
+  "packages/quds_mail_core/lib/src/model/identity.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b472a3e3d98d5f7d2a9a7396bbabcb546053c932"
+  },
+  "packages/quds_mail_core/lib/src/model/message.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "31aa37df663c14ee068e124520f5c59477bd3532"
+  },
+  "packages/quds_mail_core/lib/src/model/parse.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f097ec41fc028a8c462d7c484c88e99753343402"
+  },
+  "packages/quds_mail_core/lib/src/model/result.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "282f50638516b828ec3986e7b8094c62de8df396"
+  },
+  "packages/quds_mail_core/lib/src/ports/codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "11f3e7deeeb947ab3d62c86b5f657c34bff14449"
+  },
+  "packages/quds_mail_core/lib/src/ports/hosts.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9731e0ad8b371fdeb5dd9c19d282aa3e0cc0d361"
+  },
+  "packages/quds_mail_core/lib/src/ports/provider.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5116b8816a0f7824917e95ded1d83e3300e0209a"
+  },
+  "packages/quds_mail_core/lib/src/ports/repository.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2b5869cae87871fe5c7f5e0c2c339c5abad4f810"
+  },
+  "packages/quds_mail_core/lib/src/search/conversations.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b57a21bfe459c2ea15abfdc65db4a8bd78b7bf48"
+  },
+  "packages/quds_mail_core/lib/src/search/header_search.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ff81401b4d28edad557d4fedd51d92c840ec3e2c"
+  },
+  "packages/quds_mail_core/lib/src/search/saved_header_search.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5c26f257759e17a27e09ae4f654e02560fc4054e"
+  },
+  "packages/quds_mail_core/lib/src/sync/body_download.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "91d846cfb76a351efb2cf35b507f8b5de9eaaca5"
+  },
+  "packages/quds_mail_core/lib/src/sync/bulk_flags.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "56c415df2824d485648f9385db456f3d747c76bf"
+  },
+  "packages/quds_mail_core/lib/src/sync/cancellation.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f8f57791f5c63e5ee566bb5e4c8a71a0784dcf97"
+  },
+  "packages/quds_mail_core/lib/src/sync/coordinator.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8fd17fee6fc05b0784ed9fd748c52e526972e94a"
+  },
+  "packages/quds_mail_core/lib/src/sync/outbox.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "76e03d67ed93c6be75b0dbdb4e30e07a1e88516d"
+  },
+  "packages/quds_mail_core/lib/src/sync/runner.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e580343468f699dbb1d43e5512e9a3de68faae5c"
+  },
+  "packages/quds_mail_core/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "055f9ff8de9a13fc10ccb12b034bac26e908984c"
+  },
+  "packages/quds_mail_core/test/body_download_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c1cd91616952c4accf0712946dd0fa0727e03b22"
+  },
+  "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bda1daf5138b99eebb086daff0ef897aaa44d6fb"
+  },
+  "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "76bd9bcd7b38e2c54086c0f1648cbd5ee774b571"
+  },
+  "packages/quds_mail_core/test/bulk_flags_journal_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b45f1dde098efb06216f2db0a069091ca5f69032"
+  },
+  "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3a9ddc2a3a9548fc97c8f5921d35020596247381"
+  },
+  "packages/quds_mail_core/test/bulk_flags_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d57fa8fe50a8bb94b3655b32a3d96b8cd5ba70f0"
+  },
+  "packages/quds_mail_core/test/cancellation_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "49546b3389595356366b2577945050852e7ad12e"
+  },
+  "packages/quds_mail_core/test/compile/portable_import.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3e1a204c69bf9122ae23c992585ac7ffba2dfef1"
+  },
+  "packages/quds_mail_core/test/compose_settings_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b212d098751a3826f29c72d3f554d84307b9aa6c"
+  },
+  "packages/quds_mail_core/test/conversations_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bd72de6b460942793d3a4a8d5401f1e0cebae20d"
+  },
+  "packages/quds_mail_core/test/ews_identity_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7af5c971c9eae4680dbf43d1ac8dc6dae515270b"
+  },
+  "packages/quds_mail_core/test/header_search_boolean_regression_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d05b7eff5eea4d162e5bfb15c6209816ecb46f36"
+  },
+  "packages/quds_mail_core/test/header_search_boolean_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bf101d0ee4e36b081f4b574e96eac23daab3b2c2"
+  },
+  "packages/quds_mail_core/test/header_search_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0fd366b17885033d9d8f175badaaefd09f14b672"
+  },
+  "packages/quds_mail_core/test/imap_sync_range_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "23c704ecb57a03e991b543a7440183fcbd3cc572"
+  },
+  "packages/quds_mail_core/test/membership_commands_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6b5ac2fac0846485b3198306d8eccfab44f7bf85"
+  },
+  "packages/quds_mail_core/test/models_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02"
+  },
+  "packages/quds_mail_core/test/outbox_management_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6d3f5eb1afded96973616fcd3d8c45d5db6fe2ab"
+  },
+  "packages/quds_mail_core/test/outbox_schedule_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e8389efc7a0def477f6f7c9a81eee445e453496a"
+  },
+  "packages/quds_mail_core/test/outbox_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2bd60f3b4ff489c3fce50100c6d2347aa8a68286"
+  },
+  "packages/quds_mail_core/test/saved_header_search_folders_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8486cea5fbd627f2d452056057de8dca41d2ec0e"
+  },
+  "packages/quds_mail_core/test/saved_header_search_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a9552b3d3f7522874e1e999571d34d485ecc1a2b"
+  },
+  "packages/quds_mail_core/test/sync_coordinator_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "621492c6e8d086a873f1ea2aa50422a2d8d21db0"
+  },
+  "packages/quds_mail_core/test/sync_runner_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e06c9d1f237af29eddbd3e85e61f399973fabcb7"
+  },
+  "packages/quds_mail_mime/lib/quds_mail_mime.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "92595ea691fa2e57aa35e6460244c31f096fdd13"
+  },
+  "packages/quds_mail_mime/lib/src/codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1cf156fb90276f42ecece825930ec6cf7152df88"
+  },
+  "packages/quds_mail_mime/lib/src/mbox.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c1712faa6e20c59a9cf86cb2c361cb1f7bd59f22"
+  },
+  "packages/quds_mail_mime/lib/src/scan.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "86c29767b63328295bde225f10a20dc115c01894"
+  },
+  "packages/quds_mail_mime/lib/src/transfer.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "68fc3196d84c26d655e9f8915fb933391f01f70d"
+  },
+  "packages/quds_mail_mime/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "77463f51b8c60a9c7c9a644877d0458ee611309f"
+  },
+  "packages/quds_mail_mime/test/compile/memory_probe.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4c2a3b6dc21b28b15f47dee0afb0556923a5f29f"
+  },
+  "packages/quds_mail_mime/test/compile/portable_import.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5f04aef8f668b273e732de93a1365c74aa4514fd"
+  },
+  "packages/quds_mail_mime/test/eml_bytes_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "01a9ca9b90cfddeaa5193be7a64971f523f317eb"
+  },
+  "packages/quds_mail_mime/test/fixtures/messages.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "544d123817c508abd7955224551a2dfb7d9033b3"
+  },
+  "packages/quds_mail_mime/test/mbox_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b18bc7b3ea302f3e3da99e84ea3b1f25a359b1e8"
+  },
+  "packages/quds_mail_mime/test/mime_encodings_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "35565ecbfea874b512bd2a2dc751e822ccbfa1a6"
+  },
+  "packages/quds_mail_mime/test/mime_limits_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7fd6503702826e7a118629de3427066298b405ea"
+  },
+  "packages/quds_mail_mime/test/mime_parts_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "fcfcb5683edc9f5723d41db5157b14eddab95118"
+  },
+  "packages/quds_mail_mime/test/mime_review_regressions_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "47c7c031e705ea455c46be810cc9c3eb6939f758"
+  },
+  "packages/quds_mail_mime/test/portable_import_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "967055c6c69e7352f485fc34542bdc1d9eecee39"
+  },
+  "packages/quds_mail_store/lib/quds_mail_archive_native.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8ad62076ef618731ea33d3c19a734536d5953a86"
+  },
+  "packages/quds_mail_store/lib/quds_mail_store.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1a3ad4107e708fe84ad6312aef60acd695cd9698"
+  },
+  "packages/quds_mail_store/lib/quds_mail_store_native.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a7f9c24dcf4adfe6111b58096120f03ace9aa17b"
+  },
+  "packages/quds_mail_store/lib/quds_mail_store_web.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9c84f65ab52620ac9dca50112a6c21be62a9d795"
+  },
+  "packages/quds_mail_store/lib/src/archive_database.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "320abe6053370b50c5346caa7c44fb9ce0ffa646"
+  },
+  "packages/quds_mail_store/lib/src/archive_directory_native.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3f8455dc824c5a13a4bfa285a547e918a12af0e4"
+  },
+  "packages/quds_mail_store/lib/src/archive_export_models.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3564c4a2fd0a586e88e989d5f30f78609041d5cd"
+  },
+  "packages/quds_mail_store/lib/src/archive_export_native.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9082571c9c5f77561599f7a57f40915476e0cf9c"
+  },
+  "packages/quds_mail_store/lib/src/archive_export_plan.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d5ea2a807584fd212159dcb6174fcac65855b14c"
+  },
+  "packages/quds_mail_store/lib/src/archive_maintenance.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0cc27aeb8b3e0301d8ba0f86b975fe9fbf96247f"
+  },
+  "packages/quds_mail_store/lib/src/archive_models.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c"
+  },
+  "packages/quds_mail_store/lib/src/archive_query.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "677035a8764196e03673546475a3ee82c518b42f"
+  },
+  "packages/quds_mail_store/lib/src/archive_repository.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a"
+  },
+  "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "55a9513645d9be8b105a08a052c2fae053e33bf8"
+  },
+  "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "532692c6e822ab97848871b62731c7d865e16815"
+  },
+  "packages/quds_mail_store/lib/src/archive_restore_models.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d"
+  },
+  "packages/quds_mail_store/lib/src/archive_restore_native.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "317b9f5676346c3560733ad0036a8acac3ca8427"
+  },
+  "packages/quds_mail_store/lib/src/archive_runner.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a3a73cd792c44a341fd3b2717e364aa2eeac9dcf"
+  },
+  "packages/quds_mail_store/lib/src/archive_settings.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "194c879fd6da03328b4db4b5da3b03c90a286997"
+  },
+  "packages/quds_mail_store/lib/src/archive_text.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a1b278111c1a0f1bd94b867ffd4a9bd28670492c"
+  },
+  "packages/quds_mail_store/lib/src/browser_problem.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f192b41c685851592c86d0ac1d30fc66deaa8550"
+  },
+  "packages/quds_mail_store/lib/src/browser_setup.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2301833c4e0eea985562bb79e5425847d4a1e048"
+  },
+  "packages/quds_mail_store/lib/src/cached_header_search.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9f238f883a02053a6291458dcc467e0e7d5eaa44"
+  },
+  "packages/quds_mail_store/lib/src/codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9d5008c3cc5386078bc43cb7317894934bc8d439"
+  },
+  "packages/quds_mail_store/lib/src/compose_settings.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "52aa337193e47ea245deea6034f711c6ff315b85"
+  },
+  "packages/quds_mail_store/lib/src/errors.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f5e2745bcbf6d8b085930ec179a19b4a0b23a347"
+  },
+  "packages/quds_mail_store/lib/src/flag_journal.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "091b014e9e31282fff041376f134358288b89320"
+  },
+  "packages/quds_mail_store/lib/src/flag_journal_models.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3f7a0080203f685a91c32fd97492ac1ef8271ddb"
+  },
+  "packages/quds_mail_store/lib/src/flag_reconciliation.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7c2eaef671d866aa6bc73c054c1ef987790dc592"
+  },
+  "packages/quds_mail_store/lib/src/local_accounts.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f39c525313f094a1a7750c93fc5e13018656885c"
+  },
+  "packages/quds_mail_store/lib/src/mailbox_views.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b58ec695d55bd31fce194f4594b41d24cd2ebb29"
+  },
+  "packages/quds_mail_store/lib/src/models.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8915531538f3dfc3175444fcd085b332cde63e6c"
+  },
+  "packages/quds_mail_store/lib/src/owner_locked_executor.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4ea4ab0830adb3caa058958076c456acaf26f43e"
+  },
+  "packages/quds_mail_store/lib/src/platform_configuration.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "670f9890720312dac75bed48ded93a2da76c1bc0"
+  },
+  "packages/quds_mail_store/lib/src/repository.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8ad4fcc933c379cf7aa6247114fefa79d9f100ee"
+  },
+  "packages/quds_mail_store/lib/src/saved_header_searches.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "20ea07a3fb09c9fd6ffa9bbbba1ba5a3d2a1b474"
+  },
+  "packages/quds_mail_store/lib/src/schema/database.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "48c75c2a25517876b5b71e3444474b8fe1de72bf"
+  },
+  "packages/quds_mail_store/lib/src/schema/flag_journal_schema.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f44aef2ec3664b5df269109fe1dd8062be12778a"
+  },
+  "packages/quds_mail_store/lib/src/search_journal.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4581b7442c287011da092fda2a07decc8ce37718"
+  },
+  "packages/quds_mail_store/lib/src/sync_mailboxes.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "baaee901a4f5f361f0623c632ffbe283f9da97c2"
+  },
+  "packages/quds_mail_store/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94"
+  },
+  "packages/quds_mail_store/test/adversarial_store_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "02acbe90f575dcd413303095df226e68ba266cdb"
+  },
+  "packages/quds_mail_store/test/archive_directory_native_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "955bfa243e8695ea387e4246d51d3c5169ded04a"
+  },
+  "packages/quds_mail_store/test/archive_export_manifest_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "91dfa2443293dfc31fc01ac2ccd2d4ff8f21bfe2"
+  },
+  "packages/quds_mail_store/test/archive_export_native_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "46afb44814c89d634c4ba9e316e02959fb995bb3"
+  },
+  "packages/quds_mail_store/test/archive_export_plan_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0e45641efce630fb86ee9020509c5d2a3da14e0d"
+  },
+  "packages/quds_mail_store/test/archive_multi_origin_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "84c7fdf22449df470b5f5c19f1b958060457a57b"
+  },
+  "packages/quds_mail_store/test/archive_native_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c"
+  },
+  "packages/quds_mail_store/test/archive_query_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "638d85c471ad9dcbbf544a1abd24717411a43cc7"
+  },
+  "packages/quds_mail_store/test/archive_repository_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3b5493a75e3923c6006e58a043dfeb7e1a73ae16"
+  },
+  "packages/quds_mail_store/test/archive_restore_adversarial_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6d7ec429c91c7d47cef7262cde1e5008ea54bc1f"
+  },
+  "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a8482d9d81aab2cd3e7bcca326c9ce60fa814cf5"
+  },
+  "packages/quds_mail_store/test/archive_restore_native_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "356f9ca14c625767863e5457ae4ab6ca9bc2c711"
+  },
+  "packages/quds_mail_store/test/archive_restore_resume_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "eeae8f401f73abf70d406db59200f75ce28e8ea7"
+  },
+  "packages/quds_mail_store/test/archive_runner_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "03cd0a560f9f7b3f1a35e76aded5c5e37dc51388"
+  },
+  "packages/quds_mail_store/test/browser_problem_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0e3d9f8611482157b93b1636050808d7b59ae95d"
+  },
+  "packages/quds_mail_store/test/cache_cleanup_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e6b7f91815cd881a3510c72b9488cad64a938468"
+  },
+  "packages/quds_mail_store/test/cache_metadata_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "444bd989f5626c3d7ede04e339017b55de6f52cb"
+  },
+  "packages/quds_mail_store/test/cached_header_search_folders_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a5f0b64d98f48353d705c4b2db026773ed26d7cc"
+  },
+  "packages/quds_mail_store/test/cached_header_search_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "90230840ef50e9b76010bd14bafd992437edeb8a"
+  },
+  "packages/quds_mail_store/test/codec_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dd4f87beab47335e294156a035d813635b5d862a"
+  },
+  "packages/quds_mail_store/test/compose_settings_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c79d52fb7e198c9680107c2096d3a636f91afd17"
+  },
+  "packages/quds_mail_store/test/crash_recovery_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8336cd10fb68732d4265aac3383ac987e967ff0a"
+  },
+  "packages/quds_mail_store/test/draft_catalog_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "fd5bdc5a705a4ceb40e322345606063ae59eb30d"
+  },
+  "packages/quds_mail_store/test/draft_editor_state_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "134a424fb87756da73f58ece276cb78543f3bbbc"
+  },
+  "packages/quds_mail_store/test/ews_store_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e15ca31efd86490b1d786ff801d318b1daf097e1"
+  },
+  "packages/quds_mail_store/test/flag_journal_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b3f2f22270c00ede680f2130952a4d4962d4ccd2"
+  },
+  "packages/quds_mail_store/test/flag_reconciliation_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b6328f6002b2ced1603878cab88395e8dce2dc34"
+  },
+  "packages/quds_mail_store/test/imap_sync_range_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f22e64b010fa4b43f98aa4097810df4d7c3ae38e"
+  },
+  "packages/quds_mail_store/test/local_accounts_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cbc281fb04b0903124b24caf093bce0145216250"
+  },
+  "packages/quds_mail_store/test/mailbox_view_streams_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ad78b852968c46c4494694537bf4742b9eff9a96"
+  },
+  "packages/quds_mail_store/test/mailbox_views_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "60ee1e4d02addd93eb3e5b779f667b6a9b0176c4"
+  },
+  "packages/quds_mail_store/test/membership_journal_migration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f5a6a3f811846cd11f6eb3179ff2eff06fb49d7c"
+  },
+  "packages/quds_mail_store/test/membership_journal_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2f89249286406c320596c6552681b7f684e99946"
+  },
+  "packages/quds_mail_store/test/migration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "143624912c88e8740abb30b73652b726382b25a7"
+  },
+  "packages/quds_mail_store/test/native_platform_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8d20c983ad2dbc62e8fd27af531343fb13e8e67e"
+  },
+  "packages/quds_mail_store/test/outbox_draft_transfer_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "142a6ce4679149b4dc4d7dd07620f255b77d1cb6"
+  },
+  "packages/quds_mail_store/test/outbox_management_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "55ddcd5b6ec5438dadd9eab00c90d6f85a2cbf8d"
+  },
+  "packages/quds_mail_store/test/outbox_schedule_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c24403e5eab87881e28d41ffc4cde275b809c727"
+  },
+  "packages/quds_mail_store/test/platform_configuration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "30fadd8f1569935d44efa9e539c3c34a10e1e5de"
+  },
+  "packages/quds_mail_store/test/repository_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b12ba07cfb29df826929b155f3488c459386bf7f"
+  },
+  "packages/quds_mail_store/test/saved_header_search_folders_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c437ce539663b1c0f23a89f8d23448728d9ef454"
+  },
+  "packages/quds_mail_store/test/saved_header_searches_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1fa2a7eaca261ad9929a5c9ca9d3157290bb24e4"
+  },
+  "packages/quds_mail_store/test/saved_search_folder_migration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0bfc6f6190f289ec0c4f39e0bcdfedce7dd07708"
+  },
+  "packages/quds_mail_store/test/support/outbox_widget_database.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2a81d6348313dc07cca5575fed12dca5ae959d63"
+  },
+  "packages/quds_mail_store/test/sync_mailboxes_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f6031522bd152f95ed756af3f337a560124a01b6"
+  },
+  "packages/quds_mail_store/tool/archive_crash_fixture.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1f6e85ed2cbbfd7f05affae69e9ce9a927372883"
+  },
+  "packages/quds_mail_store/tool/archive_export_crash_fixture.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d7dca5ba4b07b18ccc02d2b58d854d34a4c136fc"
+  },
+  "packages/quds_mail_store/tool/archive_restore_crash_fixture.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3cf9ba84512fd92c97e5c6c46a089d2ae2930d1f"
+  },
+  "packages/quds_mail_store/tool/browser_compile_probe.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3b629f2b40ec7ba2c248b9a42e9a02f41fe7acfd"
+  },
+  "packages/quds_mail_store/tool/mail_store_worker.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4aa84891c0e5848c1438571f4605d89a0318380d"
+  },
+  "packages/quds_mail_store/tool/native_crash_fixture.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "51d48fa746a82603b20120a2c0ccaf39de77c247"
+  },
+  "packages/quds_mail_store/tool/transaction_crash_fixture.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dec28ef9d9a478ecb7f830dc17602c41c03ba54b"
+  },
+  "packages/quds_mail_transport/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d04adaf90938aaa1a97dd6b05391823376154428"
+  },
+  "packages/quds_mail_transport/lib/quds_mail_transport.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3cb5950dee476bb05baf2c98ff48ad03b7a4d75e"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/configuration.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a18a00ebe706ea7e52db0721d58034c6b6ce061c"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/cursor.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "fa36ac88c167a00b064875e983b99d4680df118e"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/http.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "33ae02b5c5f94faddb315045256bccd2c17b945b"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/native/authorization.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "20ef038eb3015913ef86ba2bafcd6872732f3840"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/native/factory.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f41d2218a4028a54ecc7333720e231d4f1bc3f32"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/native/http.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9150c2a8cac8db4d5d8d1caf54cb27f480325e19"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/oauth.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bb1c0e35cddb7233ab9f49d30a4a5e7002a58199"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/provider.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "05c5d4c8a4324cd3daa79c1582ac6f1175b62af5"
+  },
+  "packages/quds_mail_transport/lib/src/cloud/unsupported.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "71326f4db514a9e9f25a2f1dbe497dcea466ef8c"
+  },
+  "packages/quds_mail_transport/lib/src/configuration.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e2a4cc67ec3064d8fdf31bf7120ccea393a07f77"
+  },
+  "packages/quds_mail_transport/lib/src/cursor.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b6c9c60ba3689041ce0d4e6e3b2845f9d4b51dbf"
+  },
+  "packages/quds_mail_transport/lib/src/ews/configuration.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4777d68e0af07715ff75e3c54d0af4ebdccad68e"
+  },
+  "packages/quds_mail_transport/lib/src/ews/cursor.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "44cd6edb1102f8a12ce7a7ba19d74e8c26b84cac"
+  },
+  "packages/quds_mail_transport/lib/src/ews/errors.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3ca8ef8440e84a7022c03162dc8c09ecb9f488bb"
+  },
+  "packages/quds_mail_transport/lib/src/ews/native/factory.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "216ee00ea3258aaf6a3ab258ed0ad24945b3c431"
+  },
+  "packages/quds_mail_transport/lib/src/ews/native/http_client.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "066eed80c6542507c9f6732a529afdaadab9dfaf"
+  },
+  "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "441c1e8a77ec1d0a3bb1664cc9298df07416d3ab"
+  },
+  "packages/quds_mail_transport/lib/src/ews/native/provider.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cc9d5762e1999398801f1921f927481662c304fc"
+  },
+  "packages/quds_mail_transport/lib/src/ews/soap.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9e94462f2f897f39172afcf62e55cbcdd79c6272"
+  },
+  "packages/quds_mail_transport/lib/src/ews/unsupported.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2cb2f9c4e1e989a7c31032ea2bf2c6a3056b11a4"
+  },
+  "packages/quds_mail_transport/lib/src/native/factory.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b446ae6dff1fde7766527b3475e257c3f85e9cda"
+  },
+  "packages/quds_mail_transport/lib/src/native/provider.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0d69415c9518a27467e74932ad82de609f52c389"
+  },
+  "packages/quds_mail_transport/lib/src/unsupported/provider.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5918b7a96bf6f63630a39acc1143b3eab3e4638d"
+  },
+  "packages/quds_mail_transport/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bc2cc7ecf7a8230b4f94d4f9a943a4ea923aebe0"
+  },
+  "packages/quds_mail_transport/test/cloud_http_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e17c808af82c424b52df4f50f26aaf6c40b22487"
+  },
+  "packages/quds_mail_transport/test/cloud_oauth_loopback_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b420728077650b2d6fd5abfe2d67a22a3208ef79"
+  },
+  "packages/quds_mail_transport/test/cloud_oauth_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6a63ac89cc99c5ebb7ec20b2d9b949d5cffa5ccc"
+  },
+  "packages/quds_mail_transport/test/cloud_provider_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "801e5c5444df633d889e36d858bc78b1419c7fe6"
+  },
+  "packages/quds_mail_transport/test/cloud_store_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c7f1d4ce57f1f83a305069ce9a11cc6b5691d17b"
+  },
+  "packages/quds_mail_transport/test/cloud_unsupported_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ddf568ef93930dd8a4e675260d769f73c48f4ba5"
+  },
+  "packages/quds_mail_transport/test/configuration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "59b8bb17ec764dd66879cfef1b6192b0933f915f"
+  },
+  "packages/quds_mail_transport/test/cursor_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4664c0b60e09df3a66d3a50e828af2dc5d3541ac"
+  },
+  "packages/quds_mail_transport/test/ews_configuration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2ffea44047829c5734564c952731ffedfdb21d70"
+  },
+  "packages/quds_mail_transport/test/ews_http_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c36a0f9ce12625d492f5887ac1b09ce977fbbfc9"
+  },
+  "packages/quds_mail_transport/test/ews_ntlm_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "90c3cad74f3c367cbf2f628f0d334def4ead635f"
+  },
+  "packages/quds_mail_transport/test/ews_provider_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "658078e71dcadabe6f79648992a61f452fe62d48"
+  },
+  "packages/quds_mail_transport/test/ews_soap_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f54baeacd1727ce97618634eff0d5a664a79f308"
+  },
+  "packages/quds_mail_transport/test/ews_unsupported_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8086e3f8af01ae5e93e2cdb6ec665500b458c008"
+  },
+  "packages/quds_mail_transport/test/fixtures/tls/README.md": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b7c4159fac0a05cba2b2eaa0df60df44e9d7d998"
+  },
+  "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dd7912ff5a96056f4f1298ad091aa9da4b227b8d"
+  },
+  "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ff7250436bab8665f879e702fa60e6839115b4f8"
+  },
+  "packages/quds_mail_transport/test/host_store_integration_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "25539871c7c6e40c5dbb3514adfd93cbd56af923"
+  },
+  "packages/quds_mail_transport/test/native_browse_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a97d5ae7434b8909196cb31252ade26ddbeb3936"
+  },
+  "packages/quds_mail_transport/test/native_flag_observation_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cc6c0e9ff546eb49e26d52a451a63fb89c70b587"
+  },
+  "packages/quds_mail_transport/test/native_provider_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "87373cdf911208c4a09324785073d85dae035699"
+  },
+  "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4d1ce6f8df7383144937ba442ba624dc713295b8"
+  },
+  "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff"
+  },
+  "packages/quds_mail_transport/test/native_tls_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ea7d9c8814c6e15dddc35b85ea08b61af96693d7"
+  },
+  "packages/quds_mail_transport/test/support/imap_fixture.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "06879e31f4a4635855add993994dc57d36c0f566"
+  },
+  "packages/quds_mail_transport/test/support/tls/README.md": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e854ababb4e842309d294eebbc108abcf7fe2b5b"
+  },
+  "packages/quds_mail_transport/test/support/tls/public-test-ca.pem": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "86a836246ff1a9f0688d13e21b01e5bff885f599"
+  },
+  "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "75d7e648b273e08f14c3ebc92cbde8eca24d691e"
+  },
+  "packages/quds_mail_transport/test/support/tls/public-test-server.pem": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5a584b3282af3ba18aa215a237d7fcf631cbe72f"
+  },
+  "packages/quds_mail_transport/test/support/tls_server.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cc52a3fcaa58579ad10aa933b5f5d83a7eed4b70"
+  },
+  "packages/quds_mail_transport/test/uid_discovery_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d05e1136c08bbab556a32ba4fecb2fbbccecf428"
+  },
+  "packages/quds_mail_transport/test/unsupported_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0dc8229db8e13d4d346e8d61d3402db3ba28407f"
+  },
+  "packages/quds_mail_ui/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9aa1de6477f7db767dc57ba5152626516ba1625d"
+  },
+  "packages/quds_mail_ui/example/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1afef10aeb337b84d2af357497002105d25f9756"
+  },
+  "packages/quds_mail_ui/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "74ed9197395cde312e8e47c5705d0d076b9cd262"
+  },
+  "packages/quds_office_editor/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d0114d8fe4f50cce7222023450ae8253e70a8d99"
+  },
+  "packages/quds_office_editor/example/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6be99ebf1c04294573572bb9c075e7ca2953ca88"
+  },
+  "packages/quds_office_editor/example/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "83ca72de098a4fccbcfd1ab7a40c0072961a465b"
+  },
+  "packages/quds_office_editor/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cecd56ff9e121d32d165c32d50b76310895058a0"
+  },
+  "packages/quds_office_engine/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f04c6cf0f30d4f8306eabe5dfd00f2a4c902b838"
+  },
+  "packages/quds_office_engine/example/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9e7cc2d8f24500c0403d39cd88ed1e9649d650df"
+  },
+  "packages/quds_office_engine/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2bdff7e5dcac2502253ab190b6e7104c21a3d024"
+  },
+  "packages/quds_proofing_gector/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "483c4c391100368154eac40db9c2a6e50b7707ad"
+  },
+  "packages/quds_proofing_harper/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "21617bc027119539ebe87a94a97b622499d48c98"
+  },
+  "packages/quds_proofing_hunspell/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4227a404904086d2195d9c54fbbdab35d26fc760"
+  },
+  "packages/quds_proofing_spacy/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "836148c41fc9680d7f1e912ce108419aba7229b1"
+  },
+  "packages/quds_reports/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f04c6cf0f30d4f8306eabe5dfd00f2a4c902b838"
+  },
+  "packages/quds_reports/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "206c04007457d37895bac387ddb78ff4813b9511"
+  },
+  "pubspec.lock": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147"
+  },
+  "pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+  },
+  "third_party/enough_mail/analysis_options.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2aec7ae796ecf1a39e7971050ed6111761706fd3"
+  },
+  "third_party/enough_mail/lib/codecs.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3c646d77c0b32c3a47ab152442b9cd6bd6896a4e"
+  },
+  "third_party/enough_mail/lib/discover.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9896f74bb7e03f613bcebd94bd959ada1b0b3237"
+  },
+  "third_party/enough_mail/lib/enough_mail.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5d4a585cc5e71052694d7602baca845e4779f56b"
+  },
+  "third_party/enough_mail/lib/highlevel.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "79bb5e5b8f3ce209e6f580275d99cb7ba52f0458"
+  },
+  "third_party/enough_mail/lib/imap.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "98e7acf7cb2671aa9427985d2046e41b05ce7582"
+  },
+  "third_party/enough_mail/lib/mime.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "aaf6c6ce49aa6c19243c527c5bef46588a5e15c7"
+  },
+  "third_party/enough_mail/lib/mime_core.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3c7336684062fc8cd040ee6dbf92215a12210fb6"
+  },
+  "third_party/enough_mail/lib/pop.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "83fc26ce70a8d04768561dbaef4a18aa94a086bf"
+  },
+  "third_party/enough_mail/lib/smtp.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3ada666f8762c1c128197a035083f4c5330d5fa1"
+  },
+  "third_party/enough_mail/lib/src/codecs/base64_mail_codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "244e4184796694540c245b6baa76755334f40904"
+  },
+  "third_party/enough_mail/lib/src/codecs/date_codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0ec74f31532137a0fffe19e8eb127c2f6fc910f0"
+  },
+  "third_party/enough_mail/lib/src/codecs/mail_codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5c3cc64f61bda1e7c8c9c97490ffd1b2869f0353"
+  },
+  "third_party/enough_mail/lib/src/codecs/modified_utf7_codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "387b5cc76670adec1690e08b8342767e93774195"
+  },
+  "third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1d9d2759569e50bd806e2f4bdda9f29f34cf3d67"
+  },
+  "third_party/enough_mail/lib/src/discover/client_config.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "174acb8daec22b6f27666c5387ca6540718449b1"
+  },
+  "third_party/enough_mail/lib/src/discover/client_config.g.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "29b0acffa169fee3124305b102fa4e15c0563947"
+  },
+  "third_party/enough_mail/lib/src/discover/discover.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "01d66fc08383e3cc84426f17eee0617b68cf11dc"
+  },
+  "third_party/enough_mail/lib/src/exception.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2975a4fc5832b1b232f806af45bb3cc005f7ccc0"
+  },
+  "third_party/enough_mail/lib/src/imap/extended_data.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2a8a5402892bc329f57d8a320f4bfc8b4709fe5c"
+  },
+  "third_party/enough_mail/lib/src/imap/id.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a9a6f184559bab3aec5a33c896dd6d3726512c0e"
+  },
+  "third_party/enough_mail/lib/src/imap/imap_client.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "10de98881487ed6384b5b32e42042b44b3c43ac0"
+  },
+  "third_party/enough_mail/lib/src/imap/imap_client.g.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6527f786daf965fc7a811350946869f2c3cedbbd"
+  },
+  "third_party/enough_mail/lib/src/imap/imap_events.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "42469e32ea105c46e43a67b57387a552506d6816"
+  },
+  "third_party/enough_mail/lib/src/imap/imap_exception.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4e54bcc037839b9dc627aa38e9af605b638b5f78"
+  },
+  "third_party/enough_mail/lib/src/imap/imap_search.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "55cd82e55179077aa01193db1431bad6c8376d61"
+  },
+  "third_party/enough_mail/lib/src/imap/mailbox.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2bd7317b7fe28658c1982c150a2194404f3fb2f0"
+  },
+  "third_party/enough_mail/lib/src/imap/message_sequence.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8870ee15cb8bb8d6be4aaf15499eda681649288d"
+  },
+  "third_party/enough_mail/lib/src/imap/message_sequence.g.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "298e60452456623d62e36e1be52f91c03dd2d66f"
+  },
+  "third_party/enough_mail/lib/src/imap/metadata.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "961f7af0ff143ea0000f9e705c2453331decf8a7"
+  },
+  "third_party/enough_mail/lib/src/imap/namespace.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "09c4938e7e4d7658c5971603697d6136201cf4d8"
+  },
+  "third_party/enough_mail/lib/src/imap/qresync.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6b4ead9f28250fbc0b39760a7a402f01a4499ad0"
+  },
+  "third_party/enough_mail/lib/src/imap/raw_fetch.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b0d8d246ae4cbd221cc1bede1d39b8d90a18e811"
+  },
+  "third_party/enough_mail/lib/src/imap/resource_limit.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d44d1fa164c58bd0053afc09a8b693a8d24ded67"
+  },
+  "third_party/enough_mail/lib/src/imap/response.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6cf0acebbfaf8dca6bc1286dc1bb7a974de86daa"
+  },
+  "third_party/enough_mail/lib/src/imap/return_option.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7f661871a42c2dfee3af14f34c045c382f11c368"
+  },
+  "third_party/enough_mail/lib/src/imap/selection_options.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "71a6e0928fb2712c1517666b6b28153bccec8072"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_account.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7c70e0c9f376eec396577b115e30e8c95653086e"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_account.g.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "679d033104e16eacadc709b2d916db835021cf8e"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_authentication.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "45de6fb1b916d41d32cad360b0fdafe42660488f"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_authentication.g.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a613ffb6459137c744b2c24e9626648881a2c2c8"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_client.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "46113996c4b26c03507566d0eef3af1afe793589"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_events.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c2652afae40e0a4797fee8c34ef96e6d652cc8a0"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_exception.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "00844f59b07ed59a746282b4d70c9a83c7f76e8e"
+  },
+  "third_party/enough_mail/lib/src/mail/mail_search.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d11dd41d400a07c83f6b5e411236a4ba52c20f6f"
+  },
+  "third_party/enough_mail/lib/src/mail/results.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f8ddaa04b2493ef2073b47e014c5d881007a8f00"
+  },
+  "third_party/enough_mail/lib/src/mail/tree.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "28a242cf7937e4fe2e3045915277704fa1764355"
+  },
+  "third_party/enough_mail/lib/src/mail_address.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d3a89d2a93926c2355d94ccd5c1d1d7be17ed43a"
+  },
+  "third_party/enough_mail/lib/src/mail_address.g.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "27f3a3537d2b8480e39e10e03d33e9bbd1ec32dd"
+  },
+  "third_party/enough_mail/lib/src/mail_conventions.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bd3a464ed5bd7dbe190671c123f81c7c72b89917"
+  },
+  "third_party/enough_mail/lib/src/media_type.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f7a126d6cb6f72d78abf219aa66b8941c6c9930b"
+  },
+  "third_party/enough_mail/lib/src/message_builder.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "49311940115f2300a894a872bce2be2d23a5230d"
+  },
+  "third_party/enough_mail/lib/src/message_flags.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1024bc4194958f555d7eb17ac741daaa2c1646f7"
+  },
+  "third_party/enough_mail/lib/src/mime_data.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ca8d59184ec4ae56cdae4cf3ce83a43a3b8a6d14"
+  },
+  "third_party/enough_mail/lib/src/mime_diagnostics.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ade9284cf7e8dc3daee74e26bde7724fbdca3b65"
+  },
+  "third_party/enough_mail/lib/src/mime_message.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6f2d822d38f49e4ae7144b2a7c2a187e1210700e"
+  },
+  "third_party/enough_mail/lib/src/pop/pop_client.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cf65898bec5650540b564b95dcde59e3352df629"
+  },
+  "third_party/enough_mail/lib/src/pop/pop_events.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3124a6a947bcd9fdfa8f50d8304d9267dbaca17e"
+  },
+  "third_party/enough_mail/lib/src/pop/pop_exception.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "31b1011fa3e202789490ec709d8f3678d54e7cc4"
+  },
+  "third_party/enough_mail/lib/src/pop/pop_response.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "68ce2dd4f3c6c5e558ec2458ebc3d47139a4defd"
+  },
+  "third_party/enough_mail/lib/src/private/imap/all_parsers.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "078618bd6fd234c2829bcd682959557439471fb1"
+  },
+  "third_party/enough_mail/lib/src/private/imap/capability_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1b845a1b49f1f5a8c15d2e0de7417e5e88373796"
+  },
+  "third_party/enough_mail/lib/src/private/imap/command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ce7fd069eea282046bd665f62532e92bc6127528"
+  },
+  "third_party/enough_mail/lib/src/private/imap/enable_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ae3e58aed3838e9f1220edac0a5a9be3110756f1"
+  },
+  "third_party/enough_mail/lib/src/private/imap/fetch_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1760ecb40a8b48a49f94d5b61ccf10b69ddc1a34"
+  },
+  "third_party/enough_mail/lib/src/private/imap/generic_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4d377d037fba66f2734dc7ed2d2405a31e1fd7f3"
+  },
+  "third_party/enough_mail/lib/src/private/imap/id_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a66fed8ecab387d937df2b238031cfa60b8e3615"
+  },
+  "third_party/enough_mail/lib/src/private/imap/imap_response.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "531c23f1ebaccafb76fffbe90b950f66c211eadc"
+  },
+  "third_party/enough_mail/lib/src/private/imap/imap_response_line.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3d06a053ce862d754f9e01903ccaf32c1c842615"
+  },
+  "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f283fb7fa73cc9a890b41de512dc869bfc745c67"
+  },
+  "third_party/enough_mail/lib/src/private/imap/list_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a98c75af2f8d3ca5bbfd4e150927cb4803741331"
+  },
+  "third_party/enough_mail/lib/src/private/imap/logout_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "123ab6a3fc4604e65ce5116a25eff35d0a27fde7"
+  },
+  "third_party/enough_mail/lib/src/private/imap/meta_data_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b41c765fa87b563ca35647d4843a68ec552d6f54"
+  },
+  "third_party/enough_mail/lib/src/private/imap/namespace_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3ebaa6bb97259cd8410c8b6c1d0cddeb868cec17"
+  },
+  "third_party/enough_mail/lib/src/private/imap/no_response_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a8b33ee4e0632fbb3034407f6d1063a72221c9d6"
+  },
+  "third_party/enough_mail/lib/src/private/imap/noop_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1db55f3010a1ba3a7a68262bea406c34edc7fe6f"
+  },
+  "third_party/enough_mail/lib/src/private/imap/parser_helper.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dc124fdb0e47834fd72e959be58bc93461208947"
+  },
+  "third_party/enough_mail/lib/src/private/imap/quota_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1ee1124146878bcb0de94892da7fbf27805d28c1"
+  },
+  "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "62891fe3c1e19bb21294a585f0b25a97d8b67a45"
+  },
+  "third_party/enough_mail/lib/src/private/imap/raw_uid_search_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7c10229df65eb77118363ef139e5315be226ce90"
+  },
+  "third_party/enough_mail/lib/src/private/imap/response_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5aaf50d6559bf5ff9c3c8c802b49902f8efd5eec"
+  },
+  "third_party/enough_mail/lib/src/private/imap/search_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1fba7de6edf7f55005e878f90943c42447d66a99"
+  },
+  "third_party/enough_mail/lib/src/private/imap/select_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0bab288a0e8012561de0230ef6fc6e5a60672fdd"
+  },
+  "third_party/enough_mail/lib/src/private/imap/sort_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2748dffbc79d6e17dece53540edb04635d263ef7"
+  },
+  "third_party/enough_mail/lib/src/private/imap/status_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c2ea9c7bfc0c74f50064ab1ea1523846b0bee09c"
+  },
+  "third_party/enough_mail/lib/src/private/imap/thread_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "75c04e9f543544ce37e07fa427a0af239b47c889"
+  },
+  "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "74e4151dcd2f844fa750e95f107c1f3e242f136b"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/all_commands.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "aa386b5af4d076cd4749e60e593f85bd899be224"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_apop_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7cccf7bf2a0fb6044d64b1fd476f702ed2015142"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_auth_xoauth2_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3d078e9ff009e73890a25c6ec040c821ca54f555"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_delete_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "235252f00becea8ca4ced0b60aa56615cc964a6d"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_list_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2a0ef37b715f13aca5452653e9670d161082d5e6"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_noop_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3fc19a1c4c13a89d144455fe0bff5685fc67a98f"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_pass_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "104eed0cea4d4db35632141e75fcca7c237be310"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_quit_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "750418645e093293941d3f17c2019432c3863bc3"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_reset_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "da470fd271af85584b955deef928869a7db97ee2"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_retrieve_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2c43fb6f9aa9f4dc298cd3c9c9083d094926f769"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_starttls_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ba491a54d59eaef75c89f17b6ca4ecb1d01cc262"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_status_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "944fb3ab8e76b8760847a7e3086ed1a7923b4e52"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_top_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a41f55f9c5d11697994142191fd0a146ae98e59b"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_uidl_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c10aee8034bc2bc6e4d1527a66cf723e18c41cca"
+  },
+  "third_party/enough_mail/lib/src/private/pop/commands/pop_user_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a21362d6305848a91a12c8e12eb05b5e6b2dabb7"
+  },
+  "third_party/enough_mail/lib/src/private/pop/parsers/all_parsers.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b5855328d92b99bd2a6efea1c2d3778a692000e1"
+  },
+  "third_party/enough_mail/lib/src/private/pop/parsers/pop_list_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0cdf3170fe94b790082d140b9d6a9daa9679219d"
+  },
+  "third_party/enough_mail/lib/src/private/pop/parsers/pop_retrieve_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "308885d01918b63abcacc4db2cc23b731741f177"
+  },
+  "third_party/enough_mail/lib/src/private/pop/parsers/pop_standard_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4b94b0bd8c509737338a67ded1c1b604a162516b"
+  },
+  "third_party/enough_mail/lib/src/private/pop/parsers/pop_status_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6bdce65118b19eb7cad14716b3af22b74045f6ca"
+  },
+  "third_party/enough_mail/lib/src/private/pop/parsers/pop_uidl_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a2f40b61463a68fdca6e39db51c0890b991f0787"
+  },
+  "third_party/enough_mail/lib/src/private/pop/pop_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8d04fc950a6e0579ca5e5416fb43131904faf653"
+  },
+  "third_party/enough_mail/lib/src/private/pop/pop_response_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c7dda0fff5a60266b749a11404f6868c88214105"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/all_commands.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1abf0fd79eb659cb5cca59a04a487b1bd0336d46"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_cram_md5_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ea3d002ea0d264ea86083fc7e3bbef2172529549"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_login_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9275a2291f22b4325ffba3d8d7d2ec048ebefca3"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_plain_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bc676a899e52dfb6bf03cb06cd8108f181054e66"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_xoauth2_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "55678221d9dd9d3ee12132bc94770408b680ff06"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_ehlo_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "88fd1c8cb6d244d25ea607dbba69a1ab04ffe762"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_quit_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "48974e5a4c1d01b4af7163ea1839f805e709c0ac"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_send_bdat_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "02c37cbc1e7dedb438e32be6952a350f823a281f"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_sendmail_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d80d222063d1bcc168f1d3e63f06c1d158b97e91"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/commands/smtp_starttls_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "60f742a5a1eceedeef6c900876d3ff2d118423b7"
+  },
+  "third_party/enough_mail/lib/src/private/smtp/smtp_command.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "572a5ed7914bd8c97700f9e6c8c5bbcd421517f7"
+  },
+  "third_party/enough_mail/lib/src/private/util/ascii_runes.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a4d0f07f4befbfc1d71ce82c229c250994e3dfe9"
+  },
+  "third_party/enough_mail/lib/src/private/util/byte_utils.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1d943f4fb8b42e0f847ffd1d273b0558c58c7c61"
+  },
+  "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "249bbbd8c8f78fbb303af10d687215e7c3ea8ac7"
+  },
+  "third_party/enough_mail/lib/src/private/util/client_base.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "302aacaf249d66a2da6b3c633bef20cd2adbd9df"
+  },
+  "third_party/enough_mail/lib/src/private/util/discover_helper.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "fe096a057fc8f13ae350b774d647b84421c3c4de"
+  },
+  "third_party/enough_mail/lib/src/private/util/http_helper.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d552281e1cedbc7043c20a0a8eafa23ab3d56673"
+  },
+  "third_party/enough_mail/lib/src/private/util/mail_address_parser.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "28030d3d23104094bdcac393740f23ae4a805366"
+  },
+  "third_party/enough_mail/lib/src/private/util/mail_signature.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "de52b18cef01f0aab6371bd448fee9a06521eec1"
+  },
+  "third_party/enough_mail/lib/src/private/util/non_nullable.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b5291c787c63340923b938e84d70e9ac899d11ac"
+  },
+  "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ec03a316582b6b1e09525ae73e69e69cda5b3d67"
+  },
+  "third_party/enough_mail/lib/src/private/util/stack_list.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "a6e81d462f62babc540061792aa0fc8ba6b06151"
+  },
+  "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e844f12c35f8b33129f12f40d54b366263bb146c"
+  },
+  "third_party/enough_mail/lib/src/private/util/word.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "b627c51932bdf2efaf70d46597e3f6f0bd140848"
+  },
+  "third_party/enough_mail/lib/src/smtp/smtp_client.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dad79ae980a6a669c1bcb7288c8f63a9f29cf685"
+  },
+  "third_party/enough_mail/lib/src/smtp/smtp_events.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "90414963805c3ccb0b8b58b9a5a36e9049abd903"
+  },
+  "third_party/enough_mail/lib/src/smtp/smtp_exception.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "8521df9d03db9d5503cc98d8249f616722460e69"
+  },
+  "third_party/enough_mail/lib/src/smtp/smtp_response.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "29d898649325526fac700585cf48927d45732f9d"
+  },
+  "third_party/enough_mail/pubspec.yaml": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9f3443eae80e78bf107d71feeef2b82713154295"
+  },
+  "third_party/enough_mail/test/codecs/base64_mail_codec_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "89a3cd251824387a76c3da5f9a1ed30a0a58e0f5"
+  },
+  "third_party/enough_mail/test/codecs/date_codec_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3df2cbb4f5c787bdd1a79527d47eedad72018ff2"
+  },
+  "third_party/enough_mail/test/codecs/encoding_correctness_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5892b75a61cbe06c4a634b9ee3a68217e8b2c7e9"
+  },
+  "third_party/enough_mail/test/codecs/folding_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "eef7c4765383195bc78ccfe37233f9664d35a808"
+  },
+  "third_party/enough_mail/test/codecs/mail_codec_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bb549bef8fb5a5888c0599a6721728842be50a17"
+  },
+  "third_party/enough_mail/test/codecs/modified_utf7_codec_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "04a992d107a80e0e127735f94a3bb992e8dd675c"
+  },
+  "third_party/enough_mail/test/codecs/quoted_printable_mail_codec_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "0dc80028095a87d5b8276b50a660c85bc8d2fa09"
+  },
+  "third_party/enough_mail/test/connection_robustness_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "04090fe0250e15f7ef859415be23af214e36c8e6"
+  },
+  "third_party/enough_mail/test/folding_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "5bea7adfc6b8308638321be47d37f59b3d96bbc1"
+  },
+  "third_party/enough_mail/test/header_injection_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9358671e2236d576e967fb85a72276926c843bca"
+  },
+  "third_party/enough_mail/test/imap/imap_client_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "66235571e34baca6bfc76440725f40dac0c6b220"
+  },
+  "third_party/enough_mail/test/imap/imap_quoting_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "de73fdab17546e80b865bd5218b414983fc88e48"
+  },
+  "third_party/enough_mail/test/imap/imap_robustness_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "540296612702ec052f5171638182e8a733cac0c5"
+  },
+  "third_party/enough_mail/test/imap/mailbox_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3425644100890c607ea0821f32c5bfec8335655a"
+  },
+  "third_party/enough_mail/test/imap/message_sequence_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1e46c1d27c9880d96aa87da13778875f0a3aa7b1"
+  },
+  "third_party/enough_mail/test/imap/mock_imap_server.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "db3d3724e6e35c561f0604c17328f016f3be0736"
+  },
+  "third_party/enough_mail/test/imap/qresync_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2c63c15831e714dc57323d766200153eb6c21e89"
+  },
+  "third_party/enough_mail/test/imap/raw_uid_search_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2509585f1ba0ed9e7793f2e01ec19ebf86461985"
+  },
+  "third_party/enough_mail/test/imap/response_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c9a9708a2ef9feaef2e17ac0d80274b6b2ba681b"
+  },
+  "third_party/enough_mail/test/mail/imap_loopback_server.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "e33fa85762983df3d7f9e2a85cdbcdcc07880f6a"
+  },
+  "third_party/enough_mail/test/mail/mail_account_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3bf6f26874764578c48f528094cb18543840f62e"
+  },
+  "third_party/enough_mail/test/mail/mail_client_delete_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "31cce477b188fa21bf472a14efe200decac27710"
+  },
+  "third_party/enough_mail/test/mail/mail_client_oauth_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d14db1668f6a018a666a9ac4d874dc924fd3e8fd"
+  },
+  "third_party/enough_mail/test/mail/mail_client_pop_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f4b84dc925b71a1f997ecb1e0584aefce93c3e5d"
+  },
+  "third_party/enough_mail/test/mail/mail_client_reconnect_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4bbb2aa8b1978bdca7b52568e755204e139fd94a"
+  },
+  "third_party/enough_mail/test/mail/mail_client_send_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "045641c73759da6718b879175eaed90efea3e575"
+  },
+  "third_party/enough_mail/test/mail/mail_client_starttls_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2aea8d9df20a60832266b72193aefa5c06db0e7d"
+  },
+  "third_party/enough_mail/test/mail/mail_send_transaction_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "bb27ea8aae02311298ea56e372ef205cfd627850"
+  },
+  "third_party/enough_mail/test/mail/mail_submission_acceptance_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "78d4e0f3d4d896379189a44945896c10f9add809"
+  },
+  "third_party/enough_mail/test/mail/redaction_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "14606c3711e71570a245ff0e25da701a1e28d74a"
+  },
+  "third_party/enough_mail/test/mail/results_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "f073036d3d759f849e9847f994b31e7b2899f8f4"
+  },
+  "third_party/enough_mail/test/mail_address_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9999301a198ced08348de2d7519b6e4392acb4f9"
+  },
+  "third_party/enough_mail/test/mail_signature_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7be267e43defeedf341b5626899b8714f98eec0c"
+  },
+  "third_party/enough_mail/test/message_builder_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d3460f69feff5520cd321bf61aef7708c50ea510"
+  },
+  "third_party/enough_mail/test/mime_bare_lf_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4ce445856c60453e408ca72cd544efd65146ff9b"
+  },
+  "third_party/enough_mail/test/mime_boundary_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "799164219fed3af7e9483d431aecc5545e575ba6"
+  },
+  "third_party/enough_mail/test/mime_message_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ce64e57d958edc4d8a4d869062638fed3c90b7c8"
+  },
+  "third_party/enough_mail/test/mime_robustness_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3448d6a9b0d7fe11ec57f231088927e7e883089d"
+  },
+  "third_party/enough_mail/test/mock_socket.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ffc438b6a4d650620e422f04ed892c19f3a128b0"
+  },
+  "third_party/enough_mail/test/pop/mock_pop_server.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "280d79e2c8cd96c2559fca274d9b07a8066a1c7e"
+  },
+  "third_party/enough_mail/test/pop/pop_client_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "cecce4b86074ae435e77d3e7e298f52db394c42b"
+  },
+  "third_party/enough_mail/test/pop/pop_framing_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "c196fb1fd4d29b8dc8aeed4fe9bbe0583d193fe0"
+  },
+  "third_party/enough_mail/test/quds_portable_mime_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "54d3ba4467b12798ad3536edc456c68cb7e00005"
+  },
+  "third_party/enough_mail/test/reconnect_state_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "fa952e3e2db03f9c0d686816221ed89a82294966"
+  },
+  "third_party/enough_mail/test/remove_header_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "216c0173dfd0b4aae031db6144d24ec65a4ca04f"
+  },
+  "third_party/enough_mail/test/smtp/mock_smtp_server.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "17469078aab2fb86c17ea73066235a1cbe5ca7a9"
+  },
+  "third_party/enough_mail/test/smtp/remove_bcc_header_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "735cddcd76c23a9482e6a701d776b112c3c685e3"
+  },
+  "third_party/enough_mail/test/smtp/smtp_auth_encoding_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4a848702cd80a54315def37100d18468b41dbaf7"
+  },
+  "third_party/enough_mail/test/smtp/smtp_client_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "ecd59e955ac9ebae6d2b593de811377944690d9e"
+  },
+  "third_party/enough_mail/test/smtp/smtp_framing_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "7d319c700f27b1276584dc5d5c977715dff66e5c"
+  },
+  "third_party/enough_mail/test/smtp/smtp_send_state_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2920d67740d58460e641b0fb714fe0209d5136f3"
+  },
+  "third_party/enough_mail/test/smtp/smtp_sendmail_command_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "97385803d5b3a89a7c69916eec418266724bc22f"
+  },
+  "third_party/enough_mail/test/smtp/smtp_transparency_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4b1450a84d4b49108a58f8f5ab94950bf27f6cdb"
+  },
+  "third_party/enough_mail/test/smtp/testimage-large.jpg": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "4d3bf274c0307519d761ef38da8e4ced297ffcdd"
+  },
+  "third_party/enough_mail/test/smtp/testimage.jpg": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d82bb80d37affe98326ab4d21ec175ccbd2b98bc"
+  },
+  "third_party/enough_mail/test/src/imap/fetch_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1d822ea009e4774d29d91f404a5aa8345b8a4120"
+  },
+  "third_party/enough_mail/test/src/imap/id_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "eb7d6d46399a841f153b2dd73f68efcfde173d72"
+  },
+  "third_party/enough_mail/test/src/imap/imap_response_line_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "25f56a12cad695786effbae2668208df769488ec"
+  },
+  "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "adbe757eec7334d9f8461f73409e0accaf223b43"
+  },
+  "third_party/enough_mail/test/src/imap/imap_response_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "143de1a5b054f2cb5d59f4d1b3ac6338a3dc59cc"
+  },
+  "third_party/enough_mail/test/src/imap/list_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "41e91ca9cdd0474c2bb1e1a0dec65584121a4e7c"
+  },
+  "third_party/enough_mail/test/src/imap/namespace_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "3f74a98ae3ab9137bebb785bd51d25b324f60a96"
+  },
+  "third_party/enough_mail/test/src/imap/parser_helper_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "1c2ed9aa35c1e2c17123c9773f09fe4119a36701"
+  },
+  "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "eb241d780d756f8bb775bb68409c9ed4f8d48244"
+  },
+  "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "68fc73dc5747170d7bb5e58bdbe3df57d14b53e6"
+  },
+  "third_party/enough_mail/test/src/imap/search_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "41f3af4629fe2fb0735571d077bc930c973b1eed"
+  },
+  "third_party/enough_mail/test/src/imap/sort_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "40a655722928c1eeb0f461c7b1009d9481a5ebf9"
+  },
+  "third_party/enough_mail/test/src/imap/status_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "89dc7ef2f5177f5c072134918774febb13c3f7f3"
+  },
+  "third_party/enough_mail/test/src/imap/thread_parser_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "6138169696e5eebd7a625ebf1692c8f713d9f756"
+  },
+  "third_party/enough_mail/test/src/smtp/commands/smtp_auth_cram_md5_command_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "d3621429caa1ba4822e6d9889c9125d2bf69ff8e"
+  },
+  "third_party/enough_mail/test/src/smtp/smtp_response_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "da9c0795076bde5b477f0f1ed89ca4d6083ef4f7"
+  },
+  "third_party/enough_mail/test/src/util/client_config_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "871ba2499602eb324d0deabbfd0f95e5da9ccfa6"
+  },
+  "third_party/enough_mail/test/src/util/discover_helper_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "161476466882a64d09cb2746c5fe6f52b8830b4f"
+  },
+  "third_party/enough_mail/test/src/util/http_helper_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "138f68127e2976d802ca86566ebfc58bc2907c73"
+  },
+  "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "2c17335152c50bd2c59eb9e6b5fefab8a10c8c53"
+  },
+  "third_party/enough_mail/test/write_failure_test.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "dc0a9e359b01a752c029700e8977d38bac774eaf"
+  },
+  "third_party/enough_mail/tool/portable_smoke.dart": {
+    "mode": "100644",
+    "type": "blob",
+    "blob": "70f73a916f71de47556ebfbed7f5dc62655e374f"
+  }
+}

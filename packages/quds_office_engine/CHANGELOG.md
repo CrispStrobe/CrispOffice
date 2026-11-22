@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Permit bounded native Zotero recovery for damaged citation metadata and
+  bibliography JSON with complete, exclusively owned field results. Preserve
+  original payloads, accept temporary repair state only in detached operations,
+  and require valid final metadata or explicit unlink/delete before publication.
+  Revalidate actual body/table/note ownership, guard shared or incomplete
+  packets, and preserve rich ordinary text when repaired fields are unlinked.
+  See the [recovery qualification](../../docs/validation/zotero-field-recovery-20261122/README.md).
+
 - Add bounded Word VBA `Cell.Range.Paragraphs(1)` and `.Paragraphs.Item(1)`
   selection for the existing ordinary cell paragraph. Preserve cell identity
   through Paragraph/Range/Shading aliases, nested `With` and named `ByVal`

@@ -1,0 +1,56 @@
+[
+  {
+    "revision": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+    "read_command": [
+      "git",
+      "show",
+      "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6:packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart"
+    ],
+    "format_command": [
+      "dart",
+      "format",
+      "--output=show",
+      "--summary=none",
+      "--show=none",
+      "--set-exit-if-changed",
+      "--stdin-name",
+      "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart"
+    ],
+    "working_directory": "/workspace/scratch/fbb55a1db052/quds_office_suite",
+    "started_at_utc": "2026-11-22T06:19:07.312313+00:00",
+    "exit_code": 0,
+    "source_sha256": "56ad4f22dabffd8532f1330d979f38ad5192a5b64184e34b20c3153d5377f4c8",
+    "formatted_stdout_sha256": "56ad4f22dabffd8532f1330d979f38ad5192a5b64184e34b20c3153d5377f4c8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_file": "original-main-format.stdout.log",
+    "stderr_file": "original-main-format.stderr.log",
+    "difference_file": "original-main-format.diff"
+  },
+  {
+    "revision": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+    "read_command": [
+      "git",
+      "show",
+      "6ba219a03a9933eded77980f9d7cdbd118183ee1:packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart"
+    ],
+    "format_command": [
+      "dart",
+      "format",
+      "--output=show",
+      "--summary=none",
+      "--show=none",
+      "--set-exit-if-changed",
+      "--stdin-name",
+      "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart"
+    ],
+    "working_directory": "/workspace/scratch/fbb55a1db052/quds_office_suite",
+    "started_at_utc": "2026-11-22T06:19:07.360509+00:00",
+    "exit_code": 1,
+    "source_sha256": "7f954012325bf911851c372568d64703230990583ae2aace3c86dd0c6a12f55d",
+    "formatted_stdout_sha256": "60756a732ca031a813d7d3a14a2ca7e8667c2e271e7098758b5be12791dccd0f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_file": "frozen-combined-format.stdout.log",
+    "stderr_file": "frozen-combined-format.stderr.log",
+    "difference_file": "frozen-combined-format.diff"
+  }
+]

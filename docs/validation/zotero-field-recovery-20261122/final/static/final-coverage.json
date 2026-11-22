@@ -1,0 +1,628 @@
+{
+  "recorded_at_utc": "2026-11-22T06:21:38.490114+00:00",
+  "original_main": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+  "first_frozen_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "final_frozen_source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "coverage_method": "First focused gate over all 58 original changes, followed by a separate focused gate over all 13 late changes. The remaining 54 first-gate files are byte-identical at the final source; dependency and toolchain snapshots are unchanged between gates. This is combined final-state coverage, not a claim of one monolithic rerun at final HEAD.",
+  "first_path_count": 58,
+  "late_path_count": 13,
+  "overlap_count": 4,
+  "unique_union_count": 67,
+  "final_whole_diff_count": 67,
+  "uncovered_paths": [],
+  "extra_union_paths": [],
+  "retained_first_gate_count": 54,
+  "retained_files_changed_between_gates": [],
+  "dependencies_changed_between_gates": [],
+  "toolchain_changed_between_gates": [],
+  "both_gates_source_and_dependency_stable": true,
+  "original_format_failure_preserved": "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+  "late_format_resolves_original_failure": true,
+  "final_analyzer_coverage_passes": true,
+  "final_format_coverage_passes": true,
+  "path_receipts": [
+    {
+      "path": "packages/quds_mail_core/lib/src/model/capabilities.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "fbc540768f71d5958c1ab4ed67dfc80aa53901d6ac271c8c2c5b729eafc4b368",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "a98a1af345817f509303e3c09f46d3aa2063ad6c5a49795293022baf7cea84fc",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "81615818ed6828d594796638b758726af3fb16b87d6272524f3dc5f67dc5f04c",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "a5348c44f95aa949c9e0d2fbed8605ef4db677d454f6cc527a885dd42662965c",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/bulk_flags_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "35f66a9b66cfb99b5f1cf37baf0ab80feade2d5b00795d83b46ca8932a42f0de",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/membership_commands_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "c6a7141bf5e0061989a65719a8ee7d47560c4c6f5347e1c1b7e31569c6c3aec8",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/flag_journal.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "7bab93bdcde9c955198ddcbd69e46c529d033c1cda2ff5011bfa4985f97a0d41",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/flag_journal_models.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "86e5d01c1d722b45793329d9afaef82fec894a2ec181e9fbe428e7121257c9f3",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/flag_reconciliation.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "f752d140fbe1bd3832f96f7a2fb87a2f27c90076d23358896ddb85893746c309",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "eb523551f62bf9b4cfd05327f339b0ae56aab8625d64e5798659d32339e8b869",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "0250427266ac8349e91b2ef31930b36a10d187c0d3c21ea20926a0be432636bf",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/flag_journal_schema.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "b87b389770b207e1e12c8b41316f891ac5b01a39eb14757bf070859c83c6f57b",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/compose_settings_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "3a665c5edb4f625ee058d77add590240079abe4e02d4464c7446979484f95e6a",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "7c415a976b2d8af6d7b2b7918aecd94cf63403ba90fdbefa910f004511579166",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "32da00a05e6ebb1a46b8fcb8ba905608b81f303e02b685f9bab794e1bf140723",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/membership_journal_migration_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "a7f71a8f43121d329ff68cdfa667ca74880215811e64a18c5e6e618e7f7a14d9",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/membership_journal_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "42bc2fb033485b5ea035a4bb875f387654d1f182d8eb38b3689f0bc4ffdf00f8",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "034f70c41d4045c82a412766377551b280b1115616484467c8ab7395d8b9de30",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "27d7072f3ba40b6f1569b5b39cb8e05765b168376eb3b4465fc908f1bb50c904",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "6aae8c6a06749f2a2f4336a319783609e79d850a2e26f54f8ac5238e20af55c4",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_store/tool/transaction_crash_fixture.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "dcad67b5e6f069d69edcf56b08bf2d5136dc03895c1c8cbd6780b7df8f009140",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "ed0741e8919d02f8ab5efa4e28ad6ac94d5f05fe62b8b7fa251971b7daa3adbf",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "8c23d3a89380f0d9f78dacc83abdeeb3928390a00225c5229c9b37853f6e11b8",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/native/provider.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "d9fdfabafa1e2052e2edf21c31945aff180980d4531e64b32c88530cfa58c37a",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/cloud_provider_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "e52d4ff671c1ad9164f79670affbfeca64ecac125a5a5c295d683e562539e65c",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/ews_provider_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "8705c2e077c65d4b7ba39879297ae38eb5c5df2375030e81a30c91598372938b",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "0a37be751cd33bd076c531caa6310b7a1931e37ea9ca4975b3dabd7be1bee76e",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "330fcf7236c5ab073469718a522478f95b2a5c35ea88157227c53d84a99d21a1",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "05a1bcf8e348249720e207052cbdeb0ed85279874e4f221c3cccc22032f276d7",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "acbed9cb4f8aae99a151906ac76935fc7e326bd5c99c9878719fae5e998f4dcf",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "2aa59020364396bffdf6c84b976c6ad953029c9a897f789d056fb8256cfc30dd",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "3a67f0a7b6c082cbd5c8d27ceb49d68e332204b2014c98bed14c42c76dc93ea2",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "8241a1452b5d893f1754076764f870b11198874b6273819997b5887c14e8ece3",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_flag_reconciliation.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "53e9fb1645bfbd8283f9e9960fe0f2de3a79b6feaf4304e6a5ca7bbf29cb2590",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_journal_dialog.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "8d992231144c45bee5e5606e2ea810de18ce59b2e2472f20dea3185b3f60e366",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "49adcd33791506e4c1cdea71fa865c68bffef6aa27a87342a491ef29a122c04c",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "ee6755c0f71580c432aeecb59fb001ca88f6ae3096b565149e277b378632e6f1",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "102d1a02e55701220b14a25a6859bb5f5cbea6fa32ab0bf9fa6ec706a521a1b5",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "2adedb13e41cedbc9652152d0210129b988f4507b46c7d7b1d549415ca4c06d0",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "5582be1f441714ad180031cfdbaf95ba326aacca565c5e8c41892480bad8c926",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "d7210941af1db5476627c80c980680ecef7d2413bb07cacc4d911af4869b8179",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "9f38a79c17a0aad38d87435ab3f91ab19a059149ada28a16821986df5c8f829a",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "d4f05708eb3f953d75796844a9fc0b273b8c282fa778c130eed5b99281866a68",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "60756a732ca031a813d7d3a14a2ca7e8667c2e271e7098758b5be12791dccd0f",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "f6cd8af789e2f2c7843c9e018371f9e583d18ea666e59f8594bfbed4b4675b58",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "776e3657ba7aefe2081988d38788ecda28c89dcd4eda4380020720eb806100d4",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "77f92ffa868676d3e3881d2ff05209b640429a465df4a7ecf71340c954ef1cd0",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "d4243711df5b0f1109bceb026a78e57f8fb3643f27b5c773a296e1aa408c5fb5",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+      "evidence_directory": "late-918e",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "560859c7e012550f58df0d017840cafd74c444a0707f29a7a7347549e3928511",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": false
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "9979dd785879e06a789212f75f4fbafd52ec4c1e4c610679ed63e1b3c47f8523",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "60ed605683b776cced6bcc4300a0e9fb02e71b5d488bb6200603f43a8845171c",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "2a313d323c97cffdc155265b07a708bebf63d3413726343582dfd0bfb71b4bbc",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_recovery_controller_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "f624f60fb54bdea80544e85f6062318c2c3033df4104845caa07f61cb3e949b9",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_recovery_dialog_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "ecb391f8fa0189a398b04763b5db77ef00c58d8d48c4b733e9b9351bbc9b9c5b",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "023d1c12a81f89c1bdad93a2e4491f486b233691bfa6159ed5ae6a96768a7992",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "c53ce2c12e257c158ae78bd56b3697c618ceb5dd227f22f753c34c858f54038f",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "692ab80f5e5c8e53c3ec6e2fbe973474d35c454ae30c33f54fa42d92e832342e",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "e5a92bd2c34f29dfbfa3d266be91e7271919ce291fabf4d0f77dadb1954f7ae0",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "2ca0b1620d9c84843f85a221198824d963d5cd3b3b7953608ae33d4e09f5bd71",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_conformance_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "b590f85ea20f39d76e8d19aeec1b745da3127dd53cdd4c89f3ef323ff8bd6c73",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_integration_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "ded87ca955b8e086fae15120a99e8b37b0b5e510b20942d1f2ef5a43a3337b56",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "4bf99bbb3d96e171157f3feba7969878b02751f44d89975c1c47b48f840afa59",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_table_cell_paragraph_formatting_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "9a62bcaa4fee03b67b8ec18784a0df4e7b5e150823552357c35c217f50a2cc42",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "2f33e70a1b6f9a38041a32dfdece4defe9761dc6b425841b141d102d69e3af6a",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "1a642c60db8c1a4c160d4154e3bc3e4a7785e1bd80bd077781bd08e2e4178033",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_cell_paragraphs_conformance.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "b8b1b112771ed6dfa253a27d575b5604e7fd0a9d6da86ddec60e29f68b8f0ade",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_cell_paragraphs_smoke.dart",
+      "evidence_directory": ".",
+      "analyzer_exit_code": 0,
+      "format_verified_clean": true,
+      "source_sha256": "bb19664147d343f61242d2e7185265ecbbcd1fd38ba88eb7daeaa766f80d4ae0",
+      "current_source_sha256_matches": true,
+      "same_file_at_both_heads": true
+    }
+  ]
+}

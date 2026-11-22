@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "gate": "word-portable",
+  "head_before": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "workflow_path": ".github/workflows/office-macros.yml",
+  "workflow_blob": "607f53b34abb35fcdf2d2d2b0530ea81ed14327f",
+  "workflow_sha256": "d43ae3886faa7117ca3735fa98503eaa134390da8117ee292a15b40a6665aa1d",
+  "command_scope": "Only the newly added cell-paragraph BAS smoke route and word_cell_paragraphs_v1 conformance loop member; every VM, JS, Node and cmp command is copied from the workflow.",
+  "started_utc": "2026-11-22T06:16:04.374121+00:00",
+  "environment_script_sha256": "2728b014890d467a20680a9d0d6b9ce2509c54b4bdf16436e58f347e1f00d88a",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/fbb55a1db052/toolchains/flutter"
+  },
+  "node_version": "v24.22.3",
+  "runner_sha256": "ea8426784d208720170a46de216f1b349d63ab0625b675af41d422b0c17a7ce2",
+  "runs": [
+    {
+      "name": "smoke",
+      "argv": [
+        "bash",
+        "/workspace/scratch/fbb55a1db052/quds_office_suite/docs/validation/zotero-field-recovery-20261122/final/word/portable/smoke-commands.sh"
+      ],
+      "cwd": "/workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_engine",
+      "script_sha256": "b90e1fdac2de820b7fa45786c1adc86b9149e2350dddbb140e34225b7cbb40b5",
+      "started_utc": "2026-11-22T06:16:04.480294+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 52.814,
+      "finished_utc": "2026-11-22T06:16:57.294813+00:00",
+      "stdout": {
+        "raw_bytes": 223,
+        "raw_sha256": "0b646ba5f861867ca28cbc1b95cd8f436e52d84163b2616c80c2267ea18ad1ac",
+        "gzip_sha256": "ac8f2f2ff0e1b96c1bcef79a2c2c0b1950aa3000a78379391b1b452a518e99d7"
+      },
+      "stderr": {
+        "raw_bytes": 0,
+        "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    }
+  ],
+  "status": "failed",
+  "error": "RuntimeError('smoke failed')",
+  "source_changes": [],
+  "head_after": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "finished_utc": "2026-11-22T06:16:57.584911+00:00"
+}

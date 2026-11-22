@@ -1,0 +1,392 @@
+{
+  "applicable_integrated_target": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "blocking_evidence_issues_in_reviewed_gates": [],
+  "completed_gate_suites_executed": 114,
+  "counting_rule": "One final result per unique non-hidden test ID, independently checked against unique (package, suite path, test name) identity. Exclude loading/hidden events, setup/teardown helper events, superseded attempts and separate VM/JS fixture routes. Retained identities must exactly match raw JSON events.",
+  "failure_error_skip_counts": {
+    "error": 0,
+    "failure": 0,
+    "skipped": 0
+  },
+  "gates": [
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 620
+      },
+      "dependency_evidence": "Before/after resolved dependency manifests are identical; source manifests include root lock, workspace manifests, package_config and package_graph. The original hosted archive verification receipt is linked by digest.",
+      "excluded_loading_or_hidden_events": 21,
+      "executed_suites": 21,
+      "gate": "engine",
+      "input_count": 1129,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "engine/receipt.json",
+      "receipt_sha256": "810b1f820b8b65ad640e3f2c163af30350b6ce28d5b1551c33a290c17b62c76c",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 21,
+      "source_applicability": "engine-word-applicability.json",
+      "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "unique_non_hidden_test_ids": 620,
+      "unique_suite_and_name_identities": 620
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 397
+      },
+      "dependency_evidence": "Before/after resolved dependency manifests are identical; source manifests include root lock, workspace manifests, package_config and package_graph. The original hosted archive verification receipt is linked by digest.",
+      "excluded_loading_or_hidden_events": 12,
+      "executed_suites": 8,
+      "gate": "word",
+      "input_count": 1222,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "word/receipt.json",
+      "receipt_sha256": "f24e2933d59c17e1c84e97b0bba8ecd4c9040c057fe393be308656f170207502",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 8,
+      "source_applicability": "engine-word-applicability.json",
+      "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "unique_non_hidden_test_ids": 397,
+      "unique_suite_and_name_identities": 397
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 347
+      },
+      "dependency_evidence": "Tracked dependency manifests and root lock are in this gate snapshot. Resolved hosted/SDK manifests and package configuration use the unchanged shared Word-before/Mail-store-after inventories that bracket this editor interval; see editor-applicability.json.",
+      "excluded_loading_or_hidden_events": 26,
+      "executed_suites": 18,
+      "gate": "editor",
+      "input_count": 2471,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "editor/receipt.json",
+      "receipt_sha256": "4756108b65407643ea07de7ec327ab807de408433258ab7a6a10a9e427544d8a",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 18,
+      "source_applicability": "editor-applicability.json",
+      "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "unique_non_hidden_test_ids": 347,
+      "unique_suite_and_name_identities": 347
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 115
+      },
+      "dependency_evidence": "Before/after resolved dependency manifests are identical; source manifests include root lock, workspace manifests, package_config and package_graph. The original hosted archive verification receipt is linked by digest.",
+      "excluded_loading_or_hidden_events": 4,
+      "executed_suites": 4,
+      "gate": "mail-core",
+      "input_count": 228,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "mail-core/receipt.json",
+      "receipt_sha256": "8434bbae93b69b0c354fba7a01dbdeb39051d5cb06c567372f14ab947562397e",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 4,
+      "source_applicability": "mail-applicability/receipt.json",
+      "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "unique_non_hidden_test_ids": 115,
+      "unique_suite_and_name_identities": 115
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 1010
+      },
+      "dependency_evidence": "Before/after resolved dependency manifests are identical; source manifests include root lock, workspace manifests, package_config and package_graph. The original hosted archive verification receipt is linked by digest.",
+      "excluded_loading_or_hidden_events": 43,
+      "executed_suites": 43,
+      "gate": "mail-store",
+      "input_count": 228,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [
+        {
+          "line": 1,
+          "prefix": "Running build hooks...Running build hooks..."
+        }
+      ],
+      "raw_output_hashes_verified": true,
+      "receipt": "mail-store/receipt.json",
+      "receipt_sha256": "dc262d3768fdf8190886197641f805c037e9bc4160d52ad071cf0badc9663518",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [
+        "test/browser_problem_test.dart"
+      ],
+      "selected_suite_files": 44,
+      "source_applicability": "mail-applicability/receipt.json",
+      "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "unique_non_hidden_test_ids": 1010,
+      "unique_suite_and_name_identities": 1010
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 250
+      },
+      "dependency_evidence": "Before/after resolved dependency manifests are identical; source manifests include root lock, workspace manifests, package_config and package_graph. The original hosted archive verification receipt is linked by digest.",
+      "excluded_loading_or_hidden_events": 3,
+      "executed_suites": 3,
+      "gate": "mail-transport",
+      "input_count": 228,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [
+        {
+          "line": 1,
+          "prefix": "Running build hooks...Running build hooks..."
+        }
+      ],
+      "raw_output_hashes_verified": true,
+      "receipt": "mail-transport/receipt.json",
+      "receipt_sha256": "93b0f33bb24ed1e333411f6c8493741e09c5460c0d0f43503d7eb11a90b172b7",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 3,
+      "source_applicability": "mail-applicability/receipt.json",
+      "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "unique_non_hidden_test_ids": 250,
+      "unique_suite_and_name_identities": 250
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 40
+      },
+      "dependency_evidence": "Tracked workspace dependency manifests and root lock are stable within this gate. Shared resolved manifests and package configuration remain identical at this review to the earlier accepted runtime inventory. The late static receipt separately records the unchanged package configuration; this Flutter gate does not claim a private hosted-cache snapshot.",
+      "excluded_loading_or_hidden_events": 3,
+      "executed_suites": 3,
+      "gate": "studio",
+      "input_count": 2472,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "studio/receipt.json",
+      "receipt_sha256": "c1de105e08b097d0ce0edc3d8cadfa57b27956e12a052ee2f1629970cf96c464",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 3,
+      "source_applicability": "direct_run_at_integrated_target",
+      "tested_source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "unique_non_hidden_test_ids": 40,
+      "unique_suite_and_name_identities": 40
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 97
+      },
+      "dependency_evidence": "Tracked workspace dependency manifests and root lock are stable within this gate. Shared resolved manifests and package configuration remain identical at this review to the earlier accepted runtime inventory. The late static receipt separately records the unchanged package configuration; this Flutter gate does not claim a private hosted-cache snapshot.",
+      "excluded_loading_or_hidden_events": 4,
+      "executed_suites": 4,
+      "gate": "mail-ui",
+      "input_count": 2472,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "mail-ui/receipt.json",
+      "receipt_sha256": "c21a3a6cc0743878c075356f7a754e8edeed6a993afadf5fae483eea7314a455",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 4,
+      "source_applicability": "direct_run_at_integrated_target",
+      "tested_source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "unique_non_hidden_test_ids": 97,
+      "unique_suite_and_name_identities": 97
+    },
+    {
+      "counts": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 508
+      },
+      "dependency_evidence": "Tracked workspace dependency manifests and root lock are stable within this gate. Shared resolved manifests and package configuration remain identical at this review to the earlier accepted runtime inventory. The late static receipt separately records the unchanged package configuration; this Flutter gate does not claim a private hosted-cache snapshot.",
+      "excluded_loading_or_hidden_events": 14,
+      "executed_suites": 10,
+      "gate": "mail-studio",
+      "input_count": 2472,
+      "inputs_unchanged_during_run": true,
+      "non_json_runner_prefixes": [],
+      "raw_output_hashes_verified": true,
+      "receipt": "mail-studio/receipt.json",
+      "receipt_sha256": "17b376207dd028354539dc73b182aae543862cd5b77adf73e31ac955ee5ba183",
+      "retained_identities_match_raw_events": true,
+      "selected_but_platform_filtered": [],
+      "selected_suite_files": 10,
+      "source_applicability": "direct_run_at_integrated_target",
+      "tested_source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "unique_non_hidden_test_ids": 508,
+      "unique_suite_and_name_identities": 508
+    }
+  ],
+  "kind": "independent_read_only_completed_evidence_review",
+  "no_production_or_remote_changes": true,
+  "no_tests_rerun": true,
+  "outside_this_review": [
+    "Remote merge/publication state, which is owned by the parent agent."
+  ],
+  "portable_routes_separate_from_test_case_total": {
+    "conformance_unique_case_ids": 32,
+    "conformance_vm_js_byte_equality": true,
+    "limits": "Local Dart VM and Node-executed JS -O1 only. The 32 shared fixture IDs are not counted twice as 64 unique tests, nor added to the unit/widget case count. Parsed smoke equality tolerates integer/double JSON spelling; canonical conformance still uses exact byte comparison. No installed Microsoft Word, OpenOffice/LibreOffice, live Zotero plugin, or browser acceptance is claimed.",
+    "numeric_representation_differences": [
+      {
+        "js": "6",
+        "path": "/state/0/after",
+        "vm": "6.0"
+      },
+      {
+        "js": "3",
+        "path": "/state/1/after",
+        "vm": "3.0"
+      },
+      {
+        "js": "3",
+        "path": "/state/2/after",
+        "vm": "3.0"
+      },
+      {
+        "js": "3",
+        "path": "/state/3/after",
+        "vm": "3.0"
+      },
+      {
+        "js": "3",
+        "path": "/state/4/after",
+        "vm": "3.0"
+      }
+    ],
+    "receipt": "word/portable/receipt.json",
+    "smoke_byte_equality": false,
+    "smoke_semantic_json_equality": true,
+    "tested_product_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+    "workflow_revision": "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9"
+  },
+  "recorded_utc": "2026-11-22T06:27:31.738301+00:00",
+  "retained_attempts": [
+    {
+      "counts_if_present": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 347
+      },
+      "included_in_accepted_totals": false,
+      "original_status": "passed",
+      "path": "attempts/pre-integration/editor",
+      "receipt_sha256": "39d76735585b960f23d9fba00130269c8124c95e28580635590519fad29170c1",
+      "retained_compressed_artifacts": 4
+    },
+    {
+      "counts_if_present": {
+        "error": 0,
+        "failure": 1,
+        "skipped": 0,
+        "success": 618
+      },
+      "included_in_accepted_totals": false,
+      "original_status": "failed",
+      "path": "attempts/pre-integration/engine",
+      "receipt_sha256": "89a6db740eb346568d0ab2a7e1b41cf33194485f111748449e4bed6469f013fa",
+      "retained_compressed_artifacts": 2
+    },
+    {
+      "counts_if_present": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 40
+      },
+      "included_in_accepted_totals": false,
+      "original_status": "not_accepted",
+      "path": "attempts/pre-integration/studio",
+      "receipt_sha256": "c8b81d1b1c7cf76c302f605339364af3e653c28d45a778c545f972221055bfe2",
+      "retained_compressed_artifacts": 4
+    },
+    {
+      "counts_if_present": {
+        "error": 11,
+        "failure": 0,
+        "skipped": 0,
+        "success": 89
+      },
+      "included_in_accepted_totals": false,
+      "original_status": "not_accepted",
+      "path": "attempts/pre-late-mail/mail-ui",
+      "receipt_sha256": "82da4c715d0a7bdd62cd975d7951708ac4efc45a82abb1f31b6ad839ce747f61",
+      "retained_compressed_artifacts": 4
+    },
+    {
+      "counts_if_present": {
+        "error": 0,
+        "failure": 0,
+        "skipped": 0,
+        "success": 40
+      },
+      "included_in_accepted_totals": false,
+      "original_status": "passed",
+      "path": "attempts/pre-late-mail/studio",
+      "receipt_sha256": "52b34b662203ddad6d128230ba41b3c993a4e46ad70dea017f5c88bd7b5e14d8",
+      "retained_compressed_artifacts": 4
+    },
+    {
+      "counts_if_present": null,
+      "included_in_accepted_totals": false,
+      "original_status": "failed",
+      "path": "attempts/word-portable-byte-comparison",
+      "receipt_sha256": "b3dc9df64adb8bc940a2dc873af919e9ada6940db203e335d8a98a117bf5054c",
+      "retained_compressed_artifacts": 4
+    }
+  ],
+  "schema_version": 1,
+  "scope_caveats": [
+    "Mail store selects 44 files, but only 43 VM suites run. browser_problem_test.dart is @TestOn(node), so its three browser-only test cases are outside the 1010 accepted VM cases; they are not reported as skips by this runner.",
+    "Mail store and transport each prepend Running build hooks... twice to their start JSON event. The prefix was separated and the start event parsed; it does not contain test outcomes or alter case counts.",
+    "The accepted editor receipt is the 347-case run at 6ba219a. The older equally passing pre-integration editor run is retained but is not counted again.",
+    "Editor resolved dependency provenance uses the unchanged shared snapshots documented in editor-applicability.json. Its own original input receipt covers tracked workspace inputs and root lock, not a separate hosted-cache snapshot."
+  ],
+  "static_coverage": {
+    "all_current_file_hashes_and_raw_command_log_hashes_verified": true,
+    "analyzer_passed": true,
+    "formatter_passed": true,
+    "method": "First focused gate over all 58 original changes, followed by a separate focused gate over all 13 late changes. The remaining 54 first-gate files are byte-identical at the final source; dependency and toolchain snapshots are unchanged between gates. This is combined final-state coverage, not a claim of one monolithic rerun at final HEAD.",
+    "original_formatter_failure_preserved": "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+    "receipt": "static/final-coverage.json",
+    "receipt_sha256": "7186fd7536d3ebe21f6d5a1dae18be6973b64324cae1158ffbf68f9ebffecbc7",
+    "unique_changed_dart_paths": 67
+  },
+  "tested_sources": [
+    "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+    "918e7dd12e66b79e75082a41c250887a92db0d4e"
+  ],
+  "unique_completed_gate_test_cases": 3384,
+  "zotero_subset_unique_test_cases": 1007
+}

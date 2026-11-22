@@ -1,0 +1,126 @@
+{
+  "gate": "mail-ui",
+  "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "cwd": "packages/quds_mail_ui",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=4",
+    "test/bulk_message_list_test.dart",
+    "test/message_list_bulk_test.dart",
+    "test/bulk_api_aliases_test.dart",
+    "test/message_list_test.dart"
+  ],
+  "started_utc": "2026-11-22T06:17:48.153582+00:00",
+  "input_scope": "Tracked local Dart libraries/tests, package manifests, analysis configuration, fonts and root lock/configuration",
+  "input_count": 2471,
+  "exit_code": 1,
+  "finished_utc": "2026-11-22T06:18:14.131126+00:00",
+  "changed_inputs": [],
+  "stdout.jsonl_sha256": "0e822983edab374d28ebe61e35249dfe81a783b377ca462879b6c999f2e006db",
+  "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "counts": {
+    "success": 89,
+    "failure": 0,
+    "error": 11,
+    "skipped": 0
+  },
+  "errors": [
+    {
+      "testID": 27,
+      "error": "Test failed. See exception logs above.\nThe test description was: explicit move requests are not inferred toggles",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 13011
+    },
+    {
+      "testID": 30,
+      "error": "Test failed. See exception logs above.\nThe test description was: explicit delete requests are not inferred toggles",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 13949
+    },
+    {
+      "testID": 49,
+      "error": "Test failed. See exception logs above.\nThe test description was: A to B to A rejects old checkbox and action callbacks",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 16186
+    },
+    {
+      "testID": 45,
+      "error": "Test failed. See exception logs above.\nThe test description was: MailBulkFlagAction.move freezes visible order and clears before callback",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 16282
+    },
+    {
+      "testID": 51,
+      "error": "Test failed. See exception logs above.\nThe test description was: a popup opened for an older selection cannot command a new one",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 16700
+    },
+    {
+      "testID": 52,
+      "error": "Test failed. See exception logs above.\nThe test description was: MailBulkFlagAction.delete freezes visible order and clears before callback",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 17067
+    },
+    {
+      "testID": 55,
+      "error": "Test failed. See exception logs above.\nThe test description was: refresh invalidates selection but preserves search and sorting",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 17419
+    },
+    {
+      "testID": 59,
+      "error": "Test failed. See exception logs above.\nThe test description was: busy state blocks new work but keeps stop available",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 17796
+    },
+    {
+      "testID": 63,
+      "error": "Test failed. See exception logs above.\nThe test description was: an accepted menu callback cannot be replayed after completion",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 18414
+    },
+    {
+      "testID": 73,
+      "error": "Test failed. See exception logs above.\nThe test description was: disposed callbacks cannot dispatch commands",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 19163
+    },
+    {
+      "testID": 86,
+      "error": "Test failed. See exception logs above.\nThe test description was: Boolean edits prune checks and reject an earlier bulk menu",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 20693
+    }
+  ],
+  "done": {
+    "success": false,
+    "type": "done",
+    "time": 24508
+  },
+  "accepted": false
+}
