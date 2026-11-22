@@ -606,6 +606,7 @@ void main() {
         await store.close();
         // Reconstruct the actual old schema, including removal of every
         // additive table/column introduced after v7.
+        database.execute('DROP TABLE saved_header_search_folders');
         database.execute('DROP TABLE account_quick_texts');
         database.execute('DROP TABLE account_compose_settings');
         database.execute('DROP TABLE saved_header_search_accounts');
@@ -622,7 +623,8 @@ void main() {
           expect(
             database.select(
               "SELECT name FROM sqlite_master WHERE name IN "
-              "('mailbox_sync_state','account_compose_settings','account_quick_texts')",
+              "('mailbox_sync_state','account_compose_settings','account_quick_texts',"
+              "'saved_header_search_folders')",
             ),
             isEmpty,
           );

@@ -29,6 +29,24 @@ abstract interface class StudioMailCachedHeaderSearchStore {
   });
 }
 
+/// Optional exact-folder discovery. Older hosts retain account-wide search;
+/// callers must never emulate an unsupported explicit scope by broadening it.
+abstract interface class StudioMailFolderScopedHeaderSearchStore {
+  MailAccountId get account;
+
+  /// Known local folders, including catalog rows without retained headers.
+  /// This neither contacts a provider nor reads message bodies or credentials.
+  Future<List<MailMailbox>> listSearchFolders();
+
+  Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
+    String query, {
+    required List<MailMailboxId> mailboxIds,
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  });
+}
+
 abstract interface class StudioMailMailboxStore {
   MailAccountId get account;
   Future<List<MailCachedMailboxSummary>> listViews();
@@ -112,6 +130,7 @@ final class SqliteStudioMailMailboxStore
         StudioMailMailboxStore,
         StudioMailMailboxWatchStore,
         StudioMailCachedHeaderSearchStore,
+        StudioMailFolderScopedHeaderSearchStore,
         StudioMailSyncStore {
   SqliteStudioMailMailboxStore({
     required this._repository,
@@ -156,6 +175,38 @@ final class SqliteStudioMailMailboxStore
       ),
     ),
   );
+
+  @override
+  Future<List<MailMailbox>> listSearchFolders() => _serialize(
+    () async => _value(await _repository.listCachedSearchMailboxes(account)),
+  );
+
+  @override
+  Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
+    String query, {
+    required List<MailMailboxId> mailboxIds,
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  }) {
+    // Capture the caller's selection before the owner's queue can yield.
+    final selected = List<MailMailboxId>.unmodifiable(mailboxIds);
+    for (final mailbox in selected) {
+      _scope(mailbox.account);
+    }
+    return _serialize(
+      () async => _value(
+        await _repository.searchCachedHeaders(
+          account,
+          query,
+          mailboxIds: selected,
+          cursor: cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        ),
+      ),
+    );
+  }
 
   Future<MailResult<T>> _sync<T>(
     MailAccountId account,
