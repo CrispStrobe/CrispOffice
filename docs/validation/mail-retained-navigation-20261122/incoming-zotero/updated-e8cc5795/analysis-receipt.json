@@ -1,0 +1,8 @@
+{
+  "tip": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+  "command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\ndart analyze --fatal-infos packages/quds_office_editor/lib/src/embed/office_controller.dart packages/quds_office_editor/lib/src/embed/office_editors.dart packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart",
+  "cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+  "exit_code": 0,
+  "output": "Analyzing office_controller.dart, office_editors.dart, word_zotero_dialog.dart, word_zotero_field_context.dart, word_zotero_field_context_controller_test.dart, word_zotero_field_context_dialog_test.dart...\nNo issues found!\n",
+  "log_sha256": "a0c5470690324aa94b03dd054e778ba2cb4992228c3a6e25d632799d55618fd9"
+}

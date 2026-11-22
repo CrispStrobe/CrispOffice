@@ -1,0 +1,106 @@
+{
+  "source": {
+    "branch": "origin/codex/zotero-field-context-20261122",
+    "tip": "a83700c69c2ec6d134b780a16a363839425101ae",
+    "baseline": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+    "isolated_worktree": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+    "commits_reviewed": [
+      "3b7687ff",
+      "9c8816b2",
+      "a83700c6"
+    ],
+    "shared_source_edits_by_reviewer": false
+  },
+  "verdict": "No material findings; safe to integrate the reviewed additive engine/context and canvas/render changes.",
+  "findings": [],
+  "reviewed_behaviors": [
+    "Explicit Field.select context is independent of writing caret and implicit initial field.",
+    "Existing fields resolve to unchanged live source identity and complete multipart ownership; staged insertions and imported transfer clones expose no live ranges.",
+    "Completion, selected-field deletion/unlinking, and replacement insertion retire explicit context.",
+    "Canvas rejects foreign paragraph identities and invalid offsets, excludes automatic note labels, respects table clipping, and preserves writing selection and Find."
+  ],
+  "bounds": [
+    "Native Zotero prompt/controller integration remains pending. This reviewed tip provides source context and render APIs; it does not claim completed host prompt presentation or lifecycle wiring.",
+    "Local deterministic engine and Flutter raster/unit tests only; no installed Zotero/Word/LibreOffice interoperability qualification.",
+    "No GitHub Actions wait was used."
+  ],
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "env_command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh",
+    "dependency_command": "flutter pub get --offline --enforce-lockfile",
+    "dependency_cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+    "dependency_exit_code": 0,
+    "package_config_verified": "quds_office_engine and quds_office_editor resolve inside incoming-zotero, not shared root source."
+  },
+  "tests": {
+    "named_passed": 166,
+    "failed": 0,
+    "skipped": 0,
+    "engine": {
+      "named_passed": 140,
+      "command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\ndart --packages=/workspace/scratch/e171b31c21a6/incoming-zotero/.dart_tool/package_config.json /workspace/scratch/e171b31c21a6/runtime/test-runner/test-runner.dill --reporter=json test/word_zotero_field_selection_test.dart test/word_zotero_citing_test.dart test/word_zotero_transfer_session_test.dart test/word_zotero_multiparagraph_test.dart",
+      "cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_engine",
+      "child_exit_code": 0,
+      "receipt": "engine-receipt.json",
+      "log": "engine.jsonl"
+    },
+    "editor": {
+      "named_passed": 26,
+      "command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\nflutter test --no-pub --machine test/word_zotero_field_context_render_test.dart test/word_proofing_geometry_test.dart test/word_zotero_field_at_caret_test.dart",
+      "cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor",
+      "child_exit_code": null,
+      "framework_done_success": true,
+      "receipt": "editor-receipt.json",
+      "log": "editor.jsonl",
+      "note": "Flutter runner emitted successful done; receipt wrapper initially failed on a non-test JSON array from Flutter. Repaired event parser records completed run without reexecuting tests. Child process code was not retained before wrapper failed."
+    }
+  },
+  "additional_checks": [
+    {
+      "command": "dart analyze --fatal-infos packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart packages/quds_office_engine/test/word_zotero_field_selection_test.dart packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart packages/quds_office_editor/test/word_zotero_field_context_render_test.dart",
+      "cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+      "exit_code": 0,
+      "observed_result": "No issues found!",
+      "evidence": "Direct tool result; no separate raw analysis logfile was created."
+    },
+    {
+      "command": "dart format --output=none --set-exit-if-changed packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart packages/quds_office_engine/test/word_zotero_field_selection_test.dart packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart packages/quds_office_editor/test/word_zotero_field_context_render_test.dart",
+      "cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+      "exit_code": 0,
+      "observed_result": "Formatted 4 files (0 changed)."
+    },
+    {
+      "command": "git diff --check 2eecf9ae...HEAD",
+      "cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+      "exit_code": 0,
+      "observed_result": "No whitespace errors."
+    }
+  ],
+  "source_continuity": {
+    "before": "source-before.json",
+    "after": "source-after.json",
+    "changes_during_test_run": [],
+    "root_source_hashes_at_evidence_copy": {
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "4433c284efc1b8d6b0dc3d5290d8e9cff08f916c0ee2e82296b7eb5d53145598",
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "packages/quds_office_engine/test/word_zotero_field_selection_test.dart": "6ad8086368684eb31ceaccdf5ee8336bda9192e7303899e8ea134c33142e8d48",
+      "packages/quds_office_engine/test/word_zotero_citing_test.dart": "5198947823928eb1a0cb344a4c73dcd664bbb7e45254850dac656352dfd998fc",
+      "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart": "189a9d6d6b1dbaf3f4d785a8dccfe0bec4ee364d3a65c3cf735bce7bf95f3297",
+      "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart": "e9f155aff1f6cc7dd9aea490bd13b381da77469cb28a285fc2b9f8d94863b8d6",
+      "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": "7533871069659c37e146f55abcfda806f0621d4ff269a87bd5a0a0f09ed8461a",
+      "packages/quds_office_editor/test/word_proofing_geometry_test.dart": "e8029153d3be1bff3b46dce76d8809c55a052fe49ef788a227c32c7084b328bc",
+      "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart": "c433f15b1d92e3ebda2bdab126efce35a20a07c46997d106fb8eb4cd99bbe9b0"
+    },
+    "root_differences_from_reviewed_sources": []
+  },
+  "evidence_sha256": {
+    "engine.jsonl": "ca8142f54b40e15fe9e306f6a1d65c507e2bee1a72fe99fdef5a7cc5a0ff3752",
+    "engine-receipt.json": "058d12a012128cc81db8fbd499f0ba1aeee564c4d74dcb00a8821e2f927ca9a8",
+    "editor.jsonl": "c02ff6118b95fec1e8f30b2df8c88733bde563c3724020ac7800620e5d7f1d6c",
+    "editor-receipt.json": "2f45820399b73163dd5e7ee7dd1dda90219d8e56e040fb9329bb48feb11c30f2",
+    "source-before.json": "694a0eb7b57744926a1af68c7966c25a3b08d6fcffa72ef0fe724517da3f3682",
+    "source-after.json": "694a0eb7b57744926a1af68c7966c25a3b08d6fcffa72ef0fe724517da3f3682"
+  }
+}

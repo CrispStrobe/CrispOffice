@@ -1,0 +1,54 @@
+{
+  "tip": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+  "command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\nflutter test --no-pub --machine test/word_zotero_field_context_controller_test.dart test/word_zotero_field_context_dialog_test.dart test/word_zotero_citing_controller_test.dart test/word_zotero_citing_dialog_test.dart test/word_zotero_direct_command_test.dart test/word_zotero_writing_position_test.dart test/word_zotero_field_context_render_test.dart",
+  "working_directory": "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor",
+  "child_exit_code": 0,
+  "log": "/workspace/scratch/e171b31c21a6/runtime/logs/incoming-zotero-e8cc5795/host-integration.jsonl",
+  "counts": {
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": {
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": {
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_writing_position_test.dart": {
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_direct_command_test.dart": {
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "errors": [],
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 18892
+    }
+  ],
+  "source_changes": [],
+  "log_sha256": "ee9c53dc153ac1c1771b40d2affc934cbbc5d99a99d10ac5b9e918c8ab103b42"
+}

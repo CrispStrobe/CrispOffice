@@ -1,0 +1,112 @@
+{
+  "source": {
+    "branch": "origin/codex/zotero-field-context-20261122",
+    "tip": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+    "reviewed_delta_base": "a83700c69c2ec6d134b780a16a363839425101ae",
+    "isolated_worktree": "/workspace/scratch/e171b31c21a6/incoming-zotero",
+    "source_edits_by_reviewer": false
+  },
+  "verdict": "Safe to integrate the native selected-field host implementation; no material behavior regression found. One formatter-only indentation finding is recorded below.",
+  "prior_review": "../review.json",
+  "host_integration_status": "Implemented and covered by local controller, prompt/dialog and adjacent lifecycle tests. This supersedes the earlier a83700c6 implementation-pending bound only.",
+  "reviewed_behaviors": [
+    "Native protocol callbacks now use WordZoteroTransaction.handle; explicit Field.select publishes only validated original-source context.",
+    "QudsWordEditor passes active source ranges to WordCanvas independently of writing selection, Notes target and focus.",
+    "Native alert and progress views present bounded source excerpts, source location and pending-import/insertion explanation. Alert button return codes are preserved.",
+    "Completion, callback errors, cancellation completion and route disposal retire presentation. Stale document, writing target or host state suppress context and reject staged result.",
+    "Viewport reveal and guarded restoration preserve deliberate user scroll/zoom; older cleanup cannot clear a newer operation context.",
+    "Staged updates remain unpublished until successful complete/apply and commit as one undoable operation."
+  ],
+  "findings": [
+    {
+      "severity": "formatting",
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "lines": [
+        16578,
+        16579
+      ],
+      "description": "The two ternary arms in presentedFieldContext have four extra indentation spaces according to the pinned Dart formatter. No semantic change is required.",
+      "suggested_action": "Run dart format on office_controller.dart after merge. No source was edited by this reviewer.",
+      "evidence": "format-diff.patch"
+    }
+  ],
+  "validation": {
+    "runtime": "Flutter 3.47.8 / Dart 3.13.7 from pinned runtime env.sh",
+    "isolated_package_config_verified": true,
+    "test_command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\nflutter test --no-pub --machine test/word_zotero_field_context_controller_test.dart test/word_zotero_field_context_dialog_test.dart test/word_zotero_citing_controller_test.dart test/word_zotero_citing_dialog_test.dart test/word_zotero_direct_command_test.dart test/word_zotero_writing_position_test.dart test/word_zotero_field_context_render_test.dart",
+    "test_cwd": "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor",
+    "test_child_exit_code": 0,
+    "named_passed": 146,
+    "failed": 0,
+    "skipped": 0,
+    "errors": [],
+    "framework_done_success": true,
+    "counts_by_suite": {
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_writing_position_test.dart": {
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_direct_command_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "tests_receipt": "host-integration-receipt.json",
+    "strict_analysis_receipt": "analysis-receipt.json",
+    "strict_analysis_result": "No issues found!",
+    "format_command": "dart format --output=none --set-exit-if-changed packages/quds_office_editor/lib/src/embed/office_controller.dart packages/quds_office_editor/lib/src/embed/office_editors.dart packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart",
+    "format_exit_code": 1,
+    "format_observed_result": "Formatted 6 files (1 changed), output=none so no file was written. Delta is two indentation lines only.",
+    "diff_check_command": "git diff --check a83700c6..HEAD",
+    "diff_check_exit_code": 0
+  },
+  "source_continuity": {
+    "before": "source-before.json",
+    "after": "source-after.json",
+    "changes_during_test_run": [],
+    "current_isolated_source_differences": []
+  },
+  "remaining_bounds": [
+    "This is deterministic local validation using scripted localhost protocol fixtures; no installed Zotero, Word or LibreOffice interoperability acceptance was run.",
+    "The new dialog tests mount the native dialog and controller; raster tests cover the range renderer separately. The three-line QudsWordEditor range binding was reviewed in source.",
+    "The earlier a83700c6 editor receipt keeps its unknown child-exit-code qualification. This updated-tip Flutter run captured child exit code 0.",
+    "No GitHub Actions wait."
+  ],
+  "evidence_sha256": {
+    "host-integration.jsonl": "ee9c53dc153ac1c1771b40d2affc934cbbc5d99a99d10ac5b9e918c8ab103b42",
+    "host-integration-receipt.json": "171105948f46387e18688b424ba3c4db11b9d0fc71a8de16ea7dc10c88a19ce6",
+    "source-before.json": "b0fa01448dacd1915a763c91809a4e4f01bd8c8bba20f2d1405282fa6942ecf7",
+    "source-after.json": "b0fa01448dacd1915a763c91809a4e4f01bd8c8bba20f2d1405282fa6942ecf7",
+    "analysis.log": "a0c5470690324aa94b03dd054e778ba2cb4992228c3a6e25d632799d55618fd9",
+    "analysis-receipt.json": "79e01b02aa2d980c27030c271a0ba3c3c6ed672db32691e61a4a1e8e84941314",
+    "format-diff.patch": "f540db2a8217337bc5cbf442a25f4cd6319de8c69e6a3f1fbdd30df0817777f6"
+  },
+  "format_diff_presentation": "At publication, the same two-line correction was represented as a zero-context Git diff of the applied formatter change. This avoids trailing-space-only context lines in the stored patch; test and analysis logs are unchanged."
+}

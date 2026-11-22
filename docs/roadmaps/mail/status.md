@@ -34,6 +34,11 @@ displayed last page. Repository updates preserve a matching reader and reject
 stale body results after folder, source, page or cleanup changes. EN/DE/AR
 controls retain browse-only host compatibility.
 
+**Locally qualified:** 115 cases pass in one run on the combined Mail/Word/Zotero
+source, including 64 new regressions. All seven changed Mail Dart files pass
+strict analysis and formatting. Earlier host checks and incoming Office
+qualification are recorded separately with their exact source bounds.
+
 See the [workflow and ownership contract](retained-folder-navigation.md) and
 [fresh qualification record](../../validation/mail-retained-navigation-20261122/README.md).
 This is one account's local navigation. Connected multi-account navigation and

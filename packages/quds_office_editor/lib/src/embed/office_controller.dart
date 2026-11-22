@@ -16575,8 +16575,8 @@ final class WordZoteroTransaction {
   /// not adopt the selected field of a newer operation in the same editor.
   WordZoteroFieldSelectionContext? get presentedFieldContext =>
       identical(_controller._zoteroContextOwner, this)
-          ? _controller.zoteroFieldContext
-          : null;
+      ? _controller.zoteroFieldContext
+      : null;
 
   /// Drives a native callback and presents its selected source field without
   /// moving the user's caret, selection, Notes target, focus or undo history.

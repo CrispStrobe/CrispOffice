@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "algorithm": "SHA-256",
+  "repository_head_at_capture": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+  "capture_scope": "Named Mail production inputs, focused regression suites, and dependency manifests. This manifest does not claim every transitive import or all repository files.",
+  "current_inputs": {
+    ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+    "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+    "packages/quds_office_editor/example/pubspec.yaml": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+    "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4",
+    "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa",
+    "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart": "e3226658a4318c98821c40d07f7d0ae47dc05d1f7c27c3764f92d14a15d1e82a",
+    "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac",
+    "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee",
+    "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+  },
+  "widget_gate_before_execution": {
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+    "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+    "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee",
+    "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4"
+  },
+  "widget_gate_after_execution": {
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+    "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+    "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee",
+    "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4"
+  },
+  "widget_gate_current_match": true,
+  "widget_after_execution_basis": "Original combined input manifest and receipt record no source changes; all six hashes were rechecked during evidence assembly.",
+  "session_gate_continuity": {
+    "basis": "Session owner confirmed final session source and tests unchanged since the final 36-case run; final session source hash also matches the widget gate pre-execution manifest.",
+    "pre_execution_manifest": null,
+    "inputs": {
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart": "e3226658a4318c98821c40d07f7d0ae47dc05d1f7c27c3764f92d14a15d1e82a"
+    }
+  },
+  "historical_host_source_bound": "No current-source hash is attributed retroactively to the earlier 124-case host run. See qualification.json.",
+  "catalog_gate_receipt": {
+    "sources_before": {
+      "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+      "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac"
+    },
+    "sources_after": {
+      "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+      "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac"
+    },
+    "current_match": true,
+    "log_sha256": "0d84c8ccb604dd4ff698d7b5e65a4fce900df5dd32b98e372c7f717ee2d1c6de",
+    "child_exit_code": null,
+    "process_status_note": "The Flutter runner emitted a successful done event; the outer receipt script failed during postprocessing because one Flutter daemon event was a JSON array. This receipt repairs the parser without rerunning or changing sources. No test result was lost."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74",
+  "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "4433c284efc1b8d6b0dc3d5290d8e9cff08f916c0ee2e82296b7eb5d53145598",
+  "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "packages/quds_office_engine/test/word_zotero_field_selection_test.dart": "6ad8086368684eb31ceaccdf5ee8336bda9192e7303899e8ea134c33142e8d48",
+  "packages/quds_office_engine/test/word_zotero_citing_test.dart": "5198947823928eb1a0cb344a4c73dcd664bbb7e45254850dac656352dfd998fc",
+  "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart": "189a9d6d6b1dbaf3f4d785a8dccfe0bec4ee364d3a65c3cf735bce7bf95f3297",
+  "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart": "e9f155aff1f6cc7dd9aea490bd13b381da77469cb28a285fc2b9f8d94863b8d6",
+  "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": "7533871069659c37e146f55abcfda806f0621d4ff269a87bd5a0a0f09ed8461a",
+  "packages/quds_office_editor/test/word_proofing_geometry_test.dart": "e8029153d3be1bff3b46dce76d8809c55a052fe49ef788a227c32c7084b328bc",
+  "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart": "c433f15b1d92e3ebda2bdab126efce35a20a07c46997d106fb8eb4cd99bbe9b0"
+}

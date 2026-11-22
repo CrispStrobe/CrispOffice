@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "counting_rule": "Unsuccessful and superseded attempts do not contribute extra passing cases. Accepted gates and full retained case outcomes are in qualification.json.",
+  "attempts": [
+    {
+      "id": "initial_cached_compile",
+      "status": "incomplete",
+      "explanation": "The baseline command overlapped the in-progress dialog rewrite and failed compilation before any substantive test ran. It is not a baseline pass.",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_cached_mail_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "raw_log_sha256": "cdad6572419f5ef15ebf739318fce9342a11ccf84069a3ee1581f75dbf5abdff",
+      "raw_log_bytes": 12343,
+      "counts": {
+        "passed": 0,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 1,
+        "excluded_loading_or_hidden_records": 1
+      },
+      "terminal_events": [
+        {
+          "success": false,
+          "elapsed_ms": 13441
+        }
+      ],
+      "raw_log_retained_in_repo": false
+    },
+    {
+      "id": "first_combined_widgets",
+      "status": "superseded",
+      "explanation": "54 cases passed and one new test errored because its assertion cast a paging TextButton to IconButton. Corrected the assertion to ButtonStyleButton; final combined gate supersedes this run.",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_retained_navigation_test.dart",
+        "test/studio_mail_cached_mail_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "raw_log_sha256": "3ad62f0015e250613d30836d898d4792f38d600098814df3fabf9efb414132ac",
+      "raw_log_bytes": 33198,
+      "counts": {
+        "passed": 54,
+        "failed": 1,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 1,
+        "excluded_loading_or_hidden_records": 2
+      },
+      "terminal_events": [
+        {
+          "success": false,
+          "elapsed_ms": 25608
+        }
+      ],
+      "raw_log_retained_in_repo": false
+    },
+    {
+      "id": "second_navigation_widgets",
+      "status": "superseded",
+      "explanation": "18 cases passed. The newly added cancellation-failure test used an ambiguous text finder matching both banner and reader state; its fixture teardown also surfaced its deliberately injected cancel error. The test now checks the keyed error Text and consumes that known fixture-disposal failure. Final combined gate supersedes this run.",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_retained_navigation_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "raw_log_sha256": "a0581e76e17040b1abef2d6628d295bfdada8d674f20966444d02bb84ca39fdd",
+      "raw_log_bytes": 16236,
+      "counts": {
+        "passed": 18,
+        "failed": 1,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 2,
+        "excluded_loading_or_hidden_records": 1
+      },
+      "terminal_events": [
+        {
+          "success": false,
+          "elapsed_ms": 23161
+        }
+      ],
+      "raw_log_retained_in_repo": false
+    },
+    {
+      "id": "focused_cleanup_regressions",
+      "status": "passed_then_subsumed",
+      "explanation": "Both focused cleanup regressions passed. These same tests are included in the final 57-case widget gate and are not added again.",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_retained_navigation_test.dart",
+        "--name",
+        "successful cleanup|failed catalog cancellation"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "raw_log_sha256": "25b37e071a0e231d5042ca0aa93f3e65d7a8812bcc86ca9d15e7f6b0b4f47020",
+      "raw_log_bytes": 2150,
+      "counts": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 0,
+        "excluded_loading_or_hidden_records": 1
+      },
+      "terminal_events": [
+        {
+          "success": true,
+          "elapsed_ms": 10106
+        }
+      ],
+      "raw_log_retained_in_repo": false
+    },
+    {
+      "id": "earlier_mailbox_sessions",
+      "status": "passed_then_superseded",
+      "explanation": "32 session cases passed before the final additional summary-bound and cancellation guard regressions. The later 36-case session gate supersedes this run.",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_mailbox_session_test.dart",
+        "test/studio_mail_mailbox_sync_session_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "raw_log_sha256": "f52d3b7acb57e5e60285b549b2ab4cee0b4c20ec2a6589c27e0b3ba07ef0af89",
+      "raw_log_bytes": 16517,
+      "counts": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 0,
+        "excluded_loading_or_hidden_records": 2
+      },
+      "terminal_events": [
+        {
+          "success": true,
+          "elapsed_ms": 3884
+        }
+      ],
+      "raw_log_retained_in_repo": false
+    },
+    {
+      "id": "helper_wrong_runner",
+      "status": "rejected",
+      "explanation": "The helper test imports flutter_test. The native Dart runner cannot load dart:ui, so suite loading failed before any substantive case ran. The correct Flutter run is archived as the accepted catalog gate.",
+      "command": [
+        "dart",
+        "--packages=<REPO>/.dart_tool/package_config.json",
+        "<RUNTIME>/test-runner/test-runner.dill",
+        "--reporter=json",
+        "test/studio_mail_retained_folders_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "raw_log_sha256": "be20fd84a33158a1ccc077b1cac5678d2bdb6383366561bf1fb702f7ae6d6c5e",
+      "raw_log_bytes": 12878597,
+      "counts": {
+        "passed": 0,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 1,
+        "excluded_loading_or_hidden_records": 1
+      },
+      "terminal_events": [
+        {
+          "success": false,
+          "elapsed_ms": 14625
+        }
+      ],
+      "raw_log_retained_in_repo": false
+    }
+  ],
+  "runtime_setup_attempts": [
+    "Initial probe outside the workspace had no native-assets mapping.",
+    "Workspace-root probe had no native-assets mapping because root pubspec declares no SQLite dependency.",
+    "First store probe passed FTS5 but failed JSON serialization of Version; corrected using Version.toString and reran successfully."
+  ],
+  "command_placeholders": "Only the rejected native-helper command uses <REPO> and <RUNTIME> in place of its original absolute local directory prefixes; no argument semantics are changed.",
+  "helper_receipt_postprocessing": "After the correct Flutter run completed successfully, its outer receipt script rejected a Flutter test.startedProcess JSON array. The receipt parser was repaired against the unchanged complete log. All named case results and terminal success are retained; the child process exit code is unavailable and explicitly null in qualification.json.",
+  "catalog_helper_earlier_attempt": "An earlier helper run was reported successful, but its retained raw log could not be located. It is not used as accepted evidence. The unchanged helper was rerun with a new archived log and source hashes. Its earlier stated 23 includes the loader; the substantive accepted count is 22."
+}

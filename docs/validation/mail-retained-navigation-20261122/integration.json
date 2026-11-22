@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-22T05:28:59.109932+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "work/mail-parity-20261122-next",
+  "initial_baseline": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "integrated_source_commit": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+  "integrated_source_tree": "584ce76d953495f1106a07bac5104952c5032952",
+  "remote_heads": [
+    {
+      "name": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-field-context-20261122",
+      "sha": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/main",
+      "sha": "191ed89b23696c5634689bb90b87119c761f0c85",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-parity-20261122-next",
+      "sha": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "included_in_integrated_source": true
+    },
+    {
+      "name": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "included_in_integrated_source": true
+    }
+  ],
+  "remote_refresh_command": [
+    "git",
+    "fetch",
+    "--all",
+    "--prune"
+  ],
+  "open_pull_requests": {
+    "fork": [],
+    "upstream": [],
+    "source": "GitHub REST pulls?state=open&per_page=100 observed with remote refresh before publication"
+  },
+  "reconciliation": [
+    {
+      "source": "origin/codex/word-vba-cell-text-20261122",
+      "tip": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+      "merge_commit": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+      "review": "incoming-word/incoming-word-review.json"
+    },
+    {
+      "source": "origin/codex/zotero-field-context-20261122",
+      "tip": "a83700c69c2ec6d134b780a16a363839425101ae",
+      "merge_commit": "145498623ad7812e983d64e03d68f84286d5a0b2",
+      "review": "incoming-zotero/review.json"
+    },
+    {
+      "source": "origin/main",
+      "tip": "191ed89b23696c5634689bb90b87119c761f0c85",
+      "merge_commit": "c8e09105a8e0d1d1e8d977b2bf017233f1fa8494",
+      "scope": "Preserves PR #359 and Word5f6e8686 qualification-only delta; no additional implementation change"
+    },
+    {
+      "source": "origin/codex/zotero-field-context-20261122",
+      "tip": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+      "merge_commit": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+      "scope": "Native selected-field prompt/controller integration; reviewed in isolated worktree",
+      "review": "incoming-zotero/updated-e8cc5795/review.json"
+    }
+  ],
+  "conflicts": [
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "resolution": "Retain Word and Zotero Unreleased entries"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "resolution": "Retain Mail and Zotero Unreleased entries"
+    }
+  ],
+  "implementation_conflicts": [],
+  "post_test_source_change": {
+    "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "scope": "Dart formatter corrected indentation of the two ternary arms in presentedFieldContext; no semantic change",
+    "whitespace_ignored_diff_empty": true
+  },
+  "local_mail_gate": "integrated-check.json",
+  "ci_policy": {
+    "github_actions_waited": false,
+    "workflows_changed": false,
+    "branch_protections_changed": false,
+    "reason": "User requested local progress without waiting for the starved Actions queue"
+  },
+  "publication": "History-preserving PR merge to remote main; final PR and merge commit reported in the task outcome."
+}
