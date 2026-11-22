@@ -1,0 +1,660 @@
+{
+  "schema_version": 1,
+  "milestone": "Explicit provider Archive",
+  "runtime": "runtime.json",
+  "accepted_prior_to_final_office_intake": {
+    "distinct_passed_cases": 2878,
+    "counting_rule": "One accepted run per disjoint test cohort. Hidden loader cases and earlier overlapping/supplemental runs are excluded.",
+    "cohorts": [
+      {
+        "id": "core",
+        "cwd": "packages/quds_mail_core",
+        "command": [
+          "dart",
+          "test",
+          "--reporter",
+          "expanded"
+        ],
+        "shell_globs": false,
+        "exit_code": 0,
+        "exit_code_evidence": "Executing-agent tool completion",
+        "log": "logs/core-tests.log.gz",
+        "raw_log_sha256": "a2cf9524e3bb1f3ec6f2a03924fa4ef66c18b82f1fd761e16924d212c2e57cc2",
+        "summary": {
+          "passed": 648,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "terminal_text": "All tests passed!",
+          "count_method": "Final expanded reporter counter; exit code independently reported by executing agent."
+        },
+        "source_attribution": {
+          "method": "Executing-agent source attribution plus later Git subtree comparison",
+          "matching_commit": "dd00d169b8763994adda707ca16cd54c2f93c395",
+          "matching_subtree": "1c6dcc910231edc7a3b0f74ad0736633ce96bb3f",
+          "contemporaneous_source_hashes": false
+        }
+      },
+      {
+        "id": "transport",
+        "cwd": "packages/quds_mail_transport",
+        "command": [
+          "dart",
+          "test",
+          "--reporter",
+          "expanded"
+        ],
+        "shell_globs": false,
+        "exit_code": 0,
+        "exit_code_evidence": "Executing-agent tool completion",
+        "log": "logs/transport-tests.log.gz",
+        "raw_log_sha256": "28c65b9718d655c537e51c6d70950e5ee6323a4807df48fbf6b363b7960c00dd",
+        "summary": {
+          "passed": 612,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "terminal_text": "All tests passed!",
+          "count_method": "Final expanded reporter counter; exit code independently reported by executing agent."
+        },
+        "source_attribution": {
+          "method": "Executing-agent source attribution plus later Git subtree comparison",
+          "matching_commit": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+          "matching_subtree": "3beef0aca00d1a63255a96fecfff64f9e97d7420",
+          "contemporaneous_source_hashes": false
+        }
+      },
+      {
+        "id": "store",
+        "cwd": "packages/quds_mail_store",
+        "command": [
+          "dart",
+          "test",
+          "--reporter",
+          "json"
+        ],
+        "shell_globs": false,
+        "exit_code": 0,
+        "exit_code_evidence": "Captured receipt",
+        "log": "logs/store-tests.jsonl.gz",
+        "raw_log_sha256": "edf168be614e5ce1d5e700e437b96dff6989c2d9801d1324be9e80a6e0198d52",
+        "summary": {
+          "passed": 1138,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "error_events": 0,
+          "unfinished_test_ids": [],
+          "suites": 50,
+          "terminal_events": [
+            {
+              "success": true,
+              "type": "done",
+              "time": 130870
+            }
+          ]
+        },
+        "source_attribution": {
+          "method": "Captured before/after source hashes, unchanged across execution",
+          "contemporaneous_source_hashes": true,
+          "receipt": "receipts/store-final.json"
+        }
+      },
+      {
+        "id": "studio",
+        "cwd": "packages/quds_office_editor/example",
+        "command": [
+          "flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "test/studio_mail_organization_dialog_test.dart",
+          "test/studio_mail_journal_host_test.dart",
+          "test/studio_mail_message_loader_test.dart",
+          "test/studio_mail_bulk_organization_provider_test.dart"
+        ],
+        "shell_globs": false,
+        "exit_code": 0,
+        "exit_code_evidence": "Executing-agent tool completion",
+        "log": "logs/studio-tests.jsonl.gz",
+        "raw_log_sha256": "5e619956c575ca8827abd3c2f00f37f9fc26297e13535c5277568441b4f32729",
+        "summary": {
+          "passed": 301,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "error_events": 0,
+          "unfinished_test_ids": [],
+          "suites": 4,
+          "terminal_events": [
+            {
+              "success": true,
+              "type": "done",
+              "time": 76458
+            }
+          ]
+        },
+        "source_attribution": {
+          "method": "Executing-agent attribution; original run had no input hash snapshots",
+          "contemporaneous_source_hashes": false,
+          "checkpoint_context": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1 plus tested picker ensureVisible fix, later checkpointed in a886d7d"
+        }
+      },
+      {
+        "id": "shared_ui",
+        "cwd": "packages/quds_mail_ui",
+        "command": [
+          "flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "test/*message_list*test.dart",
+          "test/bulk_api_aliases_test.dart"
+        ],
+        "shell_globs": true,
+        "exit_code": 0,
+        "exit_code_evidence": "Executing-agent tool completion",
+        "log": "logs/shared-ui-tests.jsonl.gz",
+        "raw_log_sha256": "7ed77104059a9521174a92f8bea1bf6d66af117546706b886ad8be4c316f4e0b",
+        "summary": {
+          "passed": 179,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "error_events": 0,
+          "unfinished_test_ids": [],
+          "suites": 7,
+          "terminal_events": [
+            {
+              "success": true,
+              "type": "done",
+              "time": 23618
+            }
+          ]
+        },
+        "source_attribution": {
+          "method": "Executing-agent attribution; original run had no input hash snapshots",
+          "contemporaneous_source_hashes": false
+        }
+      }
+    ]
+  },
+  "earlier_attempts": [
+    {
+      "log": "attempts/store-focused-initial.jsonl.gz",
+      "raw_log_sha256": "4ea9ce9961d6e31644bd251c66702d18c9b87d4615d90b94b116511276e89ea6",
+      "disposition": "Initial fixtures had six failures: FTS WITHOUT ROWID ordering, a live-membership assertion on retained views, and a corrupt-row fixture stopped by a CHECK constraint. Corrected focused run passed 20; all 20 are included in the accepted store cohort.",
+      "summary": {
+        "passed": 14,
+        "failed_or_error": 6,
+        "skipped": 0,
+        "error_events": 6,
+        "unfinished_test_ids": [],
+        "suites": 2,
+        "terminal_events": [
+          {
+            "success": false,
+            "type": "done",
+            "time": 3048
+          }
+        ]
+      },
+      "exit_code": 1
+    },
+    {
+      "log": "attempts/store-full-initial.jsonl.gz",
+      "raw_log_sha256": "14cb1361a1c8397c15ddd2ea3b652e47a3c2f0a295d87f0f499193d8bb96f170",
+      "disposition": "1137 passes and one stale future-schema-16 assertion. Updated future versions to 17 and 18; full rerun passed 1138.",
+      "summary": {
+        "passed": 1137,
+        "failed_or_error": 1,
+        "skipped": 0,
+        "error_events": 1,
+        "unfinished_test_ids": [],
+        "suites": 50,
+        "terminal_events": [
+          {
+            "success": false,
+            "type": "done",
+            "time": 150592
+          }
+        ]
+      },
+      "exit_code": 1
+    },
+    {
+      "log": "attempts/studio-initial.jsonl.gz",
+      "raw_log_sha256": "8cc9c220ebb9f63332ae50c1f07849cfdfb588da82b714cfea47759b71b673bc",
+      "disposition": "300 passes and one offscreen folder-picker tap failure. Added ensureVisible to the test, then reran the same 301-case cohort successfully.",
+      "summary": {
+        "passed": 300,
+        "failed_or_error": 1,
+        "skipped": 0,
+        "error_events": 1,
+        "unfinished_test_ids": [],
+        "suites": 4,
+        "terminal_events": [
+          {
+            "success": false,
+            "type": "done",
+            "time": 99441
+          }
+        ]
+      },
+      "exit_code": 1
+    },
+    {
+      "log": "attempts/dart-wrapper-initial.log.gz",
+      "raw_log_sha256": "e5aea9488afefd714f160dec41aa3e8c64ce33f3669bd9c25719204ba4b0237b",
+      "disposition": "Exited 1 before tests: concurrent Flutter wrapper launch used the same engine.stamp temporary PID name across sandbox namespaces. Direct bundled Dart avoids this wrapper collision.",
+      "exit_code": 1
+    },
+    {
+      "log": "attempts/flutter-sdk-pub-timeout.log.gz",
+      "raw_log_sha256": "3bd64de05eb0686ad623017c0d7b241b2de3c4a8c57ee44225e666251c8cf424",
+      "disposition": "120-second diagnostic bound expired during first-run Flutter SDK package resolution; no test ran. Exact locked SDK packages were restored and ordinary Flutter testing then passed.",
+      "exit_code": 124
+    }
+  ],
+  "source_continuity_observation": {
+    "timing": "Observed during evidence packaging; this is not an execution-time capture for cohorts lacking one.",
+    "qualified_mail_checkpoint": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+    "observed_integrated_head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+    "observed_integrated_tree": "7587dec4e385c015f81c62df7992af378642cfed",
+    "mail_owned_paths_changed_since_checkpoint": [],
+    "core_subtree": "1c6dcc910231edc7a3b0f74ad0736633ce96bb3f",
+    "transport_subtree": "3beef0aca00d1a63255a96fecfff64f9e97d7420",
+    "store_execution_hashes_still_match_current_files": true
+  },
+  "integrated_qualification": {
+    "status": "complete_with_documented_preexisting_golden_failure",
+    "remote_checkpoint": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+    "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+    "incoming_main": "4621326a5a452da475f219353c298d0f9b12470e",
+    "incoming_zotero_branch": "50895a7b9670058e27d3f081626defac9ea1aebc",
+    "note": "The 2878 pre-intake cases were not all rerun after Office integration. The integrated Studio and shared UI cohorts overlap earlier accepted cases. Engine, UI and editor commands ran on checkpoint 8280277; two incoming files were subsequently normalized by the pinned formatter, with no behavior edits. Final strict analysis and formatting both passed.",
+    "cohorts": [
+      {
+        "id": "engine",
+        "cwd": "packages/quds_office_engine",
+        "command": [
+          "dart",
+          "test",
+          "--reporter",
+          "json",
+          "test/office_vba_mid_assignment_test.dart",
+          "test/office_vba_mid_assignment_conformance_test.dart",
+          "test/office_vba_word_mid_assignment_integration_test.dart",
+          "test/office_vba_word_mid_assignment_cli_test.dart",
+          "test/word_zotero_paragraph_format_test.dart",
+          "test/zotero_note_color_test.dart",
+          "test/style_cascade_test.dart",
+          "test/bidi_test.dart"
+        ],
+        "exit_code": 0,
+        "receipt": "integration/engine-receipt.json.gz",
+        "log": "integration/engine-tests.jsonl.gz",
+        "raw_log_sha256": "0e215826fef3d077b496a80fadc76e930782414de16df1df7551acf5820348fd",
+        "summary": {
+          "passed": 487,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "error_events": 0,
+          "hidden_runner_events_excluded": 10,
+          "unfinished_test_ids": [],
+          "terminal_events": [
+            {
+              "success": true,
+              "type": "done",
+              "time": 28181
+            }
+          ]
+        },
+        "per_suite": {
+          "test/office_vba_mid_assignment_test.dart": {
+            "passed": 80,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/office_vba_word_mid_assignment_integration_test.dart": {
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/office_vba_mid_assignment_conformance_test.dart": {
+            "passed": 316,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/word_zotero_paragraph_format_test.dart": {
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/zotero_note_color_test.dart": {
+            "passed": 27,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/style_cascade_test.dart": {
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/bidi_test.dart": {
+            "passed": 18,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/office_vba_word_mid_assignment_cli_test.dart": {
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0
+          }
+        },
+        "source_attribution": {
+          "head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+          "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+          "contemporaneous_source_hashes": true,
+          "inputs_unchanged": true,
+          "input_count": 1383
+        }
+      },
+      {
+        "id": "studio",
+        "cwd": "packages/quds_office_editor/example",
+        "command": [
+          "flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "test/studio_mail_compose_test.dart",
+          "test/studio_mail_organization_dialog_test.dart",
+          "test/studio_mail_journal_host_test.dart",
+          "test/studio_mail_message_loader_test.dart",
+          "test/studio_mail_bulk_organization_provider_test.dart"
+        ],
+        "exit_code": 0,
+        "receipt": "integration/studio-receipt.json",
+        "log": "integration/studio-tests.jsonl.gz",
+        "raw_log_sha256": "77c686a4cad0d53f3735434d438eedd3a9aa86fec4cf5eb43d14b0c170ce2d41",
+        "summary": {
+          "passed": 325,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "error_events": 0,
+          "hidden_runner_events_excluded": 5,
+          "unfinished_test_ids": [],
+          "terminal_events": [
+            {
+              "success": true,
+              "type": "done",
+              "time": 59144
+            }
+          ]
+        },
+        "source_attribution": {
+          "head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+          "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+          "contemporaneous_source_hashes": true,
+          "inputs_unchanged": true,
+          "input_count": 5891,
+          "input_digest": "36529fcbf6e780069e7ac49da7ce9637b0fd0e22a0c8fbb2185bcce29b919324",
+          "before": "integration/studio-source-before.json.gz",
+          "after": "integration/studio-source-after.json.gz"
+        }
+      },
+      {
+        "id": "shared",
+        "cwd": "packages/quds_mail_ui",
+        "command": [
+          "flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "test/bulk_message_list_test.dart",
+          "test/message_list_bulk_test.dart",
+          "test/message_list_conversations_test.dart",
+          "test/message_list_organization_test.dart",
+          "test/message_list_range_selection_test.dart",
+          "test/message_list_test.dart",
+          "test/bulk_api_aliases_test.dart"
+        ],
+        "exit_code": 0,
+        "receipt": "integration/shared-receipt.json",
+        "log": "integration/shared-tests.jsonl.gz",
+        "raw_log_sha256": "639503051838a07d28e1430743cabf0f9465c01ea8ebf2dd1dbe83921c612f72",
+        "summary": {
+          "passed": 179,
+          "failed_or_error": 0,
+          "skipped": 0,
+          "error_events": 0,
+          "hidden_runner_events_excluded": 7,
+          "unfinished_test_ids": [],
+          "terminal_events": [
+            {
+              "success": true,
+              "type": "done",
+              "time": 22194
+            }
+          ]
+        },
+        "source_attribution": {
+          "head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+          "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+          "contemporaneous_source_hashes": true,
+          "inputs_unchanged": true,
+          "input_count": 5891,
+          "input_digest": "36529fcbf6e780069e7ac49da7ce9637b0fd0e22a0c8fbb2185bcce29b919324",
+          "before": "integration/shared-source-before.json.gz",
+          "after": "integration/shared-source-after.json.gz"
+        }
+      },
+      {
+        "id": "editor",
+        "cwd": "packages/quds_office_editor",
+        "command": [
+          "flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "test/word_empty_paragraph_direction_test.dart",
+          "test/word_zotero_note_color_controller_test.dart",
+          "test/word_zotero_note_color_render_test.dart",
+          "test/word_zotero_paragraph_format_controller_test.dart",
+          "test/office_fidelity_golden_test.dart"
+        ],
+        "exit_code": 1,
+        "receipt": "integration/editor-receipt.json",
+        "log": "integration/editor-tests.jsonl.gz",
+        "raw_log_sha256": "300e5800ee4f68d83cbe65bc7750a12ae664b0f960b1e67ae362e52ebc2827c1",
+        "summary": {
+          "passed": 23,
+          "failed_or_error": 1,
+          "skipped": 0,
+          "error_events": 1,
+          "hidden_runner_events_excluded": 13,
+          "unfinished_test_ids": [],
+          "terminal_events": [
+            {
+              "success": false,
+              "type": "done",
+              "time": 25853
+            }
+          ]
+        },
+        "source_attribution": {
+          "head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+          "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+          "contemporaneous_source_hashes": true,
+          "inputs_unchanged": true,
+          "input_count": 5891,
+          "input_digest": "36529fcbf6e780069e7ac49da7ce9637b0fd0e22a0c8fbb2185bcce29b919324",
+          "before": "integration/editor-source-before.json.gz",
+          "after": "integration/editor-source-after.json.gz"
+        }
+      }
+    ],
+    "distinct_passed_cases_on_integrated_test_tree": 1014,
+    "distinct_failed_cases_on_integrated_test_tree": 1,
+    "skipped": 0,
+    "static_qualification": [
+      {
+        "stage": "initial",
+        "receipt": "integration/static-initial-receipt.json.gz",
+        "input_count": 67,
+        "inputs_unchanged_during_execution": true,
+        "commands": [
+          {
+            "kind": "analyze",
+            "exit_code": 0,
+            "log": "integration/static-initial-analyze.log.gz",
+            "raw_log_sha256": "84c628890e5c403fc60afc4505db1fef7b1efc7c85a129e8adf3a69ae12660bd"
+          },
+          {
+            "kind": "format",
+            "exit_code": 1,
+            "log": "integration/static-initial-format.log.gz",
+            "raw_log_sha256": "9f19d77cd8f206b9d3abb5742df88f337ea0b49931f54512d088b053b149e940"
+          }
+        ]
+      },
+      {
+        "stage": "final",
+        "receipt": "integration/static-final-receipt.json.gz",
+        "input_count": 67,
+        "inputs_unchanged_during_execution": true,
+        "commands": [
+          {
+            "kind": "analyze",
+            "exit_code": 0,
+            "log": "integration/static-final-analyze.log.gz",
+            "raw_log_sha256": "84c628890e5c403fc60afc4505db1fef7b1efc7c85a129e8adf3a69ae12660bd"
+          },
+          {
+            "kind": "format",
+            "exit_code": 0,
+            "log": "integration/static-final-format.log.gz",
+            "raw_log_sha256": "ff5284956073b1c414992eb7f8eec0825b01ff16903a24c0babe740dc596357e"
+          }
+        ]
+      }
+    ],
+    "post_test_normalization": {
+      "diff": "integration/incoming-format-normalization.diff.gz",
+      "paths": [
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart"
+      ],
+      "scope": "Pinned Dart formatter layout and an optional trailing comma only; no behavior edit.",
+      "test_rerun_after_normalization": false
+    },
+    "open_preexisting_golden_failure": {
+      "test": "packages/quds_office_editor/test/office_fidelity_golden_test.dart",
+      "status": "still_failing_no_baseline_refresh",
+      "different_pixels": 3378,
+      "total_pixels": 896000,
+      "percentage": 0.3770089285714286,
+      "baseline_commit": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+      "baseline_receipt": "diagnostics/pre-intake-golden-receipt.json",
+      "baseline_reporter": "diagnostics/pre-intake-golden-tests.jsonl.gz",
+      "baseline_summary": {
+        "passed": 0,
+        "failed_or_error": 1,
+        "skipped": 0,
+        "error_events": 1,
+        "hidden_runner_events_excluded": 3,
+        "unfinished_test_ids": [],
+        "terminal_events": [
+          {
+            "success": false,
+            "type": "done",
+            "time": 18683
+          }
+        ]
+      },
+      "baseline_test_exit_code": 1,
+      "baseline_restore_exit_code": 0,
+      "baseline_comparison": "diagnostics/golden-baseline-comparison.json",
+      "integrated_isolated_rerun": {
+        "id": "golden-alone",
+        "cwd": "packages/quds_office_editor",
+        "command": [
+          "flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "test/office_fidelity_golden_test.dart"
+        ],
+        "exit_code": 1,
+        "receipt": "diagnostics/golden-alone-receipt.json",
+        "log": "diagnostics/golden-alone-tests.jsonl.gz",
+        "raw_log_sha256": "320730b8382fce55172a9af21bda34f3ab7c3faa2b5c63a871402fceb493b0dd",
+        "summary": {
+          "passed": 0,
+          "failed_or_error": 1,
+          "skipped": 0,
+          "error_events": 1,
+          "hidden_runner_events_excluded": 3,
+          "unfinished_test_ids": [],
+          "terminal_events": [
+            {
+              "success": false,
+              "type": "done",
+              "time": 6112
+            }
+          ]
+        },
+        "source_attribution": {
+          "head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+          "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+          "contemporaneous_source_hashes": true,
+          "inputs_unchanged": true,
+          "input_count": 5891,
+          "input_digest": "36529fcbf6e780069e7ac49da7ce9637b0fd0e22a0c8fbb2185bcce29b919324",
+          "before": "diagnostics/golden-alone-source-before.json.gz",
+          "after": "diagnostics/golden-alone-source-after.json.gz"
+        }
+      },
+      "isolated_cohort_comparison": "diagnostics/golden-cohort-comparison.json",
+      "failure_masks_identical": true,
+      "failure_pixels_identical_in_actual_and_master": true,
+      "isolated_diff_png_sha256": "259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06",
+      "incoming_highlight_changed_pixels": 1522,
+      "incoming_highlight_region_disjoint_from_failure": true,
+      "conclusion_scope": "For this Linux fixture under the pinned runtime, the same failed pixels occur before and after the Office intake and with the integrated golden test run alone. The editor cohort remains a failed command; it is not reported green.",
+      "images": "diagnostics/image-index.json"
+    },
+    "post_qualification_ancestry_only_checkpoint": {
+      "commit": "168297fea2df1f49cb1362f8ac21002edd222ac4",
+      "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+      "same_complete_tree_as_test_checkpoint": true,
+      "late_intake_receipt": "late-intake.json"
+    },
+    "packaging_source_continuity": "receipts/final-source-continuity.json"
+  },
+  "limits": [
+    "Controlled Linux VM/widget fixtures; no live mailbox, provider tenant, installed application, or production credential was used.",
+    "No claim of installed-platform, live-provider, background synchronization, or full Outlook/Thunderbird/eM Client parity.",
+    "GitHub Actions queue completion is not an acceptance dependency."
+  ],
+  "latest_qualified_distinct_cases": {
+    "passed": 3412,
+    "failed": 1,
+    "skipped": 0,
+    "mail_passed": 2902,
+    "incoming_office_behavior_passed": 510,
+    "counting_rule": "Use pre-intake Core 648, transport 612 and store 1138; replace prior UI results with integrated Studio 325 and shared UI 179; add integrated engine 487 and editor behavior 23. Count the inherited golden failure once. Exclude reruns, hidden runner events and setup smokes.",
+    "cohort_passed_counts": {
+      "core": 648,
+      "transport": 612,
+      "store": 1138,
+      "studio": 325,
+      "shared_ui": 179,
+      "engine": 487,
+      "editor_behavior": 23
+    },
+    "all_cases_ran_on_final_tree": false
+  }
+}

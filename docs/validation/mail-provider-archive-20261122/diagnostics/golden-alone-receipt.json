@@ -1,0 +1,39 @@
+{
+  "gate": "golden-alone",
+  "cwd": "/workspace/scratch/a4918868bf38/quds_office_suite/packages/quds_office_editor",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/office_fidelity_golden_test.dart"
+  ],
+  "shell_command": "source /workspace/scratch/a4918868bf38/toolchains/env.sh\nexec flutter test --no-pub --reporter json test/office_fidelity_golden_test.dart",
+  "started_at_utc": "2026-11-22T10:54:58.586773+00:00",
+  "ended_at_utc": "2026-11-22T10:55:05.938550+00:00",
+  "elapsed_seconds": 7.351777,
+  "exit_code": 1,
+  "visible_cases": 1,
+  "visible_passed": 0,
+  "skipped": 0,
+  "error_events": 1,
+  "done_events": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 6112
+    }
+  ],
+  "working_inputs_unchanged": true,
+  "head_before": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "head_after": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "tree_before": "7587dec4e385c015f81c62df7992af378642cfed",
+  "tree_after": "7587dec4e385c015f81c62df7992af378642cfed",
+  "logs": {
+    "reporter": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-golden-alone.jsonl",
+    "stderr": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-golden-alone.stderr.log",
+    "source_before": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-golden-alone.source-before.json",
+    "source_after": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-golden-alone.source-after.json"
+  }
+}
