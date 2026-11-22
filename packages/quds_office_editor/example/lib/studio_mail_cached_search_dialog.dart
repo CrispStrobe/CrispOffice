@@ -14,6 +14,7 @@ import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_folder_picker.dart';
 import 'studio_mail_local_accounts.dart';
+import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_reader_labels.dart';
 import 'studio_mail_saved_searches.dart';
 import 'studio_mail_saved_search_strings.dart';
@@ -443,7 +444,6 @@ class _StudioMailCachedSearchDialogState
     });
   }
 
-
   /// Read exact retained folder inventories only after user action. Owners are
   /// closed before a choice is shown, and account identities are reverified
   /// before and after opening the local stores.
@@ -451,7 +451,9 @@ class _StudioMailCachedSearchDialogState
     if (!_current || _busy || _savedBusy || _loading) return;
     final accounts = _scopeAccounts();
     if (accounts == null) {
-      setState(() => _savedError = widget.strings.mailSavedSearchMissingAccounts);
+      setState(
+        () => _savedError = widget.strings.mailSavedSearchMissingAccounts,
+      );
       return;
     }
     _invalidate();
@@ -465,7 +467,9 @@ class _StudioMailCachedSearchDialogState
         if (!_active(epoch)) return;
         final directory = await widget.store.load();
         if (!_active(epoch)) return;
-        final matches = directory.where((row) => row.id == expected.id).toList();
+        final matches = directory
+            .where((row) => row.id == expected.id)
+            .toList();
         if (matches.length != 1 ||
             !matches.single.hasSameIdentity(expected) ||
             matches.single.revision != expected.revision) {
@@ -491,7 +495,8 @@ class _StudioMailCachedSearchDialogState
           final browsed = await mailbox.listViews();
           final sync = mailbox is StudioMailSyncStore
               ? switch (await mailbox.listSyncMailboxes()) {
-                  MailSuccess<List<MailMailboxSyncSummary>>(:final value) => value,
+                  MailSuccess<List<MailMailboxSyncSummary>>(:final value) =>
+                    value,
                   MailFailure<List<MailMailboxSyncSummary>>(:final problem) =>
                     throw StudioMailMailboxStoreException(problem.code),
                 }
@@ -525,15 +530,17 @@ class _StudioMailCachedSearchDialogState
             );
           }
           for (final folderId in names.keys.toList()..sort()) {
-            options.add(StudioMailFolderOption(
-              folder: MailSavedHeaderSearchFolder(
-                accountId: expected.id,
-                mailboxId: folderId,
+            options.add(
+              StudioMailFolderOption(
+                folder: MailSavedHeaderSearchFolder(
+                  accountId: expected.id,
+                  mailboxId: folderId,
+                ),
+                accountLabel: _accountLabel(expected),
+                displayName: names[folderId]!,
+                available: true,
               ),
-              accountLabel: _accountLabel(expected),
-              displayName: names[folderId]!,
-              available: true,
-            ));
+            );
           }
         } finally {
           await owner.close();
@@ -544,15 +551,19 @@ class _StudioMailCachedSearchDialogState
       if (_folderScopes case final saved?) {
         for (final folder in saved) {
           if (options.any((option) => option.folder == folder)) continue;
-          options.add(StudioMailFolderOption(
-            folder: folder,
-            accountLabel: accounts
-                .where((account) => account.id == folder.accountId)
-                .map(_accountLabel)
-                .firstOrNull ?? folder.accountId,
-            displayName: folder.mailboxId,
-            available: false,
-          ));
+          options.add(
+            StudioMailFolderOption(
+              folder: folder,
+              accountLabel:
+                  accounts
+                      .where((account) => account.id == folder.accountId)
+                      .map(_accountLabel)
+                      .firstOrNull ??
+                  folder.accountId,
+              displayName: folder.mailboxId,
+              available: false,
+            ),
+          );
         }
       }
       final chosen = await showDialog<StudioMailFolderChoice>(
@@ -568,7 +579,9 @@ class _StudioMailCachedSearchDialogState
       final directory = await widget.store.load();
       if (!_active(epoch)) return;
       for (final expected in accounts) {
-        final matches = directory.where((row) => row.id == expected.id).toList();
+        final matches = directory
+            .where((row) => row.id == expected.id)
+            .toList();
         if (matches.length != 1 ||
             !matches.single.hasSameIdentity(expected) ||
             matches.single.revision != expected.revision) {
