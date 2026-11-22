@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-22",
+  "repository": "CrispStrobe/quds_office_suite",
+  "feature_pull_request": 374,
+  "feature_head": "0e1d6932a96d49c4f59a2ff718650254bb6f1217",
+  "feature_tree": "98b1a8bca1180bc5a74a02a0a8717bbc9193ed17",
+  "qualified_source_commit": "1249935e224e8a3c01ea76c6662dff9ded1a9096",
+  "expected_pre_merge_main": "c691191c3ff37f52bc78b203ebb1cb554e607d12",
+  "concurrent_main": "31baf3419e74a9925e726e1ff0b8501888c5acb5",
+  "published_merge": "5d18df8dccaed89fd42720bb63dae09ae83d90ae",
+  "published_tree": "c206353839325110661c55c8274954aac1eed2b5",
+  "observed_merge_parents": [
+    "31baf3419e74a9925e726e1ff0b8501888c5acb5",
+    "0e1d6932a96d49c4f59a2ff718650254bb6f1217"
+  ],
+  "merge_method": "merge",
+  "working_branch": "work/mail-bulk-organization-20261122",
+  "branch_retained": true,
+  "accepted_cases": 1269,
+  "additional_accepted_cases": 0,
+  "github_actions_or_checks_queried_or_awaited": false,
+  "late_changed_paths": [
+    "packages/quds_office_editor/example/macos/Runner/Info.plist",
+    "packages/quds_office_engine/test/fixtures/fidelity/scripts/slide.json",
+    "packages/quds_office_engine/test/fixtures/fidelity/scripts/word-operations.json",
+    "packages/quds_office_engine/test/fixtures/fidelity/scripts/word-structure-create.json",
+    "packages/quds_office_engine/test/word_structure_steps_test.dart",
+    "packages/quds_office_engine/tool/fidelity/audit_operations.py",
+    "packages/quds_office_engine/tool/fidelity/output_manifest.json",
+    "packages/quds_office_engine/tool/fidelity/test_audit_operations.py",
+    "packages/quds_office_engine/tool/fidelity/test_feature_matrix.py",
+    "packages/quds_office_engine/tool/fidelity/word_structure_oracle.py"
+  ],
+  "completed_post_merge_checks": [
+    {
+      "check": "Reviewed complete feature-head-to-merge diff",
+      "result": "10 paths; no Mail source or tests and no Word production Dart changed"
+    },
+    {
+      "check": "Selected Mail/Word production paths and root dependency manifests equal qualified source",
+      "exit_code": 0
+    },
+    {
+      "check": "git diff --check c691191c3ff37f52bc78b203ebb1cb554e607d12 5d18df8dccaed89fd42720bb63dae09ae83d90ae",
+      "exit_code": 0
+    },
+    {
+      "check": "Python plistlib parses incoming macOS plist",
+      "result": "CFBundleDisplayName=CrispOffice; ITSAppUsesNonExemptEncryption=false"
+    },
+    {
+      "check": "Python JSON parsing",
+      "result": "slide.json:9 operations; word-operations.json:16; word-structure-create.json:20"
+    },
+    {
+      "check": "Local main switched to published merge and origin/main tracking reference aligned",
+      "exit_code": 0
+    },
+    {
+      "check": "GitHub PR374 and remote main readback",
+      "result": "PR merged; main=5d18df8dccaed89fd42720bb63dae09ae83d90ae; branch retained"
+    }
+  ],
+  "late_execution": {
+    "status": "not_executed",
+    "reason": "Executor transport disconnected, then the environment was replaced. The original workspace, repository and pinned SDK were absent after replacement. Additional commands failed before test process startup.",
+    "dart_suite": "packages/quds_office_engine/test/word_structure_steps_test.dart",
+    "dart_suite_sha256": "a3457a18f0d4c8429aec1e62c2c57d9c33a85385d8da044c63cccaa6560b2910",
+    "dart_suite_bytes": 6922,
+    "dart_cases_defined_not_run": 21,
+    "python_controls_not_run": [
+      "test_audit_operations",
+      "test_feature_matrix",
+      "test_word_structure_oracle"
+    ],
+    "generated_fidelity_outputs_from_this_attempt": 0,
+    "classification": "Infrastructure interruption, not an observed test-suite failure"
+  },
+  "evidence_scope": "This receipt records observed tool outputs and review conclusions. It is a separate post-merge record, not an additional raw run inside the source-bound evidence archive."
+}
