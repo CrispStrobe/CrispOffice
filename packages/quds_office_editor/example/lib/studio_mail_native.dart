@@ -5407,7 +5407,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     return Column(
       children: <Widget>[
         if (_busy) const LinearProgressIndicator(minHeight: 2),
-        _folderArchiveAction(),
         if (_credentialError != null) _credentialFeedback(context),
         if (_localAccountWarning case final warning?)
           Material(
@@ -5533,7 +5532,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
-  Widget _folderArchiveAction() {
+  Widget _folderArchiveButton() {
     final loader = _messageLoader;
     final mailbox = _mailbox;
     final account = _account;
@@ -5550,43 +5549,29 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final login = authentication is mail.PlainAuthentication
         ? authentication.userName
         : source;
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              mailbox.path,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          StudioArchiveFolderButton(
-            strings: widget.strings,
-            source: source,
-            folder: mailbox.path,
-            profileId: studioArchiveFolderProfileId(
-              'imap:${incoming.serverConfig.hostname.toLowerCase()}:${incoming.serverConfig.port}:$login',
-              source,
-              mailbox.path,
-            ),
-            sessionKey: archiver,
-            enabled: !_busy && !_dialogOpen,
-            writer: widget.archiveFolderWriter,
-            onDialogChanged: (open) {
-              if (mounted) setState(() => _dialogOpen = open);
-            },
-            runner: (archive, profile, {cancellation, onProgress}) =>
-                archiver.archiveMailbox(
-                  mailbox,
-                  archive: archive,
-                  profile: profile,
-                  cancellation: cancellation,
-                  onProgress: onProgress,
-                ),
-          ),
-        ],
+    return StudioArchiveFolderButton(
+      strings: widget.strings,
+      source: source,
+      folder: mailbox.path,
+      profileId: studioArchiveFolderProfileId(
+        'imap:${incoming.serverConfig.hostname.toLowerCase()}:${incoming.serverConfig.port}:$login',
+        source,
+        mailbox.path,
       ),
+      sessionKey: archiver,
+      enabled: !_busy && !_dialogOpen,
+      writer: widget.archiveFolderWriter,
+      onDialogChanged: (open) {
+        if (mounted) setState(() => _dialogOpen = open);
+      },
+      runner: (archive, profile, {cancellation, onProgress}) =>
+          archiver.archiveMailbox(
+            mailbox,
+            archive: archive,
+            profile: profile,
+            cancellation: cancellation,
+            onProgress: onProgress,
+          ),
     );
   }
 
@@ -5631,6 +5616,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           ),
           writer: widget.archiveWriter,
         ),
+        _folderArchiveButton(),
         IconButton(
           onPressed: _busy ? null : _reply,
           tooltip: widget.strings.reply,

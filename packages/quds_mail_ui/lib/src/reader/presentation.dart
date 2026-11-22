@@ -616,6 +616,10 @@ final class _Projection {
 
   void add(String value, {bool? bold, bool? italic, Uri? link}) {
     if (value.isEmpty) return;
+    // Mail bodies arrive with CRLF, bare CR or LF depending on the producer.
+    // The text surface has one canonical line break; preserving the original
+    // bytes remains the job of Raw Source/export.
+    value = value.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
     bytes += _utf8Length(value, budget.maxRenderTextBytes);
     if (bytes > budget.maxRenderTextBytes) {
       throw _AdmissionFailure(

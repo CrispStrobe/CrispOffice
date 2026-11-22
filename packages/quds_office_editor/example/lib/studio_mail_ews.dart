@@ -3522,7 +3522,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     ),
   );
 
-  Widget _folderArchiveAction() {
+  Widget _folderArchiveButton() {
     final provider = _provider;
     final session = _session;
     final mailbox = _mailbox;
@@ -3530,53 +3530,38 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       return const SizedBox.shrink();
     }
     final source = '${widget.cloudService?.name ?? 'Exchange'} · $_sender';
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              mailbox.displayName,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          StudioArchiveFolderButton(
-            strings: widget.strings,
-            source: source,
-            folder: mailbox.displayName,
-            profileId: studioArchiveFolderProfileId(
-              widget.cloudService?.name ?? 'ews:${_endpoint.text.trim()}',
-              source,
-              mailbox.id.value,
-            ),
-            sessionKey: session,
-            enabled: !_blocked && !_needsRefresh,
-            writer: widget.archiveFolderWriter,
-            onDialogChanged: (open) {
-              if (mounted) setState(() => _dialogOpen = open);
-            },
-            runner: (archive, profile, {cancellation, onProgress}) =>
-                MailArchiveRunner(
-                  archive: archive,
-                  provider: provider,
-                  session: session,
-                ).archiveMailbox(
-                  mailbox,
-                  profile: profile,
-                  cancellation: cancellation,
-                  onProgress: onProgress,
-                ),
-          ),
-        ],
+    return StudioArchiveFolderButton(
+      strings: widget.strings,
+      source: source,
+      folder: mailbox.displayName,
+      profileId: studioArchiveFolderProfileId(
+        widget.cloudService?.name ?? 'ews:${_endpoint.text.trim()}',
+        source,
+        mailbox.id.value,
       ),
+      sessionKey: session,
+      enabled: !_blocked && !_needsRefresh,
+      writer: widget.archiveFolderWriter,
+      onDialogChanged: (open) {
+        if (mounted) setState(() => _dialogOpen = open);
+      },
+      runner: (archive, profile, {cancellation, onProgress}) =>
+          MailArchiveRunner(
+            archive: archive,
+            provider: provider,
+            session: session,
+          ).archiveMailbox(
+            mailbox,
+            profile: profile,
+            cancellation: cancellation,
+            onProgress: onProgress,
+          ),
     );
   }
 
   Widget _inbox() => Column(
     children: [
       if (_busy) const LinearProgressIndicator(minHeight: 2),
-      _folderArchiveAction(),
       if (_localAccountWarning case final warning?)
         Material(
           color: Theme.of(context).colorScheme.errorContainer,
@@ -3911,6 +3896,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               icon: const Icon(Icons.arrow_back),
               onPressed: () => setState(() => _showMessage = false),
             ),
+          _folderArchiveButton(),
           StudioArchiveMessageButton(
             strings: widget.strings,
             message: _blocked ? null : _reader?.result.message,

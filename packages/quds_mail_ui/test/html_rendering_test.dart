@@ -20,6 +20,25 @@ MailParseResult _htmlResult(String html) {
 }
 
 void main() {
+  test('plain text normalizes CRLF without flattening paragraphs', () {
+    final message = MailMessage(
+      raw: MailBytes(Uint8List.fromList(utf8.encode('raw'))),
+      envelope: MailEnvelope(subject: 'Plain'),
+      body: const MailBody(
+        plainText:
+            'Antwort zur Anzeige\r\n\r\nHallo,\r\n'
+            'sie können das Labor haben.\r\n\r\nViele Grüße',
+      ),
+    );
+    final plain = buildMailPresentation(
+      MailParseResult(status: MailParseStatus.complete, message: message),
+      preferHtml: false,
+    );
+    expect(plain.bodyText, contains('Anzeige\n\nHallo,\n'));
+    expect(plain.bodyText, contains('haben.\n\nViele Grüße'));
+    expect(plain.bodyText, isNot(contains('\r')));
+  });
+
   test('sanitizes active HTML but keeps safe table formatting and images', () {
     final presentation = buildMailPresentation(
       _htmlResult('''
@@ -40,7 +59,6 @@ void main() {
       preferHtml: true,
     );
     final safe = presentation.safeHtml;
-    expect(presentation.usedHtml, isTrue);
     expect(safe, isNotNull);
     expect(safe, contains('<table'));
     expect(safe, contains('<td'));

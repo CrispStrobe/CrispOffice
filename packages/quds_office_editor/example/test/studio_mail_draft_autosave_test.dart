@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
@@ -11,6 +12,30 @@ import 'package:quds_office_studio/studio_strings.dart';
 const _strings = StudioStrings(StudioLanguage.en);
 
 void main() {
+  testWidgets('compose body autofocuses and keeps a caret after Enter', (
+    tester,
+  ) async {
+    await _open(tester, save: (_) async {});
+    final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+    expect(editor.focusNode?.hasFocus, isTrue);
+    final body = _body(tester);
+    expect(body.documentCaret.paragraphIndex, 0);
+    expect(body.documentCaret.logicalIndex, 0);
+    body.insertText('Hallo');
+    await tester.pump();
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+    await tester.pump();
+    expect(
+      body.document.paragraphs.map((paragraph) => paragraph.text).toList(),
+      ['Hallo', ''],
+    );
+    expect(body.documentCaret.paragraphIndex, 1);
+    expect(body.documentCaret.logicalIndex, 0);
+    expect(editor.focusNode?.hasFocus, isTrue);
+    await _close(tester);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
     'debounced autosave preserves incomplete recipients and Word edits',
     (tester) async {

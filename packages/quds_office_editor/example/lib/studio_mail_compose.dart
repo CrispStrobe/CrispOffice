@@ -132,6 +132,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _body = WordEditorController(
       document: document,
       config: OfficeSurfaceConfig(
+        autofocus: true,
         showRulers: false,
         textDirection: arabic ? TextDirection.rtl : TextDirection.ltr,
         strings: switch (widget.strings.language) {
@@ -147,6 +148,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     for (final controller in [_to, _cc, _bcc, _subject, _body]) {
       controller.addListener(_edited);
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _focusBodyAtEnd();
+    });
     _toolsOwner = widget.composeToolsStore;
     _toolsAccount = _toolsOwner?.account;
     _initialToolsPending = _toolsOwner != null && widget.initialDraft == null;
@@ -754,6 +759,23 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
           ),
       ],
     );
+  }
+
+  void _focusBodyAtEnd() {
+    final paragraphs = _body.document.paragraphs.toList();
+    if (paragraphs.isNotEmpty) {
+      final last = paragraphs.length - 1;
+      final offset = paragraphs[last].text.length;
+      _body.documentCaret
+        ..paragraphIndex = last
+        ..logicalIndex = offset
+        ..selectionAnchorParagraph = last
+        ..selectionAnchor = offset
+        ..collapseSelection()
+        ..resetBlink();
+      _body.notifyListeners();
+    }
+    _bodyFocus.requestFocus();
   }
 
   void _fitBodyToWidth(double width) {

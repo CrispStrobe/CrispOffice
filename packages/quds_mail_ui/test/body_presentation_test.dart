@@ -21,20 +21,25 @@ void expectRejected(
 }
 
 void main() {
-  test('plain quotation preserves literal text and Unicode exactly', () {
-    const text =
-        'Café مرحبًا 😀\r\n  Indent\nBcc: a literal body label.'
-        '\n<script>Plain text is not HTML.</script>';
-    final presentation = buildMailBodyPresentation(
-      const MailBody(plainText: text, html: '<p>Not selected</p>'),
-    );
-    expect(presentation.rejected, isFalse);
-    expect(presentation.usedHtml, isFalse);
-    expect(presentation.text, text);
-    expect(presentation.bodyText, text);
-    expect(presentation.images, isEmpty);
-    expect(presentation.diagnostics, isEmpty);
-  });
+  test(
+    'plain quotation preserves text and Unicode with canonical line endings',
+    () {
+      const text =
+          'Café مرحبًا 😀\r\n  Indent\nBcc: a literal body label.'
+          '\n<script>Plain text is not HTML.</script>';
+      final presentation = buildMailBodyPresentation(
+        const MailBody(plainText: text, html: '<p>Not selected</p>'),
+      );
+      expect(presentation.rejected, isFalse);
+      expect(presentation.usedHtml, isFalse);
+      final canonical = text.replaceAll('\r\n', '\n');
+      expect(presentation.text, canonical);
+      expect(presentation.bodyText, canonical);
+      expect(presentation.text, isNot(contains('\r')));
+      expect(presentation.images, isEmpty);
+      expect(presentation.diagnostics, isEmpty);
+    },
+  );
 
   test('explicitly empty plain text never falls back to HTML by default', () {
     final presentation = buildMailBodyPresentation(
