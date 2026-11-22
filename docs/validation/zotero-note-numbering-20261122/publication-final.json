@@ -1,0 +1,41 @@
+{
+  "recorded_at_utc": "2026-11-22T07:14:34.044441+00:00",
+  "status": "passed",
+  "qualified_source": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+  "qualified_tree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+  "evidence_checkpoint": "632ff67901bb2ecaa2ff67cba68ba3393dcba0eb",
+  "evidence_tree": "d3c2fca2d7213f42a8dba59672cf66a124a71886",
+  "observed_remote_main": "8589e6f99baf4c2732f60a96ca68d44e6dea9935",
+  "observed_main_pr": 366,
+  "previous_observed_main": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+  "incoming_paths": [
+    "docs/validation/word-vba-cell-prefix-20261122/README.md"
+  ],
+  "all_protected_product_test_fixture_dependency_and_runner_paths_unchanged": true,
+  "protected_pathspecs": [
+    "packages",
+    "apps",
+    "third_party",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml",
+    "docs/validation/zotero-note-numbering-20261122/run_local_gate.py"
+  ],
+  "verification_command": [
+    "git",
+    "diff",
+    "--cached",
+    "--name-only",
+    "1896e11febd0d08159c85ddbbcd94743383f1e61",
+    "--",
+    "packages",
+    "apps",
+    "third_party",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml",
+    "docs/validation/zotero-note-numbering-20261122/run_local_gate.py"
+  ],
+  "scope": "Main PR366 updates only the earlier Word validation publication record. It is retained after the sealed Zotero evidence checkpoint. No source or test rerun is required; this outer receipt supplements the unchanged source-bound evidence archive.",
+  "github_actions": "Not queried or awaited; no repository protections changed."
+}

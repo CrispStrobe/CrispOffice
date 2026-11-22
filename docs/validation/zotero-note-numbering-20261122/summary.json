@@ -9,7 +9,7 @@
   "final_tested_tree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
   "main_reconciliation_source": "dde9845f1783d61272acbba314603c4bb51d87fb",
   "main_reconciliation_tree": "cfac7ab903d7a20e3d5c1c9b47411bf860c6c0c9",
-  "observed_main": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+  "observed_main": "8589e6f99baf4c2732f60a96ca68d44e6dea9935",
   "final_publication_applicability": "The final evidence commit is a documentation/artifact descendant of these sources. Product source, tests, fixtures, dependencies and the gate runner must remain identical; final Git tree/ancestry verification accompanies PR merge.",
   "cohorts": [
     {
@@ -249,5 +249,7 @@
     "Mail protocols and Flutter tests are synthetic/local; no live-provider account acceptance is claimed.",
     "Node-only Mail store test is excluded from the VM cohort."
   ],
-  "github_actions": "Not queried or awaited; no repository protections changed."
+  "github_actions": "Not queried or awaited; no repository protections changed.",
+  "evidence_checkpoint": "632ff67901bb2ecaa2ff67cba68ba3393dcba0eb",
+  "final_main_intake_receipt": "publication-final.json"
 }

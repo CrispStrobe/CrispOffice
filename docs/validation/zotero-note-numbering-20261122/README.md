@@ -85,6 +85,12 @@ documentation/artifacts; the two incoming formatter changes were already
 byte-identical. The [main reconciliation receipt](main-reconciliation.json)
 records the unchanged production/test/dependency inputs and preserved ancestry.
 
+The final publication check also retained main PR #366 (`8589e6f9`), which
+updates only the earlier Word validation publication record. Its single-file
+delta introduces no code/test/dependency changes. The outer
+[final publication receipt](publication-final.json) supplements the unchanged
+sealed evidence archive with this last main intake.
+
 The [initial intake](intake.json), [final bounded intake](intake-final.json),
 and [qualification summary](summary.json) record exact refs, parents, source
 attribution and checkpoint history. The branch
