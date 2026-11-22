@@ -1153,8 +1153,8 @@ class _Clear extends _Statement {
   final _Member target;
 }
 
-class _InsertBefore extends _Statement {
-  const _InsertBefore(super.token, this.target);
+class _WordRangeInsertion extends _Statement {
+  const _WordRangeInsertion(super.token, this.target);
   final _Member target;
 }
 
@@ -1543,14 +1543,16 @@ class _Parser {
         position++;
         if (context.isWord) {
           final target = _postfix();
-          if (target is _Member && target.token.lower == 'insertbefore') {
+          if (target is _Member &&
+              (target.token.lower == 'insertbefore' ||
+                  target.token.lower == 'insertafter')) {
             if (target.arguments == null) {
               context.unsupported(
                 target.token,
-                'Call InsertBefore requires parenthesized arguments.',
+                'Call ${target.token.text} requires parenthesized arguments.',
               );
             }
-            result.add(_InsertBefore(target.token, target));
+            result.add(_WordRangeInsertion(target.token, target));
           } else if (target is _Member &&
               (target.token.lower == 'add' ||
                   target.token.lower == 'clearall')) {
@@ -1820,6 +1822,7 @@ class _Parser {
             target is _Member &&
             const {
               'insertbefore',
+              'insertafter',
               'add',
               'clearall',
               ..._wordListMethods,
@@ -1847,8 +1850,9 @@ class _Parser {
             _Member(target.token, target.receiver, arguments),
           );
           result.add(
-            target.token.lower == 'insertbefore'
-                ? _InsertBefore(target.token, call)
+            (target.token.lower == 'insertbefore' ||
+                    target.token.lower == 'insertafter')
+                ? _WordRangeInsertion(target.token, call)
                 : _wordListMethods.contains(target.token.lower)
                 ? _WordListOperation(target.token, call)
                 : _wordSpacingMethods.contains(target.token.lower)
@@ -2934,8 +2938,8 @@ class _Checker {
               'ClearContents requires an explicit Range.',
             );
           }
-        case _InsertBefore():
-          _wordInsertBeforeCall(statement.target);
+        case _WordRangeInsertion():
+          _wordRangeInsertionCall(statement.target);
         case _WordTabOperation():
           _wordTabCall(statement.target);
         case _WordListOperation():
@@ -3142,24 +3146,38 @@ class _Checker {
     }
   }
 
-  void _wordInsertBeforeCall(_Member member) {
+  void _wordRangeInsertionCall(_Member member) {
     final receiver = _expression(member.receiver);
     if (receiver != _Kind.range && receiver != _Kind.wordCellRange) {
       context.type(
         member.token,
-        'InsertBefore requires an explicit Word Range.',
+        '${member.token.text} requires an explicit Word Range.',
+      );
+    }
+    if (member.token.lower == 'insertafter' &&
+        receiver != _Kind.wordCellRange &&
+        !_isWordCellRangeSource(member.receiver, withTargets, {})) {
+      // A whole paragraph range ends after its structural paragraph mark in
+      // Word. Only the direct Cell.Range contract appends inside the cell.
+      // Resolve generic ByVal Range parameters again during evaluation.
+      context.unsupported(
+        member.token,
+        'InsertAfter requires a direct Cell.Range; paragraph and story ranges are unsupported.',
       );
     }
     final arguments = member.arguments ?? const <_Expr>[];
     if (arguments.length != 1) {
-      context.type(member.token, 'InsertBefore requires one Text argument.');
+      context.type(
+        member.token,
+        '${member.token.text} requires one Text argument.',
+      );
     }
     final argument = arguments.single;
     if (argument is _NamedArgument && argument.token.lower != 'text') {
       context.fail(
         argument.token,
         'vba_name_error',
-        'Unknown named argument ${argument.token.text} for Range.InsertBefore.',
+        'Unknown named argument ${argument.token.text} for Range.${member.token.text}.',
       );
     }
     final value = argument is _NamedArgument ? argument.value : argument;
@@ -4860,8 +4878,15 @@ class _Evaluator {
             _emitRange(range, 'cellValue', <String, Object?>{
               'value': null,
             }, statement.token);
-          case _InsertBefore():
+          case _WordRangeInsertion():
             final receiver = _evaluate(statement.target.receiver);
+            final insertAfter = statement.target.token.lower == 'insertafter';
+            if (insertAfter && receiver is! _WordCellRange) {
+              context.unsupported(
+                statement.target.token,
+                'InsertAfter requires a direct Cell.Range; paragraph and story ranges are unsupported.',
+              );
+            }
             final range = receiver is _WordCellRange
                 ? _WordRange(_WordParagraph(0, cell: receiver.cell))
                 : _wordParagraphRange(receiver, statement.target.token);
@@ -4871,7 +4896,7 @@ class _Evaluator {
                 : argument;
             final text = _wordText(_evaluate(value), statement.target.token);
             if (range.paragraph.cell case final cell?) {
-              // Prefixing a cell uses its own guarded operation. Generic
+              // Cell insertions use dedicated guarded operations. Generic
               // replacement offsets and paragraph/cell marks remain outside
               // the ordinary paragraph-formatting selector contract.
               if (steps.length >= _maxSteps) {
@@ -4880,12 +4905,18 @@ class _Evaluator {
                   'Word writes exceed $_maxSteps emitted operations.',
                 );
               }
-              _emitNative('docx.tableCellRangeInsertBefore', <String, Object?>{
-                'table': cell.table.index,
-                'row': cell.row,
-                'column': cell.column,
-                'text': text,
-              }, statement.target.token);
+              _emitNative(
+                insertAfter
+                    ? 'docx.tableCellRangeInsertAfter'
+                    : 'docx.tableCellRangeInsertBefore',
+                <String, Object?>{
+                  'table': cell.table.index,
+                  'row': cell.row,
+                  'column': cell.column,
+                  'text': text,
+                },
+                statement.target.token,
+              );
             } else {
               _emitWord(range, 'replaceText', <String, Object?>{
                 'start': 0,
