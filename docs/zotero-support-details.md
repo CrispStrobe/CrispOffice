@@ -206,8 +206,8 @@ saving and reopening.
 
 Quotes must contain supported block children. Direct inline-only quote text,
 quotes nested inside list items, tables nested inside quotes and depth above
-eight are refused before publication. A completely text-empty note keeps the
-existing empty-note guard. Editable ODT quote exchange has separate bounded
+eight are refused before publication. Otherwise empty notes remain refused;
+picture-only notes and empty tables retain their earlier support. Editable ODT quote exchange has separate bounded
 qualification; support for native quoted lists does not remove the existing
 ODT continued-list limitations. LibreOffice-saved quotations with distinct
 visited/unvisited text-link styles also remain refused by the native ODT reader.

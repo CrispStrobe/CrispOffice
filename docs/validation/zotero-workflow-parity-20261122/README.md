@@ -33,7 +33,8 @@ The following remain explicit refusals: quotes inside list items, tables inside
 quotes, direct inline-only quote content, arbitrary quote layout CSS and more
 than eight quote levels. Canonical `dir`/`data-indent` paragraph attributes and
 inline foreground/highlight colors retain their existing separate limitations.
-The empty-note guard remains in force when the entire note contains no text.
+The existing empty-note guard remains; picture-only notes and empty tables
+retain their earlier support.
 
 Native quoted lists are supported and survive DOCX. The existing editable ODT
 continued-list boundary remains: an independent mixed quoted-list probe exports
@@ -67,6 +68,16 @@ forward-only updates. No branch is force-pushed or deleted.
 
 GitHub Actions were neither queried nor awaited. Local checks qualify this
 increment; repository protection settings were not changed.
+
+The final fetch found published Word PR #376, main
+`1efcd62b9386da473bc5884834955ab2cdcd10a2` and its topic head
+`26370962b40dc761f17f5f7038a628f06d5189f8`. This late delta contains six Word
+documentation/evidence files and no executable changes. The integration keeps
+that main ancestry and all of its original validation records. All product,
+test and dependency paths still match the Zotero implementation checkpoint;
+the incoming Word author's additional checks retain their own attribution and
+are not added to this report. [Publication intake](publication.json) captures
+the final refs and source-continuity checks.
 
 ## Local validation
 
