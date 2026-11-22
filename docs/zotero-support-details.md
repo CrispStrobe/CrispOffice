@@ -605,8 +605,9 @@ or **Convert to text…** in the current-reference controls. Damaged metadata
 requires confirmation; Cancel adds no undo history. The conversion preserves
 visible text and character/paragraph formatting, and undo restores the exact
 original field. Saving and reopening the converted file leaves ordinary text.
-The document-wide **Unlink all citations…** action retains its existing
-all-or-nothing guard against malformed fields.
+The document-wide **Unlink all citations…** action also accepts complete,
+exclusively owned fields with damaged metadata. Its confirmation identifies
+their count; any structurally unsafe field prevents the whole conversion.
 
 Recovery requires an editable document and exclusive native ownership. Locked,
 nested or opaque packets, incomplete field boundaries, cross-paragraph
@@ -896,15 +897,18 @@ the current source after edits; preview errors keep the citation draft.
 
 Choose **Document → Unlink all citations…** to convert the document's linked
 citations and bibliography fields together. The confirmation shows the number
-of each kind and explains that Zotero can no longer update the converted text.
+of each kind, identifies fields with damaged reference data, and explains that
+Zotero can no longer update the converted text.
 Keep a linked copy if you will need later citation updates. **Cancel** keeps
 the fields and does not add undo history.
 
 The complete conversion is one undoable change. It retains the visible text,
 character and paragraph formatting, notes, and reusable document style
 preferences, including multi-paragraph bibliographies. It covers fields in
-modeled document stories, rather than only the visible page. If a locked,
-nested, malformed or unsupported Zotero field prevents a complete conversion,
+modeled document stories, rather than only the visible page. Complete damaged
+citation and bibliography metadata can be converted under the same native
+ownership checks used by individual conversion. If a locked, nested, incomplete,
+opaque or ambiguously owned Zotero field prevents a complete conversion,
 the operation refuses before unlinking any fields. Protected content and
 unresolved tracked changes are also checked. Zotero instructions retained in
 unmodeled native content prevent a partial conversion.
@@ -1595,9 +1599,11 @@ changes. Cancelling the picker makes no document change.
 
 The export supports complete unlocked fields in body paragraphs, visible body
 table cells, and uniquely anchored authored footnotes/endnotes with continuous
-automatic decimal or lower/upper Roman numbering starting at one. Each cited
-note class must use one compatible format; uncited notes in that class take part
-in the same sequence. Roman ordinals are limited to 1–3,999. Unsupported fields
+automatic decimal or lower/upper Roman numbering with a start from 1 to 32,768.
+Each cited note class must use one compatible format and start; footnotes and
+endnotes remain independent, and uncited notes in that class take part in the
+same sequence. Roman ordinals are limited to 1–3,999 and decimal ordinals to
+65,535. Unsupported fields
 or numbering refuse before the save picker opens,
 with a reason. Examples include incomplete or locked packets, fields in
 headers/controls/note tables, partial bibliographies, and ambiguous note owners.
@@ -1671,12 +1677,14 @@ The importer accepts a bounded subset:
   Ordinary single-column bibliography section styles written by LibreOffice
   are accepted after their inherited formatting and protection are checked.
 - Authored footnotes/endnotes with continuous automatic decimal or lower/upper
-  Roman numbering starting at one and live note anchors, simple decimal/bullet
+  Roman numbering with a start from 1 to 32,768 and live note anchors, simple decimal/bullet
   lists with independent starts/restarts and
   nested continuations, and rectangular tables with supported horizontal and
   vertical merges, nested up to eight levels. Citation ownership stays with its actual paragraph, note or cell.
-  Identified LibreOffice notes may use its zero-based starting offset;
-  their visible note labels must match the complete sequence exactly.
+  Identified LibreOffice and versioned Quds exports may use a declared
+  zero-based starting offset. Non-one starts and offset declarations require
+  visible note labels matching the complete sequence exactly. Roman values
+  remain within 1–3,999.
 - XML/JSON Zotero preferences, including unknown members. The explicit import
   converts `ReferenceMark` storage to Word `Field` only after reconstruction.
   Standard document properties are mapped; the exact original `meta.xml` is

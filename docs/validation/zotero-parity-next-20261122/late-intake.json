@@ -1,0 +1,19 @@
+{
+  "observed_main": "b2bba1638924237435460e4238d4bd98c407fc3a",
+  "initial_intake_complete": true,
+  "late_work": [
+    {
+      "branch": "codex/mail-identity-reconciliation-20261122",
+      "sha": "5ecbd68b5ad1869b20b4b6e711a5200842abae34",
+      "status": "wip_not_integrated",
+      "reason": "Created after initial intake; missing MailSyncSnapshotRepository and MailSyncRepositorySnapshot declarations prevent compilation. No completed qualification at captured tip."
+    },
+    {
+      "branch": "codex/word-vba-range-suffix-20261122",
+      "sha": "dbfd9329b685ff34b785d96fad0c865a1750ff9a",
+      "status": "in_progress_not_integrated",
+      "reason": "Created after initial intake; no completed branch qualification at captured tip. Read-only source review found no overlapping changed paths or concrete integration blocker."
+    }
+  ],
+  "policy": "Preserve late work on its existing remote branch, reconcile any subsequently published main before merging qualified Zotero work, and do not force-update or delete other branches."
+}

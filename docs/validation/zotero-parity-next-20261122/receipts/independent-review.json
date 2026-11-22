@@ -1,0 +1,49 @@
+{
+  "timestamp_utc": "2026-11-22T08:01:22.615714+00:00",
+  "commit": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+  "command": "source /workspace/scratch/8a80441c4c60/toolchains/env.sh && dart --packages=.dart_tool/package_config.json /workspace/scratch/8a80441c4c60/validation/note_start_review/ambiguous_producer_after_fix_probe.dart",
+  "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+  "exit_code": 0,
+  "cases": [
+    {
+      "case": "valid-libreoffice-empty-cache",
+      "markup": "<meta:generator>LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5</meta:generator>",
+      "accepted": false,
+      "label": null,
+      "activeFields": 0,
+      "error": "Unsupported operation: Custom ODT note numbering is not supported."
+    },
+    {
+      "case": "ambiguous-libreoffice",
+      "markup": "<meta:generator>LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5</meta:generator><meta:wrapper><meta:generator>LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5</meta:generator></meta:wrapper>",
+      "accepted": false,
+      "label": null,
+      "activeFields": 0,
+      "error": "Unsupported operation: Ambiguous or unsupported note-offset producer declaration."
+    },
+    {
+      "case": "ambiguous-quds",
+      "markup": "<meta:generator>CrispOffice Zotero ODT note-offsets/1</meta:generator><meta:wrapper><meta:generator>CrispOffice Zotero ODT note-offsets/1</meta:generator></meta:wrapper>",
+      "accepted": false,
+      "label": null,
+      "activeFields": 0,
+      "error": "Unsupported operation: Ambiguous or unsupported note-offset producer declaration."
+    },
+    {
+      "case": "unknown-normative",
+      "markup": "<meta:generator>Independent ODF producer/1.0</meta:generator>",
+      "accepted": true,
+      "label": "i",
+      "activeFields": 1,
+      "error": null
+    }
+  ],
+  "sha256": {
+    "/workspace/scratch/8a80441c4c60/quds_office_suite/packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart": "d743c36a88a7ef33b8081a94fc04cf1e6a9d8976811ab97f4b2528a778c642f6",
+    "/workspace/scratch/8a80441c4c60/quds_office_suite/packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart": "430db00fb6aa4e1714866ac5f1f97ed63486338667b0c6fc7dac0d0efa455066",
+    "/workspace/scratch/8a80441c4c60/quds_office_suite/packages/quds_office_engine/lib/src/word/serial/odt_note_start_convention.dart": "8dfb592bfeae1d9dc5447bdbfd7d462246c1829e1a5b03f33c3e33b4118520f9",
+    "/workspace/scratch/8a80441c4c60/validation/note_start_review/ambiguous_producer_after_fix_probe.dart": "45dc4bf015c04a28c3dc37b051dcb28fbda09364352f049d44ba58e0d504fc79",
+    "/workspace/scratch/8a80441c4c60/validation/note_start_review/ambiguous-producer-after-fix.jsonl": "27271eec222bb1d554664e7afddcfb294faafb09caf9c50aee2784208f355b02"
+  },
+  "note": "Independent exact ambiguity reproduction rerun against fixed live source. Refusal for both recognized ambiguous producers and acceptance of unknown normative control verified; original pre-fix evidence retained separately."
+}
