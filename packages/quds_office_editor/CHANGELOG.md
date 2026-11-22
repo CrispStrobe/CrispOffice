@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Preserve the writing caret and both selection endpoints through Zotero
+  Refresh and citation-style changes. Citation expansion/deletion, bibliography
+  reflow and supported note conversion retain unaffected prose positions;
+  Notes selections keep their direction and affinity. Undo restores the source
+  selection and redo restores the transformed selection.
+
 - Render the modeled footnote separator geometry consistently with native
   note pagination, preserving hidden and zero-width rules. Qualify separator
   rendering, note editing, note-image ownership and Zotero transfer together
