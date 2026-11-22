@@ -206,5 +206,15 @@ objects; the remote branch is advanced with an expected-head lease and no force.
 The exact remote commit is fetched back before continuing. No token is copied,
 no source history is discarded, and ordinary local validation uses the checkout.
 
-The final publication receipt records the merged remote head and source
-continuity after the integration gates finish.
+The complete qualification package was saved at
+`c7f5ae05aab0d0d57270a9eb5ad43f93111c4dbc`. A final intake then preserved
+Zotero converter/runtime evidence at `5d79e934` and the new Word text-selector
+planning checkpoint at `091be781`; these add documentation and evidence only.
+All application packages, manifests, the lockfile and SDK pin remain identical
+to the qualified publication checkpoint. The exact final branch snapshot and
+source comparison are in [publication-intake.json](publication-intake.json).
+
+[PR #379](https://github.com/CrispStrobe/quds_office_suite/pull/379) is the
+publication record. Its post-merge receipt records the actual remote main,
+merged branch ancestry and complete-tree verification, without a self-referential
+commit hash in this file. GitHub Actions completion is not awaited.
