@@ -48,6 +48,7 @@ results retain their original source and platform attribution.
 | Unlink citations | Explicit individual and document-wide conversion with undo, including complete damaged metadata with a disclosed count and native ownership checks | Incomplete, locked, nested, opaque or ambiguously owned fields block the whole conversion; verify final target-application files separately |
 | Add Note | Rich paragraphs, headings, block quotations up to eight levels, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Quote indentation uses a documented native mapping; quotes inside list items and tables inside quotes remain guarded. Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
+| Research-note formatting | Explicit paragraph/heading direction and alignment, exported indent levels 1–7 at 30 pt per level, opaque text/highlight colors, authored empty-paragraph direction, native RGB shading and color-consistent canvas/PDF rendering | Directional lists, RTL child paragraphs in lists, higher historical indent levels, arbitrary layout CSS and alpha/dynamic color expressions remain guarded; export padding differs from Zotero's editor-only CSS |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
@@ -61,6 +62,28 @@ results retain their original source and platform attribution.
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
 contract; they are not evidence of complete document-wide CSL parity.
+
+## Delivered increment: research-note paragraph layout and colors
+
+The [formatting continuation](../../validation/zotero-note-formatting-20261122/README.md)
+preserves canonical `dir`, `data-indent` and text alignment on paragraphs and
+headings, plus opaque exported text/highlight colors. Indentation follows the
+40 CSS px compatibility padding in Zotero's word-processor payload: 30 pt per
+level, counted once and composed with native list/quote indentation. Explicit
+alignment stays independent of reading direction. Missing direction remains
+automatic, including right-aligned mixed-script text.
+
+Formatted paragraphs retain their owners through merged cells and use
+structured insertion to protect surrounding prose. Explicit LTR/RTL survives
+empty-paragraph relayout, typing, undo/redo and DOCX reopening. Non-palette RGB
+highlights persist as native Word run shading; the editor paints the authored
+opaque RGB, matching PDF/export semantics. Ordinary CSL formatting keeps its
+existing contract. Exact forms and deliberate limits are described in the
+[support details](../../zotero-support-details.md#paragraph-layout-and-colors-in-research-notes).
+
+Installed native Zotero dialogs and Word/LibreOffice plugin acceptance remain
+open. Controlled callbacks, native file cycles and converter observations have
+separate evidence and do not establish complete application parity.
 
 ## Delivered increment: quoted research notes
 
@@ -83,8 +106,8 @@ mapping does not claim its blue border or exact spacing. Inline-only quote
 content, quotes inside list items, tables inside quotes, arbitrary layout CSS
 and greater depth remain guarded. Quote-only editable ODT acceptance does not
 establish continued-list ODT or installed Zotero/Word/LibreOffice parity.
-Canonical paragraph direction/indent attributes and inline note colors are
-separate, useful future content increments.
+Canonical paragraph direction/indent attributes and opaque exported note colors
+are covered by the formatting continuation above.
 
 ## Delivered increment: automatic Roman notes in editable ODT
 

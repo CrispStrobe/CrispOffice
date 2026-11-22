@@ -192,8 +192,8 @@ list markers and continuation paragraphs retain their own additional indent.
 
 This is Quds' native quotation layout. Zotero exports the quote structure
 without its note editor's stylesheet, so the editor-only blue border and
-spacing are not reproduced. Arbitrary quote layout CSS, paragraph `dir` and
-`data-indent` attributes remain outside the accepted note-content contract.
+spacing are not reproduced. Arbitrary quote layout CSS remains unsupported.
+Canonical paragraph direction and indentation are described below.
 
 Quoted content can replace supported selections in body text, authored
 footnotes/endnotes or one existing table cell. A quotation inside an imported
@@ -213,6 +213,62 @@ ODT continued-list limitations. LibreOffice-saved quotations with distinct
 visited/unvisited text-link styles also remain refused by the native ODT reader.
 See the
 [implementation and validation record](validation/zotero-workflow-parity-20261122/README.md).
+
+### Paragraph layout and colors in research notes
+
+Add Note and Add Annotation preserve the following exported paragraph and
+heading properties:
+
+| Source form | Native behavior |
+| --- | --- |
+| `dir="ltr"` / `dir="rtl"` | Explicit reading direction, including empty paragraphs; default alignment follows that direction unless an alignment is supplied |
+| `text-align: left`, `right`, `center`, `justify` | Explicit paragraph alignment, independently of reading direction; absent direction remains automatic |
+| `data-indent="1"` through `"7"` | An additional 30 pt per level on the exported side, composed after native heading, list and quotation formatting |
+| Matching `padding-left` or `padding-right` | Zotero's redundant 40 CSS px per indent level is consumed once; it does not double the indentation |
+| Opaque `color` and `background-color` | Native text color and highlight retained with emphasis, links, pictures and active citation placeholders |
+
+Zotero exports compatibility padding at 40 CSS px per indent level. Quds maps
+this to 30 pt for the word-processor payload. Zotero's editor-only stylesheet
+uses a different 30 px visual step and is not included in that export. A right
+padding value without `dir` can originate in an RTL Zotero interface; Quds
+keeps that physical indent without inventing a reading direction. Explicit
+alignment alone never changes the paragraph's reading order.
+
+The accepted color forms are three- or six-digit hex and integer `rgb(r,g,b)`
+with components from 0 to 255. A background shorthand containing only such a
+color is accepted. Nested styles restore their enclosing color when they end;
+transparent descendants retain the ancestor's painted background. At the note
+root, an explicit transparent background clears the insertion host's highlight.
+Zotero's new-note export converts its translucent editor highlights to opaque
+RGB before insertion. Quds preserves those exported RGB values; it does not
+guess how to flatten arbitrary alpha colors. Ordinary CSL result formatting
+keeps its existing, separate contract.
+
+Non-palette highlights use native Word run shading for DOCX persistence. Quds
+preserves simple opaque shading and native highlight precedence while retaining
+unrepresented patterns, theme selectors and extension data in their source
+XML. The canvas and PDF use the authored opaque highlight color; display theme
+contrast adjustment remains an editor presentation behavior.
+
+Explicit paragraph formatting takes the structured insertion path, keeping
+unselected prefix/suffix prose and its paragraph properties intact. It works in
+supported body, authored-note and table-cell ranges, including imported merged
+cells. Heading styles preserve explicit foreground colors. Completion remains
+detached until the native transaction succeeds; cancellation, invalid payloads
+or a stale destination keep the document unchanged. One undo restores the
+original content and selection, and redo restores the formatted insertion.
+
+Higher historical indent levels, conflicting or unmatched padding, unsupported
+alignment values, arbitrary layout CSS, `pre` blocks and unsupported element
+attributes remain refused. List-container direction and RTL paragraphs inside
+list items remain guarded because separate marker/text direction is not yet
+represented. Alpha, named/dynamic color expressions, gradients and duplicate
+color declarations are outside this increment. The existing ODT continued-list
+and visited/unvisited hyperlink-style limits are unchanged.
+
+The [implementation record](validation/zotero-note-formatting-20261122/README.md)
+tracks local checks, actual converter observations and the remaining installed
+Zotero/Word/LibreOffice plugin acceptance.
 
 ### Tables in notes and annotations
 

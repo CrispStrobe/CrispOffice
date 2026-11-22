@@ -2490,6 +2490,8 @@ class WordDeserializer {
     // effective style cascade an inherited szCs must not override a direct sz.
     // Source XML still retains both properties for independent round trips.
     var hasRegularSize = false;
+    String? plainShading;
+    var hasPlainShading = false;
     final int depth = reader.depth;
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement) {
@@ -2502,6 +2504,8 @@ class WordDeserializer {
             'caps',
             'smallCaps',
             'color',
+            'highlight',
+            'shd',
             'lang',
             'rFonts',
             'rStyle',
@@ -2596,6 +2600,41 @@ class WordDeserializer {
           props.highlight = WmlHighlight.toRgb(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
           );
+        case 'shd':
+          // Only a native, opaque, unthemed clear fill has the same semantics
+          // as the editor's scalar text background. Preserve all other shapes
+          // as source XML, without inventing a rendered color.
+          final pattern = reader.getAttribute(
+            'val',
+            namespaceUri: OfficeNamespaces.w,
+          );
+          final fill = reader.getAttribute(
+            'fill',
+            namespaceUri: OfficeNamespaces.w,
+          );
+          final themed =
+              const {
+                'themeColor',
+                'themeTint',
+                'themeShade',
+                'themeFill',
+                'themeFillTint',
+                'themeFillShade',
+              }.any(
+                (name) =>
+                    reader.getAttribute(
+                      name,
+                      namespaceUri: OfficeNamespaces.w,
+                    ) !=
+                    null,
+              );
+          if (!themed &&
+              (pattern == null || pattern == 'clear') &&
+              (fill == 'auto' ||
+                  fill != null && RegExp(r'^[0-9a-fA-F]{6}$').hasMatch(fill))) {
+            hasPlainShading = true;
+            plainShading = fill == 'auto' ? null : fill!.toUpperCase();
+          }
         case 'kern':
           props.kerningHalfPoints = int.tryParse(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w) ?? '',
@@ -2646,6 +2685,10 @@ class WordDeserializer {
               reader.getAttribute('cs', namespaceUri: OfficeNamespaces.w) ??
               props.csFont;
       }
+    }
+    if (hasPlainShading && props.highlight == null) {
+      props.highlight = plainShading;
+      props.explicitProperties.add('shd:highlight');
     }
   }
 

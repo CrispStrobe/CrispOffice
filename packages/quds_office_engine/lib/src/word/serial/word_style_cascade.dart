@@ -1098,9 +1098,17 @@ class _StyleCascade {
       if (run.noteRefId != null) resolved.vertAlign = WmlVertAlign.superscript;
       resolved.styleId = props.styleId;
       resolved.sourcePropertiesXml = props.sourcePropertiesXml ?? '';
+      final shadingBackground = resolved.explicitProperties.contains(
+        'shd:highlight',
+      );
       resolved.explicitProperties
         ..clear()
         ..addAll(props.explicitProperties);
+      if (shadingBackground) {
+        resolved.explicitProperties.add('shd:highlight');
+      } else {
+        resolved.explicitProperties.remove('shd:highlight');
+      }
       resolved.importedValues = WordPropertyIo.runValues(resolved);
       run.properties = resolved;
     }

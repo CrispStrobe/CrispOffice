@@ -29,12 +29,21 @@ abstract final class WordPropertyIo {
     'kern': '${r.kerningHalfPoints}',
     'position': '${r.positionHalfPoints}',
     'highlight': '${r.highlight}',
+    // The editor exposes one effective text background. Non-palette colors
+    // are stored in native run shading instead of an invalid w:highlight.
+    // Unprojected patterned/themed shading remains opaque source metadata.
+    'shd': usesRunShading(r) ? '${WmlHighlight.toRgb(r.highlight)}' : 'null',
     'u': '${r.underline}',
     'vertAlign': '${r.vertAlign}',
     'lang': '${r.proofingLanguage}',
     'lang:bidi': '${r.complexScriptLanguage}',
     'noProof': '${r.noProof}',
   };
+
+  static bool usesRunShading(WmlRunProps r) =>
+      r.explicitProperties.contains('shd:highlight') ||
+      (WmlHighlight.toRgb(r.highlight) != null &&
+          WmlHighlight.toName(r.highlight) == null);
   static Map<String, String> paragraphValues(WmlParagraphProps p) => {
     'pStyle': '${p.styleId}',
     'jc': '${p.justification}',
@@ -122,6 +131,30 @@ abstract final class WordPropertyIo {
           );
           continue;
         }
+      }
+      if (generated.localName == 'rPr' && key == 'shd') {
+        final shading = generated.firstChild('shd');
+        _mergeWordAttributes(
+          result,
+          'shd',
+          const {
+            'val',
+            'color',
+            'fill',
+            'themeColor',
+            'themeTint',
+            'themeShade',
+            'themeFill',
+            'themeFillTint',
+            'themeFillShade',
+          },
+          {
+            'val': 'clear',
+            'color': 'auto',
+            'fill': shading?.getAttribute('fill') ?? 'auto',
+          },
+        );
+        continue;
       }
       if (generated.localName == 'pPr' && key == 'bidi') {
         // Reading order owns only the Word val attribute, including an
