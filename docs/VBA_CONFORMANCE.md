@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_cell_prefix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json) | 78 | Direct/projected cell prefixes, named Text, captured aliases/helpers, portable text constants, strict argument/content/selector boundaries |
 | [`word_cell_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json) | 32 | Explicit cell paragraph selection, Style/Shading, retained aliases/helpers, existing formatting, strict selectors and direct/projected range refusals |
 | [`word_join_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json) | 25 | Join of fixed/dynamic String arrays, lower bounds, array lifecycle, delimiters, Unicode, exact output limits and positioned refusals |
 | [`string_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json) | 69 | Strict String intrinsics, UTF-16 and publication boundaries |
@@ -26,12 +27,21 @@ The canonical fixtures are:
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
 
+The cell prefix suite specifies 34 complete plans and 44 positioned diagnostics.
+Its expectations come from Microsoft API/constant definitions and explicit Quds
+limits, with no installed Office-host claim. It covers receiver-before-argument
+order, named calls, retained selectors, typed helpers, portable text constants,
+normalization and publication refusals. The same fixture bytes run on VM and
+compiled JavaScript. Native document preservation and CLI/MCP tests separately
+qualify the actual complete BAS.
+
 The cell paragraph suite independently specifies 14 complete successful plans
 and 18 positioned diagnostics. It covers direct and Item selection, existing
 style names/constants, palette/RGB/automatic backgrounds, alias and helper
 identity, source-only loops, existing body/header behavior, and strict
-cell-paragraph boundaries. It includes a regression for unsupported insertion
-inside inactive source. The VM and portable JavaScript runner consume the same
+cell-paragraph boundaries. Its prior InsertBefore refusal examples now exercise
+still-unsupported InsertAfter, including inactive source; supported prefixes are
+qualified by the separate prefix corpus. The VM and portable JavaScript runner consume the same
 fixture bytes; no case claims observation from an installed Office host. Native
 document and transaction checks are separate. See the
 [contract](vba-word-macros-details.md#formatting-a-cell-paragraph) and

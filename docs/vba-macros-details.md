@@ -555,6 +555,40 @@ uses the functions through the existing native transaction and policy boundary.
 This qualifies source-known calculations; live document-value reads and an
 installed Microsoft Office differential run remain separate work.
 
+## Portable text constants
+
+All three VBA dialects recognize these case-insensitive built-in String values:
+
+| Constant | UTF-16 code units |
+| --- | --- |
+| `vbTab` | `9` |
+| `vbCr` | `13` |
+| `vbLf` | `10` |
+| `vbCrLf` | `13, 10` |
+| `vbBack` | `8` |
+| `vbFormFeed` | `12` |
+| `vbVerticalTab` | `11` |
+| `vbNullChar` | `0` |
+
+They work in source expressions, local/module `Const` initializers, optional
+String or Variant defaults, arrays, comparisons and the existing String
+intrinsics. Names are reserved and cannot be shadowed. They remain Strings;
+this does not add numeric/Boolean coercions. Ordinary expression, String and
+work budgets apply.
+
+For example, `Replace(label, vbCrLf, vbTab)` converts source line separators
+to a publishable Word tab. Defining a control character in source does not
+relax native document guards: Word's bounded paragraph/cell text writes accept
+tabs and refuse the other structural/XML-invalid controls above.
+
+The values follow Microsoft's [miscellaneous constants](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/miscellaneous-constants).
+Platform-dependent `vbNewLine` and external-call `vbNullString` are not treated
+as portable strings; they remain unsupported names. No external procedure or
+host-platform runtime is introduced. The shared unit tests exercise Word, Excel
+and PowerPoint, and the [Word corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json)
+records source semantics and publication refusals independently of installed
+Office qualification.
+
 ## String intrinsics
 
 These case-insensitive functions operate on source String values, including a

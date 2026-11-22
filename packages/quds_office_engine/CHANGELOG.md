@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Prefix existing Word table-cell text through VBA `Cell.Range.InsertBefore`
+  and its selected paragraph Range, with required named `Text:=` also available
+  on supported body/header/footer paragraphs. Preserve original characters,
+  run boundaries, kerning and empty-run metadata with a dedicated guarded native
+  operation; retain table/protection/policy and whole-run rollback limits.
+  Add the eight fixed VBA String constants to all source adapters, including
+  Const/default expressions, without relaxing native text controls. Include a
+  complete table BAS, independent corpus and native/CLI/MCP/portable checks.
+  See the [prefix contract](../../docs/vba-word-macros-details.md#prefixing-existing-cell-text)
+  and [qualification](../../docs/validation/word-vba-cell-prefix-20261122/README.md).
+
 - Permit bounded native Zotero recovery for damaged citation metadata and
   bibliography JSON with complete, exclusively owned field results. Preserve
   original payloads, accept temporary repair state only in detached operations,
