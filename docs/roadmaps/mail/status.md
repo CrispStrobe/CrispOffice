@@ -46,8 +46,8 @@ conditional capability retain their existing metadata.
 
 Native Close continues to hide the mounted Mail pane. Failed owner release
 or observer cancellation blocks another sign-in. Native **Retry closing account**
-and provider Close/Back preserve the retained release work for an explicit
-recovery attempt; a persistent failure may still require a host restart.
+and provider Close/Back preserve the retained release work and draft recovery
+for an explicit retry; a persistent failure may still require a host restart.
 Retained simultaneous account sessions, a shared unified live workspace and
 new secret persistence are outside this increment. M04W remains open.
 
@@ -57,7 +57,8 @@ and [current work and qualification record](../../validation/mail-account-worksp
 for actual source boundaries and executed acceptance gates. The next sequence is
 remembered Archive destinations, categories/rules, body/provider search,
 persistent conversations and provider Drafts/Sent reconciliation, then fuller
-background multi-account work. M04W and complete desktop-client parity remain open.
+background multi-account work. M04W, complete desktop-client parity and
+live-provider/installed-platform acceptance remain open.
 
 The [initial account-navigation continuation](account-navigation.md) and its
 development evidence are retained. Its prepared final qualification plan is

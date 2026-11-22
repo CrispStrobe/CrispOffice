@@ -1,0 +1,66 @@
+{
+  "resolved_at_utc": "2026-11-22T12:57:32.739685+00:00",
+  "incoming_main": "b4f1150b18348f348489c93108158a397c922abe",
+  "protected_pending_documentation_commit": "bcc0d908f06d70fad14ff89f077b0f0cd6885b2a",
+  "owned_paths": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "ours_sha256": "9ddb158e2f4be30be359230aa25c28304331f60b43f84fc40668ce8cd102ae6f",
+      "incoming_sha256": "4b670b4e7471fcccd3ebaeaf964fa2bb2765ac8ea955ec672776a7f03e900ceb",
+      "ours_test_widget_declarations": null,
+      "incoming_test_widget_declarations": null,
+      "resolved_sha256": "959d85c580accb9a8e3453317b4c01c876cffa53519c3ff55c1d986558b77826"
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "ours_sha256": "34c5b2ee663d221017fffc2b8629f3347e8b543c2b3d55cf29043901a78b0610",
+      "incoming_sha256": "981651832d8d5f479213ff261ffacc9dd81a9d6617379e1644f92f7fc5ed7e80",
+      "ours_test_widget_declarations": null,
+      "incoming_test_widget_declarations": null,
+      "resolved_sha256": "b280b6b980c5e408897fa4cd87dc324243cb72c89ef3143549757895455be29d"
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "ours_sha256": "bfbd5a171e427a9bbcf7ec1faa9f6c99cbb5c6494deddddf1d5488a3607a7cd0",
+      "incoming_sha256": "b2f4e5080dc071303838ae323eb5752ec243ca58132403c802c68055d808db5e",
+      "ours_test_widget_declarations": null,
+      "incoming_test_widget_declarations": null,
+      "resolved_sha256": "562b2dff2ede9f5f94cde7e5f9b761a3530d9148261492080be8e0162c32473b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+      "ours_sha256": "05ebe4491713a644340c6254f0b806af8322815b57e5f48773c7afd4c204d621",
+      "incoming_sha256": "ea2e6ae79bbc0112ed5a03063a5a53b72c2e1afc2555c5e082f6af8932010141",
+      "ours_test_widget_declarations": null,
+      "incoming_test_widget_declarations": null,
+      "resolved_sha256": "05ebe4491713a644340c6254f0b806af8322815b57e5f48773c7afd4c204d621"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation_strings.dart",
+      "ours_sha256": "4822f8f319529bf76ad2e84341109592509d5513d202ea9d65b192c83dcff001",
+      "incoming_sha256": "846463494b8acb8df1cb0c2c8cbb4008cae5d8204b31d0c4154cfc05c8524111",
+      "ours_test_widget_declarations": null,
+      "incoming_test_widget_declarations": null,
+      "resolved_sha256": "4822f8f319529bf76ad2e84341109592509d5513d202ea9d65b192c83dcff001"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+      "ours_sha256": "393e07f150b95fd9939703cb4d173fa6a2347336e5684c9d6abb90438a174f0b",
+      "incoming_sha256": "74b64a37c626c52b5cfd1e01a62ea0d3f796044a9eb374b7608051265117233b",
+      "ours_test_widget_declarations": 25,
+      "incoming_test_widget_declarations": 20,
+      "resolved_sha256": "393e07f150b95fd9939703cb4d173fa6a2347336e5684c9d6abb90438a174f0b"
+    }
+  ],
+  "decisions": {
+    "helper": "The entire incoming difference was a comment rewording about a zero URI port. Kept the existing byte-identical implementation and exact selected-record contract.",
+    "strings": "Incoming only reordered mailAccountNavigationReleaseFailed. Kept the existing declaration order and all localized messages.",
+    "provider_tests": "Reviewed the full side-to-side diff. Incoming adds no new test case or behavior beyond the already preserved remove/revise CAS and explicit Close recovery cases; it changes attempt counters, adds a redundant real-event pump, and removes current observer failure/Disconnect/Refresh/late-owner/first-snapshot coverage. Kept the current file byte-for-byte, including stronger zero-write CAS, exact release-message and held-close-gate assertions. Existing expected expanded count remains 127.",
+    "roadmaps": "Union incoming localized chooser, explicit no-sync/no-send/no-replay directory behavior, exact identity revalidation, ambiguous IMAP route choice and open M04W simultaneous-session/unified-workspace scope with current strict observer/owner release retention, explicit retry controls and honest source-bound qualification wording. Omitted the incoming connected-navigation qualification link because its target does not exist in the merged repository; retained both workflow guides and the actual account-workspace qualification link."
+  },
+  "source_tests_changed": false,
+  "expected_provider_cases": 127,
+  "new_incoming_provider_test_cases": 0,
+  "tests_or_analyzer_executed": false,
+  "qualification_status": "Pending replacement engine and full Studio gates after main reconciliation."
+}

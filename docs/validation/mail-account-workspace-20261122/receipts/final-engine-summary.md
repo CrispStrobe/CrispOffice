@@ -1,31 +1,38 @@
-# Final integrated engine qualification
+# Final engine qualification after latest-main integration
 
-Qualified on 2026-11-22T12:35:38.271295+00:00 with the pinned Flutter 3.47.8 / Dart 3.13.7 runtime and Node 24.22.3. No GitHub Actions were queried or awaited.
+Qualified on 2026-11-22T13:13:34.279838+00:00 using unmodified pinned Flutter 3.47.8 / Dart 3.13.7 and Node 24.22.3. No GitHub Actions were queried or awaited.
 
-The frozen local baseline `e6b5c23e3d0dfee29fb86fe1a5f6132b3f34de3d` and canonical remote checkpoint `3e57fda4de6317c4a547f69220d7ed83802fd19f` share tree `f410d8165bc8af58df6f1154905878ea4b63875b`. Later documentation-only publication can retain these results when source inputs remain byte-identical.
-
-## Executed gates
+## Accepted gates and counts
 
 | Cohort | Suites | Passed | Failed | Skipped |
 | --- | ---: | ---: | ---: | ---: |
-| Word/VBA selectors, string intrinsics, Split, direct language and document regressions | 20 | 1,831 | 0 | 0 |
-| Zotero/ODT, revision, field, run-edit and style regressions | 32 | 754 | 0 | 0 |
-| **Substantive VM total** | **52** | **2,585** | **0** | **0** |
+| Word/VBA selectors, string intrinsics, Split, language and document regressions | 20 | 1,831 | 0 | 0 |
+| Zotero/ODT, revision, field, run-edit and style regressions | 32 | 763 | 0 | 0 |
+| **Substantive VM total counted once** | **52** | **2,594** | **0** | **0** |
 
-Both ordinary `dart test --reporter=json --concurrency=2` runs completed their reporter lifecycles. Hidden loading/setup/teardown events are excluded. The case inventories list every counted case and suite. Earlier runs and debugging checks are superseded for this total and are not added again.
+The original ordinary `dart test --reporter=json --concurrency=2` runs completed their reporter lifecycles. Hidden loading/setup/teardown events are excluded. Original reporters, case inventories and manifests remain untouched in `../final-b4-engine`. Strict analysis with `dart analyze --fatal-infos` passed the 32 changed engine Dart paths on the same original inputs. The 32-path pinned read-only formatting check then passed on the normalized source.
 
-Strict `dart analyze --fatal-infos` and read-only `dart format --output=none --set-exit-if-changed` passed all 32 changed engine Dart paths, selected from the initial intake main `659b81462224a40f50975cfbfca39f636538b836` to this baseline.
+The combined `qualification.json` links the original VM/analysis runs, the explicit normalization proof, and the seven remaining commands in `remaining-qualification.json`. No VM tests or analyzer runs were repeated for formatting. The earlier format failure and parser-proof setup diagnostics add no test cases.
+
+## Exact source boundary
+
+The original VM/analysis source was local `b63245a4851f4efd79cf85802cb27ee252d140cd`, canonical remote `415265e46c7679531adbe97211d064146a26561a`, tree `55996dbcf8671c6228bae62ec7c23dd67c3cda09`.
+
+The normalized source is local `128a49df722662c904335f6dbbc2e8990a1266db`, canonical remote `7c2f6e744b3489460035bbbb358d46e22e58ce20`, identical tree `fe9761f081cf89038ed69fbcddfbf3de08d1daca`. All 1,415 captured inputs were unchanged during each execution stage. Exactly one test file changed between stages: `packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart`. Production source, fixtures, dependencies, and every other captured input were byte-identical across the stages.
+
+The pinned formatter folds the `refreshedCitations` map from three lines to one and removes its optional trailing comma. The locked analyzer 13.3.0 parsed both exact inputs with zero diagnostics. Recursive ASTs and AST-rendered source match exactly. The raw token inventories intentionally differ by that single comma; every remaining token and comment matches. Raw token identity is not claimed. The exact before/after files, canonical structures, proof script, and hashes are retained in `normalization-bridge.json` and `ast-normalization.json`.
+
+- Original test SHA-256: `2cc714acf52507067c2fccd465dc07a89dc3d5c85a264e6056ccfd941fbddda1`.
+- Normalized test SHA-256: `4c2f3551bfacf153f582a3f31dc654ee2916b53e191cfd5600af6320891108a9`.
+- Original before/after manifest SHA-256: `92b0e9e0be6590bd2e66f225f750318c9eaa6ae28dd2abdb42d63872d13f5da8`.
+- Normalized before/after manifest SHA-256: `77e16026009f74ec57a1fb64cc6d92fe6b4a6146bed3d0dc0b364a1e1c6ed2aa`.
 
 ## Portability
 
-The unchanged Split corpus ran on the VM and compiled JavaScript under Node: 174 adapter cases across Word, Excel and PowerPoint. Its canonical receipt matched byte-for-byte.
+The unchanged Split corpus passed on the VM and compiled JavaScript under Node: 174 adapter cases across Word, Excel and PowerPoint, with byte-identical canonical receipts.
 
-The checked-in Word Split BAS ran on the VM and under Node for both DOCX and DOCM. Both executions passed their internal native, transaction, recording/replay, MCP, reopen and opaque-content checks. Their complete canonical JSON receipts match after normalizing finite integral numeric encodings. Ordinary `jsonEncode` prints values such as `0.0` on the VM and `0` in JavaScript; raw byte identity is not claimed for this receipt. Strings, booleans, arrays, object values and numeric values remain compared. Raw outputs and both canonical outputs are retained. These portability executions are recorded separately from the VM test total.
+The Word Split BAS passed its internal document, transaction, recording/replay, MCP, reopen and opaque-content checks for DOCX and DOCM on both runtimes. The complete JSON values match after normalizing finite integral numeric encodings. Ordinary `jsonEncode` emits some VM values as `0.0` and JavaScript values as `0`; raw byte identity is not claimed for this receipt. Strings, booleans, arrays, object values and numeric values remain compared. These portability executions are separate from the 2,594 VM test count.
 
-## Source invariance and repair history
+## Integrated engine behavior
 
-All 1,415 captured engine/legacy-parser source, test, fixture, tool, macro and manifest inputs matched before and after every gate. The generated package configuration was captured too. Before/after manifest SHA-256: `974370de30188c3b43f3b35346a2c03236f1889a76e359d416b82032134ced01`. All ten commands exited zero; their exact argv, cwd, timestamps and output hashes are in `qualification.json` and the reproducible plan/runner.
-
-The incoming Zotero cohort initially exposed six Refresh snapshot-contract failures and one opaque formatting-history loss. Explicit expected citation-text changes now preserve all original fixture formatting and metadata assertions. Native field markers retain complete raw run properties without synthetic empty text revisions; real empty code-run revisions retain the incoming provenance guard, copying and accept/reject behavior. Both sets of regression cases survived the final main merge, including five additional marker/mixed-run cases. No committed converter fixture bytes were changed. Original failure evidence and repair notes remain in sibling `final-engine` and `zotero-repair` directories.
-
-This qualification executes local engine code and checked-in converter fixtures. Installed Office/LibreOffice/plugin interactions and editor Flutter controller/Studio suites are separate gates. A historical Mail carry-forward audit separately confirms 2,722 cases across 124 suites against unchanged core/store/transport/shared-UI inputs; it creates no new test executions.
+The qualified union preserves raw Zotero field-boundary formatting revisions across saves while ordinary text revisions remain reviewable, retains the five marker/mixed-run regressions, and adds all nine incoming instruction-side style exclusion cases. Empty instruction runs remain metadata: refresh and unlink use cached-result or surrounding visible text styles. Converter Refresh uses independent original golden snapshots with only explicit citation cache replacements; all structural and formatting assertions remain. Original converter fixture bytes are unchanged.

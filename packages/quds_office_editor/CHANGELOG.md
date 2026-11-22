@@ -4,13 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Reopen supported bordered research tables from editable Zotero ODT exports.
+  Retain citation editability, cell border appearance, selected-field context
+  and the existing detached Refresh/undo transaction across DOCX/ODT saves.
+  Unsupported border structures keep their explicit import/export refusal.
+
 - Add a shared remembered-account chooser for connected IMAP/SMTP, EWS, Gmail
   and Microsoft 365 in English, German and Arabic. Preserve exact non-secret
   routes and require explicit sign-in; save account-owned drafts and uncertain
   delivery state before switching. Drain observers, journal writes and owners,
   fence late acquisitions/retired callbacks, and atomically refresh selected
-  native directory records without recreating forgotten shortcuts. Custom
-  directories without conditional refresh retain their existing metadata.
+  native directory records without recreating forgotten shortcuts. Removed or
+  replaced destinations invalidate late refresh completion before handoff.
+  Custom directories without conditional refresh retain their existing metadata.
   Block hidden keyboard edits and ambiguous SMTP-route selection. Retain failed
   observer/owner release for explicit native Retry closing account and provider
   Close/Back recovery; another account stays blocked until release succeeds.

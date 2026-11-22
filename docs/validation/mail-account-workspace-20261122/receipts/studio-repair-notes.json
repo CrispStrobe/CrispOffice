@@ -20,11 +20,12 @@
   "local_fix_commit": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
   "regression_case_changed": false,
   "test_counts_changed": false,
-  "final_disposition": "Corrected-source static and editor reruns passed; the complete 110-suite Studio rerun remains pending. This failed attempt contributes no final passing credit.",
+  "final_disposition": "Superseded by the latest merged source; full replacement Studio qualification is pending. This failed attempt contributes no final passing credit.",
   "preserved_attempt_directories": [
     "studio-mail-attempt-01",
     "editor-zotero-attempt-01",
     "studio-mail-static-attempt-01"
   ],
-  "canonical_fix_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
+  "canonical_fix_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
+  "followup_regression": "The first toolbar fence then rejected intentional same-session captured Disconnect during modal review; see studio-modal-cancel-repair-notes.json. That separate regression is corrected in the latest merged baseline."
 }

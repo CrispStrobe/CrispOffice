@@ -1,0 +1,217 @@
+{
+  "verified_at": "2026-11-22T12:54:03.166698+00:00",
+  "initial_baseline": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+  "local_integrated_commit": "a60698d7775a71364eeae9547e22d0afff49294a",
+  "remote_integrated_checkpoint": "ca87f7b3ce5563e0f03df323c91c9fc7a7582877",
+  "changes_after_initial_intake": [
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-text-authoring-20261122",
+      "old": "c971ad0e1515db8deed59b7d8360960c64e13059",
+      "sha": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd",
+      "ancestor_of_local": false,
+      "integrated_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "old": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+      "sha": "b4f1150b18348f348489c93108158a397c922abe",
+      "ancestor_of_local": false,
+      "integrated_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-account-workspace-20261122",
+      "old": "068c46395a58c67a9537874b6a2030008296793e",
+      "sha": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+      "ancestor_of_local": false,
+      "integrated_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-connected-navigation-20261122",
+      "old": "4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3",
+      "sha": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+      "ancestor_of_local": false,
+      "integrated_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pull/383",
+      "old": "c971ad0e1515db8deed59b7d8360960c64e13059",
+      "sha": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd",
+      "ancestor_of_local": false,
+      "integrated_ancestor": true
+    }
+  ],
+  "all_captured_current_branch_tips_integrated": true,
+  "all_100_initial_recent_pr_heads_integrated": true,
+  "historical_replacements": [
+    {
+      "ref": "pull/134",
+      "source_sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "replacement_sha": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/135",
+      "source_sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "replacement_sha": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/136",
+      "source_sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "replacement_sha": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/137",
+      "source_sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "replacement_sha": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/138",
+      "source_sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "replacement_sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/140",
+      "source_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "replacement_sha": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "replacement_ancestor": true,
+      "kind": "changed_paths",
+      "paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py"
+      ],
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/141",
+      "source_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "replacement_sha": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/142",
+      "source_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "replacement_sha": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/145",
+      "source_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "replacement_sha": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/146",
+      "source_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "replacement_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/147",
+      "source_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "replacement_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/149",
+      "source_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "replacement_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/151",
+      "source_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "replacement_sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    },
+    {
+      "ref": "pull/152",
+      "source_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "replacement_sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "replacement_ancestor": true,
+      "kind": "full_tree",
+      "equivalent": true,
+      "replacement_ancestor_now": true
+    }
+  ],
+  "main_captured": "b4f1150b18348f348489c93108158a397c922abe",
+  "source_reconciliation": [
+    "Preserve all initial branch work and field boundary revision history.",
+    "Integrate PR #383 and noncascading independent converter golden expectations.",
+    "Integrate 180a1267 failed cache-shutdown ownership changes with existing cancellable Close and dispatch/target fences.",
+    "Retain merge-only 9a371 connected-navigation history and correct descriptions of final-stage conditional refresh.",
+    "Fix stale retained Refresh callbacks after Disconnect, exposed by the incoming unchanged regression cases."
+  ],
+  "github_actions": "Neither queried nor awaited; no workflow or protection changes."
+}

@@ -19,8 +19,9 @@ Exact non-secret routes lead to explicit sign-in; current drafts and uncertainty
 remain account-owned while observers, journal writes and owners finish closing.
 Late acquisitions and callbacks cannot revive a retired account, and atomic
 selected-record refresh cannot recreate a concurrently forgotten shortcut.
-The combined continuation retains failed observer/owner release and provides
-explicit close recovery before another account can be admitted. The original
+The combined continuation retains failed observer/owner release for explicit
+native **Retry closing account** or provider Close/Back recovery before another
+account can be admitted. The original
 [account-navigation guide](account-navigation.md) remains as its source and
 development-history reference.
 This is a Studio foreground navigation increment; retained simultaneous
@@ -118,7 +119,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Four-provider remembered-account chooser with exact routing, explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable flag/Move/Delete/Archive receipts, provider membership observations, IMAP/EWS move/cache reconciliation, resumable folder-header synchronization and bounded offline downloads | Remembered custom Archive destinations, retained multi-account sessions, complete shared synchronized workspace, durable retention policy/background scheduling, unified live Inbox and broader provider membership reconciliation |
+| 2 | Everyday mailbox workspace (M04W/M06) | Four-provider remembered-account chooser with exact routing, explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flag, Move/Delete and Archive receipts, provider membership observations, IMAP/EWS move/cache reconciliation, resumable folder-header synchronization and bounded offline downloads | Remembered custom Archive destinations, retained multi-account sessions, complete shared synchronized workspace, durable retention policy/background scheduling, unified live Inbox and broader provider membership reconciliation |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, remembered custom Archive destinations and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |

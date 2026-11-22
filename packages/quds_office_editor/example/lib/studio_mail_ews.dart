@@ -2137,6 +2137,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final priorUncertainty = _submissionUncertain;
     final sender = _sender;
     final submission = _submission!;
+    final accountEpoch = _accountEpoch;
     setState(() {
       _draft = draft;
       _busy = true;
@@ -2158,7 +2159,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         entry: entry,
         submit: _outboxSubmit(provider, submission, lease, store, sender),
         isCurrent: () =>
-            _current(provider, lease) && identical(store, _draftStore),
+            !_navigating &&
+            accountEpoch == _accountEpoch &&
+            _current(provider, lease) &&
+            identical(store, _draftStore),
         acknowledgeUncertain: priorUncertainty,
       );
       if (!_current(provider, lease)) return;
@@ -2394,6 +2398,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     });
     var attempted = false;
     final wasPreviouslyUncertain = _submissionUncertain;
+    final accountEpoch = _accountEpoch;
     try {
       final wire = buildStudioMailMessage(draft, _sender).renderMessage();
       final attempt = '${_cloud ? 'cloud' : 'ews'}-send-${++_serial}';
@@ -2411,6 +2416,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       await store.save(draft, submissionUncertain: true);
       lease.checkCurrent();
       _submissionUncertain = true;
+      // Closing can wait for a separate retained-draft save. Its intent must
+      // still stop this first dispatch if that save later fails and the host
+      // remains open. A response already in flight keeps its persistence path.
+      if (_navigating || accountEpoch != _accountEpoch) {
+        setState(() => _notice = null);
+        return;
+      }
       attempted = true;
       final result = await _submission!.submit(
         message,
@@ -2471,6 +2483,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             ? widget.strings.mailDraftStorageFailed
             : widget.strings.ewsSubmissionRejected;
       });
+    } finally {
+      if (_current(provider, lease) && _busy) {
+        setState(() => _busy = false);
+      }
     }
   });
 
@@ -2789,10 +2805,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   Future<void> _requestClose() async {
-    if (_dialogOpen || _navigating || _routeRetired || (_busy && _connected)) {
+    if (_dialogOpen || _navigating || _routeRetired) {
       return;
     }
     final epoch = ++_accountEpoch;
+    // Stop after the current reply even while preserving the retained draft.
+    // The strict release below still drains that reply's durable receipt.
+    _bulkCancellation?.cancel();
     bool current() => mounted && epoch == _accountEpoch;
     var saving = false;
     setState(() => _navigating = true);
@@ -3016,11 +3035,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             IconButton(
               tooltip: widget.strings.close,
               icon: const Icon(Icons.close),
-              onPressed:
-                  _dialogOpen ||
-                      _navigating ||
-                      _routeRetired ||
-                      (_busy && _connected)
+              onPressed: _dialogOpen || _navigating || _routeRetired
                   ? null
                   : _requestClose,
             ),

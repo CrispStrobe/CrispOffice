@@ -664,6 +664,11 @@ void main() {
         drafts: drafts,
       );
       await _manual(tester);
+      final connect = tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, _strings.connect),
+          )
+          .onPressed!;
       await _connect(tester);
       await _pump(tester);
       final oldKey = drafts.identities.single.account.value;
@@ -678,6 +683,18 @@ void main() {
       await tester.tap(find.byTooltip(_strings.disconnect));
       await _pump(tester);
       drafts.openGate = null;
+      // Retired acquisition still owns this transition. Even a captured host
+      // callback must wait for its late owner to close before another sign-in.
+      connect();
+      await _pump(tester);
+      expect(attempts, 1);
+      expect(drafts.identities, hasLength(1));
+      expect(drafts.closes, 0);
+      expect(drafts.records[oldKey]!.draft.subject, 'Old account draft');
+      expect(drafts.records[oldKey]!.submissionUncertain, isTrue);
+      openGate.complete();
+      await _pump(tester);
+      expect(drafts.closes, 1);
       await tester.enterText(
         _field(_strings.emailAddress),
         'other@example.invalid',
@@ -692,7 +709,6 @@ void main() {
       final newKey = drafts.identities.last.account.value;
       expect(newKey, isNot(oldKey));
       expect(drafts.records[newKey]!.draft.subject, 'Current account draft');
-      openGate.complete();
       await _pump(tester);
       expect(drafts.closes, 1);
       expect(find.text('Second account message'), findsOneWidget);

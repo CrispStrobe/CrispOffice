@@ -4,11 +4,28 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Preserve complete run-property XML, including opaque formatting revisions,
-  on native Word field boundaries through repeated DOCX saves. Keep those
-  fields guarded instead of discarding their history or creating empty text
-  revisions. Ordinary text retains its existing formatting review behavior,
-  including text that originally shared a run with a field marker.
+- Preserve supported visible table borders in native Zotero ODT import and
+  explicit editable export: one solid RGB stroke per table, exact eighth-point
+  widths from 0.25 to 12 pt, and independent cell sides. Resolve inherited
+  shorthands, explicit off edges, merged ownership and nested tables without
+  changing uniform padding. Retain active citations through native Refresh and
+  repeated DOCX/ODT saves. The bounded ODT reader guards mixed strokes, visible
+  separating borders and conflicting covered-cell overrides; editable output
+  checks the native modeled stroke and refuses right-to-left table column order
+  without changing the source or active fields. Supported right-to-left
+  paragraphs inside left-to-right tables remain distinct. Three cases pass six
+  actual LibreOffice saves and twelve paired native DOCX/ODT cycles with all 376
+  captured engine inputs unchanged. See the
+  [border interoperability record](../../docs/validation/zotero-table-borders-20261122/README.md).
+
+- Preserve Word cell borders stored as logical `start`/`end`, giving those names
+  precedence over legacy `left`/`right` independently of XML order. Resolve
+  effective table direction from default/named styles and direct overrides
+  before mapping to physical sides, and apply the inverse mapping on DOCX save.
+  Keep absent edges distinct from explicit off (`nil`/`none`); guard namespace and
+  direct-child ownership. The retained Writer DOCX cell now independently
+  retains all four source borders. Arbitrary external DOCX per-cell strokes and
+  styles remain outside this native common-stroke qualification.
 
 - Keep bounded LibreOffice-formatted Zotero DOCX fields editable while
   preserving their raw instruction/boundary formatting and empty code runs.
@@ -22,6 +39,12 @@ All notable changes to `quds_office_engine` are documented here.
   stale-result refusal. See the
   [converter qualification](../../docs/validation/zotero-converter-parity-20261122/README.md)
   for exact limits and remaining installed-plugin acceptance.
+
+- Preserve complete run-property XML, including opaque formatting revisions,
+  on native Word field boundaries through repeated DOCX saves. Keep those
+  fields guarded instead of discarding their history or creating empty text
+  revisions. Ordinary text retains its existing formatting review behavior,
+  including text that originally shared a run with a field marker.
 
 - Add bounded VBA `Split` assignment to local dynamic String arrays in Word,
   Excel and PowerPoint. Preserve zero-based binary substring semantics,
