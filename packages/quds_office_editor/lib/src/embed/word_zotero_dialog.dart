@@ -1896,27 +1896,24 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     ),
                   ),
                 if (!_canEdit || _error != null || _notice != null)
-                  Flexible(
-                    fit: FlexFit.loose,
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: min(160, size.height * 0.25),
-                      ),
-                      child: SingleChildScrollView(
-                        key: const ValueKey('zotero-workspace-messages'),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (!_canEdit)
-                              _banner(
-                                _controller.document.trackRevisions
-                                    ? 'Turn off Track changes to insert or edit citations. Existing fields remain preserved.'
-                                    : 'This document is read-only. You can browse and export reference data.',
-                              ),
-                            if (_error != null) _banner(_error!, error: true),
-                            if (_notice != null) _banner(_notice!),
-                          ],
-                        ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: min(160, size.height * 0.25),
+                    ),
+                    child: SingleChildScrollView(
+                      key: const ValueKey('zotero-workspace-messages'),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (!_canEdit)
+                            _banner(
+                              _controller.document.trackRevisions
+                                  ? 'Turn off Track changes to insert or edit citations. Existing fields remain preserved.'
+                                  : 'This document is read-only. You can browse and export reference data.',
+                            ),
+                          if (_error != null) _banner(_error!, error: true),
+                          if (_notice != null) _banner(_notice!),
+                        ],
                       ),
                     ),
                   ),
