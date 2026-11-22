@@ -21,10 +21,32 @@ interrupted work.
 | Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
-| Account persistence | Native account store, schema migrations and reconnect |
+| Account persistence/navigation | Native account store, schema migrations, verified cross-provider chooser and draft-safe explicit reconnect; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: explicit provider Archive
+## Latest increment: verified cross-provider account navigation
+
+**Choose an account** now offers verified IMAP/SMTP, Exchange EWS, Gmail and
+Microsoft 365 accounts in one localized chooser. The transition saves the old
+account's retained draft and uncertain-send status, drains its session and local
+owner, and opens explicit sign-in for the selected destination. A failed save or
+owner release cannot authorize another account. Provider Close/Back also follows
+the retained-draft recovery path.
+
+Selected provider/endpoint/login/sender identities and directory revisions are
+revalidated across asynchronous setup. Removed targets, edited identities,
+delayed route callbacks and hidden keyboard input cannot redirect a newer
+session. IMAP SMTP-route ambiguity requires an explicit remembered-route choice.
+Selection never starts synchronization, sends mail or replays journal commands.
+
+See the [workflow and ownership contract](account-navigation.md) and
+[local qualification record](../../validation/mail-connected-navigation-20261122/README.md)
+for the current source and actual verification results. This delivers explicit
+single-session reconnection across providers. Retained simultaneous sessions,
+the account-aware unified workspace, complete M04W and full desktop-client
+parity remain open, along with live-provider/installed-platform acceptance.
+
+## Previous increment: explicit provider Archive
 
 Connected mailbox readers and checked selections now offer a reviewed Archive
 action. Gmail removes only the exact message's Inbox label and requires an
@@ -50,8 +72,9 @@ cases passed. The qualification record separately retains an existing Word
 visual-golden mismatch, reproduced on the pre-integration source with exactly
 the same failing pixels.
 
-Connected multi-account navigation remains the next M04W boundary; full desktop
-parity and live-provider/platform acceptance remain open.
+Account navigation is continued above. Retained multi-account sessions and the
+unified workspace remain the next M04W boundary; full desktop parity and
+live-provider/platform acceptance remain open.
 
 ## Previous increment: durable visible-selection Move/Delete
 

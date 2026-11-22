@@ -53,4 +53,14 @@ extension StudioMailAccountNavigationStrings on StudioStrings {
     'Wählen Sie passende gespeicherte Anmeldedaten oder geben Sie die Servereinstellungen dieses Kontos ein, um fortzufahren.',
     'اختر بيانات تسجيل دخول محفوظة مطابقة، أو أدخل إعدادات خادم هذا الحساب للمتابعة.',
   );
+  String get mailAccountNavigationRelease => _text(
+    'Retry closing account',
+    'Schließen des Kontos erneut versuchen',
+    'إعادة محاولة إغلاق الحساب',
+  );
+  String get mailAccountNavigationReleaseHelp => _text(
+    'The previous account could not finish closing. Retry before connecting another account.',
+    'Das vorherige Konto konnte nicht vollständig geschlossen werden. Versuchen Sie es erneut, bevor Sie ein anderes Konto verbinden.',
+    'تعذر إكمال إغلاق الحساب السابق. أعد المحاولة قبل الاتصال بحساب آخر.',
+  );
 }

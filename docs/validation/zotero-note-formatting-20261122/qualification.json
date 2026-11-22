@@ -1,0 +1,227 @@
+{
+  "title": "Zotero research-note paragraph layout and opaque colors",
+  "date": "2026-11-22",
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_main": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+  "behavioral_source_commit": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+  "behavioral_source_tree": "ebb4ffbc285088a9007f604f3083bffd8a6c9b45",
+  "reconciled_source_commit": "6f74d11b857deaa43981e8a7eb72157cd6bd518e",
+  "reconciled_source_tree": "21cbda6156d239cfa04e50a497aeaf67ac299d55",
+  "source_continuity": {
+    "all_behavioral_input_maps_identical": true,
+    "all_runs_preserve_inputs": true,
+    "incoming_executable_delta": "Exactly official Dart formatter output in two tested paths; no other executable, fixture, pin or lock changes.",
+    "normalization_proof_member": "final/formatter-normalization/receipt.json",
+    "normalized_paths": [
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart"
+    ],
+    "later_final_evidence_changes": "Documentation and retained artifacts only."
+  },
+  "intake": {
+    "captured_at": "2026-11-22T11:06:18.669Z",
+    "fork_branch_heads": 42,
+    "recent_pull_request_heads_and_merges": 100,
+    "all_captured_heads_included": true,
+    "record": "final-intake.json",
+    "latest_main_included": "b510b2dc0a39085097189e8ac96f87341db1eed3",
+    "latest_main_pr": 379
+  },
+  "cohorts": [
+    {
+      "name": "engine",
+      "test_files": 42,
+      "passed": 1197,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_commit": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+      "input_count": 3778,
+      "changed_inputs": [],
+      "accepted": true,
+      "receipt_member": "final/engine.receipt.json",
+      "receipt_sha256": "b1cb02a0b416a7643800b6d155e940609ead682313228e6425111c48ffe3175a",
+      "reporter_sha256": "e15a58b62bc0e721431fe49e02ce9127178c45a54b56abee4c1314d5792a80dc"
+    },
+    {
+      "name": "editor",
+      "test_files": 17,
+      "passed": 345,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_commit": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+      "input_count": 3778,
+      "changed_inputs": [],
+      "accepted": true,
+      "receipt_member": "final/editor.receipt.json",
+      "receipt_sha256": "4c4880004592a8dd4fda52c86da8f2f510a40a5dbe14605814e226277accfc8b",
+      "reporter_sha256": "e63b30ae51d3f1cd8d0a8a58af66848802cec9c1f86f98a544d74d2ce22e6192"
+    },
+    {
+      "name": "studio",
+      "test_files": 3,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_commit": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+      "input_count": 3778,
+      "changed_inputs": [],
+      "accepted": true,
+      "receipt_member": "final/studio.receipt.json",
+      "receipt_sha256": "d998a4cff7bf147c6590c971283a1aaaa60e6879c3ec7f306a7ca560f02f04eb",
+      "reporter_sha256": "628d56469adf15738974d4476c5f4e570a2c118354c9ece4f8a07c9b89ce1a74"
+    },
+    {
+      "name": "incoming-word",
+      "test_files": 11,
+      "passed": 934,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_commit": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+      "input_count": 3778,
+      "changed_inputs": [],
+      "accepted": true,
+      "receipt_member": "final/incoming-word.receipt.json",
+      "receipt_sha256": "f3ff090b9c6d576b00047e54d8ae217cd821b1e53ff42c549b7b35a3228ddfeb",
+      "reporter_sha256": "fb8c2dccd6c43d86f554c68f839be0ecd975b7e315ff9a76ea3963dce26e82f1"
+    },
+    {
+      "name": "incoming-mail",
+      "test_files": 3,
+      "passed": 276,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_commit": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+      "input_count": 3778,
+      "changed_inputs": [],
+      "accepted": true,
+      "receipt_member": "final/incoming-mail.receipt.json",
+      "receipt_sha256": "7e6b268e10437f8b52c05e7fa2ef7b32f6ec5cbd267fe22da19b9ca49675b7db",
+      "reporter_sha256": "bead2bb3db2a8934a8a8a76a5cf99cdfb01b518ca3b50fb1c30c15e63850cb58"
+    }
+  ],
+  "total": {
+    "test_files": 76,
+    "passed": 2797,
+    "failed": 0,
+    "skipped": 0
+  },
+  "local_behavioral_acceptance": true,
+  "static": {
+    "accepted": true,
+    "source_commit": "6f74d11b857deaa43981e8a7eb72157cd6bd518e",
+    "changed_dart_files": 70,
+    "analysis_exit": 0,
+    "formatter_exit": 0,
+    "receipt_member": "final/static-checks-final.json",
+    "earlier_format_failure_retained": "final/static-checks.json"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "official_sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "verified_hosted_archives": 204,
+    "tracked_manifest_and_pin_count": 23,
+    "manifests_pins_locks_unchanged": true,
+    "provenance": "evidence/runtime-provenance.json"
+  },
+  "converter": {
+    "phase": "after-direction-io-fix",
+    "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "input_count": 22035,
+    "changed_inputs": [],
+    "expected_snapshots_identical_to_before_fix": {
+      "body": true,
+      "footnote": true,
+      "cell": true
+    },
+    "input_manifest_sha256": "02ac0222ceadae2316440251a4168e7801666f1b86317df1a13722e023fa8930",
+    "successful_save_operations": 12,
+    "strict_native_verdicts": {
+      "passed": 6,
+      "refused": 6,
+      "different": 6
+    },
+    "strict_xml_verdicts": {
+      "passed": 18
+    },
+    "docx_native_content_format_and_metadata": {
+      "passed": 9,
+      "total": 9,
+      "scope": "Existing fixture snapshot: story text; selected paragraph direction, alignment, physical indent, and heading level; empty paragraph format; foreground/highlight; field data/story ownership/balanced markers; preferences. Excludes only the separately reported editable flag; strict native assertions remain unchanged. This is not complete typography, spacing, or pagination qualification."
+    },
+    "docx_editability": {
+      "original_passed": 3,
+      "converted_guarded": 6
+    },
+    "odt_native_reopen": {
+      "passed": 3,
+      "refused": 6
+    },
+    "xml_color_and_highlight": {
+      "passed": 18,
+      "total": 18
+    },
+    "xml_fields_and_preferences": {
+      "passed": 18,
+      "total": 18
+    },
+    "centered_rtl_tail_geometry": {
+      "centers_points": {
+        "original-docx": 282.58148193359375,
+        "original-odt": 282.5994873046875,
+        "cycle-docx": 282.58148193359375
+      },
+      "original_docx_vs_odt_difference": 0.01800537109375,
+      "cycle_docx_vs_odt_difference": 0.01800537109375,
+      "tolerance_points": 0.5,
+      "passed": true
+    },
+    "retained_limits": [
+      "LibreOffice adds field-boundary run properties; existing opaqueMetadata guard prevents native field editing while retaining valid data.",
+      "LibreOffice-saved ODTs trigger existing outline-style guards."
+    ],
+    "word_or_zotero_plugin_acceptance": false,
+    "source_head_before": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+    "source_head_after": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+    "tracked_tree_clean_before_and_after": true,
+    "fixture_and_checkers_unchanged": {
+      "fixture.dart": true,
+      "check_xml.py": true,
+      "check_native.py": true,
+      "convert.py": true,
+      "geometry_probe.py": true
+    }
+  },
+  "known_golden_diagnostic": {
+    "baseline_commit": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+    "baseline_existing_different_pixels": 3378,
+    "only_expected_highlight_pixels_patched": 1522,
+    "remaining_diagnostic_pixels": 3378,
+    "reclassified_as_pass": false,
+    "review": "evidence/color-render-golden-comparison.json"
+  },
+  "limits": [
+    "Installed Zotero, Word and LibreOffice plugin acceptance is not established.",
+    "Converted DOCX boundary formatting triggers existing noneditable opaque-field guards.",
+    "Converted ODT outline styles trigger existing native reader refusals.",
+    "Converter qualification uses the identified LibreOffice development build, not a supported-release host.",
+    "Directional list markers, higher historical indent levels, alpha/dynamic colors and arbitrary note layout CSS remain guarded.",
+    "Full test suite, generic/macOS goldens, complete typography and pagination parity are not claimed.",
+    "Repeated development and isolated incoming-head checks are not added to the final behavioral total."
+  ],
+  "ci": {
+    "queried": false,
+    "awaited": false
+  },
+  "publication": {
+    "target": "main",
+    "checkpoint_branch": "codex/zotero-note-formatting-20261122",
+    "method": "Preserve incoming ancestry, retain remote checkpoints, merge the qualified branch; merge identity is recorded by GitHub PR and Git history."
+  },
+  "artifacts": "evidence/artifacts.json"
+}

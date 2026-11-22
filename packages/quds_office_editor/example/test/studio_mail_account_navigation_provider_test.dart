@@ -145,15 +145,22 @@ final class _DraftStore extends Fake
   int get selectionEpoch => 0;
   StudioMailStoredDraft? snapshot;
   bool failSave = false;
+  bool failClose = false;
+  Completer<void>? loadGate;
   Completer<void>? saveGate;
   Completer<void>? closeGate;
   final savedUncertainty = <bool>[];
   int saves = 0;
+  int loads = 0;
   int closeCalls = 0;
   int closed = 0;
 
   @override
-  Future<StudioMailStoredDraft?> load() async => snapshot;
+  Future<StudioMailStoredDraft?> load() async {
+    loads++;
+    await loadGate?.future;
+    return snapshot;
+  }
 
   @override
   Future<void> save(
@@ -177,6 +184,9 @@ final class _DraftStore extends Fake
   Future<void> close() async {
     closeCalls++;
     await closeGate?.future;
+    if (failClose) {
+      throw const StudioMailDraftStoreException(MailProblemCode.storageFailure);
+    }
     closed++;
   }
 }
@@ -290,6 +300,7 @@ final class _Harness {
   final providers = <_Provider>[];
   Completer<MailResult<MailCapabilities>>? capabilitiesGate;
   Completer<MailResult<MailCloudTokenSource>>? authorizationGate;
+  Completer<void>? openGate;
   int authorizations = 0;
   int storeOpens = 0;
 
@@ -304,6 +315,7 @@ final class _Harness {
   Future<StudioMailDraftStore> open(StudioMailDraftAccount account) async {
     expect(account.account, identity.account);
     storeOpens++;
+    await openGate?.future;
     return owner;
   }
 
@@ -364,12 +376,26 @@ Future<void> _press(WidgetTester tester, Finder finder) async {
   await _pump(tester);
 }
 
+Future<void> _until(WidgetTester tester, bool Function() ready) async {
+  for (var attempt = 0; attempt < 100 && !ready(); attempt++) {
+    await tester.pump(const Duration(milliseconds: 10));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
+  expect(
+    ready(),
+    isTrue,
+    reason: 'The account transition must finish draining.',
+  );
+}
+
 Future<void> _show(WidgetTester tester, _Harness harness) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1100));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   addTearDown(() async {
     for (final gate in [
       harness.directory.loadGate,
+      harness.openGate,
+      harness.owner.loadGate,
       harness.owner.saveGate,
       harness.owner.closeGate,
       harness.owner.mailboxStore.cancelGate,
@@ -587,6 +613,93 @@ void main() {
       },
     );
 
+    for (final duringOpen in [true, false]) {
+      testWidgets(
+        '${kind.name}: removed target during store ${duringOpen ? 'open' : 'load'} retires an unadopted candidate',
+        (tester) async {
+          final harness = _Harness(kind);
+          harness.owner.snapshot = const StudioMailStoredDraft(
+            draft: _draft,
+            submissionUncertain: true,
+          );
+          final gate = Completer<void>();
+          if (duringOpen) {
+            harness.openGate = gate;
+          } else {
+            harness.owner.loadGate = gate;
+          }
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          expect(harness.storeOpens, 1);
+          expect(harness.owner.loads, duringOpen ? 0 : 1);
+          harness.directory.records.remove(harness.identity.account.value);
+          gate.complete();
+          await _until(
+            tester,
+            () => !harness.providers.single.lease!.isCurrent,
+          );
+          await _pump(tester);
+          expect(harness.owner.closed, 1);
+          expect(harness.owner.loads, duringOpen ? 0 : 1);
+          expect(harness.directory.remembers, 0);
+          expect(harness.navigations, isEmpty);
+          expect(harness.owner.snapshot!.draft.body, _draft.body);
+          expect(find.text('Current account message'), findsNothing);
+          expect(
+            find.text(_strings.mailAccountNavigationChanged),
+            findsOneWidget,
+          );
+        },
+      );
+    }
+
+    testWidgets(
+      '${kind.name}: failed release of a stale open candidate blocks another account',
+      (tester) async {
+        final harness = _Harness(kind);
+        harness.openGate = Completer<void>();
+        await _show(tester, harness);
+        await _connect(tester, harness);
+        harness.owner.failClose = true;
+        harness.directory.records.remove(harness.identity.account.value);
+        harness.openGate!.complete();
+        await _until(tester, () => !harness.providers.single.lease!.isCurrent);
+        await _pump(tester);
+        expect(harness.owner.loads, 0);
+        expect(harness.owner.closeCalls, 1);
+        expect(harness.owner.closed, 0);
+        expect(harness.directory.remembers, 0);
+        expect(harness.navigations, isEmpty);
+        expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+        expect(
+          tester
+              .widget<IconButton>(_key('studio-mail-switch-account'))
+              .onPressed,
+          isNull,
+        );
+        expect(
+          tester
+              .widget<FilledButton>(
+                _key(
+                  kind == MailProviderKind.ews
+                      ? 'ews-connect'
+                      : 'cloud-connect',
+                ),
+              )
+              .onPressed,
+          isNull,
+        );
+        harness.owner.failClose = false;
+        await _press(tester, _icon(_strings.close));
+        await _until(
+          tester,
+          () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+        );
+        expect(harness.owner.closeCalls, 2);
+        expect(harness.owner.closed, 1);
+      },
+    );
+
     testWidgets(
       '${kind.name}: failed switch save retains the current connected uncertain draft',
       (tester) async {
@@ -673,12 +786,12 @@ void main() {
           isNull,
         );
         harness.owner.mailboxStore.cancelGate!.complete();
-        await _pump(tester);
+        await _until(tester, () => harness.owner.closeCalls == 1);
         expect(harness.owner.mailboxStore.cancellationsFinished, 1);
         expect(harness.owner.closeCalls, 1);
         expect(harness.navigations, isEmpty);
         harness.owner.closeGate!.complete();
-        await _pump(tester);
+        await _until(tester, () => harness.navigations.length == 1);
         expect(harness.owner.closed, 1);
         expect(
           harness.navigations.single.identity.account,
@@ -710,6 +823,10 @@ void main() {
       expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
       harness.owner.failSave = false;
       await _press(tester, _icon(_strings.close));
+      await _until(
+        tester,
+        () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+      );
       expect(find.byType(StudioMailEwsDialog), findsNothing);
       expect(harness.owner.closed, 1);
       expect(harness.owner.snapshot!.submissionUncertain, isTrue);
@@ -728,6 +845,7 @@ void main() {
         await _press(tester, _icon(_strings.disconnect));
         expect(harness.providers, hasLength(1));
         await _connect(tester, harness);
+        await _until(tester, () => harness.storeOpens == 2);
         expect(harness.providers, hasLength(2));
         expect(harness.providers.last.headers, 1);
         expect(harness.storeOpens, 2);
@@ -737,5 +855,55 @@ void main() {
         );
       },
     );
+
+    for (final switching in [true, false]) {
+      testWidgets(
+        '${kind.name}: ${switching ? 'switch' : 'close'} never exits after failed owner release',
+        (tester) async {
+          final harness = _Harness(kind);
+          harness.owner.snapshot = const StudioMailStoredDraft(
+            draft: _draft,
+            submissionUncertain: true,
+          );
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          harness.owner.failClose = true;
+          if (switching) {
+            await _choose(tester, harness);
+          } else {
+            await _press(tester, _icon(_strings.close));
+          }
+          await _until(tester, () => harness.owner.closeCalls == 1);
+          await _pump(tester);
+          expect(harness.navigations, isEmpty);
+          expect(harness.owner.closed, 0);
+          expect(harness.providers.single.lease!.isCurrent, isFalse);
+          expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+          expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+          expect(
+            tester
+                .widget<FilledButton>(
+                  _key(
+                    kind == MailProviderKind.ews
+                        ? 'ews-connect'
+                        : 'cloud-connect',
+                  ),
+                )
+                .onPressed,
+            isNull,
+          );
+          harness.owner.failClose = false;
+          await _press(tester, _icon(_strings.close));
+          await _until(
+            tester,
+            () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+          );
+          expect(harness.owner.closeCalls, 2);
+          expect(harness.owner.closed, 1);
+          expect(harness.navigations, isEmpty);
+          expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+        },
+      );
+    }
   }
 }

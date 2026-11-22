@@ -789,6 +789,11 @@ path for these continuations.
 
 ## Primary references
 
+- [Pinned research-note paragraph and heading schema](https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/core/schema/nodes.js)
+- [Pinned research-note color marks](https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/core/schema/marks.js)
+- [Pinned note-editor indentation stylesheet](https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/stylesheets/components/core/_core.scss)
+- [Pinned word-processor note export and opaque color conversion](https://github.com/zotero/zotero/blob/5fa1cdac02a94475bab5672e60e36454905c7aab/chrome/content/zotero/xpcom/data/notes.js)
+- [ECMA-376 Part 4, fifth edition: paragraph indentation/alignment aliases](https://ecma-international.org/wp-content/uploads/ECMA-376-4_5th_edition_december_2016.zip)
 - [Current Zotero word-processor plugin requirements](https://www.zotero.org/support/system_requirements)
 - [Supported applications and plugin troubleshooting](https://www.zotero.org/support/word_processor_plugin_troubleshooting)
 - [Zotero Word plugin workflows](https://www.zotero.org/support/word_processor_plugin_usage)

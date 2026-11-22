@@ -1,0 +1,380 @@
+{
+  "observed_at": "2026-11-22T11:30:29.982531+00:00",
+  "head": "622d9fda2a6564638af153de887adea922bc26f8",
+  "branches": [
+    {
+      "ref": "origin",
+      "sha": "659b81462224a40f50975cfbfca39f636538b836",
+      "ancestor": false,
+      "commits": [
+        "659b81462224a40f50975cfbfca39f636538b836 Merge remote-tracking branch 'origin/main'",
+        "1a8764d8bad7c9d97eee5ed5c26d163b2c0ac255 Merge Zotero note formatting and local qualification (#380) [skip ci]",
+        "b91fba039e123d3db767bc5178de59922a163e74 test(zotero): record 2797 local passes and real converter qualification [skip ci]",
+        "6f74d11b857deaa43981e8a7eb72157cd6bd518e merge: retain published Mail acceptance and final formatter normalization [skip ci]"
+      ],
+      "changed_paths": [
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-note-formatting-20261122/README.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/artifacts.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/color-render-golden-comparison.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/directional-paragraph-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks-index.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-ruler-validation.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/zotero-independent-review.json",
+        "docs/validation/zotero-note-formatting-20261122/final-intake.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-1.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-2.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-2.md",
+        "docs/validation/zotero-note-formatting-20261122/qualification.json",
+        "docs/validation/zotero-note-formatting-20261122/run_checks.py",
+        "docs/zotero-support-details.md",
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart"
+      ]
+    },
+    {
+      "ref": "origin/codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/mail-identity-reconciliation-20261122",
+      "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-array-data-20261122",
+      "sha": "5d79e934c5400594410bb6dfcb347d279fe0c335",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-extended-20261122",
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-objects-20261122",
+      "sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-range-suffix-20261122",
+      "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-string-search-20261122",
+      "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-text-selectors-20261122",
+      "sha": "5949a298444cec06632a28858c75670541a914a9",
+      "ancestor": false,
+      "commits": [
+        "5949a298444cec06632a28858c75670541a914a9 test(word): qualify named selectors with RTL layout and preserved indentation metadata [skip ci]",
+        "fb6fb6c12f0ba62247b33d0834fa999febe8fb8b merge: preserve published Zotero qualification and new Mail planning head [skip ci]",
+        "0cf0127af28ee2300d38dab699437d4f2f922421 merge: retain latest main Mail and RTL Word corrections before final qualification [skip ci]",
+        "bc15ae55d2f040e5c653548fa1d395a741dba718 test(word): require static cell guards through cyclic aliases [skip ci]",
+        "f275fd7dbeeff9a150650ec46d728cc841e6e364 feat(word): document and exercise VBA text selectors with cycle-safe aliases [skip ci]",
+        "1a8764d8bad7c9d97eee5ed5c26d163b2c0ac255 Merge Zotero note formatting and local qualification (#380) [skip ci]",
+        "b91fba039e123d3db767bc5178de59922a163e74 test(zotero): record 2797 local passes and real converter qualification [skip ci]",
+        "6f74d11b857deaa43981e8a7eb72157cd6bd518e merge: retain published Mail acceptance and final formatter normalization [skip ci]"
+      ],
+      "changed_paths": [
+        "docs/VBA_ARGUMENTS.md",
+        "docs/VBA_CONFORMANCE.md",
+        "docs/VBA_MACROS.md",
+        "docs/VBA_PARITY_ROADMAP.md",
+        "docs/VBA_WORD_MACROS.md",
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-note-formatting-20261122/README.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/artifacts.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/directional-paragraph-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks-index.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-ruler-validation.json",
+        "docs/validation/zotero-note-formatting-20261122/final-intake.json",
+        "docs/validation/zotero-note-formatting-20261122/qualification.json",
+        "docs/vba-macros-details.md",
+        "docs/vba-word-macros-details.md",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/example/macros/word_text_selectors.bas",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_cli_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_directional_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_integration_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_text_selectors_smoke.dart"
+      ]
+    },
+    {
+      "ref": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-note-formatting-20261122",
+      "sha": "b91fba039e123d3db767bc5178de59922a163e74",
+      "ancestor": false,
+      "commits": [
+        "b91fba039e123d3db767bc5178de59922a163e74 test(zotero): record 2797 local passes and real converter qualification [skip ci]",
+        "6f74d11b857deaa43981e8a7eb72157cd6bd518e merge: retain published Mail acceptance and final formatter normalization [skip ci]"
+      ],
+      "changed_paths": [
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-note-formatting-20261122/README.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/artifacts.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/color-render-golden-comparison.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/directional-paragraph-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks-index.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-ruler-validation.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/zotero-independent-review.json",
+        "docs/validation/zotero-note-formatting-20261122/final-intake.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-1.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-2.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-2.md",
+        "docs/validation/zotero-note-formatting-20261122/qualification.json",
+        "docs/validation/zotero-note-formatting-20261122/run_checks.py",
+        "docs/zotero-support-details.md",
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart"
+      ]
+    },
+    {
+      "ref": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-workflow-parity-20261122",
+      "sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/main",
+      "sha": "659b81462224a40f50975cfbfca39f636538b836",
+      "ancestor": false,
+      "commits": [
+        "659b81462224a40f50975cfbfca39f636538b836 Merge remote-tracking branch 'origin/main'",
+        "1a8764d8bad7c9d97eee5ed5c26d163b2c0ac255 Merge Zotero note formatting and local qualification (#380) [skip ci]",
+        "b91fba039e123d3db767bc5178de59922a163e74 test(zotero): record 2797 local passes and real converter qualification [skip ci]",
+        "6f74d11b857deaa43981e8a7eb72157cd6bd518e merge: retain published Mail acceptance and final formatter normalization [skip ci]"
+      ],
+      "changed_paths": [
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-note-formatting-20261122/README.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/artifacts.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/color-render-golden-comparison.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-after-fix.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix-summary.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/converter-before-fix.md",
+        "docs/validation/zotero-note-formatting-20261122/evidence/directional-paragraph-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks-index.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/local-checks.tar.xz",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-io-review.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/rtl-ruler-validation.json",
+        "docs/validation/zotero-note-formatting-20261122/evidence/zotero-independent-review.json",
+        "docs/validation/zotero-note-formatting-20261122/final-intake.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-1.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-2.json",
+        "docs/validation/zotero-note-formatting-20261122/late-intake-2.md",
+        "docs/validation/zotero-note-formatting-20261122/qualification.json",
+        "docs/validation/zotero-note-formatting-20261122/run_checks.py",
+        "docs/zotero-support-details.md",
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart"
+      ]
+    },
+    {
+      "ref": "origin/work/mail-bulk-organization-20261122",
+      "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-connected-navigation-20261122",
+      "sha": "622d9fda2a6564638af153de887adea922bc26f8",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-connected-workspace-20261122",
+      "sha": "16e8a572c061f4eb7d2411bf7a28709896c63df6",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ancestor": true
+    }
+  ]
+}

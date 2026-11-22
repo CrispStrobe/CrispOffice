@@ -25,7 +25,12 @@ final class StudioMailAccountNavigationTarget {
     switch (identity.provider) {
       case MailProviderKind.imap:
         if ((endpoint.scheme != 'imap' && endpoint.scheme != 'imaps') ||
-            endpoint.path.isNotEmpty) {
+            endpoint.path.isNotEmpty ||
+            // The native account namespace records its actual socket port.
+            // Uri folds :0 into a missing port for these non-default schemes;
+            // neither representation can identify a reconnectable route.
+            endpoint.port <= 0 ||
+            endpoint.port > 65535) {
           _invalid();
         }
       case MailProviderKind.ews:
