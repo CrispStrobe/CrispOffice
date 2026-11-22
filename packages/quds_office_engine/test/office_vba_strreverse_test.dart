@@ -83,6 +83,7 @@ void main() {
 
       for (final (expression, code) in <(String, String)>[
         ('StrReverse()', 'vba_type_error'),
+        (r'StrReverse$("a")', 'vba_unsupported'),
         ('StrReverse("a", "b")', 'vba_type_error'),
         ('StrReverse(1)', 'vba_type_error'),
         ('StrReverse(True)', 'vba_type_error'),
@@ -149,7 +150,7 @@ End Sub
       test('optional Variant defaults and missing values stay distinct', () {
         final output = _write(dialect, 'Restore()');
         final source = '''
-Function Restore(Optional ByVal input As Variant = Empty) As String
+Function Restore(Optional ByVal input As Variant = "") As String
   Restore = StrReverse(input)
 End Function
 Sub Main()
@@ -158,7 +159,7 @@ End Sub
 ''';
         expect(_outputs(_compile(source, dialect)), ['']);
         expect(
-          () => _compile(source.replaceFirst(' = Empty', ''), dialect),
+          () => _compile(source.replaceFirst(' = ""', ''), dialect),
           throwsA(_error('vba_missing_argument')),
         );
       });
@@ -193,6 +194,16 @@ End Sub
         expect(
           () => _compile(_module('Dim items(0) As String\n$output'), dialect),
           throwsA(_error('vba_type_error')),
+        );
+      });
+
+      test('runtime functions remain unavailable in Const initializers', () {
+        expect(
+          () => _compile(
+            _module('Const value As String = StrReverse("abc")'),
+            dialect,
+          ),
+          throwsA(_error('vba_unsupported')),
         );
       });
 

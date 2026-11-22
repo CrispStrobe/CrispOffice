@@ -61,6 +61,59 @@ and existing native UTF-16 guards. Regression tests are committed as authored
 coverage, not passing evidence. Historical receipts from other sources do not
 qualify this source revision.
 
+## Authored coverage and reproduction
+
+The new files cover:
+
+- shared compiler results and refusals in Word, Excel and PowerPoint;
+- String/Variant/Empty/Null, typed helpers, local arrays and optional parameters;
+- UTF-16 units, combining marks, surrogate inspection and native refusals;
+- once-only operand evaluation, inactive-source checks and work limits;
+- 26 independent Word corpus cases with full plans or positioned diagnostics;
+- a complete seven-edit Word table import, DOCX/DOCM ownership, detached
+  validation, repeated save/reopen, recording/replay and MCP;
+- native policy refusal, whole-run rollback, CLI compilation/publication and
+  preservation of an existing output file after a source diagnostic.
+
+The complete BAS intentionally restores the same four labels as the existing
+delimited-report fixture. Its established oracle checks the full document and
+opaque package parts, so the new intrinsic is tested against an independent
+expected document rather than a newly generated snapshot of its own output.
+
+After workspace capacity and the pinned Flutter/Dart toolchain are available,
+run from the repository root:
+
+```sh
+flutter pub get
+cd packages/quds_office_engine
+dart test test/office_vba_strreverse_test.dart \
+  test/office_vba_strreverse_conformance_test.dart \
+  test/office_vba_word_strreverse_integration_test.dart \
+  test/office_vba_string_intrinsics_test.dart \
+  test/office_vba_text_intrinsics_test.dart \
+  test/office_vba_split_test.dart
+dart analyze lib/src/automation/office_vba_language.dart
+dart format --output=none --set-exit-if-changed \
+  lib/src/automation/office_vba_language.dart \
+  test/office_vba_strreverse_test.dart \
+  test/office_vba_strreverse_conformance_test.dart \
+  test/office_vba_word_strreverse_integration_test.dart \
+  tool/macros/web_vba_strreverse_conformance.dart
+```
+
+The portable corpus runner is
+`tool/macros/web_vba_strreverse_conformance.dart`; it accepts the exact corpus
+bytes in the existing `VBA_CONFORMANCE_BASE64` compile-time define. The
+existing `web_vba_word_split_smoke.dart` runner can also consume the new BAS
+through `WORD_SPLIT_BAS_BASE64`, because both examples intentionally share the
+same independent output oracle. VM/JavaScript execution remains pending.
+
+The read-only reviewer caught one incorrect test assumption before final
+publication: Empty is not supported as a constant optional default in the
+existing compiler. The test now uses an empty String default and separately
+checks direct Empty values and truly missing Variants. No pre-existing Const
+or default-expression rules were changed.
+
 ## Primary sources and qualification boundary
 
 - [Microsoft VBA StrReverse](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/strreverse-function):
