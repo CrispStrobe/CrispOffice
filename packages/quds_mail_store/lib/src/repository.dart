@@ -17,6 +17,7 @@ part 'sync_mailboxes.dart';
 part 'cached_header_search.dart';
 part 'saved_header_searches.dart';
 part 'tags.dart';
+part 'rules.dart';
 part 'compose_settings.dart';
 part 'account_archive_settings.dart';
 part 'flag_journal.dart';

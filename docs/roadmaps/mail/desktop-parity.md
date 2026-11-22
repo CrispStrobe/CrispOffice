@@ -14,7 +14,7 @@ clients are references, not compatibility claims.
 | --- | --- | --- |
 | Accounts | IMAP/SMTP, EWS, Gmail, Microsoft 365; remembered chooser; one live account at a time | Multiple simultaneous sessions, system-browser OAuth/PKCE, account discovery |
 | Mailbox | Browse, cached views, resumable sync, conversations loaded-only, search | Complete shared workspace, persistent cross-folder conversations, unified inbox |
-| Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search | Ordered rules, tag colors/shared tags, server keyword mapping |
+| Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
 | Compose | Plain-text Word surface, signatures, Quick Text, attachments, drafts | Rich HTML composition, inline images, full-message templates, sender identities |
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
 | Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS | Provider-side body search, indexed body/provider discovery, unified live views |
@@ -89,7 +89,7 @@ Use these as comparison targets, not pixel-copy targets:
 ## Next five delivery slices
 
 1. ~~Local tags/categories with `tag:` search and assignment UI.~~ Implemented.
-2. Ordered rules with preview and explicit local-rules-only scope.
+2. ~~Ordered rules with preview and explicit local-rules-only scope.~~ Implemented.
 3. Persistent cross-folder conversation index.
 4. Provider-side body search with explicit coverage and cancellation.
 5. Multiple sender identities and full-message templates.

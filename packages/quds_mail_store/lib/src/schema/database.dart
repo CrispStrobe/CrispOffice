@@ -16,7 +16,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 18;
+  int get schemaVersion => 19;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -76,11 +76,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV18) {
         await customStatement(statement);
       }
+      for (final statement in schemaV19) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 18');
+      await customStatement('PRAGMA user_version = 19');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 17 || to != 18) {
+      if (from < 1 || from > 18 || to != 19) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -159,14 +162,23 @@ final class MailStoreDatabase extends GeneratedDatabase {
         if (from < 16) {
           await _validateArchiveJournalUpgrade();
         }
-        for (final statement in schemaV17) {
-          await customStatement(statement);
+        if (from < 17) {
+          for (final statement in schemaV17) {
+            await customStatement(statement);
+          }
         }
-        for (final statement in schemaV18) {
-          await customStatement(statement);
+        if (from < 18) {
+          for (final statement in schemaV18) {
+            await customStatement(statement);
+          }
+        }
+        if (from < 19) {
+          for (final statement in schemaV19) {
+            await customStatement(statement);
+          }
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 18');
+        await customStatement('PRAGMA user_version = 19');
       });
     },
     beforeOpen: (_) async {
@@ -499,4 +511,28 @@ const schemaV18 = <String>[
     FOREIGN KEY(account,message) REFERENCES messages(account,id) ON DELETE CASCADE
   )''',
   'CREATE INDEX message_tags_tag ON message_tags(account,tag_key,message)',
+];
+
+/// Ordered local automation rules. They match retained headers with the
+/// portable search grammar and may only add/remove local tags. Provider
+/// keywords, folders and flags stay outside this table.
+const schemaV19 = <String>[
+  '''CREATE TABLE mail_rules (
+    account TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+    id TEXT NOT NULL,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 99),
+    name TEXT NOT NULL CHECK(typeof(name) = 'text' AND
+      length(CAST(name AS BLOB)) BETWEEN 1 AND 400),
+    enabled INTEGER NOT NULL CHECK(typeof(enabled) = 'integer' AND
+      enabled IN (0,1)),
+    query TEXT NOT NULL CHECK(typeof(query) = 'text' AND
+      length(CAST(query AS BLOB)) BETWEEN 1 AND 4096),
+    add_tags TEXT NOT NULL CHECK(typeof(add_tags) = 'text' AND
+      length(CAST(add_tags AS BLOB)) BETWEEN 2 AND 4096),
+    remove_tags TEXT NOT NULL CHECK(typeof(remove_tags) = 'text' AND
+      length(CAST(remove_tags AS BLOB)) BETWEEN 2 AND 4096),
+    PRIMARY KEY(account,id), UNIQUE(account,position)
+  )''',
+  'CREATE INDEX mail_rules_order ON mail_rules(account,position)',
 ];

@@ -42,6 +42,21 @@ abstract interface class StudioMailTagStore {
   });
 }
 
+/// Ordered local rules over retained headers. Rules only change local tags and
+/// never contact a provider.
+abstract interface class StudioMailRuleStore {
+  MailAccountId get account;
+  Future<List<MailRule>> listMailRules();
+  Future<void> replaceMailRules(
+    Iterable<MailRule> rules, {
+    MailOperationLease? lease,
+  });
+  Future<void> setMessageTagsBatch(
+    Map<MailMessageId, Iterable<String>> updates, {
+    MailOperationLease? lease,
+  });
+}
+
 /// Published string-ID capability retained for existing hosts. Missing folders
 /// fail the legacy query instead of returning partial folder coverage. New
 /// hosts can implement [StudioMailFolderScopedHeaderSearchStore] to expose the
@@ -166,6 +181,7 @@ final class SqliteStudioMailMailboxStore
         StudioMailScopedHeaderSearchStore,
         StudioMailFolderScopedHeaderSearchStore,
         StudioMailTagStore,
+        StudioMailRuleStore,
         StudioMailSyncStore,
         MailSyncSnapshotRepository {
   SqliteStudioMailMailboxStore({
@@ -230,6 +246,28 @@ final class SqliteStudioMailMailboxStore
   }) => _serialize(() async {
     _value(
       await _repository.setMessageTags(account, message, tags, lease: lease),
+    );
+  });
+
+  @override
+  Future<List<MailRule>> listMailRules() =>
+      _serialize(() async => _value(await _repository.listMailRules(account)));
+
+  @override
+  Future<void> replaceMailRules(
+    Iterable<MailRule> rules, {
+    MailOperationLease? lease,
+  }) => _serialize(() async {
+    _value(await _repository.replaceMailRules(account, rules, lease: lease));
+  });
+
+  @override
+  Future<void> setMessageTagsBatch(
+    Map<MailMessageId, Iterable<String>> updates, {
+    MailOperationLease? lease,
+  }) => _serialize(() async {
+    _value(
+      await _repository.setMessageTagsBatch(account, updates, lease: lease),
     );
   });
 

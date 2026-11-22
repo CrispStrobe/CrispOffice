@@ -25,6 +25,7 @@ interrupted work.
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 | Local tags | Account-scoped local metadata, assignment dialog, exact local `tag:` search; not provider keywords |
+| Ordered rules | Account-scoped ordered local tag rules, preview, all-or-nothing apply, schema v19; no provider changes or scheduling |
 | Formatted HTML | Safe table/style rendering with bounded sanitizer, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
 
 ## Latest integration: account ownership and remembered Archive
@@ -66,9 +67,9 @@ Those historical results retain their original source boundary. Acceptance for
 the combined source is recorded in the current integration record above, which
 preserves failures, corrections, exact source bindings and count deduplication.
 
-Categories/tags and previewable ordered rules are next, followed by body/provider
+Local tags and previewable ordered rules are now implemented. Body/provider
 search, persistent conversations, provider Drafts/Sent reconciliation and fuller
-multi-account background work. Full desktop-client parity remains open.
+multi-account background work are next. Full desktop-client parity remains open.
 
 ## Previous increment: verified connected-account navigation
 
@@ -102,7 +103,7 @@ See both the [workflow and ownership contract](account-navigation.md) and
 [connected-navigation qualification](../../validation/mail-connected-navigation-20261122/README.md)
 and [account-workspace qualification](../../validation/mail-account-workspace-20261122/README.md)
 records, for actual source boundaries and executed acceptance. Remembered Archive
-destinations are continued above. Categories/rules, body/provider search, persistent conversations
+destinations are continued above. Body/provider search, persistent conversations
 and provider Drafts/Sent reconciliation remain open. Retained simultaneous
 sessions, a unified live Inbox, complete M04W, full desktop-client parity and
 live-provider/installed-platform acceptance remain open too.

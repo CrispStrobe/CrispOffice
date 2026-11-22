@@ -116,4 +116,68 @@ extension MailLocalTags on SqliteMailRepository {
       return MailUnit.value;
     }),
   );
+
+  /// Applies multiple tag replacements in one transaction. The host uses this
+  /// for ordered-rule application so a failure leaves every previous tag set
+  /// intact. Empty updates are a successful no-op.
+  Future<MailResult<MailUnit>> setMessageTagsBatch(
+    MailAccountId account,
+    Map<MailMessageId, Iterable<String>> updates, {
+    MailOperationLease? lease,
+  }) => _run(
+    () => _commit(() async {
+      await _account(account);
+      if (lease != null && lease.account != account) {
+        SqliteMailRepository._fail(MailProblemCode.invalidInput);
+      }
+      lease?.checkCurrent();
+      if (updates.length > 1000) {
+        SqliteMailRepository._fail(MailProblemCode.invalidInput);
+      }
+      final parsed = <(MailMessageId, List<MailTag>)>[];
+      var units = 0;
+      for (final entry in updates.entries) {
+        final message = entry.key;
+        if (message.value.isEmpty || message.value.length > 4096) {
+          SqliteMailRepository._fail(MailProblemCode.invalidInput);
+        }
+        final List<MailTag> tags;
+        try {
+          tags = MailTag.parseAll(entry.value);
+        } on FormatException {
+          SqliteMailRepository._fail(MailProblemCode.invalidInput);
+        }
+        units += tags.fold<int>(0, (total, tag) => total + tag.name.length);
+        if (units > limits.maxMetadataCodeUnits) {
+          SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+        }
+        parsed.add((message, tags));
+      }
+      for (final (message, _) in parsed) {
+        final exists = await _rows(
+          'SELECT 1 AS present FROM messages WHERE account=? AND id=?',
+          [account.value, message.value],
+        );
+        if (exists.isEmpty) {
+          SqliteMailRepository._fail(MailProblemCode.invalidInput);
+        }
+      }
+      for (final (message, tags) in parsed) {
+        await _db.customStatement(
+          'DELETE FROM message_tags WHERE account=? AND message=?',
+          [account.value, message.value],
+        );
+        for (final tag in tags) {
+          await _db.customStatement(
+            'INSERT INTO message_tags(account,message,tag_key,name) '
+            'VALUES(?,?,?,?)',
+            [account.value, message.value, tag.key, tag.name],
+          );
+        }
+      }
+      await _db.fault(MailStoreCheckpoint.beforeCommit);
+      lease?.checkCurrent();
+      return MailUnit.value;
+    }),
+  );
 }

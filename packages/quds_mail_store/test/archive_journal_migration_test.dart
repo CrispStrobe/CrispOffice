@@ -315,19 +315,21 @@ void main() {
         }
         final after = sqlite.sqlite3.open(file.path);
         try {
-          expect(after.userVersion, 18);
+          expect(after.userVersion, 19);
           expect(
             _schema(after).where(
               (row) =>
                   row['tbl_name'] != 'account_archive_settings' &&
-                  row['tbl_name'] != 'message_tags',
+                  row['tbl_name'] != 'message_tags' &&
+                  row['tbl_name'] != 'mail_rules',
             ),
             beforeSchema,
           );
           expect(
             _snapshot(after)
               ..remove('account_archive_settings')
-              ..remove('message_tags'),
+              ..remove('message_tags')
+              ..remove('mail_rules'),
             before,
           );
           expect(
@@ -401,18 +403,20 @@ void main() {
           }
           final migrated = sqlite.sqlite3.open(file.path);
           try {
-            expect(migrated.userVersion, 18);
+            expect(migrated.userVersion, 19);
             expect(
               _snapshot(migrated)
                 ..remove('account_archive_settings')
-                ..remove('message_tags'),
+                ..remove('message_tags')
+                ..remove('mail_rules'),
               before,
             );
             expect(
               _schema(migrated).where(
                 (row) =>
                     row['tbl_name'] != 'account_archive_settings' &&
-                    row['tbl_name'] != 'message_tags',
+                    row['tbl_name'] != 'message_tags' &&
+                    row['tbl_name'] != 'mail_rules',
               ),
               schema,
             );

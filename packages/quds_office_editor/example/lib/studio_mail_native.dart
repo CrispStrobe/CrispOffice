@@ -38,6 +38,8 @@ import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_local_accounts_dialog.dart';
 import 'studio_mail_local_accounts_strings.dart';
+import 'studio_mail_rule_strings.dart';
+import 'studio_mail_rules_dialog.dart';
 import 'studio_mail_tag_strings.dart';
 import 'studio_mail_tags_dialog.dart';
 import 'studio_mail_ews.dart';
@@ -3476,6 +3478,210 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   });
 
+  Future<void> _openRules() async {
+    final capture = _mailboxCapture;
+    final store = capture?.store;
+    final ruleStore = store is StudioMailRuleStore
+        ? store as StudioMailRuleStore
+        : null;
+    final searchStore = store is StudioMailCachedHeaderSearchStore
+        ? store as StudioMailCachedHeaderSearchStore
+        : null;
+    final tagStore = store is StudioMailTagStore
+        ? store as StudioMailTagStore
+        : null;
+    if (ruleStore == null ||
+        searchStore == null ||
+        tagStore == null ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    bool current() =>
+        mounted &&
+        generation == _sessionGeneration &&
+        identical(capture, _mailboxCapture);
+    final List<MailRule> rules;
+    setState(() => _dialogOpen = true);
+    try {
+      rules = await ruleStore.listMailRules();
+    } on Object {
+      if (mounted && current()) {
+        setState(() {
+          _dialogOpen = false;
+          _error = widget.strings.mailRuleLoadFailed;
+        });
+      }
+      return;
+    }
+    if (!current()) {
+      if (mounted) setState(() => _dialogOpen = false);
+      return;
+    }
+    if (!mounted) return;
+    try {
+      await showStudioMailRulesDialog(
+        context,
+        strings: widget.strings,
+        rules: rules,
+        preview: (rule) => _previewRule(
+          searchStore: searchStore,
+          rule: rule,
+          isCurrent: current,
+        ),
+        save: (next) async {
+          if (!current()) {
+            throw const StudioMailMailboxStoreException(
+              MailProblemCode.conflict,
+            );
+          }
+          await ruleStore.replaceMailRules(
+            next,
+            lease: MailAccountSession(ruleStore.account).begin(),
+          );
+        },
+        apply: (next) => _applyRules(
+          ruleStore: ruleStore,
+          searchStore: searchStore,
+          tagStore: tagStore,
+          rules: next,
+          isCurrent: current,
+        ),
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
+
+  Future<int> _previewRule({
+    required StudioMailCachedHeaderSearchStore searchStore,
+    required MailRule rule,
+    required bool Function() isCurrent,
+  }) async {
+    var page = await searchStore.searchCachedHeaders(
+      rule.query,
+      limit: 200,
+      scanLimit: 1000,
+    );
+    var matches = page.hits.length;
+    while (page.nextCursor != null && matches < _maxRuleMatches) {
+      if (!isCurrent()) {
+        throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+      }
+      page = await searchStore.searchCachedHeaders(
+        rule.query,
+        cursor: page.nextCursor,
+        limit: 200,
+        scanLimit: 1000,
+      );
+      matches += page.hits.length;
+    }
+    return matches > _maxRuleMatches ? _maxRuleMatches : matches;
+  }
+
+  Future<Map<String, MailHeaderRecord>> _ruleMatches({
+    required StudioMailCachedHeaderSearchStore searchStore,
+    required MailRule rule,
+    required bool Function() isCurrent,
+  }) async {
+    final result = <String, MailHeaderRecord>{};
+    var page = await searchStore.searchCachedHeaders(
+      rule.query,
+      limit: 200,
+      scanLimit: 1000,
+    );
+    while (true) {
+      for (final hit in page.hits) {
+        if (result.length >= _maxRuleMatches) {
+          throw const StudioMailMailboxStoreException(
+            MailProblemCode.quotaExceeded,
+          );
+        }
+        result[hit.header.id.value] = hit.header;
+      }
+      if (page.nextCursor == null) break;
+      if (result.length >= _maxRuleMatches) {
+        throw const StudioMailMailboxStoreException(
+          MailProblemCode.quotaExceeded,
+        );
+      }
+      if (!isCurrent()) {
+        throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+      }
+      page = await searchStore.searchCachedHeaders(
+        rule.query,
+        cursor: page.nextCursor,
+        limit: 200,
+        scanLimit: 1000,
+      );
+    }
+    return result;
+  }
+
+  Future<int> _applyRules({
+    required StudioMailRuleStore ruleStore,
+    required StudioMailCachedHeaderSearchStore searchStore,
+    required StudioMailTagStore tagStore,
+    required List<MailRule> rules,
+    required bool Function() isCurrent,
+  }) async {
+    final set = MailRuleSet.parse(rules);
+    final matched = <String, Set<String>>{};
+    final headers = <String, MailHeaderRecord>{};
+    for (final rule in set.rules) {
+      if (!rule.enabled) continue;
+      final hits = await _ruleMatches(
+        searchStore: searchStore,
+        rule: rule,
+        isCurrent: isCurrent,
+      );
+      for (final entry in hits.entries) {
+        headers[entry.key] = entry.value;
+        (matched[entry.key] ??= <String>{}).add(rule.id);
+        if (headers.length > _maxRuleMatches) {
+          throw const StudioMailMailboxStoreException(
+            MailProblemCode.quotaExceeded,
+          );
+        }
+      }
+    }
+    if (headers.isEmpty) return 0;
+    final updates = <MailMessageId, List<String>>{};
+    for (final entry in headers.entries) {
+      if (!isCurrent()) {
+        throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+      }
+      final message = MailMessageId(entry.key);
+      final currentTags = await tagStore.loadMessageTags(message);
+      final next = set.applyTags(
+        matchedRuleIds: matched[entry.key]!,
+        currentTags: currentTags.map((tag) => tag.name),
+      );
+      if (!_sameTagKeys(currentTags, next)) {
+        updates[message] = [for (final tag in next) tag.name];
+      }
+    }
+    if (updates.isEmpty) return 0;
+    if (!isCurrent()) {
+      throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+    }
+    await ruleStore.setMessageTagsBatch(
+      updates,
+      lease: MailAccountSession(ruleStore.account).begin(),
+    );
+    return updates.length;
+  }
+
+  static bool _sameTagKeys(List<MailTag> before, List<MailTag> after) {
+    if (before.length != after.length) return false;
+    final first = {for (final tag in before) tag.key};
+    final second = {for (final tag in after) tag.key};
+    return first.length == second.length && first.containsAll(second);
+  }
+
+  static const int _maxRuleMatches = 1000;
+
   Future<void> _openFlagHistory() async {
     final client = _client;
     final owner = _draftStore;
@@ -4687,6 +4893,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               icon: Icons.archive_outlined,
               tooltip: widget.strings.mailArchiveSettingsTitle,
               onPressed: _archiveDestinationAction(),
+            ),
+          if (_mailboxCapture?.store is StudioMailRuleStore &&
+              _mailboxCapture?.store is StudioMailCachedHeaderSearchStore &&
+              _mailboxCapture?.store is StudioMailTagStore)
+            command(
+              key: const ValueKey('studio-mail-open-rules'),
+              icon: Icons.rule_outlined,
+              tooltip: widget.strings.mailRules,
+              onPressed: _busy || _dialogOpen ? null : _openRules,
             ),
           if (_draftStore is StudioMailFlagJournalOwner)
             command(
