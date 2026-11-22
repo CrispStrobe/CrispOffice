@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "qualified_source_commit": "19a63d4455540bd797e546ab82ec14db128abea0",
+  "source_manifest": "evidence/source-manifest.json",
+  "source_inputs_unchanged": true,
+  "broad_macro_suite": {
+    "files": 152,
+    "passed": 8006,
+    "failed": 0,
+    "skipped": 0,
+    "command_and_inputs": "evidence/macro-regression-command.json",
+    "result": "evidence/macro-regression-result.json"
+  },
+  "focused_suites": {
+    "compiler": 80,
+    "independent_conformance": 316,
+    "native_word_and_cli": 9,
+    "counts_overlap_broad_total": true
+  },
+  "portable_corpus": {
+    "canonical_cases": 77,
+    "adapters": 3,
+    "cases_per_host": 231,
+    "hosts": [
+      "Dart VM",
+      "dart2js / Node"
+    ],
+    "receipts_byte_identical": true,
+    "commands": "evidence/conformance-portable-commands.json"
+  },
+  "actual_bas": {
+    "path": "packages/quds_office_engine/example/macros/word_fixed_width_labels.bas",
+    "formats": [
+      "DOCX",
+      "DOCM"
+    ],
+    "operations": 8,
+    "vm_js_structured_receipts_equal": true,
+    "commands": "evidence/word-portable-commands.json"
+  },
+  "static_checks": {
+    "dart_files": 7,
+    "analysis": "no issues",
+    "format": "unchanged"
+  },
+  "independent_review": "no actionable findings",
+  "runtime": "evidence/runtime-provenance.json",
+  "limits": [
+    "isolated pure Dart engine workspace",
+    "canonical Flutter workspace and UI not executed",
+    "installed Microsoft Word not executed",
+    "specification-derived and explicit dialect contracts; no general VBA parity claim"
+  ],
+  "ci_queried_or_awaited": false,
+  "incremental_remote_checkpoints": [
+    "82594a44daefc95acaada026dcc8e34b89723240",
+    "dcb769977857e5104570dad761e2b2b323459883",
+    "19a63d4455540bd797e546ab82ec14db128abea0"
+  ]
+}

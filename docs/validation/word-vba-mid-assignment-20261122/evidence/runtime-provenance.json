@@ -1,0 +1,29 @@
+{
+  "source_commit": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+  "archive_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.14.1/sdk/dartsdk-linux-x64-release.zip",
+  "archive_sha256": "759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8",
+  "archive_bytes": 267277716,
+  "published_checksum_verified": true,
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "repository_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "resolved_lock_sha256": "0c3f527784e6f4a057d4fdf0a4e124e841a5ef0f521db06d7485c86cb0d6bf09",
+  "resolved_package_count": 59,
+  "dependency_changes": {},
+  "package_config": "/workspace/scratch/e436a4cfb2da/quds_office_suite/.dart_tool/package_config.json",
+  "runner": "/workspace/scratch/e436a4cfb2da/.runtime/run-engine-tests.sh",
+  "environment": "/workspace/scratch/e436a4cfb2da/.runtime/env.sh",
+  "isolation": "Reduced two-package scratch workspace; original checkout manifests and lock unchanged; package configuration maps to actual checkout sources and tests.",
+  "proof": {
+    "command": [
+      "/workspace/scratch/e436a4cfb2da/.runtime/run-engine-tests.sh",
+      "test/office_vba_word_table_navigation_test.dart",
+      "-r",
+      "expanded"
+    ],
+    "passed": 151,
+    "failed": 0,
+    "exit_code": 0,
+    "log": "/workspace/scratch/e436a4cfb2da/.runtime/logs/table-navigation-proof.log",
+    "log_sha256": "c8dadb878e8599c1695ebb74f231ca0e49fb6201c3a850cab583693bacf3700a"
+  }
+}
