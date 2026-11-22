@@ -122,6 +122,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     if (invalidResolutions != 0) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
     }
+    await _checkMembershipObservations(account);
   }
 
   /// Saves the complete frozen selection atomically before any dispatch marker.
@@ -713,6 +714,11 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       }
       return MailStoredFlagBatch(
         summary: summary,
+        membershipObservations: await _loadMembershipObservations(
+          account,
+          id,
+          plan,
+        ),
         subjects: [for (final item in items) item.read<String>('subject')],
         resolutions: resolutions,
         report: MailBulkFlagReport.restore(

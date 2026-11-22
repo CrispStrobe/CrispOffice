@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add schema v14 for bounded latest membership evidence on uncertain Move/Delete
+  receipts. Preserve all earlier schemas transactionally; retain original
+  uncertainty and cleanup protection. Fence explicit checks by exact identity,
+  account, repository owner, revision, epoch, lease and view; save evidence
+  atomically without changing cached memberships, content or synchronization.
+
 - Add schema v13 with exact account-owned move destinations in the existing
   foreground command journal. Preserve earlier receipts through transactional
   migration, include destinations in quotas and reject substituted commands or

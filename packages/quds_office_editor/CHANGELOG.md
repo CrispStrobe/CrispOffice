@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add explicit current-location checks to uncertain Move/Delete activity for
+  connected IMAP, EWS, Gmail and Microsoft 365 accounts. Show timestamped saved
+  evidence in English, German and Arabic while preserving original uncertainty;
+  support repeated checks, stop/cancel and stale-account fences. Cached activity
+  stays local, and connected folders require refresh after checking.
+
 - Offer Repair in Zotero and confirmed, undoable Convert to text for damaged
   reference metadata with safe native field ownership. Keep original-source
   context visible during repair, preserve the document until completion, and
