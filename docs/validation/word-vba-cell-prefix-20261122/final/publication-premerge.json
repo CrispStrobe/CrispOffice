@@ -1,0 +1,21 @@
+{
+  "recorded_at_utc": "2026-11-22T07:03:59.629706+00:00",
+  "target_branch": "main",
+  "target_sha_observed": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+  "qualified_source_commit": "258ae2a5d73bccd293b4b423918fc3d7646e9bc4",
+  "qualified_source_tree": "aae4d2b363cd712e8bb0883156ec919c969789dc",
+  "work_branch": "codex/word-vba-continuation-20261122",
+  "main_is_ancestor_of_qualified_source": true,
+  "production_changed_paths": [
+    "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart"
+  ],
+  "pending_change_scope": "Documentation and validation evidence only; production, tests, BAS, corpus and runners remain identical to qualified source.",
+  "planned_merge_method": "merge",
+  "expected_head_check_required": true,
+  "force_push": false,
+  "github_actions_queried_or_awaited": false,
+  "final_commit_identity": "The evidence commit contains this record. Its final head and merge commit are recorded by GitHub pull-request metadata, avoiding a self-referential source-hash claim."
+}

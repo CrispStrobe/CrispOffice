@@ -1,0 +1,22 @@
+{
+  "archive-manifest.json": {
+    "bytes": 32632,
+    "sha256": "7a523f42edac10fe045670c9341f0e5e3b5948c7ac6337eaac5080fc4c00d7bc"
+  },
+  "committed-source-index.json.gz": {
+    "bytes": 229517,
+    "sha256": "a488fc6c19e1a5ce6988031c0bedb42733e9a394e45b7926d026ab997115bfba"
+  },
+  "publication-premerge.json": {
+    "bytes": 1270,
+    "sha256": "c70cf2a8a66f46b267208e5d5ffcb61f4b6627ac0cddc3ac3d2c7bde2a8d81c7"
+  },
+  "qualification.json": {
+    "bytes": 16113,
+    "sha256": "555df5021e5f78b20d80a1aeaf4c81980547d464848fa5e05ba2dd5629340050"
+  },
+  "raw-evidence.tar.xz": {
+    "bytes": 1326468,
+    "sha256": "589b7794c4e9dffcf37432f5b0391053b870d0771f748c370466641a542f394f"
+  }
+}
