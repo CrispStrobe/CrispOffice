@@ -28,10 +28,27 @@ reconciliation and live-provider/platform qualification remain open.
 
 ## Qualification status
 
-Implementation and local qualification are in progress. This initial checkpoint
-does not claim tests have passed. The repository-pinned Flutter 3.47.8 / Dart
-3.13.7 runtime is being restored for standard local tests. GitHub Actions are
-not an acceptance dependency, as requested.
+Local qualification is in progress with the repository-pinned Flutter 3.47.8 /
+Dart 3.13.7 runtime and unchanged workspace lockfile. The complete core package
+suite has passed 648 cases. The native/HTTP/SOAP provider cohort has passed 336
+cases. The new real-SQLite Archive/migration cohort has passed 20 cases. Strict
+analysis and formatting of those changes are clean. Full store and affected
+Flutter widget suites are still running; this checkpoint does not claim their
+results. GitHub Actions are not an acceptance dependency, as requested.
 
-Subsequent checkpoints will retain the actual commands, outcomes, source hashes,
-remaining limits and final merge receipt here.
+## Remote source checkpoints
+
+- `9d8758e5552f74ceb418b181d009e1ba96009350`: initial intake and typed Archive
+  intent, before qualification.
+- `dd00d169b8763994adda707ca16cd54c2f93c395`: provider implementation, receipt
+  restoration, schema-16 journal support and protocol/workflow documentation.
+
+The CLI has no GitHub write credential in this executor. Authorized source
+checkpoints therefore use the connected GitHub Git-data API: each uploaded blob
+SHA and the resulting complete tree SHA are compared with the staged local Git
+objects; the remote branch is advanced with an expected-head lease and no force.
+The exact remote commit is fetched back before continuing. No token is copied,
+no source history is discarded, and ordinary local validation uses the checkout.
+
+The final checkpoint will retain commands, outcomes, source hashes, remaining
+limits and the publication receipt here.

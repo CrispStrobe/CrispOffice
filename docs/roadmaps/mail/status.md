@@ -24,7 +24,28 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: durable visible-selection Move/Delete
+## Latest increment: explicit provider Archive
+
+Connected mailbox readers and checked selections now offer a reviewed Archive
+action. Gmail removes only the exact message's Inbox label and requires an
+explicit valid acknowledgement. IMAP resolves a unique selectable `\\Archive`
+folder; Microsoft 365 resolves the ordinary well-known Archive folder. EWS and
+unavailable discovery require an explicit same-account destination. Folder-based
+Archive reuses exact Move intent and identity receipts; Gmail uses a distinct
+membership command in schema 16.
+
+Account, folder generation, selected reader and frozen targets remain guarded
+across asynchronous discovery and confirmation. Per-message outcomes survive
+restart, uncertainty stops later dispatch, and fresh label observations preserve
+the original uncertainty. Cached views remain read-only. The existing independent
+archive-copy workflow remains available.
+
+See the [provider behavior and continuation](provider-archive.md) and
+[local qualification record](../../validation/mail-provider-archive-20261122/README.md).
+Connected multi-account navigation remains the next M04W boundary; full desktop
+parity and live-provider/platform acceptance remain open.
+
+## Previous increment: durable visible-selection Move/Delete
 
 Connected mailbox lists now expose Move/Delete only for supported provider
 actions. A confirmation shows selected count, account and source; Move requires

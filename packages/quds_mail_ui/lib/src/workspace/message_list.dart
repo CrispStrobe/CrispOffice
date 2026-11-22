@@ -117,6 +117,7 @@ final class MailMessageListStrings {
     this.unflag = 'Remove flag',
     this.move = 'Move…',
     this.delete = 'Delete…',
+    this.archive = 'Archive…',
     this.stopBulk = 'Stop after current message',
     this.bulkWorking = 'Applying changes…',
     this.groupConversations = 'Conversations',
@@ -168,6 +169,7 @@ final class MailMessageListStrings {
   final String unflag;
   final String move;
   final String delete;
+  final String archive;
   final String stopBulk;
   final String bulkWorking;
   final String groupConversations;
@@ -768,6 +770,7 @@ class _MailMessageListState extends State<MailMessageList> {
     MailBulkFlagAction.unflag => widget.strings.unflag,
     MailBulkFlagAction.move => widget.strings.move,
     MailBulkFlagAction.delete => widget.strings.delete,
+    MailBulkFlagAction.archive => widget.strings.archive,
   };
 
   void _runBulk(_BulkChoice choice) {

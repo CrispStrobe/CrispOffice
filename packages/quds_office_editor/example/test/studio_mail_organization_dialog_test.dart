@@ -46,6 +46,7 @@ Future<void> _show(
 }
 
 void main() {
+  _archiveTests();
   testWidgets(
     'folder selection requires Apply and freezes exact destinations',
     (tester) async {
@@ -217,5 +218,143 @@ void main() {
       await tester.pumpAndSettle();
       expect(result, isTrue);
     });
+  }
+}
+
+void _archiveTests() {
+  testWidgets(
+    'Archive freezes an authoritative destination and requires Apply',
+    (tester) async {
+      MailMailboxId? result;
+      final destination = _folder('server-id-781', 'Archiv');
+      await _show(tester, (context) async {
+        result = await showStudioMailArchiveSelection(
+          context,
+          strings: const StudioStrings(StudioLanguage.en),
+          count: 3,
+          accountLabel: 'reader@example.test',
+          source: _folder('inbox', 'Inbox'),
+          destinations: [_folder('decoy', 'Archive')],
+          resolvedDestination: destination,
+        );
+      });
+      expect(result, isNull);
+      expect(find.text('server-id-781'), findsOneWidget);
+      expect(find.text('decoy'), findsNothing);
+      expect(find.text('Selected messages: 3'), findsOneWidget);
+      await tester.tap(_key('studio-mail-archive-apply'));
+      await tester.pumpAndSettle();
+      expect(result, destination.id);
+    },
+  );
+
+  testWidgets(
+    'Archive fallback never guesses by folder name and excludes foreign folders',
+    (tester) async {
+      MailMailboxId? result;
+      final foreign = MailAccountId('other', profile: _account.profile);
+      final destinations = [
+        _folder('inbox', 'Inbox'),
+        _folder('guessable', 'Archive'),
+        _folder('chosen', 'Filing'),
+        _folder('foreign', 'Other account', account: foreign),
+      ];
+      await _show(tester, (context) async {
+        result = await showStudioMailArchiveSelection(
+          context,
+          strings: const StudioStrings(StudioLanguage.en),
+          count: 2,
+          accountLabel: 'reader@example.test',
+          source: _folder('inbox', 'Inbox'),
+          destinations: destinations,
+        );
+      });
+      destinations.clear();
+      expect(
+        tester
+            .widget<FilledButton>(_key('studio-mail-archive-apply'))
+            .onPressed,
+        isNull,
+      );
+      expect(find.text('Other account'), findsNothing);
+      await tester.tap(_key('studio-mail-archive-destination-1'));
+      await tester.pump();
+      expect(result, isNull);
+      await tester.tap(_key('studio-mail-archive-apply'));
+      await tester.pumpAndSettle();
+      expect(result?.value, 'chosen');
+    },
+  );
+
+  for (final language in StudioLanguage.values) {
+    for (final gmail in [false, true]) {
+      testWidgets(
+        '${language.name} ${gmail ? 'Gmail' : 'folder'} Archive fits enlarged narrow view and cancels',
+        (tester) async {
+          tester.view
+            ..physicalSize = const Size(360, 640)
+            ..devicePixelRatio = 1;
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.view.resetDevicePixelRatio);
+          final strings = StudioStrings(language);
+          var completed = false;
+          await _show(tester, (context) async {
+            if (gmail) {
+              expect(
+                await confirmStudioMailGmailArchiveSelection(
+                  context,
+                  strings: strings,
+                  count: 12,
+                  accountLabel: 'long.account@example.test',
+                  source: _folder('INBOX', 'Inbox'),
+                ),
+                isFalse,
+              );
+            } else {
+              expect(
+                await showStudioMailArchiveSelection(
+                  context,
+                  strings: strings,
+                  count: 12,
+                  accountLabel: 'long.account@example.test',
+                  source: _folder(
+                    'long/source/folder-id',
+                    'Research / Forschung / البحث',
+                  ),
+                  destinations: [],
+                  resolvedDestination: _folder(
+                    'exact/archive-id',
+                    'Archiv / الأرشيف',
+                  ),
+                ),
+                isNull,
+              );
+            }
+            completed = true;
+          }, scale: 1.8);
+          expect(
+            Directionality.of(
+              tester.element(_key('studio-mail-archive-selection-dialog')),
+            ),
+            language == StudioLanguage.ar
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+          );
+          expect(find.text(strings.mailOrganizationCount(12)), findsOneWidget);
+          if (gmail) {
+            expect(
+              find.text(strings.mailArchiveGmailExplanation),
+              findsOneWidget,
+            );
+          }
+          expect(tester.takeException(), isNull);
+          await tester.ensureVisible(_key('studio-mail-organization-cancel'));
+          await tester.tap(_key('studio-mail-organization-cancel'));
+          await tester.pumpAndSettle();
+          expect(completed, isTrue);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
   }
 }

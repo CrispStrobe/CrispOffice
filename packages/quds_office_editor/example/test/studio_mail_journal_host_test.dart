@@ -28,6 +28,7 @@ import 'support/mail_flag_journal.dart';
 
 part 'support/mail_membership_host_cases.dart';
 part 'support/mail_bulk_organization_host_cases.dart';
+part 'support/mail_provider_archive_host_cases.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 const _success = MailSuccess<MailUnit>(MailUnit.value);
@@ -125,6 +126,7 @@ final class _ImapBrowser
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
         StudioMailMembershipActions,
+        MailArchiveDestinationResolver,
         MailFlagObserver,
         MailMembershipObserver {
   _ImapBrowser(this.harness) {
@@ -190,6 +192,11 @@ final class _ImapBrowser
     harness.capabilityReads++;
     return harness.capabilities;
   }
+
+  @override
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  ) => harness.resolveArchive(lease);
 
   @override
   Future<MailResult<MailUnit>> applyMembership(
@@ -258,6 +265,7 @@ final class _ImapBrowser
 class _Provider extends Fake
     implements
         MailProvider,
+        MailArchiveDestinationResolver,
         MailFlagObserver,
         MailMembershipObserver,
         MailSubmissionProvider {
@@ -285,11 +293,20 @@ class _Provider extends Fake
     MailOperationLease lease,
   ) async => MailSuccess(harness.capabilities);
   @override
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  ) => harness.resolveArchive(lease);
+  @override
   Future<MailResult<List<MailMailbox>>> listMailboxes(
     MailOperationLease lease,
   ) async => MailSuccess([
     MailMailbox(
-      id: MailMailboxId('inbox', account: account),
+      id: MailMailboxId(
+        harness.archiveEnabled && harness.kind == MailProviderKind.gmail
+            ? 'INBOX'
+            : 'inbox',
+        account: account,
+      ),
       displayName: 'Inbox',
     ),
     MailMailbox(
@@ -394,6 +411,10 @@ final class _Harness {
   int sends = 0;
   int capabilityReads = 0;
   bool allowMembership = true;
+  bool archiveEnabled = false;
+  int archiveResolutionReads = 0;
+  Future<MailResult<MailMailbox>> Function(MailOperationLease)?
+  archiveResolution;
   bool nativeFlagsKnown = true;
   bool membershipOnly = false;
   _ImapBrowser? imapBrowser;
@@ -403,8 +424,31 @@ final class _Harness {
     MailCapability.folders,
     if (allowMembership) MailCapability.delete,
     if (allowMembership && kind != MailProviderKind.gmail) MailCapability.move,
+    if (allowMembership && archiveEnabled && kind == MailProviderKind.gmail)
+      MailCapability.archive,
   ]);
   Future<MailResult<MailUnit>> Function(MailOperation)? respond;
+
+  Future<MailResult<MailMailbox>> resolveArchive(
+    MailOperationLease lease,
+  ) async {
+    archiveResolutionReads++;
+    lease.checkCurrent();
+    if (archiveResolution != null) return archiveResolution!(lease);
+    if (kind == MailProviderKind.ews) {
+      return const MailFailure(MailProblem(MailProblemCode.unsupported));
+    }
+    return MailSuccess(
+      MailMailbox(
+        id: MailMailboxId(
+          kind == MailProviderKind.imap ? 'Archive' : 'archive',
+          account: lease.account,
+        ),
+        displayName: 'Archive',
+      ),
+    );
+  }
+
   Future<MailResult<MailFlagObservation>> Function(
     MailRemoteIdentity,
     MailOperationLease,
@@ -712,6 +756,7 @@ void _expectHistoricalTarget(_Harness harness) {
 }
 
 void main() {
+  providerArchiveHostTests();
   membershipBulkHostTests();
   membershipHostTests();
   for (final kind in [

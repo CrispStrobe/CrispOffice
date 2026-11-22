@@ -30,6 +30,7 @@ import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_local_accounts_dialog.dart';
 import 'studio_mail_local_accounts_strings.dart';
+import 'studio_mail_mutation_strings.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_organization_dialog.dart';
 import 'studio_mail_reply.dart';
@@ -222,6 +223,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   bool get _blocked => _busy || _dialogOpen;
   bool get _canSend => _capabilities.supports(MailCapability.send);
+
+  bool get _canArchive => widget.cloudService == MailCloudService.gmail
+      ? _capabilities.supports(MailCapability.archive) &&
+            _mailbox?.id.value == 'INBOX'
+      : _capabilities.supports(MailCapability.move);
   bool? _isRead(MailHeaderRecord? header) => header == null
       ? null
       : _confirmedRead[header.remote] ?? header.flags?.isRead;
@@ -1108,6 +1114,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           flagged ? MailBulkFlagAction.flag : MailBulkFlagAction.unflag,
         MailMove() => MailBulkFlagAction.move,
         MailDelete() => MailBulkFlagAction.delete,
+        MailArchive() => MailBulkFlagAction.archive,
       },
       ['ews-message-${selected.id.value}'],
       mailboxGeneration: _mailboxGeneration,
@@ -1121,6 +1128,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     MailBulkFlagAction action,
     List<String> ids, {
     required int mailboxGeneration,
+    bool singleMessage = false,
   }) async {
     if (action.isFlagAction) {
       await _applyCommands(action, ids, mailboxGeneration: mailboxGeneration);
@@ -1144,7 +1152,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             (widget.cloudService == MailCloudService.gmail ||
                 !_capabilities.supports(MailCapability.move))) ||
         (action == MailBulkFlagAction.delete &&
-            !_capabilities.supports(MailCapability.delete))) {
+            !_capabilities.supports(MailCapability.delete)) ||
+        (action == MailBulkFlagAction.archive && !_canArchive)) {
       return;
     }
     final frozenIds = List<String>.unmodifiable(ids);
@@ -1157,6 +1166,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       selected.add(matches.single);
     }
     final frozenSelection = List<MailHeaderRecord>.unmodifiable(selected);
+    if (singleMessage &&
+        (frozenSelection.length != 1 ||
+            !identical(_selected, frozenSelection.single))) {
+      return;
+    }
+    final archive = action == MailBulkFlagAction.archive;
+    final gmailArchive =
+        archive && widget.cloudService == MailCloudService.gmail;
     final lease = session.begin();
     bool currentScope() {
       if (!_current(provider, lease) ||
@@ -1164,6 +1181,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           !identical(_draftStore, owner) ||
           !identical(_mailbox, mailbox) ||
           mailboxGeneration != _mailboxGeneration ||
+          (singleMessage && !identical(_selected, frozenSelection.single)) ||
           _busy ||
           _needsRefresh) {
         return false;
@@ -1175,10 +1193,55 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
 
     MailMailboxId? destination;
+    MailMailbox? resolvedArchive;
     var confirmed = false;
     setState(() => _dialogOpen = true);
     try {
-      if (action == MailBulkFlagAction.move) {
+      if (archive &&
+          !gmailArchive &&
+          provider is MailArchiveDestinationResolver) {
+        final resolution = await (provider as MailArchiveDestinationResolver)
+            .resolveArchiveDestination(lease);
+        if (!currentScope()) return;
+        switch (resolution) {
+          case MailSuccess<MailMailbox>(:final value):
+            if (value.id.account != provider.account || value.isLabel) {
+              setState(() => _error = widget.strings.mailMutationCheckFailed);
+              return;
+            }
+            if (value.id == mailbox.id) {
+              setState(() => _notice = widget.strings.mailArchiveSameFolder);
+              return;
+            }
+            resolvedArchive = value;
+          case MailFailure<MailMailbox>(:final problem):
+            if (problem.code != MailProblemCode.unsupported) {
+              setState(() => _error = widget.strings.mailMutationCheckFailed);
+              return;
+            }
+        }
+      }
+      if (!mounted || !currentScope()) return;
+      if (gmailArchive) {
+        confirmed = await confirmStudioMailGmailArchiveSelection(
+          context,
+          strings: widget.strings,
+          count: frozenSelection.length,
+          accountLabel: _sender,
+          source: mailbox,
+        );
+      } else if (archive) {
+        destination = await showStudioMailArchiveSelection(
+          context,
+          strings: widget.strings,
+          count: frozenSelection.length,
+          accountLabel: _sender,
+          source: mailbox,
+          destinations: List<MailMailbox>.unmodifiable(_mailboxes),
+          resolvedDestination: resolvedArchive,
+        );
+        confirmed = destination != null;
+      } else if (action == MailBulkFlagAction.move) {
         destination = await showStudioMailMoveSelection(
           context,
           strings: widget.strings,
@@ -1198,6 +1261,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           provider: frozenSelection.first.remote.provider,
         );
       }
+    } on Object {
+      if (currentScope()) {
+        setState(() => _error = widget.strings.mailMutationCheckFailed);
+      }
     } finally {
       if (mounted &&
           identical(_provider, provider) &&
@@ -1207,12 +1274,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
     if (!confirmed || !currentScope()) return;
     await _applyCommands(
-      action,
+      archive && !gmailArchive ? MailBulkFlagAction.move : action,
       frozenIds,
       mailboxGeneration: mailboxGeneration,
       membershipConfirmed: true,
       frozenSelection: frozenSelection,
       destination: destination,
+      singleMessage: singleMessage,
+      resolvedArchiveDestination: resolvedArchive?.id,
     );
   }
 
@@ -1224,6 +1293,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     bool membershipConfirmed = false,
     List<MailHeaderRecord>? frozenSelection,
     MailMailboxId? destination,
+    MailMailboxId? resolvedArchiveDestination,
   }) async {
     final provider = _provider;
     final session = _session;
@@ -1244,9 +1314,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 !_capabilities.supports(MailCapability.move) ||
                 destination == null ||
                 destination == mailbox.id ||
-                !_mailboxes.any((folder) => folder.id == destination))) ||
+                destination.account != provider.account ||
+                (destination != resolvedArchiveDestination &&
+                    !_mailboxes.any((folder) => folder.id == destination)))) ||
         (action == MailBulkFlagAction.delete &&
             !_capabilities.supports(MailCapability.delete)) ||
+        (action == MailBulkFlagAction.archive && !_canArchive) ||
         (action != MailBulkFlagAction.move && destination != null)) {
       return;
     }
@@ -1349,7 +1422,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
           final header = selected[i];
           final operation = result.operation;
-          if (operation is MailMove || operation is MailDelete) {
+          if (operation is MailMove ||
+              operation is MailDelete ||
+              operation is MailArchive) {
             _confirmedRead.remove(header.remote);
             _confirmedFlagged.remove(header.remote);
             _headers = _headers
@@ -2861,6 +2936,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 MailBulkFlagAction.move,
               if (_capabilities.supports(MailCapability.delete))
                 MailBulkFlagAction.delete,
+              if (_canArchive) MailBulkFlagAction.archive,
             },
             bulkActionsEnabled: !_needsRefresh,
             onCancelBulk: cancellation == null
@@ -2985,6 +3061,28 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     ),
                   ),
           ),
+          if (_canArchive)
+            IconButton(
+              key: const ValueKey('studio-mail-archive-message'),
+              tooltip: widget.strings.mailArchiveMessages,
+              icon: const Icon(Icons.archive_outlined),
+              onPressed: !canChange
+                  ? null
+                  : () {
+                      if (mailboxGeneration != _mailboxGeneration ||
+                          !identical(selected, _selected)) {
+                        return;
+                      }
+                      unawaited(
+                        _applyBulkAction(
+                          MailBulkFlagAction.archive,
+                          ['ews-message-${selected.id.value}'],
+                          mailboxGeneration: mailboxGeneration,
+                          singleMessage: true,
+                        ),
+                      );
+                    },
+            ),
           PopupMenuButton<MailMailbox>(
             tooltip: widget.strings.ewsMove,
             enabled:
