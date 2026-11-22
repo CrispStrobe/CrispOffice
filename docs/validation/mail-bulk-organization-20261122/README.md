@@ -2,7 +2,8 @@
 
 Date: 22 November 2026. Branch: `work/mail-bulk-organization-20261122`.
 
-**Qualified source:** `1249935e224e8a3c01ea76c6662dff9ded1a9096`  
+**Qualified source:** `1249935e224e8a3c01ea76c6662dff9ded1a9096`
+
 **Source tree:** `7eeb47825d1755b247c1e77facd7abf49d7dab7a`
 
 The final evidence commit adds documentation and evidence to this source. The
