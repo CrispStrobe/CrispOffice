@@ -1,0 +1,132 @@
+{
+  "reviewedCommit": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+  "baseline": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "date": "2026-11-22",
+  "verdict": "No material source-review findings; qualified for history-preserving integration.",
+  "scope": [
+    "Join of declared local one-dimensional String arrays with bounded allocation and work accounting",
+    "Cell.Range HighlightColorIndex, NoProofing, LanguageID and LanguageIDOther writes through existing guarded native operations"
+  ],
+  "notInDiff": [
+    "Cell FitText",
+    "Cell WordWrap"
+  ],
+  "reviewChecks": [
+    "Join binds only declared local String arrays and preserves strict delimiter and unallocated-array failures.",
+    "Element visits and UTF-16 output are bounded before allocating the joined string.",
+    "Cell range projection is limited to four explicit writable text controls, preserving restrictions on reads, arbitrary subranges, insertion and unrelated operations.",
+    "Removed unsupported test cases correspond exactly to newly supported assignments; remaining guards are retained.",
+    "New integration tests exercise save/reopen, identity containment, rollback, rich text and opaque DOCM preservation."
+  ],
+  "sourceEvidence": "source.json",
+  "sourceIdenticalToMergedRootWorkspace": true,
+  "rootWorkspaceHeadObserved": "145498623ad7812e983d64e03d68f84286d5a0b2",
+  "toolchain": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "dependencySetup": [
+      "dart",
+      "pub",
+      "get",
+      "--offline",
+      "--enforce-lockfile"
+    ],
+    "trackedWorktreeChanges": ""
+  },
+  "nativeTests": {
+    "success": true,
+    "actualTestCount": 552,
+    "excludedLoadingEntries": 10,
+    "bySuite": {
+      "office_vba_join_test.dart": 59,
+      "office_vba_join_conformance_test.dart": 26,
+      "office_vba_word_cell_text_controls_test.dart": 36,
+      "office_vba_word_cell_text_controls_integration_test.dart": 22,
+      "office_vba_word_join_report_integration_test.dart": 7,
+      "office_vba_arrays_test.dart": 32,
+      "office_vba_arrays_boundaries_test.dart": 144,
+      "office_vba_word_cell_formatting_test.dart": 79,
+      "office_vba_word_table_cells_test.dart": 105,
+      "office_vba_word_proofing_test.dart": 42
+    },
+    "cwd": "/workspace/scratch/e171b31c21a6/incoming-word/packages/quds_office_engine",
+    "argv": [
+      "dart",
+      "--packages=/workspace/scratch/e171b31c21a6/incoming-word/.dart_tool/package_config.json",
+      "/workspace/scratch/e171b31c21a6/runtime/test-runner/test-runner.dill",
+      "--reporter=json",
+      "--concurrency=2",
+      "test/office_vba_join_test.dart",
+      "test/office_vba_join_conformance_test.dart",
+      "test/office_vba_word_cell_text_controls_test.dart",
+      "test/office_vba_word_cell_text_controls_integration_test.dart",
+      "test/office_vba_word_join_report_integration_test.dart",
+      "test/office_vba_arrays_test.dart",
+      "test/office_vba_arrays_boundaries_test.dart",
+      "test/office_vba_word_cell_formatting_test.dart",
+      "test/office_vba_word_table_cells_test.dart",
+      "test/office_vba_word_proofing_test.dart"
+    ],
+    "log": "native-tests.jsonl",
+    "stderr": "native-tests.stderr"
+  },
+  "analysis": {
+    "success": true,
+    "argv": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "lib/src/automation/office_vba_language.dart",
+      "test/office_vba_join_test.dart",
+      "test/office_vba_join_conformance_test.dart",
+      "test/office_vba_word_cell_text_controls_test.dart",
+      "test/office_vba_word_cell_text_controls_integration_test.dart",
+      "test/office_vba_word_join_report_integration_test.dart"
+    ],
+    "log": "analysis.log"
+  },
+  "portability": {
+    "success": true,
+    "results": "portability.json",
+    "matchingNativeAndJavaScriptJson": [
+      "join-vm.json = join-js.json",
+      "cell-text-vm.json = cell-text-js.json"
+    ],
+    "joinFixtureCount": 25,
+    "cellTextOperations": 17,
+    "cellTextAdditionalReopens": 2,
+    "opaqueVbaPreserved": true,
+    "lateRollback": true,
+    "defines": {
+      "VBA_CONFORMANCE_BASE64": "base64 of packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json",
+      "WORD_CELL_TEXT_BAS_BASE64": "base64 of packages/quds_office_engine/example/macros/word_table_text_controls.bas"
+    },
+    "vmArgv": [
+      "dart",
+      "-D<define>=<base64 fixture bytes>",
+      "<matching tool/macros source>"
+    ],
+    "compileJsArgv": [
+      "dart",
+      "compile",
+      "js",
+      "-D<define>=<base64 fixture bytes>",
+      "-O1",
+      "-o",
+      "<runtime output.js>",
+      "<matching tool/macros source>"
+    ],
+    "nodeArgv": [
+      "node",
+      "-e",
+      "globalThis.self=globalThis; require(process.argv[1]);",
+      "<runtime output.js>"
+    ]
+  },
+  "unacceptedBootstrapAttempt": "Ordinary dart test emitted no test events before it was interrupted with exit 130. It is not counted as passing. The accepted run uses the locally compiled locked package:test runner and explicitly selects this worktree package configuration.",
+  "limits": [
+    "No installed Microsoft Word differential run was performed.",
+    "The 25-case Join corpus explicitly distinguishes specification-derived expectations from bounded-dialect contracts.",
+    "No GitHub Actions were awaited."
+  ]
+}

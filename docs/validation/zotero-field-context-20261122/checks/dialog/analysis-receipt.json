@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "test/word_zotero_field_context_dialog_test.dart"
+  ],
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor",
+  "exit_code": 0,
+  "test_sha256": "b437447b14ba0a83b63df3be7806adc411a1026beaabac173ff31cc7242e0645",
+  "log_sha256": "64f78b1fa75c0e7092a7a5a2164f8831155916edd00523b302f1ce45011c0ae1"
+}

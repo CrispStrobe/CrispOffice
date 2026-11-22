@@ -1362,6 +1362,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                                 caret: _c.caret,
                                 findHits: _c.findSession.hits,
                                 activeFindIndex: _c.findSession.index,
+                                zoteroFieldRanges:
+                                    _c.zoteroFieldContext?.sourceRanges ??
+                                    const <WordZoteroFieldSelectionRange>[],
                                 viewport: _c.viewport,
                                 config: config,
                                 hasFocus:

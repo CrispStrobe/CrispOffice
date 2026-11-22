@@ -85,6 +85,42 @@ extension StudioMailCachedStrings on StudioStrings {
     'لا توجد عروض مجلدات محفوظة بعد. اتصل وافتح مجلدًا لحفظ عناوين رسائله المحمّلة.',
   );
 
+  String get mailCacheRetainedScope => _text(
+    'Browse saved folder views and synchronized headers together. Search and unread counts cover the displayed view or page. Reading and refreshing here use only this device; later server changes may not be saved yet.',
+    'Gespeicherte Ordneransichten und synchronisierte Kopfzeilen gemeinsam durchsuchen. Suche und Ungelesen-Zähler beziehen sich auf die angezeigte Ansicht oder Seite. Lesen und Aktualisieren greifen nur auf dieses Gerät zu; spätere Serveränderungen sind möglicherweise noch nicht gespeichert.',
+    'تصفّح عروض المجلدات المحفوظة والعناوين المتزامنة معًا. يشمل البحث وعدد غير المقروء العرض أو الصفحة الظاهرة. تستخدم القراءة والتحديث هنا هذا الجهاز فقط؛ قد لا تكون تغييرات الخادم اللاحقة محفوظة بعد.',
+  );
+
+  String get mailCacheRetainedEmpty => _text(
+    'No saved folders yet. Connect and browse or synchronize a folder to retain its headers.',
+    'Noch keine gespeicherten Ordner. Verbinden Sie sich und öffnen oder synchronisieren Sie einen Ordner, um dessen Kopfzeilen zu speichern.',
+    'لا توجد مجلدات محفوظة بعد. اتصل وافتح مجلدًا أو زامنه للاحتفاظ بعناوينه.',
+  );
+
+  String get mailCacheBrowseSource => _text(
+    'Saved browsing view',
+    'Gespeicherte Ordneransicht',
+    'عرض التصفّح المحفوظ',
+  );
+
+  String get mailCacheSyncSource => _text(
+    'Synchronized headers',
+    'Synchronisierte Kopfzeilen',
+    'العناوين المتزامنة',
+  );
+
+  String get mailCacheRefresh => _text(
+    'Refresh local mail',
+    'Lokale E-Mails aktualisieren',
+    'تحديث البريد المحلي',
+  );
+
+  String get mailCacheSourceMissing => _text(
+    'This saved source is no longer available. Choose another source or refresh local mail.',
+    'Diese gespeicherte Quelle ist nicht mehr verfügbar. Wählen Sie eine andere Quelle oder aktualisieren Sie die lokalen E-Mails.',
+    'لم يعد هذا المصدر المحفوظ متاحًا. اختر مصدرًا آخر أو حدّث البريد المحلي.',
+  );
+
   String get mailCacheChooseMessage => _text(
     'Choose a saved message to read it offline.',
     'Wählen Sie eine gespeicherte Nachricht zum Offline-Lesen.',
@@ -120,9 +156,9 @@ extension StudioMailCachedStrings on StudioStrings {
   );
 
   String get mailCacheReadFailed => _text(
-    'Could not read this saved mailbox view or message. Reopen the account to try again. Your saved mail is retained.',
-    'Die gespeicherte Ordneransicht oder Nachricht konnte nicht gelesen werden. Öffnen Sie das Konto erneut. Ihre gespeicherten E-Mails bleiben erhalten.',
-    'تعذرت قراءة عرض صندوق البريد أو الرسالة المحفوظة. افتح الحساب مجددًا للمحاولة. يبقى بريدك المحفوظ محفوظًا.',
+    'Could not read this saved mailbox view or message. Refresh local mail to try again. Your saved mail is retained.',
+    'Die gespeicherte Ordneransicht oder Nachricht konnte nicht gelesen werden. Aktualisieren Sie die lokalen E-Mails, um es erneut zu versuchen. Ihre gespeicherten E-Mails bleiben erhalten.',
+    'تعذرت قراءة عرض صندوق البريد أو الرسالة المحفوظة. حدّث البريد المحلي للمحاولة مجددًا. يبقى بريدك المحفوظ محفوظًا.',
   );
 
   String get mailCacheCloseFailed => _text(

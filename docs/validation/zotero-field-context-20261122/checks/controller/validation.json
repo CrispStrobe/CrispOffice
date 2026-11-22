@@ -1,0 +1,31 @@
+{
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "checkout_head_when_recorded": "a83700c69c2ec6d134b780a16a363839425101ae",
+  "working_directory": "packages/quds_office_editor",
+  "commands": [
+    {
+      "command": "CI=true flutter test --no-pub --reporter expanded test/word_zotero_field_context_controller_test.dart test/word_zotero_citing_controller_test.dart test/word_zotero_writing_position_test.dart test/word_zotero_transfer_controller_test.dart",
+      "exit_code": 0,
+      "result": "100 tests passed; 26 in the new controller context suite",
+      "log": "targeted-tests.log"
+    },
+    {
+      "command": "dart analyze test/word_zotero_field_context_controller_test.dart",
+      "exit_code": 0,
+      "result": "No issues found",
+      "log": "analyze.log"
+    }
+  ],
+  "source_sha256": {
+    "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": "6768149c8256a68080da83aeeef655df5ac3529ad8b9687fb7c4bbf3d5b43745",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "3d1b80ead469b3fe204fb54dfd7202cc3a47df99a00078c26655dc151001c3b6",
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "71ed547d962d9c71c5ba203bd76fec17f931c3074ee7636e7a89dea328367190",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "411cf75ac00fc9ee6f4e29e23a9ccab1b261974efee3ca9a9a7e5c05af0f1fed",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "log_sha256": {
+    "targeted-tests.log": "1837b41dd9355d29c18d845ff2a4b6182f50663963258ecbfd37f94476a9d5ae",
+    "analyze.log": "2cb408d8218b75c654712308e86402de16ef69d21718d5bf83e6a649f6d68397"
+  }
+}

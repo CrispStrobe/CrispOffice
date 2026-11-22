@@ -1,0 +1,28 @@
+{
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "checkout_head_when_recorded": "3b7687ff52d6b8d22383985a662edf80bdb2c927",
+  "working_directory": "packages/quds_office_engine",
+  "commands": [
+    {
+      "command": "dart test --reporter expanded test/word_zotero_field_selection_test.dart test/word_zotero_citing_test.dart test/word_zotero_transfer_session_test.dart test/word_zotero_writing_position_test.dart test/word_zotero_add_note_test.dart",
+      "exit_code": 0,
+      "result": "154 tests passed",
+      "log": "targeted-tests.log"
+    },
+    {
+      "command": "dart analyze lib/src/word/model/word_zotero_citing.dart test/word_zotero_field_selection_test.dart",
+      "exit_code": 0,
+      "result": "No issues found",
+      "log": "analyze.log"
+    }
+  ],
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74",
+    "packages/quds_office_engine/test/word_zotero_field_selection_test.dart": "6ad8086368684eb31ceaccdf5ee8336bda9192e7303899e8ea134c33142e8d48",
+    "packages/quds_office_engine/CHANGELOG.md": "cb532a88a3be25a0e57ee8517868d4380a774b8cd23ebcf9eefb78f3946aac74"
+  },
+  "log_sha256": {
+    "targeted-tests.log": "b72a3beb8dfef7eb9d4661ec02447e373a8941a04cb61e8ab278f29bd60cf5fc",
+    "analyze.log": "d1f72efe3acad2a7f8ea15f79d1ceb80fbc1e1de8f40088d2ba95a4e84655d92"
+  }
+}

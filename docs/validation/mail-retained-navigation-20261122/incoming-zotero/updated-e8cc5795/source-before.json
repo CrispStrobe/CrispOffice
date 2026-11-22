@@ -1,0 +1,16 @@
+{
+  "packages/quds_office_editor/lib/src/embed/office_controller.dart": "3d1b80ead469b3fe204fb54dfd7202cc3a47df99a00078c26655dc151001c3b6",
+  "packages/quds_office_editor/lib/src/embed/office_editors.dart": "71ed547d962d9c71c5ba203bd76fec17f931c3074ee7636e7a89dea328367190",
+  "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "411cf75ac00fc9ee6f4e29e23a9ccab1b261974efee3ca9a9a7e5c05af0f1fed",
+  "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+  "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "4433c284efc1b8d6b0dc3d5290d8e9cff08f916c0ee2e82296b7eb5d53145598",
+  "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74",
+  "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": "6768149c8256a68080da83aeeef655df5ac3529ad8b9687fb7c4bbf3d5b43745",
+  "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "b437447b14ba0a83b63df3be7806adc411a1026beaabac173ff31cc7242e0645",
+  "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": "f41b8894e31a8d3a7b893e074984ffd998e715a2107159e6150672051ef50cc6",
+  "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": "3c1f01c9ba5da791158a3597d6e9b55b4b96a4612c6443cee0978371bea5b80d",
+  "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": "9ce7c95b0152451fe3017c1b807c8c8b468e0e58a25727c69344aded5b8903a7",
+  "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": "742d6c68c5c73dd99a2227d4631c41707ce5465c457e4bc716c2cb28965a6488",
+  "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": "7533871069659c37e146f55abcfda806f0621d4ff269a87bd5a0a0f09ed8461a"
+}

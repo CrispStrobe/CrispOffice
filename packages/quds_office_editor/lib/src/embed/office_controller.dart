@@ -8018,6 +8018,46 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
+  WordZoteroTransaction? _zoteroContextOwner;
+
+  /// Temporary context requested by Zotero while a detached operation runs.
+  /// This never replaces the writing selection or the active Notes target.
+  /// A changed document/selection or a finished operation has no live context.
+  WordZoteroFieldSelectionContext? get zoteroFieldContext {
+    final owner = _zoteroContextOwner;
+    if (owner == null || _disposed || !config.allowsSelection) return null;
+    try {
+      return owner.selectedFieldContext;
+    } on StateError {
+      return null;
+    }
+  }
+
+  void _presentZoteroFieldContext(WordZoteroTransaction owner) {
+    final context = owner.selectedFieldContext;
+    if (context == null) {
+      _clearZoteroFieldContext(owner);
+      return;
+    }
+    final previous = _zoteroContextOwner;
+    if (previous != null && !identical(previous, owner)) {
+      previous.clearFieldContext();
+    }
+    _zoteroContextOwner = owner;
+    owner._revealFieldContext(context);
+    notifyListeners();
+  }
+
+  void _clearZoteroFieldContext(
+    WordZoteroTransaction owner, {
+    bool notify = true,
+  }) {
+    if (!identical(_zoteroContextOwner, owner)) return;
+    _zoteroContextOwner = null;
+    owner._restoreContextViewport();
+    if (notify && !_disposed) notifyListeners();
+  }
+
   /// A fresh field handle at the body or Notes caret, enclosing a selection
   /// in one paragraph, or exactly matching a selected multi-paragraph
   /// bibliography. A collapsed caret at a field's end belongs to the following
@@ -8266,6 +8306,7 @@ class WordEditorController extends OfficeController {
     ZoteroCitingCommand? command,
     WmlZoteroField? selectedField,
     ZoteroCitation? seedCitation,
+    bool Function()? isCurrent,
   }) {
     if (_disposed || !config.allowsMutation) {
       throw StateError('This document is not editable.');
@@ -8355,7 +8396,7 @@ class WordEditorController extends OfficeController {
     if (insertsNoteText) {
       session.assertCanInsertNoteText();
     }
-    return WordZoteroTransaction._(this, session);
+    return WordZoteroTransaction._(this, session, isCurrent: isCurrent);
   }
 
   void _applyZoteroTransaction(WordZoteroCitingSession session) {
@@ -16507,13 +16548,144 @@ class _SheetGridSnap {
 /// A native Zotero operation pinned to one editor document and selection.
 /// Commands operate on [session] until [apply] commits the complete result.
 final class WordZoteroTransaction {
-  WordZoteroTransaction._(this._controller, this.session)
-    : _target = _capture(_controller);
+  WordZoteroTransaction._(
+    this._controller,
+    this.session, {
+    bool Function()? isCurrent,
+  }) : _hostIsCurrent = isCurrent,
+       _target = _capture(_controller);
 
   final WordEditorController _controller;
   final WordZoteroCitingSession session;
+  final bool Function()? _hostIsCurrent;
   final Object _target;
   bool _applied = false;
+  Offset? _contextOrigin;
+  Offset? _revealedOrigin;
+  double? _contextScale;
+
+  /// Context for an explicit Field.select callback, checked against the
+  /// original document and host target. No staged content is published.
+  WordZoteroFieldSelectionContext? get selectedFieldContext {
+    assertCurrent();
+    return session.selectedFieldContext;
+  }
+
+  /// Only this operation's currently presented context. An older prompt must
+  /// not adopt the selected field of a newer operation in the same editor.
+  WordZoteroFieldSelectionContext? get presentedFieldContext =>
+      identical(_controller._zoteroContextOwner, this)
+      ? _controller.zoteroFieldContext
+      : null;
+
+  /// Drives a native callback and presents its selected source field without
+  /// moving the user's caret, selection, Notes target, focus or undo history.
+  /// Hosts still handle Document.displayAlert themselves. Always call
+  /// [clearFieldContext] in the host's finally/disposal path as well.
+  Object? handle(String command, List<Object?> arguments) {
+    try {
+      assertCurrent();
+      final response = session.handle(command, arguments);
+      if (command == 'Field.select') {
+        _controller._presentZoteroFieldContext(this);
+      } else if (identical(_controller._zoteroContextOwner, this) &&
+          (command == 'Field.delete' ||
+              command == 'Field.removeCode' ||
+              command == 'Document.insertField' ||
+              command == 'Document.insertText' ||
+              command == 'Document.importDocument' ||
+              command == 'Document.exportDocument' ||
+              command == 'Document.complete')) {
+        if (session.selectedFieldContext == null) clearFieldContext();
+      }
+      return response;
+    } on Object {
+      clearFieldContext();
+      rethrow;
+    }
+  }
+
+  /// Discards only this operation's presentation. A newer operation's context
+  /// and a viewport subsequently moved by the user are left alone.
+  void clearFieldContext({bool notify = true}) =>
+      _controller._clearZoteroFieldContext(this, notify: notify);
+
+  void _revealFieldContext(WordZoteroFieldSelectionContext context) {
+    final ranges = context.sourceRanges;
+    if (ranges.isEmpty) return;
+    final range = ranges.first;
+    final viewport = _controller.viewport;
+    // A later select may follow deliberate scrolling or zooming while the
+    // prompt was open. Return to that newer view, not the first reveal's view.
+    if (_contextOrigin != null &&
+        (viewport.origin != _revealedOrigin ||
+            viewport.scale != _contextScale)) {
+      _contextOrigin = viewport.origin;
+      _contextScale = viewport.scale;
+    }
+    final scale = viewport.scale * 96 / 72;
+    for (final page in _controller.documentLaidOut.pages) {
+      for (final line in [...page.lines, ...page.notes]) {
+        if (!identical(line.sourceParagraph, range.paragraph)) continue;
+        final offsets = line.proofingOffsets;
+        final containsStart = line.glyphs.any((glyph) {
+          for (
+            var index = glyph.glyph.logicalIndex;
+            index < glyph.logicalEnd;
+            index++
+          ) {
+            final source = offsets == null
+                ? index
+                : index >= 0 && index < offsets.length
+                ? offsets[index]
+                : null;
+            if (source != null &&
+                source >= range.start &&
+                (source < range.end || range.start == range.end)) {
+              return true;
+            }
+          }
+          return false;
+        });
+        // Overlay note lines carry their own source mapping and have no
+        // shaped glyphs. The source paragraph still pins their exact story.
+        if (!containsStart && line.glyphs.isNotEmpty) continue;
+        _contextOrigin ??= viewport.origin;
+        _contextScale ??= viewport.scale;
+        final top =
+            _controller.documentLaidOut.pageStackTop(page.index, scale) +
+            line.y * scale;
+        _revealedOrigin = Offset(
+          viewport.origin.dx,
+          (top - 48).clamp(0, double.infinity),
+        );
+        viewport.origin = _revealedOrigin!;
+        return;
+      }
+    }
+  }
+
+  void _restoreContextViewport() {
+    if (!_controller.isDisposed &&
+        !_applied &&
+        (_hostIsCurrent?.call() ?? true) &&
+        _target == _capture(_controller) &&
+        identical(_controller.document, session.document) &&
+        _contextOrigin != null &&
+        _controller.viewport.origin == _revealedOrigin &&
+        _controller.viewport.scale == _contextScale) {
+      try {
+        session.assertUnchanged();
+        _controller.viewport.origin = _contextOrigin!;
+      } on StateError {
+        // A direct host model edit can bypass the editor's revision counter.
+        // It must not cause this stale operation to move the new document view.
+      }
+    }
+    _contextOrigin = null;
+    _revealedOrigin = null;
+    _contextScale = null;
+  }
 
   static Object _capture(WordEditorController controller) => (
     document: controller.document,
@@ -16544,6 +16716,7 @@ final class WordZoteroTransaction {
   void assertCurrent() {
     if (_applied ||
         _controller.isDisposed ||
+        !(_hostIsCurrent?.call() ?? true) ||
         !_controller.config.allowsMutation ||
         _controller.document.trackRevisions ||
         _controller.document.restrictEditing ||
@@ -16556,6 +16729,7 @@ final class WordZoteroTransaction {
 
   void apply() {
     assertCurrent();
+    clearFieldContext();
     _controller._applyZoteroTransaction(session);
     _applied = true;
   }
