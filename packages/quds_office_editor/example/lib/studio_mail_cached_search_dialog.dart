@@ -62,6 +62,7 @@ class _StudioMailCachedSearchDialogState
   List<StudioMailCachedSearchCoverage> _coverage = const [];
   String? _scope;
   List<String>? _fixedAccountIds;
+  List<MailSavedHeaderSearchFolder>? _folderScopes;
   List<MailSavedHeaderSearch> _savedSearches = const [];
   MailSavedHeaderSearch? _savedSearch;
   String? _savedError;
@@ -341,6 +342,7 @@ class _StudioMailCachedSearchDialogState
       _savedSearch = search;
       _query.text = search.query;
       _fixedAccountIds = search.accountIds;
+      _folderScopes = search.folderScopes;
       _scope = '@saved';
       _savedNotice = null;
       _savedError = null;
@@ -406,6 +408,7 @@ class _StudioMailCachedSearchDialogState
       name: name,
       query: query,
       accountIds: [for (final account in accounts) account.id],
+      folderScopes: _folderScopes,
       revision: selected?.revision ?? 0,
     );
     await _savedOperation(() async {
@@ -420,7 +423,10 @@ class _StudioMailCachedSearchDialogState
           saved.name != search.name ||
           saved.query != search.query ||
           saved.accountIds.length != search.accountIds.length ||
-          !saved.accountIds.every(search.accountIds.contains)) {
+          !saved.accountIds.every(search.accountIds.contains) ||
+          saved.folderScopes?.length != search.folderScopes?.length ||
+          (saved.folderScopes != null &&
+              !saved.folderScopes!.every(search.folderScopes!.contains))) {
         throw const StudioMailDraftStoreException(MailProblemCode.conflict);
       }
       setState(() {
@@ -477,7 +483,10 @@ class _StudioMailCachedSearchDialogState
     });
   }
 
-  Future<void> _savedOperation(Future<void> Function() action) async {
+  Future<void> _savedOperation(
+    Future<void> Function() action, {
+    String? defaultError,
+  }) async {
     _refreshTimer?.cancel();
     _refreshTimer = null;
     setState(() {
@@ -499,13 +508,16 @@ class _StudioMailCachedSearchDialogState
             MailProblemCode.conflict => widget.strings.mailSavedSearchConflict,
             MailProblemCode.quotaExceeded =>
               widget.strings.mailSavedSearchLimit,
-            _ => widget.strings.mailSavedSearchWriteFailed,
+            _ => defaultError ?? widget.strings.mailSavedSearchWriteFailed,
           },
         );
       }
     } on Object {
       if (_current) {
-        setState(() => _savedError = widget.strings.mailSavedSearchWriteFailed);
+        setState(
+          () => _savedError =
+              defaultError ?? widget.strings.mailSavedSearchWriteFailed,
+        );
       }
     } finally {
       if (mounted) setState(() => _savedBusy = false);
@@ -659,6 +671,7 @@ class _StudioMailCachedSearchDialogState
             accounts: accounts,
             directory: widget.store,
             openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
+            folderScopes: _folderScopes,
             isCurrent: () => _active(epoch),
           );
           staged = session;
@@ -758,6 +771,7 @@ class _StudioMailCachedSearchDialogState
         accounts: accounts,
         directory: widget.store,
         openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
+        folderScopes: _folderScopes,
         isCurrent: () => _active(epoch),
       );
       setState(() {
@@ -778,12 +792,20 @@ class _StudioMailCachedSearchDialogState
     if (page.length > limit) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
-    final seen = _hits.map((hit) => hit.key).toSet();
+    final rejected = {
+      for (final entry in session.coverage)
+        if (entry.problem != null) entry.account.id,
+    };
+    final retained = [
+      for (final hit in _hits)
+        if (!rejected.contains(hit.account.id)) hit,
+    ];
+    final seen = retained.map((hit) => hit.key).toSet();
     setState(() {
       _hits = [
-        ..._hits,
+        ...retained,
         for (final hit in page)
-          if (seen.add(hit.key)) hit,
+          if (!rejected.contains(hit.account.id) && seen.add(hit.key)) hit,
       ];
       _coverage = List.unmodifiable(session.coverage);
     });
@@ -1015,6 +1037,7 @@ class _StudioMailCachedSearchDialogState
                 if (next == _scope) return;
                 _scope = next;
                 _fixedAccountIds = null;
+                _folderScopes = null;
                 _savedNotice = null;
                 _invalidate();
               },
