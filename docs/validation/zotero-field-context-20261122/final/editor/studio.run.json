@@ -1,0 +1,30 @@
+{
+  "started_at_utc": "2026-11-22T05:39:55.817289+00:00",
+  "finished_at_utc": "2026-11-22T05:40:54.067909+00:00",
+  "head_at_start": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "tracked_changes_at_start": [
+    "docs/validation/zotero-field-context-20261122/README.md"
+  ],
+  "dialog_sha256": "9aa0579efae61cf4ef922541ef706529cb211aa32a02b5a40c671d804ad7ad8d",
+  "working_directory": "packages/quds_office_editor/example",
+  "command": [
+    "flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter",
+    "expanded",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_shortcut_host_ownership_test.dart",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_odt_export_test.dart"
+  ],
+  "exit_code": 0,
+  "tests_passed": 55,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "log": "studio.log",
+  "log_sha256": "64f2030796f341548f2fe09a151649c4b90b4fc4701ce9503b0675b3a7cca4da"
+}

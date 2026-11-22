@@ -1,0 +1,29 @@
+{
+  "started_at_utc": "2026-11-22T05:39:20.705348+00:00",
+  "finished_at_utc": "2026-11-22T05:39:30.584258+00:00",
+  "head_at_start": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "tracked_changes_at_start": [
+    "docs/validation/zotero-field-context-20261122/README.md"
+  ],
+  "dialog_sha256": "9aa0579efae61cf4ef922541ef706529cb211aa32a02b5a40c671d804ad7ad8d",
+  "working_directory": "packages/quds_office_editor",
+  "command": [
+    "flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter",
+    "expanded",
+    "test/word_zotero_dialog_test.dart",
+    "--plain-name",
+    "mock Web API connection, pagination and search keep the key outside the document"
+  ],
+  "exit_code": 0,
+  "tests_passed": 1,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "log": "pagination-focus.log",
+  "log_sha256": "35221ef75863bb940862e51d47795c313a5e80c51aeae782f7eb30d3693523ad"
+}

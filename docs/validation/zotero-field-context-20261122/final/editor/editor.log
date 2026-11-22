@@ -1,0 +1,313 @@
+00:00 +0: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart
+00:00 +0: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: highlight preserves content, backwards writing selection and focus
+00:00 +1: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: body context resolves exact paragraph identity among equal texts
+00:00 +2: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: table context resolves exact paragraph identity among equal texts
+00:00 +3: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: footnote context resolves exact paragraph identity among equal texts
+00:00 +4: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: endnote context resolves exact paragraph identity among equal texts
+00:00 +5: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: multipart bibliography retains every original source range
+00:00 +6: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: selecting another story preserves the active Notes selection
+00:00 +7: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: Field.delete clears presentation and notifies already-built consumers
+00:00 +8: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: Field.removeCode clears presentation and notifies already-built consumers
+00:00 +9: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: Document.insertField clears presentation and notifies already-built consumers
+00:00 +10: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: Document.complete clears presentation and notifies already-built consumers
+00:01 +11: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: a failed callback clears context without committing staged data
+00:01 +12: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: temporary inserted field exposes no staged source text or ranges
+00:01 +13: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: clear restores the original viewport when the user did not move it
+00:01 +14: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: high zoom reveals a citation beyond the left edge
+00:01 +15: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +16: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +17: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +18: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +19: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +20: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +21: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +22: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +23: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +24: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +25: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +26: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +27: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +28: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:01 +29: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: disposal cleanup does not notify a dead controller
+00:01 +30: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: silent lifecycle cleanup clears ownership without synchronous repaint
+00:01 +31: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: refresh undo restores the original noncollapsed text selection
+00:01 +32: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: highlighted updates commit together as one undoable operation
+00:01 +33: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: highlighted updates commit together as one undoable operation
+00:02 +34: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: new catalog citation, preferences and formatting form one undo step
+00:02 +35: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: native picker insertion into note type 1 is fully undoable
+00:02 +36: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: native picker insertion into note type 2 is fully undoable
+00:02 +37: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: two citations convert in descending order without losing surrounding text
+00:02 +38: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: citation conversion retains an unrelated note reference in the same paragraph
+00:02 +39: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: undo after DOCX save restores native preferences and note ownership
+00:02 +40: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: late insertion refusal rolls back earlier field updates and leaves history clean
+00:02 +41: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: locked field introduced during review refuses the whole result
+00:02 +42: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: caret change invalidates a pending processor result
+00:02 +43: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: selection change invalidates a pending processor result
+00:02 +44: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: revision change invalidates a pending processor result
+00:03 +45: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: view mode change invalidates a pending processor result
+00:03 +46: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: track changes change invalidates a pending processor result
+00:03 +47: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: protection change invalidates a pending processor result
+00:03 +48: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: document change invalidates a pending processor result
+00:03 +49: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: dispose change invalidates a pending processor result
+00:03 +50: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: processor cancellation, canceled seed and no-op keep clean history
+00:03 +51: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: new bibliography block and preferences have one undo and retain paragraph identities
+00:04 +52: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive frame selection and history
+00:04 +53: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive toc-title selection and history
+00:04 +54: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive toc-item selection and history
+00:04 +55: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh keeps typing in prose after expanded and shortened citations
+00:04 +56: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh keeps prose position when a preceding citation is deleted
+00:04 +57: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh maps a writing point before the citation
+00:04 +58: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh maps a writing point at its start
+00:04 +59: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh maps a writing point inside its replaced text
+00:04 +60: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh maps a writing point at its end
+00:04 +61: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh maps a writing point in following prose
+00:04 +62: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh retains forward selection and exact history
+00:04 +63: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: refresh retains backward selection and exact history
+00:04 +64: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: code-only refresh preserves a selection inside unchanged citation text
+00:04 +65: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography refresh to 1 entries preserves the writing paragraph
+00:04 +66: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography refresh to 4 entries preserves the writing paragraph
+00:04 +67: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography reflow retains both ends of a backward paragraph selection
+00:04 +68: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: footnote refresh preserves writing point across note paragraphs
+00:04 +69: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: footnote refresh preserves backward selection across note paragraphs
+00:04 +70: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: inline-to-footnote conversion keeps the writing point beside its body marker
+00:04 +71: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: footnote-to-inline conversion returns a removed-note writing point to the citation
+00:04 +72: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: endnote refresh preserves writing point across note paragraphs
+00:05 +73: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: endnote refresh preserves backward selection across note paragraphs
+00:05 +74: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:05 +75: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:05 +76: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:05 +77: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (true)
+00:06 +78: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects fixed blocks before snapshot rollback can mutate
+00:06 +79: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects immutable blocks before snapshot rollback can mutate
+00:06 +80: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects fixed inlines before snapshot rollback can mutate
+00:06 +81: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects immutable inlines before snapshot rollback can mutate
+00:06 +82: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export stays detached until complete and is one undoable change
+00:06 +83: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo keeps paragraph identity for earlier text undo commands
+00:06 +84: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: Refresh imports formatted fields atomically with one undo and redo
+00:06 +85: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: incomplete import cannot replace the original transfer document
+00:06 +86: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: import undo retains earlier typing and its original paragraph target
+00:07 +87: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: saved transfer reopens for Refresh and saves active DOCX fields
+00:07 +88: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +89: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +90: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +91: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +92: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +93: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +94: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +95: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +96: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +97: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:07 +98: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:08 +99: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: body prompt context paints without moving or focusing the caret
+00:08 +100: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before addEditBibliography
+00:08 +101: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: context coexists with the writing selection and Find
+00:08 +102: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before addNote
+00:08 +103: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: stale paragraph identity and invalid offsets paint nothing
+00:08 +104: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: stale paragraph identity and invalid offsets paint nothing
+00:08 +105: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: stale paragraph identity and invalid offsets paint nothing
+00:08 +106: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: stale paragraph identity and invalid offsets paint nothing
+00:08 +107: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: stale paragraph identity and invalid offsets paint nothing
+00:08 +108: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: multipart field highlights every owned paragraph only
+00:08 +109: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: context excludes the automatic footnote label
+00:08 +110: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: context excludes the automatic endnote label
+00:08 +111: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: mixed-direction RTL citation uses logical source bounds
+00:08 +112: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: compact table context respects the native cell clip
+00:08 +113: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: note table fields retain exact original paragraph ownership
+00:09 +114: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: (setUpAll)
+00:09 +114: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: direct mode needs a command before opening a dialog
+00:10 +115: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:11 +116: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +117: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +118: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +119: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +120: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:13 +121: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:13 +122: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:13 +123: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: unchanged setDocPrefs returns without dirtying the file
+00:13 +124: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct action edits the citation enclosing the selection
+00:13 +125: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct action edits the citation enclosing the selection
+00:13 +126: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: chosen document preferences persist before returning
+00:13 +127: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct refresh action uses its native command
+00:14 +128: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct refresh action uses its native command
+00:14 +129: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: unavailable annotation command keeps version guidance and data
+00:14 +130: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct setDocPrefs action uses its native command
+00:14 +131: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: busy desktop errors stay visible and never restart the request
+00:14 +132: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct addEditBibliography action uses its native command
+00:14 +133: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: formatting review discards then returns
+00:14 +134: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: formatting review discards then returns
+00:14 +135: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:15 +136: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: formatting review applies then returns
+00:15 +137: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: annotation workspace command discards cancelled staged edits
+00:15 +138: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: annotation workspace command discards cancelled staged edits
+00:15 +139: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: cooperative cancellation returns only after the response drains
+00:15 +140: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: annotation workspace action is disabled during Track changes
+00:16 +141: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: annotation workspace action is disabled during Track changes
+00:16 +142: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: the ordinary references workspace remains available after a command
+00:16 +143: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: the ordinary references workspace remains available after a command
+00:17 +144: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: the ordinary references workspace remains available after a command
+00:17 +145: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native cancel without changes leaves the undo history clean
+00:17 +146: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native cancel without changes leaves the undo history clean
+00:17 +147: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: a direct citation returns to its footnote caret
+00:18 +148: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: a direct citation returns to its footnote caret
+00:18 +149: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+00:18 +150: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+00:18 +151: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart: (tearDownAll)
+00:18 +151: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+00:19 +152: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: moving the caret during review prevents a stale insertion
+00:19 +153: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:20 +154: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:21 +155: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:21 +156: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:22 +157: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:22 +158: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:23 +159: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:23 +160: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:23 +161: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:23 +162: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:25 +163: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart: export button sends the native command and explains saving a copy
+00:26 +164: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart: export button sends the native command and explains saving a copy
+00:27 +165: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:27 +166: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:28 +167: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:28 +168: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart: cancelling after export staging keeps active fields and no history
+00:29 +169: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:29 +170: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:29 +171: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +172: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +173: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +174: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +175: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +176: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +177: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +178: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +179: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +180: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:30 +181: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +182: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +183: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +184: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +185: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +186: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +187: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +188: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +189: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +190: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +191: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +192: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +193: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +194: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +195: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +196: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +197: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +198: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +199: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +200: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +201: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +202: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:31 +203: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:33 +204: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart: read-only menu closes and reveals body citation offline
+00:33 +205: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart: read-only menu closes and reveals body citation offline
+00:34 +206: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart: read-only menu closes and reveals body citation offline
+00:36 +207: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:36 +208: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:37 +209: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart: bibliography navigation is recognized when normal workspace reopens
+00:38 +210: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:38 +211: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:39 +212: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart: a field changed after opening its menu is not selected
+00:39 +213: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:40 +214: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:40 +215: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:40 +216: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +217: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +218: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +219: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +220: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +221: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +222: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +223: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +224: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +225: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +226: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +227: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:41 +228: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart: endnote native insertion with type 2 keeps note ownership and undo
+00:41 +229: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +230: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +231: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +232: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +233: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +234: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +235: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +236: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +237: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +238: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +239: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +240: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +241: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +242: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +243: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +244: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +245: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +246: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:41 +247: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:42 +248: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart: cited-source navigation reveals the read-only body editor offline
+00:44 +249: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart: cited-source navigation reveals the read-only body editor offline
+00:44 +250: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: stale target after the second batch stops the third request
+00:45 +251: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart: cited-source navigation reveals the read-only footnote editor offline
+00:45 +252: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+00:46 +253: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+00:47 +254: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+00:47 +255: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart: a changed field cache fails final validation after all dialogs close
+00:47 +256: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart: a changed field cache fails final validation after all dialogs close
+00:47 +257: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: changed edit target stops refresh before the next library
+00:47 +258: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart: moving the caret while reviewing occurrences keeps the new caret
+00:48 +259: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced refresh keeps URI aliases and unknown citation data
+00:48 +260: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: wrong desktop profile with the same item key cannot refresh
+00:49 +261: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: online operations reject local-only references before a request
+00:49 +262: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_selection_navigation_test.dart: local catalog details open Zotero without mutating metadata
+00:50 +263: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_selection_navigation_test.dart: local catalog details open Zotero without mutating metadata
+00:50 +264: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+00:50 +265: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+00:50 +266: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+00:50 +267: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_selection_navigation_test.dart: stored source navigation preserves citation metadata
+00:50 +268: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+00:50 +269: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+00:51 +270: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+00:51 +271: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch true
+00:52 +272: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced selected export verifies sources before copying reference data
+00:52 +273: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:52 +274: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:53 +275: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:54 +276: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:54 +277: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: bibliography review offers an explicit editable plain result
+00:54 +278: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: bibliography review offers an explicit editable plain result
+00:54 +279: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a plain-text caret keeps the Library as the default page
+00:55 +280: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling rich bibliography review keeps history unchanged
+00:55 +281: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink all reviews counts, cancels, then converts as one undo
+00:55 +282: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret rejects a reviewed rich bibliography
+00:55 +283: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a locked field rejects the complete conversion
+00:56 +284: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision rejects a reviewed rich bibliography
+00:56 +285: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a changed document cannot accept an old unlink confirmation
+00:56 +286: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: rich review and format limitation fit a narrow viewport
+00:56 +287: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: rich review and format limitation fit a narrow viewport
+00:56 +288: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink is disabled for tracked documents
+00:56 +289: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unchanged imported citation keeps its rich cache and native formatting metadata
+00:57 +290: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink review remains usable at narrow RTL with doubled text
+00:57 +291: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: older desktop cannot render an unverified aggregate bibliography
+00:57 +292: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: local source without CSL or identity is not refetched by a bare key
+00:57 +293: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: desktop account source inserts without using the saved cloud key
+00:58 +294: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:58 +295: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:59 +296: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:59 +297: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:59 +298: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:59 +299: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:00 +300: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: offline CSL import inserts source metadata and can be undone
+01:00 +301: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: bibliography-only documents keep source actions disabled
+01:00 +302: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+01:00 +303: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret while the composer is open blocks stale insertion
+01:01 +304: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision while the composer is open blocks stale insertion
+01:01 +305: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+01:02 +306: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting
+01:02 +307: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+01:03 +308: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport
+01:04 +309: All tests passed!

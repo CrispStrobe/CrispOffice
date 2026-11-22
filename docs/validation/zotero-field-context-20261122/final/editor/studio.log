@@ -1,0 +1,58 @@
+Waiting for another flutter command to release the startup lock...
+00:00 +0: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart
+00:00 +0: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:05 +1: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:05 +2: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: reassigned bold removes old keys and applies once (variant: TargetPlatform.linux)
+00:07 +3: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt R dispatches refresh from the Word caret
+00:08 +4: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: reserved Zotero C survives a conflicting override (variant: TargetPlatform.linux)
+00:09 +5: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Cmd Alt C dispatches addEditCitation from the Word caret
+00:10 +6: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: reserved Zotero R survives a conflicting override (variant: TargetPlatform.linux)
+00:11 +7: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Cmd Alt R dispatches refresh from the Word caret
+00:12 +8: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: reassigned redo removes Ctrl Y and both Shift Z defaults (variant: TargetPlatform.linux)
+00:13 +9: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: body composition blocks shortcuts and saved ribbon callbacks
+00:14 +10: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: reassigned zoom removes old equals and keypad aliases (variant: TargetPlatform.linux)
+00:15 +11: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: successive shortcuts return directly to the writing caret
+00:16 +12: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: reassigned save removes both platform defaults (variant: TargetPlatform.linux)
+00:16 +13: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero note ribbon invokes its native picker
+00:17 +14: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero note ribbon invokes its native picker
+00:18 +15: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: captured Word mutations refuse other app targets (variant: TargetPlatform.linux)
+00:20 +16: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: captured Word mutations refuse other app targets (variant: TargetPlatform.linux)
+00:20 +17: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C finds the citation in the focused Notes editor
+00:22 +18: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: page break refuses preview-only document mutation (variant: TargetPlatform.linux)
+00:22 +19: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation shortcuts and saved ribbon callbacks respect viewing mode
+00:23 +20: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation shortcuts and saved ribbon callbacks respect viewing mode
+00:24 +21: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: custom text edit shortcut forwards to focused Find text (variant: TargetPlatform.linux)
+00:25 +22: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Mail navigation invalidates a pending Zotero publication
+00:27 +23: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: Mail native editing stays active and saved callbacks avoid Word (variant: TargetPlatform.linux)
+00:27 +24: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Mail navigation and return invalidates a pending Zotero publication
+00:28 +25: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart: comment bold italic underline remain valid while paragraph formatting is limited (variant: TargetPlatform.linux)
+00:29 +26: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:30 +27: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:31 +28: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +29: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +30: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +31: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +32: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +33: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +34: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +35: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +36: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +37: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +38: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +39: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +40: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +41: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +42: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +43: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +44: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +45: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:32 +46: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:33 +47: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:33 +48: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart: exports an active Zotero copy and keeps normal save as DOCX (variant: TargetPlatform.windows)
+00:35 +49: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart: exports an active Zotero copy and keeps normal save as DOCX (variant: TargetPlatform.windows)
+00:37 +50: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart: exports an active Zotero copy and keeps normal save as DOCX (variant: TargetPlatform.windows)
+00:38 +51: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation ribbon shows shortcuts for macOS
+00:39 +52: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart: picker cancellation preserves dirty edits and re-enables export (variant: TargetPlatform.windows)
+00:40 +53: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart: edits during picking do not change the detached exported copy (variant: TargetPlatform.windows)
+00:41 +54: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart: invalid active Zotero data refuses before choosing a destination (variant: TargetPlatform.windows)
+00:42 +55: All tests passed!

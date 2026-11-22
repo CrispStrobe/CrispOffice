@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "group": "engine",
+  "started_utc": "2026-11-22T05:37:08.869413+00:00",
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_engine",
+  "head_before": "c6941f9ae82c74bf0f8d8a2a15d2a7a2c47c9f4f",
+  "tree_before": "4b9bc320788c30daf5b17bd8868ad8a651c86fa3",
+  "tracked_source_status_before": "",
+  "source_status_scope": "Tracked packages/apps/third_party and root manifests, excluding package CHANGELOG.md documentation edits.",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_binary_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "package_config_sha256": "ec6ce99c6a45a428f19b78e335d0ac4d7aecbb2ab430e70affe197662b36862d",
+    "env_script_sha256": "744f92f375a8b324096c8fa0ae3210dbc5072497b8ce8fed1a60fe855cb74ec9"
+  },
+  "runner_sha256": "f2f10cd2ad1343fc9939c3ca3f946b59482ea57e5fe1a92fc148b7e1c87ee3cf",
+  "source_inputs": [
+    {
+      "path": "analysis_options.yaml",
+      "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+      "git_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    {
+      "path": "packages/legacy_doc_parser/pubspec.yaml",
+      "sha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+      "git_blob": "f0389f352656d281988db1d853d6e86df67b51e7"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "sha256": "2e7d30616ed82d94b3bf202f35e7465b66f1b1b979b2c5dff727b7797fd164a5",
+      "git_blob": "9982b851a441191eb15857f45861b34ae6a74e47"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "sha256": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74",
+      "git_blob": "46b71d46d799b116c955ce9145c459301d1e30a9"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "sha256": "5e173c833a44e490dbdde1a5cf0442dfcac4ecb3cd97af0ade905b14ce513484",
+      "git_blob": "383977781c74c1117d8994e1f28a880f5eca3582"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "sha256": "9665c8612d7587081a09605fd657953e59292cc185b62eb0f19d40b92bf6ce53",
+      "git_blob": "138b916c838c601f89bdf787e1ba42a021ba7f42"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+      "sha256": "7f1068f5cf72a7b785c883b28bcbd010c103353fc46676c889f453df3fb7c2c3",
+      "git_blob": "1f4fd8050ff84bcb40d6123b2ff148ea0c5dab00"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "sha256": "bd2acce4bb23af14783cf70f78c3dcb6a534243892ef8dbdb2b16440b19d69ce",
+      "git_blob": "9fa151174306344dd8b22cbfdc0437b47c0acb0c"
+    },
+    {
+      "path": "packages/quds_office_engine/pubspec.yaml",
+      "sha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+      "git_blob": "2bdff7e5dcac2502253ab190b6e7104c21a3d024"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/citing/processor-output.json",
+      "sha256": "2359916b80f5703a6dfb453e867e2e76c511887cec235ffc694c1a984fcdbd1a",
+      "git_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/citing/protocol-contract.json",
+      "sha256": "87556188ba134c738b2ab5c78682de359e797f9b8718d9789667b87f5a368db6",
+      "git_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "sha256": "8d94c29b16ca854309c93f4f780ebe4c2c5dcbddd61a148e7b0cc88998d439f8",
+      "git_blob": "46154e16ddd983e479d0b8716d08ebece055f9e1"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "sha256": "5198947823928eb1a0cb344a4c73dcd664bbb7e45254850dac656352dfd998fc",
+      "git_blob": "c563d8686fbff396c4c5160786df79142a59991b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_field_selection_test.dart",
+      "sha256": "6ad8086368684eb31ceaccdf5ee8336bda9192e7303899e8ea134c33142e8d48",
+      "git_blob": "a63166d297d40048f2fe71b637e302425961b0f9"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "sha256": "8289b86bf13d63a02f82970a91cfbac6bcbc49f88034b0b5519501670920ac01",
+      "git_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+      "sha256": "189a9d6d6b1dbaf3f4d785a8dccfe0bec4ee364d3a65c3cf735bce7bf95f3297",
+      "git_blob": "394b7558a56134394caf8098d30f26da74c4dbb0"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+      "sha256": "fea9ba3c824a10fc721b9fcc99cec41a294c020939cd5f2163a6453fea70112f",
+      "git_blob": "077f49a46f62c65fb6423c816f17cd3331c9b75b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "sha256": "c1e8a95be64c0dba01e5b93b9a0221e0363a77bc6d38b41115eed1b9ad520707",
+      "git_blob": "d0a19607eae8d80b0d177a769cebbcfa358cc7cc"
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart",
+      "sha256": "cc2a89bd83e285a6ce3227e16522361ddc8ebf5b0a4487e9b96b96f01f8b7e50",
+      "git_blob": "12645b631ef225e5d30761920f9c890eb3366210"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "git_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "git_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+    }
+  ],
+  "checks": [
+    {
+      "check": "tests",
+      "argv": [
+        "dart",
+        "test",
+        "--concurrency=4",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_field_selection_test.dart",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_writing_position_test.dart",
+        "test/word_zotero_transfer_session_test.dart",
+        "test/word_zotero_add_note_test.dart",
+        "test/word_zotero_simple_field_test.dart",
+        "test/zotero_citing_test.dart",
+        "test/zotero_transfer_protocol_test.dart"
+      ],
+      "started_utc": "2026-11-22T05:37:08.968515+00:00",
+      "finished_utc": "2026-11-22T05:37:39.905809+00:00",
+      "exit_code": 0,
+      "log": "tests.log",
+      "log_sha256": "781d5c5b67d152636d92738f0a18a5378a8de05f3c427f2c18652a0ec97eef40",
+      "log_bytes": 28370,
+      "suites": 8,
+      "passed": 244,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "check": "analysis",
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/src/word/model/word_zotero_citing.dart",
+        "test/word_zotero_field_selection_test.dart"
+      ],
+      "started_utc": "2026-11-22T05:37:39.906597+00:00",
+      "finished_utc": "2026-11-22T05:37:47.345305+00:00",
+      "exit_code": 0,
+      "log": "analysis.log",
+      "log_sha256": "d1f72efe3acad2a7f8ea15f79d1ceb80fbc1e1de8f40088d2ba95a4e84655d92",
+      "log_bytes": 93,
+      "files": 2
+    }
+  ],
+  "head_after": "c6941f9ae82c74bf0f8d8a2a15d2a7a2c47c9f4f",
+  "tree_after": "4b9bc320788c30daf5b17bd8868ad8a651c86fa3",
+  "tracked_source_status_after": "",
+  "source_changes": [],
+  "finished_utc": "2026-11-22T05:37:47.399756+00:00",
+  "passed": true
+}

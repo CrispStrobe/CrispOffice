@@ -1,0 +1,50 @@
+{
+  "baseline": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "expected_head": "c6941f9ae82c74bf0f8d8a2a15d2a7a2c47c9f4f",
+  "expected_tree": "4b9bc320788c30daf5b17bd8868ad8a651c86fa3",
+  "environment_file": "/workspace/scratch/2437eaf6f35d/toolchains/env.sh",
+  "editor_suites": [
+    "test/word_zotero_field_context_controller_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_writing_position_test.dart",
+    "test/word_zotero_transfer_controller_test.dart",
+    "test/word_zotero_field_context_render_test.dart",
+    "test/word_zotero_direct_command_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_transfer_dialog_test.dart",
+    "test/word_zotero_navigation_test.dart",
+    "test/word_zotero_navigation_dialog_test.dart",
+    "test/word_zotero_note_target_test.dart",
+    "test/word_zotero_occurrence_navigation_test.dart",
+    "test/word_zotero_selection_navigation_test.dart",
+    "test/word_zotero_document_actions_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart"
+  ],
+  "studio_suites": [
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_shortcut_host_ownership_test.dart",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_odt_export_test.dart"
+  ],
+  "test_prefix": [
+    "flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter",
+    "expanded"
+  ],
+  "rationale": [
+    "Controller field-context, citing, writing-position and transfer suites retain the 105-case transaction/viewport gate.",
+    "Nine context-render raster tests retain original identity, generated-label exclusion, table clipping and mixed-direction coverage.",
+    "Direct-command and citing-dialog suites exercise callback lifecycle, cancellation, review, stale host state, focus restoration and immediate continued writing.",
+    "Existing full dialog, transfer dialog, document actions and dialog scaling suites cover regular workspace layout, existing library/refresh/review flows, import/export and bounded source scans.",
+    "Navigation, navigation-dialog, occurrence-navigation and selection-navigation suites distinguish explicit user navigation from temporary selected context and preserve source identity.",
+    "Note-target tests exercise body/Notes selection ownership, hidden marker offsets, composition and stale detached results.",
+    "Studio shortcuts, shortcut host ownership, citing transport and ODT export exercise application/route ownership, native-command dispatch, pending-work invalidation and persistence.",
+    "Strict analysis covers all changed editor and Studio production/test Dart paths relative to the initial main baseline; engine analysis and the new 21-case dialog gate have separate owners."
+  ]
+}
