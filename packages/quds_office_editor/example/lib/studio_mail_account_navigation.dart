@@ -26,11 +26,12 @@ final class StudioMailAccountNavigationTarget {
       case MailProviderKind.imap:
         if ((endpoint.scheme != 'imap' && endpoint.scheme != 'imaps') ||
             endpoint.path.isNotEmpty ||
-            // The native account namespace records its actual socket port.
-            // Uri folds :0 into a missing port for these non-default schemes;
-            // neither representation can identify a reconnectable route.
+            !endpoint.hasPort ||
             endpoint.port <= 0 ||
             endpoint.port > 65535) {
+          // Native account fingerprints include the exact socket port. Uri
+          // canonicalizes :0 away for these non-default schemes; a missing
+          // port must not silently turn an invalid route into a default.
           _invalid();
         }
       case MailProviderKind.ews:
@@ -125,7 +126,9 @@ final class StudioMailAccountNavigationTarget {
     final current = targets.where((target) => target.record.id == record.id);
     if (current.length != 1 ||
         !current.single.record.hasSameIdentity(record) ||
-        current.single.record.revision != record.revision) {
+        current.single.record.revision != record.revision ||
+        current.single.record.lastConnectedAt.millisecondsSinceEpoch !=
+            record.lastConnectedAt.millisecondsSinceEpoch) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
   }
@@ -142,7 +145,9 @@ final class StudioMailAccountNavigationTarget {
     requireMatches(actual);
     void checkCurrent() {
       if (!isCurrent()) {
-        throw const StudioMailDraftStoreException(MailProblemCode.staleOperation);
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.staleOperation,
+        );
       }
     }
 

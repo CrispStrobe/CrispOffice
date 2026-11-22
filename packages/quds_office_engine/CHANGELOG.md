@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep bounded LibreOffice-formatted Zotero DOCX fields editable while
+  preserving their raw instruction/boundary formatting and empty code runs.
+  Retain structural, ownership, lock and unknown-metadata guards. Reopen the
+  observed unnumbered Writer ODT outline forms and clear character shading
+  with an explicit background. Original converter files exercise citation
+  refresh, metadata, body/note/cell ownership and repeated native saves;
+  editor tests cover detached apply, selected-field context, undo/redo and
+  stale-result refusal. See the
+  [converter qualification](../../docs/validation/zotero-converter-parity-20261122/README.md)
+  for exact limits and remaining installed-plugin acceptance.
+
 - Add bounded VBA `Split` assignment to local dynamic String arrays in Word,
   Excel and PowerPoint. Preserve zero-based binary substring semantics,
   delimiter/limit controls, empty arrays, once-only argument evaluation, frame

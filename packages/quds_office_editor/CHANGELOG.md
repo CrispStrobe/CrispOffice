@@ -4,14 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Add a verified account chooser across native IMAP/SMTP, Exchange EWS, Gmail
-  and Microsoft 365. Preserve retained drafts and submission uncertainty while
-  switching, drain the previous account owner, and require explicit sign-in
-  with exact account identity checks. Fence stale destinations, repeated route
-  callbacks and hidden keyboard input; preserve provider Close/Back recovery.
-  Localize the workflow in English, German and Arabic. One account remains
-  connected at a time; simultaneous sessions and a unified inbox are subsequent
-  work. See the [account navigation guide](../../docs/roadmaps/mail/account-navigation.md).
+- Add a verified remembered-account chooser across IMAP/SMTP, Exchange EWS,
+  Gmail and Microsoft 365 in English, German and Arabic. Preserve exact
+  non-secret routes and require explicit sign-in; save account-owned drafts and
+  uncertain-submission state before switching. Drain observers, journal writes
+  and owners, fence stale routes, hidden keyboard input, late acquisitions and
+  retired callbacks, and atomically refresh selected native directory records
+  without recreating forgotten shortcuts. Custom directories without conditional
+  refresh retain their existing metadata. Native Close hides the mounted Mail
+  pane; failed owner release blocks another sign-in and can require a host
+  restart. Provider Close/Back preserves draft recovery. One account remains
+  connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
+  and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
+  for scope, qualification and remaining multi-account workspace work.
 
 - Add explicit connected-mail Archive for a selected message or checked visible
   rows, with English/German/Arabic confirmation. Gmail removes only Inbox

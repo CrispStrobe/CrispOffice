@@ -1,0 +1,62 @@
+{
+  "purpose": "Focused development regressions; final qualification must test the merged source revision.",
+  "command": "BOT=true CI=true flutter test --no-pub --concurrency=1 packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart --reporter json",
+  "runtime_environment_file": "/workspace/scratch/85a369f34dbb/runtime/env.sh",
+  "runs": [
+    {
+      "raw_log": "native-release.jsonl",
+      "stderr": "native-release.stderr",
+      "success": false,
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "cases": [
+        {
+          "name": "native switch drains observer then owner before routing",
+          "result": "success"
+        },
+        {
+          "name": "failed native observer cancellation retains source and retry drains it",
+          "result": "success"
+        },
+        {
+          "name": "failed stale candidate close blocks account ownership until explicit release",
+          "result": "success"
+        },
+        {
+          "name": "native disconnect cannot retire pending target factory or load ownership",
+          "result": "error"
+        }
+      ]
+    },
+    {
+      "raw_log": "native-release-final.jsonl",
+      "stderr": "native-release-final.stderr",
+      "success": true,
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "native switch drains observer then owner before routing",
+          "result": "success"
+        },
+        {
+          "name": "failed native observer cancellation retains source and retry drains it",
+          "result": "success"
+        },
+        {
+          "name": "failed stale candidate close blocks account ownership until explicit release",
+          "result": "success"
+        },
+        {
+          "name": "native disconnect cannot retire pending target factory or load ownership",
+          "result": "success"
+        }
+      ]
+    }
+  ],
+  "initial_failure_and_correction": "The fourth test cast find.byTooltip output to IconButton, but Flutter returned RawTooltip. The test finder was changed to an IconButton predicate; no production correction was required for the observed failure.",
+  "final_exit_code": 0,
+  "transport_and_storage": "Only injected memory fixtures and fake ports; no real account or mailbox access."
+}

@@ -723,6 +723,31 @@ documents local protocol, controller, widget and persistence coverage. It does
 not establish an installed Zotero/Word/LibreOffice round trip or complete plugin
 parity.
 
+### LibreOffice field formatting
+
+LibreOffice can add character properties to DOCX instruction/separator/end
+runs and insert empty formatted runs within field code. The native Zotero
+classifier accepts a bounded, explicitly validated subset of those properties:
+direct fonts, bold/italic/capitalization/direction toggles, RGB or automatic
+foreground, font size/kerning and language. Identical repeated properties are
+retained; conflicting duplicates, style/theme references, hidden text, revision
+markup and unknown elements or attributes remain guarded.
+
+Citation and bibliography updates preserve accepted raw boundary formatting
+and empty code runs instead of collapsing the packet into a new unformatted
+field. Code-only updates retain visible result runs. Rich cache replacement
+uses Zotero's new formatting without turning hidden code formatting into
+visible content. Unlink removes the code envelope while keeping the cached
+result; delete keeps its distinct removal behavior. Stale boundary or owner
+changes invalidate a captured field handle.
+
+The original LibreOfficeDev outputs for body, authored-footnote and table-cell
+citations are retained as regression inputs. Controlled native Refresh and
+editor apply/undo/redo tests qualify these files on this source; they do not
+claim a new installed Zotero dialog or Word/LibreOffice application session.
+The [converter work record](validation/zotero-converter-parity-20261122/README.md)
+records source, tests, original fixtures and remaining routes.
+
 ### Apply, cancel and undo
 
 Zotero commands work on a detached transaction. No document changes are applied
@@ -1773,6 +1798,16 @@ The importer accepts a bounded subset:
   a compatible page layout. Supported Latin, complex-script and Asian font,
   size, weight, italic and language differences become native runs while
   retaining text and field positions.
+- Writer's inert outline alignment with explicitly empty numbering, no
+  positioning attributes and no following label character. The optional
+  `loext:num-list-format` must contain only the matching level placeholder
+  (`%1%` through `%10%`). Numbered headings, literal labels, other-level or
+  multilevel templates, margins, indents and tab positions remain refused.
+- Writer's exact clear character shading value `0`, paired in the same style
+  declaration with an explicit RGB or transparent background. RGB highlights
+  survive; explicit transparent backgrounds clear them. Patterned shading and
+  shading-only declarations remain refused because their interaction with
+  inherited backgrounds has not been qualified against Writer output.
 - Canonical Zotero citation ReferenceMarks and bibliography ReferenceMarks or
   TextSections, including rich bibliography entries, empty paragraphs,
   multi-item options, adjacent fields and identical-looking citations with
