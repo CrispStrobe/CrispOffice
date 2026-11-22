@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import '../../zotero/zotero_formatted_text.dart';
 import '../properties/wml_properties.dart';
 import 'wml_clone.dart';
@@ -44,6 +42,7 @@ final class WordZoteroCitingSession {
         ? ''
         : WordZoteroDocumentData.read(document);
     _originalData = _nativeData;
+    WordZotero.assertCompleteNativeFields(document);
     _body.addAll(_flowParagraphs(document.sections.expand((s) => s.blocks)));
     _bodyParagraphs.addAll(_body);
     if (_body.length > 100000) {
@@ -54,8 +53,20 @@ final class WordZoteroCitingSession {
     final all = WordZotero.fields(document);
     if (all.length > 10000 || all.any((f) => !_canProcessField(f))) {
       throw UnsupportedError(
-        'Zotero needs editable citation fields or complete bibliography entry paragraphs. Locked, nested, malformed or ambiguous field structures must be resolved first.',
+        'Zotero needs complete citation fields or complete bibliography entry paragraphs. Locked, nested, incomplete or ambiguous field structures must be resolved first.',
       );
+    }
+    _fieldOwners = WordZotero.nativeFieldOwners(document, all);
+    for (final field in all) {
+      for (final (index, paragraph) in field.paragraphs.indexed) {
+        WordContentControls.assertCanEdit(
+          paragraph,
+          index == 0 ? field.start : 0,
+          index == field.paragraphs.length - 1
+              ? field.end
+              : paragraph.text.length,
+        );
+      }
     }
     final byParagraph = <WmlParagraph, List<WmlZoteroField>>{};
     for (final field in all) {
@@ -233,6 +244,7 @@ final class WordZoteroCitingSession {
   final _bodyParagraphs = Set<WmlParagraph>.identity();
   final _fields = <_CitingField>[];
   final _fieldsById = <String, _CitingField>{};
+  late final Map<WmlParagraph, List<Object>> _fieldOwners;
   final _reportedAdjacency = Map<WmlZoteroField, WmlZoteroField>.identity();
   final _originalFieldsPerNote = Map<WmlNote, int>.identity();
   final _notes = <_NoteAnchor>[];
@@ -759,7 +771,9 @@ final class WordZoteroCitingSession {
         _arity(args, 3);
         final field = _field(args[1]);
         final code = _string(args[2]);
-        if (code != 'TEMP') _validateCode(code);
+        if (code != 'TEMP' && !_isRepairPlaceholder(field, code)) {
+          _validateCode(code);
+        }
         if (code != 'TEMP' &&
             _noteTextFields.containsKey(field) &&
             WordZotero.kindOfInstruction(_toNative(code)) !=
@@ -825,7 +839,7 @@ final class WordZoteroCitingSession {
       if (_bibliographyStyle != null &&
           _kind(field) == ZoteroFieldKind.bibliography &&
           field.original != null &&
-          (!WordZotero.canReplaceNativeBibliography(
+          (!WordZotero.canRecoverNativeBibliography(
                 document,
                 field.original!,
               ) ||
@@ -843,7 +857,7 @@ final class WordZoteroCitingSession {
       );
       if (_kind(field) == ZoteroFieldKind.bibliography &&
           field.original != null &&
-          !WordZotero.canReplaceNativeBibliography(document, field.original!)) {
+          !WordZotero.canRecoverNativeBibliography(document, field.original!)) {
         formattingWarnings.add(
           'An inline bibliography is kept as protected plain text.',
         );
@@ -885,7 +899,20 @@ final class WordZoteroCitingSession {
       }
     }
     _assertNoteAnchorsUnchanged();
+    WordZotero.assertCompleteNativeFields(document);
     final current = WordZotero.fields(document);
+    final owners = WordZotero.nativeFieldOwners(document, current);
+    if (owners.length != _fieldOwners.length ||
+        _fieldOwners.entries.any((entry) {
+          final path = owners[entry.key];
+          return path == null ||
+              path.length != entry.value.length ||
+              path.indexed.any(
+                (part) => !identical(part.$2, entry.value[part.$1]),
+              );
+        })) {
+      throw StateError('A Zotero field changed its structural owner.');
+    }
     final original = _fields.where((f) => f.original != null).toList();
     if (current.length != original.length) {
       throw StateError('A Zotero field changed while formatting.');
@@ -1029,7 +1056,7 @@ final class WordZoteroCitingSession {
       }
       if (field.deleted) {
         if (original.kind == ZoteroFieldKind.bibliography &&
-            WordZotero.canReplaceNativeBibliography(document, original)) {
+            WordZotero.canRecoverNativeBibliography(document, original)) {
           final positions = _bibliographyPositions(original);
           WordZotero.deleteNativeBibliography(document, original);
           _mapBibliographyPositions(positions, [
@@ -1050,7 +1077,7 @@ final class WordZoteroCitingSession {
           );
           _moveNotePositions(field, 0);
         } else {
-          WordZotero.delete(original);
+          WordZotero.deleteNative(original);
           _replacePositionText(
             original.paragraph,
             original.start,
@@ -1059,16 +1086,36 @@ final class WordZoteroCitingSession {
           );
         }
       } else if (field.unlinked) {
-        if (field.textWasSet || field.code != _toHttp(original.instruction)) {
-          _replace(field);
-          final current = WordZotero.fields(document).firstWhere(
-            (f) =>
-                identical(f.paragraph, original.paragraph) &&
-                f.start == original.start,
+        if (field.textWasSet) {
+          final bibliography = WordZotero.canRecoverNativeBibliography(
+            document,
+            original,
           );
-          WordZotero.unlink(current);
+          final positions = bibliography
+              ? _bibliographyPositions(original)
+              : null;
+          final replacements = WordZotero.replaceNativeUnlinkedResult(
+            document,
+            original,
+            text: field.text,
+            formattedText: field.formatted,
+          );
+          if (positions != null) {
+            _mapBibliographyPositions(
+              positions,
+              replacements,
+              unchangedText: field.text == original.cachedText,
+            );
+          } else if (field.text != original.cachedText) {
+            _replacePositionText(
+              original.paragraph,
+              original.start,
+              original.end,
+              field.text.length,
+            );
+          }
         } else {
-          WordZotero.unlink(original);
+          WordZotero.unlinkNative(original, document: document);
         }
       } else if (field.noteType != field.originalNoteType) {
         _assertCanConvert(field, field.noteType);
@@ -1083,7 +1130,7 @@ final class WordZoteroCitingSession {
             endnote: field.note!.endnote,
           );
         } else {
-          WordZotero.delete(original);
+          WordZotero.deleteNative(original);
         }
         _insertResult(field, field.anchor, field.anchorOffset);
         final insertedLength =
@@ -1186,7 +1233,7 @@ final class WordZoteroCitingSession {
   void _replace(_CitingField field) {
     final original = field.original!;
     if (_kind(field) == ZoteroFieldKind.bibliography &&
-        WordZotero.canReplaceNativeBibliography(document, original)) {
+        WordZotero.canRecoverNativeBibliography(document, original)) {
       final positions = _bibliographyPositions(original);
       WordZotero.replaceNativeBibliography(
         document,
@@ -2517,15 +2564,27 @@ final class WordZoteroCitingSession {
     if (kind == ZoteroFieldKind.citation) ZoteroCitation.fromJson(data);
   }
 
-  static String _toHttp(String native) {
-    final kind = WordZotero.kindOfInstruction(native);
-    final data = WordZotero.metadataOf(native);
-    if (kind == null || data == null) {
-      throw const FormatException('Invalid native Zotero field.');
+  // Zotero clears a corrupt citation before opening its repair picker. This
+  // exact empty code is a staging state, never a valid persisted citation.
+  // Only an existing damaged citation may receive it; completion still uses
+  // the strict codec and therefore refuses an unfinished repair.
+  static bool _isRepairPlaceholder(_CitingField field, String code) {
+    if (field.original?.kind != ZoteroFieldKind.citation ||
+        field.original!.isValid ||
+        !code.startsWith('ITEM CSL_CITATION ')) {
+      return false;
     }
-    return kind == ZoteroFieldKind.citation
-        ? 'ITEM CSL_CITATION ${jsonEncode(data)}'
-        : 'BIBL ${jsonEncode(data)} CSL_BIBLIOGRAPHY';
+    final data = WordZotero.metadataOf(_toNative(code));
+    return data != null &&
+        data.length == 2 &&
+        data['citationItems'] is List &&
+        (data['citationItems'] as List).isEmpty &&
+        data['properties'] is Map &&
+        (data['properties'] as Map).isEmpty;
+  }
+
+  static String _toHttp(String native) {
+    return WordZotero.httpFieldCode(native);
   }
 
   static String _toNative(String code) {
@@ -2560,9 +2619,9 @@ final class WordZoteroCitingSession {
       a.instruction == b.instruction;
 
   bool _canProcessField(WmlZoteroField field) =>
-      field.canEdit ||
+      field.canEditNativeResult ||
       (_bodyParagraphs.contains(field.paragraph) &&
-          WordZotero.canReplaceNativeBibliography(document, field));
+          WordZotero.canRecoverNativeBibliography(document, field));
 
   static bool _hasKnownBibliographyEntries(_CitingField field) {
     final original = field.original;
