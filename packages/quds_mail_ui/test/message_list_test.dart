@@ -273,6 +273,45 @@ void main() {
     expect(loads, 0);
   });
 
+  testWidgets('people search filters rows without opening or loading mail', (
+    tester,
+  ) async {
+    var opens = 0;
+    var loads = 0;
+    await tester.pumpWidget(
+      _app(
+        _list(onOpen: (_) => opens++, hasMore: true, onLoadMore: () => loads++),
+      ),
+    );
+    const cases = <String, List<String>>{
+      'participant:alice': ['one', 'three'],
+      'recipient:team': ['one'],
+      'participant:review': ['one'],
+      'recipient:alice': [],
+      'NOT participant:alice': ['two', 'unknown'],
+    };
+    for (final entry in cases.entries) {
+      await tester.enterText(
+        find.byKey(const ValueKey('mail-list-search')),
+        entry.key,
+      );
+      await tester.pump();
+      for (final item in _items) {
+        expect(
+          _row(item.id),
+          entry.value.contains(item.id) ? findsOneWidget : findsNothing,
+          reason: entry.key,
+        );
+      }
+      expect(
+        find.byKey(const ValueKey('mail-list-search-error')),
+        findsNothing,
+      );
+    }
+    expect(opens, 0);
+    expect(loads, 0);
+  });
+
   testWidgets('dates use timestamps rather than the localized display label', (
     tester,
   ) async {
@@ -916,6 +955,8 @@ void main() {
       const prose = 'استخدم العبارات التالية للبحث.';
       const example = 'from:alice subject:"quarterly report"';
       const recipientExample = '  TO:team@example.test cc:manager';
+      const peopleRecipientExample = 'recipient:"Review Team"';
+      const participantExample = 'participant:alice@example.test';
       const groupedExample = '(from:alice OR from:bob) NOT subject:invoice';
       const negatedExample = 'NOT (from:alice OR from:bob)';
       const tightNegatedExample = 'NOT(from:alice OR from:bob)';
@@ -934,7 +975,8 @@ void main() {
         count: _count,
         searchHelpTitle: 'مساعدة البحث',
         searchHelpText:
-            '$prose\n\n$example\n$recipientExample\n$groupedExample\n'
+            '$prose\n\n$example\n$recipientExample\n'
+            '$peopleRecipientExample\n$participantExample\n$groupedExample\n'
             '$negatedExample\n$tightNegatedExample\n$nestedNegatedExample\n'
             '$minusExample\n\n$closing',
       );
@@ -946,6 +988,8 @@ void main() {
       for (final text in [
         example,
         recipientExample,
+        peopleRecipientExample,
+        participantExample,
         groupedExample,
         negatedExample,
         tightNegatedExample,

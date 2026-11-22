@@ -547,6 +547,58 @@ void main() {
   );
 
   test(
+    'people queries search retained public headers without body or Bcc reads',
+    () async {
+      final first = _header(1);
+      await saveView([first, _header(2)]);
+      _value(
+        await store.cacheMessage(
+          _account,
+          first.id,
+          MailMessage(
+            raw: MailBytes(Uint8List.fromList([1, 2, 3])),
+            envelope: first.envelope,
+            body: const MailBody(plainText: 'bodyneedle'),
+            localId: first.id,
+            remoteIdentity: first.remote,
+          ),
+        ),
+      );
+      final before = snapshot();
+      probe.reset();
+      for (final query in [
+        'recipient:team',
+        'recipient:manager',
+        'participant:älice',
+        'participant:team',
+        'participant:manager',
+      ]) {
+        final page = _value(await store.searchCachedHeaders(_account, query));
+        expect(
+          page.hits.map((hit) => hit.header.id.value),
+          ['id-0001', 'id-0002'],
+          reason: query,
+        );
+      }
+      for (final query in [
+        'recipient:älice',
+        'participant:private@example.test',
+        'recipient:private@example.test',
+        'participant:bodyneedle',
+        'recipient:bodyneedle',
+      ]) {
+        expect(
+          _value(await store.searchCachedHeaders(_account, query)).hits,
+          isEmpty,
+          reason: query,
+        );
+      }
+      expect(probe.bodyRead, isFalse);
+      expect(snapshot(), before);
+    },
+  );
+
+  test(
     'profiles and accounts cannot leak through query or cursor reuse',
     () async {
       final other = MailAccountId('other', profile: _profile);
