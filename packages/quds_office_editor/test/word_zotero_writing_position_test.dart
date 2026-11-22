@@ -184,6 +184,49 @@ WmlDocument _soleNoteDocument(bool endnote) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  for (final kind in ['frame', 'toc-title', 'toc-item']) {
+    test(
+      'bibliography growth preserves passive $kind selection and history',
+      () {
+        final document = _bibliographyDocument();
+        final target = WmlParagraph(
+          inlines: [WmlRun(text: 'Passive paragraph')],
+        );
+        final WmlBlock owner = switch (kind) {
+          'frame' => WmlFrame(blocks: [target]),
+          'toc-title' => WmlToc(titleParagraph: target),
+          _ => WmlToc(itemParagraphs: [target]),
+        };
+        document.sections.single.blocks.add(owner);
+        final controller = _controller(document);
+        final originalIndex = document.paragraphs.toList().indexOf(target);
+        expect(originalIndex, greaterThanOrEqualTo(0));
+        controller.caret
+          ..paragraphIndex = originalIndex
+          ..logicalIndex = 3
+          ..selectionAnchorParagraph = originalIndex
+          ..selectionAnchor = 10;
+        final transaction = _begin(controller);
+        _call(transaction, 'Field.setText', [
+          _fieldIds(transaction).single,
+          _bibliographyHtml(4),
+          true,
+        ]);
+        _apply(transaction);
+
+        final updatedIndex = document.paragraphs.toList().indexOf(target);
+        expect(updatedIndex, originalIndex + 2);
+        expect(_selection(controller), [updatedIndex, 3, updatedIndex, 10]);
+        expect(target.text, 'Passive paragraph');
+        controller.undo();
+        expect(_selection(controller), [originalIndex, 3, originalIndex, 10]);
+        controller.redo();
+        expect(_selection(controller), [updatedIndex, 3, updatedIndex, 10]);
+        expect(target.text, 'Passive paragraph');
+      },
+    );
+  }
+
   test(
     'refresh keeps typing in prose after expanded and shortened citations',
     () {
