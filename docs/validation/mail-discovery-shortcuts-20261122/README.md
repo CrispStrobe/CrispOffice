@@ -55,3 +55,44 @@ header-search/saved-search tests, cached-header and saved-search persistence tes
 shared Mail message-list tests, and Studio search-string tests. Run strict
 analysis and formatting checks over changed Dart paths. Record actual commands
 and outcomes before upgrading this increment's runtime status.
+
+## Remote checkpoints
+
+| Commit | Purpose |
+| --- | --- |
+| `138fab37b26d12453bded81ddd5ebf5ab531843b` | History-preserving intake; production and test package tree equals original main |
+| `25e93061f640ec381feb45291ccb363401a20bc8` | New predicates and EN/DE/AR help |
+| `bb92051a07618b069f8fc03609d1af6863dc52a0` | Core, store, shared UI and locale regression source |
+
+The intake package-tree SHA remains
+`6c50da559d4b1b199c36ffd5c3cdef1ae0a5f54c`, matching original main exactly.
+Dependency manifests and lockfile are unchanged. Incoming head is an ancestor
+of the intake commit, so both unique incoming commits are retained.
+
+## Review and executable acceptance
+
+Independent static review found no correctness blocker in the predicate or help
+changes. It checked whitelist/dispatch agreement, exhaustive matching, complete
+union negation, unchanged budgets, public-only projections, exact saved scope and
+RTL example recognition. An existing punctuation difference between loaded and
+cached address rendering remains; examples use names or addresses separately.
+
+Fifteen new regression cases were authored, with further assertions in existing
+EN/DE/AR and RTL tests. This is a source inventory, not a passed-test count.
+The source-level checks and exact remote readback are recorded in
+[static-review.json](static-review.json); they do not substitute for Dart/Flutter
+execution.
+
+Run these focused suites after `flutter pub get --enforce-lockfile` succeeds in
+an executable checkout using the pinned SDK:
+
+```bash
+(cd packages/quds_mail_core && dart test test/header_search_test.dart test/header_search_boolean_test.dart test/header_search_boolean_regression_test.dart test/header_search_people_test.dart test/saved_header_search_test.dart test/saved_header_search_folders_test.dart)
+(cd packages/quds_mail_store && dart test test/cached_header_search_test.dart test/cached_header_search_folders_test.dart test/saved_header_searches_test.dart test/saved_header_search_folders_test.dart)
+(cd packages/quds_mail_ui && flutter test test/message_list_test.dart test/message_list_bulk_test.dart test/message_list_conversations_test.dart)
+(cd packages/quds_office_editor/example && flutter test test/studio_mail_boolean_search_strings_test.dart)
+```
+
+Run strict analysis and `dart format --output=none --set-exit-if-changed` on
+all changed Dart paths as well. These commands are a resumption plan; they were
+not executed here. GitHub Actions was neither awaited nor used as evidence.

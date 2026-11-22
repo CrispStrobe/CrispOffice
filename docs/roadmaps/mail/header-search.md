@@ -21,10 +21,18 @@ operator names are the same in every language.
 | `"quarterly report"` | The complete phrase occurs in the subject or sender |
 | `from:alice subject:"quarterly report"` | Sender contains Alice and subject contains the phrase |
 | `to:team@example.test cc:reviewer` | Visible To and Cc header groups contain those values |
+| `recipient:alice@example.test` | The value occurs in public To or Cc headers |
+| `participant:alice@example.test` | The value occurs in public From, To or Cc headers |
 | `is:unread is:flagged` | Both observed flags match |
 | `is:read` / `is:unflagged` | The corresponding observed flag is true / false |
 | `after:2026-10-01 before:2026-11-01` | Local calendar day is strictly between those dates |
 | `on:2026-10-15` | Local calendar day is exactly 15 October 2026 |
+
+The [correspondence-search continuation](participant-search.md) adds the two
+union fields above to loaded, cached and saved header queries. Each is one
+predicate; a quoted phrase must match within one header group. Its source and
+regression cases are implemented, with runtime qualification pending the
+execution limitation recorded in its work record.
 
 Text and field matching is case-insensitive substring matching. Whitespace
 joins terms with AND. The [Boolean-search continuation](boolean-search.md) also

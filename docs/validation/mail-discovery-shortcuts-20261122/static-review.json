@@ -1,0 +1,155 @@
+{
+  "date": "2026-11-22",
+  "scope": "Static source consistency and review; not Dart/Flutter runtime qualification",
+  "source_commit": "25e93061f640ec381feb45291ccb363401a20bc8",
+  "regression_commit": "bb92051a07618b069f8fc03609d1af6863dc52a0",
+  "dart_tests_executed": false,
+  "flutter_tests_executed": false,
+  "analyzer_executed": false,
+  "formatter_executed": false,
+  "static_checks": {
+    "predicates": {
+      "recipient": [
+        "to",
+        "cc"
+      ],
+      "participant": [
+        "sender",
+        "to",
+        "cc"
+      ]
+    },
+    "ascii_truth_table_and_phrase_checks": 18,
+    "method": "Interpret only the explicit .contains(value) OR leaves as bounded JavaScript source checks; no Dart parser or runtime executed.",
+    "parser_dispatch_and_whitelist_agree": true,
+    "budgets": {
+      "codeUnits": 1024,
+      "terms": 32,
+      "operators": 32,
+      "nesting": 8
+    },
+    "rtl_example_regex_cases": 7,
+    "localized_example_languages": 3,
+    "regression_source_inventory": {
+      "packages/quds_mail_core/test/header_search_people_test.dart": {
+        "before": 0,
+        "after": 12,
+        "added": 12
+      },
+      "packages/quds_mail_ui/test/message_list_test.dart": {
+        "before": 35,
+        "after": 36,
+        "added": 1
+      },
+      "packages/quds_mail_store/test/cached_header_search_test.dart": {
+        "before": 21,
+        "after": 22,
+        "added": 1
+      },
+      "packages/quds_mail_store/test/saved_header_searches_test.dart": {
+        "before": 17,
+        "after": 18,
+        "added": 1
+      },
+      "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart": {
+        "before": 1,
+        "after": 1,
+        "added": 0
+      }
+    },
+    "total_new_test_cases": 15
+  },
+  "remote_readback": {
+    "commit": "bb92051a07618b069f8fc03609d1af6863dc52a0",
+    "files": [
+      {
+        "path": "packages/quds_mail_core/lib/src/search/header_search.dart",
+        "sha": "e7bbd56ed1d64ef26f146f0d477fb917e9475ff3",
+        "characters": 17210,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+        "sha": "8c1f99e8ba0e28b01cc6ce99060ce3e1512fa1ee",
+        "characters": 58932,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+        "sha": "6edd507b546e7804f3aa1c4487646389aaf19b2a",
+        "characters": 17201,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_strings.dart",
+        "sha": "ce90f7653e093ab35d2713b5a50df19bfbbb489e",
+        "characters": 13219,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_core/CHANGELOG.md",
+        "sha": "37c64b7a8874dd8b8cbc5c35a39eca3b21257b5e",
+        "characters": 9786,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_ui/CHANGELOG.md",
+        "sha": "6d17fd5674d6528bafd5be969a3dec2d6e5af642",
+        "characters": 4761,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "sha": "f2e771bc90872464949a7064fb241b82acef3561",
+        "characters": 81853,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_core/test/header_search_people_test.dart",
+        "sha": "6507ac52c9c91c59d871b765c3f98ddae5a4d798",
+        "characters": 6589,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_ui/test/message_list_test.dart",
+        "sha": "f5dfcce6b595c8f7fa2b13f107189b1b90d38e1e",
+        "characters": 41618,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+        "sha": "5a94c84099873f61ff59ac0a3eeaf6fd9855fbb0",
+        "characters": 25581,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+        "sha": "e563d25649c1487489c980d0c090665337883d95",
+        "characters": 24953,
+        "verified": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart",
+        "sha": "31820bceefdc9a4337131d3b36c010fdaa2763f5",
+        "characters": 2077,
+        "verified": true
+      }
+    ]
+  },
+  "independent_reviews": [
+    {
+      "checkpoint": "25e93061f640ec381feb45291ccb363401a20bc8",
+      "result": "No production correctness blocker found by source inspection; public projections, complete-union negation, scope and RTL help reviewed."
+    },
+    {
+      "checkpoint": "bb92051a07618b069f8fc03609d1af6863dc52a0",
+      "result": "No incompatible API use, syntax issue or failing expectation found by source inspection. Correct cached test title: metadata can contain Bcc, but search does not match it; body reads are probed."
+    }
+  ],
+  "limits": [
+    "No runtime acceptance claimed.",
+    "Existing loaded/cached display punctuation can differ; examples use names or addresses separately.",
+    "Normal sandbox and filesystem edits fail before process start with ENOSPC; cleanup escalation rejected by fixed permission policy; desktop runtime unavailable.",
+    "GitHub Actions was not queried or awaited."
+  ]
+}

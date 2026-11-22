@@ -11,6 +11,15 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [correspondence-search increment](participant-search.md) adds `recipient:`
+(To/Cc) and `participant:` (From/To/Cc) to the shared loaded, cached and saved
+header query engine, with EN/DE/AR help and explicit Bcc/body exclusion.
+Its source and focused regressions are saved remotely; runtime qualification is
+pending a workspace process-startup failure, as recorded in the
+[work record](../../validation/mail-discovery-shortcuts-20261122/README.md).
+It introduces no storage migration. Categories/tags and ordered rules remain
+the next larger organization increment.
+
 The connected-account and Archive work is reconciled with complete compose
 and Outbox storage ownership. Manual sends, acknowledged retries and foreground
 schedules retain their original storage owner through final receipt persistence.

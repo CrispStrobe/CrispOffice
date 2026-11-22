@@ -547,7 +547,7 @@ void main() {
   );
 
   test(
-    'people queries search retained public headers without body or Bcc reads',
+    'people queries match public headers without body reads or Bcc matches',
     () async {
       final first = _header(1);
       await saveView([first, _header(2)]);
