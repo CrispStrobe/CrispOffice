@@ -21,6 +21,7 @@ import signal
 import subprocess
 import sys
 import time
+from urllib.parse import unquote, urlparse
 
 
 HERE = Path(__file__).resolve().parent
@@ -29,21 +30,143 @@ BASE = '4621326a5a452da475f219353c298d0f9b12470e'
 STUDIO = Path('packages/quds_office_editor/example')
 MAIL_UI = Path('packages/quds_mail_ui')
 ENGINE = Path('packages/quds_office_engine')
+EDITOR = Path('packages/quds_office_editor')
+MAIL_STORE = Path('packages/quds_mail_store')
 ENGINE_TESTS = [
-    'word_directional_paragraph_io_test.dart',
+    'odf_zotero_ownership_test.dart',
+    'odf_zotero_preferences_test.dart',
+    'odf_zotero_reference_marks_test.dart',
+    'odf_zotero_resource_test.dart',
+    'odt_document_reader_test.dart',
+    'odt_image_style_review_test.dart',
+    'odt_libreoffice_bibliography_test.dart',
+    'odt_libreoffice_fixture_test.dart',
+    'odt_libreoffice_note_offsets_test.dart',
+    'odt_merged_table_zotero_test.dart',
+    'odt_outline_compatibility_test.dart',
+    'odt_reader_guards_test.dart',
+    'odt_reader_images_test.dart',
+    'odt_reader_libreoffice_defaults_test.dart',
+    'odt_reader_script_styles_test.dart',
+    'odt_reader_styles_test.dart',
+    'odt_reader_table_preservation_test.dart',
+    'odt_zotero_export_lifecycle_test.dart',
+    'odt_zotero_image_lifecycle_test.dart',
+    'odt_zotero_note_numbering_test.dart',
+    'odt_zotero_position_guard_test.dart',
+    'odt_zotero_table_geometry_test.dart',
+    'odt_zotero_writer_test.dart',
+    'office_vba_arrays_boundaries_test.dart',
+    'office_vba_arrays_integration_test.dart',
+    'office_vba_arrays_test.dart',
+    'office_vba_conformance_test.dart',
+    'office_vba_dynamic_arrays_integration_test.dart',
+    'office_vba_dynamic_arrays_test.dart',
+    'office_vba_join_conformance_test.dart',
+    'office_vba_split_test.dart',
+    'office_vba_string_constants_test.dart',
+    'office_vba_string_intrinsics_integration_test.dart',
     'office_vba_string_intrinsics_test.dart',
+    'office_vba_text_intrinsics_test.dart',
     'office_vba_variant_substrings_test.dart',
+    'office_vba_word_cell_paragraphs_test.dart',
     'office_vba_word_headers_footers_test.dart',
+    'office_vba_word_named_measurements_integration_test.dart',
     'office_vba_word_named_measurements_test.dart',
     'office_vba_word_named_selectors_test.dart',
     'office_vba_word_page_setup_test.dart',
-    'office_vba_word_text_selectors_conformance_test.dart',
-    'office_vba_word_cell_paragraphs_test.dart',
-    'office_vba_word_named_measurements_integration_test.dart',
+    'office_vba_word_split_cli_test.dart',
+    'office_vba_word_split_integration_test.dart',
     'office_vba_word_text_selectors_cli_test.dart',
+    'office_vba_word_text_selectors_conformance_test.dart',
     'office_vba_word_text_selectors_directional_test.dart',
     'office_vba_word_text_selectors_integration_test.dart',
+    'word_directional_paragraph_io_test.dart',
+    'word_empty_formatted_run_test.dart',
+    'word_extended_revision_test.dart',
+    'word_field_span_test.dart',
+    'word_package_preservation_test.dart',
+    'word_revision_scaling_test.dart',
+    'word_revision_story_test.dart',
+    'word_revision_validation_test.dart',
+    'word_table_grid_addressing_test.dart',
+    'word_zotero_add_note_test.dart',
+    'word_zotero_adjacent_citations_test.dart',
+    'word_zotero_bibliography_layout_test.dart',
+    'word_zotero_bibliography_style_fidelity_test.dart',
+    'word_zotero_blockquote_test.dart',
+    'word_zotero_boundary_formatting_test.dart',
+    'word_zotero_caret_test.dart',
+    'word_zotero_citing_test.dart',
+    'word_zotero_document_data_test.dart',
+    'word_zotero_field_recovery_test.dart',
+    'word_zotero_field_selection_test.dart',
+    'word_zotero_formatted_bibliography_test.dart',
+    'word_zotero_multiparagraph_test.dart',
+    'word_zotero_nested_note_tables_test.dart',
+    'word_zotero_nested_table_test.dart',
+    'word_zotero_nested_tables_integration_test.dart',
+    'word_zotero_note_image_test.dart',
+    'word_zotero_note_images_integration_test.dart',
+    'word_zotero_note_insertion_test.dart',
+    'word_zotero_note_list_test.dart',
+    'word_zotero_note_table_test.dart',
+    'word_zotero_note_tables_integration_test.dart',
     'word_zotero_paragraph_format_test.dart',
+    'word_zotero_preference_flow_test.dart',
+    'word_zotero_research_target_test.dart',
+    'word_zotero_rich_edit_test.dart',
+    'word_zotero_scaling_test.dart',
+    'word_zotero_simple_field_test.dart',
+    'word_zotero_source_identity_test.dart',
+    'word_zotero_style_preferences_review_test.dart',
+    'word_zotero_table_cell_replacement_test.dart',
+    'word_zotero_test.dart',
+    'word_zotero_transfer_session_test.dart',
+    'word_zotero_transfer_test.dart',
+    'word_zotero_writing_position_test.dart',
+]
+EDITOR_TESTS = [
+    'word_odt_image_load_test.dart',
+    'word_odt_load_test.dart',
+    'word_odt_merged_table_load_test.dart',
+    'word_odt_note_numbering_test.dart',
+    'word_ruler_directional_indent_test.dart',
+    'word_zotero_add_note_controller_test.dart',
+    'word_zotero_adjacent_citations_controller_test.dart',
+    'word_zotero_bibliography_controller_test.dart',
+    'word_zotero_blockquote_controller_test.dart',
+    'word_zotero_citing_controller_test.dart',
+    'word_zotero_controller_test.dart',
+    'word_zotero_converter_controller_test.dart',
+    'word_zotero_document_actions_test.dart',
+    'word_zotero_field_at_caret_test.dart',
+    'word_zotero_field_context_controller_test.dart',
+    'word_zotero_field_context_dialog_test.dart',
+    'word_zotero_field_context_render_test.dart',
+    'word_zotero_multiparagraph_controller_test.dart',
+    'word_zotero_nested_table_controller_test.dart',
+    'word_zotero_note_color_controller_test.dart',
+    'word_zotero_note_image_controller_test.dart',
+    'word_zotero_paragraph_format_controller_test.dart',
+    'word_zotero_recovery_controller_test.dart',
+    'word_zotero_recovery_dialog_test.dart',
+    'word_zotero_rich_controller_test.dart',
+    'word_zotero_transfer_controller_test.dart',
+    'word_zotero_unlink_all_test.dart',
+    'word_zotero_unlink_recovery_test.dart',
+    'word_zotero_vertical_table_controller_test.dart',
+    'word_zotero_writing_position_test.dart',
+]
+STUDIO_ZOTERO_TESTS = [
+    'studio_odt_open_test.dart',
+    'studio_zotero_citing_transport_test.dart',
+    'studio_zotero_odt_export_test.dart',
+    'studio_zotero_shortcuts_test.dart',
+]
+STORE_TESTS = [
+    'local_accounts_test.dart',
+    'local_accounts_expected_record_test.dart',
 ]
 RULER_INPUTS = [
     'packages/quds_office_editor/lib/src/editor_word/office_ruler.dart',
@@ -187,7 +310,11 @@ def selection():
     })
     ui = sorted(p.relative_to(REPO).as_posix() for p in (REPO / MAIL_UI / 'test').rglob('*_test.dart'))
     engine = [(ENGINE / 'test' / name).as_posix() for name in ENGINE_TESTS]
-    return {'studio_mail': studio, 'shared_mail_ui': ui, 'incoming_engine': engine}
+    editor = [(EDITOR / 'test' / name).as_posix() for name in EDITOR_TESTS]
+    zotero = [(STUDIO / 'test' / name).as_posix() for name in STUDIO_ZOTERO_TESTS]
+    store = [(MAIL_STORE / 'test' / name).as_posix() for name in STORE_TESTS]
+    return {'studio_mail': studio, 'shared_mail_ui': ui, 'incoming_engine': engine,
+        'incoming_editor': editor, 'studio_zotero': zotero, 'incoming_store': store}
 
 
 def ruler_continuity():
@@ -201,8 +328,10 @@ def ruler_continuity():
     return {
         'qualification': '../incoming/editor-result.json', 'original_passed_cases': 10,
         'inputs': rows, 'unchanged': all(row['unchanged'] for row in rows.values()),
-        'counted_as_fresh': False,
-        'scope': 'Retained focused ruler arithmetic qualification by exact unchanged source/test/model/helper hashes; no claim that the entire Office dependency closure stayed unchanged.',
+        'historical_cases_added_to_fresh_total': False,
+        'retained_for_current_acceptance': False,
+        'fresh_execution_gate': 'incoming_editor',
+        'scope': 'Historical 10-case ruler evidence only. PR #382 changed WmlRunProps, so the ruler suite is included once in the fresh editor gate and none of its historical cases are carried forward.',
     }
 
 
@@ -222,6 +351,191 @@ def runtime_info():
     }
 
 
+def local_import_closure(seed_files, root_package):
+    """Inspect declared dependencies and actual local Dart directives."""
+    configuration = json.loads((REPO / '.dart_tool/package_config.json').read_text())
+    graph = json.loads((REPO / '.dart_tool/package_graph.json').read_text())
+    graph_packages = {entry['name']: entry for entry in graph['packages']}
+    package_roots, library_roots = {}, {}
+    for package in configuration['packages']:
+        uri = urlparse(package['rootUri'])
+        if uri.scheme == 'file':
+            root = Path(unquote(uri.path)).resolve()
+        elif not uri.scheme:
+            root = (REPO / '.dart_tool' / unquote(package['rootUri'])).resolve()
+        else:
+            raise RuntimeError(f'Unsupported package root URI for {package["name"]}')
+        package_roots[package['name']] = root
+        library_roots[package['name']] = root / package.get('packageUri', 'lib/')
+    studio_root = (REPO / STUDIO).resolve()
+    declared = set()
+    pending_packages = [root_package]
+    root_dev = graph_packages[root_package].get('devDependencies', [])
+    pending_packages.extend(root_dev)
+    while pending_packages:
+        name = pending_packages.pop()
+        if name in declared:
+            continue
+        declared.add(name)
+        entry = graph_packages.get(name)
+        if entry is None:
+            raise RuntimeError(f'Dependency {name} is absent from package graph')
+        pending_packages.extend(entry.get('dependencies', []))
+    declared_studio = sorted(name for name in declared
+        if package_roots[name].is_relative_to(studio_root))
+    pending_files = [(REPO / path).resolve() for path in seed_files]
+    visited, resolved_packages, studio_references, unresolved = {}, set(), [], []
+    # Requiring the URI literal immediately after the keyword distinguishes a
+    # Dart directive from ordinary identifiers such as `part = ...` or a
+    # variable named `export` in generated-content helpers.
+    directive = re.compile(r'''(?m)^\s*(?:import|export|part)\s+(?=r?['"])([^;]*);''')
+    quoted = re.compile(r"['\"]([^'\"]+)['\"]")
+    while pending_files:
+        path = pending_files.pop()
+        if path in visited:
+            continue
+        if path.is_relative_to(studio_root):
+            studio_references.append(str(path.relative_to(REPO)))
+            continue
+        if not path.is_relative_to(REPO):
+            # SDK and hosted packages are version/integrity pinned by the
+            # unchanged lock/config; repository-owned directives are walked.
+            continue
+        if not path.is_file():
+            unresolved.append(str(path))
+            continue
+        source = stable_bytes(path)
+        visited[path] = digest(source)
+        for statement in directive.findall(source.decode()):
+            for uri in quoted.findall(statement):
+                if uri.startswith('dart:'):
+                    continue
+                if uri.startswith('package:'):
+                    name, separator, suffix = uri[len('package:'):].partition('/')
+                    resolved_packages.add(name)
+                    if not separator or name not in library_roots:
+                        unresolved.append(uri)
+                        continue
+                    target = (library_roots[name] / suffix).resolve()
+                elif urlparse(uri).scheme:
+                    unresolved.append(uri)
+                    continue
+                else:
+                    target = (path.parent / uri).resolve()
+                if target.is_relative_to(studio_root):
+                    studio_references.append(str(target.relative_to(REPO)))
+                elif target.is_relative_to(REPO):
+                    pending_files.append(target)
+    resolved_studio = sorted(name for name in resolved_packages
+        if name in package_roots and package_roots[name].is_relative_to(studio_root))
+    return {
+        'root_package': root_package, 'test_and_cli_seeds': seed_files,
+        'repository_package_roots': {
+            name: str(package_roots[name].relative_to(REPO))
+            for name in sorted(declared | resolved_packages)
+            if name in package_roots and package_roots[name].is_relative_to(REPO)
+        },
+        'declared_dependency_closure': sorted(declared),
+        'declared_studio_dependencies': declared_studio,
+        'resolved_package_imports': sorted(resolved_packages),
+        'resolved_studio_packages': resolved_studio,
+        'local_dart_source_sha256': {str(path.relative_to(REPO)): value for path, value in sorted(visited.items())},
+        'studio_source_references': sorted(set(studio_references)),
+        'unresolved_directives': sorted(set(unresolved)),
+        'excludes_studio': not declared_studio and not resolved_studio and not studio_references and not unresolved,
+        'scope': 'Declared runtime dependency closure plus root test dependencies; actual import/export/part directives recursively walked for repository-owned files, including conditional branches. SDK/hosted dependencies remain pinned by unchanged root lock/config and SDK identity.',
+    }
+
+
+def retained_continuity(original_name, current_inputs, runtime):
+    """Retain only the independent shared Mail UI gate after exact proof."""
+    original = HERE / original_name
+    if not re.fullmatch(r'[a-zA-Z0-9_-]+', original_name) or not original.is_dir():
+        raise RuntimeError('Retained evidence must name an existing run directory')
+    checksum_path = original / 'SHA256SUMS.txt'
+    verified_artifacts = []
+    for line in checksum_path.read_text().splitlines():
+        expected, name = line.split('  ', 1)
+        if Path(name).name != name or name in ('.', '..'):
+            raise RuntimeError('Invalid original evidence checksum path')
+        if digest(stable_bytes(original / name)) != expected:
+            raise RuntimeError(f'Original evidence checksum mismatch: {name}')
+        verified_artifacts.append(name)
+    summary = json.loads((original / 'summary.json').read_text())
+    before = json.loads(gzip.decompress((original / 'inputs-before.json.gz').read_bytes()))
+    original_runtime = json.loads((original / 'runtime.json').read_text())
+    archive = json.loads((HERE / 'runner_versions/index.json').read_text())[original_name]
+    archived_runner = HERE / 'runner_versions' / archive['path']
+    original_runner_unchanged = (
+        digest(stable_bytes(archived_runner)) == archive['sha256']
+        == summary['runner_sha256_before'] == summary['runner_sha256_after'])
+    selections = json.loads((original / 'selection.json').read_text())['suite_selection']
+    files = selections['shared_mail_ui']
+    selection_unchanged = files == selection()['shared_mail_ui']
+    closure = local_import_closure(files, 'quds_mail_ui')
+    package_roots = sorted(set(closure['repository_package_roots'].values()))
+    closure_paths = set(closure['local_dart_source_sha256'])
+
+    def retained_input(path):
+        return path in ROOT_INPUTS or path in closure_paths or any(
+            path == root or path.startswith(root + '/') for root in package_roots)
+
+    left = {path: value for path, value in before['entries'].items() if retained_input(path)}
+    right = {path: value for path, value in current_inputs['entries'].items() if retained_input(path)}
+    changed = []
+    for path in sorted(set(left) | set(right)):
+        a, b = left.get(path, {}), right.get(path, {})
+        if (a.get('sha256'), a.get('symlink_target_sha256'), a.get('missing')) != (
+            b.get('sha256'), b.get('symlink_target_sha256'), b.get('missing')):
+            changed.append(path)
+    uncaptured_closure = sorted(closure_paths - set(left) | closure_paths - set(right))
+    closure_hash_mismatches = sorted(path for path, value in closure['local_dart_source_sha256'].items()
+        if right.get(path, {}).get('sha256') != value)
+    generated_unchanged = before['generated'] == current_inputs['generated']
+    runtime_unchanged = (original_runtime['version'] == runtime['version']
+        and original_runtime['executables_sha256'] == runtime['executables_sha256'])
+    original_source_stable = (not summary['inputs_not_matching_source_commit']
+        and all(check['stable'] for check in summary['source_checks']))
+    name = 'shared_mail_ui'
+    record = json.loads((original / (name + '-result.json')).read_text())
+    report = record['reporter']
+    accepted_original = (record['exit_code'] == 0 and report['reporter_success']
+        and not report['failed_cases'] and not report['skipped_cases'] and not report['incomplete_cases']
+        and not report['incomplete_lifecycle_ids'] and not report['orphan_completion_ids']
+        and not report['duplicate_start_ids'] and not report['duplicate_completion_ids']
+        and not report['missing_suites'] and not report['unexpected_suites'])
+    gate = {'name': name, 'original_result': f'../{original_name}/{name}-result.json',
+        'original_source_head': summary['expected_source_head'], 'accepted_original_gate': accepted_original,
+        'passed_cases': report['passed_cases'], 'suite_count': report['suite_count'],
+        'freshly_reexecuted_in_recovery': False}
+    all_changed = source_drift(before, current_inputs)['changed_source_inputs']
+    return {
+        'original_run': original_name, 'original_source_head': summary['expected_source_head'],
+        'current_source_head': current_inputs['expected_head'],
+        'original_artifacts_verified': verified_artifacts,
+        'original_checksum_index_sha256': digest(stable_bytes(checksum_path)),
+        'archived_original_runner': str(archived_runner.relative_to(HERE)),
+        'original_runner_sha256': archive['sha256'], 'original_runner_verified': original_runner_unchanged,
+        'original_source_stable': original_source_stable,
+        'retained_repository_package_roots': package_roots,
+        'compared_package_and_root_inputs': len(left), 'current_compared_inputs': len(right),
+        'compared_input_sha256': {path: row.get('sha256') for path, row in sorted(right.items())},
+        'changed_retained_inputs': changed, 'uncaptured_import_inputs': uncaptured_closure,
+        'import_manifest_hash_mismatches': closure_hash_mismatches,
+        'generated_configuration_unchanged': generated_unchanged, 'runtime_identity_unchanged': runtime_unchanged,
+        'retained_suite_selection_unchanged': selection_unchanged,
+        'import_dependency_closure': closure, 'retained_gates': [gate],
+        'retained_passed_cases': report['passed_cases'],
+        'changed_inputs_outside_retained_scope': [path for path in all_changed if not retained_input(path)],
+        'superseded_historical_gates': ['incoming_engine', 'changed_ruler'],
+        'accepted': (not changed and not uncaptured_closure and not closure_hash_mismatches
+            and generated_unchanged and runtime_unchanged and original_source_stable
+            and original_runner_unchanged and accepted_original and selection_unchanged
+            and closure['excludes_studio']),
+        'scope': 'Only shared Mail UI is retained. Every captured file within its repository-owned declared/actual dependency packages, actual imported Dart files, root configuration, generated package graph/config and runtime identity must match exactly. Engine and ruler are freshly executed; original failed Studio contributes no carried-forward cases.',
+    }
+
+
 def commands(selected, static, ruler):
     sdk = Path(os.environ.get('FLUTTER_ROOT', REPO.parent / 'runtime/flutter'))
     dart = str(sdk / 'bin/cache/dart-sdk/bin/dart')
@@ -232,6 +546,9 @@ def commands(selected, static, ruler):
     ]
     for name, cwd, executable, extra in [
         ('incoming_engine', ENGINE, dart, []),
+        ('incoming_editor', EDITOR, flutter, ['--no-pub']),
+        ('incoming_store', MAIL_STORE, dart, []),
+        ('studio_zotero', STUDIO, flutter, ['--no-pub']),
         ('studio_mail', STUDIO, flutter, ['--no-pub']),
         ('shared_mail_ui', MAIL_UI, flutter, ['--no-pub']),
     ]:
@@ -239,11 +556,6 @@ def commands(selected, static, ruler):
         relative = [str(Path(path).relative_to(cwd)) for path in files]
         gates.append({'name': name, 'cwd': str(cwd), 'kind': 'tests', 'expected_suites': files,
             'command': [executable, 'test', *extra, '--concurrency=2', '--reporter=json', *relative]})
-    if not ruler['unchanged']:
-        cwd = Path('packages/quds_office_editor')
-        file = str(cwd / 'test/word_ruler_directional_indent_test.dart')
-        gates.append({'name': 'changed_ruler', 'cwd': str(cwd), 'kind': 'tests', 'expected_suites': [file],
-            'command': [flutter, 'test', '--no-pub', '--concurrency=2', '--reporter=json', 'test/word_ruler_directional_indent_test.dart']})
     return gates
 
 
@@ -401,7 +713,8 @@ def plan():
         'suite_selection': selected, 'changed_dart_paths': static, 'static_path_count': len(static),
         'planned_source_input_count': len(input_paths()),
         'manifest_policy': 'Full local package/third_party sources/tests/fixtures/assets/examples/CLI helpers and manifests, excluding screenshots; root lock/config/pin and generated package config/graph. No old validation evidence is copied.',
-        'retained_ruler': ruler, 'commands': commands(selected, static, ruler),
+        'historical_ruler': ruler, 'commands': commands(selected, static, ruler),
+        'acceptance_boundary': 'Pinned VM and Flutter widget regression only; no new JavaScript/browser Split, live-provider, installed-platform or complete product-parity claim.',
         'missing_planned_suites': [path for files in selected.values() for path in files if not (REPO / path).is_file()],
         'execution_policy': 'All gates sequential. Test-runner concurrency=2. Normal pinned runners; no automatic retries, CI polling, golden updates, SDK patches or Git mutations. Source is captured at --run time and rechecked after every gate.',
     }
@@ -414,11 +727,30 @@ def main():
     mode.add_argument('--run', action='store_true')
     parser.add_argument('--expected-head')
     parser.add_argument('--run-id')
+    parser.add_argument('--gates', nargs='+', choices=[
+        'analysis', 'format', 'incoming_engine', 'incoming_editor', 'incoming_store',
+        'studio_zotero', 'studio_mail', 'shared_mail_ui',
+    ], help='Run only these named gates, retaining their normal sequential order.')
+    parser.add_argument('--retain-from', help='Existing original run whose accepted shared Mail UI gate must pass exact package/import/runtime continuity checks.')
     args = parser.parse_args()
     planned = plan()
+    planned['available_gate_names'] = [gate['name'] for gate in planned['commands']]
+    if args.gates:
+        if len(set(args.gates)) != len(args.gates):
+            parser.error('--gates must not repeat a gate')
+        unavailable = set(args.gates) - set(planned['available_gate_names'])
+        if unavailable:
+            parser.error('Unavailable gates: ' + ', '.join(sorted(unavailable)))
+        planned['commands'] = [gate for gate in planned['commands'] if gate['name'] in args.gates]
+    planned['selected_gate_names'] = [gate['name'] for gate in planned['commands']]
+    planned['selected_suite_counts'] = {name: count for name, count in planned['suite_counts'].items()
+        if name in planned['selected_gate_names']}
+    planned['retained_evidence_request'] = args.retain_from
+    if args.retain_from and 'shared_mail_ui' in planned['selected_gate_names']:
+        parser.error('The retained shared Mail UI gate must not also be selected for fresh execution')
     if args.plan:
         write_json(HERE / 'plan.json', planned)
-        print(json.dumps({key: planned[key] for key in ('observed_head', 'suite_counts', 'static_path_count', 'planned_source_input_count', 'missing_planned_suites')}, indent=2))
+        print(json.dumps({key: planned[key] for key in ('observed_head', 'suite_counts', 'selected_suite_counts', 'selected_gate_names', 'static_path_count', 'planned_source_input_count', 'missing_planned_suites')}, indent=2))
         return 0
     if not args.expected_head or current_head() != args.expected_head:
         parser.error('--run requires --expected-head equal to the current exact Git HEAD')
@@ -437,8 +769,20 @@ def main():
     before = capture_inputs(expected)
     write_json(directory / 'selection.json', planned | {'gate_execution_authorized_by_this_command': True})
     write_json(directory / 'runtime.json', runtime)
-    write_json(directory / 'retained-ruler.json', planned['retained_ruler'])
+    write_json(directory / 'historical-ruler.json', planned['historical_ruler'])
     manifests = [save_manifest(directory, 'inputs-before.json', before)]
+    retention = None
+    if args.retain_from:
+        retention = retained_continuity(args.retain_from, before, runtime)
+        write_json(directory / 'retained-continuity.json', retention)
+        if not retention['accepted']:
+            write_json(directory / 'summary.json', {
+                'accepted': False, 'gates_executed': [],
+                'reason': 'Independent gate continuity failed before recovery execution.',
+                'continuity': 'retained-continuity.json',
+            })
+            print('Retained continuity failed; no recovery gates executed.', flush=True)
+            return 1
     results, drifts = [], []
     runner_sha = digest(Path(__file__).read_bytes())
     for gate in planned['commands']:
@@ -475,12 +819,18 @@ def main():
         'gate_summaries': [{key: record[key] for key in ('name', 'exit_code', 'started_at_utc', 'finished_at_utc')} |
             ({key: record['reporter'][key] for key in ('suite_count', 'passed_cases', 'failed_cases', 'skipped_cases', 'per_file_counts')} if record['kind'] == 'tests' else {}) for record in results],
         'historical_results_added_to_fresh_total': False,
-        'scope': 'Local normal-runner regression only; no live-provider, installed-platform or complete product-parity claim. GitHub Actions not queried or awaited.',
+        'retained_continuity': 'retained-continuity.json' if retention else None,
+        'retained_accepted_cases': retention['retained_passed_cases'] if retention else 0,
+        'retained_evidence_accepted': retention['accepted'] if retention else None,
+        'scope': 'Local pinned VM/widget regression only; no new JavaScript/browser Split, live-provider, installed-platform or complete product-parity claim. GitHub Actions not queried or awaited.',
     }
     summary['accepted'] = (summary['all_planned_gates_completed'] and summary['all_commands_exit_zero']
         and protocols_ok and all(row['stable'] for row in drifts)
         and not summary['inputs_not_matching_source_commit']
+        and (retention is None or retention['accepted'])
         and summary['runner_sha256_before'] == summary['runner_sha256_after'])
+    summary['combined_accepted_case_count'] = (summary['fresh_unique_passed_cases']
+        + summary['retained_accepted_cases']) if summary['accepted'] else None
     write_json(directory / 'summary.json', summary)
     sums = [digest(path.read_bytes()) + '  ' + path.name for path in sorted(directory.iterdir()) if path.is_file() and path.name != 'SHA256SUMS.txt']
     (directory / 'SHA256SUMS.txt').write_text('\n'.join(sums) + '\n')

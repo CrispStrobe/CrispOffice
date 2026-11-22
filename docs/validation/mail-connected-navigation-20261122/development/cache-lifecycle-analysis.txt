@@ -1,0 +1,6 @@
+Analyzing studio_mail_cached_host_test.dart, studio_mail_local_accounts_dialog_test.dart, studio_mail_lifecycle_test.dart...
+
+  error - packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart:32:19 - The named parameter 'credentialStore' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'credentialStore'. - undefined_named_parameter
+  error - packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart:33:19 - The named parameter 'autoConnectSavedAccount' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'autoConnectSavedAccount'. - undefined_named_parameter
+
+2 issues found.

@@ -6,18 +6,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
+import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation_strings.dart';
 import 'package:quds_office_studio/studio_mail_cloud.dart';
-import 'package:quds_office_studio/studio_mail_draft.dart';
+import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
+import 'package:quds_office_studio/studio_mail_flag_journal.dart';
 import 'package:quds_office_studio/studio_mail_local_accounts.dart';
 import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
+const _success = MailSuccess<MailUnit>(MailUnit.value);
 const _draft = StudioMailDraft(
   to: 'recipient@example.test',
   subject: 'Retained draft',
@@ -223,12 +226,17 @@ final class _DraftStore extends Fake
     implements
         StudioMailDraftStore,
         StudioMailDraftCatalog,
-        StudioMailMailboxStoreOwner {
-  _DraftStore(this.account) : mailboxStore = _MailboxStore(account);
+        StudioMailMailboxStoreOwner,
+        StudioMailFlagJournalOwner {
+  _DraftStore(this.account)
+    : mailboxStore = _MailboxStore(account),
+      flagJournal = _JournalStore(account);
   @override
   final MailAccountId account;
   @override
   final _MailboxStore mailboxStore;
+  @override
+  final _JournalStore flagJournal;
   @override
   String get selectedDraftId => 'retained';
   @override
@@ -239,6 +247,7 @@ final class _DraftStore extends Fake
   bool failClose = false;
   Completer<void>? loadGate;
   Completer<void>? saveGate;
+  Completer<void>? markerGate;
   Completer<void>? closeGate;
   final savedUncertainty = <bool>[];
   int saves = 0;
@@ -261,9 +270,11 @@ final class _DraftStore extends Fake
     StudioMailDraft draft, {
     required bool submissionUncertain,
   }) async {
+    final pendingSave = saveGate;
     saves++;
     savedUncertainty.add(submissionUncertain);
-    await saveGate?.future;
+    await pendingSave?.future;
+    if (submissionUncertain) await markerGate?.future;
     if (failSave) {
       throw const StudioMailDraftStoreException(MailProblemCode.storageFailure);
     }
@@ -285,6 +296,51 @@ final class _DraftStore extends Fake
   }
 }
 
+final class _JournalStore extends Fake implements StudioMailFlagJournalStore {
+  _JournalStore(this.account);
+  @override
+  final MailAccountId account;
+  final journal = _Journal();
+
+  @override
+  MailBulkFlagJournal bind({
+    required MailAccountId sourceAccount,
+    required MailProviderKind provider,
+    required List<String> subjects,
+    required bool Function() isCurrent,
+  }) => journal;
+}
+
+final class _Journal implements MailBulkFlagJournal {
+  Completer<void>? resultGate;
+  int recordCalls = 0;
+  final results = <MailBulkFlagItemResult>[];
+  MailBulkFlagReport? report;
+
+  @override
+  Future<MailResult<MailUnit>> prepare(MailBulkFlagPlan plan) async => _success;
+
+  @override
+  Future<MailResult<MailUnit>> beginAttempt(int index) async => _success;
+
+  @override
+  Future<MailResult<MailUnit>> recordResult(
+    int index,
+    MailBulkFlagItemResult result,
+  ) async {
+    recordCalls++;
+    await resultGate?.future;
+    results.add(result);
+    return _success;
+  }
+
+  @override
+  Future<MailResult<MailUnit>> finish(MailBulkFlagReport report) async {
+    this.report = report;
+    return _success;
+  }
+}
+
 final class _Tokens extends Fake implements MailCloudTokenSource {
   int disposals = 0;
   @override
@@ -298,7 +354,11 @@ final class _Provider extends Fake
   final MailAccountId account;
   final MailProviderKind kind;
   Completer<MailResult<MailCapabilities>>? capabilitiesGate;
+  Completer<MailResult<MailUnit>>? mutationGate;
+  final commands = <MailOperation>[];
+  final submissions = <MailPreparedMessage>[];
   MailOperationLease? lease;
+  int messageCount = 1;
   int capabilitiesCalls = 0;
   int lists = 0;
   int headers = 0;
@@ -347,18 +407,47 @@ final class _Provider extends Fake
     return MailSuccess(
       MailHeaderPage(
         messages: [
-          MailHeaderRecord(
-            id: MailMessageId('one'),
-            remote: MailOpaqueIdentity(
-              account: account,
-              provider: kind,
-              value: 'one',
+          for (var index = 0; index < messageCount; index++)
+            MailHeaderRecord(
+              id: MailMessageId(index == 0 ? 'one' : 'extra-$index'),
+              remote: MailOpaqueIdentity(
+                account: account,
+                provider: kind,
+                value: index == 0 ? 'one' : 'extra-$index',
+              ),
+              envelope: MailEnvelope(
+                subject: index == 0
+                    ? 'Current account message'
+                    : 'Another account message $index',
+              ),
+              flags: const MailMessageFlags(),
             ),
-            envelope: MailEnvelope(subject: 'Current account message'),
-            flags: const MailMessageFlags(),
-          ),
         ],
       ),
+    );
+  }
+
+  @override
+  Future<MailResult<MailUnit>> apply(
+    MailOperation operation,
+    MailOperationLease lease,
+  ) async {
+    this.lease = lease;
+    commands.add(operation);
+    return mutationGate == null ? _success : await mutationGate!.future;
+  }
+
+  @override
+  Future<MailSubmissionResult> submit(
+    MailPreparedMessage message, {
+    required String attemptId,
+    required MailOperationLease lease,
+  }) async {
+    this.lease = lease;
+    submissions.add(message);
+    return MailSubmissionResult(
+      attemptId: attemptId,
+      outcome: MailSubmissionOutcome.accepted,
     );
   }
 
@@ -400,11 +489,13 @@ final class _Harness {
   Completer<MailResult<MailCloudTokenSource>>? authorizationGate;
   int authorizations = 0;
   int storeOpens = 0;
+  int messageCount = 1;
 
   _Provider create(MailAccountId account) {
     expect(account, identity.account);
     final provider = _Provider(account, kind)
-      ..capabilitiesGate = capabilitiesGate;
+      ..capabilitiesGate = capabilitiesGate
+      ..messageCount = messageCount;
     providers.add(provider);
     return provider;
   }
@@ -499,7 +590,9 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
       harness.openGate,
       harness.owner.loadGate,
       harness.owner.saveGate,
+      harness.owner.markerGate,
       harness.owner.closeGate,
+      harness.owner.flagJournal.journal.resultGate,
       harness.owner.mailboxStore.cancelGate,
       harness.owner.mailboxStore.saveGate,
       harness.owner.mailboxStore.loadGate,
@@ -509,6 +602,10 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
     }
     harness.owner.failClose = false;
     harness.owner.mailboxStore.cancelFailures = 0;
+    for (final provider in harness.providers) {
+      final gate = provider.mutationGate;
+      if (gate != null && !gate.isCompleted) gate.complete(_success);
+    }
     await tester.pumpWidget(const SizedBox.shrink());
     await _pump(tester);
   });
@@ -1636,6 +1733,130 @@ void main() {
           expect(harness.storeOpens, 2);
           expect(harness.owner.loads, 1);
           expect(find.text('Current account message'), findsOneWidget);
+        },
+      );
+    }
+
+    testWidgets(
+      '${kind.name}: close stops bulk dispatch before saving and drains its receipt',
+      (tester) async {
+        final harness = _Harness(kind)..messageCount = 2;
+        harness.owner.snapshot = const StudioMailStoredDraft(
+          draft: _draft,
+          submissionUncertain: true,
+        );
+        await _show(tester, harness);
+        await _connect(tester, harness);
+        final provider = harness.providers.single;
+        final journal = harness.owner.flagJournal.journal;
+        provider.mutationGate = Completer<MailResult<MailUnit>>();
+        harness.owner.saveGate = Completer<void>();
+        journal.resultGate = Completer<void>();
+        final list = tester.widget<MailMessageList>(
+          find.byType(MailMessageList),
+        );
+        final callback = list.onBulkAction!;
+        final ids = list.items.map((item) => item.id).toList();
+        expect(ids, hasLength(2));
+        callback(MailBulkFlagAction.flag, ids);
+        await _until(tester, () => provider.commands.length == 1);
+        await _press(tester, _icon(_strings.close));
+        expect(harness.owner.savedUncertainty, [true]);
+        expect(provider.lease!.isCurrent, isTrue);
+        callback(MailBulkFlagAction.flag, ids);
+        await _pump(tester);
+        expect(provider.commands, hasLength(1));
+
+        provider.mutationGate!.complete(_success);
+        await _until(tester, () => journal.recordCalls == 1);
+        expect(journal.results, isEmpty);
+        expect(harness.owner.closeCalls, 0);
+        harness.owner.saveGate!.complete();
+        await _until(tester, () => !provider.lease!.isCurrent);
+        expect(harness.owner.closeCalls, 0);
+        expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+
+        journal.resultGate!.complete();
+        await _until(
+          tester,
+          () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+        );
+        expect(journal.results.single.outcome, MailBulkFlagOutcome.confirmed);
+        expect(journal.report!.confirmedCount, 1);
+        expect(journal.report!.unattemptedCount, 1);
+        expect(harness.owner.closed, 1);
+        expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+        callback(MailBulkFlagAction.flag, ids);
+        await _pump(tester);
+        expect(provider.commands, hasLength(1));
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    for (final failCloseSave in [false, true]) {
+      testWidgets(
+        '${kind.name}: close intent prevents first send after a pending marker${failCloseSave ? ' even when close save fails' : ''}',
+        (tester) async {
+          final harness = _Harness(kind);
+          harness.owner.snapshot = const StudioMailStoredDraft(
+            draft: _draft,
+            submissionUncertain: false,
+          );
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          final provider = harness.providers.single;
+          await _press(tester, _icon(_strings.compose));
+          expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+          harness.owner.markerGate = Completer<void>();
+          await _press(
+            tester,
+            find.widgetWithText(FilledButton, _strings.send),
+          );
+          await _until(
+            tester,
+            () => harness.owner.savedUncertainty.contains(true),
+          );
+          expect(find.byType(StudioMailComposeDialog), findsNothing);
+          expect(provider.submissions, isEmpty);
+          final beforeClose = harness.owner.saves;
+          harness.owner.saveGate = Completer<void>();
+          await _press(tester, _icon(_strings.close));
+          expect(harness.owner.saves, beforeClose + 1);
+          expect(harness.owner.closeCalls, 0);
+
+          if (failCloseSave) {
+            harness.owner.failSave = true;
+            harness.owner.saveGate!.complete();
+            await _pump(tester);
+            expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
+            expect(provider.lease!.isCurrent, isTrue);
+            harness.owner.failSave = false;
+          }
+          harness.owner.markerGate!.complete();
+          await _pump(tester);
+          expect(provider.submissions, isEmpty);
+          expect(harness.owner.closeCalls, 0);
+          expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+          expect(find.text(_strings.sending), findsNothing);
+          if (failCloseSave) {
+            expect(
+              tester.widget<IconButton>(_icon(_strings.compose)).onPressed,
+              isNotNull,
+            );
+            await _press(tester, _icon(_strings.close));
+          } else {
+            expect(provider.lease!.isCurrent, isTrue);
+            harness.owner.saveGate!.complete();
+          }
+          await _until(
+            tester,
+            () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+          );
+          expect(provider.submissions, isEmpty);
+          expect(provider.lease!.isCurrent, isFalse);
+          expect(harness.owner.closed, 1);
+          expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+          expect(tester.takeException(), isNull);
         },
       );
     }

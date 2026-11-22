@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/studio_mail_account_navigation_router_test.dart",
+    "test/studio_mail_presets_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor/example",
+  "exit_code": 0,
+  "expected_suites": [
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_presets_test.dart"
+  ],
+  "finished_at_utc": "2026-11-22T12:16:07.344355+00:00",
+  "interrupted": false,
+  "kind": "tests",
+  "name": "router_presets",
+  "observed_head": "6d63c6e2a44848b4f2fb9d7177d2d605506f98cb",
+  "started_at_utc": "2026-11-22T12:15:51.666011+00:00",
+  "status": "completed",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "router_presets.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "452860cd163e232677ca5ce28c57d6a1992618e8c5c3d06722c88f703eba97f8",
+    "path": "router_presets.jsonl.gz",
+    "raw_bytes": 9437,
+    "raw_sha256": "c4a42ffaa1cf0a213016cd3bafb70ef676d74bf3370f979f8b29635beb9e0640"
+  }
+}

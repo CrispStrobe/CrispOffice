@@ -39,9 +39,93 @@ The final open-PR response at that capture was empty. Branches remain intact.
 Publication still uses a fresh expected-main check, so an advance cannot be
 silently overwritten.
 
-## Validation plan and current status
+Before the corrected final freeze, main advanced again to
+`4cc604810fb2f41ac7ba04cbed65cb76300bff59` through PR #382. The normal merge
+incorporated its 12 previously unmerged commits and exactly matched the tree
+predicted by `git merge-tree`. This adds atomic selected-account refresh before
+owner adoption, VBA Split authoring, and Zotero/Word field, converter, style and
+ODT changes. Our newer Close/dispatch fences, native held-owner recovery and
+fixture corrections remain present. `late-main-intake.json` records the exact
+delta and merge receipt.
 
-Implementation and qualification are in progress. Use the repository-pinned, unmodified Flutter 3.47.8 / Dart 3.13.7 SDK and locked dependencies. Runtime provenance is in `runtime-provenance.json`. Test the real account-navigation paths, exact destination validation, draft-save failure, session/repository draining, cancellation and stale asynchronous results, then run existing Mail regressions and focused incoming Office tests. Retain actual commands, raw results, source hashes and failures.
+## Local qualification and correction
+
+The first combined source was frozen at remote commit
+`d53f30f1874b38d36a791d1d3881583e4e42a2d6`, tree
+`9cf78cd9b8a26b41f18e97ea147636acae8e8396`. The complete remote tree was verified
+against the local source before qualification. The run uses the
+repository-pinned, unmodified Flutter 3.47.8 / Dart 3.13.7 SDK and locked
+dependencies. Runtime provenance is in `runtime-provenance.json` and the final
+run's `runtime.json`.
+
+The original combined run completed 110 Studio Mail suites, 18 shared Mail UI
+suites and 14 incoming engine suites, plus strict analysis and formatting of
+87 changed Dart paths. All 6,116 captured source/configuration inputs and the
+generated package configuration/graph stayed unchanged after every gate and
+matched the exact source commit. The runner itself stayed unchanged.
+
+| Original gate at `d53f30f1` | Passed | Failed | Skipped / incomplete |
+| --- | ---: | ---: | ---: |
+| Incoming engine, 14 suites | 903 | 0 | 0 / 0 |
+| Studio Mail, 110 suites | 2,203 | 18 | 0 / 0 |
+| Shared Mail UI, 18 suites | 294 | 0 | 0 / 0 |
+
+The original run is **not accepted**. Its complete raw reporters, assertions,
+source manifests and checksums remain in `final/qualified-source/`; no failed
+attempt was rewritten as passing. Analysis and formatting both exited zero.
+
+The broad run exposed Close requests being ignored during busy provider work
+and unrelated IMAP credential loading blocking explicit native provider setup.
+Corrections restore cancellation while retaining saved drafts and operation
+receipts, and fence delayed send dispatch after Close begins. Controlled catalog
+tests cover all three provider setup entries while IMAP credentials are pending.
+
+It also reached older fixture gaps: cached-delete fixtures did not advertise
+Delete, sync-capable empty-cache views were checked against the older label, and
+account-free lifecycle/preset tests entered controls before automatic catalog
+restoration completed. These are corrected at the fixture boundary. A separate
+cached-store teardown/open diagnostic is retained in `development/`. Corrected
+source and final results are recorded in the recovery report. The later PR #382
+intake invalidates reuse of the original engine result and ruler continuity;
+those changed inputs require fresh qualification. Only the original shared Mail
+UI gate is eligible for reuse, through exact package/input, import/dependency,
+configuration and runtime checks.
+
+Focused corrections passed 64 provider-navigation cases (including nine new
+Close/marker/receipt regressions) and 79 cache/local-account/file-picker cases.
+The cache timeout did not recur in the exact case or full cached-host sequence
+when run from the Studio package directory, matching the original gate. Earlier
+repository-root probes failed before storage admission because they did not
+use the same native-asset package context; they receive no acceptance credit.
+No timeout was increased and no production cleanup change was made on that
+basis. Sanitized open/close-stage diagnostics remain in the fixture.
+
+Development checks exercise the real IMAP → EWS → IMAP host route, exact
+destination identity, ambiguous SMTP selection, draft-save failure, delayed
+observer/store release, retained uncertainty, target removal at asynchronous
+boundaries, stale callbacks, and explicit failed-release recovery. The final
+focused native/release/router batch passed 21 cases; the provider batch passed
+55. These development runs are not added to final fresh totals.
+
+The earlier integrated baseline passed 792 incoming engine cases and ten ruler
+cases. The first combined engine gate then passed 903 cases. Both earlier engine
+counts remain historical after the latest Word changes. The expanded final
+scope includes a fresh ruler run because its captured Word-properties input
+changed; the earlier ten ruler cases are not added to final totals.
+
+The revised final scope selects 92 incoming engine suites, 30 incoming editor
+suites (including the ruler), four Studio Zotero suites, two account-store suites,
+and all 110 Studio Mail suites. This is 238 fresh behavioral suites. The original
+18-suite shared UI gate is retained only if its independent package closure and
+all relevant inputs still match exactly. This is VM/widget qualification; new
+JavaScript/browser Split acceptance is not claimed.
+
+Initial failed test attempts and their corrections remain in `development/`.
+The first provider startup was rejected by automatic review because an
+unsourced Flutter invocation attempted its Azure metadata bot-detection probe.
+No cases ran in that attempt. Subsequent runs use the SDK's supported `BOT=true`
+and `CI=true` settings to suppress that fallback, without SDK patches or changes
+to network/approval controls. All final commands use that explicit environment.
 
 The incoming Archive record documents a preexisting Word visual-golden mismatch. This continuation does not refresh that golden or represent its historical failure as passing. No GitHub Actions queue is queried or awaited; local qualification is the acceptance evidence.
 
@@ -54,7 +138,10 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `ae72c31a234edd71f51de7688d18c8f7490422a6` | Reconciled baseline, initial intake and runtime provenance |
 | `622d9fda2a6564638af153de887adea922bc26f8` | Shared chooser, native/provider routing and initial regressions |
 | `0cb4057ae80162d754a2d5c3f145fc7f38bb0590` | Stale-admission and retained-owner fixes, incoming Word/Zotero continuation and local evidence |
+| `d53f30f1874b38d36a791d1d3881583e4e42a2d6` | First frozen combined source, complete captured intake, observer-release recovery and focused regression evidence |
+| `6d63c6e2a44848b4f2fb9d7177d2d605506f98cb` | Complete first combined run with its failures, restored cancellable Close and independent provider setup, and corrective regressions |
+| `4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3` | Corrected fixtures, all focused recovery evidence and the source immediately before the final main advance |
 
 Each remote tree was checked against its local checkpoint before moving the
-branch with an expected-head lease and `force=false`. Final source and
-qualification checkpoints follow separately. GitHub Actions are not awaited.
+branch with an expected-head lease and `force=false`. The qualification
+checkpoint follows the source checkpoint. GitHub Actions are not awaited.
