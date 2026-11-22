@@ -37,6 +37,14 @@ Changes are applied as one undo step. Cancelling the picker or declining a
 formatting review returns focus to the document without changing it. Finish IME
 composition before starting a command.
 
+Refresh and citation-style changes retain your writing position in surrounding
+prose, even when earlier citations grow or a bibliography changes its number
+of paragraphs. Body and Notes selections retain their direction. A caret
+inside changed citation text moves to that citation's new end; a caret exactly
+at its start stays before it. If a citation-only note is removed or converted,
+its writing position returns to the corresponding body anchor. Undo restores
+the original selection, and redo restores the updated position.
+
 Switching from Word to Mail or another app cancels the pending operation for
 that Word view, including when you return before Zotero responds. Close and
 reopen the Zotero workspace to start a new operation. The citation and refresh

@@ -1,0 +1,1037 @@
+{
+  "source_commits": {
+    "baseline": "c522851d165b395a7f60422a1be969dffc39c9ff",
+    "full_macro_run": "75e067c9749de0f1acaf7214d28c61ace6b4f411",
+    "final_corrected_source": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+    "merge_including_concurrent_mail_main": "81d6023b30def58fda5be2279445a08b925d53a5"
+  },
+  "runtime": {
+    "dart_version": "3.14.1 stable (Tue Nov 17 00:01:24 2026 -0800), linux_x64",
+    "dart_executable": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+    "sdk_archive_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.14.1/sdk/dartsdk-linux-x64-release.zip",
+    "sdk_checksum_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.14.1/sdk/dartsdk-linux-x64-release.zip.sha256sum",
+    "archive_bytes": 267277716,
+    "sha256_verified_against_official_checksum": "759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8",
+    "node_version": "v24.22.3",
+    "node_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "env": {
+      "TMPDIR": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "PUB_CACHE": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache"
+    },
+    "harness": "Isolated pure-Dart workspace containing exact git-archive package snapshots for legacy_doc_parser, quds_office_engine and its example; editor fonts copied as exact tracked fixtures. No production source or package pubspec edits. Root-only workspace manifest reduces Flutter scope. 56 hosted packages retain original repository lockfile versions.",
+    "initial_setup_failures": [
+      "Initial pub get could not create /tmp; configured writable TMPDIR.",
+      "Next pub get required including the pure-Dart engine/example workspace member. Resolution then succeeded offline."
+    ],
+    "flutter_sdk_and_widget_tests_executed": false
+  },
+  "final_qualification": {
+    "passed_test_cases": 6614,
+    "failed_test_cases": 0,
+    "skipped_test_cases": 0,
+    "test_files": 129,
+    "macro_vba_test_cases": 6491,
+    "macro_vba_files": 124,
+    "additional_native_word_test_cases": 123,
+    "additional_native_word_files": 5,
+    "counting": "One visible Dart test registration per case, including distinct parameterized registrations sharing display names; hidden loading/setup events excluded. Full-run integration registrations are replaced wholesale by the corrected 24-case run. Retries and baseline cases are never added to final totals.",
+    "assembly": "Checkpoint75e full run: 6485 passes + six stale integration fixture failures. Remove all24 old integration cases (18 passes, six failures), add all24 corrected ca4 integration passes, then add123 independent native operation cases =6614 passes.",
+    "single_all_green_broad_run_claimed": false,
+    "baseline_qualification": "6352 baseline registrations resolved across original121-file run (6348 pass, four missing-font errors) and96-case affected-suite retry. Only four newly resolved baseline cases are added; 92 retry duplicates excluded.",
+    "case_manifest": "logs/final-qualified-cases.json.gz"
+  },
+  "test_runs": [
+    {
+      "label": "baseline-macro-suite",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_macro_cli_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_slide_format_test.dart",
+        "test/office_macro_word_all_caps_test.dart",
+        "test/office_macro_word_font_colors_test.dart",
+        "test/office_macro_word_headers_footers_test.dart",
+        "test/office_macro_word_language_controls_test.dart",
+        "test/office_macro_word_line_spacing_test.dart",
+        "test/office_macro_word_list_format_test.dart",
+        "test/office_macro_word_list_levels_test.dart",
+        "test/office_macro_word_orientation_test.dart",
+        "test/office_macro_word_page_setup_test.dart",
+        "test/office_macro_word_paragraph_controls_test.dart",
+        "test/office_macro_word_paragraph_style_test.dart",
+        "test/office_macro_word_position_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_word_section_start_test.dart",
+        "test/office_macro_word_shading_test.dart",
+        "test/office_macro_word_tab_stops_test.dart",
+        "test/office_macro_word_table_cells_test.dart",
+        "test/office_macro_word_text_columns_test.dart",
+        "test/office_macro_word_text_controls_test.dart",
+        "test/office_vba_arguments_integration_test.dart",
+        "test/office_vba_arguments_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_numeric_conformance_test.dart",
+        "test/office_vba_numeric_intrinsics_integration_test.dart",
+        "test/office_vba_numeric_intrinsics_test.dart",
+        "test/office_vba_powerpoint_cli_test.dart",
+        "test/office_vba_powerpoint_conformance_test.dart",
+        "test/office_vba_powerpoint_integration_test.dart",
+        "test/office_vba_powerpoint_layout_integration_test.dart",
+        "test/office_vba_powerpoint_layout_test.dart",
+        "test/office_vba_powerpoint_margins_integration_test.dart",
+        "test/office_vba_powerpoint_margins_test.dart",
+        "test/office_vba_powerpoint_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_procedures_test.dart",
+        "test/office_vba_strcomp_test.dart",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_text_conformance_test.dart",
+        "test/office_vba_text_construction_test.dart",
+        "test/office_vba_text_intrinsics_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_variant_conversions_integration_test.dart",
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_word_all_caps_integration_test.dart",
+        "test/office_vba_word_all_caps_test.dart",
+        "test/office_vba_word_argument_shapes_test.dart",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "test/office_vba_word_cli_test.dart",
+        "test/office_vba_word_colors_footnote_separator_integration_test.dart",
+        "test/office_vba_word_comparison_colors_conformance_test.dart",
+        "test/office_vba_word_comparison_colors_integration_test.dart",
+        "test/office_vba_word_conformance_test.dart",
+        "test/office_vba_word_extensions_test.dart",
+        "test/office_vba_word_font_colors_test.dart",
+        "test/office_vba_word_format_integration_test.dart",
+        "test/office_vba_word_headers_footers_integration_test.dart",
+        "test/office_vba_word_headers_footers_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_language_controls_integration_test.dart",
+        "test/office_vba_word_language_controls_test.dart",
+        "test/office_vba_word_language_test.dart",
+        "test/office_vba_word_line_spacing_integration_test.dart",
+        "test/office_vba_word_line_spacing_test.dart",
+        "test/office_vba_word_list_levels_integration_test.dart",
+        "test/office_vba_word_list_levels_test.dart",
+        "test/office_vba_word_lists_integration_test.dart",
+        "test/office_vba_word_lists_test.dart",
+        "test/office_vba_word_measurements_integration_test.dart",
+        "test/office_vba_word_measurements_positional_integration_test.dart",
+        "test/office_vba_word_measurements_positional_test.dart",
+        "test/office_vba_word_measurements_test.dart",
+        "test/office_vba_word_named_measurements_integration_test.dart",
+        "test/office_vba_word_named_measurements_test.dart",
+        "test/office_vba_word_page_setup_integration_test.dart",
+        "test/office_vba_word_page_setup_test.dart",
+        "test/office_vba_word_paragraph_controls_integration_test.dart",
+        "test/office_vba_word_paragraph_controls_test.dart",
+        "test/office_vba_word_paragraph_layout_integration_test.dart",
+        "test/office_vba_word_paragraph_layout_test.dart",
+        "test/office_vba_word_position_conformance_test.dart",
+        "test/office_vba_word_position_integration_test.dart",
+        "test/office_vba_word_position_test.dart",
+        "test/office_vba_word_proofing_integration_test.dart",
+        "test/office_vba_word_proofing_test.dart",
+        "test/office_vba_word_sections_integration_test.dart",
+        "test/office_vba_word_sections_test.dart",
+        "test/office_vba_word_shading_integration_test.dart",
+        "test/office_vba_word_shading_test.dart",
+        "test/office_vba_word_styles_alternate_integration_test.dart",
+        "test/office_vba_word_styles_integration_test.dart",
+        "test/office_vba_word_styles_test.dart",
+        "test/office_vba_word_table_cells_conformance_test.dart",
+        "test/office_vba_word_table_cells_integration_test.dart",
+        "test/office_vba_word_table_cells_test.dart",
+        "test/office_vba_word_tabstops_integration_test.dart",
+        "test/office_vba_word_tabstops_test.dart",
+        "test/office_vba_word_text_columns_integration_test.dart",
+        "test/office_vba_word_text_columns_test.dart",
+        "test/office_vba_word_text_integration_test.dart",
+        "test/office_vba_word_typography_integration_test.dart",
+        "test/office_vba_word_typography_test.dart",
+        "test/office_vba_word_unit_conversions_integration_test.dart",
+        "test/office_vba_word_unit_conversions_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-baseline/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 121,
+      "exit_code": 1,
+      "seconds": 135.75,
+      "visible_passed": 6348,
+      "visible_failed": 4,
+      "visible_skipped": 0,
+      "source_commit": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "classification": "Initial baseline: four fixture errors because editor font assets were absent; corrected by adding the exact tracked assets and rerunning only the affected suite.",
+      "failed_test_names": [
+        "exact 18.0 points reaches saved native line-box layout",
+        "atLeast 8.0 points reaches saved native line-box layout",
+        "atLeast 20.0 points reaches saved native line-box layout",
+        "multiple 18.0 points reaches saved native line-box layout"
+      ],
+      "logs": [
+        "logs/baseline-macro-suite.jsonl.gz",
+        "logs/baseline-macro-suite.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "baseline-line-spacing-fixture-retry",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_macro_word_line_spacing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-baseline/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 1,
+      "exit_code": 0,
+      "seconds": 13.3,
+      "visible_passed": 96,
+      "visible_failed": 0,
+      "visible_skipped": 0,
+      "source_commit": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "classification": "All 96 affected suite cases passed after restoring exact tracked font fixtures; 92 overlap initial passes, four resolve prior fixture errors.",
+      "failed_test_names": [],
+      "logs": [
+        "logs/baseline-line-spacing-fixture-retry.jsonl.gz",
+        "logs/baseline-line-spacing-fixture-retry.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "checkpoint-cell-formatting",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_vba_word_cell_formatting_test.dart",
+        "test/office_vba_word_cell_formatting_integration_test.dart",
+        "test/office_macro_word_cell_formatting_test.dart",
+        "test/office_macro_word_table_cells_test.dart",
+        "test/office_vba_word_table_cells_test.dart",
+        "test/office_vba_word_table_cells_integration_test.dart",
+        "test/office_macro_word_font_colors_test.dart",
+        "test/office_macro_word_paragraph_controls_test.dart",
+        "test/office_macro_word_tab_stops_test.dart",
+        "test/office_macro_word_line_spacing_test.dart",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-current/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 15,
+      "exit_code": 1,
+      "seconds": 35.08,
+      "visible_passed": 718,
+      "visible_failed": 8,
+      "visible_skipped": 0,
+      "source_commit": "84427d975fca0ee8ed9ec59ce8476827cdff75ec",
+      "classification": "Initial targeted run: one nonexistent suite path was an invocation error; seven new integration failures were fixture assumptions later corrected. Retained, not claimed clean.",
+      "failed_test_names": [
+        "loading test/office_macro_word_cell_formatting_test.dart",
+        "DOCX report formats one cell atomically and preserves neighboring XML",
+        "DOCM report formats one cell atomically and preserves neighboring XML",
+        "formatting before cell text replacement survives later writes",
+        "cell selector remains distinct from body and other cells during spacing pairing",
+        "recorded native cell formatting replays to the same saved document",
+        "MCP compiles, previews and applies the cell formatting source",
+        "format restriction refuses formatting without publishing earlier edits"
+      ],
+      "logs": [
+        "logs/checkpoint-cell-formatting.jsonl.gz",
+        "logs/checkpoint-cell-formatting.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "dev-native-cell-formatting",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_macro_word_cell_formatting_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-dev/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 1,
+      "exit_code": 1,
+      "seconds": 13.08,
+      "visible_passed": 30,
+      "visible_failed": 1,
+      "visible_skipped": 0,
+      "source_commit": null,
+      "classification": "Development overlay hashes in retained manifest. Thirty passed; low-level refusal assertion compared nondeterministic serializer bytes. Corrected to model identity/state checks in checkpoint3.",
+      "failed_test_names": [
+        "low-level native dispatch has the same cell-selector contract"
+      ],
+      "logs": [
+        "logs/dev-native-cell-formatting.jsonl.gz",
+        "logs/dev-native-cell-formatting.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "checkpoint2-cell-formatting",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_vba_word_cell_formatting_test.dart",
+        "test/office_vba_word_cell_formatting_integration_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-b140de98/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 2,
+      "exit_code": 1,
+      "seconds": 14.13,
+      "visible_passed": 102,
+      "visible_failed": 6,
+      "visible_skipped": 0,
+      "source_commit": "b140de98d97991623e9aeeb81472928fce6a35d2",
+      "classification": "102 passed, six integration fixture failures from normal save timestamps and an XML declaration. Corrected without production changes.",
+      "failed_test_names": [
+        "DOCX report formats one cell atomically and preserves neighboring XML",
+        "DOCM report formats one cell atomically and preserves neighboring XML",
+        "formatting before cell text replacement survives later writes",
+        "recorded native cell formatting replays to the same saved document",
+        "whole-cell font changes retain mixed ordinary run formatting",
+        "false and automatic values explicitly override inherited table styles"
+      ],
+      "logs": [
+        "logs/checkpoint2-cell-formatting.jsonl.gz",
+        "logs/checkpoint2-cell-formatting.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "checkpoint3-full-macro-suite",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_macro_cli_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_slide_format_test.dart",
+        "test/office_macro_word_all_caps_test.dart",
+        "test/office_macro_word_cell_formatting_test.dart",
+        "test/office_macro_word_font_colors_test.dart",
+        "test/office_macro_word_headers_footers_test.dart",
+        "test/office_macro_word_language_controls_test.dart",
+        "test/office_macro_word_line_spacing_test.dart",
+        "test/office_macro_word_list_format_test.dart",
+        "test/office_macro_word_list_levels_test.dart",
+        "test/office_macro_word_orientation_test.dart",
+        "test/office_macro_word_page_setup_test.dart",
+        "test/office_macro_word_paragraph_controls_test.dart",
+        "test/office_macro_word_paragraph_style_test.dart",
+        "test/office_macro_word_position_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_word_section_start_test.dart",
+        "test/office_macro_word_shading_test.dart",
+        "test/office_macro_word_tab_stops_test.dart",
+        "test/office_macro_word_table_cells_test.dart",
+        "test/office_macro_word_text_columns_test.dart",
+        "test/office_macro_word_text_controls_test.dart",
+        "test/office_vba_arguments_integration_test.dart",
+        "test/office_vba_arguments_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_numeric_conformance_test.dart",
+        "test/office_vba_numeric_intrinsics_integration_test.dart",
+        "test/office_vba_numeric_intrinsics_test.dart",
+        "test/office_vba_powerpoint_cli_test.dart",
+        "test/office_vba_powerpoint_conformance_test.dart",
+        "test/office_vba_powerpoint_integration_test.dart",
+        "test/office_vba_powerpoint_layout_integration_test.dart",
+        "test/office_vba_powerpoint_layout_test.dart",
+        "test/office_vba_powerpoint_margins_integration_test.dart",
+        "test/office_vba_powerpoint_margins_test.dart",
+        "test/office_vba_powerpoint_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_procedures_test.dart",
+        "test/office_vba_strcomp_test.dart",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_text_conformance_test.dart",
+        "test/office_vba_text_construction_test.dart",
+        "test/office_vba_text_intrinsics_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_variant_conversions_integration_test.dart",
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_word_all_caps_integration_test.dart",
+        "test/office_vba_word_all_caps_test.dart",
+        "test/office_vba_word_argument_shapes_test.dart",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "test/office_vba_word_cell_formatting_integration_test.dart",
+        "test/office_vba_word_cell_formatting_test.dart",
+        "test/office_vba_word_cli_test.dart",
+        "test/office_vba_word_colors_footnote_separator_integration_test.dart",
+        "test/office_vba_word_comparison_colors_conformance_test.dart",
+        "test/office_vba_word_comparison_colors_integration_test.dart",
+        "test/office_vba_word_conformance_test.dart",
+        "test/office_vba_word_extensions_test.dart",
+        "test/office_vba_word_font_colors_test.dart",
+        "test/office_vba_word_format_integration_test.dart",
+        "test/office_vba_word_headers_footers_integration_test.dart",
+        "test/office_vba_word_headers_footers_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_language_controls_integration_test.dart",
+        "test/office_vba_word_language_controls_test.dart",
+        "test/office_vba_word_language_test.dart",
+        "test/office_vba_word_line_spacing_integration_test.dart",
+        "test/office_vba_word_line_spacing_test.dart",
+        "test/office_vba_word_list_levels_integration_test.dart",
+        "test/office_vba_word_list_levels_test.dart",
+        "test/office_vba_word_lists_integration_test.dart",
+        "test/office_vba_word_lists_test.dart",
+        "test/office_vba_word_measurements_integration_test.dart",
+        "test/office_vba_word_measurements_positional_integration_test.dart",
+        "test/office_vba_word_measurements_positional_test.dart",
+        "test/office_vba_word_measurements_test.dart",
+        "test/office_vba_word_named_measurements_integration_test.dart",
+        "test/office_vba_word_named_measurements_test.dart",
+        "test/office_vba_word_page_setup_integration_test.dart",
+        "test/office_vba_word_page_setup_test.dart",
+        "test/office_vba_word_paragraph_controls_integration_test.dart",
+        "test/office_vba_word_paragraph_controls_test.dart",
+        "test/office_vba_word_paragraph_layout_integration_test.dart",
+        "test/office_vba_word_paragraph_layout_test.dart",
+        "test/office_vba_word_position_conformance_test.dart",
+        "test/office_vba_word_position_integration_test.dart",
+        "test/office_vba_word_position_test.dart",
+        "test/office_vba_word_proofing_integration_test.dart",
+        "test/office_vba_word_proofing_test.dart",
+        "test/office_vba_word_sections_integration_test.dart",
+        "test/office_vba_word_sections_test.dart",
+        "test/office_vba_word_shading_integration_test.dart",
+        "test/office_vba_word_shading_test.dart",
+        "test/office_vba_word_styles_alternate_integration_test.dart",
+        "test/office_vba_word_styles_integration_test.dart",
+        "test/office_vba_word_styles_test.dart",
+        "test/office_vba_word_table_cells_conformance_test.dart",
+        "test/office_vba_word_table_cells_integration_test.dart",
+        "test/office_vba_word_table_cells_test.dart",
+        "test/office_vba_word_tabstops_integration_test.dart",
+        "test/office_vba_word_tabstops_test.dart",
+        "test/office_vba_word_text_columns_integration_test.dart",
+        "test/office_vba_word_text_columns_test.dart",
+        "test/office_vba_word_text_integration_test.dart",
+        "test/office_vba_word_typography_integration_test.dart",
+        "test/office_vba_word_typography_test.dart",
+        "test/office_vba_word_unit_conversions_integration_test.dart",
+        "test/office_vba_word_unit_conversions_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-75e067c9/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 124,
+      "exit_code": 1,
+      "seconds": 124.36,
+      "visible_passed": 6485,
+      "visible_failed": 6,
+      "visible_skipped": 0,
+      "source_commit": "75e067c9749de0f1acaf7214d28c61ace6b4f411",
+      "classification": "Full 124-file macro/VBA run: 6485 pass, six stale integration fixture failures. Final qualification replaces the entire changed 24-case integration suite with its corrected run, avoiding retry double counting.",
+      "failed_test_names": [
+        "DOCX report formats one cell atomically and preserves neighboring XML",
+        "DOCM report formats one cell atomically and preserves neighboring XML",
+        "formatting before cell text replacement survives later writes",
+        "recorded native cell formatting replays to the same saved document",
+        "whole-cell font changes retain mixed ordinary run formatting",
+        "false and automatic values explicitly override inherited table styles"
+      ],
+      "logs": [
+        "logs/checkpoint3-full-macro-suite.jsonl.gz",
+        "logs/checkpoint3-full-macro-suite.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "final-cell-formatting-integration",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/office_vba_word_cell_formatting_integration_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 1,
+      "exit_code": 0,
+      "seconds": 21.59,
+      "visible_passed": 24,
+      "visible_failed": 0,
+      "visible_skipped": 0,
+      "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+      "classification": "All 24 corrected integration cases passed. Core metadata comparison masks only the normal dcterms:modified timestamp; all other metadata and substantive XML remain asserted.",
+      "failed_test_names": [],
+      "logs": [
+        "logs/final-cell-formatting-integration.jsonl.gz",
+        "logs/final-cell-formatting-integration.stderr.log.gz"
+      ]
+    },
+    {
+      "label": "final-native-word-regressions",
+      "command": [
+        "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine",
+      "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "temp_dir": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/tmp",
+      "pub_cache": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/pub-cache",
+      "suites_requested": 5,
+      "exit_code": 0,
+      "seconds": 3.67,
+      "visible_passed": 123,
+      "visible_failed": 0,
+      "visible_skipped": 0,
+      "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+      "classification": "Five native Word suites outside the macro/VBA glob; all 123 cases passed on final production source.",
+      "failed_test_names": [],
+      "logs": [
+        "logs/final-native-word-regressions.jsonl.gz",
+        "logs/final-native-word-regressions.stderr.log.gz"
+      ]
+    }
+  ],
+  "analysis": {
+    "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+    "command": [
+      "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "lib/src/automation/office_operations.dart",
+      "lib/src/automation/office_vba_language.dart",
+      "lib/src/automation/operations/word_steps.dart",
+      "lib/src/automation/operations/word_table_cell_text_steps.dart",
+      "test/office_macro_word_cell_formatting_test.dart",
+      "test/office_vba_word_cell_formatting_integration_test.dart",
+      "test/office_vba_word_cell_formatting_test.dart",
+      "test/office_vba_word_font_colors_test.dart",
+      "test/office_vba_word_table_cells_test.dart",
+      "tool/macros/web_vba_word_cell_formatting_smoke.dart"
+    ],
+    "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine",
+    "exit_code": 0,
+    "observed_stdout": "Analyzing office_operations.dart, office_vba_language.dart, word_steps.dart, word_table_cell_text_steps.dart, office_macro_word_cell_formatting_test.dart, office_vba_word_cell_formatting_integration_test.dart, office_vba_word_cell_formatting_test.dart, office_vba_word_font_colors_test.dart, office_vba_word_table_cells_test.dart, web_vba_word_cell_formatting_smoke.dart...\nNo issues found!\n",
+    "capture": "Exact successful output transcribed from exec tool receipts 724adc and 1055ce; original command output was not redirected to a filesystem log."
+  },
+  "portable_actual_bas": {
+    "source": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine/example/macros/word_table_formatting.bas",
+    "source_sha256": "610db3a19ec8ddc2fc54194b324a12c5472c1feb06892302334ce72cda69a496",
+    "runtime": "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+    "node": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine",
+    "stages": [
+      {
+        "stage": "vm",
+        "exit_code": 0,
+        "seconds": 17.05,
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "-DWORD_CELL_FORMAT_BAS_BASE64=<base64 of actual BAS file>",
+          "tool/macros/web_vba_word_cell_formatting_smoke.dart"
+        ],
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable-vm.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable-vm.stderr"
+      },
+      {
+        "stage": "compile-js",
+        "exit_code": 0,
+        "seconds": 16.32,
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "-DWORD_CELL_FORMAT_BAS_BASE64=<base64 of actual BAS file>",
+          "tool/macros/web_vba_word_cell_formatting_smoke.dart",
+          "-o",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable.js"
+        ],
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable-compile-js.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable-compile-js.stderr"
+      },
+      {
+        "stage": "node",
+        "exit_code": 0,
+        "seconds": 5.22,
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(process.argv[1]);",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable.js"
+        ],
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable-node.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-portable-node.stderr"
+      }
+    ],
+    "vm_js_byte_identical": false,
+    "structured_results_equal": true,
+    "comparison_rule": "Exact dict keys, list positions/lengths, string/null/boolean types and values. Only finite JSON numbers allow int/float representation differences with equal numeric value; bool is never accepted as a number.",
+    "integer_double_representation_differences": [
+      {
+        "path": "$.state[0].before",
+        "vm": "0.0",
+        "js": "0"
+      },
+      {
+        "path": "$.state[0].after",
+        "vm": "4.0",
+        "js": "4"
+      },
+      {
+        "path": "$.state[0].line",
+        "vm": "14.0",
+        "js": "14"
+      },
+      {
+        "path": "$.state[0].tabs[0].position",
+        "vm": "72.0",
+        "js": "72"
+      },
+      {
+        "path": "$.state[1].before",
+        "vm": "0.0",
+        "js": "0"
+      },
+      {
+        "path": "$.state[1].after",
+        "vm": "4.0",
+        "js": "4"
+      },
+      {
+        "path": "$.state[1].line",
+        "vm": "14.0",
+        "js": "14"
+      },
+      {
+        "path": "$.state[1].tabs[0].position",
+        "vm": "72.0",
+        "js": "72"
+      },
+      {
+        "path": "$.state[2].before",
+        "vm": "0.0",
+        "js": "0"
+      },
+      {
+        "path": "$.state[2].after",
+        "vm": "4.0",
+        "js": "4"
+      },
+      {
+        "path": "$.state[2].line",
+        "vm": "14.0",
+        "js": "14"
+      },
+      {
+        "path": "$.state[2].tabs[0].position",
+        "vm": "72.0",
+        "js": "72"
+      },
+      {
+        "path": "$.state[3].before",
+        "vm": "0.0",
+        "js": "0"
+      },
+      {
+        "path": "$.state[3].after",
+        "vm": "4.0",
+        "js": "4"
+      },
+      {
+        "path": "$.state[3].line",
+        "vm": "14.0",
+        "js": "14"
+      },
+      {
+        "path": "$.state[3].tabs[0].position",
+        "vm": "72.0",
+        "js": "72"
+      },
+      {
+        "path": "$.state[4].before",
+        "vm": "0.0",
+        "js": "0"
+      },
+      {
+        "path": "$.state[4].after",
+        "vm": "3.0",
+        "js": "3"
+      }
+    ],
+    "raw_output_byte_identical": false,
+    "raw_comparator_attempt": "All VM, compiler, and Node commands exited 0. An additional raw-byte assertion exited 1 only because VM emits integral doubles such as 14.0 while JavaScript emits 14. Structured comparison above passes; no raw-byte equality is claimed.",
+    "matching_result": {
+      "operations": 52,
+      "revision": 2,
+      "recordedSteps": 52,
+      "additionalReopens": 2,
+      "untargetedXmlSemanticsPreserved": true,
+      "opaquePartBytesPreserved": true,
+      "coreMetadataPreservedExceptSaveTimestamp": true,
+      "opaqueVbaPreserved": true,
+      "lateRollback": true
+    },
+    "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+    "logs": [
+      "logs/final-cell-formatting-portable-compile-js.stdout.gz",
+      "logs/final-cell-formatting-portable-node.stdout.gz",
+      "logs/final-cell-formatting-portable-vm.stdout.gz",
+      "logs/final-cell-formatting-portable-compile-js.stderr.gz",
+      "logs/final-cell-formatting-portable-node.stderr.gz",
+      "logs/final-cell-formatting-portable-vm.stderr.gz"
+    ]
+  },
+  "cli_actual_bas": {
+    "actual_bas": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine/example/macros/word_table_formatting.bas",
+    "source_sha256": "610db3a19ec8ddc2fc54194b324a12c5472c1feb06892302334ce72cda69a496",
+    "compiled_operations": 52,
+    "compile": {
+      "name": "word_table_formatting.Main",
+      "language": "vba-word",
+      "output": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/word_table_formatting.qudsmacro.json"
+    },
+    "validation": {
+      "name": "word_table_formatting.Main",
+      "format": "docx",
+      "completedSteps": 52,
+      "revision": 0,
+      "validatedOnly": true,
+      "language": "vba-word"
+    },
+    "execution": {
+      "name": "word_table_formatting.Main",
+      "format": "docx",
+      "completedSteps": 52,
+      "revision": 1,
+      "validatedOnly": false,
+      "language": "vba-word",
+      "output": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/output.docm"
+    },
+    "inspection": {
+      "formattingCorrect": true,
+      "opaqueVbaPreserved": true,
+      "customXmlPreserved": true
+    },
+    "failure": {
+      "error": {
+        "code": "operation_failed",
+        "message": "Invalid argument(s): row or column is outside the selected table",
+        "stepIndex": 2,
+        "tool": "docx.runFormat"
+      }
+    },
+    "input_unchanged": true,
+    "existing_output_preserved_on_late_failure": true,
+    "input_sha256": "8ffe6d578a4a8fd199b3234443eccce8c30f4ebad2300383d8c8ccb436427612",
+    "output_sha256": "0442748550a06dcf4ed81817614cfc10949182038fd2582f30df6641e345f03b",
+    "stages": [
+      {
+        "stage": "prepare",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/.dart_tool/package_config.json",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/fixture_probe.dart",
+          "prepare",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/input.docm"
+        ],
+        "exit_code": 0,
+        "seconds": 14.85,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/prepare.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/prepare.stderr"
+      },
+      {
+        "stage": "compile-kernel",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "compile",
+          "kernel",
+          "--packages=/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/.dart_tool/package_config.json",
+          "tool/macros/office_macro.dart",
+          "-o",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/office_macro.dill"
+        ],
+        "exit_code": 0,
+        "seconds": 6.36,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/compile-kernel.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/compile-kernel.stderr"
+      },
+      {
+        "stage": "compile-word-vba",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/office_macro.dill",
+          "compile-word-vba",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine/example/macros/word_table_formatting.bas",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/word_table_formatting.qudsmacro.json"
+        ],
+        "exit_code": 0,
+        "seconds": 0.37,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/compile-word-vba.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/compile-word-vba.stderr"
+      },
+      {
+        "stage": "validate-word-vba",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/office_macro.dill",
+          "validate-word-vba",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/input.docm",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine/example/macros/word_table_formatting.bas"
+        ],
+        "exit_code": 0,
+        "seconds": 0.67,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/validate-word-vba.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/validate-word-vba.stderr"
+      },
+      {
+        "stage": "run-word-vba",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/office_macro.dill",
+          "run-word-vba",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/input.docm",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine/example/macros/word_table_formatting.bas",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/output.docm"
+        ],
+        "exit_code": 0,
+        "seconds": 0.93,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/run-word-vba.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/run-word-vba.stderr"
+      },
+      {
+        "stage": "inspect-output",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/.dart_tool/package_config.json",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/fixture_probe.dart",
+          "inspect",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/output.docm"
+        ],
+        "exit_code": 0,
+        "seconds": 12.06,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/inspect-output.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/inspect-output.stderr"
+      },
+      {
+        "stage": "reject-late-cell",
+        "command": [
+          "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/office_macro.dill",
+          "run-word-vba",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/input.docm",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/invalid-late-cell.bas",
+          "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/output.docm"
+        ],
+        "exit_code": 1,
+        "seconds": 0.52,
+        "stdout": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/reject-late-cell.stdout",
+        "stderr": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/validation-results/final-cell-formatting-cli/reject-late-cell.stderr"
+      }
+    ],
+    "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+    "logs": [
+      "logs/cli-compile-kernel.stdout.gz",
+      "logs/cli-compile-word-vba.stdout.gz",
+      "logs/cli-inspect-output.stdout.gz",
+      "logs/cli-prepare.stdout.gz",
+      "logs/cli-reject-late-cell.stdout.gz",
+      "logs/cli-run-word-vba.stdout.gz",
+      "logs/cli-validate-word-vba.stdout.gz",
+      "logs/cli-compile-kernel.stderr.gz",
+      "logs/cli-compile-word-vba.stderr.gz",
+      "logs/cli-inspect-output.stderr.gz",
+      "logs/cli-prepare.stderr.gz",
+      "logs/cli-reject-late-cell.stderr.gz",
+      "logs/cli-run-word-vba.stderr.gz",
+      "logs/cli-validate-word-vba.stderr.gz"
+    ],
+    "independent_package_comparison": "cli-package-comparison.json",
+    "probe_sources": [
+      "logs/cli-fixture_probe.dart.gz",
+      "logs/cli-invalid-late-cell.bas.gz"
+    ]
+  },
+  "source_continuity": {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+      "81d6023b30def58fda5be2279445a08b925d53a5",
+      "--",
+      "packages/quds_office_engine",
+      "packages/legacy_doc_parser",
+      "packages/quds_office_editor/fonts",
+      "analysis_options.yaml",
+      "pubspec.yaml",
+      "pubspec.lock",
+      ".fvmrc"
+    ],
+    "cwd": "/workspace/scratch/9f1eb3b4a51a/quds_office_suite",
+    "exit_code": 0,
+    "stdout": "",
+    "all_scoped_inputs_identical": true,
+    "tracked_snapshot_files_verified": 3187,
+    "source_manifest": "logs/final-source-manifest.json.gz",
+    "changed_engine_files": [
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "git_blob_sha1": "08f840c25a359a55e8e564b305a79203498553df",
+        "actual_blob_sha1": "08f840c25a359a55e8e564b305a79203498553df",
+        "sha256": "20c07de1fd1b597f8f03f3642168be3fea5fe1cc913f78babb437fe9675d8dcf",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/example/macros/word_table_formatting.bas",
+        "git_blob_sha1": "5f700b8c1a7c6ee6513c11fe48038beb212a5fa4",
+        "actual_blob_sha1": "5f700b8c1a7c6ee6513c11fe48038beb212a5fa4",
+        "sha256": "610db3a19ec8ddc2fc54194b324a12c5472c1feb06892302334ce72cda69a496",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+        "git_blob_sha1": "c3c844d9cca012ed3ae91d2e4158b5c15f37d8db",
+        "actual_blob_sha1": "c3c844d9cca012ed3ae91d2e4158b5c15f37d8db",
+        "sha256": "7fe13f76cd15ef0618c73a9a15751745fcca2c3d90a60659dd1a32a045df349f",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "git_blob_sha1": "e0457d9e0c9430258e51d4a960a8691360783ca3",
+        "actual_blob_sha1": "e0457d9e0c9430258e51d4a960a8691360783ca3",
+        "sha256": "1dc3808ac9665dc9c2e4f3d46b4cdb21b7d82da8b137d3f874c8400821a9886f",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "git_blob_sha1": "fedb5b7d77fb2361e57e67732f84acb1511c51c5",
+        "actual_blob_sha1": "fedb5b7d77fb2361e57e67732f84acb1511c51c5",
+        "sha256": "74c2838516a3561066d2d245e1d25e59e00a061c225190668945e6c272e757eb",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart",
+        "git_blob_sha1": "616f85e92c36a2291e57695a498fe998072e159e",
+        "actual_blob_sha1": "616f85e92c36a2291e57695a498fe998072e159e",
+        "sha256": "67a17b190d5579bbb73015f9d8f8b08ed85ca1b3f51e9cb02142c6e58ed2666c",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_macro_word_cell_formatting_test.dart",
+        "git_blob_sha1": "605e34ccbbae172f0448651d90a40cb8b6a571a6",
+        "actual_blob_sha1": "605e34ccbbae172f0448651d90a40cb8b6a571a6",
+        "sha256": "5a09ab2d91fa4a7cec9b094821a0b74c1a1497473aaa3b2d73e827bb1989509b",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+        "git_blob_sha1": "725f64e29badb9176a3fa8e93448bec845ae81bb",
+        "actual_blob_sha1": "725f64e29badb9176a3fa8e93448bec845ae81bb",
+        "sha256": "25cf39a271999ebf28484356a49db18104704be692f2db91c742bc2c13342602",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+        "git_blob_sha1": "930efd474459577046c927a0afc798db2e703ac2",
+        "actual_blob_sha1": "930efd474459577046c927a0afc798db2e703ac2",
+        "sha256": "0131583fb1eba36928610fcd4a0fb502505b5af2c8f038349471425c4e609e65",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+        "git_blob_sha1": "ee0fdc1accc14a25ee98ebff79216e60bc31393f",
+        "actual_blob_sha1": "ee0fdc1accc14a25ee98ebff79216e60bc31393f",
+        "sha256": "10cf072dd752959176fcae92c46cdd7ef64fb035d3176520f5acaa9dad9c021c",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+        "git_blob_sha1": "b4290db0c9f96f33dfba86f8c63a7fac2eef22ac",
+        "actual_blob_sha1": "b4290db0c9f96f33dfba86f8c63a7fac2eef22ac",
+        "sha256": "6162df26f89e62ee7b61fe08fc66f694f4fba19ef245449114dab5f71fe9b09f",
+        "matched": true
+      },
+      {
+        "path": "packages/quds_office_engine/tool/macros/web_vba_word_cell_formatting_smoke.dart",
+        "git_blob_sha1": "93e820c8c88dfbde42b14d9f1cca2fbbcd34bf93",
+        "actual_blob_sha1": "93e820c8c88dfbde42b14d9f1cca2fbbcd34bf93",
+        "sha256": "13dd877b1569c0b4d933b61d967a3220c187c0f5a99796fe8d727eee2088fd44",
+        "matched": true
+      }
+    ]
+  },
+  "limitations": [
+    "No GitHub Actions queue queried or awaited.",
+    "No full Flutter/editor widget suite, graphical/native Word or LibreOffice host acceptance is claimed.",
+    "Portable VM and JavaScript outputs match typed structured JSON; raw textual bytes differ in integral-double representation."
+  ],
+  "intermediate_portable_failures": [
+    {
+      "commit": "b140de98d97991623e9aeeb81472928fce6a35d2",
+      "classification": "VM smoke initially rejected normal save timestamp as an untargeted byte change; fixed in test diagnostic comparison. No JavaScript run occurred for that failing attempt.",
+      "logs": [
+        "logs/checkpoint2-portable-vm.stdout.gz",
+        "logs/checkpoint2-portable-vm.stderr.gz"
+      ]
+    }
+  ]
+}

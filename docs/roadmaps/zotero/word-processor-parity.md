@@ -533,6 +533,28 @@ acceptance work.
 
 ## Next implementation and acceptance steps
 
+### Writing-position continuation (22 November 2026)
+
+Native Refresh and style changes now track writing endpoints by paragraph
+identity and transform their offsets through supported citation replacements,
+deletions and note conversions. Bibliography growth or shrinkage no longer
+redirects subsequent typing into another paragraph. Both endpoints of body and
+Notes selections are retained, including direction; Notes affinity is retained.
+Metadata-only and identical-visible-text updates keep interior offsets.
+Positions inside changed citation results move to the replacement end, while
+exact starts remain before the field. Replaced bibliography-owned positions
+use its start/end boundary. Removed or converted sole-note positions return to
+the body anchor. New citation/research insertion retains its explicit caret
+destination; cross-processor transfer keeps its existing separate policy.
+
+The [continuation record](../../validation/zotero-parity-20261122/README.md)
+tracks incoming-ref reconciliation, remote checkpoints and local validation.
+Passive positions in unchanged frames and generated contents paragraphs do
+not make those stories eligible for native Zotero fields. Visible
+`Field.select` context during Zotero repair/manual-edit prompts remains a
+separate native-host gap; malformed-field recovery also needs a dedicated
+structural repair contract. Neither is claimed by this position increment.
+
 The [combined round-trip completion](../../validation/zotero-roundtrip-complete-20261121/README.md)
 reconciles the latest accepted bibliography, image, note-style and Mail work.
 It adds semantic uppercase import with preserved raw text and citation
