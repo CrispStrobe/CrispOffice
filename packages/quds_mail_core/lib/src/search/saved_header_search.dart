@@ -1,5 +1,30 @@
 import 'header_search.dart';
 
+/// An exact folder in one verified host-directory account, not a display name.
+/// Mailbox IDs are scoped by the account; a provider's folder with the same
+/// name in another account never becomes an implicit match.
+final class MailSavedHeaderSearchFolder {
+  const MailSavedHeaderSearchFolder({
+    required this.accountId,
+    required this.mailboxId,
+  });
+
+  final String accountId;
+  final String mailboxId;
+
+  @override
+  bool operator ==(Object other) =>
+      other is MailSavedHeaderSearchFolder &&
+      other.accountId == accountId &&
+      other.mailboxId == mailboxId;
+
+  @override
+  int get hashCode => Object.hash(accountId, mailboxId);
+
+  @override
+  String toString() => 'MailSavedHeaderSearchFolder(redacted)';
+}
+
 /// A reusable query over a fixed set of a host's verified local account IDs.
 ///
 /// The definition contains no messages, credentials or continuation cursors.
@@ -12,18 +37,29 @@ final class MailSavedHeaderSearch {
     required this.name,
     required this.query,
     required List<String> accountIds,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
     this.revision = 0,
-  }) : accountIds = List<String>.unmodifiable(accountIds);
+  }) : accountIds = List<String>.unmodifiable(accountIds),
+       folderScopes = folderScopes == null
+           ? null
+           : List<MailSavedHeaderSearchFolder>.unmodifiable(folderScopes);
 
   static const maxNameCodeUnits = 128;
   static const maxIdCodeUnits = 1024;
   static const maxAccountIds = 100;
+  static const maxFolderScopes = 200;
   static const maxRevision = 9007199254740991;
 
   final String id;
   final String name;
   final String query;
   final List<String> accountIds;
+
+  /// Null preserves the pre-folder-scope meaning: every retained folder in
+  /// each captured account. A nonempty list is an exact, fixed folder set.
+  /// Every account in [accountIds] must have at least one listed folder.
+  /// Missing folders must fail explicitly rather than widen the search.
+  final List<MailSavedHeaderSearchFolder>? folderScopes;
 
   /// Zero denotes an unsaved definition. Persisted revisions are assigned by
   /// the repository and must be supplied unchanged for update or deletion.
@@ -59,6 +95,20 @@ final class MailSavedHeaderSearch {
     for (final account in accountIds) {
       if (!isValidId(account) || !seen.add(account)) return false;
     }
+    if (folderScopes case final folders?) {
+      if (folders.isEmpty || folders.length > maxFolderScopes) return false;
+      final distinct = <MailSavedHeaderSearchFolder>{};
+      final covered = <String>{};
+      for (final folder in folders) {
+        if (!seen.contains(folder.accountId) ||
+            !isValidId(folder.mailboxId) ||
+            !distinct.add(folder)) {
+          return false;
+        }
+        covered.add(folder.accountId);
+      }
+      if (covered.length != seen.length) return false;
+    }
     try {
       MailHeaderSearchQuery.parse(query);
       return true;
@@ -71,12 +121,15 @@ final class MailSavedHeaderSearch {
     String? name,
     String? query,
     List<String>? accountIds,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
+    bool allFolders = false,
     int? revision,
   }) => MailSavedHeaderSearch(
     id: id,
     name: name ?? this.name,
     query: query ?? this.query,
     accountIds: accountIds ?? this.accountIds,
+    folderScopes: allFolders ? null : folderScopes ?? this.folderScopes,
     revision: revision ?? this.revision,
   );
 
