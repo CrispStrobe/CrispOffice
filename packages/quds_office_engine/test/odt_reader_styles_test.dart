@@ -442,6 +442,26 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
       ).validateNoteConfiguration(false);
     });
 
+    for (final format in ['i', 'I']) {
+      for (final endnote in [false, true]) {
+        test('accepts exact $format numbering for endnote=$endnote', () {
+          final configuration = configured(
+            '<text:notes-configuration '
+            'text:note-class="${endnote ? 'endnote' : 'footnote'}" '
+            'style:num-format="$format" text:start-value="1"/>',
+          ).validateNoteConfiguration(endnote);
+          expect(
+            configuration.nativeFormat,
+            format == 'i' ? 'lowerRoman' : 'upperRoman',
+          );
+          expect(configuration.labelFor(4), format == 'i' ? 'iv' : 'IV');
+          expect(configuration.labelFor(0), isNull);
+          expect(configuration.labelFor(4000), isNull);
+          expect(configuration.verifyCachedOrdinal, isFalse);
+        });
+      }
+    }
+
     test(
       'rejects active note numbering or positioning outside canonical scope',
       () {
