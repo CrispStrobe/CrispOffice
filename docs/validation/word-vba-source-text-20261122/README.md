@@ -114,6 +114,34 @@ existing compiler. The test now uses an empty String default and separately
 checks direct Empty values and truly missing Variants. No pre-existing Const
 or default-expression rules were changed.
 
+## Final review and concurrent work
+
+Feature checkpoint: `74189751ccf18843e149c78be1199858dc5a92fb`.
+Example/test checkpoint: `a713970fdab473b6fb74c34287fac91ff34153b1`.
+Runtime blob: `c25ed6226689a6533315410ace4fc3246350b7f3`.
+[PR #389](https://github.com/CrispStrobe/quds_office_suite/pull/389) carries the
+complete change. The final correction only adjusts omission-test expectations:
+the existing argument checker reports `vba_unsupported` at the first comma
+before checking argument count. The 18-line runtime change is unchanged.
+
+[review.json](review.json) records remote content readbacks, independent source
+review, fixture structure/position checks and a small JavaScript check of
+hardcoded UTF-16 expected strings. These checks are deliberately distinguished
+from execution of the Dart implementation.
+
+The final inventory captured 51 branches. All 48 heads from the initial intake
+are preserved through the reconciliation checkpoint. Two independent branches
+were created during this task:
+
+- `codex/zotero-continued-parity-20261122` adds ongoing ODT hyperlink work.
+- `work/mail-local-tags-20261122` adds ongoing Mail search work.
+
+Their exact captured heads are in the review snapshot. They remain intact on
+their own branches. They are active continuations outside the initial intake,
+and their runtime changes were neither transplanted nor falsely recorded as
+merged through an ancestry-only commit. Remote main is refreshed again at the
+actual merge; any concurrent main change must be preserved.
+
 ## Primary sources and qualification boundary
 
 - [Microsoft VBA StrReverse](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/strreverse-function):

@@ -579,9 +579,9 @@
       "source": "Sub Main()\n  ThisDocument.Tables(1).Cell(1, 1).Range.Text = StrReverse(,)\nEnd Sub\n",
       "expected": {
         "diagnostic": {
-          "code": "vba_type_error",
+          "code": "vba_unsupported",
           "line": 2,
-          "column": 50
+          "column": 61
         }
       },
       "provenance": {

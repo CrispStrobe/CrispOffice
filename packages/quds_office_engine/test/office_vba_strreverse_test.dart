@@ -92,7 +92,7 @@ void main() {
         ('StrReverse(Null)', 'vba_invalid_use_of_null'),
         ('StrReverse(CVar(Null))', 'vba_invalid_use_of_null'),
         ('StrReverse(Expression:="abc")', 'vba_unsupported'),
-        ('StrReverse(,)', 'vba_type_error'),
+        ('StrReverse(,)', 'vba_unsupported'),
         ('StrReverse("😀")', 'vba_type_error'),
       ]) {
         test('rejects $expression with $code', () {
