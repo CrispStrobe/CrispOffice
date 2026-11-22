@@ -1,0 +1,7 @@
+{
+  "requestedBy": "Controlling agent after sufficient unchanged-source coverage",
+  "mechanism": "Ctrl-C to only the owned exec session",
+  "execSessionExitCode": 130,
+  "noFurtherTestsNeeded": true,
+  "normalTestDoneEventSynthesized": false
+}

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-22T06:19:18.539921+00:00",
+  "recorded_at_utc": "2026-11-22T06:24:18.600681+00:00",
   "baseline_main": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
   "qualified_integration_head": "918e7dd12e66b79e75082a41c250887a92db0d4e",
   "branch": "codex/mail-durable-mutations-20261122",
@@ -962,7 +962,7 @@
     {
       "name": "journal-adapter-and-dialog",
       "cwd": "packages/quds_office_editor/example",
-      "command": "flutter test --no-pub --machine --dart-define=MAIL_JOURNAL_SCREENSHOT_DIR=<output> test/studio_mail_flag_journal_test.dart test/studio_mail_journal_dialog_test.dart",
+      "command": "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/flutter test --no-pub --machine --dart-define=MAIL_JOURNAL_SCREENSHOT_DIR=/workspace/scratch/a07ecb0743c3/mail-runtime/journal-screenshots test/studio_mail_flag_journal_test.dart test/studio_mail_journal_dialog_test.dart",
       "exit_code": 0,
       "passed": 47,
       "failed": 0,
@@ -1023,7 +1023,7 @@
     {
       "name": "shared-mail-ui",
       "cwd": "packages/quds_mail_ui",
-      "command": "flutter test --no-pub --concurrency=1 --machine test",
+      "command": "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/flutter test --no-pub --concurrency=1 --machine",
       "exit_code": 0,
       "passed": 273,
       "failed": 0,
@@ -1729,15 +1729,36 @@
   ],
   "evidence": {
     "path": "local-evidence.tar.gz",
-    "sha256": "763cbdf10926a490c7f029a63ad66eb617a5572c25c30de33376c705b2b87b16",
-    "bytes": 530432,
-    "files": 83
+    "sha256": "33736dfd9b9150748711450cd34ea7e7646dcb029110663526a43f04641932ae",
+    "bytes": 530678,
+    "files": 84
   },
   "visual_review": [
     "en-move-membership-details.png",
     "de-move-membership.png",
     "ar-delete-membership-details.png"
   ],
+  "digest_only_visual_outputs": [
+    "mail-runtime/journal-screenshots/ar-compact-details.png",
+    "mail-runtime/journal-screenshots/ar-compact-history.png",
+    "mail-runtime/journal-screenshots/ar-compact-receipt.png",
+    "mail-runtime/journal-screenshots/ar-delete-membership.png",
+    "mail-runtime/journal-screenshots/ar-move-membership-details.png",
+    "mail-runtime/journal-screenshots/ar-move-membership.png",
+    "mail-runtime/journal-screenshots/de-compact-details.png",
+    "mail-runtime/journal-screenshots/de-compact-history.png",
+    "mail-runtime/journal-screenshots/de-compact-receipt.png",
+    "mail-runtime/journal-screenshots/de-delete-membership-details.png",
+    "mail-runtime/journal-screenshots/de-delete-membership.png",
+    "mail-runtime/journal-screenshots/de-move-membership-details.png",
+    "mail-runtime/journal-screenshots/en-delete-membership-details.png",
+    "mail-runtime/journal-screenshots/en-delete-membership.png",
+    "mail-runtime/journal-screenshots/en-desktop-details.png",
+    "mail-runtime/journal-screenshots/en-desktop-history.png",
+    "mail-runtime/journal-screenshots/en-desktop-receipt.png",
+    "mail-runtime/journal-screenshots/en-move-membership.png"
+  ],
+  "digest_only_visual_outputs_note": "The 18 additional PNG hashes are retained in the detailed journal receipt; only the three independently inspected samples are included in the evidence archive.",
   "unaccepted_attempts_retained": [
     "Flutter store run: 35 subprocess cases stopped before barriers because Isolate.resolvePackageUri is unavailable in the Flutter test isolate. All passed under native Dart.",
     "Chromium startup: environment denied its Unix-domain socket before test execution. No browser runtime acceptance.",

@@ -144,5 +144,17 @@
     "main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
     "ancestor_of_intake_main": true,
     "integration_required": false
+  },
+  "pre_publication_refresh": {
+    "checked_at_utc": "2026-11-22T06:17:49.964189+00:00",
+    "main": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+    "word_pr": 362,
+    "word_branch": "codex/word-vba-compatibility-20261122",
+    "new_main_commits_to_integrate": 0,
+    "concurrent_branch_heads": {
+      "codex/mail-durable-mutations-20261122": "f14974a435ec0348d6618906ab21b5c784b04fd1",
+      "codex/zotero-field-recovery-20261122": "6ba219a03a9933eded77980f9d7cdbd118183ee1"
+    },
+    "concurrent_branch_note": "Both independent branches advanced after the initial readiness review. They remain preserved remotely; Zotero captured Word and Mail checkpoints for combined local qualification. Neither had an open PR at the refresh before Word PR creation."
   }
 }

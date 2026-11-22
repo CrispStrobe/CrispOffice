@@ -62,7 +62,12 @@ replacing existing local work.
 | `262a13c2b0971f22d1442ac88cab48bddf2c6bce` | Merge of the current Word VBA history |
 | `918e7dd12e66b79e75082a41c250887a92db0d4e` | Merge of the current Zotero history, including its captured Mail/Word ancestry |
 
-The exact inventory and ancestor checks are in [remote-intake.json](remote-intake.json).
+Word later added documentation and its own qualification evidence at
+`934c33a57f3bed934df59a4e925ffc35fe406ee2`; that history is also retained. It
+changes no production or test source. Zotero subsequently advanced to the
+already qualified integrated head `918e7dd1`.
+
+The exact recorded inventory and ancestor checks are in [remote-intake.json](remote-intake.json).
 The final publication uses a normal PR merge to main with the expected branch
 head, retaining these parents. The branch remains available after publication.
 
@@ -174,6 +179,9 @@ organization and complete desktop-client parity remain subsequent work.
   branch qualification and reviewed source identities.
 - [local-evidence.tar.gz](local-evidence.tar.gz): raw accepted and unsuccessful
   logs, detailed receipts, source manifests, toolchain/dependency provenance and
-  the three inspected original screenshot samples. Paths within the archive
+  the three inspected original screenshot samples. The other 18 generated
+  screenshot references in the detailed receipt are explicitly digest-only,
+  listed in `qualification.json`; they are not included in this archive.
+  The environment setup script is included. Paths within the archive
   correspond to the logged workspace-relative paths; generated executables and
   SDK/package archives are excluded.
