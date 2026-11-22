@@ -28,7 +28,10 @@ MailBulkFlagPlan _membershipPlan(
 Future<MailBulkFlagReport> _runMembership(
   TestMailFlagJournal fixture,
   MailBulkFlagPlan plan, {
-  List<String> subjects = const ['Frozen first subject', 'Frozen second subject'],
+  List<String> subjects = const [
+    'Frozen first subject',
+    'Frozen second subject',
+  ],
   MailBulkFlagAttempt outcome = const MailBulkFlagAttempt.confirmed(),
 }) async {
   final session = MailAccountSession(plan.mailbox.account);
@@ -101,9 +104,9 @@ void main() {
           );
           if (action == MailBulkFlagAction.move) {
             expect(
-              fixture.dispatched
-                  .cast<MailMove>()
-                  .map((operation) => operation.destination),
+              fixture.dispatched.cast<MailMove>().map(
+                (operation) => operation.destination,
+              ),
               everyElement(originalDestination),
             );
           } else {
@@ -141,7 +144,8 @@ void main() {
             );
           }
           if (provider == MailProviderKind.imap) {
-            final message = saved.report.items.first.message as MailImapIdentity;
+            final message =
+                saved.report.items.first.message as MailImapIdentity;
             expect(
               (message.mailbox.value, message.uidValidity, message.uid),
               ('INBOX', 71, 1),
@@ -152,7 +156,10 @@ void main() {
               'remote-1',
             );
           }
-          expect((await fixture.store.list()).batches.single.destination, destination);
+          expect(
+            (await fixture.store.list()).batches.single.destination,
+            destination,
+          );
           expect(plan.destination, originalDestination);
           expect(fixture.dispatched, hasLength(2));
         },
@@ -160,50 +167,60 @@ void main() {
     }
   }
 
-  test('a move receipt rejects a different exact destination before saving', () async {
-    final fixture = await TestMailFlagJournal.create();
-    addTearDown(fixture.dispose);
-    final plan = _membershipPlan(fixture, 'frozen-destination', MailBulkFlagAction.move);
-    final journal = fixture.bind(plan);
-    TestMailFlagJournal.success(await journal.prepare(plan));
-    TestMailFlagJournal.success(await journal.beginAttempt(0));
-    final original = plan.operationAt(0) as MailMove;
+  test(
+    'a move receipt rejects a different exact destination before saving',
+    () async {
+      final fixture = await TestMailFlagJournal.create();
+      addTearDown(fixture.dispose);
+      final plan = _membershipPlan(
+        fixture,
+        'frozen-destination',
+        MailBulkFlagAction.move,
+      );
+      final journal = fixture.bind(plan);
+      TestMailFlagJournal.success(await journal.prepare(plan));
+      TestMailFlagJournal.success(await journal.beginAttempt(0));
+      final original = plan.operationAt(0) as MailMove;
 
-    for (final destination in ['archive/Projects 2026', 'Archive/Other']) {
-      final result = await journal.recordResult(
-        0,
-        MailBulkFlagItemResult.restore(
-          operation: MailMove(
-            id: original.id,
-            message: original.message,
-            destination: MailMailboxId(destination, account: original.message.account),
+      for (final destination in ['archive/Projects 2026', 'Archive/Other']) {
+        final result = await journal.recordResult(
+          0,
+          MailBulkFlagItemResult.restore(
+            operation: MailMove(
+              id: original.id,
+              message: original.message,
+              destination: MailMailboxId(
+                destination,
+                account: original.message.account,
+              ),
+            ),
+            outcome: MailBulkFlagOutcome.confirmed,
           ),
-          outcome: MailBulkFlagOutcome.confirmed,
+        );
+        expect(result, isA<MailFailure<MailUnit>>());
+        final saved = (await fixture.store.load(plan.id))!;
+        expect(saved.report.confirmedCount, 0);
+        expect(saved.summary.destination?.value, 'Archive/Projects 2026');
+      }
+
+      TestMailFlagJournal.success(
+        await journal.recordResult(
+          0,
+          MailBulkFlagItemResult.restore(
+            operation: original,
+            outcome: MailBulkFlagOutcome.confirmed,
+          ),
         ),
       );
-      expect(result, isA<MailFailure<MailUnit>>());
       final saved = (await fixture.store.load(plan.id))!;
-      expect(saved.report.confirmedCount, 0);
-      expect(saved.summary.destination?.value, 'Archive/Projects 2026');
-    }
-
-    TestMailFlagJournal.success(
-      await journal.recordResult(
-        0,
-        MailBulkFlagItemResult.restore(
-          operation: original,
-          outcome: MailBulkFlagOutcome.confirmed,
-        ),
-      ),
-    );
-    final saved = (await fixture.store.load(plan.id))!;
-    expect(saved.report.confirmedCount, 1);
-    expect(
-      (saved.report.items.first.operation as MailMove).destination,
-      MailMailboxId('Archive/Projects 2026', account: fixture.account),
-    );
-    expect(fixture.dispatched, isEmpty);
-  });
+      expect(saved.report.confirmedCount, 1);
+      expect(
+        (saved.report.items.first.operation as MailMove).destination,
+        MailMailboxId('Archive/Projects 2026', account: fixture.account),
+      );
+      expect(fixture.dispatched, isEmpty);
+    },
+  );
 
   for (final provider in [MailProviderKind.imap, MailProviderKind.graph]) {
     for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
@@ -217,12 +234,17 @@ void main() {
             fixture,
             plan,
             outcome: const MailBulkFlagAttempt.uncertain(
-              MailProblem(MailProblemCode.providerFailure, mutationMayHaveOccurred: true),
+              MailProblem(
+                MailProblemCode.providerFailure,
+                mutationMayHaveOccurred: true,
+              ),
             ),
           );
           await fixture.reopen();
           final original = (await fixture.store.load(plan.id))!;
-          final observer = _MembershipObserver(fixture.source('new-connection'));
+          final observer = _MembershipObserver(
+            fixture.source('new-connection'),
+          );
           final cancellation = MailCancellationSource();
           var checked = 0;
           final recovery = studioMailFlagRecovery(
@@ -262,7 +284,10 @@ void main() {
           expect(unchanged.summary.unresolvedCount, 1);
           expect(unchanged.resolutions, isEmpty);
           expect(unchanged.report.unattemptedCount, 1);
-          expect(unchanged.report.plan.destination, original.report.plan.destination);
+          expect(
+            unchanged.report.plan.destination,
+            original.report.plan.destination,
+          );
           expect(fixture.dispatched, hasLength(1));
         },
       );

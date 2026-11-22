@@ -16,6 +16,13 @@ import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
+const _flagActions = [
+  MailBulkFlagAction.markRead,
+  MailBulkFlagAction.markUnread,
+  MailBulkFlagAction.flag,
+  MailBulkFlagAction.unflag,
+];
+
 const _output = String.fromEnvironment('MAIL_BULK_SCREENSHOT_DIR');
 const _captureKey = ValueKey('mail-bulk-visual-capture');
 
@@ -332,7 +339,7 @@ void main() {
       await _showControl(tester, _key('mail-list-bulk-actions'));
       await tester.tap(_key('mail-list-bulk-actions'));
       await tester.pumpAndSettle();
-      for (final action in MailBulkFlagAction.values) {
+      for (final action in _flagActions) {
         final item = _key('mail-list-bulk-${action.name}');
         expect(item.hitTestable(), findsOneWidget);
         final label = find.descendant(of: item, matching: find.byType(Text));
@@ -340,6 +347,8 @@ void main() {
         expect(Directionality.of(tester.element(label)), direction);
         expect(tester.widget<Text>(label).textScaler!.scale(10), 14);
       }
+      expect(_key('mail-list-bulk-move'), findsNothing);
+      expect(_key('mail-list-bulk-delete'), findsNothing);
       await _capture(tester, '$name-actions');
       await tester.tap(_key('mail-list-bulk-markRead'));
       await tester.pumpAndSettle();

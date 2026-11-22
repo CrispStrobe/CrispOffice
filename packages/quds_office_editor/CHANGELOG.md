@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Journal connected single-message Move/Delete with exact destination identity,
+  pre-dispatch persistence, conservative interruption recovery and localized
+  activity history. Add capability-checked native IMAP Move and Mark deleted
+  controls, preserve provider-specific trash behavior, and keep uncertain
+  actions protected without automatic replay or flag-only reconciliation.
+
 - Show saved browsing windows and synchronized folders in one local Mail
   catalog. Keep their coverage distinct, switch sources explicitly, page
   synchronized headers in batches of 100, and repair pages after membership

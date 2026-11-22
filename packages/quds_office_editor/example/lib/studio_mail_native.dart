@@ -2234,7 +2234,24 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final mailboxGeneration = _mailboxGeneration;
     final path = mailbox.path;
     final validity = mailbox.uidValidity;
-    final header = records.observedHeader(mailbox, message);
+    final MailHeaderRecord header;
+    try {
+      header = records.observedHeader(mailbox, message);
+      final remote = header.remote;
+      if (remote is! MailImapIdentity ||
+          remote.account != records.account ||
+          remote.mailbox.value != path ||
+          remote.uidValidity != validity ||
+          remote.uid != message.uid) {
+        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+      }
+    } on Object {
+      setState(() {
+        _needsRefresh = true;
+        _error = widget.strings.mailWorkspaceRefreshRequired;
+      });
+      return;
+    }
     final destinations = <MailMailbox>[
       for (final box in _mailboxes)
         if (!box.isNotSelectable &&
@@ -2359,6 +2376,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       [_messageKey(message)],
       mailboxGeneration: mailboxGeneration,
       destination: destination,
+      membershipConfirmed: true,
     );
   }
 
@@ -2367,13 +2385,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     List<String> ids, {
     required int mailboxGeneration,
     MailMailboxId? destination,
+    bool membershipConfirmed = false,
   }) => runStudioMailOperation(() async {
     final client = _client;
     final loader = _messageLoader;
     final mailbox = _messageMailbox;
     if (!mounted ||
         client == null ||
-        loader is! StudioMailMessageActions ||
+        (action.isFlagAction && loader is! StudioMailMessageActions) ||
         loader is! StudioMailMailboxRecords ||
         mailbox == null ||
         _busy ||
@@ -2384,7 +2403,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         ids.length > MailBulkFlagPlan.maxMessages ||
         ids.toSet().length != ids.length ||
         (!action.isFlagAction &&
-            (ids.length != 1 || loader is! StudioMailMembershipActions)) ||
+            (!membershipConfirmed ||
+                ids.length != 1 ||
+                loader is! StudioMailMembershipActions)) ||
         (action == MailBulkFlagAction.move &&
             (destination == null ||
                 destination.value == mailbox.path ||
@@ -2396,7 +2417,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         (action != MailBulkFlagAction.move && destination != null)) {
       return;
     }
-    final actions = loader as StudioMailMessageActions;
     final records = loader as StudioMailMailboxRecords;
     final generation = _sessionGeneration;
     final mailboxPath = mailbox.path;
@@ -2497,7 +2517,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _notice = null;
     });
     try {
-      if (!action.isFlagAction) await _stopCachedView();
+      if (!action.isFlagAction) {
+        await _stopCachedView(retainMetadata: true);
+      }
       final report = await MailBulkFlagCoordinator().run(
         plan: plan,
         lease: session.begin(),
@@ -2536,6 +2558,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           }
           final message = byRemote[operation.message]!;
           try {
+            final actions = loader as StudioMailMessageActions;
             if (operation is MailSetRead) {
               await actions.setRead(
                 frozenMailbox,
@@ -2601,6 +2624,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               }
             } else {
               // IMAP Delete is a confirmed Deleted flag, never EXPUNGE.
+              // Setting that bit must preserve unknown read/flag observations.
+              _confirmedFlags[message] = (
+                read: _observedRead(message),
+                flagged: _observedFlagged(message),
+              );
               message.setFlag(mail.MessageFlags.deleted, true);
             }
             continue;

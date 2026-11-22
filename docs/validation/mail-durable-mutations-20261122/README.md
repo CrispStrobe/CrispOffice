@@ -31,15 +31,41 @@ uncertain; never replay it automatically.
 
 Move destinations retain exact account/folder identities. Read/flag observation
 recovery must not be presented as move/delete membership reconciliation.
-Existing provider semantics remain distinct: IMAP marks `\\Deleted` without
+Existing provider semantics remain distinct: IMAP marks `\Deleted` without
 expunging; EWS, Gmail and Microsoft 365 use their existing trash/deleted-items
 paths. A generic acknowledgement does not establish a new destination identity
 or synchronized membership. Cached sources remain dated observations until an
 explicit browse or sync refresh.
 
-## Verification status
+## Remote checkpoints and acceptance in progress
 
-This first checkpoint records intake and intended acceptance only. Implementation,
-local test results, review findings and final remote reconciliation will be
-recorded here as work completes. No live-account, installed-platform, complete
-desktop-client parity or CI-success claim is made by this checkpoint.
+- `ecfc7ae65cbd0904d6d38b9c8d76158d031a457a`: initial remote intake and scope.
+- `cd6aa8044a7c6fb0738758a4038cdbd626b5721d`: schema 13, existing-runner
+  extension, provider capabilities, connected controls and first regressions.
+- A subsequent checkpoint preserves host hardening, journal/recovery tests and
+  the updated roadmap before final connected acceptance and integration.
+
+Locally accepted checks already include 521 core VM tests, 1,010 unique store
+cases (975 ordinary plus 35 native process fixtures), 250 provider-adapter
+cases, 131 native-loader cases, 47 journal adapter/dialog cases, 273 shared UI
+cases, and 573 genuine Node cases (521 core, 52 portable store). The browser
+store entry and worker compile successfully. Final host, analysis and incoming
+branch qualification are still in progress at this checkpoint.
+
+The full Flutter store run cannot execute the 35 subprocess fixtures because
+its test isolate does not implement `Isolate.resolvePackageUri`; all 35 pass
+when rerun under the native Dart VM. The Chromium test attempt failed before
+test execution because this environment denies its Unix-domain socket setup.
+Neither limitation is reported as accepted browser runtime behavior.
+
+Review hardened native behavior so retiring the cache observer retains the
+remaining rows' known or unknown read/flag metadata. Confirmed IMAP Deleted
+preserves independent nullable flags, and the new organization port works
+without requiring older flag setters. Separate destination/confirmation paths
+remain required even if a generic checked-message callback is invoked directly.
+
+The refreshed intake found active Word VBA and Zotero recovery branches after
+the initial audit. Their histories will be retained and their focused local
+qualification recorded before final main publication. CI is not an acceptance
+gate for this run. No live-account, installed-platform or complete parity
+claim is made.

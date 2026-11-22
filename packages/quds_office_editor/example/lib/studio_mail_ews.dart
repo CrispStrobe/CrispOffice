@@ -1135,7 +1135,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         ids.isEmpty ||
         ids.length > MailBulkFlagPlan.maxMessages ||
         ids.toSet().length != ids.length ||
-        (!action.isFlagAction && ids.length != 1) ||
+        (!action.isFlagAction && (!singleMessage || ids.length != 1)) ||
         (action == MailBulkFlagAction.move &&
             (!_capabilities.supports(MailCapability.move) ||
                 destination == null ||

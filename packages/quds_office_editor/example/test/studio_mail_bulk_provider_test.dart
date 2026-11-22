@@ -13,6 +13,13 @@ import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 
 import 'support/mail_draft_store.dart';
 
+const _flagActions = [
+  MailBulkFlagAction.markRead,
+  MailBulkFlagAction.markUnread,
+  MailBulkFlagAction.flag,
+  MailBulkFlagAction.unflag,
+];
+
 const _strings = StudioStrings(StudioLanguage.en);
 const _success = MailSuccess<MailUnit>(MailUnit.value);
 const _definiteFailure = MailFailure<MailUnit>(
@@ -285,7 +292,7 @@ void main() {
             .widget<MailMessageView>(find.byType(MailMessageView))
             .controller;
         expect(harness.provider.bodyReads, 1);
-        for (final action in MailBulkFlagAction.values) {
+        for (final action in _flagActions) {
           final gate = Completer<MailResult<MailUnit>>();
           harness.provider.respond = (_, _) => gate.future;
           final before = harness.provider.commands.length;
@@ -383,7 +390,7 @@ void main() {
       (tester) async {
         final harness = _Harness(kind);
         await _show(tester, harness);
-        for (final action in MailBulkFlagAction.values) {
+        for (final action in _flagActions) {
           await tester.ensureVisible(_key('mail-list-select-shown'));
           await tester.tap(_key('mail-list-select-shown'));
           await _pump(tester);

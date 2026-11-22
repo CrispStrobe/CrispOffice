@@ -1,5 +1,10 @@
 # Durable foreground mail command journal
 
+The [Move/Delete continuation](durable-mutations.md) extends this same pipeline
+with exact destinations, single-message connected controls and schema 13.
+The original flag-specific cache projection and observation recovery below
+remain limited to read/unread/flag/unflag; they cannot resolve membership changes.
+
 Native Studio Mail now saves read/unread/flag/unflag commands and their results
 for IMAP, Exchange EWS, Gmail and Microsoft 365. Both single-message controls
 and checked-message actions use the same journal. This continues the
