@@ -1,0 +1,57 @@
+{
+  "reviewed_at_utc": "2026-11-22T09:25:11.228877+00:00",
+  "feature_checkpoint": "afb0adbec9102bbeb6c65b4c7d32200a65dfb806",
+  "qualified_source_checkpoint": "1249935e224e8a3c01ea76c6662dff9ded1a9096",
+  "incoming_commits": [
+    {
+      "sha": "c691191c3ff37f52bc78b203ebb1cb554e607d12",
+      "parents": [
+        "682ca74fe994eb96a8133c963ae3e5f765023c2e",
+        "360673e0736e98d65d6c3cacef90bf842391288d"
+      ],
+      "tree": "37def855080eaced72f8db9e9a83c4af319d7b84"
+    },
+    {
+      "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "parents": [
+        "1fc04e42691328ef8ea56aac5e3bab03e9764823",
+        "682ca74fe994eb96a8133c963ae3e5f765023c2e"
+      ],
+      "tree": "37def855080eaced72f8db9e9a83c4af319d7b84"
+    },
+    {
+      "sha": "682ca74fe994eb96a8133c963ae3e5f765023c2e",
+      "parents": [
+        "8326f191067dac1a3befab81361c5829fee9a35d",
+        "b48fa00a3f4461ae10fdf95e444baf3983d051b4"
+      ],
+      "tree": "cd91db179b58d29bba860f403b018c6ffa8727b5"
+    }
+  ],
+  "graft_paths": [
+    {
+      "path": "docs/validation/word-vba-cell-suffix-20261122/README.md",
+      "previous_blob": "c2b3725c3291bb20ac9d0c2bb83917b8182f66c8",
+      "incoming_blob": "82127cad8f7113ae059af262aba5f59cec427232",
+      "incoming_sha256": "618b8be5bdc8550bc3817a255d25f42cf6fafa950ca760e4bb849fcd5ce60792",
+      "bytes": 16274
+    },
+    {
+      "path": "docs/validation/word-vba-cell-suffix-20261122/publication-summary.json",
+      "previous_blob": "11e00d07e6ead89f8752c6df5796516c64ceec5d",
+      "incoming_blob": "d74adef1972cab21afbc0896efea241db83f7a7e",
+      "incoming_sha256": "057ae3e8901b38dc3474e589bd3b40cd16e688f88b18d598c3c9e809bda9689d",
+      "bytes": 6402
+    }
+  ],
+  "findings": [
+    "All incoming trees were compared file-by-file with every direct parent. Only suffix360 introduces unique content: the two listed document blobs. No unique deletions were found.",
+    "Main c691 has exactly the same complete tree as suffix360; publication merge682 has exactly the same tree as b48, already retained in our ancestry.",
+    "The two document edits only record PR372/main682 publication incorporating the historical Mail identity tip and distinguish that from the initial publication snapshot.",
+    "Our prior versions of both documents still equal suffix1fc, so importing the listed blobs preserves all incoming narrative updates without competing edits.",
+    "No new runtime source, Dart test, workflow, dependency or lockfile content is introduced by these three incoming commits."
+  ],
+  "merge_recommendation": "Retain the feature tree except replace the two listed document paths; retain latest main c691 and suffix360 in genuine merge ancestry. Preserve all qualified runtime/test source and the existing bounded store/roadmap resolutions.",
+  "local_refs_or_source_mutated": false,
+  "github_actions_or_status_queried": false
+}

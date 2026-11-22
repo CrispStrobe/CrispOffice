@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-22",
+  "suite_tests": {
+    "studio_mail_organization_dialog_test.dart": 12,
+    "studio_mail_bulk_organization_provider_test.dart": 25
+  },
+  "passed": 37,
+  "skipped": 0,
+  "failures": 0,
+  "assertions_enabled": true,
+  "automated_binding": true,
+  "engine_exit": 0,
+  "stock_sdk_shaders": true,
+  "project_assets": false,
+  "log": "/workspace/scratch/f1082e82ac57/integration-audit/widget-provider-dialog-ram.jsonl",
+  "harness": "/workspace/scratch/f1082e82ac57/integration-audit/ram_flutter_test.py",
+  "sha256": {
+    "lib/studio_mail_ews.dart": "9786d376bfebcebaf1282eb69cef5664df14117752be59411005e03b1335c760",
+    "lib/studio_mail_mutation_strings.dart": "477c6e43ada17a5ce78339244006259e2e48acdfafe06604d0a1d6155149ed06",
+    "lib/studio_mail_organization_dialog.dart": "3d3e252732e45e2dbe025b7077d3e6969e211964fe552a2897ee02cc3619108c",
+    "test/studio_mail_bulk_organization_provider_test.dart": "129fc5ccdfff84d80f0115375183158d4801975a2e636743df039a5f46e7239f",
+    "test/studio_mail_organization_dialog_test.dart": "d13a1f5a0fcf6993ba830ef7ad00604d9a9643ddde0c91c619e5a6fda82d0005"
+  },
+  "limits": [
+    "Direct test_core engine execution through original Flutter frontend and tester, not flutter_tools CLI orchestration",
+    "No suite file annotation processing or flutter_test_config.dart discovery; neither applies to these suites",
+    "No project asset bundle, native hook discovery, or plugin registration; these tests use explicit ephemeral provider/store fixtures",
+    "Both files execute in isolated test groups sharing one Dart isolate, without golden tests or packaged/native-platform coverage"
+  ]
+}

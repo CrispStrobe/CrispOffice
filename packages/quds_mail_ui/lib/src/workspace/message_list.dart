@@ -115,6 +115,8 @@ final class MailMessageListStrings {
     this.markUnread = 'Mark as unread',
     this.flag = 'Flag',
     this.unflag = 'Remove flag',
+    this.move = 'Move…',
+    this.delete = 'Delete…',
     this.stopBulk = 'Stop after current message',
     this.bulkWorking = 'Applying changes…',
     this.groupConversations = 'Conversations',
@@ -164,6 +166,8 @@ final class MailMessageListStrings {
   final String markUnread;
   final String flag;
   final String unflag;
+  final String move;
+  final String delete;
   final String stopBulk;
   final String bulkWorking;
   final String groupConversations;
@@ -256,6 +260,12 @@ class MailMessageList extends StatefulWidget {
     this.limitNotice,
     this.loadMoreKey,
     this.onBulkAction,
+    Set<MailBulkFlagAction> supportedBulkActions = const {
+      MailBulkFlagAction.markRead,
+      MailBulkFlagAction.markUnread,
+      MailBulkFlagAction.flag,
+      MailBulkFlagAction.unflag,
+    },
     Object? selectionScopeId,
     Object? selectionRevision,
     bool? bulkActionsEnabled,
@@ -263,6 +273,7 @@ class MailMessageList extends StatefulWidget {
     this.bulkStatus,
     this.onCancelBulk,
   }) : items = List.unmodifiable(items),
+       supportedBulkActions = Set.unmodifiable(supportedBulkActions),
        selectionScopeId = selectionScopeId ?? selectionRevision,
        bulkActionsEnabled = bulkActionsEnabled ?? bulkEnabled ?? true {
     if (selectionScopeId != null &&
@@ -298,8 +309,17 @@ class MailMessageList extends StatefulWidget {
 
   /// Omit for read-only/cached hosts. IDs arrive in the current visible order.
   /// The checked set is cleared before this explicit callback is invoked.
+  /// Move/Delete callbacks request the host's destination/confirmation workflow;
+  /// the host must validate exact identities and capabilities before dispatch.
   final void Function(MailBulkFlagAction action, List<String> ids)?
   onBulkAction;
+
+  /// Explicit host-supported choices, copied into an immutable snapshot.
+  /// Defaults to the four flag assignments. Move/Delete require host opt-in and
+  /// their own destination or confirmation workflow; this view never dispatches
+  /// provider commands. An empty set disables selection/action controls.
+  /// Replacing this snapshot invalidates pending menus through the host update.
+  final Set<MailBulkFlagAction> supportedBulkActions;
 
   /// Change after refresh or any host identity/session revision. This clears
   /// checked rows and invalidates already-open menus, even if row IDs overlap.
@@ -519,7 +539,10 @@ class _MailMessageListState extends State<MailMessageList> {
 
   bool get _filtered => _unread || _flagged || _query.text.trim().isNotEmpty;
   bool get _canBulk =>
-      widget.onBulkAction != null && widget.bulkActionsEnabled && !widget.busy;
+      widget.onBulkAction != null &&
+      widget.supportedBulkActions.isNotEmpty &&
+      widget.bulkActionsEnabled &&
+      !widget.busy;
 
   @override
   void didUpdateWidget(MailMessageList oldWidget) {
@@ -531,6 +554,7 @@ class _MailMessageListState extends State<MailMessageList> {
     if (oldWidget.selectionScopeId != widget.selectionScopeId ||
         oldWidget.scopeId != widget.scopeId ||
         widget.onBulkAction == null ||
+        widget.supportedBulkActions.isEmpty ||
         !widget.bulkActionsEnabled) {
       _checkedIds.clear();
     }
@@ -742,13 +766,16 @@ class _MailMessageListState extends State<MailMessageList> {
     MailBulkFlagAction.markUnread => widget.strings.markUnread,
     MailBulkFlagAction.flag => widget.strings.flag,
     MailBulkFlagAction.unflag => widget.strings.unflag,
-    MailBulkFlagAction.move || MailBulkFlagAction.delete => throw StateError(
-      'Membership commands require a separate destination or confirmation.',
-    ),
+    MailBulkFlagAction.move => widget.strings.move,
+    MailBulkFlagAction.delete => widget.strings.delete,
   };
 
   void _runBulk(_BulkChoice choice) {
-    if (!_acceptBulkCallback(choice.generation) || choice.ids.isEmpty) return;
+    if (!_acceptBulkCallback(choice.generation) ||
+        !widget.supportedBulkActions.contains(choice.action) ||
+        choice.ids.isEmpty) {
+      return;
+    }
     final current = [
       for (final row in _visible)
         if (_checkedIds.contains(row.id)) row.id,
@@ -1200,7 +1227,7 @@ class _MailMessageListState extends State<MailMessageList> {
                     final menuGeneration = _interactionGeneration;
                     return [
                       for (final action in MailBulkFlagAction.values.where(
-                        (action) => action.isFlagAction,
+                        widget.supportedBulkActions.contains,
                       ))
                         PopupMenuItem(
                           key: ValueKey('mail-list-bulk-${action.name}'),

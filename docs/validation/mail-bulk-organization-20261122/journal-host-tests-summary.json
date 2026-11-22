@@ -1,0 +1,38 @@
+{
+  "suite": "studio_mail_journal_host_test.dart",
+  "harness": "ram_flutter_test.py; original pinned Flutter engine; assertions enabled; original source; exact native SQLite asset; scoped directory inode pool",
+  "executed": 81,
+  "passed": 81,
+  "skipped": 0,
+  "errors": [],
+  "final": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 43170
+    }
+  ],
+  "exit": 0,
+  "raw_log": "journal-host-tests.jsonl",
+  "raw_log_sha256": "f0bed3b71eb4250d5351ecc96b08af1fb6fafea7bc00350ff8f3be23764e6be4",
+  "outside_json": [
+    "HARNESS stock_shader=ink_sparkle bytes=13472",
+    "HARNESS stock_shader=stretch_effect bytes=9464",
+    "HARNESS source=/workspace/scratch/f1082e82ac57/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart sha256=ee7b8c2e43b1fda86d62aef29a510794bdfb98651bdcfd19ec5639f1456d673b",
+    "HARNESS compiling original sources to anonymous RAM",
+    "result 9b073585-1cae-4e39-bf21-db5aaf575632",
+    "9b073585-1cae-4e39-bf21-db5aaf575632",
+    "9b073585-1cae-4e39-bf21-db5aaf575632 /proc/2/fd/5 0",
+    "HARNESS compiler_exit=0 kernel_bytes=161302976",
+    "HARNESS completed=81 expected=81 assertions=true success=true",
+    "HARNESS flutter_tester_exit=0"
+  ],
+  "source_sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "bd37fdce49e70a6b7b247afaa6afe024afcd869d988d741f451a73f3b9b69a20",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "9786d376bfebcebaf1282eb69cef5664df14117752be59411005e03b1335c760",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": "ee7b8c2e43b1fda86d62aef29a510794bdfb98651bdcfd19ec5639f1456d673b",
+    "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart": "774e60f7b70568558fdc0240f86a1145b56de7e1be78f865187017d73d0363fa",
+    "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart": "8b2d552e2c1a0065fd868abd91edade7a9891d8788070e94c372e8a32e4ada59",
+    "packages/quds_office_editor/example/test/support/mail_flag_journal.dart": "a89abfd77bbe4be43f51c7716643fef6477ca9e4ad8deeb0224155a396462de9"
+  }
+}

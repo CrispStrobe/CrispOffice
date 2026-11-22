@@ -1,0 +1,37 @@
+{
+  "qualified_source_commit": "1249935e224e8a3c01ea76c6662dff9ded1a9096",
+  "qualified_source_tree": "7eeb47825d1755b247c1e77facd7abf49d7dab7a",
+  "passed": 1269,
+  "failed": 0,
+  "skipped": 0,
+  "counting": "Latest accepted result per suite; retries and superseded attempts are not counted twice; runtime/toolchain probes are excluded.",
+  "groups": {
+    "Mail core, identity and command journal": 290,
+    "IMAP/EWS transport and COPYUID parser": 173,
+    "SQLite store and migrations": 218,
+    "Shared Mail UI": 139,
+    "Connected provider and confirmation dialogs": 37,
+    "Durable connected SQLite hosts": 81,
+    "Incoming Word/VBA and preservation": 331
+  },
+  "new_regressions": {
+    "mail": 78,
+    "word_preservation": 5
+  },
+  "evidence": {
+    "standalone": "standalone-final-suite-ledger.json",
+    "shared_ui": "ui-widget-tests-summary.json",
+    "provider_dialog": "provider-dialog-validation.json",
+    "durable_host": "journal-host-tests-summary.json",
+    "copyuid": "generic-copy-uid.stdout.log"
+  },
+  "limits": [
+    "Pinned standalone Dart and direct original Flutter engine harnesses were used because directory allocation was exhausted; conventional CLI orchestration is not claimed.",
+    "Test assertions, original source, original engine, original SDK shaders and exact locked SQLite library were used. Fixture regular-file and SQLite IO remained real.",
+    "Temporary inode pool only qualifies quiescent test-owned fixture teardown, not general concurrent directory deletion.",
+    "The first645 standalone cases predate execution-time source hashing; the ledger distinguishes final observed hashes from hashes recorded during execution.",
+    "Full application/platform builds, project asset packaging, plugin/native-hook discovery, browser persistence, JavaScript-only EWS and live-provider interoperability were not run."
+  ],
+  "ci": "No GitHub Actions/status/check queue queried or awaited.",
+  "lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+}

@@ -79,13 +79,30 @@ does not open messages, load pages, read bodies or invoke a mutation callback.
 Filtering prunes hidden checks permanently; newly loaded rows are not selected
 automatically. Sorting preserves checked identities.
 
-The action menu exposes `markRead`, `markUnread`, `flag` and `unflag`. An explicit
-choice forwards an unmodifiable ID list in visible order and immediately clears
-the checks. Pending menu and pointer callbacks are rejected after host updates,
+The action menu exposes `markRead`, `markUnread`, `flag` and `unflag` by default.
+A connected host can pass `supportedBulkActions` to select its exact supported
+choices, including optional `move` and `delete`. The set is copied into an
+immutable snapshot; later changes to the caller's set cannot change this view.
+An empty set disables selection and action controls. Membership action labels
+default to **Move…** and **Delete…** and are host-localizable through
+`MailMessageListStrings.move` and `.delete`.
+
+Selecting Move/Delete requests the host's destination or confirmation workflow
+through the same `onBulkAction` callback. The host must freeze and revalidate
+the exact account, folder and message identities, show the count and destination
+or provider-specific delete behavior, and obtain deliberate confirmation before
+durable dispatch. Opting in does not grant a provider capability or authorize
+remote writes by this component.
+
+An explicit choice forwards an unmodifiable ID list in visible order and
+immediately clears the checks. Filtered, collapsed and unloaded rows are never
+included. Pending menu and pointer callbacks are rejected after host updates,
 scope/revision/filter/sort/selection changes, or disposal. Changing `scopeId` or
 `selectionRevision` clears the selection. The host must advance the revision
 when its account, provider session or mailbox identity observations change, and
 independently validate the submitted IDs before issuing provider commands.
+Changing action availability also retires open menus; a submitted action is
+rechecked against the current immutable supported set.
 
 `selectionScopeId` and `selectionRevision` name the same observation revision;
 `bulkActionsEnabled` and `bulkEnabled` name the same enablement flag. Supplying

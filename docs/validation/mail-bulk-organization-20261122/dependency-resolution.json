@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/workspace/scratch/f1082e82ac57/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "pub",
+    "get",
+    "--enforce-lockfile"
+  ],
+  "exit_code": 0,
+  "lockfile_before": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "lockfile_after": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "lockfile_unchanged": true,
+  "log": "/workspace/scratch/f1082e82ac57/toolchains/dart-pub-get.log"
+}
