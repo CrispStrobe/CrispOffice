@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Add schema-v11 saved-search folder sets with atomic revision-guarded updates,
+  exact cross-profile account/folder identities and retained display labels.
+  Migrate older definitions as all folders without altering earlier payloads;
+  reject corrupt empty explicit scopes rather than widening them. Filter cached
+  search membership before counting and paging, bind cursors to a canonical
+  folder set, preserve message deduplication and selected-folder provenance,
+  and report selected IDs absent from the local catalog. Add a bounded local
+  folder catalog reader that distinguishes known empty folders from absence.
+
 - Persist Outbox scheduling in validated payload v3 with canonical UTC deadlines
   and monotonic revisions; read v1/v2 entries as unscheduled without losing
   earlier uncertainty. Require explicit revision comparison for schedule edits

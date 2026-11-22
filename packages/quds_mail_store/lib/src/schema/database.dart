@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 10;
+  int get schemaVersion => 11;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -53,11 +53,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV10) {
         await customStatement(statement);
       }
+      for (final statement in schemaV11) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 10');
+      await customStatement('PRAGMA user_version = 11');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 9 || to != 10) {
+      if (from < 1 || from > 10 || to != 11) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -101,11 +104,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV10) {
+        if (from < 10) {
+          for (final statement in schemaV10) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV11) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 10');
+        await customStatement('PRAGMA user_version = 11');
       });
     },
     beforeOpen: (_) async {
@@ -335,5 +343,24 @@ const schemaV10 = <String>[
     id TEXT NOT NULL, name TEXT NOT NULL, name_key TEXT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY(account,id), UNIQUE(account,position), UNIQUE(account,name_key)
+  )''',
+];
+
+/// Null/all-folders remains the default for every earlier saved definition.
+/// The explicit discriminator prevents corrupt empty folder rows from silently
+/// widening a search. Folder IDs belong to the host directory's accounts, not
+/// necessarily to this profile's mailboxes, and survive missing account routes.
+const schemaV11 = <String>[
+  '''ALTER TABLE saved_header_searches ADD COLUMN folder_scope INTEGER
+    NOT NULL DEFAULT 0 CHECK(typeof(folder_scope) = 'integer' AND
+      folder_scope IN (0,1))''',
+  '''CREATE TABLE saved_header_search_folders (
+    search TEXT NOT NULL,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 999),
+    account_id TEXT NOT NULL, mailbox_id TEXT NOT NULL, display_name TEXT,
+    PRIMARY KEY(search,position), UNIQUE(search,account_id,mailbox_id),
+    FOREIGN KEY(search,account_id)
+      REFERENCES saved_header_search_accounts(search,account_id) ON DELETE CASCADE
   )''',
 ];
