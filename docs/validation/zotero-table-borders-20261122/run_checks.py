@@ -19,7 +19,7 @@ spec.loader.exec_module(gate)
 engine = ROOT / 'packages/quds_office_engine/test'
 engine_suites = {
     path.name for path in engine.glob('*_test.dart')
-    if path.name.startswith(('odt_', 'odf_zotero_', 'word_zotero_'))
+    if path.name.startswith(('odt_', 'odf_zotero_', 'word_zotero_', 'word_table'))
 }
 engine_suites.update({
     'word_empty_formatted_run_test.dart',

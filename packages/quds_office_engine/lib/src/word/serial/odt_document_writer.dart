@@ -1531,6 +1531,11 @@ abstract final class OdtDocumentWriter {
     _OdtLayout layout, {
     _OdtSectionStart? sectionStart,
   }) {
+    if (layout.zotero != null && table.properties.rightToLeft) {
+      throw UnsupportedError(
+        'Editable Zotero ODT cannot preserve right-to-left table order.',
+      );
+    }
     final cells = _OdtTableCells(table);
     final cellPadding = layout.zotero == null
         ? null

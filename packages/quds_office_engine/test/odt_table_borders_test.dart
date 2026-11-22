@@ -421,6 +421,12 @@ void main() {
         final original = Uint8List.fromList(bytes);
         var document = WordDeserializer().readBytes(bytes);
         final geometry = _geometry(document);
+        final sourceTable = _tables(document).single;
+        for (final cell in sourceTable.rows.single.cells) {
+          // The retained raw DOCX declares top/start/bottom/end as single.
+          // Assert this independently of the native snapshot to catch alias loss.
+          expect(_sides(sourceTable, cell), [true, true, true, true]);
+        }
         expectConverterSnapshot(document, 'cell');
         document = await OdtDocumentReader.readBytes(
           OdtDocumentWriter.writeEditableZoteroBytes(document),
