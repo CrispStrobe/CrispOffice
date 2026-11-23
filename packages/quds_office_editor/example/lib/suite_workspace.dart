@@ -180,6 +180,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _openHeavy = false;
   var _openProgress = 0.0;
   var _openStage = 'archive';
+  String? _openDetail;
   String _openName = '';
   Timer? _openTicker;
   String? _wordPath;
@@ -7004,6 +7005,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _openHeavy = _pickedFileIsHeavy(picked);
         _openProgress = 0.04;
         _openStage = 'archive';
+        _openDetail = null;
         _openName = picked.name;
       });
       _startOpenTicker();
@@ -7029,9 +7031,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         }
         setState(() {
           _openStage = progress.stage;
-          if (progress.value > _openProgress) {
-            _openProgress = progress.value;
-          }
+          _openDetail = progress.detail;
+          _openProgress = progress.value;
         });
       }
 
@@ -7165,11 +7166,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         return;
       }
       setState(() {
-        final double cap = _openHeavy ? 0.82 : 0.90;
-        final double step = _openHeavy ? 0.005 : 0.016;
-        if (_openProgress < cap) {
-          _openProgress += step;
-        }
+        // Heavy opens receive real layout progress from the worker isolate.
+        // Never invent a percentage while the engine is still working.
+        if (_openHeavy) return;
+        const double cap = 0.90;
+        if (_openProgress < cap) _openProgress += 0.016;
       });
     });
   }
@@ -7185,15 +7186,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final String action = name.isEmpty
         ? (_t('Opening', StudioStrings.de('Opening'), 'جاري الفتح'))
         : (_arabic ? 'جاري فتح $name' : 'Opening $name');
-    final String stage = switch (_openStage) {
-      'archive' => _t('archive', StudioStrings.de('archive'), 'الأرشيف'),
-      'document' => _t('document', StudioStrings.de('document'), 'المستند'),
-      'layout' => _t('layout', StudioStrings.de('layout'), 'التخطيط'),
-      'formulas' => _t('formulas', StudioStrings.de('formulas'), 'الصيغ'),
-      'apply' => _t('display', StudioStrings.de('display'), 'العرض'),
-      'convert' => _t('convert', StudioStrings.de('convert'), 'التحويل'),
-      _ => _openStage,
-    };
+    final String stage =
+        _openDetail ??
+        switch (_openStage) {
+          'archive' => _t('archive', StudioStrings.de('archive'), 'الأرشيف'),
+          'document' => _t('document', StudioStrings.de('document'), 'المستند'),
+          'layout' => _t('layout', StudioStrings.de('layout'), 'التخطيط'),
+          'formulas' => _t('formulas', StudioStrings.de('formulas'), 'الصيغ'),
+          'apply' => _t('display', StudioStrings.de('display'), 'العرض'),
+          'convert' => _t('convert', StudioStrings.de('convert'), 'التحويل'),
+          _ => _openStage,
+        };
     final String heavy = _openHeavy
         ? (_t(
             ' · large file',

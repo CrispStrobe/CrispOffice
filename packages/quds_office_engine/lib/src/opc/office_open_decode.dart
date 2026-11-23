@@ -34,18 +34,18 @@ Future<Object> decodeOfficeOpen(
       file: file,
       lists: file.displayLists(),
     );
-    emit(const OfficeOpenProgress(value: 0.92, stage: 'apply'));
+    emit(const OfficeOpenProgress(value: 0.97, stage: 'apply'));
     return payload;
   }
 
   if (kind == 'word' && OdtDocumentReader.isOdt(bytes)) {
     emit(const OfficeOpenProgress(value: 0.42, stage: 'document'));
     final WmlDocument document = await OdtDocumentReader.readBytes(bytes);
-    emit(const OfficeOpenProgress(value: 0.72, stage: 'layout'));
+    emit(const OfficeOpenProgress(value: 0.25, stage: 'layout'));
     final LaidOutDocument laidOut = WordLayoutEngine(
       font: null,
     ).layout(document);
-    emit(const OfficeOpenProgress(value: 0.92, stage: 'apply'));
+    emit(const OfficeOpenProgress(value: 0.97, stage: 'apply'));
     return WordOpenPayload(document: document, laidOut: laidOut);
   }
 
@@ -57,9 +57,22 @@ Future<Object> decodeOfficeOpen(
   switch (kind) {
     case 'word':
       final WmlDocument document = WordDeserializer().read(package);
-      emit(const OfficeOpenProgress(value: 0.72, stage: 'layout'));
+      emit(const OfficeOpenProgress(value: 0.25, stage: 'layout'));
       final LaidOutDocument laidOut = WordLayoutEngine(
         font: null,
+        onProgress: (progress) {
+          final fraction = progress.fraction.clamp(0.0, 1.0);
+          emit(
+            OfficeOpenProgress(
+              value: 0.25 + 0.70 * fraction,
+              stage: 'layout',
+              detail:
+                  'Layout: ${progress.pages} pages · '
+                  '${progress.blocksDone}/${progress.blocksTotal} blocks · '
+                  '${progress.notesDone}/${progress.notesTotal} notes',
+            ),
+          );
+        },
       ).layout(document);
       emit(const OfficeOpenProgress(value: 0.92, stage: 'apply'));
       return WordOpenPayload(document: document, laidOut: laidOut);
