@@ -1099,10 +1099,11 @@ class WordEditorController extends OfficeController {
         ),
   );
 
-  /// Lays the document out again with fresh paint metrics, for example
-  /// after fonts finish loading.
+  /// Reflow after fonts load. The editor fits paint metrics when a page enters
+  /// view; explicit export and print callers can still fit the full layout.
   void refreshMetrics() {
-    fitPaintMetrics(themeFamily: config.theme.fontFamily);
+    if (documentLaidOut.isPreview) return;
+    relayout();
     notifyListeners();
   }
 

@@ -7096,6 +7096,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   initialLayout: layout,
                   config: _word.config.copyWith(
                     mode: OfficeInteractionMode.viewing,
+                    autofocus: false,
                   ),
                 );
               });
