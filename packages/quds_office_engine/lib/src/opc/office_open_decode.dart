@@ -38,9 +38,14 @@ Future<Object> decodeOfficeOpen(
     return payload;
   }
 
-  if (kind == 'word' && OdtDocumentReader.isOdt(bytes)) {
+  final documentOnly = kind == 'word-document';
+  if ((kind == 'word' || documentOnly) && OdtDocumentReader.isOdt(bytes)) {
     emit(const OfficeOpenProgress(value: 0.42, stage: 'document'));
     final WmlDocument document = await OdtDocumentReader.readBytes(bytes);
+    if (documentOnly) {
+      emit(const OfficeOpenProgress(value: 0.92, stage: 'apply'));
+      return document;
+    }
     emit(const OfficeOpenProgress(value: 0.25, stage: 'layout'));
     final LaidOutDocument laidOut = WordLayoutEngine(
       font: null,
@@ -55,6 +60,10 @@ Future<Object> decodeOfficeOpen(
   /// emit API.
   emit(const OfficeOpenProgress(value: 0.42, stage: 'document'));
   switch (kind) {
+    case 'word-document':
+      final document = WordDeserializer().read(package);
+      emit(const OfficeOpenProgress(value: 0.92, stage: 'apply'));
+      return document;
     case 'word':
       final WmlDocument document = WordDeserializer().read(package);
       emit(const OfficeOpenProgress(value: 0.25, stage: 'layout'));

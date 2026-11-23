@@ -3667,6 +3667,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   List<StudioRibbonGroup> _wordHome() {
+    final activeStyle = WordStyles.ofParagraph(
+      _activeParagraph,
+      document: _word.document,
+    );
+    final paragraphStyles = <String, WmlStyle>{
+      for (final style in WordStyles.catalog) style.id: style,
+      for (final style in _word.document.styles) style.id: style,
+      activeStyle.id: activeStyle,
+    };
     return <StudioRibbonGroup>[
       _clipboardGroup(),
       StudioRibbonGroup(
@@ -3789,12 +3798,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         title: _t('Styles', StudioStrings.de('Styles'), 'أنماط'),
         children: <Widget>[
           StudioCombo<String>(
-            value: WordStyles.ofParagraph(_activeParagraph).id,
-            items: <String>[
-              for (final WmlStyle style in WordStyles.catalog) style.id,
-            ],
-            labelOf: (String id) =>
-                WordStyles.byId(id)?.label(arabic: _arabic) ?? id,
+            value: activeStyle.id,
+            items: paragraphStyles.keys.toList(),
+            labelOf: (String id) => paragraphStyles[id]!.label(arabic: _arabic),
             width: 168,
             enabled: _wordFullFormat,
             tooltip: _t(

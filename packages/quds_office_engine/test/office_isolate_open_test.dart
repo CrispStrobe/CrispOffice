@@ -38,6 +38,18 @@ void main() {
       expect(details.last, contains('blocks'));
     });
 
+    test('opens the Word model without generating a fallback layout', () async {
+      final source = WmlDocument.empty(text: 'Keep the authored text');
+      final stages = <String>[];
+      final document = await OfficeIsolateOpen.wordDocument(
+        WordSerializer().writeBytes(source),
+        onProgress: (progress) => stages.add(progress.stage),
+      );
+      expect(document.paragraphs.single.text, 'Keep the authored text');
+      expect(stages, containsAllInOrder(['archive', 'document', 'apply']));
+      expect(stages, isNot(contains('layout')));
+    });
+
     test('opens a workbook package and keeps cell values', () async {
       final SmlWorkbook workbook = SmlWorkbook();
       workbook.firstSheet.cellA1('A1').value = 11;

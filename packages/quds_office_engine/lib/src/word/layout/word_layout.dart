@@ -2593,7 +2593,9 @@ class WordLayoutEngine {
             .firstOrNull;
         final target =
             stop?.position ??
-            ((pen / kDefaultTabWidth).floor() + 1) * kDefaultTabWidth;
+            (hanging > 0 && pen < textLeft - .001
+                ? textLeft
+                : ((pen / kDefaultTabWidth).floor() + 1) * kDefaultTabWidth);
         final inset = switch (stop?.alignment ?? WmlTabAlignment.left) {
           WmlTabAlignment.left => 0.0,
           WmlTabAlignment.center => fieldWidth / 2,

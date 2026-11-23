@@ -1520,7 +1520,7 @@ class WordEditorController extends OfficeController {
     final int generation = ++_openGeneration;
     final WmlDocument original = document;
     final int revision = contentRevision;
-    final WordOpenPayload opened = await OfficeIsolateOpen.word(
+    final WmlDocument opened = await OfficeIsolateOpen.wordDocument(
       bytes,
       password: password,
       onProgress: onProgress,
@@ -1531,7 +1531,7 @@ class WordEditorController extends OfficeController {
         contentRevision != revision) {
       throw StateError('The document changed while the file was opening.');
     }
-    _acceptOpenedWord(opened.document);
+    _acceptOpenedWord(opened);
   }
 
   void _acceptOpenedWord(WmlDocument opened) {
@@ -7618,15 +7618,22 @@ class WordEditorController extends OfficeController {
       }
     }
 
+    final imported = document.importedStyles.containsKey(styleId);
     commands.commit(
       _CallbackCommand(
         executeFn: () {
           restore();
+          if (WordHeadingIo.applyImportedStyles(document, before.keys, styleId)) {
+            return;
+          }
           for (final paragraph in before.keys) {
             WordStyles.apply(paragraph, styleId, document: document);
           }
         },
-        undoFn: restore,
+        undoFn: () {
+          restore();
+          if (imported) WordDeserializer().refreshNumbering(document);
+        },
       ),
     );
     relayout();
