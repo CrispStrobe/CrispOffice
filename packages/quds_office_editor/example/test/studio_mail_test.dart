@@ -398,7 +398,7 @@ Future<void> _close(
     scrollable: find.descendant(of: ribbon, matching: find.byType(Scrollable)),
   );
   await tester.ensureVisible(close);
-  await tester.pumpAndSettle();
+  await tester.pump();
   expect(close.hitTestable(), findsOneWidget);
   await tester.tap(close);
   await _pump(tester);
