@@ -3501,7 +3501,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         context,
         strings: widget.strings,
         mailboxName: mailbox.name,
-        search: (field, query, cancellation) {
+        search: (field, range, query, cancellation) {
           if (!current()) {
             throw const MailCancelled(MailCancellationReason.accountChanged);
           }
@@ -3509,6 +3509,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             client: client,
             mailbox: mailbox,
             field: field,
+            range: range,
             query: query,
             limit: 50,
             cancellation: cancellation,

@@ -46,10 +46,12 @@ void main() {
           client: client,
           mailbox: inbox,
           field: StudioMailServerSearchField.from,
+          range: StudioMailServerSearchRange.last30Days,
           query: address,
           limit: 20,
         );
         expect(from.mailboxName, inbox.name);
+        expect(from.range, StudioMailServerSearchRange.last30Days);
         expect(from.totalMatches, greaterThanOrEqualTo(1));
         expect(from.messages, isNotEmpty);
         expect(from.messages.every((message) => message.uid != null), isTrue);

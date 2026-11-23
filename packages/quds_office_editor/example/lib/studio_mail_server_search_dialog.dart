@@ -9,6 +9,7 @@ import 'studio_strings.dart';
 typedef StudioMailServerSearchRunner =
     Future<StudioMailServerSearchResult> Function(
       StudioMailServerSearchField field,
+      StudioMailServerSearchRange range,
       String query,
       MailCancellationToken cancellation,
     );
@@ -47,6 +48,7 @@ class _StudioMailServerSearchDialogState
     extends State<_StudioMailServerSearchDialog> {
   final _query = TextEditingController();
   StudioMailServerSearchField _field = StudioMailServerSearchField.body;
+  StudioMailServerSearchRange _range = StudioMailServerSearchRange.anyTime;
   MailCancellationSource? _source;
   StudioMailServerSearchResult? _result;
   bool _running = false;
@@ -71,6 +73,7 @@ class _StudioMailServerSearchDialogState
     }
     final source = MailCancellationSource();
     final field = _field;
+    final range = _range;
     setState(() {
       _source = source;
       _running = true;
@@ -79,7 +82,7 @@ class _StudioMailServerSearchDialogState
       _error = null;
     });
     try {
-      final result = await widget.search(field, text, source.token);
+      final result = await widget.search(field, range, text, source.token);
       if (!mounted || !identical(source, _source)) return;
       if (source.token.isCancelled) {
         setState(() {
@@ -138,6 +141,16 @@ class _StudioMailServerSearchDialogState
     StudioMailServerSearchField.to => strings.mailServerSearchTo,
   };
 
+  String _rangeLabel(
+    StudioStrings strings,
+    StudioMailServerSearchRange range,
+  ) => switch (range) {
+    StudioMailServerSearchRange.anyTime => strings.mailServerSearchAnyTime,
+    StudioMailServerSearchRange.last7Days => strings.mailServerSearchLast7,
+    StudioMailServerSearchRange.last30Days => strings.mailServerSearchLast30,
+    StudioMailServerSearchRange.last90Days => strings.mailServerSearchLast90,
+  };
+
   @override
   Widget build(BuildContext context) {
     final strings = widget.strings;
@@ -180,6 +193,30 @@ class _StudioMailServerSearchDialogState
                         ? null
                         : (field) {
                             if (field != null) setState(() => _field = field);
+                          },
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  flex: 2,
+                  child: DropdownButtonFormField<StudioMailServerSearchRange>(
+                    key: const ValueKey('studio-mail-server-range'),
+                    initialValue: _range,
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      labelText: strings.mailServerSearchRange,
+                    ),
+                    items: [
+                      for (final range in StudioMailServerSearchRange.values)
+                        DropdownMenuItem(
+                          value: range,
+                          child: Text(_rangeLabel(strings, range)),
+                        ),
+                    ],
+                    onChanged: _running
+                        ? null
+                        : (range) {
+                            if (range != null) setState(() => _range = range);
                           },
                   ),
                 ),

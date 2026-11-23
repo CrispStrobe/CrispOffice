@@ -44,16 +44,19 @@ void main() {
   ) async {
     final message = _message(42);
     StudioMailServerSearchField? observedField;
+    StudioMailServerSearchRange? observedRange;
     String? observedQuery;
     mail.MimeMessage? returned;
     await tester.pumpWidget(
       _host(
         onClosed: (value) => returned = value,
-        search: (field, query, cancellation) async {
+        search: (field, range, query, cancellation) async {
           observedField = field;
+          observedRange = range;
           observedQuery = query;
           return StudioMailServerSearchResult(
             field: field,
+            range: range,
             query: query,
             mailboxName: 'Inbox',
             totalMatches: 3,
@@ -65,6 +68,10 @@ void main() {
     );
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('studio-mail-server-range')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Last 30 days').last);
+    await tester.pumpAndSettle();
     await tester.enterText(
       find.byKey(const ValueKey('studio-mail-server-query')),
       'invoice',
@@ -72,6 +79,7 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('studio-mail-server-run')));
     await tester.pumpAndSettle();
     expect(observedField, StudioMailServerSearchField.body);
+    expect(observedRange, StudioMailServerSearchRange.last30Days);
     expect(observedQuery, 'invoice');
     expect(find.textContaining('3 matches'), findsOneWidget);
     expect(find.textContaining('More matches exist'), findsOneWidget);
@@ -89,7 +97,7 @@ void main() {
     var called = false;
     await tester.pumpWidget(
       _host(
-        search: (field, query, cancellation) async {
+        search: (field, range, query, cancellation) async {
           called = true;
           throw StateError('unexpected');
         },
@@ -110,7 +118,7 @@ void main() {
     final Completer<StudioMailServerSearchResult> pending = Completer();
     await tester.pumpWidget(
       _host(
-        search: (field, query, cancellation) {
+        search: (field, range, query, cancellation) {
           cancellation.throwIfCancelled();
           return pending.future;
         },
@@ -133,6 +141,7 @@ void main() {
     pending.complete(
       StudioMailServerSearchResult(
         field: StudioMailServerSearchField.body,
+        range: StudioMailServerSearchRange.anyTime,
         query: 'invoice',
         mailboxName: 'Inbox',
         totalMatches: 1,

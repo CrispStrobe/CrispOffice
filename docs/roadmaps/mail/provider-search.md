@@ -6,8 +6,8 @@ provider search remain open.
 ## User path
 
 Connected native IMAP Mail now exposes **Search on server** in the View ribbon.
-The dialog chooses one field — message body, subject, From or To — and a text
-term. Searching covers the currently selected folder at the provider's current
+The dialog chooses one field — message body, subject, From or To — a text term
+and an optional received-date range (any time, last 7, 30 or 90 days). Searching covers the currently selected folder at the provider's current
 snapshot, shows the total match count and displays the first 50 envelope rows.
 Opening a row loads that message through the normal reader, body cache and safe
 HTML path.
@@ -16,6 +16,8 @@ HTML path.
 
 - Exactly one selected folder is searched. Other folders and the unified/local
   cache are not included.
+- A received-date range narrows the provider-side search; it does not filter
+  downloaded rows locally.
 - Body search is performed by the IMAP server, not by downloading every body.
   Provider indexing and server capabilities determine what body text matches;
   attachment text is outside the search.
@@ -37,11 +39,12 @@ protocol failure shows a generic error and preserves the folder and messages.
 
 ## Verification
 
-- Server-search dialog behavior: **3/3** (run, invalid input, stop/discard).
+- Server-search dialog behavior: **3/3** (run with a 30-day range, invalid
+  input, stop/discard).
 - Live mailbox.org test: connected over IMAP, fetched envelope rows, searched a
-  real selected folder by From, verified match rows have UIDs, searched body
-  text taken from a downloaded plain-text message, and verified an already
-  cancelled token throws before doing work.
+  real selected folder by From within the last 30 days, verified match rows have
+  UIDs, searched body text taken from a downloaded plain-text message, and
+  verified an already cancelled token throws before doing work.
 - Changed-file analysis and formatting remain clean.
 
 ## Limits

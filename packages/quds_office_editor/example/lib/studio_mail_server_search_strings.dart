@@ -10,8 +10,8 @@ extension StudioMailServerSearchStrings on StudioStrings {
   String get mailServerSearch =>
       _t('Search on server', 'Auf dem Server suchen', 'البحث على الخادم');
   String get mailServerSearchHelp => _t(
-    'Searches the entire selected folder on the mail server. Only the first 50 results are shown, attachment text is not searched, and provider indexing determines what body text can be found.',
-    'Durchsucht den gesamten ausgewählten Ordner auf dem Mailserver. Es werden nur die ersten 50 Treffer angezeigt, Anhangstexte werden nicht durchsucht, und die Indizierung des Anbieters bestimmt, welcher Nachrichtentext gefunden wird.',
+    'Searches the entire selected folder on the mail server, optionally limited by received date. Only the first 50 results are shown, attachment text is not searched, and provider indexing determines what body text can be found.',
+    'Durchsucht den gesamten ausgewählten Ordner auf dem Mailserver, optional begrenzt nach Empfangsdatum. Es werden nur die ersten 50 Treffer angezeigt, Anhangstexte werden nicht durchsucht, und die Indizierung des Anbieters bestimmt, welcher Nachrichtentext gefunden wird.',
     'يبحث في المجلد المحدد بالكامل على خادم البريد. تُعرض أول 50 نتيجة فقط، ولا يُبحث في نص المرفقات، وتحدد فهرسة المزود النص الذي يمكن العثور عليه.',
   );
   String get mailServerSearchField => _t('Search in', 'Suchen in', 'البحث في');
@@ -20,6 +20,15 @@ extension StudioMailServerSearchStrings on StudioStrings {
   String get mailServerSearchSubject => _t('Subject', 'Betreff', 'الموضوع');
   String get mailServerSearchFrom => _t('From', 'Von', 'من');
   String get mailServerSearchTo => _t('To', 'An', 'إلى');
+  String get mailServerSearchRange =>
+      _t('Received', 'Empfangen', 'تاريخ الاستلام');
+  String get mailServerSearchAnyTime => _t('Any time', 'Beliebig', 'أي وقت');
+  String get mailServerSearchLast7 =>
+      _t('Last 7 days', 'Letzte 7 Tage', 'آخر 7 أيام');
+  String get mailServerSearchLast30 =>
+      _t('Last 30 days', 'Letzte 30 Tage', 'آخر 30 يومًا');
+  String get mailServerSearchLast90 =>
+      _t('Last 90 days', 'Letzte 90 Tage', 'آخر 90 يومًا');
   String get mailServerSearchQuery => _t('Search text', 'Suchtext', 'نص البحث');
   String get mailServerSearchRun => _t('Search', 'Suchen', 'بحث');
   String get mailServerSearchStop => _t('Stop', 'Stoppen', 'إيقاف');

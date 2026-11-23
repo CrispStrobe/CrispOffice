@@ -18,7 +18,7 @@ interrupted work.
 | Gmail / Microsoft 365 | Implemented through provider presets; live-account acceptance open |
 | Offline store | Durable drafts, Outbox, cached headers/bodies, search journal |
 | Scheduled send | Foreground only; UTC deadlines and a short Undo window |
-| Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; explicit local `body:` searches retained plain-text bodies; IMAP "Search on server" covers one selected folder with body/subject/From/To, a 50-row cap and explicit match count; no EWS/Graph provider search or attachment extraction |
+| Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; explicit local `body:` searches retained plain-text bodies; IMAP "Search on server" covers one selected folder with body/subject/From/To, optional received-date ranges, a 50-row cap and explicit match count; no EWS/Graph provider search or attachment extraction |
 | Conversations | Persisted cross-folder conversation keys (schema v20) with conservative reference-derived roots and loaded-row folding |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |

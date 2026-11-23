@@ -7,6 +7,10 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 /// by the IMAP server; the client never downloads every body to filter locally.
 enum StudioMailServerSearchField { body, subject, from, to }
 
+/// Bound on the provider's internal received date. The whole selected folder is
+/// still searched; this narrows the provider-side snapshot.
+enum StudioMailServerSearchRange { anyTime, last7Days, last30Days, last90Days }
+
 /// One completed server-side search over the currently selected folder.
 ///
 /// [totalMatches] is the provider's matching count before the result cap.
@@ -15,6 +19,7 @@ enum StudioMailServerSearchField { body, subject, from, to }
 final class StudioMailServerSearchResult {
   StudioMailServerSearchResult({
     required this.field,
+    required this.range,
     required this.query,
     required this.mailboxName,
     required this.totalMatches,
@@ -23,6 +28,7 @@ final class StudioMailServerSearchResult {
   }) : messages = List.unmodifiable(messages);
 
   final StudioMailServerSearchField field;
+  final StudioMailServerSearchRange range;
   final String query;
   final String mailboxName;
   final int totalMatches;
@@ -44,8 +50,10 @@ Future<StudioMailServerSearchResult> studioMailServerSearch({
   required mail.Mailbox mailbox,
   required StudioMailServerSearchField field,
   required String query,
+  StudioMailServerSearchRange range = StudioMailServerSearchRange.anyTime,
   int limit = 50,
   MailCancellationToken? cancellation,
+  DateTime? now,
 }) async {
   final text = query.trim();
   if (text.isEmpty ||
@@ -62,6 +70,15 @@ Future<StudioMailServerSearchResult> studioMailServerSearch({
   cancellation?.throwIfCancelled();
   await client.selectMailbox(mailbox);
   cancellation?.throwIfCancelled();
+  final since = switch (range) {
+    StudioMailServerSearchRange.anyTime => null,
+    StudioMailServerSearchRange.last7Days =>
+      (now ?? DateTime.now()).toUtc().subtract(const Duration(days: 7)),
+    StudioMailServerSearchRange.last30Days =>
+      (now ?? DateTime.now()).toUtc().subtract(const Duration(days: 30)),
+    StudioMailServerSearchRange.last90Days =>
+      (now ?? DateTime.now()).toUtc().subtract(const Duration(days: 90)),
+  };
   final result = await client.searchMessages(
     mail.MailSearch(
       text,
@@ -71,6 +88,7 @@ Future<StudioMailServerSearchResult> studioMailServerSearch({
         StudioMailServerSearchField.from => mail.SearchQueryType.from,
         StudioMailServerSearchField.to => mail.SearchQueryType.to,
       },
+      since: since,
       pageSize: limit,
       fetchPreference: mail.FetchPreference.envelope,
     ),
@@ -82,6 +100,7 @@ Future<StudioMailServerSearchResult> studioMailServerSearch({
   }
   return StudioMailServerSearchResult(
     field: field,
+    range: range,
     query: text,
     mailboxName: mailbox.name,
     totalMatches: result.length,
