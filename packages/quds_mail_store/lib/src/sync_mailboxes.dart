@@ -270,7 +270,7 @@ extension MailSynchronizedMailboxes on SqliteMailRepository {
       }
       return MailMailboxSyncSnapshot(
         summary: summary,
-        headers: headers,
+        headers: await attachTagsToHeaders(account, headers),
         offset: offset,
         hasMoreHeaders: offset + headers.length < summary.headerCount,
       );

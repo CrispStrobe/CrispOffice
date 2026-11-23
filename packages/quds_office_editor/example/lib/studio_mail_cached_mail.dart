@@ -712,6 +712,7 @@ class _StudioMailCachedMailDialogState
             header.remote.account.value,
           ].map(Uri.encodeComponent).join('/'),
           conversationId: header.conversationId,
+          tags: header.tags,
           messageId: header.envelope.messageId,
           inReplyTo: header.envelope.inReplyTo,
           references: header.envelope.references,

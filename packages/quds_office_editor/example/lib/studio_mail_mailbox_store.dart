@@ -140,6 +140,7 @@ MailHeaderRecord studioMailCachedHeader(MailHeaderRecord source) {
     envelope: source.envelope,
     flags: source.flags,
     conversationId: source.conversationId,
+    tags: source.tags,
   );
 }
 
@@ -612,6 +613,7 @@ final class StudioMailMailboxCapture {
           envelope: source.envelope,
           flags: cached.flags,
           conversationId: cached.conversationId ?? source.conversationId,
+          tags: cached.tags,
         ),
       );
     }

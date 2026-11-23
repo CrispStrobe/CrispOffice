@@ -1245,6 +1245,26 @@ void main() {
     expect(loads, 0);
   });
 
+  testWidgets('shows bounded local tag names in row metadata', (tester) async {
+    await tester.pumpWidget(
+      _app(
+        _list(
+          items: const [
+            MailMessageListItem(
+              id: 'tagged',
+              subject: 'Tagged mail',
+              sender: 'alice@example.test',
+              dateLabel: '23 November',
+              tags: ['Work', 'Receipts', 'Travel', 'Later'],
+            ),
+          ],
+        ),
+      ),
+    );
+    expect(find.textContaining('🏷 Work, Receipts, Travel +1'), findsOneWidget);
+    expect(find.byKey(const ValueKey('mail-list-meta-tagged')), findsOneWidget);
+  });
+
   testWidgets(
     'changing account clears a Boolean query and stale row callback',
     (tester) async {

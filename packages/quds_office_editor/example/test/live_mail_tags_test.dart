@@ -124,10 +124,13 @@ void main() {
           await repository.loadMessageTags(account, cachedId),
         );
         expect(loaded.map((tag) => tag.name), ['Live', 'Parity']);
+        final view = _value(await repository.loadMailboxView(inbox.id))!;
+        expect(view.headers.single.tags, ['Live', 'Parity']);
         final result = _value(
           await repository.searchCachedHeaders(account, 'tag:live'),
         );
         expect(result.hits.single.header.id, cachedId);
+        expect(result.hits.single.header.tags, ['Live', 'Parity']);
         expect(
           _value(await repository.searchCachedHeaders(account, 'tag:liv')).hits,
           isEmpty,

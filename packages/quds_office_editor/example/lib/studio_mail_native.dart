@@ -1296,6 +1296,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       remote: observed.remote,
       envelope: observed.envelope,
       conversationId: observed.conversationId,
+      tags: observed.tags,
       // A per-flag confirmation must never invent the remaining unknown bits.
       flags: snapshot == null
           ? null

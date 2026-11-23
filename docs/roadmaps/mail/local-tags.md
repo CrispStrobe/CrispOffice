@@ -19,6 +19,11 @@ Matching is case-insensitive and exact: `tag:work` matches `Work`, while
 `tag:wor` does not. Tags never become bare text terms and do not search the
 subject, sender or body. A tag search reads no message body.
 
+Assigned tag names are shown in mailbox and saved-search row metadata. Up to
+three names are displayed, followed by a `+N` count, using the same
+account-scoped values as `tag:` search. The list never reads bodies or contacts
+a provider to render them.
+
 ## Contract
 
 - Tags are scoped to one account and one retained message identity.
@@ -46,12 +51,13 @@ upgrade additively and preserve every existing table and payload.
 
 - Core tag parser/search: **5/5**.
 - Store tag behavior: **4/4**, including account isolation, exact matching,
-  atomic rejection and cached-search integration.
+  atomic rejection, cached-search integration and view/search row attachment.
 - Schema/migration suites pass; the future-schema rejection moves to v21/v22.
 - Studio tag dialog: **2/2**.
 - Live mailbox.org test: fetched a real header, retained its cached identity,
   added local tags, reloaded them and matched `tag:live` without a provider
   search or body read.
+- Shared message-list tag metadata regression and the full UI suite remain green.
 - HTML/compose regression suites remain green.
 
 ## Limits

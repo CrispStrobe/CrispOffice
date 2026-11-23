@@ -88,6 +88,8 @@ void main() {
       _value(await store.listMessageTags(_account)).map((tag) => tag.name),
       ['Receipts', 'Work'],
     );
+    final view = _value(await store.loadMailboxView(_mailbox))!;
+    expect(view.headers.first.tags, ['Receipts', 'Work']);
 
     _value(
       await store.setMessageTags(_account, MailMessageId('message-1'), [
@@ -115,6 +117,7 @@ void main() {
     );
     final work = _value(await store.searchCachedHeaders(_account, 'tag:work'));
     expect(work.hits.single.header.id.value, 'message-1');
+    expect(work.hits.single.header.tags, ['Receipts', 'Work']);
     expect(
       _value(await store.searchCachedHeaders(_account, 'tag:wor')).hits,
       isEmpty,

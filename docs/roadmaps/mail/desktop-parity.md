@@ -14,7 +14,7 @@ clients are references, not compatibility claims.
 | --- | --- | --- |
 | Accounts | IMAP/SMTP, EWS, Gmail, Microsoft 365; remembered chooser; one live account at a time | Multiple simultaneous sessions, system-browser OAuth/PKCE, account discovery |
 | Mailbox | Browse, cached views, resumable sync, persistent cross-folder conversation keys, search | Complete shared workspace, unified inbox, provider thread discovery |
-| Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
+| Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search and row metadata, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
 | Compose | Plain-text Word surface, signatures, Quick Text, attachments, drafts | Rich HTML composition, inline images, full-message templates, sender identities |
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
 | Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS, IMAP one-folder provider search | EWS/Gmail/Graph provider search, Boolean/date provider grammar, multi-folder scope, indexed discovery |

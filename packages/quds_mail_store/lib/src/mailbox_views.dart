@@ -304,7 +304,7 @@ extension MailCachedMailboxViews on SqliteMailRepository {
       mailbox: summary.mailbox,
       revision: summary.revision,
       capturedAt: summary.capturedAt,
-      headers: headers,
+      headers: await attachTagsToHeaders(account, headers),
       hasMore: summary.hasMore,
     );
   }

@@ -26,6 +26,7 @@ final class MailMessageListItem {
     this.inReplyTo,
     this.conversationId,
     this.references = const [],
+    this.tags = const [],
   });
 
   final String id;
@@ -50,6 +51,9 @@ final class MailMessageListItem {
   /// Persistent account-scoped conversation key from the local index.
   final String? conversationId;
   final List<String> references;
+
+  /// Local account tag display names attached by the repository.
+  final List<String> tags;
 }
 
 /// Local ordering of the loaded rows. Equal values retain provider order.
@@ -1370,6 +1374,16 @@ class _MailMessageListState extends State<MailMessageList> {
     );
   }
 
+  String? _rowMetadata(MailMessageListItem item) {
+    final parts = <String>[
+      ?item.dateLabel,
+      if (item.tags.isNotEmpty)
+        '🏷 ${item.tags.take(3).join(', ')}'
+            '${item.tags.length > 3 ? ' +${item.tags.length - 3}' : ''}',
+    ];
+    return parts.isEmpty ? null : parts.join('  ·  ');
+  }
+
   Widget _row(MailMessageListItem item, {_LoadedConversation? conversation}) {
     final generation = _interactionGeneration;
     final colors = Theme.of(context).colorScheme;
@@ -1443,9 +1457,10 @@ class _MailMessageListState extends State<MailMessageList> {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontSize: 12, height: 1.3),
                         ),
-                        if (item.dateLabel case final date?)
+                        if (_rowMetadata(item) case final metadata?)
                           Text(
-                            date,
+                            metadata,
+                            key: ValueKey('mail-list-meta-${item.id}'),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontSize: 11, height: 1.3),

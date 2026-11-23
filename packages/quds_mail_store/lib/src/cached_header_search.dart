@@ -434,6 +434,20 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
         );
         if (hits.length == limit) break;
       }
+      if (hits.isNotEmpty) {
+        final tagged = await attachTagsToHeaders(account, [
+          for (final hit in hits) hit.header,
+        ]);
+        final byId = {for (final header in tagged) header.id.value: header};
+        for (var index = 0; index < hits.length; index++) {
+          final hit = hits[index];
+          hits[index] = MailCachedHeaderSearchHit(
+            header: byId[hit.header.id.value]!,
+            folders: hit.folders,
+            hasCachedBody: hit.hasCachedBody,
+          );
+        }
+      }
       final hasMore =
           last != null &&
           (await _rows(

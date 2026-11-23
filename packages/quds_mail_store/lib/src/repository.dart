@@ -616,7 +616,7 @@ final class SqliteMailRepository
         offset > limits.maxMessagesPerAccount) {
       _fail(MailProblemCode.invalidInput);
     }
-    return List.unmodifiable([
+    return attachTagsToHeaders(mailbox.account, [
       for (final row in await _rows(
         'SELECT m.* FROM messages m JOIN memberships s ON s.account=m.account AND s.message=m.id '
         'WHERE s.account=? AND s.mailbox=? ORDER BY m.id LIMIT ? OFFSET ?',

@@ -45,6 +45,7 @@ final class MailHeaderRecord {
     required this.envelope,
     this.flags,
     this.conversationId,
+    this.tags = const [],
   });
   final MailMessageId id;
   final MailRemoteIdentity remote;
@@ -54,6 +55,26 @@ final class MailHeaderRecord {
   /// one. Providers leave this null; repo reads may attach it for cross-folder
   /// grouping without changing the mailbox row identity.
   final String? conversationId;
+
+  /// Local tag display names attached by a repository read. Providers leave
+  /// this empty; it is not a provider keyword or thread field.
+  final List<String> tags;
+
+  MailHeaderRecord copyWith({
+    MailMessageId? id,
+    MailRemoteIdentity? remote,
+    MailEnvelope? envelope,
+    MailMessageFlags? flags,
+    String? conversationId,
+    List<String>? tags,
+  }) => MailHeaderRecord(
+    id: id ?? this.id,
+    remote: remote ?? this.remote,
+    envelope: envelope ?? this.envelope,
+    flags: flags ?? this.flags,
+    conversationId: conversationId ?? this.conversationId,
+    tags: tags ?? this.tags,
+  );
 
   /// Null means not observed. Persisting an unobserved snapshot must not clear
   /// previously observed flags for this exact remote identity.

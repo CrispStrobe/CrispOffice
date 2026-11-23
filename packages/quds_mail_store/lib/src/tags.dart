@@ -117,6 +117,34 @@ extension MailLocalTags on SqliteMailRepository {
     }),
   );
 
+  /// Attaches local tag display names to a bounded header page. One query per
+  /// 500 rows; never reads bodies or contacts a provider.
+  Future<List<MailHeaderRecord>> attachTagsToHeaders(
+    MailAccountId account,
+    List<MailHeaderRecord> headers,
+  ) async {
+    if (headers.isEmpty) return headers;
+    final byMessage = <String, List<String>>{};
+    for (var start = 0; start < headers.length; start += 500) {
+      final page = headers.skip(start).take(500).toList(growable: false);
+      final ids = [for (final header in page) header.id.value];
+      final rows = await _rows(
+        'SELECT message,name FROM message_tags WHERE account=? AND message IN '
+        '(${List.filled(ids.length, '?').join(',')}) '
+        'ORDER BY message,tag_key LIMIT ?',
+        [account.value, ...ids, page.length * MailTag.maxTagsPerMessage],
+      );
+      for (final row in rows) {
+        final tag = MailTag.parse(row.read<String>('name'));
+        (byMessage[row.read<String>('message')] ??= <String>[]).add(tag.name);
+      }
+    }
+    return List.unmodifiable([
+      for (final header in headers)
+        header.copyWith(tags: byMessage[header.id.value] ?? const []),
+    ]);
+  }
+
   /// Applies multiple tag replacements in one transaction. The host uses this
   /// for ordered-rule application so a failure leaves every previous tag set
   /// intact. Empty updates are a successful no-op.
