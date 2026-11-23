@@ -40,6 +40,11 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image comparison dependency
+        run: python3 -m pip install Pillow==13.0.0
       - name: Engine suite and line coverage
         id: engine
         working-directory: packages/quds_office_engine
