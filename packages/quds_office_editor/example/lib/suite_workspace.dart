@@ -177,6 +177,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _saveProgress = 0.0;
   Timer? _saveTicker;
   var _opening = false;
+  WordEditorController? _wordOpenPreview;
   var _openHeavy = false;
   var _openProgress = 0.0;
   var _openStage = 'archive';
@@ -582,6 +583,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   @override
   void dispose() {
     _wordFooterTimer?.cancel();
+    _wordOpenPreview?.dispose();
     _ribbonPreferences.removeListener(_ribbonPreferencesChanged);
     if (widget.ribbonPreferences == null) _ribbonPreferences.dispose();
     _aboutChannel.setMethodCallHandler(null);
@@ -3810,12 +3812,49 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             ),
             onSelected: _wordFullFormat ? _word.applyStyle : null,
           ),
+          _icon(
+            Icons.tune,
+            _t(
+              'Style tabs and indents…',
+              'Tabstopps und Einzüge der Formatvorlage…',
+              'علامات الجدولة والمسافات البادئة للنمط…',
+            ),
+            _wordFullFormat &&
+                    _word.document.importedStyles.containsKey(activeStyle.id)
+                ? () => showWordTabIndentDialog(
+                    _themedContext,
+                    controller: _word,
+                    unit: _lengthUnit,
+                    styleId: activeStyle.id,
+                    styleName: activeStyle.name,
+                    translate: (label) =>
+                        _t(label, StudioStrings.de(label), label),
+                  )
+                : null,
+          ),
         ],
       ),
       StudioRibbonGroup(
         id: 'paragraph',
         title: _t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة'),
         children: <Widget>[
+          _icon(
+            Icons.straighten,
+            _t(
+              'Tabs and indents…',
+              'Tabstopps und Einzüge…',
+              'علامات الجدولة والمسافات البادئة…',
+            ),
+            _wordFullFormat
+                ? () => showWordTabIndentDialog(
+                    _themedContext,
+                    controller: _word,
+                    unit: _lengthUnit,
+                    translate: (label) =>
+                        _t(label, StudioStrings.de(label), label),
+                  )
+                : null,
+          ),
           _icon(
             Icons.format_align_left,
             _t('Left', StudioStrings.de('Left'), 'يسار'),
@@ -7046,7 +7085,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         case OpcPackageKind.word:
           _switchApp(SuiteApp.word);
           final bool importedOdt = OdtDocumentReader.isOdt(bytes);
-          await _word.loadBytesAsync(bytes, onProgress: onProgress);
+          await _word.loadBytesAsync(
+            bytes,
+            onProgress: onProgress,
+            onFirstPage: (document, layout) {
+              if (!mounted || !_opening) return;
+              setState(() {
+                _wordOpenPreview = WordEditorController(
+                  document: document,
+                  initialLayout: layout,
+                  config: _word.config.copyWith(
+                    mode: OfficeInteractionMode.viewing,
+                  ),
+                );
+              });
+            },
+          );
           if (!mounted) return;
           // The active representation is DOCX. Never write those bytes over
           // the source ODT path; the first save chooses a new DOCX location.
@@ -7093,10 +7147,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     } finally {
       _stopOpenTicker();
       if (mounted) {
+        final preview = _wordOpenPreview;
         setState(() {
+          _wordOpenPreview = null;
           _opening = false;
           _openProgress = 0;
         });
+        if (preview != null) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => preview.dispose(),
+          );
+        }
       }
     }
   }
@@ -10390,7 +10451,25 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   onClose: _closeFind,
                 ),
               ),
-            if (_opening) _openProgressOverlay(dark),
+            if (_wordOpenPreview case final preview?)
+              Positioned.fill(
+                child: AbsorbPointer(
+                  child: Column(
+                    children: [
+                      const LinearProgressIndicator(),
+                      Expanded(
+                        child: QudsWordEditor(
+                          controller: preview,
+                          enableLiveProofing: false,
+                          showReviewStatus: false,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            else if (_opening)
+              _openProgressOverlay(dark),
           ],
         ),
       ),

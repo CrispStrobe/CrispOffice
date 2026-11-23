@@ -818,7 +818,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   var _tapCount = 0;
 
   /// VisualImageCache API.
-  final VisualImageCache _images = VisualImageCache();
+  final VisualImageCache _images = VisualImageCache(
+    decodedByteBudget: 64 * 1024 * 1024,
+  );
 
   final Map<_RunPaintKey, TextPainter> _runPainters =
       <_RunPaintKey, TextPainter>{};
@@ -1192,18 +1194,10 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         bottom + 8,
       );
     } else {
-      var maxW = laidOut.pageSize.width;
-      var stackH = 24.0;
-      for (final LaidOutPage page in laidOut.pages) {
-        if (page.width > maxW) {
-          maxW = page.width;
-        }
-        stackH += page.height * scale + 24;
-      }
-      if (laidOut.pages.isEmpty) {
-        stackH += laidOut.pageSize.height * scale + 24;
-      }
-      content = Size(maxW * scale + 64, stackH);
+      content = Size(
+        laidOut.maxPageWidth * scale + 64,
+        laidOut.pageStackTop(math.max(1, laidOut.pages.length), scale),
+      );
     }
     size = compact
         ? constraints.constrain(content)
@@ -1219,25 +1213,14 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
 
   static const double _pageSideGutter = 64;
 
-  double get _maxPageWidthPt {
-    var maxW = laidOut.pageSize.width;
-    for (final LaidOutPage page in laidOut.pages) {
-      if (page.width > maxW) {
-        maxW = page.width;
-      }
-    }
-    return maxW;
-  }
+  double get _maxPageWidthPt => laidOut.maxPageWidth;
 
   Size get _contentSize {
     final double scale = _viewScale;
-    var stackH = 24.0;
-    for (final LaidOutPage page in laidOut.pages) {
-      stackH += page.height * scale + 24;
-    }
-    if (laidOut.pages.isEmpty) {
-      stackH += laidOut.pageSize.height * scale + 24;
-    }
+    final stackH = laidOut.pageStackTop(
+      math.max(1, laidOut.pages.length),
+      scale,
+    );
     return Size(
       _maxPageWidthPt * scale + _pageSideGutter * 2 + _scrollBar,
       stackH,
@@ -2070,10 +2053,10 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       return point;
     }
     final double scale = _viewScale;
-    var top = 24.0;
-    for (int i = 0; i < page && i < laidOut.pages.length; i++) {
-      top += laidOut.pages[i].height * scale + 24;
-    }
+    final top = laidOut.pageStackTop(
+      page.clamp(0, laidOut.pages.length),
+      scale,
+    );
     return Offset(
       point.dx * scale + _pageLeftPx() - viewport.origin.dx,
       point.dy * scale + top - viewport.origin.dy,
@@ -2229,16 +2212,14 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     }
     final double scale = _viewScale;
     final double x = (window.dx + viewport.origin.dx - _pageLeftPx()) / scale;
-    var top = 24.0;
-    for (int i = 0; i < laidOut.pages.length; i++) {
-      final LaidOutPage page = laidOut.pages[i];
-      final double y = (window.dy + viewport.origin.dy - top) / scale;
-      if (y >= -8 && y <= page.height + 8) {
-        return (i, Offset(x, y));
-      }
-      top += page.height * scale + 24;
+    final contentY = window.dy + viewport.origin.dy;
+    final first = laidOut.pageIndexAtContentY(contentY - 8 * scale, scale);
+    for (int i = first; i < laidOut.pages.length; i++) {
+      final y = (contentY - laidOut.pageStackTop(i, scale)) / scale;
+      if (y < -8) break;
+      if (y <= laidOut.pages[i].height + 8) return (i, Offset(x, y));
     }
-    return (0, Offset(x, (window.dy + viewport.origin.dy - 24) / scale));
+    return (0, Offset(x, (contentY - 24) / scale));
   }
 
   void _handleClick(Offset window) {
@@ -3616,6 +3597,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   }
 
   void _fitPage(LaidOutPage page) {
+    if (laidOut.isPreview) return;
     _resetPaintFit();
     if (!_fittedPages.add(page)) {
       return;
@@ -3716,6 +3698,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         );
       }
       canvas.restore();
+      _images.endFrame();
       return;
     }
 
@@ -3725,11 +3708,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     canvas.clipRect(Offset.zero & size);
     canvas.translate(-viewport.origin.dx, -viewport.origin.dy);
 
-    var stackTop = 24.0;
-    for (int i = 0; i < laidOut.pages.length; i++) {
+    final viewBottom = viewport.origin.dy + size.height;
+    final firstPage = laidOut.pageIndexAtContentY(viewport.origin.dy, scale);
+    for (int i = firstPage; i < laidOut.pages.length; i++) {
+      final double top = laidOut.pageStackTop(i, scale);
+      if (top >= viewBottom) break;
       final LaidOutPage page = laidOut.pages[i];
-      final double top = stackTop;
-      stackTop += page.height * scale + 24;
       final Rect pageRect = Rect.fromLTWH(
         pageLeft,
         top,
@@ -3926,6 +3910,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       );
     }
     canvas.restore();
+    _images.endFrame();
   }
 
   bool _cellSelected(LaidOutBox box) {
@@ -5154,8 +5139,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
               label,
               runFamily: family,
             ),
-            fontWeight: first?.bold == true ? FontWeight.bold : FontWeight.normal,
-            fontStyle: first?.italic == true ? FontStyle.italic : FontStyle.normal,
+            fontWeight: first?.bold == true
+                ? FontWeight.bold
+                : FontWeight.normal,
+            fontStyle: first?.italic == true
+                ? FontStyle.italic
+                : FontStyle.normal,
             color: _documentInk(
               line,
               rgb == null ? const Color(0xFF222222) : Color(0xFF000000 | rgb),
