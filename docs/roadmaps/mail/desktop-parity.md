@@ -31,6 +31,7 @@ clients are references, not compatibility claims.
 - Plain-text line-ending and paragraph preservation.
 - Focused compose caret/focus behavior.
 - Bounded MIME, attachment, remote-image and search limits.
+- Compact reader metadata (From/To/Cc/Bcc/Reply-To/date-time) and bounded raw-header inspection.
 
 ### P1 — Everyday mailbox
 - Shared synchronized workspace with authoritative folder lists and unread counts.

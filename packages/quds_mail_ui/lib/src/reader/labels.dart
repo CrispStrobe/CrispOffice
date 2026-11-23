@@ -56,6 +56,11 @@ class MailReaderLabels {
   String get findField => 'Find in message';
   String get rawSource => 'Raw source';
   String get hex => 'Hex';
+  String get inspectHeaders => 'Inspect headers';
+  String get headers => 'Message headers';
+  String get copyHeaders => 'Copy headers';
+  String get headersUnavailable =>
+      'Raw headers are unavailable for this message.';
   String get showPlainText => 'Show plain text';
   String get showStaticHtml => 'Show formatted';
   String matches(int count, {required bool more}) =>

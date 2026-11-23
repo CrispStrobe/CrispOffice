@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'controller.dart';
 import 'html_body.dart';
+import 'labels.dart';
 import 'presentation.dart';
 import 'selection_surface.dart';
 
@@ -215,6 +217,125 @@ class _MailMessageViewState extends State<MailMessageView> {
     return KeyEventResult.ignored;
   }
 
+  String _rawHeaders() {
+    final bytes =
+        widget.controller.result.original?.bytes ??
+        widget.controller.result.message?.raw.bytes;
+    if (bytes == null) return widget.controller.labels.headersUnavailable;
+    final limited = bytes.length > 65536 ? bytes.sublist(0, 65536) : bytes;
+    final decoded = utf8.decode(limited, allowMalformed: true);
+    var end = decoded.indexOf('\r\n\r\n');
+    var separator = 4;
+    final lf = decoded.indexOf('\n\n');
+    if (lf != -1 && (end == -1 || lf < end)) {
+      end = lf;
+      separator = 2;
+    }
+    final block = end == -1 ? decoded : decoded.substring(0, end);
+    return end != -1 && end + separator < decoded.length ? '$block\n…' : block;
+  }
+
+  Future<void> _inspectHeaders() async {
+    final headers = _rawHeaders();
+    final labels = widget.controller.labels;
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(labels.headers),
+        content: SizedBox(
+          width: 720,
+          height: 480,
+          child: SelectableText(
+            headers,
+            key: const ValueKey('mail-headers-text'),
+            style: const TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 12,
+              height: 1.35,
+            ),
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            key: const ValueKey('mail-copy-headers'),
+            onPressed: headers == labels.headersUnavailable
+                ? null
+                : () => Clipboard.setData(ClipboardData(text: headers)),
+            icon: const Icon(Icons.copy),
+            label: Text(labels.copyHeaders),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _metadata(
+    BuildContext context,
+    MailEnvelope envelope,
+    MailReaderLabels labels,
+  ) {
+    String addresses(List<MailAddress> values) => values
+        .map(
+          (address) => address.displayName?.isNotEmpty == true
+              ? '${address.displayName} <${address.address}>'
+              : address.address,
+        )
+        .join(', ');
+    final rows = <(String, String, String)>[
+      if (envelope.from.isNotEmpty)
+        ('from', labels.from, addresses(envelope.from)),
+      if (envelope.to.isNotEmpty) ('to', labels.to, addresses(envelope.to)),
+      if (envelope.cc.isNotEmpty) ('cc', labels.cc, addresses(envelope.cc)),
+      if (envelope.bcc.isNotEmpty) ('bcc', labels.bcc, addresses(envelope.bcc)),
+      if (envelope.replyTo.isNotEmpty)
+        ('reply', labels.replyTo, addresses(envelope.replyTo)),
+      if (envelope.sentAt case final date?)
+        ('date', labels.date, labels.formatDate(date)),
+    ];
+    if (rows.isEmpty) return const SizedBox.shrink();
+    final theme = Theme.of(context);
+    return Container(
+      key: const ValueKey('mail-metadata'),
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.symmetric(
+        horizontal: widget.compact ? 10 : 12,
+        vertical: 8,
+      ),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .35),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (final (id, label, value) in rows)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 1),
+              child: Text.rich(
+                key: ValueKey('mail-metadata-$id'),
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '$label: ',
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    TextSpan(text: value),
+                  ],
+                ),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = widget.controller;
@@ -268,6 +389,8 @@ class _MailMessageViewState extends State<MailMessageView> {
                               ),
                               const SizedBox(height: 8),
                             ],
+                            if (message != null)
+                              _metadata(context, message.envelope, labels),
                             Wrap(
                               spacing: 8,
                               runSpacing: 4,
@@ -321,6 +444,12 @@ class _MailMessageViewState extends State<MailMessageView> {
                                             : labels.hex,
                                       ),
                                     ),
+                                TextButton.icon(
+                                  key: const ValueKey('mail-inspect-headers'),
+                                  onPressed: _inspectHeaders,
+                                  icon: const Icon(Icons.view_headline),
+                                  label: Text(labels.inspectHeaders),
+                                ),
                                 if (message?.body.html != null &&
                                     message?.body.plainText != null)
                                   TextButton(
@@ -426,8 +555,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                                   onOpenLink: widget.onOpenApprovedLink == null
                                       ? null
                                       : _openLink,
-                                  onLoadRemoteImages:
-                                      widget.onLoadRemoteImages,
+                                  onLoadRemoteImages: widget.onLoadRemoteImages,
                                 )
                               else
                                 MailSelectionSurface(

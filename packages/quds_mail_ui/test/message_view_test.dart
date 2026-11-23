@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,6 +42,61 @@ Widget _app(
 );
 
 void main() {
+  testWidgets('shows envelope metadata and opens raw headers', (tester) async {
+    final raw = utf8.encode(
+      'From: Alice <alice@example.test>\r\n'
+      'To: Reader <reader@example.test>\r\n'
+      'Cc: Copy <copy@example.test>\r\n'
+      'Bcc: Hidden <hidden@example.test>\r\n'
+      'Date: Mon, 23 Nov 2026 09:42:00 +0000\r\n'
+      'Subject: Metadata test\r\n\r\n'
+      'Hello metadata.',
+    );
+    final controller = MailReaderController(
+      result: MailParseResult(
+        status: MailParseStatus.complete,
+        original: MailBytes(raw),
+        message: MailMessage(
+          raw: MailBytes(raw),
+          envelope: MailEnvelope(
+            subject: 'Metadata test',
+            from: const [
+              MailAddress('alice@example.test', displayName: 'Alice'),
+            ],
+            to: const [
+              MailAddress('reader@example.test', displayName: 'Reader'),
+            ],
+            cc: const [MailAddress('copy@example.test', displayName: 'Copy')],
+            bcc: const [
+              MailAddress('hidden@example.test', displayName: 'Hidden'),
+            ],
+            sentAt: DateTime.utc(2026, 11, 23, 9, 42),
+          ),
+          body: const MailBody(plainText: 'Hello metadata.'),
+        ),
+      ),
+    );
+    await tester.pumpWidget(_app(MailMessageView(controller: controller)));
+    expect(find.byKey(const ValueKey('mail-metadata')), findsOneWidget);
+    expect(find.textContaining('alice@example.test'), findsWidgets);
+    expect(find.textContaining('reader@example.test'), findsOneWidget);
+    expect(find.textContaining('copy@example.test'), findsOneWidget);
+    expect(find.textContaining('hidden@example.test'), findsOneWidget);
+    expect(find.textContaining('2026'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('mail-inspect-headers')));
+    await tester.pumpAndSettle();
+    final headers = tester.widget<SelectableText>(
+      find.byKey(const ValueKey('mail-headers-text')),
+    );
+    expect(headers.data, contains('Bcc: Hidden <hidden@example.test>'));
+    expect(headers.data, contains('Subject: Metadata test'));
+    await tester.tap(find.byKey(const ValueKey('mail-copy-headers')));
+    await tester.pump();
+    await tester.tap(find.text('Close'));
+    await tester.pumpAndSettle();
+    controller.dispose();
+  });
+
   testWidgets(
     'disposing the view invalidates a pending explicit link decision',
     (tester) async {

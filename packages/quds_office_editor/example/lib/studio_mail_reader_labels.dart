@@ -112,8 +112,9 @@ class StudioMailReaderLabels extends MailReaderLabels {
       );
     }
     if (bytes < 1024 * 1024) {
-      final kb = NumberFormat.decimalPattern(locale)
-          .format((bytes / 1024).round());
+      final kb = NumberFormat.decimalPattern(
+        locale,
+      ).format((bytes / 1024).round());
       return _t('$kb KB', '$kb KB', '$kb ك.ب');
     }
     final mb = NumberFormat('0.0', locale).format(bytes / (1024 * 1024));
@@ -170,6 +171,21 @@ class StudioMailReaderLabels extends MailReaderLabels {
   String get rawSource => _t('Raw source', 'Quelltext', 'المصدر الخام');
   @override
   String get hex => _t('Hex', 'Hex', 'ست عشري');
+  @override
+  String get inspectHeaders =>
+      _t('Inspect headers', 'Kopfzeilen prüfen', 'فحص الرؤوس');
+  @override
+  String get headers =>
+      _t('Message headers', 'Nachrichtenkopfzeilen', 'رؤوس الرسالة');
+  @override
+  String get copyHeaders =>
+      _t('Copy headers', 'Kopfzeilen kopieren', 'نسخ الرؤوس');
+  @override
+  String get headersUnavailable => _t(
+    'Raw headers are unavailable for this message.',
+    'Die Rohkopfzeilen dieser Nachricht sind nicht verfügbar.',
+    'الرؤوس الخام غير متاحة لهذه الرسالة.',
+  );
   @override
   String get showPlainText =>
       _t('Show plain text', 'Als Text anzeigen', 'عرض النص العادي');
