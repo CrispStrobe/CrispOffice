@@ -97,6 +97,47 @@ void main() {
     controller.dispose();
   });
 
+  testWidgets('reader actions stay on one row and date moves right', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(900, 700));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final controller = MailReaderController(
+      result: mailFixture(
+        html: '<p>Hello metadata.</p>',
+        plainText: 'Hello metadata.',
+        sentAt: DateTime.utc(2026, 11, 23, 9, 42),
+      ),
+    );
+    await tester.pumpWidget(
+      _app(
+        MailMessageView(controller: controller, onOpenSource: (_, _) async {}),
+      ),
+    );
+    final actionKeys = [
+      'mail-select-all',
+      'mail-copy',
+      'mail-find',
+      'mail-source',
+      'mail-hex',
+      'mail-inspect-headers',
+      'mail-toggle-format',
+    ];
+    final rows = {
+      for (final key in actionKeys)
+        tester.getTopLeft(find.byKey(ValueKey(key))).dy.roundToDouble(),
+    };
+    expect(rows, hasLength(1));
+    final from = tester.getTopLeft(
+      find.byKey(const ValueKey('mail-metadata-from')),
+    );
+    final date = tester.getTopLeft(
+      find.byKey(const ValueKey('mail-metadata-date')),
+    );
+    expect(date.dx, greaterThan(from.dx));
+    controller.dispose();
+  });
+
   testWidgets(
     'disposing the view invalidates a pending explicit link decision',
     (tester) async {

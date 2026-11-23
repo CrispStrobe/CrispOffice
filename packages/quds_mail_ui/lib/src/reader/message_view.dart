@@ -293,48 +293,108 @@ class _MailMessageViewState extends State<MailMessageView> {
       if (envelope.bcc.isNotEmpty) ('bcc', labels.bcc, addresses(envelope.bcc)),
       if (envelope.replyTo.isNotEmpty)
         ('reply', labels.replyTo, addresses(envelope.replyTo)),
-      if (envelope.sentAt case final date?)
-        ('date', labels.date, labels.formatDate(date)),
     ];
-    if (rows.isEmpty) return const SizedBox.shrink();
+    final date = envelope.sentAt;
+    if (rows.isEmpty && date == null) return const SizedBox.shrink();
     final theme = Theme.of(context);
+    Widget line(String id, String label, String value, {bool right = false}) =>
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 1),
+          child: Text.rich(
+            key: ValueKey('mail-metadata-$id'),
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: '$label: ',
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                TextSpan(text: value),
+              ],
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: right ? TextAlign.end : TextAlign.start,
+          ),
+        );
+    final left = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [for (final (id, label, value) in rows) line(id, label, value)],
+    );
+    final dateLine = date == null
+        ? null
+        : line('date', labels.date, labels.formatDate(date), right: true);
     return Container(
       key: const ValueKey('mail-metadata'),
       margin: const EdgeInsets.only(bottom: 8),
       padding: EdgeInsets.symmetric(
         horizontal: widget.compact ? 10 : 12,
-        vertical: 8,
+        vertical: 6,
       ),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .35),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          for (final (id, label, value) in rows)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 1),
-              child: Text.rich(
-                key: ValueKey('mail-metadata-$id'),
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '$label: ',
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    TextSpan(text: value),
-                  ],
-                ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final twoColumns = dateLine != null && constraints.maxWidth >= 480;
+          if (!twoColumns) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [if (rows.isNotEmpty) left, ?dateLine],
+            );
+          }
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: left),
+              const SizedBox(width: 16),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 240),
+                child: dateLine,
               ),
-            ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }
+
+  Widget _actionsBar(BuildContext context, List<_ReaderAction> actions) =>
+      LayoutBuilder(
+        builder: (context, constraints) {
+          final showLabels = !widget.compact && constraints.maxWidth >= 1000;
+          return SingleChildScrollView(
+            key: const ValueKey('mail-reader-actions'),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (final action in actions)
+                  if (showLabels)
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(end: 4),
+                      child: TextButton.icon(
+                        key: action.key,
+                        onPressed: action.onPressed,
+                        icon: Icon(action.icon, size: 19),
+                        label: Text(action.label),
+                      ),
+                    )
+                  else
+                    IconButton(
+                      key: action.key,
+                      tooltip: action.label,
+                      onPressed: action.onPressed,
+                      visualDensity: VisualDensity.compact,
+                      iconSize: 20,
+                      icon: Icon(action.icon),
+                    ),
+              ],
+            ),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -362,6 +422,67 @@ class _MailMessageViewState extends State<MailMessageView> {
                 .toList(growable: false);
             final labels = controller.labels;
             final padding = widget.compact ? 12.0 : 20.0;
+            final actions = <_ReaderAction>[
+              if (!rich)
+                _ReaderAction(
+                  key: const ValueKey('mail-select-all'),
+                  icon: Icons.select_all,
+                  label: labels.selectAll,
+                  onPressed: presentation.text.isEmpty
+                      ? null
+                      : controller.selectAll,
+                ),
+              if (!rich)
+                _ReaderAction(
+                  key: const ValueKey('mail-copy'),
+                  icon: Icons.copy,
+                  label: labels.copySelection,
+                  onPressed: controller.selection.isCollapsed
+                      ? null
+                      : () => unawaited(_copy()),
+                ),
+              if (!rich)
+                _ReaderAction(
+                  key: const ValueKey('mail-find'),
+                  icon: Icons.search,
+                  label: labels.findInMessage,
+                  onPressed: _showFind,
+                ),
+              if (result.original != null && widget.onOpenSource != null)
+                for (final view in MailSourceView.values)
+                  _ReaderAction(
+                    key: ValueKey('mail-${view.name}'),
+                    icon: view == MailSourceView.source
+                        ? Icons.code
+                        : Icons.data_array,
+                    label: view == MailSourceView.source
+                        ? labels.rawSource
+                        : labels.hex,
+                    onPressed: () => unawaited(
+                      _hostAction(
+                        () => widget.onOpenSource!(result.original!, view),
+                      ),
+                    ),
+                  ),
+              _ReaderAction(
+                key: const ValueKey('mail-inspect-headers'),
+                icon: Icons.view_headline,
+                label: labels.inspectHeaders,
+                onPressed: _inspectHeaders,
+              ),
+              if (message?.body.html != null && message?.body.plainText != null)
+                _ReaderAction(
+                  key: const ValueKey('mail-toggle-format'),
+                  icon: controller.preferHtml
+                      ? Icons.text_snippet_outlined
+                      : Icons.html,
+                  label: controller.preferHtml
+                      ? labels.showPlainText
+                      : labels.showStaticHtml,
+                  onPressed: () =>
+                      controller.setPreferHtml(!controller.preferHtml),
+                ),
+            ];
             return RepaintBoundary(
               key: const ValueKey('mail-reader-repaint-boundary'),
               child: Material(
@@ -391,123 +512,64 @@ class _MailMessageViewState extends State<MailMessageView> {
                             ],
                             if (message != null)
                               _metadata(context, message.envelope, labels),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 4,
-                              children: [
-                                if (!rich)
-                                  TextButton.icon(
-                                    key: const ValueKey('mail-select-all'),
-                                    onPressed: presentation.text.isEmpty
-                                        ? null
-                                        : controller.selectAll,
-                                    icon: const Icon(Icons.select_all),
-                                    label: Text(labels.selectAll),
-                                  ),
-                                if (!rich)
-                                  TextButton.icon(
-                                    key: const ValueKey('mail-copy'),
-                                    onPressed: controller.selection.isCollapsed
-                                        ? null
-                                        : () => unawaited(_copy()),
-                                    icon: const Icon(Icons.copy),
-                                    label: Text(labels.copySelection),
-                                  ),
-                                if (!rich)
-                                  TextButton.icon(
-                                    key: const ValueKey('mail-find'),
-                                    onPressed: _showFind,
-                                    icon: const Icon(Icons.search),
-                                    label: Text(labels.findInMessage),
-                                  ),
-                                if (result.original != null &&
-                                    widget.onOpenSource != null)
-                                  for (final view in MailSourceView.values)
-                                    TextButton.icon(
-                                      key: ValueKey('mail-${view.name}'),
-                                      onPressed: () => unawaited(
-                                        _hostAction(
-                                          () => widget.onOpenSource!(
-                                            result.original!,
-                                            view,
-                                          ),
-                                        ),
-                                      ),
-                                      icon: Icon(
-                                        view == MailSourceView.source
-                                            ? Icons.code
-                                            : Icons.data_array,
-                                      ),
-                                      label: Text(
-                                        view == MailSourceView.source
-                                            ? labels.rawSource
-                                            : labels.hex,
-                                      ),
-                                    ),
-                                TextButton.icon(
-                                  key: const ValueKey('mail-inspect-headers'),
-                                  onPressed: _inspectHeaders,
-                                  icon: const Icon(Icons.view_headline),
-                                  label: Text(labels.inspectHeaders),
-                                ),
-                                if (message?.body.html != null &&
-                                    message?.body.plainText != null)
-                                  TextButton(
-                                    onPressed: () => controller.setPreferHtml(
-                                      !controller.preferHtml,
-                                    ),
-                                    child: Text(
-                                      controller.preferHtml
-                                          ? labels.showPlainText
-                                          : labels.showStaticHtml,
-                                    ),
-                                  ),
-                              ],
-                            ),
-                            if (_findVisible && !rich)
+                            _actionsBar(context, actions),
+                            if ((_findVisible && !rich) ||
+                                controller.searchQuery.isNotEmpty)
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: 8,
+                                  vertical: 6,
                                 ),
-                                child: TextField(
-                                  key: const ValueKey('mail-find-input'),
-                                  controller: _findInput,
-                                  focusNode: _findFocus,
-                                  maxLength: 2048,
-                                  decoration: InputDecoration(
-                                    labelText: labels.findField,
-                                    counterText: '',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  onChanged: controller.search,
-                                  onSubmitted: (_) => _next(),
+                                child: Row(
+                                  children: [
+                                    if (_findVisible && !rich)
+                                      Expanded(
+                                        child: TextField(
+                                          key: const ValueKey(
+                                            'mail-find-input',
+                                          ),
+                                          controller: _findInput,
+                                          focusNode: _findFocus,
+                                          maxLength: 2048,
+                                          decoration: InputDecoration(
+                                            labelText: labels.findField,
+                                            counterText: '',
+                                            isDense: true,
+                                            border: const OutlineInputBorder(),
+                                          ),
+                                          onChanged: controller.search,
+                                          onSubmitted: (_) => _next(),
+                                        ),
+                                      ),
+                                    if (controller.searchQuery.isNotEmpty) ...[
+                                      if (_findVisible && !rich)
+                                        const SizedBox(width: 8),
+                                      Text(
+                                        labels.matches(
+                                          controller.searchMatches.length,
+                                          more: controller.searchHasMore,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        tooltip: labels.previousMatch,
+                                        visualDensity: VisualDensity.compact,
+                                        onPressed:
+                                            controller.searchMatches.isEmpty
+                                            ? null
+                                            : () => _next(backwards: true),
+                                        icon: const Icon(Icons.arrow_upward),
+                                      ),
+                                      IconButton(
+                                        tooltip: labels.nextMatch,
+                                        visualDensity: VisualDensity.compact,
+                                        onPressed:
+                                            controller.searchMatches.isEmpty
+                                            ? null
+                                            : _next,
+                                        icon: const Icon(Icons.arrow_downward),
+                                      ),
+                                    ],
+                                  ],
                                 ),
-                              ),
-                            if (controller.searchQuery.isNotEmpty)
-                              Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                children: [
-                                  Text(
-                                    labels.matches(
-                                      controller.searchMatches.length,
-                                      more: controller.searchHasMore,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    tooltip: labels.previousMatch,
-                                    onPressed: controller.searchMatches.isEmpty
-                                        ? null
-                                        : () => _next(backwards: true),
-                                    icon: const Icon(Icons.arrow_upward),
-                                  ),
-                                  IconButton(
-                                    tooltip: labels.nextMatch,
-                                    onPressed: controller.searchMatches.isEmpty
-                                        ? null
-                                        : _next,
-                                    icon: const Icon(Icons.arrow_downward),
-                                  ),
-                                ],
                               ),
                             if (_notice != null)
                               Semantics(
@@ -767,4 +829,18 @@ class _CidImageState extends State<_CidImage> {
       ),
     );
   }
+}
+
+final class _ReaderAction {
+  const _ReaderAction({
+    required this.key,
+    required this.icon,
+    required this.label,
+    this.onPressed,
+  });
+
+  final Key key;
+  final IconData icon;
+  final String label;
+  final VoidCallback? onPressed;
 }

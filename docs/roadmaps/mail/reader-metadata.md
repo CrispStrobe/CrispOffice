@@ -5,7 +5,9 @@ host, including native IMAP, EWS, saved mail, archive and cached search.
 
 ## User path
 
-The reader shows a compact metadata card above the body with any observed:
+The reader shows a compact metadata card above the body. On wide readers the
+address fields occupy the left column and Date/Time is aligned in a right
+column; narrow readers fall back to a single column. The card shows any observed:
 
 - From;
 - To;
@@ -33,8 +35,11 @@ the reader's find, copy, source or attachment actions.
 
 ## Verification
 
-- Focused reader metadata/raw-header test: **1/1**.
-- Full shared Mail UI suite: **301/301**.
+- Focused reader metadata/raw-header and one-row-chrome tests: **2/2**.
+- Full shared Mail UI suite: **302/302**.
+- Reader actions remain in one horizontally scrollable row. Labels are shown
+  only when the available width can carry them; otherwise the same actions use
+  icon buttons with tooltips. Find and its match statistics share one row.
 - Changed-file analysis and formatting: clean.
 
 ## Limits

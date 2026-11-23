@@ -28,6 +28,7 @@ MailParseResult mailFixture({
   Uint8List? raw,
   MailParseStatus status = MailParseStatus.complete,
   List<MailDiagnostic> diagnostics = const [],
+  DateTime? sentAt,
 }) {
   final bytes = MailBytes(raw ?? Uint8List.fromList([0xff, 0x00, 13, 10, 65]));
   return MailParseResult(
@@ -41,6 +42,7 @@ MailParseResult mailFixture({
           MailAddress('sender@example.invalid', displayName: 'مُرسل'),
         ],
         to: const [MailAddress('reader@example.invalid')],
+        sentAt: sentAt,
       ),
       body: MailBody(
         html: html,
