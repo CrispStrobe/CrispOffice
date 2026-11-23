@@ -55,6 +55,7 @@ class WordDeserializer {
   final List<int> _openCommentIds = <int>[];
   final Map<WmlParagraphProps, XmlElement> _paragraphFormatChanges = {};
   final Map<String, List<_NativeMoveRange>> _moveRanges = {};
+  final Map<WmlParagraph, List<Object>> _revisionAncestors = Map.identity();
 
   bool _readMoveBoundary(XmlPullReader reader, String story) {
     if (reader.namespaceUri != OfficeNamespaces.w ||
@@ -130,6 +131,7 @@ class WordDeserializer {
     _openCommentIds.clear();
     _paragraphFormatChanges.clear();
     _moveRanges.clear();
+    _revisionAncestors.clear();
     _tablesWithOwnBorders.clear();
     _tablesWithOwnBorderWidths.clear();
     _tablesWithOwnCellMargins.clear();
@@ -229,6 +231,8 @@ class WordDeserializer {
     _notItalic.clear();
     _applyTableStyles(document, package, docUri);
     _applyNumbering(document, package, docUri);
+    // Repair the actual paragraphs before TOC ranges are copied into a cache.
+    WordBookmarks.repairUnpaired(document);
     _collapseTocFields(document);
     _readWatermark(document, package);
     WordBibliographyIo.read(document, package, docUri);
@@ -239,7 +243,6 @@ class WordDeserializer {
     for (final WmlRevision revision in document.revisions) {
       revision.paragraphIndex = bodyIndices[revision.targetParagraph] ?? -1;
     }
-    WordBookmarks.repairUnpaired(document);
     WordContentControls.recordImported(document);
     return document;
   }
@@ -1236,6 +1239,7 @@ class WordDeserializer {
           WmlNoteMarker(
             endnote: reader.localName == 'endnoteRef',
             properties: markerProperties,
+            runPropertiesXml: boundaryRunPropertiesXml,
           ),
         );
         if (_readingNote != null && !_noteMarkCaptured) {
@@ -1400,13 +1404,14 @@ class WordDeserializer {
       run.commentIds.addAll(_openCommentIds);
       inlines.add(run);
     }
-    // Field markers have no ordinary text range to own a formatting revision.
-    // Their complete rPr stays on the boundary, keeping unsupported history
-    // opaque through saves instead of turning it into an empty text revision.
-    final onlyFieldBoundaries =
+    // Field and note markers have no ordinary text range to own a revision.
+    // Their complete rPr keeps their formatting history in the native marker.
+    final onlyMarkers =
         inlines.isNotEmpty &&
-        inlines.every((inline) => inline is WmlFieldBoundary);
-    if (formattingChange != null && !onlyFieldBoundaries) {
+        inlines.every(
+          (inline) => inline is WmlFieldBoundary || inline is WmlNoteMarker,
+        );
+    if (formattingChange != null && !onlyMarkers) {
       if (run.text.isEmpty && inlines.contains(run)) {
         run.properties.hasEmptyFormattingRevision = true;
       }
@@ -1417,6 +1422,7 @@ class WordDeserializer {
         WmlRevisionKind.runFormat,
         paragraph.text.length,
         text,
+        emptyRun: text.isEmpty && inlines.contains(run) ? run : null,
       );
     }
     return inlines;
@@ -1454,18 +1460,21 @@ class WordDeserializer {
     XmlElement change,
     WmlRevisionKind kind,
     int start,
-    String text,
-  ) {
+    String text, {
+    WmlRun? emptyRun,
+  }) {
     final document = _document;
     if (document == null) return;
     final name = kind == WmlRevisionKind.runFormat ? 'rPr' : 'pPr';
     final previous = change.firstChild(name, namespaceUri: OfficeNamespaces.w);
+    if (emptyRun != null) emptyRun.formattingAnchor = Object();
     final revision = WordRevisions.record(
       document,
       kind: kind,
       paragraphIndex: -1,
       paragraph: paragraph,
       preserveSourceRange: true,
+      emptyFormattingAnchor: emptyRun?.formattingAnchor,
       start: start,
       end: start + text.length,
       text: text,
@@ -1509,7 +1518,13 @@ class WordDeserializer {
       var offset = 0;
       for (final run in paragraph.inlines.whereType<WmlRun>()) {
         final end = offset + run.text.length;
-        if (offset >= revision.start && end <= revision.end) {
+        if (offset >= revision.start &&
+            end <= revision.end &&
+            (revision.emptyFormattingAnchor == null ||
+                identical(
+                  revision.emptyFormattingAnchor,
+                  run.formattingAnchor,
+                ))) {
           final previous = WmlRunProps();
           _readRPr(XmlPullReader(xml)..next(), previous);
           run.properties = previous;
@@ -1548,7 +1563,16 @@ class WordDeserializer {
     // A revision can contain fields, controls, links and range markers just
     // like the surrounding paragraph. Reuse the same parser instead of
     // flattening or losing the metadata of less common run content.
-    _readParagraphContent(reader, package, docUri, paragraph);
+    final ancestors = _revisionAncestors.putIfAbsent(paragraph, () => []);
+    final nativeAncestors = List<Object>.unmodifiable(ancestors);
+    final nativeWrapper = Object();
+    ancestors.add(nativeWrapper);
+    try {
+      _readParagraphContent(reader, package, docUri, paragraph);
+    } finally {
+      ancestors.removeLast();
+      if (ancestors.isEmpty) _revisionAncestors.remove(paragraph);
+    }
     final WmlDocument? document = _document;
     if (document == null) {
       return;
@@ -1563,6 +1587,8 @@ class WordDeserializer {
       paragraphIndex: -1,
       paragraph: paragraph,
       preserveSourceRange: true,
+      nativeWrapper: nativeWrapper,
+      nativeAncestors: nativeAncestors,
       start: start,
       end: start + text.length,
       text: text,
@@ -1581,9 +1607,7 @@ class WordDeserializer {
       }
       move.revisions.add(revision);
     }
-    if (date.isNotEmpty) {
-      revision.dateIso = date;
-    }
+    revision.dateIso = date;
   }
 
   void _readPPr(XmlPullReader reader, WmlParagraphProps props) {
@@ -1618,6 +1642,10 @@ class WordDeserializer {
         continue;
       }
       if ((reader.localName == 'spacing' ||
+              reader.localName == 'contextualSpacing' ||
+              reader.localName == 'keepLines' ||
+              reader.localName == 'keepNext' ||
+              reader.localName == 'widowControl' ||
               reader.localName == 'ind' ||
               reader.localName == 'jc' ||
               reader.localName == 'pStyle' ||
@@ -1712,6 +1740,18 @@ class WordDeserializer {
           );
         case 'keepLines':
           props.keepTogether = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+        case 'keepNext':
+          props.keepWithNext = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+        case 'widowControl':
+          props.widowControl = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+        case 'contextualSpacing':
+          props.contextualSpacing = _onOff(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
           );
         case 'pageBreakBefore':
@@ -2146,7 +2186,8 @@ class WordDeserializer {
   // Open fields across paragraphs (a TOC spans many). Each entry is the begin
   // boundary plus whether its instruction marked it as a TOC.
   final List<(WmlFieldBoundary, bool)> _openFields = [];
-  final Set<WmlFieldBoundary> _tocBoundaries = Set.identity();
+  // The value distinguishes the TOC wrapper from fields inside its cache.
+  final Map<WmlFieldBoundary, bool> _tocBoundaries = Map.identity();
 
   void _flushFieldText(List<WmlInline> inlines, WmlRun run) {
     if (run.text.isEmpty) return;
@@ -2162,15 +2203,19 @@ class WordDeserializer {
 
   bool get _insideToc => _openFields.any((entry) => entry.$2);
 
+  void _noteTocBoundary(WmlFieldBoundary boundary) {
+    if (_insideToc) _tocBoundaries[boundary] = _openFields.last.$2;
+  }
+
   void _noteFieldChar(WmlFieldBoundary boundary) {
     switch (boundary.kind) {
       case WmlFieldBoundaryKind.begin:
         _openFields.add((boundary, false));
-        if (_insideToc) _tocBoundaries.add(boundary);
+        _noteTocBoundary(boundary);
       case WmlFieldBoundaryKind.separate:
-        if (_insideToc) _tocBoundaries.add(boundary);
+        _noteTocBoundary(boundary);
       case WmlFieldBoundaryKind.end:
-        if (_insideToc) _tocBoundaries.add(boundary);
+        _noteTocBoundary(boundary);
         if (_openFields.isNotEmpty) _openFields.removeLast();
       case WmlFieldBoundaryKind.instruction:
         break;
@@ -2182,10 +2227,10 @@ class WordDeserializer {
       final (begin, toc) = _openFields.last;
       if (!toc && WordToc.isTocInstruction(boundary.text)) {
         _openFields[_openFields.length - 1] = (begin, true);
-        _tocBoundaries.add(begin);
+        _tocBoundaries[begin] = true;
       }
     }
-    if (_insideToc) _tocBoundaries.add(boundary);
+    _noteTocBoundary(boundary);
   }
 
   /// Decide, once a paragraph is complete, how its fields are represented.
@@ -2201,9 +2246,26 @@ class WordDeserializer {
       return true;
     }
 
-    // TOC fields keep the established paragraph-level machinery.
-    if (boundaries.every(_tocBoundaries.contains)) {
-      strip();
+    // Only the TOC wrapper spans paragraphs. Nested PAGEREF fields keep
+    // their own inline boundaries and must not close the wrapper.
+    if (boundaries.every(_tocBoundaries.containsKey)) {
+      final wrapper = boundaries.where((b) => _tocBoundaries[b]!).toList();
+      final instruction = wrapper
+          .where((b) => b.kind == WmlFieldBoundaryKind.instruction)
+          .map((b) => b.text)
+          .join();
+      _clearParagraphField(paragraph);
+      paragraph.properties
+        ..fieldInstruction = instruction.isEmpty ? null : instruction
+        ..fieldBegin = wrapper.any((b) => b.kind == WmlFieldBoundaryKind.begin)
+        ..fieldSeparate = wrapper.any(
+          (b) => b.kind == WmlFieldBoundaryKind.separate,
+        )
+        ..fieldEnd = wrapper.any((b) => b.kind == WmlFieldBoundaryKind.end);
+      paragraph.inlines.removeWhere(
+        (inline) =>
+            inline is WmlFieldBoundary && _tocBoundaries[inline] == true,
+      );
       return;
     }
     // Exactly one top-level field that wraps all of the paragraph's text,
@@ -2235,7 +2297,7 @@ class WordDeserializer {
             null) {
       final page = _isPageField(paragraph.properties.fieldInstruction!);
       if (page &&
-          !_plainParagraphPageInstruction.hasMatch(
+          !WordFields.isPlainPageInstruction(
             paragraph.properties.fieldInstruction!,
           )) {
         // The paragraph PAGE model regenerates an ordinary number. Preserve
@@ -2269,11 +2331,6 @@ class WordDeserializer {
     // paragraph-level reading, which would otherwise wrap all text.
     _clearParagraphField(paragraph);
   }
-
-  static final RegExp _plainParagraphPageInstruction = RegExp(
-    r'^\s*PAGE(?:\s+\\\*\s+MERGEFORMAT)?\s*$',
-    caseSensitive: false,
-  );
 
   static bool _plainParagraphFieldPacket(
     List<WmlInline> inlines,
@@ -2818,12 +2875,14 @@ class WordDeserializer {
           nativeContainer &&
           reader.namespaceUri == OfficeNamespaces.w) {
         final firstDeclaration = _tablesWithOwnCellMargins.add(table);
-        final margin = WordTablePropertyIo.uniformCellMargin(
-          XmlDocument.readElement(reader),
-        );
+        final element = XmlDocument.readElement(reader);
+        final margin = WordTablePropertyIo.uniformCellMargin(element);
         // Any direct container blocks a guessed style fallback. Unsupported
         // or duplicate declarations keep their source XML and native fallback.
         table.properties.cellMargin = firstDeclaration ? margin ?? 4 : 4;
+        table.properties.importedCellInsets = firstDeclaration && margin == null
+            ? WordTablePropertyIo.directCellInsets(element)
+            : null;
       }
     }
   }
@@ -3120,6 +3179,9 @@ class WordDeserializer {
         );
         if (raw != null) {
           row.height = _measurePoints(raw);
+          row.heightIsExact =
+              reader.getAttribute('hRule', namespaceUri: OfficeNamespaces.w) ==
+              'exact';
         }
       } else if (_readMoveBoundary(reader, docUri)) {
         continue;
@@ -3129,10 +3191,40 @@ class WordDeserializer {
         row.cells.add(_readCell(reader, package, docUri));
       } else if (reader.localName == 'sdt' &&
           reader.namespaceUri == OfficeNamespaces.w) {
-        _unsupportedControl(docUri, 'content control wrapping table cells');
+        row.cells.add(_readControlledCell(reader, package, docUri));
       }
     }
     return row;
+  }
+
+  WmlTableCell _readControlledCell(
+    XmlPullReader reader,
+    OpcPackage package,
+    String docUri,
+  ) {
+    final source = XmlDocument.readElement(reader);
+    final children = source
+        .firstChild('sdtContent', namespaceUri: OfficeNamespaces.w)
+        ?.childElements
+        .toList();
+    if (children == null ||
+        children.length != 1 ||
+        children.single.namespaceUri != OfficeNamespaces.w ||
+        !const {'tc', 'sdt'}.contains(children.single.localName)) {
+      _unsupportedControl(docUri, 'content control without one table cell');
+    }
+    final content = _sdtContentReader(source)!;
+    while (content.next() && content.eventType != XmlEventType.startElement) {
+      // Skip whitespace and comments before the single cell.
+    }
+    final cell = content.localName == 'sdt'
+        ? _readControlledCell(content, package, docUri)
+        : _readCell(content, package, docUri);
+    cell.contentControlWrappers.insert(
+      0,
+      WordContentControlIo.capture(source, package, docUri),
+    );
+    return cell;
   }
 
   WmlTableCell _readCell(
@@ -3498,7 +3590,7 @@ class WordDeserializer {
     // Headers and footers are independent field stories, even while a body
     // paragraph's section properties are being parsed.
     final fields = List<(WmlFieldBoundary, bool)>.of(_openFields);
-    final toc = Set<WmlFieldBoundary>.identity()..addAll(_tocBoundaries);
+    final toc = Map<WmlFieldBoundary, bool>.identity()..addAll(_tocBoundaries);
     _openFields.clear();
     _tocBoundaries.clear();
     try {
@@ -3564,9 +3656,81 @@ class WordDeserializer {
         package.getPart(storyUri)!.readText(),
       );
       while (reader.next() && reader.eventType != XmlEventType.startElement) {}
-      preserveInto(WordOpaqueIo.read(reader, package, storyUri));
+      final opaque = WordOpaqueIo.read(reader, package, storyUri);
+      final anchor = _preservedWatermarkAnchor(opaque);
+      preserveInto(
+        anchor == null
+            ? opaque
+            : WmlOpaqueBlock(
+                xml: opaque.xml,
+                sourcePartUri: opaque.sourcePartUri,
+                relationships: opaque.relationships,
+                headerAnchor: anchor,
+              ),
+      );
       return <WmlParagraph>[];
     }
+  }
+
+  WmlParagraph? _preservedWatermarkAnchor(WmlOpaqueBlock header) {
+    XmlElement? child(XmlElement? element, String name) =>
+        element?.firstChild(name, namespaceUri: OfficeNamespaces.w);
+    final root = XmlDocument.parse(header.xml).root;
+    if (root?.namespaceUri != OfficeNamespaces.w ||
+        root?.localName != 'hdr' ||
+        root?.childElements.length != 1) {
+      return null;
+    }
+    final control = child(root, 'sdt');
+    final gallery = child(
+      child(child(control, 'sdtPr'), 'docPartObj'),
+      'docPartGallery',
+    );
+    if (gallery?.getAttribute('val', namespaceUri: OfficeNamespaces.w) !=
+        'Watermarks') {
+      return null;
+    }
+    final content = child(control, 'sdtContent');
+    final paragraph = child(content, 'p');
+    if (content?.childElements.length != 1 || paragraph == null) return null;
+    final properties = child(paragraph, 'pPr');
+    final run = child(paragraph, 'r');
+    if (run == null ||
+        paragraph.childElements.length != (properties == null ? 1 : 2)) {
+      return null;
+    }
+    final drawing = child(run, 'pict');
+    if (drawing == null ||
+        run.childElements.length != (child(run, 'rPr') == null ? 1 : 2)) {
+      return null;
+    }
+    final shape = drawing.firstChild('shape', namespaceUri: OfficeNamespaces.v);
+    if (shape?.firstChild('textpath', namespaceUri: OfficeNamespaces.v) ==
+        null) {
+      return null;
+    }
+    final anchor = WmlParagraph();
+    if (properties != null) {
+      final fragment = properties.copy();
+      final bindings = fragment.attributes.map((a) => a.qualifiedName).toSet();
+      for (
+        var parent = properties.parent;
+        parent != null;
+        parent = parent.parent
+      ) {
+        for (final attr in parent.attributes) {
+          if ((attr.prefix == 'xmlns' || attr.localName == 'xmlns') &&
+              bindings.add(attr.qualifiedName)) {
+            fragment.attributes.add(attr.copy());
+          }
+        }
+      }
+      final xml = XmlDocument(root: fragment).toXmlString(declaration: false);
+      _readPPr(WordMarkupCompatibilityReader(xml)..next(), anchor.properties);
+    } else {
+      anchor.properties.sourcePropertiesXml = '';
+    }
+    return anchor;
   }
 
   List<WmlParagraph> _readStoryByRidModeled(
@@ -3902,7 +4066,7 @@ class WordDeserializer {
       'endnote',
       endnote: true,
     );
-    document.footnoteSeparator = WordFootnoteSeparatorIo.read(document);
+    WordFootnoteSeparatorIo.readLayout(document);
   }
 
   bool? _readNotesPart(

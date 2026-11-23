@@ -64,6 +64,73 @@ LaidOutDocument _layout(List<WmlSection> sections) => WordLayoutEngine(
 ).layout(WmlDocument(sections: sections), updateFields: false);
 
 void main() {
+  test('an outside-aligned header frame shares the running title row', () {
+    final number = _paragraph('7');
+    number.properties.sourcePropertiesXml =
+        '<w:pPr xmlns:w="${OfficeNamespaces.w}">'
+        '<w:framePr w:hAnchor="margin" w:vAnchor="text" '
+        'w:xAlign="outside" w:y="1"/></w:pPr>';
+    final title = _paragraph('Running title')
+      ..properties.justification = WmlJustification.center;
+    final pages = _layout([
+      _section(
+        header: [number, title],
+        blocks: [
+          _paragraph('First page'),
+          WmlParagraph(inlines: [WmlBreak(WmlBreakType.page)]),
+          _paragraph('Second page'),
+        ],
+      ),
+    ]).pages;
+    expect(pages, hasLength(2));
+    for (final page in pages) {
+      final [label, runningTitle] = page.header;
+      expect(label.y, closeTo(runningTitle.y + 0.05, 0.001));
+      expect(runningTitle.x + runningTitle.width / 2, 200);
+      expect(
+        page.index.isEven ? label.x + label.width : label.x,
+        page.index.isEven ? 364 : 36,
+      );
+    }
+  });
+
+  for (final locked in [false, true]) {
+    test('a standalone header PAGE field keeps its lock state $locked', () {
+      final number = WmlParagraph(
+        inlines: [
+          WmlFieldBoundary(
+            kind: WmlFieldBoundaryKind.begin,
+            sourceXml:
+                '<w:fldChar xmlns:w="${OfficeNamespaces.w}" '
+                'w:fldCharType="begin" ${locked ? 'w:fldLock="1"' : ''}/>',
+          ),
+          WmlFieldBoundary(
+            kind: WmlFieldBoundaryKind.instruction,
+            text: ' PAGE ',
+          ),
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.separate),
+          WmlRun(text: '72'),
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.end),
+        ],
+      );
+      final pages = _layout([
+        _section(
+          header: [number],
+          blocks: [
+            _paragraph('First page'),
+            WmlParagraph(inlines: [WmlBreak(WmlBreakType.page)]),
+            _paragraph('Second page'),
+          ],
+        ),
+      ]).pages;
+      expect(
+        pages.map((page) => page.header.single.text),
+        locked ? ['72', '72'] : ['1', '2'],
+      );
+      expect(number.text, '72');
+    });
+  }
+
   for (final footer in [false, true]) {
     final storyName = footer ? 'footer' : 'header';
 
@@ -221,6 +288,63 @@ void main() {
       greaterThanOrEqualTo(frame.y + frame.height),
     );
   });
+
+  test('new body pages clear the inline picture in their own header', () {
+    WmlParagraph pictureLine(double height) => WmlParagraph(
+      properties: WmlParagraphProps(spacingAfter: 0),
+      inlines: [
+        WmlRun(
+          text: '\uFFFC',
+          inlineVisual: _picture('Page logo', height: height),
+        ),
+      ],
+    );
+    final section =
+        _section(
+            header: [pictureLine(100)],
+            blocks: [
+              _paragraph('First page'),
+              WmlParagraph(inlines: [WmlBreak(WmlBreakType.page)]),
+              _paragraph('Even page'),
+              for (var n = 0; n < 32; n++) _paragraph('Line $n'),
+            ],
+          )
+          ..differentOddEven = true
+          ..evenHeader = [pictureLine(65)];
+    final pages = _layout([section]).pages;
+    expect(pages, hasLength(3));
+    expect(pages[1].lines.first.y, _margins.header + 65);
+    expect(pages[2].lines.first.y, _margins.header + 100);
+  });
+
+  for (final text in ['', 'Header text']) {
+    test(
+      'a header paragraph with text length ${text.length} reserves height',
+      () {
+        final heading = _paragraph(text);
+        heading.properties
+          ..lineSpacingRule = WmlLineSpacingRule.exact
+          ..lineSpacing = 60
+          ..spacingAfter = 0;
+        final positioned = _paragraph('Page label');
+        positioned.properties.sourcePropertiesXml =
+            '<w:pPr xmlns:w="${OfficeNamespaces.w}">'
+            '<w:framePr w:hAnchor="margin" w:vAnchor="text" '
+            'w:xAlign="outside" w:y="1"/></w:pPr>';
+        final pages = _layout([
+          _section(
+            header: [positioned, heading],
+            blocks: [
+              _paragraph('First page'),
+              WmlParagraph(inlines: [WmlBreak(WmlBreakType.page)]),
+              _paragraph('Second page'),
+            ],
+          ),
+        ]).pages;
+        expect(pages.map((p) => p.lines.single.y), [78, 78]);
+      },
+    );
+  }
 
   test(
     'body pictures and chrome remain equivalent after a local text edit',

@@ -29,11 +29,16 @@ final class WmlOpaqueBlock extends WmlBlock {
     required this.xml,
     required this.sourcePartUri,
     required Iterable<WmlOpaqueRelationship> relationships,
+    this.headerAnchor,
   }) : relationships = List<WmlOpaqueRelationship>.unmodifiable(relationships);
 
   final String xml;
   final String sourcePartUri;
   final List<WmlOpaqueRelationship> relationships;
+
+  /// Flow paragraph of a recognized floating watermark in a preserved header.
+  /// The original XML remains the source for export.
+  final WmlParagraph? headerAnchor;
 }
 
 /// A relationship from a preserved block, resolved against its original owner.
@@ -116,10 +121,17 @@ final class WmlContentControlBoundary extends WmlInline {
 /// Keeping the marker in the inline sequence preserves imported placement,
 /// including a marker between two text nodes in one native run.
 final class WmlNoteMarker extends WmlInline {
-  WmlNoteMarker({required this.endnote, required this.properties});
+  WmlNoteMarker({
+    required this.endnote,
+    required this.properties,
+    this.runPropertiesXml,
+  });
 
   final bool endnote;
   final WmlRunProps properties;
+
+  /// Native run properties including formatting history on the marker.
+  final String? runPropertiesXml;
 }
 
 /// One zero-width endpoint of a native Word bookmark range.
@@ -202,6 +214,7 @@ class WmlRun extends WmlInline {
     this.fieldLocked = false,
     this.fieldDirty,
     this.inlineVisual,
+    this.formattingAnchor,
   }) : properties = properties ?? WmlRunProps(),
        commentIds = commentIds ?? <int>[];
 
@@ -210,6 +223,9 @@ class WmlRun extends WmlInline {
 
   /// properties API.
   WmlRunProps properties;
+
+  /// Identity retained when undo snapshots clone an authored empty run.
+  Object? formattingAnchor;
 
   /// hyperlink API.
   WmlHyperlink? hyperlink;
@@ -513,6 +529,7 @@ class WmlTableCell {
   /// WmlTableCell API.
   WmlTableCell({
     List<WmlBlock>? blocks,
+    List<WmlContentControlData>? contentControlWrappers,
     this.gridSpan = 1,
     this.vMerge = WmlVMerge.none,
     this.width,
@@ -523,10 +540,15 @@ class WmlTableCell {
     this.borderBottom,
     this.borderLeft,
     this.borderRight,
-  }) : blocks = blocks ?? <WmlBlock>[];
+  }) : blocks = blocks ?? <WmlBlock>[],
+       contentControlWrappers =
+           contentControlWrappers ?? <WmlContentControlData>[];
 
   /// blocks API.
   List<WmlBlock> blocks;
+
+  /// Native cell-level content controls, ordered outermost first.
+  final List<WmlContentControlData> contentControlWrappers;
 
   /// gridSpan API.
   int gridSpan;
@@ -567,6 +589,7 @@ class WmlTableRow {
     List<WmlTableCell>? cells,
     this.cantSplit = false,
     this.height,
+    this.heightIsExact = false,
     this.gridBefore = 0,
     this.gridAfter = 0,
   }) : cells = cells ?? <WmlTableCell>[];
@@ -579,6 +602,16 @@ class WmlTableRow {
 
   /// height API.
   double? height;
+
+  /// Whether the authored height limits the row as well as sizing it.
+  bool heightIsExact;
+
+  double? get exactHeight {
+    final value = height;
+    return heightIsExact && value != null && value.isFinite && value > 0
+        ? value
+        : null;
+  }
 
   /// Native grid columns omitted before/after this row's physical cells.
   ///
@@ -723,7 +756,7 @@ class WmlTocEntry {
   /// level API.
   int level;
 
-  /// headingParagraphIndex API.
+  /// Document paragraph index, or -1 if the imported destination is unresolved.
   int headingParagraphIndex;
 
   /// pageNumber API.
@@ -1191,6 +1224,10 @@ class WmlDocument {
   /// definitions. Null keeps the conventional rule for a newly authored part;
   /// false preserves explicit native absence in the editor preview.
   bool? sourceFootnoteSeparatorsPresent;
+
+  /// Whether Word defined the normal and continuation separators as empty
+  /// paragraphs with no rule. Their XML remains in the source package.
+  bool sourceBlankFootnoteSeparators = false;
 
   /// Explicit supported separator geometry shared by footnote pages.
   /// Null retains the existing conventional or opaque native definition.

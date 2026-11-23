@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -5,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/src/embed/office_system_font_validation.dart';
 import 'package:quds_office_editor/src/embed/office_system_fonts_io.dart'
     as installed;
+import 'package:quds_office_engine/quds_office_engine.dart';
 
 import 'support/installed_font_fixture.dart';
 
@@ -25,6 +27,53 @@ void main() {
       await installed.load(searchDirectories: ['${temporary.path}/missing']),
       isEmpty,
     );
+  });
+
+  test('installed CFF metrics are available through editor opt-in', () async {
+    // Synthetic two-glyph face using the family expected by the discovery list.
+    final bytes = base64Decode(
+      'T1RUTwAJAIAAAwAQQ0ZGIFEYIPgAAANAAAAAik9TLzJFIUOfAAABAAAAAGBjbWFwAAwAlAAA'
+      'AuwAAAA0aGVhZC/BzJwAAACcAAAANmhoZWEFSAFhAAAA1AAAACRobXR4BEwAAAAAA8wAAAAI'
+      'bWF4cAACUAAAAAD4AAAABm5hbWWhZx1rAAABYAAAAYxwb3N0AAMAAAAAAyAAAAAgAAEAAAAB'
+      'AAAEzJlbXw889QADA+gAAAAA5ynEgAAAAADnKcSAAAAAAAJYArwAAAADAAIAAAAAAAAAAQAA'
+      'Au7/BgAAAlgAAAAAAlgAAQAAAAAAAAAAAAAAAAAAAAIAAFAAAAIAAAADAiYBkAAFAAQAAAAA'
+      'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA/Pz8/AAAAQQBB'
+      'Au7/BgAAAu4A+gAAAAAAAAAAAAAAAAAAACAAAAAAAAwAlgABAAAAAAABAA4AAAABAAAAAAAC'
+      'AAcADgABAAAAAAADABoAFQABAAAAAAAEABoAFQABAAAAAAAFAAsALwABAAAAAAAGABgAOgAD'
+      'AAEECQABABwAUgADAAEECQACAA4AbgADAAEECQADADQAfAADAAEECQAEADQAfAADAAEECQAF'
+      'ABYAsAADAAEECQAGADAAxkFkb2JlIEdhcmFtb25kUmVndWxhckNyaXNwT2ZmaWNlIFJlZ3Jl'
+      'c3Npb24gQ0ZGVmVyc2lvbiAxLjBDcmlzcE9mZmljZVJlZ3Jlc3Npb25DZmYAQQBkAG8AYgBl'
+      'ACAARwBhAHIAYQBtAG8AbgBkAFIAZQBnAHUAbABhAHIAQwByAGkAcwBwAE8AZgBmAGkAYwBl'
+      'ACAAUgBlAGcAcgBlAHMAcwBpAG8AbgAgAEMARgBGAFYAZQByAHMAaQBvAG4AIAAxAC4AMABD'
+      'AHIAaQBzAHAATwBmAGYAaQBjAGUAUgBlAGcAcgBlAHMAcwBpAG8AbgBDAGYAZgAAAAIAAAAD'
+      'AAAAFAADAAEAAAAUAAQAIAAAAAQABAABAAAAQf//AAAAQf///8AAAQAAAAAAAwAAAAAAAAAA'
+      'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEABAEAAQEBGUNyaXNwT2ZmaWNlUmVncmVzc2lvbkNm'
+      'ZgABAQEb+BsC+BwD+BgEi4v47PlQBfcED4v3HhL3BxEAAgEBGylDcmlzcE9mZmljZSBSZWdy'
+      'ZXNzaW9uIENGRkFkb2JlIEdhcmFtb25kAAAAACIAAgEBBBL4iA747IsW98D5UPfA/VAFDgAA'
+      'AfQAAAJYAAA=',
+    );
+    await File('${primary.path}/AGaramond-Regular.otf').writeAsBytes(bytes);
+    final directories = [primary.path];
+    expect(await installed.load(searchDirectories: directories), isEmpty);
+    final installedFaces = await installed.load(
+      searchDirectories: directories,
+      allowPostScriptOutlines: true,
+    );
+    final installedFace = installedFaces.single;
+    expect(installedFace.family, 'Adobe Garamond');
+    final font = SfntFont.parse(installedFace.bytes);
+    final fonts = OfficeFontSet.single(font);
+    const letterA = 0x41;
+    expect(fonts.resolve(letterA), isNull);
+    final editorFace = fonts.resolve(letterA, allowPostScriptOutlines: true);
+    expect(
+      FontMetrics(
+        font: editorFace!.font,
+        fontSizePoints: 10,
+      ).advanceWidth(editorFace.font.glyphIdFor(letterA)),
+      6,
+    );
+    expect(fonts.embeddable, isEmpty);
   });
 
   test(
@@ -193,6 +242,31 @@ void main() {
       for (var index = 0; index < faces.length; index++) {
         expect(faces[index].bytes, orderedEquals(expectedBytes[index]));
       }
+    },
+  );
+
+  test(
+    'discovers installed Comic Sans faces by their platform filenames',
+    () async {
+      const candidates = [
+        ('Comic Sans MS.ttf', 'LiberationSans-Regular.ttf', 400, false),
+        ('ComicSansMSBold.ttf', 'LiberationSans-Bold.ttf', 700, false),
+        ('comici.ttf', 'LiberationSans-Italic.ttf', 400, true),
+        ('comicz.ttf', 'LiberationSans-BoldItalic.ttf', 700, true),
+      ];
+      for (final (name, fixture, _, _) in candidates) {
+        final bytes = await installedFontFixture(
+          'Comic Sans MS',
+          file: fixture,
+        );
+        await File('${primary.path}/$name').writeAsBytes(bytes);
+      }
+
+      final faces = await installed.load(searchDirectories: [primary.path]);
+      expect(faces.map((face) => (face.family, face.weight, face.italic)), [
+        for (final (_, _, weight, italic) in candidates)
+          ('Comic Sans MS', weight, italic),
+      ]);
     },
   );
 
