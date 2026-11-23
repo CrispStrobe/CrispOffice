@@ -15,7 +15,7 @@ final class MailReadBudget {
     this.maxHeaderBytes = 256 * 1024,
     this.maxHeaderFieldBytes = 64 * 1024,
     this.maxHtmlNodes = 20000,
-    this.maxHtmlDepth = 64,
+    this.maxHtmlDepth = 256,
     this.maxRenderTextBytes = 8 * 1024 * 1024,
     this.maxImagePixels = 16 * 1024 * 1024,
   });
@@ -31,7 +31,7 @@ final class MailReadBudget {
     this.maxHeaderBytes = 256 * 1024,
     this.maxHeaderFieldBytes = 64 * 1024,
     this.maxHtmlNodes = 20000,
-    this.maxHtmlDepth = 64,
+    this.maxHtmlDepth = 256,
     this.maxRenderTextBytes = 8 * 1024 * 1024,
     this.maxImagePixels = 16 * 1024 * 1024,
   });

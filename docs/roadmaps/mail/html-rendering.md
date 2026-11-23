@@ -27,8 +27,10 @@ The rich view is not a browser and has no network port:
 - CSS containing `url()`, `@import`, `@font-face`, `expression`, `behavior`,
   `-moz-binding`, `javascript:`, `vbscript:` or `data:` is discarded; positioning
   rules are removed;
-- the sanitizer enforces the existing HTML node/depth budgets plus a 2 MiB
-  sanitized-markup cap;
+- the sanitizer enforces the HTML node budget plus a 2 MiB sanitized-markup
+  cap. The default HTML depth limit is 256 so deeply nested transactional
+  tables render instead of rejecting the entire message; explicit smaller
+  budgets still reject.
 - images are emitted with `data-mail-cid` or `data-mail-remote` metadata and
   **no `src` attribute**. The custom image widget can render only bytes already
   admitted to `MailReaderPresentation.images`; otherwise it shows a local
@@ -58,7 +60,10 @@ Safe `<style>` blocks are retained when they contain no external resource.
 
 ## Verification
 
-- `quds_mail_ui` full suite: **297/297 passed**.
+- `quds_mail_ui` full suite: **303/303 passed**.
+- Regression coverage includes 100-level transactional div/table markup in both
+  the plain-text projection and sanitized rich view; neither is rejected under
+  the default budget.
 - New sanitizer and rich-widget tests cover script/event removal, CSS URL
   removal, safe tables, CID/remote image metadata, link filtering and the
   no-`src` image invariant.

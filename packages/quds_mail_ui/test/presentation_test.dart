@@ -163,6 +163,22 @@ void main() {
     },
   );
 
+  test('deep transactional markup stays within the default render budget', () {
+    final html =
+        '${'<div>' * 100}<p>Deep transactional content</p>${'</div>' * 100}';
+    final p = buildMailPresentation(
+      mailFixture(html: html),
+      budget: const MailReadBudget(),
+    );
+    expect(p.rejected, isFalse);
+    expect(p.usedHtml, isTrue);
+    expect(p.bodyText, contains('Deep transactional content'));
+    expect(
+      p.diagnostics.where((d) => d.code == MailDiagnosticCode.renderLimit),
+      isEmpty,
+    );
+  });
+
   test('node and nesting rejection discards the entire partial projection', () {
     for (final budget in [
       const MailReadBudget(maxHtmlNodes: 3),

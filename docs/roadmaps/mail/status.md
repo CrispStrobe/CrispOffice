@@ -27,7 +27,7 @@ interrupted work.
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 | Local tags | Account-scoped local metadata, assignment dialog, exact local `tag:` search, bounded tag names in mailbox/search rows; not provider keywords |
 | Ordered rules | Account-scoped ordered local tag rules, preview, all-or-nothing apply, schema v19; no provider changes or scheduling |
-| Formatted HTML | Safe table/style rendering with bounded sanitizer, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
+| Formatted HTML | Safe table/style rendering with bounded sanitizer, 256-level default HTML depth for transactional mail, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
 | Reader metadata | Compact From/To/Cc/Bcc/Reply-To/date-time card and bounded selectable raw-header inspection with copy; independent of the body mode |
 
 ## Latest integration: account ownership and remembered Archive

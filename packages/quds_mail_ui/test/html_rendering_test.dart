@@ -74,6 +74,24 @@ void main() {
     expect(safe, isNot(contains('position:fixed')));
   });
 
+  test('deep transactional HTML is sanitized rather than rejected', () {
+    final presentation = buildMailPresentation(
+      _htmlResult(
+        '${'<div>' * 100}<p>Deep Amazon-style table content</p>${'</div>' * 100}',
+      ),
+      preferHtml: true,
+    );
+    expect(presentation.rejected, isFalse);
+    expect(presentation.safeHtml, isNotNull);
+    expect(presentation.safeHtml, contains('Deep Amazon-style table content'));
+    expect(
+      presentation.diagnostics.where(
+        (item) => item.code == MailDiagnosticCode.renderLimit,
+      ),
+      isEmpty,
+    );
+  });
+
   testWidgets('rich HTML offers explicit remote-image loading', (tester) async {
     var loaded = 0;
     final controller = MailReaderController(
