@@ -8,6 +8,9 @@ extension StudioMailFeedback on StudioStrings {
     StudioLanguage.ar => ar,
   };
 
+  String get mailDismissNotice =>
+      _mailText('Dismiss notice', 'Hinweis ausblenden', 'إخفاء الإشعار');
+
   String get mailSavedAccounts => _mailText(
     'Saved IMAP accounts',
     'Gespeicherte IMAP-Konten',

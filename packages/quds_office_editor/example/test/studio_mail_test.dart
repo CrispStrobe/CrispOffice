@@ -397,7 +397,9 @@ Future<void> _close(
     200,
     scrollable: find.descendant(of: ribbon, matching: find.byType(Scrollable)),
   );
-  expect(close, findsOneWidget);
+  await tester.ensureVisible(close);
+  await tester.pumpAndSettle();
+  expect(close.hitTestable(), findsOneWidget);
   await tester.tap(close);
   await _pump(tester);
   expect(find.byType(StudioMailDialog), findsNothing);
@@ -2291,7 +2293,10 @@ void main() {
             },
       );
       await _connect(tester);
-      await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
+      final archiveFolder = find.byTooltip(_strings.archiveSelectedFolder);
+      await tester.ensureVisible(archiveFolder);
+      await tester.pumpAndSettle();
+      await tester.tap(archiveFolder);
       await _pump(tester);
       expect(runs, 0);
       await tester.tap(find.byKey(const ValueKey('archive-folder-start')));

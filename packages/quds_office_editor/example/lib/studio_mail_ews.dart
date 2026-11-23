@@ -3609,7 +3609,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 ),
                 IconButton(
                   key: const ValueKey('studio-mail-dismiss-message'),
-                  tooltip: widget.strings.close,
+                  tooltip: widget.strings.mailDismissNotice,
                   visualDensity: VisualDensity.compact,
                   onPressed: () => setState(() {
                     _notice = null;

@@ -4954,6 +4954,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ? null
                   : _openSynchronization,
             ),
+          _folderArchiveButton(),
           command(
             icon: Icons.refresh,
             tooltip: widget.strings.refresh,
@@ -5771,7 +5772,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ),
                   IconButton(
                     key: const ValueKey('studio-mail-dismiss-message'),
-                    tooltip: widget.strings.close,
+                    tooltip: widget.strings.mailDismissNotice,
                     visualDensity: VisualDensity.compact,
                     onPressed: () => setState(() {
                       _notice = null;
@@ -6025,7 +6026,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           writer: widget.archiveWriter,
         ),
         _tagsAction(),
-        _folderArchiveButton(),
         IconButton(
           onPressed: _busy ? null : _reply,
           tooltip: widget.strings.reply,

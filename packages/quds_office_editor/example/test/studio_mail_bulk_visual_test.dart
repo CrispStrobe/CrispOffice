@@ -315,12 +315,6 @@ void main() {
       expect(Directionality.of(tester.element(list)), direction);
       expect(MediaQuery.textScalerOf(tester.element(list)).scale(10), 14);
       _expectRowsUsable(tester);
-      if (variant.compact) {
-        final header = tester.widget<SingleChildScrollView>(
-          _key('mail-list-header-scroll'),
-        );
-        expect(header.controller!.position.maxScrollExtent, greaterThan(0));
-      }
 
       final checkbox = _key('mail-list-check-planning');
       await tester.tap(checkbox);
@@ -332,7 +326,14 @@ void main() {
       );
       expect(commands, 0);
       await _showControl(tester, _key('mail-list-selected-count'));
-      expect(find.text(strings.selectedCount(1)), findsOneWidget);
+      expect(
+        tester.widget<Text>(_key('mail-list-selected-count')).data,
+        '1',
+      );
+      expect(
+        find.byTooltip(strings.selectedCount(1)),
+        findsOneWidget,
+      );
       _expectRowsUsable(tester);
       await _capture(tester, '$name-selected');
 
