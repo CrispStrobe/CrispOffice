@@ -97,6 +97,13 @@ Widget _app(
 Finder _key(String value) => find.byKey(ValueKey(value));
 
 Future<void> _tap(WidgetTester tester, String value) async {
+  if (_key(value).evaluate().isEmpty) {
+    final filters = find.byKey(const ValueKey('mail-list-filters'));
+    if (filters.evaluate().isNotEmpty) {
+      await tester.tap(filters);
+      await tester.pumpAndSettle();
+    }
+  }
   final finder = _key(value);
   await tester.ensureVisible(finder);
   await tester.tap(finder);
@@ -106,6 +113,15 @@ Future<void> _tap(WidgetTester tester, String value) async {
 Future<void> _invoke(WidgetTester tester, MailBulkFlagAction action) async {
   await _tap(tester, 'mail-list-bulk-actions');
   await _tap(tester, 'mail-list-bulk-${action.name}');
+}
+
+void _expectSelected(WidgetTester tester, int count) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+        .data,
+    '$count',
+  );
 }
 
 void main() {
@@ -210,7 +226,7 @@ void main() {
     );
     await _tap(tester, 'mail-list-select-shown');
     await _tap(tester, 'mail-list-bulk-actions');
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(_key('mail-list-bulk-move'), findsNothing);
     expect(calls, 0);
     expect(
@@ -250,7 +266,7 @@ void main() {
       expect(calls.single.$1, action);
       expect(calls.single.$2, ['a', 'z']);
       expect(() => calls.single.$2.add('injected'), throwsUnsupportedError);
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       expect(opens, 0);
       expect(loads, 0);
     });
@@ -270,11 +286,11 @@ void main() {
       );
       await _tap(tester, 'mail-list-conversations');
       await _tap(tester, 'mail-list-select-shown');
-      expect(find.text('4 selected'), findsOneWidget);
+      _expectSelected(tester, 4);
       await _tap(tester, 'mail-list-conversation-toggle-parent');
       await tester.enterText(_key('mail-list-search'), 'subject:plan');
       await tester.pumpAndSettle();
-      expect(find.text('2 selected'), findsOneWidget);
+      _expectSelected(tester, 2);
       await _invoke(tester, action);
       expect(calls.single, ['parent', 'other']);
     });
@@ -309,7 +325,7 @@ void main() {
       await _tap(tester, 'mail-list-bulk-move');
       expect(calls, 0);
       if (replacement.isEmpty) {
-        expect(find.text('0 selected'), findsOneWidget);
+        _expectSelected(tester, 0);
       } else {
         await _invoke(tester, replacement.first);
         expect(calls, 1);

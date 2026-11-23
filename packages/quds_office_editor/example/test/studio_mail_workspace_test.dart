@@ -410,6 +410,35 @@ Future<_Client> _show(
   return client;
 }
 
+Future<void> _showFilters(WidgetTester tester) async {
+  if (find.byKey(const ValueKey('mail-list-unread')).evaluate().isNotEmpty) {
+    return;
+  }
+  await tester.tap(find.byKey(const ValueKey('mail-list-filters')));
+  await tester.pumpAndSettle();
+}
+
+Future<void> _tapFilter(WidgetTester tester, Finder finder) async {
+  await _showFilters(tester);
+  await tester.tap(finder);
+  await tester.pumpAndSettle();
+}
+
+void _expectCounts(WidgetTester tester, int shown, int loaded) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-shown-count')))
+        .data,
+    '$shown',
+  );
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-loaded-count')))
+        .data,
+    '$loaded',
+  );
+}
+
 void main() {
   _bulkWorkspaceTests();
   _peerBulkWorkspaceTests();
@@ -995,7 +1024,7 @@ void main() {
     await _pump(tester);
     expect(_key('imap-message-91:300'), findsOneWidget);
     expect(_key('imap-message-91:200'), findsNothing);
-    expect(find.textContaining('1 shown · 2 loaded'), findsOneWidget);
+    _expectCounts(tester, 1, 2);
     await tester.enterText(_key('mail-list-search'), 'to:hidden@example.test');
     await _pump(tester);
     expect(
@@ -1026,7 +1055,7 @@ void main() {
     expect(client.legacyFetches, 0);
     expect(browser.requests.single.$3, 50);
     await tester.enterText(_key('mail-list-search'), 'Older');
-    await tester.tap(_key('mail-list-flagged'));
+    await _tapFilter(tester, _key('mail-list-flagged'));
     await _pump(tester);
     expect(
       find.text(_strings.mailMessageListStrings.noMatches),
@@ -1038,7 +1067,7 @@ void main() {
     await _pump(tester);
     expect(_key('imap-message-91:100'), findsOneWidget);
     expect(browser.requests.last.$2!.value, 'next-page');
-    expect(find.textContaining('1 shown · 3 loaded'), findsOneWidget);
+    _expectCounts(tester, 1, 3);
     expect(_key('imap-load-more'), findsNothing);
     expect(browser.reads, 0);
   });
@@ -1073,7 +1102,7 @@ void main() {
     final browser = _Browser();
     await _show(tester, browser, compact: true);
     await tester.enterText(_key('mail-list-search'), 'Newest');
-    await tester.tap(_key('mail-list-unread'));
+    await _tapFilter(tester, _key('mail-list-unread'));
     await _pump(tester);
     await tester.tap(_key('imap-message-91:300'));
     await _pump(tester);
@@ -1091,6 +1120,7 @@ void main() {
       tester.widget<TextField>(_key('mail-list-search')).controller!.text,
       'Newest',
     );
+    await _showFilters(tester);
     expect(
       tester.widget<FilterChip>(_key('mail-list-unread')).selected,
       isTrue,
@@ -1107,7 +1137,7 @@ void main() {
     final browser = _Browser();
     await _show(tester, browser);
     await tester.enterText(_key('mail-list-search'), 'missing');
-    await tester.tap(_key('mail-list-unread'));
+    await _tapFilter(tester, _key('mail-list-unread'));
     await _pump(tester);
     await tester.tap(find.widgetWithText(ListTile, 'Archive'));
     await _pump(tester);
@@ -1116,6 +1146,7 @@ void main() {
       tester.widget<TextField>(_key('mail-list-search')).controller!.text,
       isEmpty,
     );
+    await _showFilters(tester);
     expect(
       tester.widget<FilterChip>(_key('mail-list-unread')).selected,
       isFalse,
@@ -1130,7 +1161,7 @@ void main() {
   ) async {
     final browser = _Browser();
     await _show(tester, browser);
-    await tester.tap(_key('mail-list-unread'));
+    await _tapFilter(tester, _key('mail-list-unread'));
     await tester.pump();
     await tester.tap(_key('imap-message-91:300'));
     await _pump(tester);
@@ -1146,7 +1177,7 @@ void main() {
     await tester.tap(_button(_strings.ewsMarkUnread));
     await _pump(tester);
     expect(_key('imap-message-91:300'), findsOneWidget);
-    await tester.tap(_key('mail-list-flagged'));
+    await _tapFilter(tester, _key('mail-list-flagged'));
     await _pump(tester);
     expect(_key('imap-message-91:300'), findsNothing);
     await tester.tap(_button(_strings.ewsFlag));
@@ -1181,7 +1212,7 @@ void main() {
           .single;
       expect(row.isFlagged, isTrue);
       expect(row.isRead, isNull);
-      await tester.tap(_key('mail-list-unread'));
+      await _tapFilter(tester, _key('mail-list-unread'));
       await _pump(tester);
       expect(_key('imap-message-91:300'), findsNothing);
       await tester.tap(_button(_strings.markRead));
@@ -1361,7 +1392,7 @@ void main() {
     }
     expect(browser.requests, hasLength(20));
     expect(browser.requests.every((request) => request.$3 == 50), isTrue);
-    expect(find.textContaining('1000 shown · 1000 loaded'), findsOneWidget);
+    _expectCounts(tester, 1000, 1000);
     expect(find.text(_strings.mailWorkspaceLimit), findsOneWidget);
     expect(_key('imap-load-more'), findsNothing);
     expect(browser.reads, 0);

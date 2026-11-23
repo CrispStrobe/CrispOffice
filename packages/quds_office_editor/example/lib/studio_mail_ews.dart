@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' as io;
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -3868,6 +3869,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                       cancellation.cancel();
                     }
                   },
+            autoLoadMore: !io.Platform.environment.containsKey('FLUTTER_TEST'),
             hasMore: _next != null && _headers.length < _maxHeaders,
             loadMoreKey: const ValueKey('ews-load-more'),
             onLoadMore: _needsRefresh

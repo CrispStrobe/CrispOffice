@@ -99,6 +99,13 @@ Finder _key(String key) => find.byKey(ValueKey(key));
 Finder _check(String id) => _key('mail-list-check-$id');
 
 Future<void> _tap(WidgetTester tester, Finder target) async {
+  if (target.evaluate().isEmpty) {
+    final filters = find.byKey(const ValueKey('mail-list-filters'));
+    if (filters.evaluate().isNotEmpty) {
+      await tester.tap(filters);
+      await tester.pumpAndSettle();
+    }
+  }
   await tester.ensureVisible(target);
   await tester.tap(target);
   await tester.pumpAndSettle();
@@ -134,13 +141,27 @@ VoidCallback _freezeAction(WidgetTester tester, MailBulkFlagAction action) {
   return () => Function.apply(callback, [value]);
 }
 
+void _expectSelected(WidgetTester tester, int count) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+        .data,
+    '$count',
+  );
+}
+
 void main() {
   testWidgets('cached hosts have no mutable bulk controls', (tester) async {
     await tester.pumpWidget(_app(_list()));
     expect(find.byType(Checkbox), findsNothing);
     expect(_key('mail-list-select-shown'), findsNothing);
     expect(_key('mail-list-bulk-actions'), findsNothing);
-    expect(_key('mail-list-selected-count'), findsNothing);
+    expect(
+      tester
+          .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+          .data,
+      '0',
+    );
   });
 
   testWidgets('checking rows and selecting visible never opens or loads mail', (
@@ -159,11 +180,11 @@ void main() {
       ),
     );
     await _tap(tester, _check('z'));
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     await _selectAll(tester);
-    expect(find.text('3 selected'), findsOneWidget);
+    _expectSelected(tester, 3);
     await _tap(tester, _key('mail-list-clear-selection'));
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(opens, 0);
     expect(loads, 0);
     expect(actions, 0);
@@ -194,7 +215,7 @@ void main() {
       expect(calls.single.$1, action);
       expect(calls.single.$2, ['a', 'b', 'z']);
       expect(() => calls.single.$2.add('injected'), throwsUnsupportedError);
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
     });
   }
 
@@ -208,10 +229,10 @@ void main() {
     await _selectAll(tester);
     await tester.enterText(_key('mail-list-search'), 'subject:project');
     await tester.pumpAndSettle();
-    expect(find.text('2 selected'), findsOneWidget);
+    _expectSelected(tester, 2);
     await tester.enterText(_key('mail-list-search'), '');
     await tester.pumpAndSettle();
-    expect(find.text('2 selected'), findsOneWidget);
+    _expectSelected(tester, 2);
     expect(tester.widget<Checkbox>(_check('b')).value, isFalse);
     await _invoke(tester, MailBulkFlagAction.flag);
     expect(batches.single, ['z', 'a']);
@@ -223,13 +244,13 @@ void main() {
       await tester.pumpWidget(_app(_list(onBulkAction: (_, _) {})));
       await _selectAll(tester);
       await _tap(tester, _key('mail-list-unread'));
-      expect(find.text('1 selected'), findsOneWidget);
+      _expectSelected(tester, 1);
       await tester.enterText(_key('mail-list-search'), 'body:unsupported');
       await tester.pumpAndSettle();
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       await tester.enterText(_key('mail-list-search'), '');
       await tester.pumpAndSettle();
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
     },
   );
 
@@ -243,12 +264,12 @@ void main() {
     );
     await _selectAll(tester);
     await tester.pumpWidget(_app(_list(onBulkAction: onBulk)));
-    expect(find.text('2 selected'), findsOneWidget);
+    _expectSelected(tester, 2);
     expect(tester.widget<Checkbox>(_check('b')).value, isFalse);
     await tester.pumpWidget(
       _app(_list(items: _items.skip(1).toList(), onBulkAction: onBulk)),
     );
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     await _invoke(tester, MailBulkFlagAction.markUnread);
     expect(batches.single, ['a']);
   });
@@ -274,12 +295,12 @@ void main() {
         oldAction();
         oldCheckbox(true);
         await tester.pumpAndSettle();
-        expect(find.text('0 selected'), findsOneWidget);
+        _expectSelected(tester, 0);
         await tester.pumpWidget(app(0));
         oldAction();
         oldCheckbox(true);
         await tester.pumpAndSettle();
-        expect(find.text('0 selected'), findsOneWidget);
+        _expectSelected(tester, 0);
         expect(actions, 0);
       },
     );
@@ -296,7 +317,7 @@ void main() {
       await _tap(tester, _key('mail-list-sort-subjectAscending'));
       await _selectAll(tester);
       await tester.pumpWidget(app(1));
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       expect(
         tester.widget<TextField>(_key('mail-list-search')).controller!.text,
         'project',
@@ -378,7 +399,7 @@ void main() {
     await tester.pumpAndSettle();
     await _tap(tester, _key('mail-list-bulk-markRead'));
     expect(actions, 0);
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
   });
 
   testWidgets(
@@ -397,7 +418,7 @@ void main() {
       oldSelect();
       oldClear();
       await tester.pumpAndSettle();
-      expect(find.text('2 selected'), findsOneWidget);
+      _expectSelected(tester, 2);
     },
   );
 
@@ -432,9 +453,9 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
       oldAction();
       await tester.pumpAndSettle();
-      expect(find.text('3 selected'), findsOneWidget);
+      _expectSelected(tester, 3);
       await tester.pumpWidget(app(enabled: false));
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       expect(tester.widget<Checkbox>(_check('z')).onChanged, isNull);
       await tester.sendKeyEvent(LogicalKeyboardKey.space);
       oldAction();
@@ -464,11 +485,11 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.keyA);
       await tester.sendKeyUpEvent(modifier);
       await tester.pumpAndSettle();
-      expect(find.text('2 selected'), findsOneWidget);
+      _expectSelected(tester, 2);
       expect(opened, isEmpty);
       await tester.sendKeyEvent(LogicalKeyboardKey.space);
       await tester.pumpAndSettle();
-      expect(find.text('1 selected'), findsOneWidget);
+      _expectSelected(tester, 1);
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
       expect(opened, ['z']);
       await _invoke(tester, MailBulkFlagAction.markRead);
@@ -488,12 +509,12 @@ void main() {
     await _focusList(tester);
     await tester.sendKeyEvent(LogicalKeyboardKey.escape);
     await tester.pumpAndSettle();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(opens, 0);
     expect(actions, 0);
     await tester.sendKeyEvent(LogicalKeyboardKey.space);
     await tester.pumpAndSettle();
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     expect(opens, 0);
   });
 
@@ -524,7 +545,7 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.escape);
     await tester.pumpAndSettle();
     expect(escapes, 1);
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
   });
 
   testWidgets('search editing keeps Ctrl+A and Space without checking mail', (
@@ -541,7 +562,7 @@ void main() {
     await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
     await tester.sendKeyEvent(LogicalKeyboardKey.space);
     await tester.pumpAndSettle();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(actions, 0);
     expect(opens, 0);
   });

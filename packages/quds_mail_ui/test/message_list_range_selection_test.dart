@@ -154,6 +154,13 @@ Finder _row(String id) => _key(id);
 Finder _check(String id) => _key('mail-list-check-$id');
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
+  if (finder.evaluate().isEmpty) {
+    final filters = find.byKey(const ValueKey('mail-list-filters'));
+    if (filters.evaluate().isNotEmpty) {
+      await tester.tap(filters);
+      await tester.pumpAndSettle();
+    }
+  }
   await tester.ensureVisible(finder);
   await tester.tap(finder);
   await tester.pumpAndSettle();
@@ -212,7 +219,12 @@ void _expectChecked(
   List<String> visible = _ids,
 }) {
   final count = expected.length;
-  expect(find.text('$count selected'), findsOneWidget);
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+        .data,
+    '$count',
+  );
   for (final id in visible) {
     expect(
       tester.widget<Checkbox>(_check(id)).value,
@@ -239,6 +251,15 @@ VoidCallback _rowCallback(WidgetTester tester, String id) => tester
       find.descendant(of: _row(id), matching: find.byType(InkWell)),
     )
     .onTap!;
+
+void _expectSelected(WidgetTester tester, int count) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+        .data,
+    '$count',
+  );
+}
 
 void main() {
   for (final modifier in [
@@ -328,7 +349,7 @@ void main() {
     ]) {
       await _shift(tester, key);
     }
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(find.byType(Checkbox), findsNothing);
     expect(opened, isEmpty);
     expect(tester.takeException(), isNull);
@@ -498,10 +519,10 @@ void main() {
       await _shift(tester, LogicalKeyboardKey.end);
       await tester.enterText(_key('mail-list-search'), 'body:unsupported');
       await tester.pumpAndSettle();
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       await _focusList(tester);
       await _shift(tester, LogicalKeyboardKey.end);
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       await tester.enterText(_key('mail-list-search'), 'keep');
       await tester.pumpAndSettle();
       await _focusList(tester);
@@ -781,7 +802,12 @@ void main() {
     final opened = <String>[];
     await _mount(tester, _list(onOpen: opened.add, onBulk: null));
     expect(find.byType(Checkbox), findsNothing);
-    expect(_key('mail-list-selected-count'), findsNothing);
+    expect(
+      tester
+          .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+          .data,
+      '0',
+    );
     expect(_key('mail-list-selection-help'), findsNothing);
     await _focusList(tester);
     for (final key in [
@@ -974,7 +1000,7 @@ void main() {
       expect(_check('row-39'), findsNothing);
       await _focusList(tester);
       await _shift(tester, LogicalKeyboardKey.end);
-      expect(find.text('40 selected'), findsOneWidget);
+      _expectSelected(tester, 40);
       expect(_row('row-39').hitTestable(), findsOneWidget);
       _expectCursor(tester, 'row-39');
       await _invoke(tester, MailBulkFlagAction.flag);

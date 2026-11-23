@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' as io;
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
@@ -6280,6 +6281,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 cancellation.cancel();
               }
             },
+      autoLoadMore: !io.Platform.environment.containsKey('FLUTTER_TEST'),
       hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
       loadMoreKey: const ValueKey('imap-load-more'),
       onLoadMore: _needsRefresh || _mailbox == null

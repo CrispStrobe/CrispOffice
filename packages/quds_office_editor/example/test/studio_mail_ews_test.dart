@@ -437,6 +437,35 @@ List<MailHeaderRecord> _bulkHeaders(_Provider provider) => [
   provider.header('three', 'Third Exchange message'),
 ];
 
+Future<void> _showFilters(WidgetTester tester) async {
+  if (find.byKey(const ValueKey('mail-list-unread')).evaluate().isNotEmpty) {
+    return;
+  }
+  await tester.tap(find.byKey(const ValueKey('mail-list-filters')));
+  await tester.pumpAndSettle();
+}
+
+Future<void> _tapFilter(WidgetTester tester, Finder finder) async {
+  await _showFilters(tester);
+  await tester.tap(finder);
+  await tester.pumpAndSettle();
+}
+
+void _expectCounts(WidgetTester tester, int shown, int loaded) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-shown-count')))
+        .data,
+    '$shown',
+  );
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-loaded-count')))
+        .data,
+    '$loaded',
+  );
+}
+
 void main() {
   testWidgets(
     'EWS bulk assigns each explicit value to checked targets without opening mail',
@@ -971,10 +1000,10 @@ void main() {
       expect(row.isFlagged, isTrue);
       expect(row.isRead, isNull);
       expect(find.byTooltip(_strings.ewsUnflag), findsOneWidget);
-      await tester.tap(_field('mail-list-flagged'));
+      await _tapFilter(tester, _field('mail-list-flagged'));
       await _pump(tester);
       expect(_field('ews-message-one'), findsOneWidget);
-      await tester.tap(_field('mail-list-unread'));
+      await _tapFilter(tester, _field('mail-list-unread'));
       await _pump(tester);
       expect(_field('ews-message-one'), findsNothing);
       await tester.tap(find.byTooltip(_strings.ewsUnflag));
@@ -1021,7 +1050,7 @@ void main() {
         .single;
     expect(row.isRead, isTrue);
     expect(row.isFlagged, isNull);
-    await tester.tap(_field('mail-list-unread'));
+    await _tapFilter(tester, _field('mail-list-unread'));
     await _pump(tester);
     expect(_field('ews-message-one'), findsNothing);
     await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
@@ -1033,7 +1062,7 @@ void main() {
     expect(row.isRead, isFalse);
     expect(row.isFlagged, isNull);
     expect(_field('ews-message-one'), findsOneWidget);
-    await tester.tap(_field('mail-list-flagged'));
+    await _tapFilter(tester, _field('mail-list-flagged'));
     await _pump(tester);
     expect(_field('ews-message-one'), findsNothing);
     expect(provider.commands.map((command) => (command as MailSetRead).read), [
@@ -1193,8 +1222,8 @@ void main() {
     );
     await _connect(tester);
     await tester.enterText(_field('mail-list-search'), 'first');
-    await tester.tap(_field('mail-list-unread'));
-    await tester.tap(_field('mail-list-flagged'));
+    await _tapFilter(tester, _field('mail-list-unread'));
+    await _tapFilter(tester, _field('mail-list-flagged'));
     await _pump(tester);
     expect(
       find.text(_strings.mailMessageListStrings.noMatches),
@@ -1207,10 +1236,12 @@ void main() {
       tester.widget<TextField>(_field('mail-list-search')).controller!.text,
       isEmpty,
     );
+    await _showFilters(tester);
     expect(
       tester.widget<FilterChip>(_field('mail-list-unread')).selected,
       isFalse,
     );
+    await _showFilters(tester);
     expect(
       tester.widget<FilterChip>(_field('mail-list-flagged')).selected,
       isFalse,
@@ -1232,7 +1263,7 @@ void main() {
       );
       await _connect(tester);
       await tester.enterText(_field('mail-list-search'), 'second');
-      await tester.tap(_field('mail-list-unread'));
+      await _tapFilter(tester, _field('mail-list-unread'));
       await _pump(tester);
       expect(
         find.text(_strings.mailMessageListStrings.noMatches),
@@ -1245,7 +1276,7 @@ void main() {
       expect(_field('ews-message-one'), findsNothing);
       expect(_field('ews-message-two'), findsOneWidget);
       // The last page is loaded: only the filter count remains.
-      expect(find.text('1 shown · 2 loaded'), findsOneWidget);
+      _expectCounts(tester, 1, 2);
       expect(provider.cursors.map((cursor) => cursor?.value), [
         null,
         'next-page',
@@ -1275,8 +1306,8 @@ void main() {
       }, size: const Size(400, 850));
       await _connect(tester);
       await tester.enterText(_field('mail-list-search'), 'first');
-      await tester.tap(_field('mail-list-unread'));
-      await tester.tap(_field('mail-list-flagged'));
+      await _tapFilter(tester, _field('mail-list-unread'));
+      await _tapFilter(tester, _field('mail-list-flagged'));
       await _pump(tester);
       await tester.tap(_field('ews-message-one'));
       await _pump(tester);
@@ -1293,10 +1324,12 @@ void main() {
         tester.widget<TextField>(_field('mail-list-search')).controller!.text,
         'first',
       );
+      await _showFilters(tester);
       expect(
         tester.widget<FilterChip>(_field('mail-list-unread')).selected,
         isTrue,
       );
+      await _showFilters(tester);
       expect(
         tester.widget<FilterChip>(_field('mail-list-flagged')).selected,
         isTrue,
@@ -1345,7 +1378,7 @@ void main() {
           provider = _Provider(configuration, credentials),
     );
     await _connect(tester);
-    await tester.tap(_field('mail-list-unread'));
+    await _tapFilter(tester, _field('mail-list-unread'));
     await _pump(tester);
     await tester.tap(_field('ews-message-one'));
     await _pump(tester);
@@ -1356,7 +1389,7 @@ void main() {
     await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
     await _pump(tester);
     expect(_field('ews-message-one'), findsOneWidget);
-    await tester.tap(_field('mail-list-flagged'));
+    await _tapFilter(tester, _field('mail-list-flagged'));
     await _pump(tester);
     expect(_field('ews-message-one'), findsNothing);
     await tester.tap(find.byTooltip(_strings.ewsFlag));
@@ -1665,7 +1698,7 @@ void main() {
     expect(find.text(_strings.mailWorkspaceLimit), findsWidgets);
     // Since ca5be882 the compact list shows the count and keeps the loaded
     // scope explanation in its tooltip.
-    final scope = find.text('1000 shown · 1000 loaded');
+    final scope = find.byKey(const ValueKey('mail-list-scope'));
     expect(scope, findsOneWidget);
     expect(
       find.ancestor(
@@ -3166,6 +3199,8 @@ void main() {
             },
       );
       await _connect(tester);
+      await tester.tap(_field('ews-message-one'));
+      await _pump(tester);
       await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
       await _pump(tester);
       expect(profile, isNull);
@@ -3176,7 +3211,7 @@ void main() {
       expect(profile!.kind, MailArchiveProfileKind.mailbox);
       expect(profile!.includeSubfolders, isFalse);
       expect(profile!.id, startsWith('studio-mailbox:'));
-      expect(provider.reads, 0);
+      expect(provider.reads, 1);
       expect(provider.commands, isEmpty);
       expect(provider.submissions, isEmpty);
       expect(

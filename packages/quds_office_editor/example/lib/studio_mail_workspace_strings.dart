@@ -18,6 +18,7 @@ extension StudioMailWorkspaceStrings on StudioStrings {
       'E-Mails durchsuchen',
       'البحث في البريد',
     ),
+    filter: _text('Filters', 'Filter', 'عوامل التصفية'),
     unread: _text('Unread', 'Ungelesen', 'غير مقروءة'),
     flagged: _text('Flagged', 'Gekennzeichnet', 'المعلّمة'),
     groupConversations: _text('Conversations', 'Unterhaltungen', 'المحادثات'),

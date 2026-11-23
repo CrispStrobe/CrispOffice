@@ -103,6 +103,46 @@ Future<void> _focusList(WidgetTester tester) async {
   await tester.pump();
 }
 
+Future<void> _showFilters(WidgetTester tester) async {
+  if (find.byKey(const ValueKey('mail-list-unread')).evaluate().isNotEmpty) {
+    return;
+  }
+  await tester.tap(find.byKey(const ValueKey('mail-list-filters')));
+  await tester.pump();
+}
+
+void _expectStats(
+  WidgetTester tester, {
+  int? selected,
+  int? shown,
+  int? loaded,
+}) {
+  if (selected != null) {
+    expect(
+      tester
+          .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+          .data,
+      '$selected',
+    );
+  }
+  if (shown != null) {
+    expect(
+      tester
+          .widget<Text>(find.byKey(const ValueKey('mail-list-shown-count')))
+          .data,
+      '$shown',
+    );
+  }
+  if (loaded != null) {
+    expect(
+      tester
+          .widget<Text>(find.byKey(const ValueKey('mail-list-loaded-count')))
+          .data,
+      '$loaded',
+    );
+  }
+}
+
 Finder _row(String id) => find.byKey(ValueKey(id));
 
 Future<void> _sortBy(WidgetTester tester, MailMessageListSort sort) async {
@@ -158,7 +198,7 @@ void main() {
         _list(onOpen: (_) => opens++, hasMore: true, onLoadMore: () => loads++),
       ),
     );
-    expect(find.text('4 shown · 4 loaded'), findsOneWidget);
+    _expectStats(tester, shown: 4, loaded: 4);
     expect(find.text('Load more messages'), findsOneWidget);
     expect(opens, 0);
     expect(loads, 0);
@@ -175,7 +215,7 @@ void main() {
     );
     await tester.pump();
     // Filters hiding rows still show the count, without the loaded scope.
-    expect(find.text('2 shown · 4 loaded'), findsOneWidget);
+    _expectStats(tester, shown: 2, loaded: 4);
     expect(find.textContaining(_strings.loadedScope), findsNothing);
   });
 
@@ -198,7 +238,7 @@ void main() {
     expect(_row('three'), findsOneWidget);
     expect(_row('two'), findsNothing);
     expect(_row('unknown'), findsNothing);
-    expect(find.text('2 shown · 4 loaded'), findsOneWidget);
+    _expectStats(tester, shown: 2, loaded: 4);
     await tester.enterText(
       find.byKey(const ValueKey('mail-list-search')),
       'planning',
@@ -215,16 +255,19 @@ void main() {
     'unread and flagged filters intersect and exclude unknown flags',
     (tester) async {
       await tester.pumpWidget(_app(_list()));
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
       await tester.pump();
       expect(_row('one'), findsOneWidget);
       expect(_row('three'), findsOneWidget);
       expect(_row('unknown'), findsNothing);
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-flagged')));
       await tester.pump();
       expect(_row('one'), findsOneWidget);
       expect(_row('two'), findsNothing);
       expect(_row('three'), findsNothing);
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
       await tester.pump();
       expect(_row('one'), findsOneWidget);
@@ -252,7 +295,7 @@ void main() {
     expect(_row('two'), findsNothing);
     expect(_row('three'), findsNothing);
     expect(_row('unknown'), findsNothing);
-    expect(find.text('1 shown · 4 loaded'), findsOneWidget);
+    _expectStats(tester, shown: 1, loaded: 4);
     await tester.enterText(
       find.byKey(const ValueKey('mail-list-search')),
       'is:unflagged',
@@ -370,7 +413,7 @@ void main() {
       );
       await tester.pump();
       expect(find.text('Localized error: unclosedQuote'), findsOneWidget);
-      expect(find.text('0 shown · 4 loaded'), findsOneWidget);
+      _expectStats(tester, shown: 0, loaded: 4);
       expect(find.text('Local no matches'), findsOneWidget);
       expect(find.byTooltip('Local clear'), findsOneWidget);
       expect(_row('one'), findsNothing);
@@ -388,7 +431,7 @@ void main() {
         find.byKey(const ValueKey('mail-list-clear-search')),
         findsNothing,
       );
-      expect(find.text('4 shown · 4 loaded'), findsOneWidget);
+      _expectStats(tester, shown: 4, loaded: 4);
       expect(_row('one'), findsOneWidget);
       expect(opened, isEmpty);
       expect(loads, 0);
@@ -419,7 +462,7 @@ void main() {
       expect(find.text('The search is too long.'), findsOneWidget);
       expect(_row('one'), findsNothing);
       expect(_row('three'), findsNothing);
-      expect(find.text('0 shown · 4 loaded'), findsOneWidget);
+      _expectStats(tester, shown: 0, loaded: 4);
       await _focusList(tester);
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
       expect(opens, 0);
@@ -709,6 +752,7 @@ void main() {
       await _focusList(tester);
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
       await tester.tap(find.byKey(const ValueKey('mail-list-load-more')));
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
       await _sortBy(tester, MailMessageListSort.subjectAscending);
       await tester.pump();
@@ -851,7 +895,9 @@ void main() {
         find.byKey(const ValueKey('mail-list-search')),
         'alice',
       );
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-flagged')));
       await _focusList(tester);
       await tester.pumpWidget(
@@ -1134,6 +1180,7 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
+      await _showFilters(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
@@ -1189,6 +1236,7 @@ void main() {
     expect(_row('two'), findsOneWidget);
     expect(_row('three'), findsNothing);
     expect(_row('unknown'), findsNothing);
+    await _showFilters(tester);
     await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
     await tester.pump();
     expect(_row('one'), findsOneWidget);
@@ -1262,12 +1310,39 @@ void main() {
     );
     double y(String key) =>
         tester.getCenter(find.byKey(ValueKey(key))).dy.roundToDouble();
-    expect(y('mail-list-search'), y('mail-list-scope'));
-    expect(y('mail-list-unread'), y('mail-list-flagged'));
-    expect(y('mail-list-unread'), y('mail-list-sort'));
-    expect(y('mail-list-unread'), y('mail-list-selected-count'));
-    expect(y('mail-list-unread'), y('mail-list-select-shown'));
-    expect(y('mail-list-unread'), isNot(y('mail-list-search')));
+    expect(y('mail-list-search'), y('mail-list-filters'));
+    expect(y('mail-list-search'), y('mail-list-search-help'));
+    expect(y('mail-list-selected-count'), y('mail-list-shown-count'));
+    expect(y('mail-list-selected-count'), y('mail-list-loaded-count'));
+    expect(y('mail-list-selected-count'), y('mail-list-sort'));
+    expect(y('mail-list-selected-count'), y('mail-list-select-shown'));
+    expect(y('mail-list-selected-count'), isNot(y('mail-list-search')));
+  });
+
+  testWidgets('auto-load requests the next page without a load-more button', (
+    tester,
+  ) async {
+    var loads = 0;
+    await tester.pumpWidget(
+      _app(
+        SizedBox(
+          height: 520,
+          child: MailMessageList(
+            items: _items,
+            strings: _strings,
+            onOpen: (_) {},
+            hasMore: true,
+            autoLoadMore: true,
+            onLoadMore: () => loads++,
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump();
+    expect(loads, 1);
+    expect(find.byKey(const ValueKey('mail-list-load-more')), findsNothing);
+    expect(find.byKey(const ValueKey('mail-list-auto-load')), findsOneWidget);
   });
 
   testWidgets('shows bounded local tag names in row metadata', (tester) async {

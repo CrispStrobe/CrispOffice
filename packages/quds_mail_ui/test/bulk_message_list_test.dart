@@ -109,6 +109,13 @@ Finder _key(String value) => find.byKey(ValueKey(value));
 Finder _check(String id) => _key('mail-list-check-$id');
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
+  if (finder.evaluate().isEmpty) {
+    final filters = find.byKey(const ValueKey('mail-list-filters'));
+    if (filters.evaluate().isNotEmpty) {
+      await tester.tap(filters);
+      await tester.pumpAndSettle();
+    }
+  }
   await tester.ensureVisible(finder);
   await tester.tap(finder);
   await tester.pumpAndSettle();
@@ -144,6 +151,15 @@ Future<void> _focusList(WidgetTester tester) async {
   await tester.pump();
 }
 
+void _expectSelected(WidgetTester tester, int count) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+        .data,
+    '$count',
+  );
+}
+
 void main() {
   testWidgets(
     'checkbox selection never opens a message and freezes exact IDs',
@@ -159,7 +175,7 @@ void main() {
       await _tap(tester, _check('one'));
       await _tap(tester, _check('three'));
       expect(opened, isEmpty);
-      expect(find.text('2 selected'), findsOneWidget);
+      _expectSelected(tester, 2);
       await _action(tester, MailBulkFlagAction.markRead);
       expect(commands.single.action, MailBulkFlagAction.markRead);
       expect(commands.single.ids, ['one', 'three']);
@@ -228,7 +244,7 @@ void main() {
     await _tap(tester, _key('mail-list-select-shown'));
     await _action(tester, MailBulkFlagAction.flag);
     expect(commands.single.ids, ['one', 'three']);
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
   });
 
   testWidgets('filters prune hidden selection and invalid queries clear it', (
@@ -240,14 +256,14 @@ void main() {
       onAction: (action, ids) => commands.add((action: action, ids: ids)),
     );
     await _tap(tester, _key('mail-list-select-shown'));
-    expect(find.text('3 selected'), findsOneWidget);
+    _expectSelected(tester, 3);
     await _tap(tester, _key('mail-list-unread'));
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     await _action(tester, MailBulkFlagAction.markRead);
     expect(commands.single.ids, ['one']);
     await tester.enterText(_key('mail-list-search'), 'body:unsupported');
     await tester.pump();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(
       tester
           .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
@@ -256,7 +272,7 @@ void main() {
     );
     await tester.enterText(_key('mail-list-search'), '');
     await tester.pump();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
   });
 
   testWidgets(
@@ -270,7 +286,7 @@ void main() {
       await _tap(tester, _key('mail-list-select-shown'));
       await _tap(tester, _key('mail-list-sort'));
       await _tap(tester, _key('mail-list-sort-subjectAscending'));
-      expect(find.text('3 selected'), findsOneWidget);
+      _expectSelected(tester, 3);
       await _action(tester, MailBulkFlagAction.unflag);
       expect(commands.single.ids, ['two', 'three', 'one']);
     },
@@ -284,10 +300,10 @@ void main() {
     await _tap(tester, _key('mail-list-select-shown'));
     const fourth = MailMessageListItem(id: 'four', subject: 'Date', sender: '');
     await _pump(tester, items: [..._items, fourth], onAction: action);
-    expect(find.text('3 selected'), findsOneWidget);
+    _expectSelected(tester, 3);
     expect(tester.widget<Checkbox>(_check('four')).value, isFalse);
     await _pump(tester, items: [_items[1], fourth], onAction: action);
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
   });
 
   testWidgets('keyboard selection stays separate from opening a body', (
@@ -298,18 +314,18 @@ void main() {
     await _focusList(tester);
     await tester.sendKeyEvent(LogicalKeyboardKey.space);
     await tester.pump();
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     expect(opened, isEmpty);
     await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
     await tester.sendKeyEvent(LogicalKeyboardKey.keyA);
     await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
     await tester.pump();
-    expect(find.text('3 selected'), findsOneWidget);
+    _expectSelected(tester, 3);
     await tester.sendKeyEvent(LogicalKeyboardKey.enter);
     expect(opened, ['one']);
     await tester.sendKeyEvent(LogicalKeyboardKey.escape);
     await tester.pump();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
   });
 
   testWidgets('A to B to A rejects old checkbox and action callbacks', (
@@ -331,7 +347,7 @@ void main() {
     oldSelect();
     oldAction(MailBulkFlagAction.markRead);
     await tester.pump();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(commands, isEmpty);
   });
 
@@ -367,7 +383,7 @@ void main() {
       await _tap(tester, _key('mail-list-select-shown'));
       final oldAction = _freezeMenu(tester);
       await _pump(tester, selectionScope: '2', onAction: action);
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       expect(
         tester.widget<TextField>(_key('mail-list-search')).controller!.text,
         'from:alice',
@@ -417,7 +433,7 @@ void main() {
     await tester.pump();
     action(MailBulkFlagAction.flag);
     expect(calls, 1);
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     await _tap(tester, _check('one'));
     await _action(tester, MailBulkFlagAction.flag);
     expect(calls, 2);
@@ -437,7 +453,7 @@ void main() {
             .enabled,
         isFalse,
       );
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       expect(
         tester.widget<TextButton>(_key('mail-list-clear-selection')).onPressed,
         isNull,
@@ -486,7 +502,7 @@ void main() {
         final list = tester.getRect(_key('mail-list-rows'));
         expect(list.height, greaterThanOrEqualTo(80));
         await _tap(tester, _key('mail-list-select-shown'));
-        expect(find.text('3 selected'), findsOneWidget);
+        _expectSelected(tester, 3);
         await _tap(tester, _key('mail-list-bulk-actions'));
         final label = find.text(_strings.markRead);
         expect(Directionality.of(tester.element(label)), direction);
@@ -510,17 +526,17 @@ void main() {
     await tester.enterText(_key('mail-list-search'), 'from:alice OR from:bob');
     await tester.pump();
     await _tap(tester, _key('mail-list-select-shown'));
-    expect(find.text('3 selected'), findsOneWidget);
+    _expectSelected(tester, 3);
     final staleAction = _freezeMenu(tester);
     await tester.enterText(_key('mail-list-search'), 'NOT is:read');
     await tester.pump();
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     expect(_check('three'), findsNothing);
     staleAction(MailBulkFlagAction.flag);
     expect(commands, isEmpty);
     await tester.enterText(_key('mail-list-search'), '');
     await tester.pump();
-    expect(find.text('1 selected'), findsOneWidget);
+    _expectSelected(tester, 1);
     await _action(tester, MailBulkFlagAction.flag);
     expect(commands.single.ids, ['one']);
     expect(opened, isEmpty);
@@ -528,7 +544,7 @@ void main() {
     await _tap(tester, _key('mail-list-select-shown'));
     await tester.enterText(_key('mail-list-search'), 'from:alice OR');
     await tester.pump();
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
     expect(_key('mail-list-search-error'), findsOneWidget);
     expect(commands, hasLength(1));
   });

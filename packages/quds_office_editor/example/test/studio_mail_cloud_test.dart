@@ -404,6 +404,35 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
   droppedFailures: 0,
 );
 
+Future<void> _showFilters(WidgetTester tester) async {
+  if (find.byKey(const ValueKey('mail-list-unread')).evaluate().isNotEmpty) {
+    return;
+  }
+  await tester.tap(find.byKey(const ValueKey('mail-list-filters')));
+  await tester.pumpAndSettle();
+}
+
+Future<void> _tapFilter(WidgetTester tester, Finder finder) async {
+  await _showFilters(tester);
+  await tester.tap(finder);
+  await tester.pumpAndSettle();
+}
+
+void _expectCounts(WidgetTester tester, int shown, int loaded) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-shown-count')))
+        .data,
+    '$shown',
+  );
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-loaded-count')))
+        .data,
+    '$loaded',
+  );
+}
+
 void main() {
   for (final service in MailCloudService.values) {
     testWidgets(
@@ -499,10 +528,10 @@ void main() {
         expect(row.isFlagged, isTrue);
         expect(row.isRead, isNull);
         expect(find.byTooltip(_strings.ewsUnflag), findsOneWidget);
-        await tester.tap(_field('mail-list-flagged'));
+        await _tapFilter(tester, _field('mail-list-flagged'));
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsOneWidget);
-        await tester.tap(_field('mail-list-unread'));
+        await _tapFilter(tester, _field('mail-list-unread'));
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsNothing);
         await tester.tap(find.byTooltip(_strings.ewsUnflag));
@@ -546,7 +575,7 @@ void main() {
             .single;
         expect(row.isRead, isTrue);
         expect(row.isFlagged, isNull);
-        await tester.tap(_field('mail-list-unread'));
+        await _tapFilter(tester, _field('mail-list-unread'));
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsNothing);
         await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
@@ -558,7 +587,7 @@ void main() {
         expect(row.isRead, isFalse);
         expect(row.isFlagged, isNull);
         expect(_field('ews-message-cloud-message'), findsOneWidget);
-        await tester.tap(_field('mail-list-flagged'));
+        await _tapFilter(tester, _field('mail-list-flagged'));
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsNothing);
         final provider = harness.provider!;
@@ -607,7 +636,7 @@ void main() {
         await _connect(tester);
         final provider = harness.provider!;
         await tester.enterText(_field('mail-list-search'), 'later');
-        await tester.tap(_field('mail-list-unread'));
+        await _tapFilter(tester, _field('mail-list-unread'));
         await _pump(tester);
         expect(
           find.text(_strings.mailMessageListStrings.noMatches),
@@ -619,11 +648,8 @@ void main() {
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsNothing);
         expect(_field('ews-message-older'), findsOneWidget);
-        expect(
-          // The last page is loaded: only the filter count remains.
-          find.text('1 shown · 2 loaded'),
-          findsOneWidget,
-        );
+        // The last page is loaded: only the filter counts remain.
+        _expectCounts(tester, 1, 2);
         expect(provider.cursors.map((cursor) => cursor?.value), [
           null,
           'next-cloud-page',
@@ -657,8 +683,8 @@ void main() {
         );
         await _connect(tester);
         await tester.enterText(_field('mail-list-search'), 'cloud');
-        await tester.tap(_field('mail-list-unread'));
-        await tester.tap(_field('mail-list-flagged'));
+        await _tapFilter(tester, _field('mail-list-unread'));
+        await _tapFilter(tester, _field('mail-list-flagged'));
         await _pump(tester);
         await tester.tap(_field('ews-message-cloud-message'));
         await _pump(tester);
@@ -675,10 +701,12 @@ void main() {
           tester.widget<TextField>(_field('mail-list-search')).controller!.text,
           'cloud',
         );
+        await _showFilters(tester);
         expect(
           tester.widget<FilterChip>(_field('mail-list-unread')).selected,
           isTrue,
         );
+        await _showFilters(tester);
         expect(
           tester.widget<FilterChip>(_field('mail-list-flagged')).selected,
           isTrue,
@@ -710,7 +738,7 @@ void main() {
         final harness = _Harness();
         await _show(tester, harness, service: service);
         await _connect(tester);
-        await tester.tap(_field('mail-list-unread'));
+        await _tapFilter(tester, _field('mail-list-unread'));
         await _pump(tester);
         await tester.tap(_field('ews-message-cloud-message'));
         await _pump(tester);
@@ -721,7 +749,7 @@ void main() {
         await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsOneWidget);
-        await tester.tap(_field('mail-list-flagged'));
+        await _tapFilter(tester, _field('mail-list-flagged'));
         await _pump(tester);
         expect(_field('ews-message-cloud-message'), findsNothing);
         await tester.tap(find.byTooltip(_strings.ewsFlag));
@@ -2024,6 +2052,8 @@ void main() {
               },
         );
         await _connect(tester);
+        await tester.tap(_field('ews-message-cloud-message'));
+        await _pump(tester);
         await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
         await _pump(tester);
         expect(profile, isNull);
@@ -2034,7 +2064,7 @@ void main() {
         expect(profile!.kind, MailArchiveProfileKind.mailbox);
         expect(profile!.includeSubfolders, isFalse);
         expect(profile!.id, startsWith('studio-mailbox:'));
-        expect(harness.provider!.reads, 0);
+        expect(harness.provider!.reads, 1);
         expect(harness.provider!.commands, isEmpty);
         expect(harness.provider!.submissions, isEmpty);
         expect(

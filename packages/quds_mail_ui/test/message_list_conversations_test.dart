@@ -86,7 +86,7 @@ List<String> _order(WidgetTester tester, List<String> ids) => [...ids]
   );
 
 Future<void> _toggle(WidgetTester tester) async {
-  await tester.tap(find.byKey(const ValueKey('mail-list-conversations')));
+  await _tapFilter(tester, 'mail-list-conversations');
   await tester.pumpAndSettle();
 }
 
@@ -135,6 +135,48 @@ final _observedRows = [
     inReplyTo: '<parent@threads.test>',
   ),
 ];
+
+void _expectSelected(WidgetTester tester, int count) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-selected-count')))
+        .data,
+    '$count',
+  );
+}
+
+void _expectCounts(WidgetTester tester, int shown, int loaded) {
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-shown-count')))
+        .data,
+    '$shown',
+  );
+  expect(
+    tester
+        .widget<Text>(find.byKey(const ValueKey('mail-list-loaded-count')))
+        .data,
+    '$loaded',
+  );
+}
+
+Future<void> _openFilters(WidgetTester tester) async {
+  if (find.byKey(const ValueKey('mail-list-unread')).evaluate().isNotEmpty ||
+      find
+          .byKey(const ValueKey('mail-list-conversations'))
+          .evaluate()
+          .isNotEmpty) {
+    return;
+  }
+  await tester.tap(find.byKey(const ValueKey('mail-list-filters')));
+  await tester.pumpAndSettle();
+}
+
+Future<void> _tapFilter(WidgetTester tester, String key) async {
+  await _openFilters(tester);
+  await tester.tap(find.byKey(ValueKey(key)));
+  await tester.pumpAndSettle();
+}
 
 void main() {
   testWidgets('groups explicit loaded threads without collapsing or fetching', (
@@ -198,7 +240,7 @@ void main() {
     expect(_row('parent'), findsNothing);
     expect(_row('reply'), findsOneWidget);
     expect(find.byTooltip('2 loaded messages in conversation'), findsNothing);
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
   });
 
   testWidgets('persistent keys group cross-folder rows without references', (
@@ -327,13 +369,13 @@ void main() {
       await _toggle(tester);
       await tester.tap(find.byKey(const ValueKey('mail-list-select-shown')));
       await tester.pump();
-      expect(find.text('3 selected'), findsOneWidget);
+      _expectSelected(tester, 3);
       await _collapse(tester);
       expect(_row('reply'), findsNothing);
       expect(_row('parent'), findsOneWidget);
       expect(_row('unrelated'), findsOneWidget);
-      expect(find.text('2 selected'), findsOneWidget);
-      expect(find.text('2 shown · 3 loaded'), findsOneWidget);
+      _expectSelected(tester, 2);
+      _expectCounts(tester, 2, 3);
       expect(opened, isEmpty);
       await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
       await tester.sendKeyEvent(LogicalKeyboardKey.keyA);
@@ -348,7 +390,7 @@ void main() {
       ]);
       await _collapse(tester);
       expect(_row('reply'), findsOneWidget);
-      expect(find.text('0 selected'), findsOneWidget);
+      _expectSelected(tester, 0);
       expect(opened, isEmpty);
     },
   );
@@ -402,7 +444,7 @@ void main() {
     expect(_row('reply'), findsOneWidget);
     expect(_row('parent'), findsNothing);
     expect(find.byTooltip('Expand conversation'), findsOneWidget);
-    expect(find.text('0 selected'), findsOneWidget);
+    _expectSelected(tester, 0);
 
     final expandedRows = [
       ..._observedRows,
@@ -530,7 +572,7 @@ void main() {
       expect(actions, isEmpty);
       expect(opened, isEmpty);
       expect(_row('reply'), findsNothing);
-      expect(find.text('2 selected'), findsOneWidget);
+      _expectSelected(tester, 2);
     },
   );
 
@@ -605,7 +647,7 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.arrowLeft);
     await tester.pump();
     expect(_row('reply'), findsOneWidget);
-    expect(find.text('3 selected'), findsOneWidget);
+    _expectSelected(tester, 3);
   });
 
   testWidgets('compact RTL with enlarged text keeps disclosure usable', (

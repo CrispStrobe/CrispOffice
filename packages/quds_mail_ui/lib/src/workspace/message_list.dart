@@ -79,6 +79,7 @@ final class MailMessageListStrings {
     required this.count,
     this.clearSearch = 'Clear search',
     this.searchHelp = 'Search help',
+    this.filter = 'Filters',
     this.searchHelpTitle = 'Search loaded message headers',
     this.searchHelpText =
         'Separate terms or use AND to require every match. Use OR for '
@@ -155,6 +156,7 @@ final class MailMessageListStrings {
   final String Function(int shown, int loaded) count;
   final String clearSearch;
   final String searchHelp;
+  final String filter;
   final String searchHelpTitle;
   final String searchHelpText;
   final String close;
@@ -270,6 +272,7 @@ class MailMessageList extends StatefulWidget {
     this.busy = false,
     this.hasMore = false,
     this.onLoadMore,
+    this.autoLoadMore = false,
     this.limitNotice,
     this.loadMoreKey,
     this.onBulkAction,
@@ -317,6 +320,10 @@ class MailMessageList extends StatefulWidget {
   final bool busy;
   final bool hasMore;
   final VoidCallback? onLoadMore;
+
+  /// When true, approaching the end requests the next page automatically and
+  /// the explicit Load more button is replaced by a progress indicator.
+  final bool autoLoadMore;
   final String? limitNotice;
   final Key? loadMoreKey;
 
@@ -358,9 +365,12 @@ class _MailMessageListState extends State<MailMessageList> {
   final _listFocus = FocusNode(debugLabel: 'Mail message list');
   final _headerScroll = ScrollController();
   final _scroll = ScrollController();
+  bool _autoLoadSent = false;
+  bool _autoLoadScheduled = false;
   bool _unread = false;
   bool _flagged = false;
   bool _conversations = false;
+  bool _filtersOpen = false;
   MailHeaderSearchQuery? _compiledQuery = MailHeaderSearchQuery.parse('');
   MailHeaderSearchException? _queryError;
   MailMessageListSort _sort = MailMessageListSort.providerOrder;
@@ -560,8 +570,52 @@ class _MailMessageListState extends State<MailMessageList> {
       !widget.busy;
 
   @override
+  void initState() {
+    super.initState();
+    _scroll.addListener(_scheduleAutoLoad);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scheduleAutoLoad());
+  }
+
+  void _scheduleAutoLoad() {
+    if (!widget.autoLoadMore ||
+        _autoLoadSent ||
+        _autoLoadScheduled ||
+        !widget.hasMore ||
+        widget.onLoadMore == null ||
+        widget.busy ||
+        !mounted) {
+      return;
+    }
+    if (!_scroll.hasClients) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scheduleAutoLoad());
+      return;
+    }
+    if (_scroll.position.extentAfter > _itemExtent * 3) return;
+    if (_visible.isEmpty) return;
+    _autoLoadScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _autoLoadScheduled = false;
+      if (!mounted ||
+          _autoLoadSent ||
+          !widget.autoLoadMore ||
+          !widget.hasMore ||
+          widget.busy) {
+        return;
+      }
+      _autoLoadSent = true;
+      widget.onLoadMore?.call();
+    });
+  }
+
+  @override
   void didUpdateWidget(MailMessageList oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (oldWidget.hasMore != widget.hasMore ||
+        oldWidget.items.length != widget.items.length ||
+        oldWidget.busy && !widget.busy) {
+      _autoLoadSent = false;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scheduleAutoLoad());
+    }
     // A host rebuild can replace a provider/session or header observations.
     // Keep compatible checked rows, but never reuse its old pointer/menu work.
     _interactionGeneration++;
@@ -598,6 +652,7 @@ class _MailMessageListState extends State<MailMessageList> {
     _query.dispose();
     _listFocus.dispose();
     _headerScroll.dispose();
+    _scroll.removeListener(_scheduleAutoLoad);
     _scroll.dispose();
     super.dispose();
   }
@@ -1017,15 +1072,6 @@ class _MailMessageListState extends State<MailMessageList> {
         : Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                child: Text(
-                  strings.selectedCount(_checkedIds.length),
-                  key: const ValueKey('mail-list-selected-count'),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
-              ),
               Tooltip(
                 message: strings.selectShown,
                 child: TextButton.icon(
@@ -1164,20 +1210,16 @@ class _MailMessageListState extends State<MailMessageList> {
                   ),
                 ),
               ),
-              if (notAllLoaded || visible.length != widget.items.length)
-                Flexible(
-                  child: Tooltip(
-                    message: strings.loadedScope,
-                    child: Text(
-                      strings.count(visible.length, widget.items.length),
-                      key: const ValueKey('mail-list-scope'),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.end,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ),
-                ),
+              IconButton(
+                key: const ValueKey('mail-list-filters'),
+                tooltip: strings.filter,
+                visualDensity: VisualDensity.compact,
+                isSelected:
+                    _filtersOpen || _unread || _flagged || _conversations,
+                icon: const Icon(Icons.filter_alt_outlined, size: 18),
+                selectedIcon: const Icon(Icons.filter_alt, size: 18),
+                onPressed: () => setState(() => _filtersOpen = !_filtersOpen),
+              ),
               IconButton(
                 key: const ValueKey('mail-list-search-help'),
                 tooltip: strings.searchHelp,
@@ -1200,90 +1242,149 @@ class _MailMessageListState extends State<MailMessageList> {
               ),
             ),
           ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-          child: Row(
-            children: [
-              Tooltip(
-                message: strings.unread,
-                child: FilterChip(
-                  key: const ValueKey('mail-list-unread'),
-                  label: const Icon(Icons.mark_email_unread_outlined, size: 18),
-                  tooltip: strings.unread,
-                  showCheckmark: false,
-                  visualDensity: VisualDensity.compact,
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  labelPadding: EdgeInsets.zero,
-                  padding: const EdgeInsets.all(6),
-                  selected: _unread,
-                  onSelected: (value) => _filterChanged(() => _unread = value),
-                ),
-              ),
-              const SizedBox(width: 4),
-              Tooltip(
-                message: strings.flagged,
-                child: FilterChip(
-                  key: const ValueKey('mail-list-flagged'),
-                  label: const Icon(Icons.outlined_flag, size: 18),
-                  tooltip: strings.flagged,
-                  showCheckmark: false,
-                  visualDensity: VisualDensity.compact,
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  labelPadding: EdgeInsets.zero,
-                  padding: const EdgeInsets.all(6),
-                  selected: _flagged,
-                  onSelected: (value) => _filterChanged(() => _flagged = value),
-                ),
-              ),
-              if (_canGroupConversations) ...[
-                const SizedBox(width: 4),
+        if (_filtersOpen)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
+            child: Wrap(
+              spacing: 4,
+              runSpacing: 4,
+              children: [
                 Tooltip(
-                  message: strings.groupConversations,
+                  message: strings.unread,
                   child: FilterChip(
-                    key: const ValueKey('mail-list-conversations'),
-                    label: const Icon(Icons.forum_outlined, size: 18),
-                    tooltip: strings.groupConversations,
+                    key: const ValueKey('mail-list-unread'),
+                    label: const Icon(
+                      Icons.mark_email_unread_outlined,
+                      size: 18,
+                    ),
+                    tooltip: strings.unread,
                     showCheckmark: false,
                     visualDensity: VisualDensity.compact,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     labelPadding: EdgeInsets.zero,
                     padding: const EdgeInsets.all(6),
-                    selected: _conversations,
+                    selected: _unread,
                     onSelected: (value) =>
-                        _filterChanged(() => _conversations = value),
+                        _filterChanged(() => _unread = value),
                   ),
                 ),
+                Tooltip(
+                  message: strings.flagged,
+                  child: FilterChip(
+                    key: const ValueKey('mail-list-flagged'),
+                    label: const Icon(Icons.outlined_flag, size: 18),
+                    tooltip: strings.flagged,
+                    showCheckmark: false,
+                    visualDensity: VisualDensity.compact,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    labelPadding: EdgeInsets.zero,
+                    padding: const EdgeInsets.all(6),
+                    selected: _flagged,
+                    onSelected: (value) =>
+                        _filterChanged(() => _flagged = value),
+                  ),
+                ),
+                if (_canGroupConversations)
+                  Tooltip(
+                    message: strings.groupConversations,
+                    child: FilterChip(
+                      key: const ValueKey('mail-list-conversations'),
+                      label: const Icon(Icons.forum_outlined, size: 18),
+                      tooltip: strings.groupConversations,
+                      showCheckmark: false,
+                      visualDensity: VisualDensity.compact,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      labelPadding: EdgeInsets.zero,
+                      padding: const EdgeInsets.all(6),
+                      selected: _conversations,
+                      onSelected: (value) =>
+                          _filterChanged(() => _conversations = value),
+                    ),
+                  ),
               ],
-              PopupMenuButton<MailMessageListSort>(
-                key: const ValueKey('mail-list-sort'),
-                tooltip: strings.sort,
-                initialValue: _sort,
-                onSelected: _sortChanged,
-                itemBuilder: (context) => [
-                  for (final sort in MailMessageListSort.values)
-                    PopupMenuItem(
-                      key: ValueKey('mail-list-sort-${sort.name}'),
-                      value: sort,
-                      child: Text(_sortLabel(sort), textScaler: scaler),
-                    ),
-                ],
-                child: const Padding(
-                  padding: EdgeInsets.all(6),
-                  child: Icon(Icons.sort, size: 20),
-                ),
-              ),
-              if (bulkControls != null)
-                Expanded(
-                  child: Align(
-                    alignment: AlignmentDirectional.centerEnd,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: bulkControls,
+            ),
+          ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+          child: FittedBox(
+            key: const ValueKey('mail-list-controls'),
+            fit: BoxFit.scaleDown,
+            alignment: AlignmentDirectional.centerStart,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Tooltip(
+                  message: strings.loadedScope,
+                  child: KeyedSubtree(
+                    key: notAllLoaded || visible.length != widget.items.length
+                        ? const ValueKey('mail-list-scope')
+                        : null,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Tooltip(
+                          message: strings.selectedCount(_checkedIds.length),
+                          child: Text(
+                            '${_checkedIds.length}',
+                            key: const ValueKey('mail-list-selected-count'),
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        ),
+                        Text(
+                          ' / ',
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                        Tooltip(
+                          message: strings.count(
+                            visible.length,
+                            widget.items.length,
+                          ),
+                          child: Text(
+                            '${visible.length}',
+                            key: const ValueKey('mail-list-shown-count'),
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        ),
+                        Text(
+                          ' / ',
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                        Tooltip(
+                          message: strings.count(
+                            visible.length,
+                            widget.items.length,
+                          ),
+                          child: Text(
+                            '${widget.items.length}',
+                            key: const ValueKey('mail-list-loaded-count'),
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-            ],
+                PopupMenuButton<MailMessageListSort>(
+                  key: const ValueKey('mail-list-sort'),
+                  tooltip: strings.sort,
+                  initialValue: _sort,
+                  onSelected: _sortChanged,
+                  itemBuilder: (context) => [
+                    for (final sort in MailMessageListSort.values)
+                      PopupMenuItem(
+                        key: ValueKey('mail-list-sort-${sort.name}'),
+                        value: sort,
+                        child: Text(_sortLabel(sort), textScaler: scaler),
+                      ),
+                  ],
+                  child: const Padding(
+                    padding: EdgeInsets.all(6),
+                    child: Icon(Icons.sort, size: 20),
+                  ),
+                ),
+                ?bulkControls,
+              ],
+            ),
           ),
         ),
         if (widget.onCancelBulk case final cancel?)
@@ -1384,12 +1485,26 @@ class _MailMessageListState extends State<MailMessageList> {
             child: Text(notice, style: Theme.of(context).textTheme.bodySmall),
           ),
         if (widget.hasMore)
-          TextButton.icon(
-            key: widget.loadMoreKey ?? const ValueKey('mail-list-load-more'),
-            onPressed: widget.busy ? null : widget.onLoadMore,
-            icon: const Icon(Icons.expand_more),
-            label: Text(widget.busy ? strings.loading : strings.loadMore),
-          ),
+          widget.autoLoadMore
+              ? const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Center(
+                    child: SizedBox(
+                      key: ValueKey('mail-list-auto-load'),
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                )
+              : TextButton.icon(
+                  key:
+                      widget.loadMoreKey ??
+                      const ValueKey('mail-list-load-more'),
+                  onPressed: widget.busy ? null : widget.onLoadMore,
+                  icon: const Icon(Icons.expand_more),
+                  label: Text(widget.busy ? strings.loading : strings.loadMore),
+                ),
       ],
     );
   }
