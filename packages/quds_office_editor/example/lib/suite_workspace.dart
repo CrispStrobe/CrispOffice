@@ -27,6 +27,8 @@ import 'studio_shortcuts.dart';
 import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
+import 'studio_iso_image.dart';
+import 'studio_iso_image_dialog.dart';
 import 'studio_linguistic_analysis.dart';
 import 'studio_mail.dart';
 import 'studio_strings.dart';
@@ -6907,6 +6909,42 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       await StudioWindow.show();
       final PickedOfficeFile? picked = await StudioFiles.open();
       if (picked == null || !mounted) {
+        return;
+      }
+      final String lowerName = picked.name.toLowerCase();
+      if (lowerName.endsWith('.iso') || lowerName.endsWith('.cdr')) {
+        final Uint8List imageBytes = await StudioFiles.ensureBytes(picked);
+        if (!mounted) return;
+        if (!StudioIsoImage.isIso(imageBytes)) {
+          _toast(
+            _t(
+              'This ISO image is not a supported ISO 9660 image.',
+              'Dieses ISO-Abbild ist kein unterstütztes ISO-9660-Abbild.',
+              'صورة ISO هذه ليست صورة ISO 9660 مدعومة.',
+            ),
+          );
+          return;
+        }
+        await showStudioIsoImageDialog(
+          _themedContext,
+          strings: _strings,
+          image: StudioIsoImage.parse(imageBytes),
+          onExtract: (entry, bytes) async {
+            final saved = await StudioFiles.save(
+              bytes: bytes,
+              fileName: entry.name,
+            );
+            if (saved && mounted) {
+              _toast(
+                _t(
+                  'Extracted ${entry.name}.',
+                  '${entry.name} wurde entpackt.',
+                  'تم استخراج ${entry.name}.',
+                ),
+              );
+            }
+          },
+        );
         return;
       }
       final SuiteApp? target = picked.name.toLowerCase().endsWith('.pdf')

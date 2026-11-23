@@ -37,6 +37,8 @@ abstract final class StudioFiles {
     'xlsm',
     'pptm',
     'pdf',
+    'iso',
+    'cdr',
   ];
 
   static Future<Uint8List?> pickImage() async {
