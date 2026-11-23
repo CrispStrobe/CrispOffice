@@ -18,9 +18,7 @@ OfficeProofingRequest _request(String language, String text) =>
     );
 
 OfficeProofingService _background(OfficeProofingVocabulary vocabulary) {
-  final service = OfficeProofingService(
-    providers: defaultWordProofingProviders(vocabulary),
-  );
+  final service = defaultWordProofingService(vocabulary);
   addTearDown(service.dispose);
   return service;
 }

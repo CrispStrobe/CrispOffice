@@ -7,7 +7,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 
 /// Native editors share two lazy workers: one owns the German dictionary,
 /// the other runs writing rules. Web uses the cooperative Dart providers.
-List<OfficeProofingProvider> defaultWordProofingProviders(
+OfficeProofingService defaultWordProofingService(
   OfficeProofingVocabulary vocabulary,
 ) {
   final providers = <OfficeProofingProvider>[
@@ -15,11 +15,17 @@ List<OfficeProofingProvider> defaultWordProofingProviders(
     GermanSpellingProvider(vocabulary: vocabulary),
     ArabicWritingRulesProvider(),
   ];
-  if (kIsWeb) return providers;
-  return [
-    for (final (index, kind) in _Checker.values.indexed)
-      _BackgroundChecker(kind, providers[index], vocabulary),
-  ];
+  if (kIsWeb) return OfficeProofingService(providers: providers);
+  return OfficeProofingService(
+    providers: [
+      for (final (index, kind) in _Checker.values.indexed)
+        _BackgroundChecker(kind, providers[index], vocabulary),
+    ],
+    // Include bounded queue time. A slow check must not disable the shared
+    // lanes for the rest of a long document or later edits in this session.
+    timeout: const Duration(seconds: 30),
+    disposeOnTimeout: false,
+  );
 }
 
 bool usesBackgroundWordProofing(OfficeProofingService service) =>

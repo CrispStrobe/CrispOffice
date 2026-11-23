@@ -379,11 +379,7 @@ final class WordProofingSession extends ChangeNotifier {
        _schedule = debounce == null
            ? schedule
            : schedule.copyWith(pause: debounce) {
-    _service =
-        service ??
-        OfficeProofingService(
-          providers: defaultWordProofingProviders(this.vocabulary),
-        );
+    _service = service ?? defaultWordProofingService(this.vocabulary);
   }
 
   final WmlDocument Function() _document;
