@@ -3893,6 +3893,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         rtl: ruler.rtl,
         theme: _theme,
         unit: config.lengthUnit,
+        defaultTabInterval: document.defaultTabStop ?? kDefaultTabWidth,
         hover: _rulerHover,
         active: _rulerDrag,
         readout: _rulerReadout,

@@ -6121,8 +6121,9 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation ||
         !points.isFinite ||
         points < 0.05 ||
-        points > 1584)
+        points > 1584) {
       return;
+    }
     final next = (points * 20).round() / 20;
     final model = document;
     final before = model.defaultTabStop;
