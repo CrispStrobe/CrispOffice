@@ -7011,6 +7011,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               : importedOdt
               ? StudioFiles.importedOdtSaveName(_nameFromPicked(picked))
               : _nameFromPicked(picked);
+          // Large dissertations can contain thousands of paragraphs and notes.
+          // Keep automatic background proofing from competing with layout and
+          // initial painting; explicit Check Document remains available.
+          if (_word.document.paragraphs.length > 400 &&
+              _word.proofing.schedule.backgroundCheck) {
+            _word.proofing.schedule = _word.proofing.schedule.copyWith(
+              backgroundCheck: false,
+            );
+            _toast(
+              _t(
+                'Automatic background proofing is paused for this large document. Use Review › Check Document when ready.',
+                'Die automatische Hintergrundprüfung ist für dieses große Dokument pausiert. Verwenden Sie Überprüfen › Dokument prüfen, wenn Sie bereit sind.',
+                'تم إيقاف التدقيق التلقائي في الخلفية مؤقتًا لهذا المستند الكبير. استخدم مراجعة › تدقيق المستند عندما تكون جاهزًا.',
+              ),
+            );
+          }
         case OpcPackageKind.sheet:
           _switchApp(SuiteApp.excel);
           await _sheet.loadBytesAsync(bytes, onProgress: onProgress);
@@ -10450,7 +10466,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(999),
                         child: LinearProgressIndicator(
-                          value: _openProgress.clamp(0.04, 1),
+                          value:
+                              _openHeavy &&
+                                  _openStage == 'layout' &&
+                                  _openProgress >= 0.82
+                              ? null
+                              : _openProgress.clamp(0.04, 1),
                           minHeight: 8,
                           backgroundColor: track,
                           color: _accent,

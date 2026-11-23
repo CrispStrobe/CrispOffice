@@ -1754,6 +1754,11 @@ void main() {
         hasLength(1),
       );
       expect(find.text(_strings.mailDraftRestored), findsOneWidget);
+      await tester.tap(
+        find.byKey(const ValueKey('studio-mail-dismiss-message')),
+      );
+      await tester.pump();
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
       expect(providers.last.submissions, isEmpty);
       await tester.tap(find.byTooltip(_strings.compose));
       await _pump(tester);

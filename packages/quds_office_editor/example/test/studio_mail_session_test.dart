@@ -387,6 +387,11 @@ void main() {
       await _pump(tester);
       expect(drafts.identities.last.account.value, key);
       expect(find.text(_strings.mailDraftRestored), findsOneWidget);
+      await tester.tap(
+        find.byKey(const ValueKey('studio-mail-dismiss-message')),
+      );
+      await tester.pump();
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
       expect(reopened.sends, 0);
       await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
       await _pump(tester);
