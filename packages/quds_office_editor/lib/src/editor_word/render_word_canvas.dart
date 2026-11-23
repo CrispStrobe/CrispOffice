@@ -1463,10 +1463,33 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     _notifyViewportChanged();
   }
 
+  /// Zooms while keeping the page and in-page offset under [focal] fixed.
+  /// Scaled origin alone would drift by the page gaps at each zoom step.
+  void _zoomViewport(double factor, {Offset? focal}) {
+    final double oldScale = _viewScale;
+    if (oldScale <= 0) {
+      viewport.setScale(viewport.scale * factor, focal: focal);
+      return;
+    }
+    final double anchorY = focal?.dy ?? size.height * 0.35;
+    final int page = laidOut.pageIndexAtContentY(
+      viewport.origin.dy + anchorY,
+      oldScale,
+    );
+    final double pageTop = laidOut.pageStackTop(page, oldScale);
+    final double offset = viewport.origin.dy + anchorY - pageTop;
+    viewport.setScale(viewport.scale * factor, focal: focal);
+    final double nextPageTop = laidOut.pageStackTop(page, _viewScale);
+    final double nextY =
+        nextPageTop + offset * (_viewScale / oldScale) - anchorY;
+    viewport.origin = Offset(viewport.origin.dx, nextY < 0 ? 0 : nextY);
+  }
+
   void _applyWheelScroll(PointerScrollEvent event) {
     if (_zoomKeys) {
-      viewport.setScale(
-        viewport.scale * (event.scrollDelta.dy > 0 ? 0.9 : 1.1),
+      _zoomViewport(
+        event.scrollDelta.dy > 0 ? 0.9 : 1.1,
+        focal: event.localPosition,
       );
     } else {
       Offset delta = event.scrollDelta;
@@ -1482,7 +1505,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   void _applyPanZoom(PointerPanZoomUpdateEvent event) {
     if (_zoomKeys || (event.scale - _panZoomScale).abs() > 0.02) {
       final double current = _panZoomScale == 0 ? 1 : _panZoomScale;
-      viewport.setScale(viewport.scale * (event.scale / current));
+      _zoomViewport(event.scale / current, focal: event.localPosition);
       _panZoomScale = event.scale == 0 ? current : event.scale;
     } else {
       viewport.pan(-event.localPanDelta);

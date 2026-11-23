@@ -6880,12 +6880,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     final controller = _active;
-    controller.viewport.setScale(value);
     if (controller is WordEditorController) {
-      controller.refreshView();
-    } else {
-      controller.refresh();
+      controller.setZoomPreservingPage(value);
+      return;
     }
+    controller.viewport.setScale(value);
+    controller.refresh();
   }
 
   void _shortcutZoomIn() {

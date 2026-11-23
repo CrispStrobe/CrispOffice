@@ -1401,6 +1401,34 @@ class WordEditorController extends OfficeController {
     notifyListeners();
   }
 
+  /// Zooms while keeping the currently visible page and in-page offset fixed.
+  ///
+  /// The canvas stacks pages with unscaled gaps, so simply scaling
+  /// [viewport.origin] drifts across page boundaries when the user zooms.
+  void setZoomPreservingPage(double value) {
+    const double pointsToPixels = 96 / 72;
+    final double oldScale = viewport.scale * pointsToPixels;
+    if (oldScale <= 0) {
+      viewport.setScale(value);
+      notifyListeners();
+      return;
+    }
+    final double viewH = viewport.extent.height > 0
+        ? viewport.extent.height
+        : 1;
+    final double anchorY = viewport.origin.dy + viewH * 0.35;
+    final int page = documentLaidOut.pageIndexAtContentY(anchorY, oldScale);
+    final double pageTop = documentLaidOut.pageStackTop(page, oldScale);
+    final double offset = anchorY - pageTop;
+    viewport.setScale(value);
+    final double nextScale = viewport.scale * pointsToPixels;
+    final double nextPageTop = documentLaidOut.pageStackTop(page, nextScale);
+    final double nextY =
+        nextPageTop + offset * (nextScale / oldScale) - viewH * 0.35;
+    viewport.origin = Offset(viewport.origin.dx, nextY < 0 ? 0 : nextY);
+    notifyListeners();
+  }
+
   void _revealPage(int pageIndex) {
     if (documentLaidOut.pages.isEmpty) {
       return;
