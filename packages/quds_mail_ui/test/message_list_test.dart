@@ -1245,6 +1245,31 @@ void main() {
     expect(loads, 0);
   });
 
+  testWidgets('header controls occupy two compact rows', (tester) async {
+    await tester.pumpWidget(
+      _app(
+        SizedBox(
+          height: 520,
+          child: MailMessageList(
+            items: _items,
+            strings: _strings,
+            onOpen: (_) {},
+            onBulkAction: (_, _) {},
+            hasMore: true,
+          ),
+        ),
+      ),
+    );
+    double y(String key) =>
+        tester.getCenter(find.byKey(ValueKey(key))).dy.roundToDouble();
+    expect(y('mail-list-search'), y('mail-list-scope'));
+    expect(y('mail-list-unread'), y('mail-list-flagged'));
+    expect(y('mail-list-unread'), y('mail-list-sort'));
+    expect(y('mail-list-unread'), y('mail-list-selected-count'));
+    expect(y('mail-list-unread'), y('mail-list-select-shown'));
+    expect(y('mail-list-unread'), isNot(y('mail-list-search')));
+  });
+
   testWidgets('shows bounded local tag names in row metadata', (tester) async {
     await tester.pumpWidget(
       _app(

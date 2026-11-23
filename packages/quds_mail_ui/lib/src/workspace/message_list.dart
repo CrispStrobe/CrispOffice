@@ -1012,6 +1012,103 @@ class _MailMessageListState extends State<MailMessageList> {
     final scaler = MediaQuery.textScalerOf(context);
     final generation = _interactionGeneration;
     final direction = Directionality.of(context);
+    final bulkControls = widget.onBulkAction == null
+        ? null
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Text(
+                  strings.selectedCount(_checkedIds.length),
+                  key: const ValueKey('mail-list-selected-count'),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ),
+              Tooltip(
+                message: strings.selectShown,
+                child: TextButton.icon(
+                  key: const ValueKey('mail-list-select-shown'),
+                  style: TextButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    minimumSize: const Size(0, 32),
+                  ),
+                  onPressed: _canBulk && visible.isNotEmpty
+                      ? () => _selectShown(generation)
+                      : null,
+                  icon: const Icon(Icons.select_all, size: 18),
+                  label: Text(strings.selectShown),
+                ),
+              ),
+              Tooltip(
+                message: strings.clearSelection,
+                child: TextButton.icon(
+                  key: const ValueKey('mail-list-clear-selection'),
+                  style: TextButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    minimumSize: const Size(0, 32),
+                  ),
+                  onPressed: _canBulk && _checkedIds.isNotEmpty
+                      ? () => _clearSelection(generation)
+                      : null,
+                  icon: const Icon(Icons.deselect, size: 18),
+                  label: Text(strings.clearSelection),
+                ),
+              ),
+              IconButton(
+                key: const ValueKey('mail-list-selection-help'),
+                tooltip: strings.selectionHelp,
+                visualDensity: VisualDensity.compact,
+                constraints: const BoxConstraints.tightFor(
+                  width: 32,
+                  height: 32,
+                ),
+                padding: EdgeInsets.zero,
+                onPressed: _showSelectionHelp,
+                icon: const Icon(Icons.keyboard_outlined, size: 18),
+              ),
+              PopupMenuButton<_BulkChoice>(
+                key: const ValueKey('mail-list-bulk-actions'),
+                tooltip: strings.bulkActions,
+                enabled: _canBulk && _checkedIds.isNotEmpty,
+                onSelected: _runBulk,
+                itemBuilder: (context) {
+                  if (!_acceptBulkCallback(generation)) return [];
+                  final ids = List<String>.unmodifiable([
+                    for (final row in _visible)
+                      if (_checkedIds.contains(row.id)) row.id,
+                  ]);
+                  final menuGeneration = _interactionGeneration;
+                  return [
+                    for (final action in MailBulkFlagAction.values.where(
+                      widget.supportedBulkActions.contains,
+                    ))
+                      PopupMenuItem(
+                        key: ValueKey('mail-list-bulk-${action.name}'),
+                        value: _BulkChoice(action, ids, menuGeneration),
+                        child: Directionality(
+                          textDirection: direction,
+                          child: Text(_bulkLabel(action), textScaler: scaler),
+                        ),
+                      ),
+                  ];
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: Icon(
+                    Icons.checklist,
+                    size: 20,
+                    color: _canBulk && _checkedIds.isNotEmpty
+                        ? null
+                        : Theme.of(context).disabledColor,
+                  ),
+                ),
+              ),
+            ],
+          );
     _itemExtent = math.max(
       84.0,
       scaler.scale(14) * 1.3 +
@@ -1067,6 +1164,20 @@ class _MailMessageListState extends State<MailMessageList> {
                   ),
                 ),
               ),
+              if (notAllLoaded || visible.length != widget.items.length)
+                Flexible(
+                  child: Tooltip(
+                    message: strings.loadedScope,
+                    child: Text(
+                      strings.count(visible.length, widget.items.length),
+                      key: const ValueKey('mail-list-scope'),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.end,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ),
+                ),
               IconButton(
                 key: const ValueKey('mail-list-search-help'),
                 tooltip: strings.searchHelp,
@@ -1143,7 +1254,6 @@ class _MailMessageListState extends State<MailMessageList> {
                   ),
                 ),
               ],
-              const Spacer(),
               PopupMenuButton<MailMessageListSort>(
                 key: const ValueKey('mail-list-sort'),
                 tooltip: strings.sort,
@@ -1158,123 +1268,33 @@ class _MailMessageListState extends State<MailMessageList> {
                     ),
                 ],
                 child: const Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(6),
                   child: Icon(Icons.sort, size: 20),
                 ),
               ),
-            ],
-          ),
-        ),
-        if (notAllLoaded || visible.length != widget.items.length)
-          Tooltip(
-            message: strings.loadedScope,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 0, 12, 2),
-              child: Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: Text(
-                  strings.count(visible.length, widget.items.length),
-                  key: const ValueKey('mail-list-scope'),
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
-              ),
-            ),
-          ),
-        if (widget.onBulkAction != null)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 6),
-            child: Wrap(
-              spacing: 4,
-              runSpacing: 0,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Semantics(
-                  liveRegion: true,
-                  child: Text(
-                    strings.selectedCount(_checkedIds.length),
-                    key: const ValueKey('mail-list-selected-count'),
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                ),
-                TextButton(
-                  key: const ValueKey('mail-list-select-shown'),
-                  style: TextButton.styleFrom(
-                    visualDensity: VisualDensity.compact,
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    minimumSize: const Size(0, 30),
-                  ),
-                  onPressed: _canBulk && visible.isNotEmpty
-                      ? () => _selectShown(generation)
-                      : null,
-                  child: Text(strings.selectShown),
-                ),
-                TextButton(
-                  key: const ValueKey('mail-list-clear-selection'),
-                  style: TextButton.styleFrom(
-                    visualDensity: VisualDensity.compact,
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    minimumSize: const Size(0, 30),
-                  ),
-                  onPressed: _canBulk && _checkedIds.isNotEmpty
-                      ? () => _clearSelection(generation)
-                      : null,
-                  child: Text(strings.clearSelection),
-                ),
-                IconButton(
-                  key: const ValueKey('mail-list-selection-help'),
-                  tooltip: strings.selectionHelp,
-                  visualDensity: VisualDensity.compact,
-                  onPressed: _showSelectionHelp,
-                  icon: const Icon(Icons.keyboard_outlined, size: 20),
-                ),
-                PopupMenuButton<_BulkChoice>(
-                  key: const ValueKey('mail-list-bulk-actions'),
-                  tooltip: strings.bulkActions,
-                  enabled: _canBulk && _checkedIds.isNotEmpty,
-                  onSelected: _runBulk,
-                  itemBuilder: (context) {
-                    if (!_acceptBulkCallback(generation)) return [];
-                    // Freeze when the menu opens, not when it later closes:
-                    // PopupMenuButton may receive an updated onSelected.
-                    final ids = List<String>.unmodifiable([
-                      for (final row in _visible)
-                        if (_checkedIds.contains(row.id)) row.id,
-                    ]);
-                    final menuGeneration = _interactionGeneration;
-                    return [
-                      for (final action in MailBulkFlagAction.values.where(
-                        widget.supportedBulkActions.contains,
-                      ))
-                        PopupMenuItem(
-                          key: ValueKey('mail-list-bulk-${action.name}'),
-                          value: _BulkChoice(action, ids, menuGeneration),
-                          child: Directionality(
-                            textDirection: direction,
-                            child: Text(_bulkLabel(action), textScaler: scaler),
-                          ),
-                        ),
-                    ];
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: Icon(
-                      Icons.checklist,
-                      size: 20,
-                      color: _canBulk && _checkedIds.isNotEmpty
-                          ? null
-                          : Theme.of(context).disabledColor,
+              if (bulkControls != null)
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: bulkControls,
                     ),
                   ),
                 ),
-                if (widget.onCancelBulk case final cancel?)
-                  IconButton(
-                    key: const ValueKey('mail-list-stop-bulk'),
-                    tooltip: strings.stopBulk,
-                    visualDensity: VisualDensity.compact,
-                    onPressed: cancel,
-                    icon: const Icon(Icons.stop_circle_outlined, size: 20),
-                  ),
-              ],
+            ],
+          ),
+        ),
+        if (widget.onCancelBulk case final cancel?)
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: IconButton(
+              key: const ValueKey('mail-list-stop-bulk'),
+              tooltip: strings.stopBulk,
+              visualDensity: VisualDensity.compact,
+              onPressed: cancel,
+              icon: const Icon(Icons.stop_circle_outlined, size: 20),
             ),
           ),
         if (widget.bulkStatus case final status?)

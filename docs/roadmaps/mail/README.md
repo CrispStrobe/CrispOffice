@@ -7,7 +7,7 @@ The [archive and search guide](archive-search.md) tracks the independent durable
 archive, Studio workflows and remaining MailStore parity work.
 **Decision date:** 2026-11-18 (Europe/Berlin); on-premises EWS prioritized 2026-11-19.
 **Canonical repository:** CrispStrobe/quds_office_suite, branch main.
-**Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [desktop parity roadmap](desktop-parity.md) tracks the longer Outlook/Thunderbird/eM Client gap; [local rules](local-rules.md), [local tags](local-tags.md), [persistent conversations](persistent-conversations.md) and [reader metadata](reader-metadata.md) document the current organization and reader slice. The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.
+**Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [desktop parity roadmap](desktop-parity.md) tracks the longer Outlook/Thunderbird/eM Client gap; [local rules](local-rules.md), [local tags](local-tags.md), [persistent conversations](persistent-conversations.md), [reader metadata](reader-metadata.md) and [compact message-list chrome](message-list-chrome.md) document the current organization and reader slice. The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.
 
 ## Desktop mail parity: ordered increments
 
