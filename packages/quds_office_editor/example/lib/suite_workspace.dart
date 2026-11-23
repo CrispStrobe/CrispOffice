@@ -6970,9 +6970,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       });
       _startOpenTicker();
       await WidgetsBinding.instance.endOfFrame;
-      final Uint8List bytes = await StudioFiles.ensureBytes(picked);
+      Uint8List bytes = await StudioFiles.ensureBytes(picked);
       if (!mounted) {
         return;
+      }
+      final bool legacyWord =
+          picked.kind == OpcPackageKind.word &&
+          StudioFiles.isLegacyWordDoc(picked.name, bytes);
+      if (legacyWord) {
+        setState(() => _openStage = 'legacy-word');
+        bytes = await StudioFiles.convertLegacyWordDoc(bytes);
+        if (!mounted) return;
       }
       setState(() {
         _openHeavy = OfficeIsolateOpen.isHeavyBytes(bytes);
@@ -6997,8 +7005,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           if (!mounted) return;
           // The active representation is DOCX. Never write those bytes over
           // the source ODT path; the first save chooses a new DOCX location.
-          _wordPath = importedOdt ? null : picked.path;
-          _wordName = importedOdt
+          _wordPath = importedOdt || legacyWord ? null : picked.path;
+          _wordName = legacyWord
+              ? StudioFiles.legacyDocxName(_nameFromPicked(picked))
+              : importedOdt
               ? StudioFiles.importedOdtSaveName(_nameFromPicked(picked))
               : _nameFromPicked(picked);
         case OpcPackageKind.sheet:

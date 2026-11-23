@@ -28,6 +28,8 @@ abstract final class StudioFiles {
   static final Map<String, SfntFont> _bundled = <String, SfntFont>{};
   static const List<String> extensions = <String>[
     'docx',
+    'doc',
+    'dot',
     'odt',
     'xlsx',
     'pptx',
@@ -658,6 +660,22 @@ abstract final class StudioFiles {
     return '${stem.isEmpty ? 'Document1' : stem}.odt';
   }
 
+  static bool isLegacyWordName(String name) {
+    final lower = name.toLowerCase();
+    return lower.endsWith('.doc') || lower.endsWith('.dot');
+  }
+
+  static bool isLegacyWordDoc(String name, Uint8List bytes) =>
+      isLegacyWordName(name) &&
+      sniffLegacyWordFile(bytes) == LegacyWordFileKind.compound;
+
+  static String legacyDocxName(String name) =>
+      suggestedLegacyWordDocxName(name);
+
+  static Future<Uint8List> convertLegacyWordDoc(Uint8List bytes) => Isolate.run(
+    () => convertLegacyWordToStructuredDocx(bytes, recover: true).bytes,
+  );
+
   static OpcPackageKind kindOf(String name, Uint8List bytes) {
     // The package owns its format even when it has a misleading extension.
     if (OdtDocumentReader.isOdt(bytes)) return OpcPackageKind.word;
@@ -672,6 +690,14 @@ abstract final class StudioFiles {
         lower.endsWith('.docm') ||
         lower.endsWith('.odt')) {
       return OpcPackageKind.word;
+    }
+    if (isLegacyWordName(lower)) {
+      if (bytes.isEmpty) return OpcPackageKind.word;
+      final legacy = sniffLegacyWordFile(bytes);
+      if (legacy == LegacyWordFileKind.compound ||
+          legacy == LegacyWordFileKind.zip) {
+        return OpcPackageKind.word;
+      }
     }
     if (lower.endsWith('.pdf')) {
       return OpcPackageKind.unknown;
