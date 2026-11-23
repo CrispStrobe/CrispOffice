@@ -564,6 +564,7 @@ class OfficeProofingService {
         result.findings.isNotEmpty) {
       return 'An incomplete provider result must not contain findings.';
     }
+    if (result.findings.isEmpty) return null;
     final Set<int> boundaries = <int>{0};
     int boundary = 0;
     for (final String cluster in request.text.characters) {
