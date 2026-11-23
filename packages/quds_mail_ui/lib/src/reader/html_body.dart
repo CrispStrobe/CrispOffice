@@ -36,6 +36,17 @@ class MailHtmlMessageBody extends StatelessWidget {
     return SelectionArea(
       child: HtmlWidget(
         html,
+        // HtmlWidget caches its rendered node tree for the same source string.
+        // Externally admitted images must recreate it so their placeholders are
+        // replaced instead of keeping the widget captured on first paint.
+        key: ValueKey<int>(
+          Object.hashAll(<Object>[
+            for (final image in presentation.images) ...[
+              image.attachment.partPath,
+              identityHashCode(image.attachment),
+            ],
+          ]),
+        ),
         textStyle: textStyle,
         onTapUrl: (url) {
           final target = approvedMailLink(url);

@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'fixtures/mail_fixture.dart';
+
 MailParseResult _htmlResult(String html) {
   final message = MailMessage(
     raw: MailBytes(Uint8List.fromList(utf8.encode(html))),
@@ -90,6 +92,46 @@ void main() {
       ),
       isEmpty,
     );
+  });
+
+  testWidgets('an admitted remote image replaces its placeholder', (
+    tester,
+  ) async {
+    final controller = MailReaderController(
+      result: _htmlResult(
+        '<p>Photo</p>'
+        '<img src="https://images.test/photo.png" alt="photo">',
+      ),
+      preferHtml: true,
+    );
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MailMessageView(controller: controller, richHtml: true),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Load external image'), findsOneWidget);
+    final uri = controller.presentation.remoteImageUrls.single;
+    expect(
+      controller.addImages([
+        MailInlineImage(
+          attachment: byteAttachment(
+            partPath: 'remote:$uri',
+            mediaType: 'image/png',
+            bytes: onePixelPng(),
+          ),
+          width: 1,
+          height: 1,
+        ),
+      ]),
+      1,
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Load external image'), findsNothing);
+    expect(find.byType(Image), findsOneWidget);
   });
 
   testWidgets('rich HTML offers explicit remote-image loading', (tester) async {
