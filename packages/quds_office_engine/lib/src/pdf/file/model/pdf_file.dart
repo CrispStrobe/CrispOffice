@@ -237,20 +237,21 @@ class PdfFile {
           ),
     ];
     try {
-      return PdfInterpreter(
-        store,
-        layers: layers,
-      ).interpret(page: rec.info, pageDict: rec.dict, hotspots: spots);
+      return PdfInterpreter(store, layers: layers).interpret(
+        page: rec.info,
+        pageDict: rec.dict,
+        hotspots: spots,
+      );
     } on Exception catch (error) {
-      // A malformed page must not abort the whole file, but it must not look
-      // like a legitimately empty page either. Programming errors (Error
-      // subclasses) are deliberately allowed to escape and reach fuzzing.
       return PdfDisplayList(
         page: rec.info,
         ops: const <PdfPaintOp>[],
         runs: const <PdfTextRun>[],
         hotspots: spots,
         error: error.toString(),
+        issues: error is PdfOpenException && error.error == PdfOpenError.limit
+            ? const {PdfPageRenderIssue.contentLimit}
+            : const {PdfPageRenderIssue.interpreterFailure},
       );
     }
   }

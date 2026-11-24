@@ -92,6 +92,43 @@ void main() {
         false,
         true,
       ]);
+      final spelling = first.providers.singleWhere(
+        (provider) => provider.id == 'german-spelling',
+      );
+      final otherSpelling = second.providers.singleWhere(
+        (provider) => provider.id == 'german-spelling',
+      );
+      expect((await spelling.check(request)).findings, isEmpty);
+      // Enqueue a return to the current owner behind another document.
+      final queued = await Future.wait([
+        spelling.check(request),
+        otherSpelling.check(request),
+        spelling.check(request),
+      ]);
+      expect(queued.map((result) => result.status), [
+        OfficeProofingStatus.success,
+        OfficeProofingStatus.success,
+        OfficeProofingStatus.success,
+      ]);
+      expect(queued.map((result) => result.findings.length), [0, 1, 0]);
+
+      final stale = List.generate(8, (_) => spelling.check(request));
+      final otherDocument = otherSpelling.check(request);
+      firstVocabulary.removeWord('Qudsmarke');
+      final fresh = spelling.check(request);
+      for (final result in await Future.wait(stale)) {
+        expect(result.request, same(request));
+        expect(result.status, OfficeProofingStatus.failed);
+        expect(result.findings, isEmpty);
+        expect(result.message, contains('Personal vocabulary changed'));
+      }
+      final unaffected = await otherDocument;
+      expect(unaffected.status, OfficeProofingStatus.success);
+      expect(unaffected.findings.single.originalText, 'Qudsmarke');
+      final afterEdit = await fresh;
+      expect(afterEdit.status, OfficeProofingStatus.success);
+      expect(afterEdit.findings.single.originalText, 'Qudsmarke');
+
       secondVocabulary.addWord('Qudsmarke');
       expect(await flagged(second), isFalse);
       await first.dispose();

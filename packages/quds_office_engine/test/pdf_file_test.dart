@@ -97,6 +97,17 @@ void main() {
     expect(file.encrypted, isFalse);
   });
 
+  test('malformed xref tokens exit to bounded repair', () {
+    final original = latin1.decode(writerPdf());
+    final invalid = original.replaceFirst(
+      RegExp(r'xref\r?\n\d+ \d+\r?\n'),
+      'xref\ninvalid\n',
+    );
+    expect(invalid, isNot(original));
+    final reopened = PdfFile.open(Uint8List.fromList(latin1.encode(invalid)));
+    expect(reopened.pageCount, 1);
+  });
+
   test('display list paints paths from writer streams', () {
     final PdfFile file = PdfFile.open(writerPdf());
     final PdfDisplayList list = file.displayList(0);
@@ -106,7 +117,34 @@ void main() {
         .map((PdfDrawText t) => t.text)
         .join();
     expect(painted, contains('Hello'));
-    expect(list.ops.whereType<PdfDrawText>().first.size, closeTo(14, 0.6));
+    expect(
+      list.ops.whereType<PdfDrawText>().first.size,
+      closeTo(14, 0.6),
+    );
+    expect(list.issues, isEmpty);
+  });
+
+  test('content stream failures are distinguishable from a blank page', () {
+    final file = PdfFile.open(writerPdf());
+    final page = file.pageDict(0);
+    final validContent = page['Contents']!;
+    final unreadable = PdfCosStream(
+      PdfCosDict({'Filter': const PdfCosName('FlateDecode')}),
+      Uint8List(0),
+    );
+    page.values.remove('Contents');
+    expect(file.displayList(0).ops, isEmpty);
+    expect(file.displayList(0).issues, isEmpty);
+
+    page['Contents'] = unreadable;
+    expect(file.displayList(0).ops, isEmpty);
+    expect(file.displayList(0).issues, {PdfPageRenderIssue.contentStream});
+
+    page['Contents'] = PdfCosArray([unreadable, validContent]);
+    final partial = file.displayList(0);
+    expect(partial.ops.whereType<PdfFillPath>(), isNotEmpty);
+    expect(partial.plainText, contains('Hello PDF'));
+    expect(partial.issues, {PdfPageRenderIssue.contentStream});
   });
 
   test('text size follows Tm when Tf is 1', () {
@@ -311,7 +349,7 @@ void main() {
     expect(PdfExtract.documentText(file), contains('Phase'));
   });
 
-  test('FlateDecode does not strip DEFLATE payload as Adler-32', () {
+  test('FlateDecode rejects a stream with a truncated Adler-32 trailer', () {
     final Uint8List raw = Uint8List.fromList(
       _hexToBytes(
         '4889ecc13101000000c2a0f54fed610da0000000000000000000000000000000'
@@ -323,7 +361,7 @@ void main() {
         '0000000000000000b818000000ffff000000ffff03007a77',
       ),
     );
-    expect(PdfFlate.decompress(raw).length, 162393);
+    expect(() => PdfFlate.decompress(raw), throwsFormatException);
     expect(
       utf8.decode(
         PdfFlate.decompress(PdfFlate.compress(utf8.encode('Quds Flate'))),

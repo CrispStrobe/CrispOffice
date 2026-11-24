@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import '../bidi/grapheme_clusters.dart';
@@ -15,10 +16,14 @@ final RegExp _internalApostrophe = RegExp(
 );
 
 final RegExp _composableMark = RegExp(r'[\u0300-\u036f]');
+final RegExp _needsWordNormalization = RegExp(
+  r'[\u00ad\u0300-\u036f\u2010\u2011\u2019]',
+);
 
 /// Canonicalizes common decomposed Latin letters and lexical separators.
 /// This comparison helper is deliberately separate from source-offset handling.
 String normalizeGermanWord(String word) {
+  if (!_needsWordNormalization.hasMatch(word)) return word;
   const Map<String, String> composed = <String, String>{
     'a\u0308': 'ä',
     'e\u0308': 'ë',
@@ -98,7 +103,7 @@ class OfficeProofingVocabulary {
     final OfficeProofingVocabulary result = OfficeProofingVocabulary(
       ownerId: json['ownerId']! as String,
     );
-    void restore(Object? value, Map<String, Set<String>> target) {
+    void restore(Object? value, Map<String, _VocabularyWords> target) {
       if (value is! Map<String, Object?>) {
         throw const FormatException('Invalid vocabulary map');
       }
@@ -123,7 +128,10 @@ class OfficeProofingVocabulary {
         }
         // Older hosts may have saved several aliases for the same locale.
         // Restore their union instead of losing the earlier alias's words.
-        target.putIfAbsent(language, () => <String>{}).addAll(words);
+        target
+            .putIfAbsent(language, _VocabularyWords.new)
+            ._values
+            .addAll(words);
       }
     }
 
@@ -134,27 +142,31 @@ class OfficeProofingVocabulary {
 
   final String ownerId;
   final void Function()? onChanged;
-  final Map<String, Set<String>> _words = <String, Set<String>>{};
-  final Map<String, Set<String>> _ignored = <String, Set<String>>{};
+  final _words = <String, _VocabularyWords>{};
+  final _ignored = <String, _VocabularyWords>{};
   int _revision = 0;
   int get revision => _revision;
 
-  Set<String> wordsFor(String language) => Set<String>.unmodifiable(
-    _words[normalizeProofingLanguage(language)] ?? const <String>{},
-  );
-  Set<String> ignoredWordsFor(String language) => Set<String>.unmodifiable(
-    _ignored[normalizeProofingLanguage(language)] ?? const <String>{},
-  );
+  Set<String> wordsFor(String language) =>
+      _words[normalizeProofingLanguage(language)]?.snapshot ?? const <String>{};
+
+  Set<String> ignoredWordsFor(String language) =>
+      _ignored[normalizeProofingLanguage(language)]?.snapshot ??
+      const <String>{};
 
   bool contains(String word, {String language = 'de-DE'}) {
+    if (_words.isEmpty && _ignored.isEmpty) return false;
     final String key = normalizeProofingLanguage(language);
+    final personal = _words[key]?._values;
+    final ignored = _ignored[key]?._values;
+    if ((personal?.isEmpty ?? true) && (ignored?.isEmpty ?? true)) return false;
     final String normalized = normalizeGermanWord(word);
-    return (_words[key]?.contains(normalized) ?? false) ||
-        (_ignored[key]?.contains(normalized) ?? false);
+    return (personal?.contains(normalized) ?? false) ||
+        (ignored?.contains(normalized) ?? false);
   }
 
   void _change(
-    Map<String, Set<String>> target,
+    Map<String, _VocabularyWords> target,
     String word,
     String language,
     bool add,
@@ -163,8 +175,8 @@ class OfficeProofingVocabulary {
     if (normalized.isEmpty) throw ArgumentError.value(word, 'word');
     final String key = normalizeProofingLanguage(language);
     if (key.isEmpty) throw ArgumentError.value(language, 'language');
-    final Set<String> values = target.putIfAbsent(key, () => <String>{});
-    if (add ? values.add(normalized) : values.remove(normalized)) {
+    final values = target.putIfAbsent(key, _VocabularyWords.new);
+    if (values.change(normalized, add: add)) {
       _revision++;
       onChanged?.call();
     }
@@ -180,7 +192,7 @@ class OfficeProofingVocabulary {
       _change(_ignored, word, language, false);
 
   void clearIgnoredWords() {
-    if (_ignored.values.every((Set<String> words) => words.isEmpty)) return;
+    if (_ignored.values.every((words) => words._values.isEmpty)) return;
     _ignored.clear();
     _revision++;
     onChanged?.call();
@@ -190,14 +202,32 @@ class OfficeProofingVocabulary {
     'schemaVersion': 1,
     'ownerId': ownerId,
     'words': <String, Object?>{
-      for (final MapEntry<String, Set<String>> entry in _words.entries)
-        entry.key: entry.value.toList()..sort(),
+      for (final entry in _words.entries)
+        entry.key: entry.value._values.toList()..sort(),
     },
     'ignoredWords': <String, Object?>{
-      for (final MapEntry<String, Set<String>> entry in _ignored.entries)
-        entry.key: entry.value.toList()..sort(),
+      for (final entry in _ignored.entries)
+        entry.key: entry.value._values.toList()..sort(),
     },
   };
+}
+
+/// Readers may keep a snapshot across an asynchronous spelling check. Share
+/// its backing set until a vocabulary change actually needs to modify it.
+final class _VocabularyWords {
+  Set<String> _values = <String>{};
+  Set<String>? _snapshot;
+
+  Set<String> get snapshot => _snapshot ??= UnmodifiableSetView(_values);
+
+  bool change(String word, {required bool add}) {
+    if (_snapshot != null) {
+      if (_values.contains(word) == add) return false;
+      _values = _values.toSet();
+      _snapshot = null;
+    }
+    return add ? _values.add(word) : _values.remove(word);
+  }
 }
 
 /// Pinned finite German word forms; this is not a morphological/compound parser.
@@ -235,8 +265,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
   /// a paragraph without scheduling timer turns between tokens.
   final bool yieldBetweenChecks;
   late final _distance = GermanSuggestionDistance();
-  int _suggestionRevision = -1;
-  var _suggestions = <(String, String, bool, String?), List<String>>{};
+  int _cachedVocabularyRevision = -1;
+  var _knownWordsByLanguage = <String, Set<String>>{};
+  static const _maxCachedWordsPerLanguage = 1024;
+  var _suggestions = <(String, String, bool, String?), _SpellingSuggestions>{};
   static const _maxCachedSuggestions = 1024;
 
   bool _disposed = false;
@@ -350,10 +382,15 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     final int vocabularyRevision = vocabulary.revision;
     final Set<String> personal = vocabulary.wordsFor(request.language);
     final Set<String> ignored = vocabulary.ignoredWordsFor(request.language);
-    if (_suggestionRevision != vocabularyRevision) {
-      _suggestionRevision = vocabularyRevision;
+    if (_cachedVocabularyRevision != vocabularyRevision) {
+      _cachedVocabularyRevision = vocabularyRevision;
+      _knownWordsByLanguage = {};
       _suggestions = {};
     }
+    final knownWords = _knownWordsByLanguage.putIfAbsent(
+      request.language,
+      () => <String>{},
+    );
     final suggestions = _suggestions;
     final _GermanLexicon lexicon = await _lexicon();
     final bool swiss = request.language == 'de-CH';
@@ -376,18 +413,29 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         continue;
       }
       final String original = token.group(0)!;
+      if (knownWords.contains(original)) continue;
       final String word = normalizeGermanWord(original);
+      if (ignored.contains(word) ||
+          lexicon._knownAsWritten(word, swiss, personal)) {
+        // Only exact matches and ignored words are independent of context.
+        if (original.length <= 128) {
+          if (knownWords.length == _maxCachedWordsPerLanguage) {
+            knownWords.remove(knownWords.first);
+          }
+          knownWords.add(original);
+        }
+        continue;
+      }
       final bool sentenceInitial = _isSentenceInitial(
         request.text,
         token.start,
       );
-      if (ignored.contains(word) ||
-          lexicon.contains(
-            word,
-            swiss: swiss,
-            sentenceInitial: sentenceInitial,
-            personal: personal,
-          )) {
+      if (lexicon._containsVariant(
+        word,
+        swiss: swiss,
+        sentenceInitial: sentenceInitial,
+        personal: personal,
+      )) {
         continue;
       }
       final String? preferredParticiple = _preferredParticiple(
@@ -403,15 +451,18 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         sentenceInitial,
         preferredParticiple,
       );
-      List<String>? replacements = suggestions.remove(suggestionKey);
-      if (replacements == null) {
-        replacements = _suggest(
-          word,
-          lexicon,
-          swiss,
-          personal: personal,
-          sentenceInitial: sentenceInitial,
-          preferredParticiple: preferredParticiple,
+      final cached = suggestions.remove(suggestionKey);
+      var suggestionsForWord = cached;
+      if (suggestionsForWord == null) {
+        suggestionsForWord = _SpellingSuggestions(
+          _suggest(
+            word,
+            lexicon,
+            swiss,
+            personal: personal,
+            sentenceInitial: sentenceInitial,
+            preferredParticiple: preferredParticiple,
+          ),
         );
         // Keep the cooperative path responsive even during a full indexed
         // suggestion search. Worker requests do not block the UI isolate.
@@ -430,9 +481,12 @@ class GermanSpellingProvider extends OfficeProofingProvider {
           );
         }
       }
-      if (word.length <= 128 &&
-          replacements.every((replacement) => replacement.length <= 128)) {
-        suggestions[suggestionKey] = replacements;
+      if (cached != null ||
+          word.length <= 128 &&
+              suggestionsForWord.values.every(
+                (replacement) => replacement.length <= 128,
+              )) {
+        suggestions[suggestionKey] = suggestionsForWord;
         if (suggestions.length > _maxCachedSuggestions) {
           suggestions.remove(suggestions.keys.first);
         }
@@ -448,7 +502,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
               ? 'Die Schweizer Schreibweise verwendet ss statt ß.'
               : 'Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.',
           category: OfficeProofingCategory.spelling,
-          replacements: _withSourceSeparators(original, replacements),
+          replacements: suggestionsForWord.forSource(original),
         ),
       );
     }
@@ -1096,49 +1150,70 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     return matches.take(maximumSuggestions).map((match) => match.$1).toList();
   }
 
-  static final _styledSeparators = RegExp(r'[\u2010\u2011\u2019]');
-
-  static List<String> _withSourceSeparators(
-    String source,
-    List<String> replacements,
-  ) {
-    if (replacements.isEmpty || !_styledSeparators.hasMatch(source)) {
-      return replacements;
-    }
-    final List<String> hyphens = RegExp(
-      r'[-\u2010\u2011]',
-    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
-    final List<String> apostrophes = RegExp(
-      r"['\u2019]",
-    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
-    return List<String>.unmodifiable(
-      replacements.map((String replacement) {
-        // Restore each separator kind independently, only when the proposed
-        // correction retains its count. A correction that removes/adds one
-        // must not invent a source-to-replacement positional correspondence.
-        String styled = replacement;
-        if ('-'.allMatches(styled).length == hyphens.length) {
-          int index = 0;
-          styled = styled.replaceAllMapped(
-            RegExp('-'),
-            (Match _) => hyphens[index++],
-          );
-        }
-        if ("'".allMatches(styled).length == apostrophes.length) {
-          int index = 0;
-          styled = styled.replaceAllMapped(
-            RegExp("'"),
-            (Match _) => apostrophes[index++],
-          );
-        }
-        return styled;
-      }),
-    );
-  }
-
   @override
   Future<void> dispose() async {
     _disposed = true;
+  }
+}
+
+final class _SpellingSuggestions {
+  _SpellingSuggestions(this.values);
+
+  final List<String> values;
+  ({String source, List<String> replacements})? _lastStyled;
+
+  static final _styledSeparators = RegExp(r'[\u2010\u2011\u2019]');
+  static final _sourceSeparators = RegExp(r"[-\u2010\u2011'\u2019]");
+
+  List<String> forSource(String source) {
+    final last = _lastStyled;
+    if (last != null && last.source == source) return last.replacements;
+    if (values.isEmpty || !_styledSeparators.hasMatch(source)) return values;
+    final hyphens = <String>[];
+    final apostrophes = <String>[];
+    var styledHyphens = false;
+    var styledApostrophes = false;
+    for (final match in _sourceSeparators.allMatches(source)) {
+      final separator = match.group(0)!;
+      if (separator == "'" || separator == '’') {
+        apostrophes.add(separator);
+        styledApostrophes |= separator != "'";
+      } else {
+        hyphens.add(separator);
+        styledHyphens |= separator != '-';
+      }
+    }
+    final styled = <String>[];
+    for (final replacement in values) {
+      var value = replacement;
+      if (styledHyphens) {
+        value = _restoreSeparators(value, '-', hyphens);
+      }
+      if (styledApostrophes) {
+        value = _restoreSeparators(value, "'", apostrophes);
+      }
+      styled.add(value);
+    }
+    // Keep one projection per canonical result, so retaining alternate
+    // typographic spellings cannot grow the suggestion cache without bound.
+    if (source.length <= 128) {
+      _lastStyled = (source: source, replacements: styled);
+    }
+    return styled;
+  }
+
+  static String _restoreSeparators(
+    String replacement,
+    String canonical,
+    List<String> source,
+  ) {
+    // Only restore a separator kind when its count is unchanged, so the
+    // correction has a positional correspondence with the original word.
+    if (canonical.allMatches(replacement).length != source.length) {
+      return replacement;
+    }
+    var index = 0;
+    return replacement.replaceAllMapped(canonical, (_) => source[index++]);
   }
 }
 
@@ -1324,8 +1399,24 @@ class _GermanLexicon {
     required bool swiss,
     required bool sentenceInitial,
     Set<String> personal = const <String>{},
+  }) =>
+      _knownAsWritten(word, swiss, personal) ||
+      _containsVariant(
+        word,
+        swiss: swiss,
+        sentenceInitial: sentenceInitial,
+        personal: personal,
+      );
+
+  bool _knownAsWritten(String word, bool swiss, Set<String> personal) =>
+      personal.contains(word) || exact(word, swiss: swiss);
+
+  bool _containsVariant(
+    String word, {
+    required bool swiss,
+    required bool sentenceInitial,
+    required Set<String> personal,
   }) {
-    if (personal.contains(word) || exact(word, swiss: swiss)) return true;
     final String lower = word.toLowerCase();
     if (word == _upper(word) && word != lower) {
       if ((!swiss && sharpSCapitals.contains(word)) ||

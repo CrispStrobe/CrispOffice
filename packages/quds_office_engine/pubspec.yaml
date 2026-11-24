@@ -55,7 +55,7 @@ dependencies:
     path: ../legacy_doc_parser
   characters: ^1.4.1
   crypto: ^3.0.7
-  image: ^4.5.0
+  image: ^4.10.2
   j2k: 1.0.0
   jbig2: 1.0.0
 

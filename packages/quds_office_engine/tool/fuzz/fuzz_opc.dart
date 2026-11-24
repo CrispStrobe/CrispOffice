@@ -5,7 +5,18 @@ import 'package:covfuzz/covfuzz.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
 List<Uint8List> _seeds() {
-  final out = <Uint8List>[];
+  final archive = ZipWriter()
+    ..addFile(
+      '[Content_Types].xml',
+      '<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>'
+          .codeUnits,
+    )
+    ..addFile(
+      'word/document.xml',
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p/></w:body></w:document>'
+          .codeUnits,
+    );
+  final out = <Uint8List>[archive.close()];
   for (final root in <String>['test', 'packages/quds_office_engine/test']) {
     final dir = Directory(root);
     if (!dir.existsSync()) continue;
@@ -27,10 +38,6 @@ List<Uint8List> _seeds() {
 
 void main(List<String> args) {
   final seeds = _seeds();
-  if (seeds.isEmpty) {
-    stderr.writeln('No OOXML/ODF seeds found.');
-    exit(64);
-  }
   final report = fuzz<Uint8List>(
     seeds: seeds,
     entry: (bytes) {

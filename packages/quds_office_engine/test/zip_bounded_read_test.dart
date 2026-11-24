@@ -4,6 +4,15 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test('ZIP rejects central-directory metadata outside the archive', () {
+    final writer = ZipWriter()..addFile('entry.txt', [1, 2, 3]);
+    final bytes = writer.close();
+    ByteData.sublistView(bytes).setUint32(
+      bytes.length - 6, bytes.length + 1, Endian.little,
+    );
+    expect(() => ZipReader.fromBytes(bytes), throwsA(isA<ZipException>()));
+  });
+
   test(
     'duplicate rejection is opt-in and existing reader behavior is retained',
     () {

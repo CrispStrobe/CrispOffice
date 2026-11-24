@@ -80,24 +80,27 @@ final class _BackgroundChecker extends OfficeProofingProvider {
       _snapshotRevision = revision;
       _vocabularySnapshot = _vocabulary.toJson();
     }
-    final result = (await _activeWorker().submit((
-      owner: _owner,
-      checker: _kind,
-      request: request,
-      revision: revision,
+    final result = await _activeWorker().submit(
+      (owner: _owner, checker: _kind, request: request, revision: revision),
       vocabulary: _vocabularySnapshot,
-    )))!;
+      liveVocabulary: _spelling ? _vocabulary : null,
+    );
     // The original request belongs to this isolate. Rebind it before service
     // validation, which deliberately checks request identity and source spans.
-    final changed = _spelling && revision != configurationRevision;
+    if (_spelling && revision != configurationRevision) {
+      return OfficeProofingResult(
+        request: request,
+        providerId: id,
+        status: OfficeProofingStatus.failed,
+        message: 'Personal vocabulary changed during this check; check again.',
+      );
+    }
     return OfficeProofingResult(
       request: request,
-      providerId: result.providerId,
-      status: changed ? OfficeProofingStatus.failed : result.status,
-      findings: changed ? const [] : result.findings,
-      message: changed
-          ? 'Personal vocabulary changed during this check; check again.'
-          : result.message,
+      providerId: result!.providerId,
+      status: result.status,
+      findings: result.findings,
+      message: result.message,
     );
   }
 
@@ -117,12 +120,15 @@ typedef _Job = ({
   _Checker checker,
   OfficeProofingRequest? request,
   int revision,
-  Map<String, Object?>? vocabulary,
 });
 
+typedef _Command = ({_Job job, Map<String, Object?>? vocabulary});
+
 final class _Pending {
-  _Pending(this.job);
+  _Pending(this.job, this.vocabulary, this.liveVocabulary);
   final _Job job;
+  final Map<String, Object?>? vocabulary;
+  final OfficeProofingVocabulary? liveVocabulary;
   final completion = Completer<OfficeProofingResult?>();
 }
 
@@ -150,6 +156,7 @@ final class _ProofingWorker {
   SendPort? _commands;
   Isolate? _isolate;
   _Pending? _active;
+  (int?, int)? _residentVocabulary;
   Future<void>? _dictionary;
   int _owners = 0;
   bool closed = false;
@@ -188,7 +195,6 @@ final class _ProofingWorker {
         checker: _Checker.germanSpelling,
         request: null,
         revision: 0,
-        vocabulary: null,
       ));
     } catch (_) {
       _dictionary = null;
@@ -196,9 +202,13 @@ final class _ProofingWorker {
     }
   }
 
-  Future<OfficeProofingResult?> submit(_Job job) {
+  Future<OfficeProofingResult?> submit(
+    _Job job, {
+    Map<String, Object?>? vocabulary,
+    OfficeProofingVocabulary? liveVocabulary,
+  }) {
     if (closed) return Future.error(StateError('Proofing worker is closed.'));
-    final pending = _Pending(job);
+    final pending = _Pending(job, vocabulary, liveVocabulary);
     _queue.addLast(pending);
     _dispatch();
     return pending.completion.future;
@@ -206,9 +216,29 @@ final class _ProofingWorker {
 
   void _dispatch() {
     final commands = _commands;
-    if (commands == null || _active != null || _queue.isEmpty) return;
-    final next = _active = _queue.removeFirst();
-    commands.send(next.job);
+    if (commands == null || _active != null) return;
+    while (_queue.isNotEmpty) {
+      final next = _queue.removeFirst();
+      final job = next.job;
+      final liveVocabulary = next.liveVocabulary;
+      if (liveVocabulary != null && liveVocabulary.revision != job.revision) {
+        // The caller reports the same revision mismatch as for an in-flight
+        // check. Avoid sending text the worker can no longer use.
+        next.completion.complete(null);
+        continue;
+      }
+      _active = next;
+      // Decide at dispatch: a queued job may follow a different owner or
+      // revision, even if its vocabulary was resident when it was queued.
+      final _Command command = (
+        job: job,
+        vocabulary: _residentVocabulary == (job.owner, job.revision)
+            ? null
+            : next.vocabulary,
+      );
+      commands.send(command);
+      return;
+    }
   }
 
   void _receive(Object? message) {
@@ -218,6 +248,13 @@ final class _ProofingWorker {
     } else if (message is (bool, OfficeProofingResult?)) {
       final active = _active;
       _active = null;
+      if (_spelling && active != null && active.job.request != null) {
+        // On success the worker has installed that revision, even if the
+        // caller disposed the provider while the check was running.
+        _residentVocabulary = message.$1
+            ? (active.job.owner, active.job.revision)
+            : null;
+      }
       if (active != null && !active.completion.isCompleted) {
         if (message.$1) {
           active.completion.complete(message.$2);
@@ -279,7 +316,7 @@ Future<void> _serveProofing(SendPort replies) async {
   (int?, int)? spellingOwner;
   // Bound inter-isolate work to one paragraph per lane and keep provider
   // mutable state private to the worker.
-  await for (final _Job job in commands.cast<_Job>()) {
+  await for (final (:job, :vocabulary) in commands.cast<_Command>()) {
     try {
       OfficeProofingResult? result;
       final request = job.request;
@@ -289,7 +326,7 @@ Future<void> _serveProofing(SendPort replies) async {
         if (job.checker == _Checker.germanSpelling &&
             spellingOwner != (job.owner, job.revision)) {
           germanSpelling = GermanSpellingProvider(
-            vocabulary: OfficeProofingVocabulary.fromJson(job.vocabulary!),
+            vocabulary: OfficeProofingVocabulary.fromJson(vocabulary!),
             yieldBetweenChecks: false,
           );
           spellingOwner = (job.owner, job.revision);

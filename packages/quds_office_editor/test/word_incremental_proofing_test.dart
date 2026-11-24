@@ -10,6 +10,14 @@ class _Provider extends OfficeProofingProvider {
   final String id;
   OfficeProofingStatus status;
   int version = 0;
+  int categoryReads = 0;
+
+  @override
+  Set<OfficeProofingCategory> get categories {
+    categoryReads++;
+    return super.categories;
+  }
+
   final requests = <OfficeProofingRequest>[];
   final gates = <String, Completer<void>>{};
   final starts = <String, Completer<void>>{};
@@ -106,6 +114,125 @@ class _Harness {
 }
 
 void main() {
+  test('planning a settled pass reads provider groups once per scan', () async {
+    final h = _Harness(List.generate(100, (index) => 'Feler $index'));
+    final initial = await h.session.checkNow();
+    expect(initial.checkedParagraphCount, 100);
+
+    h.provider.categoryReads = 0;
+    final warm = await h.session.checkNow();
+    expect(warm.checkedParagraphCount, 100);
+    expect(warm.issues, initial.issues);
+    expect(h.provider.requests, hasLength(100));
+    expect(h.provider.categoryReads, inInclusiveRange(1, 8));
+  });
+
+  test(
+    'progress reuses reports rebound to the current document revision',
+    () async {
+      final dense = List.filled(10, 'Feler').join(' ');
+      final h = _Harness(['Feler stable', dense, 'Feler initial']);
+      final initial = await h.session.checkNow();
+      var previous = initial.reports.first;
+
+      for (final text in ['Feler edited', 'Feler edited again']) {
+        h.edit(2, text);
+        final gate = h.provider.gate(text);
+        final pending = h.session.checkNow();
+        await h.provider.started(text);
+        final partial = h.session.summary;
+        final rebound = partial.reports.first;
+        expect(partial.checking, isTrue);
+        expect(rebound, isNot(same(previous)));
+        expect(rebound.request.revision, h.revision);
+        expect(rebound.results.single.request, same(rebound.request));
+        expect(rebound.findings.single.revision, h.revision);
+
+        gate.complete();
+        final finished = await pending;
+        expect(finished.reports.first, same(rebound));
+        expect(partial.issues, hasLength(11));
+        expect(finished.issues.take(11), orderedEquals(partial.issues));
+        expect(h.session.canCorrect(finished.issues.first), isTrue);
+        previous = rebound;
+      }
+
+      expect(h.provider.requests.map((request) => request.text), [
+        'Feler stable',
+        dense,
+        'Feler initial',
+        'Feler edited',
+        'Feler edited again',
+      ]);
+    },
+  );
+
+  test(
+    'local issue lookups follow edits, ignore and document replacement',
+    () async {
+      final h = _Harness(['Feler first', 'Feler and Feler', 'Feler last']);
+      final [first, middle, last] = h.paragraphs;
+      final initial = await h.session.checkNow();
+      expect(h.session.issuesAt(middle, 1), [initial.issues[1]]);
+      expect(h.session.issuesAt(middle, 11), [initial.issues[2]]);
+
+      h.edit(0, 'Fehler first');
+      expect(h.session.issuesAt(first, 1), isEmpty);
+      final retained = h.session.issuesAt(middle, 11).single;
+      expect(retained.finding.revision, h.revision);
+      expect(h.session.isCurrent(initial.issues[2]), isFalse);
+      expect(h.session.isCurrent(retained), isTrue);
+
+      h.session.ignoreOnce(retained);
+      expect(h.session.issuesAt(middle, 11), isEmpty);
+      expect(h.session.issuesAt(middle, 1).single.paragraph, same(middle));
+      expect(h.session.issuesAt(last, 1).single.paragraph, same(last));
+      expect(h.session.isCurrent(retained), isFalse);
+
+      h.document = _document(['Feler replacement']);
+      h.changed();
+      expect(h.session.issuesAt(middle, 1), isEmpty);
+      final replacement = (await h.session.checkNow()).issues.single;
+      expect(h.session.issuesAt(h.paragraphs.single, 1), [replacement]);
+    },
+  );
+
+  test(
+    'target validation reads only its paragraph and tracks earlier fields',
+    () async {
+      final preceding = _CountedParagraph('Field heading');
+      final target = _CountedParagraph('Feler target');
+      final following = _CountedParagraph('Later paragraph');
+      final h = _Harness([]);
+      h.document.sections.single.blocks.add(preceding);
+      h.document.sections.add(WmlSection(blocks: [target, following]));
+      final issue = (await h.session.checkNow()).issues.single;
+
+      preceding.reads = 0;
+      target.reads = 0;
+      following.reads = 0;
+      expect(h.session.isCurrent(issue), isTrue);
+      expect(target.reads, 1);
+      final capture = h.session.captureTextRange(target, 0, 5);
+      expect(capture.status, WordTextRangeStatus.ready);
+      expect(h.session.isTextRangeCurrent(capture.target!), isTrue);
+      expect([preceding.reads, following.reads], [0, 0]);
+
+      preceding.inlines.add(WmlFieldBoundary(kind: WmlFieldBoundaryKind.begin));
+      expect(h.session.isCurrent(issue), isFalse);
+      expect(h.session.isTextRangeCurrent(capture.target!), isFalse);
+      expect(
+        h.session.captureTextRange(target, 0, 5).status,
+        WordTextRangeStatus.protectedContent,
+      );
+
+      preceding.inlines.add(WmlFieldBoundary(kind: WmlFieldBoundaryKind.end));
+      expect(h.session.isCurrent(issue), isTrue);
+      expect(h.session.isTextRangeCurrent(capture.target!), isTrue);
+      expect([preceding.reads, following.reads], [0, 0]);
+    },
+  );
+
   test(
     'paint resolves only requested paragraphs during a pending edit',
     () async {
@@ -202,14 +329,16 @@ void main() {
   test(
     'new findings are published before the whole document finishes',
     () async {
-      final h = _Harness(['Feler first', 'Feler second', 'Feler third']);
+      final h = _Harness(['Feler ' * 20, 'Feler second', 'Feler third']);
       final second = h.provider.gate('Feler second');
       final third = h.provider.gate('Feler third');
       final pending = h.session.checkNow();
       await h.provider.started('Feler second');
 
-      final firstIssue = h.session.summary.issues.single;
+      final firstIssue = h.session.summary.issues.first;
       expect(firstIssue.paragraph, same(h.paragraphs.first));
+      final firstMarks = h.session.paintFindingsLookup!(firstIssue.paragraph);
+      expect(firstMarks, hasLength(20));
       expect(h.session.checking, isTrue);
       expect(h.session.summary.hasResults, isTrue);
       expect(h.session.summary.checkedParagraphCount, 1);
@@ -219,7 +348,11 @@ void main() {
 
       second.complete();
       await h.provider.started('Feler third');
-      expect(h.session.summary.issues, hasLength(2));
+      expect(h.session.summary.issues, hasLength(21));
+      expect(
+        h.session.paintFindingsLookup!(firstIssue.paragraph),
+        same(firstMarks),
+      );
       expect(h.session.summary.issues.first, same(firstIssue));
       expect(h.session.isCurrent(firstIssue), isTrue);
       expect(h.session.checkGeneration, generation);
@@ -228,7 +361,12 @@ void main() {
       final complete = await pending;
       expect(complete.complete, isTrue);
       expect(complete.checkedParagraphCount, 3);
+      expect(complete.issues, hasLength(22));
       expect(complete.issues.first, same(firstIssue));
+      expect(
+        h.session.paintFindingsLookup!(firstIssue.paragraph),
+        same(firstMarks),
+      );
       expect(h.session.checkGeneration, generation);
     },
   );
@@ -264,12 +402,64 @@ void main() {
   );
 
   test(
+    'cached single-run snapshots check live language and no-proof changes',
+    () async {
+      final h = _Harness(['Feler single run']);
+      final german = (await h.session.checkNow()).issues.single;
+      expect(h.session.isCurrent(german), isTrue);
+
+      h.document.proofingLanguage = 'en-GB';
+      expect(h.session.isCurrent(german), isFalse);
+      final english = (await h.session.checkNow()).issues.single;
+      expect(h.provider.requests.last.language, 'en-GB');
+      expect(h.session.isCurrent(english), isTrue);
+
+      final run = h.paragraphs.single.inlines.single as WmlRun;
+      run.properties = WmlRunProps(noProof: true);
+      expect(h.session.isCurrent(english), isFalse);
+      expect((await h.session.checkNow()).issues, isEmpty);
+    },
+  );
+
+  test(
+    'warm single-run snapshots track complex-script language inputs',
+    () async {
+      final h = _Harness(['Feler']);
+      h.document.complexScriptLanguage = 'ar-SA';
+      final paragraph = h.paragraphs.single;
+      final run = paragraph.inlines.single as WmlRun;
+      final latin = (await h.session.checkNow()).issues.single;
+      expect(latin.language, 'de-DE');
+
+      run.properties.complexScriptLanguage = 'he-IL';
+      expect(h.session.isCurrent(latin), isTrue);
+      run.properties.complexScript = true;
+      expect(h.session.isCurrent(latin), isFalse);
+      final hebrew = (await h.session.checkNow()).issues.single;
+      expect(hebrew.language, 'he-IL');
+
+      run.properties.complexScriptLanguage = null;
+      expect(h.session.isCurrent(hebrew), isFalse);
+      final inherited = (await h.session.checkNow()).issues.single;
+      expect(inherited.language, 'ar-SA');
+      expect(h.session.isCurrent(inherited), isTrue);
+
+      run.properties.complexScript = false;
+      expect(h.session.isCurrent(inherited), isFalse);
+      expect((await h.session.checkNow()).issues.single.language, 'de-DE');
+    },
+  );
+
+  test(
     'direct structural edits are validated before intermediate publication',
     () async {
-      final h = _Harness(['Feler first', 'Feler second', 'Feler third']);
+      final h = _Harness(['Feler first', 'Feler second']);
+      final offscreen = _CountedParagraph('Feler third');
+      h.document.sections.single.blocks.add(offscreen);
       final gate = h.provider.gate('Feler first');
       final pending = h.session.checkNow();
       await h.provider.started('Feler first');
+      offscreen.reads = 0;
       // The host forgot refresh/revision; pending results must still not expose
       // generated field content at the next progress publication.
       h.paragraphs.first.properties.pageNumberField = true;
@@ -280,6 +470,9 @@ void main() {
       expect(h.session.findingsByParagraph, isEmpty);
       expect(h.session.summary.hasResults, isFalse);
       expect(h.provider.requests, hasLength(1));
+      // The replacement summary reads later paragraphs once. Validation of
+      // the rejected publication stops at the first changed paragraph.
+      expect(offscreen.reads, 1);
     },
   );
 

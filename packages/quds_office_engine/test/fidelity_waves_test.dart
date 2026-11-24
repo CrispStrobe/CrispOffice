@@ -186,15 +186,24 @@ void main() {
   });
 
   test('wave 5a JBIG2 MMR generic region decodes; junk stays placeholder', () {
-    final Uint8List white = PdfJbig2.decode(_jbig2White8x1(), PdfCosDict());
+    final Uint8List white = PdfJbig2.decode(_jbig2Mmr8x1(), PdfCosDict());
     // Invalid standalone organization/header must not escape as a raw
     // exception from the third-party segment parser.
-    final malformed = _jbig2White8x1()..[8] = 0;
+    final malformed = _jbig2Mmr8x1()..[8] = 0;
     final PdfFile bad = PdfFile.open(_jbig2Pdf(malformed));
     expect(bad.displayList(0).ops.whereType<PdfDrawImage>().first.placeholder,
         isTrue);
     expect(white.length, 8);
     expect(white.every((int b) => b == 0xFF), isTrue);
+    final patterned = _jbig2Mmr8x1(patterned: true);
+    const expected = <int>[0, 0, 255, 255, 255, 255, 0, 0];
+    expect(PdfJbig2.decode(patterned, PdfCosDict()), expected);
+    final patternedImage = PdfFile.open(_jbig2Pdf(patterned))
+        .displayList(0).ops.whereType<PdfDrawImage>().single;
+    expect(patternedImage.placeholder, isFalse);
+    expect(patternedImage.bytes, [
+      for (final tone in expected) ...[tone, tone, tone],
+    ]);
 
     final PdfFile junk = PdfFile.open(_jbig2Pdf(Uint8List.fromList(<int>[0x78, 0x78])));
     expect(
@@ -202,7 +211,7 @@ void main() {
       isTrue,
     );
 
-    final PdfFile ok = PdfFile.open(_jbig2Pdf(_jbig2White8x1()));
+    final PdfFile ok = PdfFile.open(_jbig2Pdf(_jbig2Mmr8x1()));
     final PdfDrawImage img = ok.displayList(0).ops.whereType<PdfDrawImage>().first;
     expect(img.placeholder, isFalse);
     expect(img.pixelWidth, 8);
@@ -231,7 +240,7 @@ void main() {
   });
 }
 
-Uint8List _jbig2White8x1() {
+Uint8List _jbig2Mmr8x1({bool patterned = false}) {
   final BytesBuilder out = BytesBuilder();
   out.add(<int>[0x97, 0x4A, 0x42, 0x32, 0x0D, 0x0A, 0x1A, 0x0A]);
   out.add(<int>[0x01]); // Sequential organization; known page count.
@@ -250,7 +259,12 @@ Uint8List _jbig2White8x1() {
   out.add(<int>[0, 0]); // Non-striped page.
   // Immediate generic region type 38 (36 is intermediate). One V(0)
   // followed by the two EOLs of the Group 4 end-of-facsimile-block marker.
-  final Uint8List mmr = Uint8List.fromList(<int>[0x80, 0x08, 0, 0x80]);
+  // The patterned variant is the independently encoded WhiteIsZero strip
+  // from libtiff 4.7.1 (eight synthetic pixels: black black white white
+  // white white black black). It cannot pass if the region is ignored.
+  final Uint8List mmr = Uint8List.fromList(patterned
+      ? <int>[0x26, 0xb8, 0x50, 0x01, 0x00, 0x10]
+      : <int>[0x80, 0x08, 0, 0x80]);
   out.add(_u32(2));
   out.addByte(38);
   out.addByte(0);

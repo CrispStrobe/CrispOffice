@@ -5,17 +5,23 @@ import '../../pdf_stream.dart';
 import '../cos/pdf_cos.dart';
 import '../cos/pdf_open_error.dart';
 import 'pdf_ccitt.dart';
+import 'pdf_dct.dart';
 import 'pdf_jbig2.dart';
 import 'pdf_jpx.dart';
 
 /// ISO 32000-1 §7.4 stream filters used by [PdfFile].
 abstract final class PdfFilters {
+  static const int maxDecodedBytes = PdfFlate.maxDecodedBytes;
+
   /// Decodes [raw] using `/Filter` and `/DecodeParms` on [dict].
   static Uint8List decode(Uint8List raw, PdfCosDict dict) {
     final PdfFilterResult result = decodeResult(raw, dict);
     final Uint8List? bytes = result.bytes;
     if (bytes != null) {
       return bytes;
+    }
+    if (result.limitExceeded) {
+      throw const PdfOpenException(PdfOpenError.limit, 'Decoded stream too large');
     }
     throw PdfFilterUnsupported(result.unsupported ?? 'Unknown');
   }
@@ -25,7 +31,13 @@ abstract final class PdfFilters {
     Uint8List raw,
     PdfCosDict dict, {
     PdfCos? Function(PdfCos?)? resolve,
+    bool decodeDct = false,
+    int maxOutputBytes = maxDecodedBytes,
   }) {
+    if (maxOutputBytes < 0) {
+      throw ArgumentError.value(maxOutputBytes, 'maxOutputBytes');
+    }
+    final int limit = maxOutputBytes.clamp(0, maxDecodedBytes);
     PdfCos? resolved(PdfCos? value) => resolve?.call(value) ?? value;
     final List<String> filters = _filterNames(
       resolved(dict['Filter']),
@@ -41,6 +53,18 @@ abstract final class PdfFilters {
       final String name = filters[i];
       final PdfCosDict parm = i < parms.length ? parms[i] : PdfCosDict();
       try {
+        if (name == 'DCTDecode' || name == 'DCT') {
+          if (i != filters.length - 1) {
+            return const PdfFilterResult.unsupported('DCTDecode');
+          }
+          if (decodeDct) {
+            final image = PdfDct.decode(data, dict, parm, resolve: resolved);
+            if (image != null) {
+              return PdfFilterResult.dct(image);
+            }
+          }
+          return PdfFilterResult.encodedJpeg(data);
+        }
         if (name == 'JPXDecode') {
           if (i != filters.length - 1) {
             return PdfFilterResult.unsupported(name);
@@ -59,47 +83,115 @@ abstract final class PdfFilters {
             globals: _jbig2Globals(parm, resolved),
           );
         } else {
-          data = _one(data, name, parm);
+          data = _one(data, name, parm, dict, limit);
         }
       } on PdfFilterUnsupported catch (error) {
         return PdfFilterResult.unsupported(error.filter);
+      } on ZipDeflateLimitException {
+        return PdfFilterResult.unsupported(name, limitExceeded: true);
+      } on PdfOpenException catch (error) {
+        if (error.error != PdfOpenError.limit) rethrow;
+        return PdfFilterResult.unsupported(name, limitExceeded: true);
+      } on _OutputLimit {
+        return PdfFilterResult.unsupported(name, limitExceeded: true);
       } on ZipDeflateException {
         return PdfFilterResult.unsupported(name);
       } on FormatException {
         return PdfFilterResult.unsupported(name);
       }
     }
+    if (data.length > limit) {
+      return const PdfFilterResult.unsupported(
+        'StreamTooLarge',
+        limitExceeded: true,
+      );
+    }
     return PdfFilterResult.ok(data);
   }
 
-  static Uint8List _one(Uint8List data, String name, PdfCosDict parm) {
+  /// Decode one inline-image Flate stream and the filters following it.
+  static ({PdfFilterResult result, int consumed})? decodeInlineFlatePrefix(
+    Uint8List data,
+    PdfCosDict dict, {
+    required int maxOutputBytes,
+    required PdfCos? Function(PdfCos?) resolve,
+  }) {
+    final ({Uint8List bytes, int consumed}) prefix;
+    try {
+      prefix = PdfFlate.decompressZlibPrefix(
+        data,
+        maxOutputBytes: maxOutputBytes,
+      );
+    } on ZipDeflateException {
+      return null;
+    } on PdfOpenException catch (error) {
+      if (error.error != PdfOpenError.limit) rethrow;
+      return null;
+    } on FormatException {
+      return null;
+    }
+    final filters = _filterNames(resolve(dict['Filter']), resolve);
+    final parms = _decodeParms(
+      resolve(dict['DecodeParms']), filters.length, resolve,
+    );
+    try {
+      final samples = _pngPredict(prefix.bytes, parms.firstOrNull ?? PdfCosDict());
+      if (filters.length <= 1) {
+        return (result: PdfFilterResult.ok(samples), consumed: prefix.consumed);
+      }
+      final rest = PdfCosDict({...dict.values})
+        ..['Filter'] = PdfCosArray([
+          for (final name in filters.skip(1)) PdfCosName(name),
+        ])
+        ..['DecodeParms'] = PdfCosArray(parms.skip(1).toList());
+      return (
+        result: decodeResult(samples, rest, resolve: resolve, decodeDct: true),
+        consumed: prefix.consumed,
+      );
+    } on FormatException {
+      return (
+        result: const PdfFilterResult.unsupported('FlateDecode'),
+        consumed: prefix.consumed,
+      );
+    }
+  }
+
+  static Uint8List _one(
+    Uint8List data,
+    String name,
+    PdfCosDict parm,
+    PdfCosDict dict,
+    int limit,
+  ) {
     switch (name) {
       case 'FlateDecode':
       case 'Fl':
         return _pngPredict(
-          PdfFlate.decompress(data, maxOutputBytes: PdfFlate.maxDecodedBytes),
+          PdfFlate.decompress(data, maxOutputBytes: limit),
           parm,
         );
       case 'ASCIIHexDecode':
       case 'AHx':
-        return _asciiHex(data);
+        return _asciiHex(data, limit);
       case 'ASCII85Decode':
       case 'A85':
-        return _ascii85(data);
+        return _ascii85(data, limit);
       case 'RunLengthDecode':
       case 'RL':
-        return _runLength(data);
+        return _runLength(data, limit);
       case 'LZWDecode':
       case 'LZW':
-        return _pngPredict(_lzw(data, parm), parm);
-      case 'DCTDecode':
-      case 'DCT':
-        return data;
+        return _pngPredict(_lzw(data, parm, limit), parm);
       case 'Crypt':
         return data;
       case 'CCITTFaxDecode':
       case 'CCF':
-        return PdfCcitt.decode(data, parm);
+        return PdfCcitt.decode(
+          data,
+          parm,
+          imageWidth: pdfCosInt(dict['Width']),
+          imageHeight: pdfCosInt(dict['Height']),
+        );
       default:
         throw PdfFilterUnsupported(name);
     }
@@ -188,25 +280,29 @@ abstract final class PdfFilters {
     return bytes;
   }
 
-  static Uint8List _asciiHex(Uint8List data) {
-    final List<int> nibbles = <int>[];
+  static Uint8List _asciiHex(Uint8List data, int limit) {
+    final out = BytesBuilder();
+    int? high;
     for (final int b in data) {
       if (b == 0x3E) {
         break;
       }
       final int v = _hex(b);
       if (v >= 0) {
-        nibbles.add(v);
+        if (high == null) {
+          high = v;
+        } else {
+          _checkOutput(out, 1, limit);
+          out.addByte((high << 4) | v);
+          high = null;
+        }
       }
     }
-    if (nibbles.length.isOdd) {
-      nibbles.add(0);
+    if (high != null) {
+      _checkOutput(out, 1, limit);
+      out.addByte(high << 4);
     }
-    final Uint8List out = Uint8List(nibbles.length ~/ 2);
-    for (int i = 0; i < out.length; i++) {
-      out[i] = (nibbles[i * 2] << 4) | nibbles[i * 2 + 1];
-    }
-    return out;
+    return out.takeBytes();
   }
 
   static int _hex(int b) {
@@ -222,8 +318,8 @@ abstract final class PdfFilters {
     return -1;
   }
 
-  static Uint8List _ascii85(Uint8List data) {
-    final BytesBuilder out = BytesBuilder(copy: false);
+  static Uint8List _ascii85(Uint8List data, int limit) {
+    final BytesBuilder out = BytesBuilder();
     var acc = 0;
     var n = 0;
     for (int i = 0; i < data.length; i++) {
@@ -232,6 +328,7 @@ abstract final class PdfFilters {
         break;
       }
       if (b == 0x7A && n == 0) {
+        _checkOutput(out, 4, limit);
         out.add(Uint8List(4));
         continue;
       }
@@ -244,6 +341,7 @@ abstract final class PdfFilters {
       acc = acc * 85 + (b - 0x21);
       n++;
       if (n == 5) {
+        _checkOutput(out, 4, limit);
         out.addByte((acc >> 24) & 0xFF);
         out.addByte((acc >> 16) & 0xFF);
         out.addByte((acc >> 8) & 0xFF);
@@ -253,6 +351,7 @@ abstract final class PdfFilters {
       }
     }
     if (n > 0) {
+      _checkOutput(out, n - 1, limit);
       for (int i = n; i < 5; i++) {
         acc = acc * 85 + 84;
       }
@@ -266,8 +365,8 @@ abstract final class PdfFilters {
     return out.takeBytes();
   }
 
-  static Uint8List _runLength(Uint8List data) {
-    final BytesBuilder out = BytesBuilder(copy: false);
+  static Uint8List _runLength(Uint8List data, int limit) {
+    final BytesBuilder out = BytesBuilder();
     var i = 0;
     while (i < data.length) {
       final int len = data[i++];
@@ -279,7 +378,8 @@ abstract final class PdfFilters {
         if (i + n > data.length) {
           break;
         }
-        out.add(data.sublist(i, i + n));
+        _checkOutput(out, n, limit);
+        out.add(Uint8List.sublistView(data, i, i + n));
         i += n;
       } else {
         if (i >= data.length) {
@@ -287,16 +387,23 @@ abstract final class PdfFilters {
         }
         final int b = data[i++];
         final int n = 257 - len;
+        _checkOutput(out, n, limit);
         out.add(Uint8List(n)..fillRange(0, n, b));
       }
     }
     return out.takeBytes();
   }
 
-  static Uint8List _lzw(Uint8List data, PdfCosDict parm) {
+  static Uint8List _lzw(Uint8List data, PdfCosDict parm, int limit) {
     final int early = pdfCosInt(parm['EarlyChange']) ?? 1;
     final _Lzw decoder = _Lzw(earlyChange: early != 0);
-    return decoder.decode(data);
+    return decoder.decode(data, limit);
+  }
+
+  static void _checkOutput(BytesBuilder out, int additional, int limit) {
+    if (additional > limit - out.length) {
+      throw const _OutputLimit();
+    }
   }
 
   static Uint8List _pngPredict(Uint8List data, PdfCosDict parm) {
@@ -430,27 +537,50 @@ abstract final class PdfFilters {
 /// Decoded stream or a named unsupported filter.
 class PdfFilterResult {
   /// ok API.
-  const PdfFilterResult.ok(this.bytes) : unsupported = null, jpxImage = null;
+  const PdfFilterResult.ok(this.bytes)
+    : unsupported = null, jpxImage = null, dctImage = null, jpegEncoded = false,
+      limitExceeded = false;
+
+  /// Original JPEG codestream for legacy byte consumers and host fallback.
+  const PdfFilterResult.encodedJpeg(this.bytes)
+    : unsupported = null, jpxImage = null, dctImage = null, jpegEncoded = true,
+      limitExceeded = false;
+
+  /// Engine-decoded JPEG with normalized RGB samples.
+  PdfFilterResult.dct(PdfDctImage image)
+    : bytes = image.pixels, unsupported = null, jpxImage = null,
+      dctImage = image, jpegEncoded = false, limitExceeded = false;
 
   /// A decoded JPEG 2000 image; bytes are normalized RGB/RGBA samples.
   PdfFilterResult.jpx(PdfJpxImage image)
-    : bytes = image.pixels,
-      unsupported = null,
-      jpxImage = image;
+    : bytes = image.pixels, unsupported = null, jpxImage = image,
+      dctImage = null, jpegEncoded = false, limitExceeded = false;
 
   /// unsupported API.
-  const PdfFilterResult.unsupported(this.unsupported)
-    : bytes = null,
-      jpxImage = null;
+  const PdfFilterResult.unsupported(this.unsupported, {this.limitExceeded = false})
+    : bytes = null, jpxImage = null, dctImage = null, jpegEncoded = false;
 
   /// Image layout for JPX, independent of PDF dictionary color defaults.
   final PdfJpxImage? jpxImage;
+
+  /// Normalized JPEG layout when image decoding is requested.
+  final PdfDctImage? dctImage;
+
+  /// Whether bytes still contain a JPEG codestream.
+  final bool jpegEncoded;
 
   /// bytes API.
   final Uint8List? bytes;
 
   /// unsupported API.
   final String? unsupported;
+
+  /// Whether decoding would exceed the stream's byte budget.
+  final bool limitExceeded;
+}
+
+class _OutputLimit implements Exception {
+  const _OutputLimit();
 }
 
 class _Lzw {
@@ -460,8 +590,8 @@ class _Lzw {
   static const int _clear = 256;
   static const int _eod = 257;
 
-  Uint8List decode(Uint8List data) {
-    final BytesBuilder out = BytesBuilder(copy: false);
+  Uint8List decode(Uint8List data, int limit) {
+    final BytesBuilder out = BytesBuilder();
     var bits = 9;
     var next = 258;
     final List<List<int>> table = <List<int>>[
@@ -493,6 +623,7 @@ class _Lzw {
       } else {
         break;
       }
+      PdfFilters._checkOutput(out, entry.length, limit);
       out.add(entry);
       if (prev != null && next < 4096) {
         table.add(<int>[...prev, entry.first]);

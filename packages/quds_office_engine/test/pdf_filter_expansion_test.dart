@@ -43,7 +43,343 @@ PdfCosDict _predictor(int columns, int colors, int bits, {int predictor = 2}) =>
       }),
     });
 
+// Independent synthetic JPEGs from Pillow/libjpeg, quality 95, 4:4:4.
+const _grayJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/wAALCAAIAAgBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AP9//2Q==';
+const _rgbJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wAARCAAIAAgDAREAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAAB//EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAVAQEBAAAAAAAAAAAAAAAAAAAFCf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AA8Wqw//2Q==';
+const _progressiveJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wgARCAAIAAgDAREAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAABP/EABUBAQEAAAAAAAAAAAAAAAAAAAYI/9oADAMBAAIQAxAAAAEZubf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAEFAn//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AX//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AX//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAY/An//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/IX//2gAMAwEAAgADAAAAEB//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/EH//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/EH//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/EH//2Q==';
+const _rawRgbJpeg =
+    '/9j/7gAOQWRvYmUAZAAAAAAA/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK/8AAEQgACAAIA1IRAEcRAEIRAP/EABUAAQEAAAAAAAAAAAAAAAAAAAkI/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAwDUgBHAEIAAD8AXAT6Z3//2Q==';
+const _orientedJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/wAALCAAIABABAREA/8QAFQABAQAAAAAAAAAAAAAAAAAACQr/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAA/AB/WAP/Z';
+const _cmykJpeg =
+    '/9j/7gAOQWRvYmUAZAAAAAAA/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK/8AAFAgACAAIBEMRAE0RAFkRAEsRAP/EABUAAQEAAAAAAAAAAAAAAAAAAAkI/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAA4EQwBNAFkASwAAPwBhCGKUNY//2Q==';
+// Pillow 13.0.0/libjpeg-turbo 3.2.0, quality 95, 4:4:4. Encode inverted
+// (Y, Cb, Cr, K) tuples (102,173,88,208) and (198,55,199,70) in 8x8 blocks,
+// then set the Adobe transform byte to 2. The same independent decoder
+// reports CMYK inks (46,115,182,47) and (255,172,69,185).
+const _ycckJpeg =
+    '/9j/7gAOQWRvYmUAZAAAAAAC/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK'
+    '/8AAFAgACAAQBEMRAE0RAFkRAEsRAP/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBh'
+    'NRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SV'
+    'lpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/aAA4EQwBNAFkASwAAPwDxevrSvl+v1Ar9gK'
+    '/Cev28r+dev//Z';
+
+final _invertCmyk = PdfCosArray([
+  for (var channel = 0; channel < 4; channel++) ...[
+    const PdfCosInt(1),
+    const PdfCosInt(0),
+  ],
+]);
+
+PdfCosDict _dct(String cs, {int width = 8, int height = 8}) =>
+    PdfCosDict(<String, PdfCos>{
+      'Filter': const PdfCosName('DCTDecode'),
+      'Width': PdfCosInt(width),
+      'Height': PdfCosInt(height),
+      'BitsPerComponent': const PdfCosInt(8),
+      'ColorSpace': PdfCosName(cs),
+    });
+
+void _expectSolid(Uint8List? pixels, List<int> rgb) {
+  expect(pixels, isNotNull);
+  final samples = pixels!;
+  expect(samples.length, 8 * 8 * 3);
+  for (var i = 0; i < samples.length; i++) {
+    expect(samples[i], closeTo(rgb[i % 3], 3));
+  }
+}
+
 void main() {
+  test('inline image framing preserves delimiter-like binary payload bytes', () {
+    const samples = [32, 69, 73, 32, 128, 37];
+    for (final (filter, payload) in [
+      ('', samples),
+      ('/F /RL', [5, ...samples, 128]),
+      ('/F [/AHx /RL]', ascii.encode('0520454920802580>')),
+      // Python zlib level 0 keeps the literal " EI " inside the stored block.
+      ('/F /Fl', base64Decode('eAEBBgD5/yBFSSCAJQTIAXQ=')),
+      ('/F [/Fl /RL]', base64Decode('eJxjVXD1VGhQbQAABuUB+Q==')),
+    ]) {
+      final list = _inlineDisplayList(
+        '/W 2 /H 1 /CS /RGB /BPC 8 $filter',
+        payload,
+      );
+      expect(list.issues, isEmpty, reason: filter);
+      expect(list.ops.whereType<PdfDrawImage>().single.bytes, samples);
+      expect(list.ops.whereType<PdfFillPath>(), hasLength(2));
+    }
+  });
+
+  test('inline Flate applies PNG predictor and verifies its zlib checksum', () {
+    final encoded = base64Decode('eJxj5JGQ42HjAgABgABg');
+    const parms = '/W 2 /H 1 /CS /RGB /F /Fl '
+        '/DP << /Predictor 15 /Colors 3 /Columns 2 /BitsPerComponent 8 >>';
+    final list = _inlineDisplayList(parms, encoded);
+    expect(list.issues, isEmpty);
+    expect(list.ops.whereType<PdfDrawImage>().single.bytes,
+        [12, 24, 30, 24, 30, 40]);
+
+    encoded[encoded.length - 1] ^= 1;
+    final corrupt = _inlineDisplayList(parms, encoded);
+    expect(corrupt.issues, {PdfPageRenderIssue.inlineImage});
+    expect(corrupt.ops.whereType<PdfDrawImage>(), isEmpty);
+    expect(corrupt.ops.whereType<PdfFillPath>(), hasLength(1));
+  });
+
+  test('ASCII85 inline images reuse the device gray raster path', () {
+    final list = _inlineDisplayList('/W 4 /H 1 /CS /G /F /A85', [
+      ...ascii.encode('z~>'),
+    ]);
+    expect(list.issues, isEmpty);
+    final image = list.ops.whereType<PdfDrawImage>().single;
+    expect(image.pixelWidth, 4);
+    expect(image.bytes, List<int>.filled(12, 0));
+  });
+
+  test('one-pixel inline rows keep their packed sample depth', () {
+    final list = _inlineDisplayList('/W 1 /H 2 /CS /G /BPC 1', [0x80, 0]);
+    expect(list.issues, isEmpty);
+    expect(list.ops.whereType<PdfDrawImage>().single.bytes,
+        [255, 255, 255, 0, 0, 0]);
+    final packed = _inlineDisplayList('/W 4 /H 1 /CS /G /BPC 2', [0x1B]);
+    expect(packed.issues, isEmpty);
+    expect(packed.ops.whereType<PdfDrawImage>().single.bytes,
+        [0, 0, 0, 85, 85, 85, 170, 170, 170, 255, 255, 255]);
+  });
+
+  test('unreadable inline images preserve already painted content', () {
+    final list = _inlineDisplayList(
+      '/W 4 /H 1 /CS /G /F /RL',
+      [127, 0],
+    );
+    expect(list.issues, {PdfPageRenderIssue.inlineImage});
+    expect(list.ops.whereType<PdfDrawImage>(), isEmpty);
+    expect(list.ops.whereType<PdfFillPath>(), hasLength(1));
+    expect(list.ops.whereType<PdfRestoreGState>(), hasLength(1));
+  });
+
+  test('PDF filters distinguish stream limits from invalid filters', () {
+    final dict = PdfCosDict({'Filter': const PdfCosName('RunLengthDecode')});
+    final encoded = Uint8List.fromList([253, 65, 128]);
+    expect(PdfFilters.decodeResult(encoded, dict, maxOutputBytes: 4).bytes,
+        [65, 65, 65, 65]);
+    final limited = PdfFilters.decodeResult(encoded, dict, maxOutputBytes: 3);
+    expect(limited.bytes, isNull);
+    expect(limited.unsupported, 'RunLengthDecode');
+    expect(limited.limitExceeded, isTrue);
+
+    dict['Filter'] = const PdfCosName('NoSuchFilter');
+    expect(PdfFilters.decodeResult(encoded, dict).limitExceeded, isFalse);
+  });
+
+  test('engine DCT baseline gray/RGB and progressive independent pixels', () {
+    for (final (encoded, cs, expected) in [
+      (_grayJpeg, 'DeviceGray', [64, 64, 64]),
+      (_rgbJpeg, 'DeviceRGB', [221, 40, 91]),
+      (_progressiveJpeg, 'DeviceRGB', [20, 180, 90]),
+    ]) {
+      final result = PdfFilters.decodeResult(
+        base64Decode(encoded), _dct(cs), decodeDct: true,
+      );
+      expect(result.unsupported, isNull);
+      expect(result.jpegEncoded, isFalse);
+      expect(result.dctImage?.isGray, cs == 'DeviceGray');
+      _expectSolid(result.bytes, expected);
+    }
+  });
+
+  test('DCT ColorTransform zero, Adobe override and PDF Decode array', () {
+    final original = base64Decode(_rawRgbJpeg);
+    final withoutAdobe = Uint8List.fromList([
+      ...original.sublist(0, 2), ...original.sublist(18),
+    ]);
+    final dict = _dct('DeviceRGB')
+      ..['DecodeParms'] = PdfCosDict({'ColorTransform': const PdfCosInt(0)})
+      ..['Decode'] = PdfCosArray([
+        const PdfCosInt(1), const PdfCosInt(0),
+        const PdfCosInt(0), const PdfCosInt(1),
+        const PdfCosInt(0), const PdfCosReal(0.5),
+      ]);
+    _expectSolid(PdfFilters.decodeResult(
+      withoutAdobe, dict, decodeDct: true,
+    ).bytes, [35, 40, 45]);
+    dict['DecodeParms'] = PdfCosDict({'ColorTransform': const PdfCosInt(1)});
+    _expectSolid(PdfFilters.decodeResult(
+      original, dict, decodeDct: true,
+    ).bytes, [35, 40, 45]);
+  });
+
+  test('DCT ignores standalone EXIF orientation', () {
+    final result = PdfFilters.decodeResult(
+      base64Decode(_orientedJpeg),
+      _dct('DeviceGray', width: 16, height: 8),
+      decodeDct: true,
+    );
+    expect(result.unsupported, isNull);
+    final pixels = result.bytes!;
+    expect(pixels.length, 16 * 8 * 3);
+    for (var y = 0; y < 8; y++) {
+      for (var x = 0; x < 16; x++) {
+        expect(pixels[(y * 16 + x) * 3], closeTo(x < 8 ? 32 : 224, 3));
+      }
+    }
+  });
+
+  test('DCT XObject, filter chain, indirect parms and JPEG soft mask', () {
+    final pdf = PdfFile.open(_imagePdf(
+      _hex(base64Decode(_rgbJpeg)),
+      '/Width 8 /Height 8 /ColorSpace /DeviceRGB /BitsPerComponent 8 '
+      '/Filter [/ASCIIHexDecode /DCT] /DecodeParms [null 6 0 R] /SMask 7 0 R',
+      extras: [
+        ascii.encode('<< /ColorTransform 1 >>'),
+        _stream(base64Decode(_grayJpeg),
+          '/Type /XObject /Subtype /Image /Width 8 /Height 8 '
+          '/ColorSpace /DeviceGray /BitsPerComponent 8 /Filter /DCTDecode '
+          '/Decode [1 0]'),
+      ],
+    ));
+    final op = pdf.displayList(0).ops.whereType<PdfDrawImage>().single;
+    expect(op.placeholder, isFalse);
+    expect(op.jpeg, isFalse);
+    expect(op.hasAlpha, isTrue);
+    expect(op.softMaskJpeg, isNull);
+    expect(op.bytes.length, 8 * 8 * 4);
+    for (var i = 0; i < op.bytes.length; i += 4) {
+      expect(op.bytes[i], closeTo(221, 3));
+      expect(op.bytes[i + 1], closeTo(40, 3));
+      expect(op.bytes[i + 2], closeTo(91, 3));
+      expect(op.bytes[i + 3], closeTo(191, 3));
+    }
+  });
+
+  test('malformed, oversized and mismatched JPEGs are typed unsupported', () {
+    final valid = base64Decode(_grayJpeg);
+    final huge = Uint8List.fromList(valid);
+    for (var i = 0; i < huge.length - 8; i++) {
+      if (huge[i] == 0xff && huge[i + 1] == 0xc0) {
+        huge[i + 5] = huge[i + 6] = 0xff;
+        break;
+      }
+    }
+    for (final bytes in [
+      Uint8List.fromList([0xff, 0xd8, 0xff, 0xd9]),
+      valid.sublist(0, valid.length - 2),
+      huge,
+    ]) {
+      expect(PdfFilters.decodeResult(bytes, _dct('DeviceGray'),
+        decodeDct: true).unsupported, 'DCTDecode');
+    }
+    expect(PdfFilters.decodeResult(valid, _dct('DeviceGray', width: 7),
+      decodeDct: true).unsupported, 'DCTDecode');
+    expect(PdfFilters.decodeResult(valid, _dct('DeviceRGB'),
+      decodeDct: true).unsupported, 'DCTDecode');
+    final pdf = PdfFile.open(_imagePdf(valid.sublist(0, valid.length - 2),
+      '/Width 8 /Height 8 /ColorSpace /DeviceGray /Filter /DCTDecode'));
+    expect(pdf.displayList(0).ops.whereType<PdfDrawImage>().single.placeholder,
+      isTrue);
+  });
+
+  test('DCT CMYK applies PDF Decode to the original four samples', () {
+    // libjpeg decodes this Adobe CMYK fixture to inks (30, 60, 90, 20).
+    // The actual codestream samples are (225, 195, 165, 235).
+    final raw = base64Decode(_cmykJpeg);
+    final dict = _dct('DeviceCMYK');
+    final markerless = Uint8List.fromList([
+      ...raw.sublist(0, 2),
+      ...raw.sublist(18),
+    ]);
+    for (final input in [raw, markerless]) {
+      final identity = PdfFilters.decodeResult(input, dict, decodeDct: true);
+      expect(identity.unsupported, isNull);
+      _expectSolid(identity.bytes, [2, 5, 7]);
+    }
+
+    dict['Decode'] = _invertCmyk;
+    dict['DecodeParms'] =
+        PdfCosDict({'ColorTransform': const PdfCosInt(1)});
+    final inverted = PdfFilters.decodeResult(raw, dict, decodeDct: true);
+    expect(inverted.unsupported, isNull);
+    expect(inverted.jpegEncoded, isFalse);
+    expect(inverted.dctImage?.isGray, isFalse);
+    _expectSolid(inverted.bytes, [207, 180, 152]);
+
+    final invalidAdobe = Uint8List.fromList(raw)..[17] = 1;
+    final unsupported = PdfFilters.decodeResult(invalidAdobe, dict,
+        decodeDct: true);
+    expect(unsupported.unsupported, 'DCTDecode');
+  });
+
+  test('DCT YCCK reconstructs CMYK before applying PDF Decode', () {
+    final adobe = base64Decode(_ycckJpeg);
+    final markerless = Uint8List.fromList([
+      ...adobe.sublist(0, 2),
+      ...adobe.sublist(18),
+    ]);
+    for (final (raw, transform) in [(adobe, 0), (markerless, 1)]) {
+      final dict = _dct('DeviceCMYK', width: 16)
+        ..['Decode'] = _invertCmyk
+        ..['DecodeParms'] = PdfCosDict({'ColorTransform': PdfCosInt(transform)});
+      final result = PdfFilters.decodeResult(raw, dict, decodeDct: true);
+      expect(result.unsupported, isNull);
+      expect(result.jpegEncoded, isFalse);
+      final pixels = result.bytes!;
+      expect(pixels.length, 16 * 8 * 3);
+      for (var y = 0; y < 8; y++) {
+        for (var x = 0; x < 16; x++) {
+          final expected = x < 8 ? [170, 114, 60] : [0, 23, 51];
+          final offset = (y * 16 + x) * 3;
+          for (var i = 0; i < 3; i++) {
+            expect(pixels[offset + i], closeTo(expected[i], 2));
+          }
+        }
+      }
+    }
+  });
+
+  test('DCT CMYK XObject composes a JPEG soft mask in the display list', () {
+    final pdf = PdfFile.open(_imagePdf(
+      base64Decode(_cmykJpeg),
+      '/Width 8 /Height 8 /ColorSpace /DeviceCMYK /Filter /DCTDecode '
+      '/Decode [1 0 1 0 1 0 1 0] /SMask 6 0 R',
+      extras: [
+        _stream(base64Decode(_grayJpeg),
+            '/Type /XObject /Subtype /Image /Width 8 /Height 8 '
+            '/ColorSpace /DeviceGray /BitsPerComponent 8 /Filter /DCTDecode'),
+      ],
+    ));
+    final op = pdf.displayList(0).ops.whereType<PdfDrawImage>().single;
+    expect(op.placeholder, isFalse);
+    expect(op.jpeg, isFalse);
+    expect(op.hasAlpha, isTrue);
+    expect(op.bytes.length, 8 * 8 * 4);
+    const rgba = [207, 180, 152, 64];
+    for (var i = 0; i < op.bytes.length; i++) {
+      expect(op.bytes[i], closeTo(rgba[i % 4], 3));
+    }
+  });
+
+  test('four-component JPEG retains the encoded API and ICC host path', () {
+    final raw = base64Decode(_cmykJpeg);
+    final icc = _dct('DeviceCMYK')
+      ..['ColorSpace'] = PdfCosArray([
+        const PdfCosName('ICCBased'),
+        const PdfCosRef(6, 0),
+      ]);
+    for (final result in [
+      PdfFilters.decodeResult(raw, _dct('DeviceCMYK')),
+      PdfFilters.decodeResult(raw, icc, decodeDct: true),
+    ]) {
+      expect(result.unsupported, isNull);
+      expect(result.jpegEncoded, isTrue);
+      expect(result.bytes, raw);
+      expect(result.dctImage, isNull);
+    }
+  });
+
+
   test('JP2 and raw J2K reconstruct independent RGB reference', () {
     for (final fixture in [_rgbJp2, _rgbJ2k]) {
       final decoded = PdfFilters.decodeResult(
@@ -192,6 +528,19 @@ void main() {
     expect(result.bytes, raw);
     expect(result.jpxImage, isNull);
   });
+}
+
+PdfDisplayList _inlineDisplayList(String parameters, List<int> payload) {
+  final file = PdfFile.open(_imagePdf(Uint8List(0), '/Width 1 /Height 1'));
+  file.pageDict(0)['Contents'] = PdfCosStream(
+    PdfCosDict(),
+    Uint8List.fromList([
+      ...ascii.encode('0 0 5 5 re f q 10 0 0 10 0 0 cm BI $parameters ID '),
+      ...payload,
+      ...ascii.encode('\nEI Q 0 0 3 3 re f'),
+    ]),
+  );
+  return file.displayList(0);
 }
 
 Uint8List _stream(Uint8List data, String entries) => Uint8List.fromList([

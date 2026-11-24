@@ -225,6 +225,27 @@ int _categoryPriority(OfficeProofingCategory category) => switch (category) {
   OfficeProofingCategory.style => 2,
 };
 
+// One ordered provider list needs no sorting or cross-provider merge when
+// each finding has a distinct start. Equal starts still need range and
+// category ordering, including zero-width punctuation suggestions.
+List<OfficeProofingFinding>? _orderedFindingsFromOneResult(
+  List<OfficeProofingResult> results,
+) {
+  List<OfficeProofingFinding>? findings;
+  for (final result in results) {
+    if (result.status != OfficeProofingStatus.success) continue;
+    final reported = result.findings;
+    if (reported.isEmpty) continue;
+    if (findings != null) return null;
+    findings = reported;
+  }
+  if (findings == null) return const [];
+  for (var index = 1; index < findings.length; index++) {
+    if (findings[index - 1].start >= findings[index].start) return null;
+  }
+  return findings;
+}
+
 /// Successful findings in source order. Findings of different providers with
 /// the same category for the identical range and text that agree on at least
 /// one replacement are one review item: the first in provider order in
@@ -236,16 +257,44 @@ int _categoryPriority(OfficeProofingCategory category) => switch (category) {
 List<OfficeProofingFinding> _mergeAgreeingFindings(
   List<OfficeProofingResult> results,
 ) {
-  final order = <OfficeProofingFinding, int>{};
+  final ordered = _orderedFindingsFromOneResult(results);
+  if (ordered != null) return ordered;
+
+  final providerOrder = <String, int>{};
   final all = <OfficeProofingFinding>[];
+  Map<OfficeProofingFinding, int>? findingOrder;
   for (var index = 0; index < results.length; index++) {
     final result = results[index];
     if (result.status != OfficeProofingStatus.success) continue;
-    for (final finding in result.findings) {
-      order[finding] = index;
-      all.add(finding);
+    final findings = result.findings;
+    if (findings.isEmpty) continue;
+    if (findingOrder == null) {
+      final provider = result.providerId;
+      // Direct report callers can repeat providers or supply custom findings.
+      // Use the earlier provider indices to recover their per-finding order.
+      if (providerOrder.containsKey(provider) ||
+          findings.any(
+            (finding) =>
+                finding.runtimeType != OfficeProofingFinding ||
+                finding.providerId != provider,
+          )) {
+        findingOrder = {
+          for (final finding in all)
+            finding: providerOrder[finding.providerId]!,
+        };
+      } else {
+        providerOrder[provider] = index;
+      }
     }
+    if (findingOrder != null) {
+      for (final finding in findings) {
+        findingOrder[finding] = index;
+      }
+    }
+    all.addAll(findings);
   }
+
+  final orderByFinding = findingOrder;
   int compare(OfficeProofingFinding a, OfficeProofingFinding b) {
     final int byStart = a.start.compareTo(b.start);
     if (byStart != 0) return byStart;
@@ -255,54 +304,61 @@ List<OfficeProofingFinding> _mergeAgreeingFindings(
       a.category,
     ).compareTo(_categoryPriority(b.category));
     if (byCategory != 0) return byCategory;
-    return order[a]!.compareTo(order[b]!);
+    return orderByFinding == null
+        ? providerOrder[a.providerId]!.compareTo(providerOrder[b.providerId]!)
+        : orderByFinding[a]!.compareTo(orderByFinding[b]!);
   }
 
   all.sort(compare);
-  final merged = <OfficeProofingFinding>[];
-  final absorbed = <OfficeProofingFinding>{};
+  // Compact the sorted scratch list. Only actual merges need bookkeeping.
+  var writeAt = 0;
+  Set<OfficeProofingFinding>? absorbed;
   for (var i = 0; i < all.length; i++) {
     final kept = all[i];
-    if (absorbed.contains(kept)) continue;
+    if (absorbed?.contains(kept) ?? false) continue;
     var replacements = kept.replacements;
-    final providers = {kept.providerId};
+    if (replacements.isEmpty) {
+      all[writeAt++] = kept;
+      continue;
+    }
+    Set<String>? providers;
     for (var j = i + 1; j < all.length; j++) {
       final other = all[j];
       if (other.start != kept.start || other.end != kept.end) break;
-      if (absorbed.contains(other) ||
-          providers.contains(other.providerId) ||
+      if ((absorbed?.contains(other) ?? false) ||
+          other.providerId == kept.providerId ||
+          (providers?.contains(other.providerId) ?? false) ||
           other.category != kept.category ||
           other.originalText != kept.originalText ||
           !other.replacements.any(replacements.contains)) {
         continue;
       }
-      absorbed.add(other);
-      providers.add(other.providerId);
+      (absorbed ??= {}).add(other);
+      (providers ??= {}).add(other.providerId);
       replacements = [
         ...replacements,
         for (final value in other.replacements)
           if (!replacements.contains(value)) value,
       ];
     }
-    merged.add(
-      identical(replacements, kept.replacements)
-          ? kept
-          : OfficeProofingFinding(
-              documentId: kept.documentId,
-              blockId: kept.blockId,
-              revision: kept.revision,
-              providerId: kept.providerId,
-              start: kept.start,
-              end: kept.end,
-              originalText: kept.originalText,
-              ruleId: kept.ruleId,
-              message: kept.message,
-              category: kept.category,
-              replacements: replacements,
-            ),
-    );
+    all[writeAt++] = identical(replacements, kept.replacements)
+        ? kept
+        : OfficeProofingFinding(
+            documentId: kept.documentId,
+            blockId: kept.blockId,
+            revision: kept.revision,
+            providerId: kept.providerId,
+            start: kept.start,
+            end: kept.end,
+            originalText: kept.originalText,
+            ruleId: kept.ruleId,
+            message: kept.message,
+            category: kept.category,
+            replacements: replacements,
+          );
   }
-  return merged;
+  all.length = writeAt;
+  return all;
 }
 
 /// Checked provider results for a single immutable input snapshot.
@@ -371,23 +427,30 @@ OfficeProofingReport mergeOfficeProofingReports({
       throw ArgumentError('An incomplete provider result contains findings.');
     }
   }
-  final List<OfficeProofingFinding> accepted = <OfficeProofingFinding>[
-    ...primary.findings,
-  ];
+  final secondaryCount = secondary.results.fold<int>(
+    0,
+    (count, result) => count + result.findings.length,
+  );
+  // Few proposals are cheaper to check directly than to build an index for.
+  final conflicts =
+      secondaryCount >= 8 && primary.findings.length + secondaryCount >= 64
+      ? _ProofingConflictIndex(primary.findings, secondary.results)
+      : null;
+  final accepted = conflicts == null ? [...primary.findings] : null;
   final List<OfficeProofingResult> results = <OfficeProofingResult>[
     ...primary.results,
   ];
   for (final OfficeProofingResult result in secondary.results) {
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
     for (final OfficeProofingFinding finding in result.findings) {
-      if (accepted.any(
-        (OfficeProofingFinding previous) =>
-            _proofingFindingsConflict(previous, finding),
-      )) {
-        continue;
-      }
+      final allowed =
+          conflicts?.accept(finding) ??
+          !accepted!.any(
+            (previous) => _proofingFindingsConflict(previous, finding),
+          );
+      if (!allowed) continue;
       findings.add(finding);
-      accepted.add(finding);
+      accepted?.add(finding);
     }
     results.add(
       OfficeProofingResult(
@@ -409,6 +472,71 @@ bool _proofingFindingsConflict(
   if (a.start == a.end) return a.start >= b.start && a.start <= b.end;
   if (b.start == b.end) return b.start >= a.start && b.start <= a.end;
   return a.start < b.end && b.start < a.end;
+}
+
+/// Indexes accepted ranges in provider order, with a prefix maximum of end
+/// positions. Both conflict checks and insertions take logarithmic time.
+final class _ProofingConflictIndex {
+  factory _ProofingConflictIndex(
+    List<OfficeProofingFinding> primary,
+    List<OfficeProofingResult> secondary,
+  ) {
+    final endpoints = <int>{};
+    void collect(List<OfficeProofingFinding> findings) {
+      for (final finding in findings) {
+        endpoints
+          ..add(finding.start)
+          ..add(finding.end);
+      }
+    }
+
+    collect(primary);
+    for (final result in secondary) {
+      collect(result.findings);
+    }
+    final offsets = endpoints.toList()..sort();
+    final index = _ProofingConflictIndex._({
+      for (var i = 0; i < offsets.length; i++) offsets[i]: 3 * i + 1,
+    }, List<int>.filled(3 * offsets.length + 1, 0));
+    for (final finding in primary) {
+      final (start, end) = index._span(finding);
+      index._add(start, end);
+    }
+    return index;
+  }
+
+  _ProofingConflictIndex._(this._positions, this._maxEnd);
+
+  final Map<int, int> _positions;
+  final List<int> _maxEnd;
+
+  // Give each endpoint three positions. An insertion occupies all three;
+  // a nonempty range includes only the inward position at each endpoint.
+  // Touching ranges remain disjoint, but a shared endpoint can still conflict
+  // with an insertion. Compressing offsets keeps memory proportional to findings.
+  (int, int) _span(OfficeProofingFinding finding) {
+    final start = _positions[finding.start]!;
+    final end = _positions[finding.end]!;
+    return start == end ? (start, end + 2) : (start + 2, end);
+  }
+
+  bool accept(OfficeProofingFinding finding) {
+    final (start, end) = _span(finding);
+    // Fenwick tree prefix query: among accepted spans that start at or
+    // before this end, any span ending at or after this start conflicts.
+    for (var i = end; i > 0; i -= i & -i) {
+      if (_maxEnd[i] >= start) return false;
+    }
+    _add(start, end);
+    return true;
+  }
+
+  void _add(int start, int end) {
+    for (var i = start; i < _maxEnd.length; i += i & -i) {
+      if (_maxEnd[i] >= end) break;
+      _maxEnd[i] = end;
+    }
+  }
 }
 
 /// Runs configured providers with a deadline, validates their output against
@@ -532,6 +660,12 @@ class OfficeProofingService {
         boundaries,
       );
       if (invalid != null) throw FormatException(invalid);
+      // Reuse the built-in immutable result after validation when it needs no
+      // filtering. Custom result implementations still get copied.
+      if (result.runtimeType == OfficeProofingResult &&
+          (result.findings.isEmpty || request.ignoredRuleIds.isEmpty)) {
+        return result;
+      }
       return OfficeProofingResult(
         request: request,
         providerId: provider.id,

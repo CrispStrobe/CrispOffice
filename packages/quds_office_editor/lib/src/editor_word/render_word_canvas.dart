@@ -11,6 +11,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import '../core/virtual_viewport.dart';
 import '../embed/office_context_menu.dart';
 import '../embed/office_theme.dart';
+import '../proofing/word_proofing_findings.dart';
 import '../ui_components/office_chrome.dart';
 import '../visual/paint_office_visual.dart';
 import '../visual/paint_drawing_line.dart';
@@ -399,6 +400,7 @@ class WordCanvas extends LeafRenderObjectWidget {
         documentChanged ||
         !identical(renderObject.config, config) ||
         !identical(renderObject.config.theme, config.theme) ||
+        renderObject.bodyLayoutIsCurrent != bodyLayoutIsCurrent ||
         renderObject.selectedCommentId != selectedCommentId) {
       renderObject._clearTextPictures();
     }
@@ -878,6 +880,8 @@ class RenderWordCanvas extends RenderBox
 
   @visibleForTesting
   int get debugOverlayPainterBuildCount => _overlayPainterBuildCount;
+  final _proofingLines = <LaidOutLine, _LineProofingGeometry>{};
+  static const _maxProofingLines = 512;
   final Map<(int, int, int, int), Path> _proofingPaths =
       <(int, int, int, int), Path>{};
   // Null records a page whose selection has no text band, such as when
@@ -947,6 +951,7 @@ class RenderWordCanvas extends RenderBox
       cached.dispose();
     }
     _textPictures.clear();
+    _proofingLines.clear();
     _textPictureBytes = 0;
     _paragraphIndicesFor = null;
     _paragraphIndicesCache = null;
@@ -3638,6 +3643,7 @@ class RenderWordCanvas extends RenderBox
     }
     _fittedLayout = laidOut;
     _fittedPages.clear();
+    _proofingLines.clear();
   }
 
   void _fitPageAt(int pageIndex) {
@@ -3860,36 +3866,41 @@ class RenderWordCanvas extends RenderBox
             searchOnPage ||
             proofingLookup != null ||
             proofingFindings.isNotEmpty) {
-          for (final LaidOutLine line in page.lines) {
+          final lines = page.lines;
+          final overlays = visibleInk == null || page.frames.isEmpty
+              ? null
+              : _pageCellIndex(page).overlayIndexFor(
+                  lines.length,
+                  (index) => _overlayCellClip(page, lines[index], frameOwners),
+                );
+          var endOfBatch = overlays == null ? lines.length : 0;
+          for (var index = 0; index < lines.length; index++) {
+            if (index == endOfBatch) {
+              final batch = overlays!.nextBatch(index, visibleInk!);
+              if (batch == null) break;
+              index = batch.start;
+              endOfBatch = batch.end;
+            }
+            final line = lines[index];
             final ranges = zoteroRanges[line.sourceParagraph];
-            final hasProofing =
-                _proofingFor(line.sourceParagraph)?.isNotEmpty == true;
+            final findings = _proofingFor(line.sourceParagraph);
+            final hasProofing = findings != null && findings.isNotEmpty;
             final lineHits = searchOnPage && _paintsLineSelection(line, page)
                 ? findHitsByParagraph[line.paragraphIndex]
                 : null;
             if (ranges == null && !hasProofing && lineHits == null) continue;
-            final cell = _cellForLine(
-              page,
-              line,
-              containingFrame: frameOwners[line.paragraphIndex],
-            );
-            if (cell != null) {
-              final bounds = Rect.fromLTWH(
-                cell.x,
-                cell.y,
-                cell.width,
-                cell.height,
-              );
-              // This overlay would be clipped to the cell even if its text
-              // overflows. Plain and floating text can extend beyond its line.
-              if (visibleInk != null && !visibleInk.overlaps(bounds)) continue;
+            final clip = page.frames.isEmpty
+                ? null
+                : _overlayCellClip(page, line, frameOwners);
+            if (clip != null) {
+              if (visibleInk != null && !visibleInk.overlaps(clip)) continue;
               canvas.save();
-              canvas.clipRect(bounds);
+              canvas.clipRect(clip);
             }
             _paintZoteroFieldRanges(canvas, page, line, ranges);
             _paintFindHits(canvas, line, lineHits);
             if (hasProofing) {
-              _paintProofing(canvas, line);
+              _paintProofing(canvas, line, findings: findings);
               if (line.overlayText?.isNotEmpty == true) {
                 final painter = _overlayPainter(line);
                 final x = _overlayOrigin(
@@ -3898,10 +3909,16 @@ class RenderWordCanvas extends RenderBox
                   pageWidth: page.width,
                   marginRight: _marginRightOf(page),
                 );
-                _paintProofingOverlay(canvas, line, painter, x);
+                _paintProofingOverlay(
+                  canvas,
+                  line,
+                  painter,
+                  x,
+                  findings: findings,
+                );
               }
             }
-            if (cell != null) canvas.restore();
+            if (clip != null) canvas.restore();
           }
         }
       }
@@ -4070,22 +4087,61 @@ class RenderWordCanvas extends RenderBox
     return 1;
   }
 
-  void _paintProofing(Canvas canvas, LaidOutLine line) {
-    final findings = _proofingFor(line.sourceParagraph);
-    if (findings == null || line.glyphs.isEmpty) return;
-    for (final finding in findings) {
+  Rect? _overlayCellClip(
+    LaidOutPage page,
+    LaidOutLine line,
+    Map<int, WmlFrame> frameOwners,
+  ) {
+    final cell = _cellForLine(
+      page,
+      line,
+      containingFrame: frameOwners[line.paragraphIndex],
+    );
+    // Only clipped text has a reliable paint boundary. Unclipped glyphs can
+    // extend beyond their laid-out line.
+    return cell == null
+        ? null
+        : Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height);
+  }
+
+  _LineProofingGeometry _proofingGeometryOn(LaidOutLine line) {
+    final cached = _proofingLines[line];
+    if (cached != null) return cached;
+    if (_proofingLines.length >= _maxProofingLines) {
+      _proofingLines.remove(_proofingLines.keys.first);
+    }
+    return _proofingLines[line] = _LineProofingGeometry(line);
+  }
+
+  void _paintProofing(
+    Canvas canvas,
+    LaidOutLine line, {
+    List<OfficeProofingFinding>? findings,
+  }) {
+    findings ??= _proofingFor(line.sourceParagraph);
+    if (findings == null || findings.isEmpty || line.glyphs.isEmpty) return;
+    final geometry = bodyLayoutIsCurrent ? _proofingGeometryOn(line) : null;
+    // For a handful of findings, a separate glyph scan is unlikely to pay off.
+    final canCull = line.proofingOffsets == null && findings.length >= 4;
+    late final span = geometry?.span ?? CaretEngine.logicalSpan(line);
+    final candidates = !canCull
+        ? findings
+        : findings is WordProofingFindings
+        ? geometry?.findingsFor(findings) ??
+              findings.affecting(span.min, span.max)
+        : findings.where(
+            (mark) => WordProofingFindings.mayAffect(mark, span.min, span.max),
+          );
+    for (final finding in candidates) {
       for (final range in WordProofingGeometry.displayRanges(
         line,
         finding.start,
         finding.end,
       )) {
-        final boxes = CaretEngine.rangeRectsOnLine(
-          line,
-          line.y,
-          line.height,
-          range.start,
-          range.end,
-        );
+        final boxes = range.isCollapsed
+            ? const <Rect>[]
+            : geometry?.rectsFor(range) ??
+                  _LineProofingGeometry.rectsOn(line, range);
         for (final box in boxes) {
           _proofingWave(
             canvas,
@@ -4124,9 +4180,10 @@ class RenderWordCanvas extends RenderBox
     Canvas canvas,
     LaidOutLine line,
     TextPainter painter,
-    double x,
-  ) {
-    final findings = _proofingFor(line.sourceParagraph);
+    double x, {
+    List<OfficeProofingFinding>? findings,
+  }) {
+    findings ??= _proofingFor(line.sourceParagraph);
     if (findings == null) return;
     final y = _overlayY(line, painter);
     for (final finding in findings) {
@@ -4568,10 +4625,20 @@ class RenderWordCanvas extends RenderBox
   }
 
   void _paintVisualHandles(Canvas canvas, LaidOutPage page) {
-    for (final LaidOutBox box in page.frames) {
+    final frame = selectedFrame;
+    final picture = selectedVisual?.visual;
+    if (frame == null && picture == null) return;
+    // Preserve layout order when both objects are selected so overlapping
+    // handles are drawn in the same order as the objects themselves.
+    final boxes = frame == null
+        ? _pageCellIndex(page).pointer.visuals
+        : picture == null
+        ? _pageCellIndex(page).pointer.frames
+        : page.frames;
+    for (final box in boxes) {
       if (box.kind == LaidOutBoxKind.frame &&
           box.frame != null &&
-          identical(box.frame, selectedFrame)) {
+          identical(box.frame, frame)) {
         TransformHandles(
           Rect.fromLTWH(box.x, box.y, box.width, box.height),
         ).paint(
@@ -4588,9 +4655,7 @@ class RenderWordCanvas extends RenderBox
       if (visual == null || box.kind == LaidOutBoxKind.tableCell) {
         continue;
       }
-      final bool selected =
-          selectedVisual != null && identical(visual, selectedVisual!.visual);
-      if (!selected) {
+      if (!identical(visual, picture)) {
         // In-range pictures are tinted in [_paintFrames], not handled.
         continue;
       }
@@ -4688,7 +4753,19 @@ class RenderWordCanvas extends RenderBox
   }) {
     const cellBorderWidth = 0.6;
     final visibleCells = visibleInk?.inflate(cellBorderWidth / 2);
-    for (final LaidOutBox box in page.frames) {
+    final boxes = page.frames;
+    final paintIndex = visibleCells == null || boxes.isEmpty
+        ? null
+        : _pageCellIndex(page).paintIndex;
+    var endOfBatch = paintIndex == null ? boxes.length : 0;
+    for (var index = 0; index < boxes.length; index++) {
+      if (index == endOfBatch) {
+        final batch = paintIndex!.nextBatch(index, visibleCells!);
+        if (batch == null) break;
+        index = batch.start;
+        endOfBatch = batch.end;
+      }
+      final box = boxes[index];
       if (box.kind == LaidOutBoxKind.tocEntry) {
         continue;
       }
@@ -5856,6 +5933,48 @@ class RenderWordCanvas extends RenderBox
       height,
     );
   }
+}
+
+final class _LineProofingGeometry {
+  _LineProofingGeometry(this._line);
+
+  final LaidOutLine _line;
+  late final span = CaretEngine.logicalSpan(_line);
+  final _rects = <TextRange, List<Rect>>{};
+
+  ({Object publication, List<OfficeProofingFinding> marks})? _visibleFindings;
+
+  List<OfficeProofingFinding> findingsFor(WordProofingFindings findings) {
+    final cached = _visibleFindings;
+    if (cached != null && identical(cached.publication, findings.publication)) {
+      return cached.marks;
+    }
+    final marks = findings
+        .affecting(span.min, span.max)
+        .toList(growable: false);
+    _visibleFindings = marks.length <= 24
+        ? (publication: findings.publication, marks: marks)
+        : null;
+    return marks;
+  }
+
+  List<Rect> rectsFor(TextRange range) {
+    final cached = _rects[range];
+    if (cached != null) return cached;
+    final rects = rectsOn(_line, range);
+    // Keep the common marks without retaining arbitrarily fragmented geometry.
+    if (_rects.length < 8 && rects.length <= 16) _rects[range] = rects;
+    return rects;
+  }
+
+  static List<Rect> rectsOn(LaidOutLine line, TextRange range) =>
+      CaretEngine.rangeRectsOnLine(
+        line,
+        line.y,
+        line.height,
+        range.start,
+        range.end,
+      );
 }
 
 class _TableInsertHit {

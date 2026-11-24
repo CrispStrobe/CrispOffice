@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_editor/src/editor_word/proofing_geometry.dart';
+import 'package:quds_office_editor/src/proofing/word_proofing_findings.dart';
 
 const _boundaryKey = ValueKey<String>('proofing-geometry-image');
 
@@ -62,6 +63,7 @@ Future<RenderWordCanvas> _mount(
   ValueChanged<OfficeContextHit>? onContextMenu,
   ValueChanged<OfficeContextHit>? onReviewTap,
   bool compact = false,
+  bool bodyLayoutIsCurrent = false,
 }) async {
   await tester.pumpWidget(
     Directionality(
@@ -70,6 +72,7 @@ Future<RenderWordCanvas> _mount(
         key: _boundaryKey,
         child: WordCanvas(
           compact: compact,
+          bodyLayoutIsCurrent: bodyLayoutIsCurrent,
           document: document,
           laidOut: layout,
           caret: CaretEngine(),
@@ -190,6 +193,108 @@ class _WordProvider extends OfficeProofingProvider {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(OfficeHostFonts.ensureRegistered);
+
+  test(
+    'published ranges preserve order, overlaps and zero-length findings',
+    () {
+      final paragraph = _paragraph('x' * 220);
+      final marks = [
+        for (var offset = 0; offset < 210; offset += 3)
+          _finding(paragraph, offset, offset + 2),
+        _finding(paragraph, 5, 190),
+        _finding(paragraph, 6, 6),
+        _finding(paragraph, 170, 170),
+      ];
+      final published =
+          WordProofingFindings.freeze(marks) as WordProofingFindings;
+      for (var min = 0; min < 220; min += 5) {
+        final max = min + 2;
+        expect(
+          published.affecting(min, max),
+          orderedEquals(
+            marks.where(
+              (finding) =>
+                  finding.start == finding.end ||
+                  (finding.start <= max && finding.end >= min),
+            ),
+          ),
+        );
+      }
+      final first = marks.first;
+      marks.clear();
+      expect(published.first, same(first));
+      expect(() => published.clear(), throwsUnsupportedError);
+    },
+  );
+
+  testWidgets('proofing lookup follows visible table rows when scrolling', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(480, 350);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    final paragraphs = [
+      for (var row = 0; row < 80; row++) _paragraph('Fehler'),
+    ];
+    final table = WmlTable(
+      grid: [180],
+      rows: [
+        for (final paragraph in paragraphs)
+          WmlTableRow(
+            cells: [
+              WmlTableCell(blocks: [paragraph]),
+            ],
+          ),
+      ],
+    );
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          pageSize: const WmlPageSize(width: 260, height: 2900),
+          margins: const WmlPageMargins(
+            top: 25,
+            bottom: 25,
+            left: 25,
+            right: 25,
+          ),
+          blocks: [table],
+        ),
+      ],
+    );
+    final layout = _layout(document);
+    final page = layout.pages.single;
+    final seen = <WmlParagraph, int>{};
+    final finding = _finding(paragraphs.first, 0, 6);
+    final canvas = await _mount(
+      tester,
+      document,
+      layout,
+      proofingLookup: (paragraph) {
+        seen.update(paragraph, (count) => count + 1, ifAbsent: () => 1);
+        return [finding];
+      },
+    );
+    Future<void> repaint() async {
+      seen.clear();
+      canvas.markNeedsPaint();
+      await tester.pump();
+    }
+
+    await repaint();
+    expect(seen[paragraphs.first], 1);
+    expect(seen.containsKey(paragraphs.last), isFalse);
+
+    final lastLine = page.lines.last;
+    final lastY = canvas
+        .windowForPagePoint(0, Offset(lastLine.x, lastLine.y))
+        .dy;
+    canvas.viewport.origin = Offset(0, lastY - 100);
+    await repaint();
+    expect(seen[paragraphs.last], 1);
+    expect(seen.containsKey(paragraphs.first), isFalse);
+    expect(tester.takeException(), isNull);
+  });
 
   test(
     'mixed bidi source ranges have disjoint boxes and span wrapped lines',
@@ -343,6 +448,61 @@ void main() {
       expect(_redPixels(await _pixels(tester)), 0);
     },
   );
+
+  for (final indexed in [false, true]) {
+    testWidgets(
+      '${indexed ? 'Indexed' : 'Mutable'} findings follow refreshed source ranges',
+      (tester) async {
+        final paragraph = _paragraph('Fehler korrekt');
+        final document = _document([paragraph]);
+        final layout = _layout(document);
+        List<OfficeProofingFinding> publication(OfficeProofingFinding mark) =>
+            indexed
+            ? WordProofingFindings.freeze(List.filled(17, mark))
+            : [mark];
+        var findings = publication(_finding(paragraph, 0, 6));
+        final canvas = await _mount(
+          tester,
+          document,
+          layout,
+          bodyLayoutIsCurrent: true,
+          proofingLookup: (_) => findings,
+        );
+        final line = layout.pages.single.lines.single;
+        Rect strip(int start, int end) {
+          final rect = CaretEngine.rangeRectsOnLine(
+            line,
+            line.y,
+            line.height,
+            start,
+            end,
+          ).single;
+          return Rect.fromPoints(
+            canvas.windowForPagePoint(0, rect.topLeft),
+            canvas.windowForPagePoint(0, rect.bottomRight + const Offset(0, 2)),
+          );
+        }
+
+        final left = strip(0, 6);
+        final right = strip(7, 14);
+        final before = await _pixels(tester);
+        expect(_redPixels(before, left), greaterThan(0));
+        expect(_redPixels(before, right), 0);
+
+        final moved = _finding(paragraph, 7, 14);
+        if (indexed) {
+          findings = publication(moved);
+        } else {
+          findings[0] = moved;
+        }
+        canvas.markNeedsPaint();
+        await tester.pump();
+        final after = await _pixels(tester);
+        expect(_redPixels(after, left), 0);
+        expect(_redPixels(after, right), greaterThan(0));
+      },
+    );
+  }
 
   testWidgets('generated field text receives no findings or squiggles', (
     tester,
@@ -603,6 +763,48 @@ void main() {
       },
     );
   }
+
+  testWidgets('wrapped proofing still underlines a discretionary hyphen', (
+    tester,
+  ) async {
+    final paragraph = _paragraph(
+      'Silbentrennung Silbentrennung Silbentrennung',
+    );
+    final document = _document([paragraph], width: 110)..autoHyphenation = true;
+    final layout = _layout(document);
+    final line = layout.pages.first.lines.firstWhere(
+      (line) => line.glyphs.any((glyph) => glyph.glyph.isDiscretionaryHyphen),
+    );
+    final hyphen = line.glyphs.singleWhere(
+      (glyph) => glyph.glyph.isDiscretionaryHyphen,
+    );
+    final boundary = hyphen.glyph.logicalIndex;
+    final canvas = await _mount(
+      tester,
+      document,
+      layout,
+      findings: {
+        paragraph: WordProofingFindings.freeze([
+          _finding(paragraph, 0, boundary),
+          for (var offset = 20; offset < 38; offset++)
+            _finding(paragraph, offset, offset + 1),
+        ]),
+      },
+    );
+
+    final pen = hyphen.x - hyphen.paintDx;
+    final region = Rect.fromPoints(
+      canvas.windowForPagePoint(
+        line.pageIndex,
+        Offset(pen + hyphen.advance * 0.4, line.y + line.height - 4),
+      ),
+      canvas.windowForPagePoint(
+        line.pageIndex,
+        Offset(pen + hyphen.advance, line.y + line.height + 4),
+      ),
+    );
+    expect(_redPixels(await _pixels(tester), region), greaterThan(0));
+  });
 
   for (final inHeader in [false, true]) {
     testWidgets(

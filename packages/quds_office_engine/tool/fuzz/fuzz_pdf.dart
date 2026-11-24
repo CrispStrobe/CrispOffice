@@ -5,7 +5,11 @@ import 'package:covfuzz/covfuzz.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
 List<Uint8List> _seeds() {
-  final out = <Uint8List>[];
+  final doc = PdfDocument(title: 'Parser fixture');
+  final canvas = PdfCanvas(200, 200)
+    ..showLatin(x: 20, y: 30, fontSize: 12, text: 'PDF', color: '000000');
+  doc.addPage(PdfPage(width: 200, height: 200, content: canvas.toStream()));
+  final out = <Uint8List>[doc.save()];
   for (final root in <String>['../../docs', '../docs', 'docs']) {
     final dir = Directory(root);
     if (!dir.existsSync()) continue;
@@ -21,10 +25,6 @@ List<Uint8List> _seeds() {
 
 void main(List<String> args) {
   final seeds = _seeds();
-  if (seeds.isEmpty) {
-    stderr.writeln('No PDF seeds found.');
-    exit(64);
-  }
   final report = fuzz<Uint8List>(
     seeds: seeds,
     entry: (bytes) {
