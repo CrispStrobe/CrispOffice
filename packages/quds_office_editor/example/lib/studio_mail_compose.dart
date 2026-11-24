@@ -1140,6 +1140,37 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                       focusNode: _bodyFocus,
                                       enableLiveProofing: false,
                                       showReviewStatus: false,
+                                      onPasteOverride:
+                                          ({required keepTextOnly}) async {
+                                            if (_pickingAttachments ||
+                                                _finishing ||
+                                                _recoveringCache) {
+                                              return;
+                                            }
+                                            final items =
+                                                await const StudioMailPasteboard()
+                                                    .read();
+                                            if (items.isEmpty) {
+                                              _body.pasteFromClipboard(
+                                                mode: keepTextOnly
+                                                    ? OfficePasteMode
+                                                          .keepTextOnly
+                                                    : OfficePasteMode
+                                                          .keepSource,
+                                              );
+                                              return;
+                                            }
+                                            await _readAttachmentFiles(
+                                              () async => <PlatformFile>[
+                                                for (final item in items)
+                                                  PlatformFile(
+                                                    name: item.name,
+                                                    size: item.bytes.length,
+                                                    bytes: item.bytes,
+                                                  ),
+                                              ],
+                                            );
+                                          },
                                       toolbarBuilder: (_, _) =>
                                           const SizedBox.shrink(),
                                       statusBarBuilder: (_, _) =>
