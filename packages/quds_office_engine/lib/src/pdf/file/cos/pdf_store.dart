@@ -114,7 +114,7 @@ class PdfCosStore {
     if (obj.raw.length > 64 * 1024 * 1024) {
       throw const PdfOpenException(PdfOpenError.limit, 'Stream too large');
     }
-    final PdfFilterResult decoded = PdfFilters.decodeResult(obj.raw, obj.dict);
+    final PdfFilterResult decoded = PdfFilters.decodeResult(obj.raw, obj.dict, resolve: deref);
     return decoded.bytes;
   }
 
@@ -124,7 +124,10 @@ class PdfCosStore {
     if (obj is! PdfCosStream) {
       return const PdfFilterResult.unsupported('NotAStream');
     }
-    return PdfFilters.decodeResult(obj.raw, obj.dict);
+    if (obj.raw.length > 64 * 1024 * 1024) {
+      return const PdfFilterResult.unsupported('StreamTooLarge');
+    }
+    return PdfFilters.decodeResult(obj.raw, obj.dict, resolve: deref);
   }
 
   /// asDict API.

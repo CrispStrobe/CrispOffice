@@ -6,6 +6,7 @@ import '../cos/pdf_cos.dart';
 import '../cos/pdf_open_error.dart';
 import 'pdf_ccitt.dart';
 import 'pdf_jbig2.dart';
+import 'pdf_jpx.dart';
 
 /// ISO 32000-1 §7.4 stream filters used by [PdfFile].
 abstract final class PdfFilters {
@@ -20,15 +21,40 @@ abstract final class PdfFilters {
   }
 
   /// decodeResult API.
-  static PdfFilterResult decodeResult(Uint8List raw, PdfCosDict dict) {
-    final List<String> filters = _filterNames(dict['Filter']);
-    final List<PdfCosDict> parms = _decodeParms(dict['DecodeParms'], filters.length);
+  static PdfFilterResult decodeResult(
+    Uint8List raw,
+    PdfCosDict dict, {
+    PdfCos? Function(PdfCos?)? resolve,
+  }) {
+    PdfCos? resolved(PdfCos? value) => resolve?.call(value) ?? value;
+    final List<String> filters = _filterNames(resolved(dict['Filter']), resolved);
+    final List<PdfCosDict> parms =
+        _decodeParms(resolved(dict['DecodeParms']), filters.length, resolved);
     var data = raw;
     for (int i = 0; i < filters.length; i++) {
       final String name = filters[i];
       final PdfCosDict parm = i < parms.length ? parms[i] : PdfCosDict();
       try {
-        data = _one(data, name, parm);
+        if (name == 'JPXDecode') {
+          if (i != filters.length - 1) {
+            return PdfFilterResult.unsupported(name);
+          }
+          return PdfFilterResult.jpx(
+            PdfJpx.decode(data, dict, colorSpace: resolved(dict['ColorSpace'])),
+          );
+        }
+        if (name == 'JBIG2Decode') {
+          if (i != filters.length - 1) {
+            return PdfFilterResult.unsupported(name);
+          }
+          data = PdfJbig2.decode(
+            data,
+            dict,
+            globals: _jbig2Globals(parm, resolved),
+          );
+        } else {
+          data = _one(data, name, parm);
+        }
       } on PdfFilterUnsupported catch (error) {
         return PdfFilterResult.unsupported(error.filter);
       } on ZipDeflateException {
@@ -65,39 +91,81 @@ abstract final class PdfFilters {
       case 'CCITTFaxDecode':
       case 'CCF':
         return PdfCcitt.decode(data, parm);
-      case 'JBIG2Decode':
-        return PdfJbig2.decode(data, parm);
-      case 'JPXDecode':
-        throw PdfFilterUnsupported(name);
       default:
         throw PdfFilterUnsupported(name);
     }
   }
 
-  static List<String> _filterNames(PdfCos? value) {
+  static List<String> _filterNames(
+    PdfCos? value,
+    PdfCos? Function(PdfCos?) resolve,
+  ) {
     if (value is PdfCosName) {
       return <String>[value.value];
     }
     if (value is PdfCosArray) {
       return <String>[
         for (final PdfCos item in value.items)
-          if (item is PdfCosName) item.value,
+          pdfCosName(resolve(item)) ?? 'InvalidFilter',
       ];
     }
-    return const <String>[];
+    return value == null || value is PdfCosNull
+        ? const <String>[]
+        : const <String>['InvalidFilter'];
   }
 
-  static List<PdfCosDict> _decodeParms(PdfCos? value, int count) {
+  static List<PdfCosDict> _decodeParms(
+    PdfCos? value,
+    int count,
+    PdfCos? Function(PdfCos?) resolve,
+  ) {
     if (value is PdfCosDict) {
       return <PdfCosDict>[value];
     }
     if (value is PdfCosArray) {
       return <PdfCosDict>[
         for (final PdfCos item in value.items)
-          item is PdfCosDict ? item : PdfCosDict(),
+          switch (resolve(item)) {
+            final PdfCosDict dict => dict,
+            _ => PdfCosDict(),
+          },
       ];
     }
     return <PdfCosDict>[for (int i = 0; i < count; i++) PdfCosDict()];
+  }
+
+  static Uint8List? _jbig2Globals(
+    PdfCosDict parm,
+    PdfCos? Function(PdfCos?) resolve,
+  ) {
+    final PdfCos? entry = parm['JBIG2Globals'];
+    if (entry == null || entry is PdfCosNull) {
+      return null;
+    }
+    final PdfCos? stream = resolve(entry);
+    if (stream is! PdfCosStream || stream.raw.length > 16 * 1024 * 1024) {
+      throw const PdfFilterUnsupported('JBIG2Decode');
+    }
+    // Global dictionaries are ordinary byte streams, not image streams.
+    // Reject recursive image filters rather than silently ignoring globals.
+    final List<String> names = _filterNames(
+      resolve(stream.dict['Filter']),
+      resolve,
+    );
+    const allowed = <String>{
+      'FlateDecode', 'Fl', 'LZWDecode', 'LZW',
+      'ASCII85Decode', 'A85', 'ASCIIHexDecode', 'AHx',
+      'RunLengthDecode', 'RL', 'Crypt',
+    };
+    if (names.any((name) => !allowed.contains(name))) {
+      throw const PdfFilterUnsupported('JBIG2Decode');
+    }
+    final Uint8List? bytes =
+        decodeResult(stream.raw, stream.dict, resolve: resolve).bytes;
+    if (bytes == null || bytes.length > 16 * 1024 * 1024) {
+      throw const PdfFilterUnsupported('JBIG2Decode');
+    }
+    return bytes;
   }
 
   static Uint8List _asciiHex(Uint8List data) {
@@ -219,15 +287,23 @@ abstract final class PdfFilters {
     final int columns = pdfCosInt(parm['Columns']) ?? 1;
     final int colors = pdfCosInt(parm['Colors']) ?? 1;
     final int bpc = pdfCosInt(parm['BitsPerComponent']) ?? 8;
+    if (columns < 1 || columns > 16 * 1024 * 1024 ||
+        colors < 1 || colors > 32 ||
+        !const <int>{1, 2, 4, 8, 16}.contains(bpc)) {
+      throw const FormatException('Invalid predictor dimensions');
+    }
     final int rowBytes = ((columns * colors * bpc) + 7) ~/ 8;
     if (predictor == 2) {
-      return _tiffPredict(data, rowBytes, colors, bpc);
+      return _tiffPredict(data, rowBytes, columns, colors, bpc);
     }
     if (predictor < 10 || predictor > 15) {
-      return data;
+      throw const FormatException('Invalid predictor');
     }
     final int stride = rowBytes + 1;
-    if (stride <= 1 || data.length < stride) {
+    if (data.length % stride != 0) {
+      throw const FormatException('Truncated PNG predictor row');
+    }
+    if (data.isEmpty) {
       return data;
     }
     final int rows = data.length ~/ stride;
@@ -235,6 +311,9 @@ abstract final class PdfFilters {
     final Uint8List prev = Uint8List(rowBytes);
     for (int r = 0; r < rows; r++) {
       final int tag = data[r * stride];
+      if (tag > 4) {
+        throw const FormatException('Invalid PNG predictor tag');
+      }
       final Uint8List row = data.sublist(r * stride + 1, r * stride + stride);
       final Uint8List dest = Uint8List(rowBytes);
       final int bpp = (colors * bpc + 7) ~/ 8;
@@ -261,21 +340,49 @@ abstract final class PdfFilters {
   static Uint8List _tiffPredict(
     Uint8List data,
     int rowBytes,
+    int columns,
     int colors,
     int bpc,
   ) {
-    if (bpc != 8) {
-      return data;
+    if (data.length % rowBytes != 0) {
+      throw const FormatException('Truncated TIFF predictor row');
     }
     final Uint8List out = Uint8List.fromList(data);
-    final int rows = out.length ~/ rowBytes;
-    for (int r = 0; r < rows; r++) {
-      final int base = r * rowBytes;
-      for (int i = colors; i < rowBytes; i++) {
-        out[base + i] = (out[base + i] + out[base + i - colors]) & 0xFF;
+    final int mask = (1 << bpc) - 1;
+    final int samples = columns * colors;
+    for (int base = 0; base < out.length; base += rowBytes) {
+      for (int i = colors; i < samples; i++) {
+        final int pos = i * bpc;
+        final int previous = (i - colors) * bpc;
+        final int value =
+            (_readSample(out, base, pos, bpc) +
+                _readSample(out, base, previous, bpc)) & mask;
+        _writeSample(out, base, pos, bpc, value);
       }
     }
     return out;
+  }
+
+  static int _readSample(Uint8List data, int base, int bit, int bpc) {
+    final int index = base + (bit >> 3);
+    if (bpc == 16) {
+      return (data[index] << 8) | data[index + 1];
+    }
+    return (data[index] >> (8 - bpc - (bit & 7))) & ((1 << bpc) - 1);
+  }
+
+  static void _writeSample(
+    Uint8List data, int base, int bit, int bpc, int value,
+  ) {
+    final int index = base + (bit >> 3);
+    if (bpc == 16) {
+      data[index] = value >> 8;
+      data[index + 1] = value & 255;
+      return;
+    }
+    final int shift = 8 - bpc - (bit & 7);
+    final int mask = ((1 << bpc) - 1) << shift;
+    data[index] = (data[index] & ~mask) | (value << shift);
   }
 
   static int _paeth(int a, int b, int c) {
@@ -296,10 +403,18 @@ abstract final class PdfFilters {
 /// Decoded stream or a named unsupported filter.
 class PdfFilterResult {
   /// ok API.
-  const PdfFilterResult.ok(this.bytes) : unsupported = null;
+  const PdfFilterResult.ok(this.bytes) : unsupported = null, jpxImage = null;
+
+  /// A decoded JPEG 2000 image; bytes are normalized RGB/RGBA samples.
+  PdfFilterResult.jpx(PdfJpxImage image)
+    : bytes = image.pixels, unsupported = null, jpxImage = image;
 
   /// unsupported API.
-  const PdfFilterResult.unsupported(this.unsupported) : bytes = null;
+  const PdfFilterResult.unsupported(this.unsupported)
+    : bytes = null, jpxImage = null;
+
+  /// Image layout for JPX, independent of PDF dictionary color defaults.
+  final PdfJpxImage? jpxImage;
 
   /// bytes API.
   final Uint8List? bytes;

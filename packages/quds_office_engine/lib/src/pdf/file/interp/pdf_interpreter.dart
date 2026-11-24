@@ -614,9 +614,13 @@ class PdfInterpreter {
     final int bpc =
         pdfCosInt(raw.dict['BitsPerComponent']) ?? (imageMask ? 1 : 8);
     final bool invert = _decodeInverts(raw.dict);
-    var hasAlpha = false;
-    if (imageMask && !jpeg) {
-      pixels = _stencilRgba(pixels, pw, ph, bpc, frame.fill, invert);
+    var hasAlpha = decoded.jpxImage?.hasAlpha ?? false;
+    if (decoded.jpxImage != null) {
+      // JPX has already resolved its own sample layout and alpha.
+    } else if (imageMask && !jpeg && pixels.isNotEmpty) {
+      final int maskBpc = _isBilevelCodec(raw.dict) &&
+              pixels.length == pw * ph ? 8 : bpc;
+      pixels = _stencilRgba(pixels, pw, ph, maskBpc, frame.fill, invert);
       hasAlpha = true;
     } else if (!jpeg && pixels.isNotEmpty) {
       final Uint8List? palette = _indexedPalette(raw.dict);
@@ -624,7 +628,7 @@ class PdfInterpreter {
         pixels = _expandIndexed(pixels, pw, ph, bpc, palette);
       } else {
         final int n = _colorComponents(raw.dict);
-        final bool gray = n == 1 || _isCcitt(raw.dict);
+        final bool gray = n == 1 || _isBilevelCodec(raw.dict);
         if (gray) {
           final int bits = pixels.length == pw * ph ? 8 : bpc;
           pixels = _expandGray(pixels, pw, ph, bits, invert: invert);
@@ -691,15 +695,17 @@ class PdfInterpreter {
     return names.contains('DCTDecode') || names.contains('DCT');
   }
 
-  bool _isCcitt(PdfCosDict dict) {
+  bool _isBilevelCodec(PdfCosDict dict) {
     final PdfCos? filter = dict['Filter'];
     if (filter is PdfCosName) {
-      return filter.value == 'CCITTFaxDecode' || filter.value == 'CCF';
+      return filter.value == 'CCITTFaxDecode' ||
+          filter.value == 'CCF' || filter.value == 'JBIG2Decode';
     }
     if (filter is PdfCosArray) {
       for (final PdfCos item in filter.items) {
         if (item is PdfCosName &&
-            (item.value == 'CCITTFaxDecode' || item.value == 'CCF')) {
+            (item.value == 'CCITTFaxDecode' || item.value == 'CCF' ||
+                item.value == 'JBIG2Decode')) {
           return true;
         }
       }
@@ -777,6 +783,15 @@ class PdfInterpreter {
     final int mh = (pdfCosNumber(raw.dict['Height']) ?? h).round();
     if (mw != w || mh != h) {
       return null;
+    }
+    if (decoded.jpxImage != null) {
+      final image = decoded.jpxImage!;
+      if (!image.isGray || image.hasAlpha || bytes.length != w * h * 3) {
+        return null;
+      }
+      return Uint8List.fromList(<int>[
+        for (int i = 0; i < bytes.length; i += 3) bytes[i],
+      ]);
     }
     if (bytes.length == w * h) {
       return bytes;
