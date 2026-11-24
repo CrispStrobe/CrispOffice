@@ -56,6 +56,30 @@ void main() {
       list.ops.whereType<PdfDrawText>().first.size,
       closeTo(14, 0.6),
     );
+    expect(list.issues, isEmpty);
+  });
+
+  test('content stream failures are distinguishable from a blank page', () {
+    final file = PdfFile.open(writerPdf());
+    final page = file.pageDict(0);
+    final validContent = page['Contents']!;
+    final unreadable = PdfCosStream(
+      PdfCosDict({'Filter': const PdfCosName('FlateDecode')}),
+      Uint8List(0),
+    );
+    page.values.remove('Contents');
+    expect(file.displayList(0).ops, isEmpty);
+    expect(file.displayList(0).issues, isEmpty);
+
+    page['Contents'] = unreadable;
+    expect(file.displayList(0).ops, isEmpty);
+    expect(file.displayList(0).issues, {PdfPageRenderIssue.contentStream});
+
+    page['Contents'] = PdfCosArray([unreadable, validContent]);
+    final partial = file.displayList(0);
+    expect(partial.ops.whereType<PdfFillPath>(), isNotEmpty);
+    expect(partial.plainText, contains('Hello PDF'));
+    expect(partial.issues, {PdfPageRenderIssue.contentStream});
   });
 
   test('text size follows Tm when Tf is 1', () {

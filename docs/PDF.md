@@ -80,14 +80,14 @@ Required syntax (engine open must succeed when present):
 
 | Filter | Wave | Notes |
 | --- | --- | --- |
-| `/FlateDecode` (+ `/DecodeParms` predictor) | P6.1 | Already have Flate in the writer |
+| `/FlateDecode` (+ `/DecodeParms` predictor) | P6.1 | Shared OOXML `RawDeflate` through `PdfFlate`; TIFF 1/2/4/8/16-bit and PNG predictors |
 | `/ASCIIHexDecode`, `/ASCII85Decode` | P6.1 | |
 | `/RunLengthDecode` | P6.1 | |
-| `/DCTDecode` | P6.2 | JPEG image XObject |
-| `/CCITTFaxDecode` | P6.2 | Group 3 1-D and Group 4 (landed). Mixed G3 2-D (`K>0`) is 1-D best-effort |
+| `/DCTDecode` | P6.2 | Bounded engine-side 8-bit gray/RGB baseline and progressive JPEG, PDF Decode and ColorTransform; four-component/non-device color remains host fallback |
+| `/CCITTFaxDecode` | P6.2 | Group 3 1-D, mixed 1-D/2-D and Group 4; bounded strict row decoding (uncompressed extensions and damaged-row recovery not supported) |
 | `/LZWDecode` | P6.3 | |
-| `/JBIG2Decode` | P6.5 | MMR generic regions (size-capped); other JBIG2 typed-unsupported |
-| `/JPXDecode` | P6.5 | Typed-unsupported placeholder |
+| `/JBIG2Decode` | P6.5 | Bounded pure-Dart `jbig2` adapter; MMR, arithmetic, symbol/text, refinement and global dictionary streams |
+| `/JPXDecode` | P6.5 | Bounded `j2k` Part 1 JP2/raw J2K; RGB/Gray/CMYK device samples and `/SMaskInData`; advanced color spaces and Part 2 extensions remain unsupported |
 | `/Crypt` | P6.1 | After the security handler decrypts the stream |
 
 Unsupported filters must yield `PdfFilterUnsupported` on that stream, not a
@@ -126,7 +126,7 @@ ops), not a Flutter Scene.
 
 **Should interpret (P6.4–P6.5):**
 
-- Soft masks (`/SMask`) on Flate RGB/Gray (landed in-engine) and JPEG+DCT SMask via `softMaskJpeg` host compose (landed). Transparency groups: honor nested Form only
+- Soft masks (`/SMask`) on Flate RGB/Gray and supported gray/RGB JPEG XObjects compose in-engine; `softMaskJpeg` remains for legacy host JPEG paths. Transparency groups: honor nested Form only
 - Shadings (`sh`) Type 2 axial + Type 3 radial strips (landed). Type 1/2/3 patterns stay unsupported
 - Type 3 fonts (bitmap `CharProcs`, landed)
 - Optional content (`/OCProperties`, `BDC`/`EMC` with `/OC`) — `PdfFile.setLayerVisible` / editor toggle (landed)

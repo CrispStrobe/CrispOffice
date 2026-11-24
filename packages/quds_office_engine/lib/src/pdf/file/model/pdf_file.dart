@@ -242,12 +242,15 @@ class PdfFile {
         pageDict: rec.dict,
         hotspots: spots,
       );
-    } catch (_) {
+    } catch (error) {
       return PdfDisplayList(
         page: rec.info,
         ops: const <PdfPaintOp>[],
         runs: const <PdfTextRun>[],
         hotspots: spots,
+        issues: error is PdfOpenException && error.error == PdfOpenError.limit
+            ? const {PdfPageRenderIssue.contentLimit}
+            : const {PdfPageRenderIssue.interpreterFailure},
       );
     }
   }

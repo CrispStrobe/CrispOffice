@@ -37,7 +37,8 @@ class PdfInterpreter {
     final _Frame frame = _Frame(page, this);
     final PdfCosDict resources =
         store.asDict(pageDict['Resources']) ?? PdfCosDict();
-    final Uint8List content = _pageContent(pageDict);
+    final issues = <PdfPageRenderIssue>{};
+    final Uint8List content = _pageContent(pageDict, issues);
     _run(content, resources, frame, 0);
     _paintAnnotAppearances(pageDict, frame, 0);
     return PdfDisplayList(
@@ -45,6 +46,7 @@ class PdfInterpreter {
       ops: frame.ops,
       runs: frame.runs,
       hotspots: hotspots,
+      issues: Set.unmodifiable(issues),
     );
   }
 
@@ -127,20 +129,46 @@ class PdfInterpreter {
     return null;
   }
 
-  Uint8List _pageContent(PdfCosDict pageDict) {
-    final PdfCos? contents = pageDict['Contents'];
-    if (contents is PdfCosArray) {
-      final BytesBuilder out = BytesBuilder(copy: false);
-      for (final PdfCos item in contents.items) {
-        final Uint8List? part = store.streamBytes(item);
-        if (part != null) {
-          out.add(part);
+  Uint8List _pageContent(PdfCosDict pageDict, Set<PdfPageRenderIssue> issues) {
+    final PdfCos? value = pageDict['Contents'];
+    if (value == null || value is PdfCosNull) {
+      return Uint8List(0);
+    }
+    final PdfCos? contents = store.deref(value);
+
+    Uint8List? read(PdfCos? stream, int maxBytes) {
+      final result = store.streamResult(stream, maxOutputBytes: maxBytes);
+      if (result.limitExceeded) {
+        issues.add(PdfPageRenderIssue.contentLimit);
+      } else if (result.bytes == null || result.jpegEncoded ||
+          result.jpxImage != null) {
+        issues.add(PdfPageRenderIssue.contentStream);
+        return null;
+      }
+      return result.bytes;
+    }
+
+    const maxBytes = PdfFilters.maxDecodedBytes;
+    if (contents is! PdfCosArray) {
+      return read(contents, maxBytes) ?? Uint8List(0);
+    }
+    final out = BytesBuilder(copy: false);
+    for (final item in contents.items) {
+      final separatorBytes = out.isEmpty ? 0 : 1;
+      final remaining = maxBytes - out.length - separatorBytes;
+      if (remaining < 0) {
+        issues.add(PdfPageRenderIssue.contentLimit);
+        break;
+      }
+      final part = read(item, remaining);
+      if (part != null && part.isNotEmpty) {
+        if (!out.isEmpty) {
           out.addByte(0x20);
         }
+        out.add(part);
       }
-      return out.takeBytes();
     }
-    return store.streamBytes(contents) ?? Uint8List(0);
+    return out.takeBytes();
   }
 
   void _run(Uint8List data, PdfCosDict resources, _Frame frame, int depth) {
@@ -600,12 +628,12 @@ class PdfInterpreter {
     if (frame.hidden) {
       return;
     }
-    final double w = pdfCosNumber(raw.dict['Width']) ?? 1;
-    final double h = pdfCosNumber(raw.dict['Height']) ?? 1;
+    final double w = pdfCosNumber(store.deref(raw.dict['Width'])) ?? 1;
+    final double h = pdfCosNumber(store.deref(raw.dict['Height'])) ?? 1;
     final (double x, double y) = frame.map(0, 0);
     final (double x1, double y1) = frame.map(1, 1);
-    final PdfFilterResult decoded = store.streamResult(raw);
-    final bool jpeg = _isJpeg(raw.dict);
+    final PdfFilterResult decoded = store.streamResult(raw, decodeDct: true);
+    final bool jpeg = decoded.jpegEncoded;
     var pixels = decoded.bytes ?? Uint8List(0);
     final int pw = w.round();
     final int ph = h.round();
@@ -614,9 +642,13 @@ class PdfInterpreter {
     final int bpc =
         pdfCosInt(raw.dict['BitsPerComponent']) ?? (imageMask ? 1 : 8);
     final bool invert = _decodeInverts(raw.dict);
-    var hasAlpha = false;
-    if (imageMask && !jpeg) {
-      pixels = _stencilRgba(pixels, pw, ph, bpc, frame.fill, invert);
+    var hasAlpha = decoded.jpxImage?.hasAlpha ?? false;
+    if (decoded.jpxImage != null || decoded.dctImage != null) {
+      // JPEG/JPX have already resolved their sample layout.
+    } else if (imageMask && !jpeg && pixels.isNotEmpty) {
+      final int maskBpc = _isBilevelCodec(raw.dict) &&
+              pixels.length == pw * ph ? 8 : bpc;
+      pixels = _stencilRgba(pixels, pw, ph, maskBpc, frame.fill, invert);
       hasAlpha = true;
     } else if (!jpeg && pixels.isNotEmpty) {
       final Uint8List? palette = _indexedPalette(raw.dict);
@@ -624,7 +656,7 @@ class PdfInterpreter {
         pixels = _expandIndexed(pixels, pw, ph, bpc, palette);
       } else {
         final int n = _colorComponents(raw.dict);
-        final bool gray = n == 1 || _isCcitt(raw.dict);
+        final bool gray = n == 1 || _isBilevelCodec(raw.dict);
         if (gray) {
           final int bits = pixels.length == pw * ph ? 8 : bpc;
           pixels = _expandGray(pixels, pw, ph, bits, invert: invert);
@@ -633,11 +665,16 @@ class PdfInterpreter {
         }
       }
     }
+    var invalidDctMask = false;
     if (!jpeg && !imageMask && pixels.length == pw * ph * 3) {
       final Uint8List? mask = _smaskGray(raw.dict, pw, ph);
       if (mask != null) {
         pixels = _composeSMask(pixels, mask, pw, ph);
         hasAlpha = true;
+      } else if (decoded.dctImage != null &&
+          store.deref(raw.dict['SMask']) is PdfCosStream) {
+        // Do not present an opaque image when its declared mask failed.
+        invalidDctMask = true;
       }
     }
     final double ca = ((frame.fill >> 24) & 0xFF) / 255.0;
@@ -666,7 +703,7 @@ class PdfInterpreter {
         height: (y1 - y).abs().clamp(1, 100000),
         bytes: pixels,
         jpeg: jpeg,
-        placeholder: decoded.bytes == null || w < 1 || h < 1,
+        placeholder: decoded.bytes == null || invalidDctMask || w < 1 || h < 1,
         pixelWidth: pw,
         pixelHeight: ph,
         hasAlpha: hasAlpha || softMaskJpeg != null,
@@ -678,28 +715,31 @@ class PdfInterpreter {
 
   bool _isJpeg(PdfCosDict dict) {
     final List<String> names = <String>[];
-    final PdfCos? filter = dict['Filter'];
+    final PdfCos? filter = store.deref(dict['Filter']);
     if (filter is PdfCosName) {
       names.add(filter.value);
     } else if (filter is PdfCosArray) {
       for (final PdfCos item in filter.items) {
-        if (item is PdfCosName) {
-          names.add(item.value);
+        final resolved = store.deref(item);
+        if (resolved is PdfCosName) {
+          names.add(resolved.value);
         }
       }
     }
     return names.contains('DCTDecode') || names.contains('DCT');
   }
 
-  bool _isCcitt(PdfCosDict dict) {
+  bool _isBilevelCodec(PdfCosDict dict) {
     final PdfCos? filter = dict['Filter'];
     if (filter is PdfCosName) {
-      return filter.value == 'CCITTFaxDecode' || filter.value == 'CCF';
+      return filter.value == 'CCITTFaxDecode' ||
+          filter.value == 'CCF' || filter.value == 'JBIG2Decode';
     }
     if (filter is PdfCosArray) {
       for (final PdfCos item in filter.items) {
         if (item is PdfCosName &&
-            (item.value == 'CCITTFaxDecode' || item.value == 'CCF')) {
+            (item.value == 'CCITTFaxDecode' || item.value == 'CCF' ||
+                item.value == 'JBIG2Decode')) {
           return true;
         }
       }
@@ -768,15 +808,25 @@ class PdfInterpreter {
     if (raw is! PdfCosStream) {
       return null;
     }
-    final PdfFilterResult decoded = store.streamResult(raw);
+    final PdfFilterResult decoded = store.streamResult(raw, decodeDct: true);
     final Uint8List? bytes = decoded.bytes;
-    if (bytes == null) {
+    if (bytes == null || decoded.jpegEncoded) {
       return null;
     }
-    final int mw = (pdfCosNumber(raw.dict['Width']) ?? w).round();
-    final int mh = (pdfCosNumber(raw.dict['Height']) ?? h).round();
+    final int mw = (pdfCosNumber(store.deref(raw.dict['Width'])) ?? w).round();
+    final int mh = (pdfCosNumber(store.deref(raw.dict['Height'])) ?? h).round();
     if (mw != w || mh != h) {
       return null;
+    }
+    if (decoded.jpxImage != null || decoded.dctImage != null) {
+      final gray = decoded.jpxImage?.isGray ?? decoded.dctImage!.isGray;
+      if (!gray || (decoded.jpxImage?.hasAlpha ?? false) ||
+          bytes.length != w * h * 3) {
+        return null;
+      }
+      return Uint8List.fromList(<int>[
+        for (int i = 0; i < bytes.length; i += 3) bytes[i],
+      ]);
     }
     if (bytes.length == w * h) {
       return bytes;
