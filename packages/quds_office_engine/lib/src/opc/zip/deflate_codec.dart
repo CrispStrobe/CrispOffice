@@ -15,6 +15,19 @@ abstract final class RawDeflate {
     return _Inflater(data, maxOutputBytes: maxOutputBytes).run();
   }
 
+  /// Inflates one stream and reports its byte boundary, including bit padding.
+  static ({Uint8List bytes, int consumed}) inflatePrefix(
+    Uint8List data, {
+    required int maxOutputBytes,
+  }) {
+    if (maxOutputBytes < 0) {
+      throw ArgumentError.value(maxOutputBytes, 'maxOutputBytes');
+    }
+    final inflater = _Inflater(data, maxOutputBytes: maxOutputBytes);
+    final bytes = inflater.run();
+    return (bytes: bytes, consumed: inflater._pos);
+  }
+
   /// deflate API.
   static Uint8List deflate(List<int> data, {int level = 6}) {
     return _Deflater(Uint8List.fromList(data), level: level).run();
@@ -145,9 +158,11 @@ class _Inflater {
         prev = sym;
       } else if (sym == 16) {
         final int repeat = 3 + _bits(2);
-        for (int i = 0; i < repeat; i++) {
-          lengths[index++] = prev;
+        if (index == 0 || repeat > lengths.length - index) {
+          throw const ZipDeflateException('Invalid DEFLATE code-length repeat');
         }
+        lengths.fillRange(index, index + repeat, prev);
+        index += repeat;
       } else if (sym == 17) {
         final int repeat = 3 + _bits(3);
         index += repeat;
@@ -159,6 +174,9 @@ class _Inflater {
       } else {
         throw const ZipDeflateException('Invalid code-length symbol');
       }
+    }
+    if (index != lengths.length) {
+      throw const ZipDeflateException('Invalid DEFLATE code-length repeat');
     }
     return _Tables(
       lit: _Huffman.fromLengths(lengths.sublist(0, hlit)),

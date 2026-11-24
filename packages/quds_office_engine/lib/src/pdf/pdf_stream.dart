@@ -62,6 +62,30 @@ abstract final class PdfFlate {
     return (cmf & 0x0F) == 8 && ((cmf << 8) + flg) % 31 == 0;
   }
 
+  /// Decode a checksummed zlib stream followed by unrelated PDF content.
+  static ({Uint8List bytes, int consumed}) decompressZlibPrefix(
+    Uint8List data, {
+    required int maxOutputBytes,
+  }) {
+    if (data.length < 8 ||
+        !_isZlibHeader(data[0], data[1]) ||
+        data[0] >> 4 > 7 ||
+        (data[1] & 0x20) != 0) {
+      throw const FormatException('Invalid inline zlib header');
+    }
+    final result = RawDeflate.inflatePrefix(
+      Uint8List.sublistView(data, 2),
+      maxOutputBytes: maxOutputBytes.clamp(0, maxDecodedBytes),
+    );
+    final tail = 2 + result.consumed;
+    if (tail + 4 > data.length ||
+        ByteData.sublistView(data, tail, tail + 4).getUint32(0) !=
+            _adler32(result.bytes)) {
+      throw const FormatException('Invalid inline zlib checksum');
+    }
+    return (bytes: result.bytes, consumed: tail + 4);
+  }
+
   static Uint8List _zlibWrap(Uint8List rawDeflate, List<int> original) {
     final Uint8List out = Uint8List(rawDeflate.length + 6);
     out[0] = 0x78; // CMF: deflate, 32k window
@@ -83,6 +107,6 @@ abstract final class PdfFlate {
       a = (a + byte) % 65521;
       b = (b + a) % 65521;
     }
-    return ((b << 16) | a) & 0xFFFFFFFF;
+    return b * 65536 + a;
   }
 }

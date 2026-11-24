@@ -93,6 +93,74 @@ void _expectSolid(Uint8List? pixels, List<int> rgb) {
 }
 
 void main() {
+  test('inline image framing preserves delimiter-like binary payload bytes', () {
+    const samples = [32, 69, 73, 32, 128, 37];
+    for (final (filter, payload) in [
+      ('', samples),
+      ('/F /RL', [5, ...samples, 128]),
+      ('/F [/AHx /RL]', ascii.encode('0520454920802580>')),
+      // Python zlib level 0 keeps the literal " EI " inside the stored block.
+      ('/F /Fl', base64Decode('eAEBBgD5/yBFSSCAJQTIAXQ=')),
+      ('/F [/Fl /RL]', base64Decode('eJxjVXD1VGhQbQAABuUB+Q==')),
+    ]) {
+      final list = _inlineDisplayList(
+        '/W 2 /H 1 /CS /RGB /BPC 8 $filter',
+        payload,
+      );
+      expect(list.issues, isEmpty, reason: filter);
+      expect(list.ops.whereType<PdfDrawImage>().single.bytes, samples);
+      expect(list.ops.whereType<PdfFillPath>(), hasLength(2));
+    }
+  });
+
+  test('inline Flate applies PNG predictor and verifies its zlib checksum', () {
+    final encoded = base64Decode('eJxj5JGQ42HjAgABgABg');
+    const parms = '/W 2 /H 1 /CS /RGB /F /Fl '
+        '/DP << /Predictor 15 /Colors 3 /Columns 2 /BitsPerComponent 8 >>';
+    final list = _inlineDisplayList(parms, encoded);
+    expect(list.issues, isEmpty);
+    expect(list.ops.whereType<PdfDrawImage>().single.bytes,
+        [12, 24, 30, 24, 30, 40]);
+
+    encoded[encoded.length - 1] ^= 1;
+    final corrupt = _inlineDisplayList(parms, encoded);
+    expect(corrupt.issues, {PdfPageRenderIssue.inlineImage});
+    expect(corrupt.ops.whereType<PdfDrawImage>(), isEmpty);
+    expect(corrupt.ops.whereType<PdfFillPath>(), hasLength(1));
+  });
+
+  test('ASCII85 inline images reuse the device gray raster path', () {
+    final list = _inlineDisplayList('/W 4 /H 1 /CS /G /F /A85', [
+      ...ascii.encode('z~>'),
+    ]);
+    expect(list.issues, isEmpty);
+    final image = list.ops.whereType<PdfDrawImage>().single;
+    expect(image.pixelWidth, 4);
+    expect(image.bytes, List<int>.filled(12, 0));
+  });
+
+  test('one-pixel inline rows keep their packed sample depth', () {
+    final list = _inlineDisplayList('/W 1 /H 2 /CS /G /BPC 1', [0x80, 0]);
+    expect(list.issues, isEmpty);
+    expect(list.ops.whereType<PdfDrawImage>().single.bytes,
+        [255, 255, 255, 0, 0, 0]);
+    final packed = _inlineDisplayList('/W 4 /H 1 /CS /G /BPC 2', [0x1B]);
+    expect(packed.issues, isEmpty);
+    expect(packed.ops.whereType<PdfDrawImage>().single.bytes,
+        [0, 0, 0, 85, 85, 85, 170, 170, 170, 255, 255, 255]);
+  });
+
+  test('unreadable inline images preserve already painted content', () {
+    final list = _inlineDisplayList(
+      '/W 4 /H 1 /CS /G /F /RL',
+      [127, 0],
+    );
+    expect(list.issues, {PdfPageRenderIssue.inlineImage});
+    expect(list.ops.whereType<PdfDrawImage>(), isEmpty);
+    expect(list.ops.whereType<PdfFillPath>(), hasLength(1));
+    expect(list.ops.whereType<PdfRestoreGState>(), hasLength(1));
+  });
+
   test('PDF filters distinguish stream limits from invalid filters', () {
     final dict = PdfCosDict({'Filter': const PdfCosName('RunLengthDecode')});
     final encoded = Uint8List.fromList([253, 65, 128]);
@@ -460,6 +528,19 @@ void main() {
     expect(result.bytes, raw);
     expect(result.jpxImage, isNull);
   });
+}
+
+PdfDisplayList _inlineDisplayList(String parameters, List<int> payload) {
+  final file = PdfFile.open(_imagePdf(Uint8List(0), '/Width 1 /Height 1'));
+  file.pageDict(0)['Contents'] = PdfCosStream(
+    PdfCosDict(),
+    Uint8List.fromList([
+      ...ascii.encode('0 0 5 5 re f q 10 0 0 10 0 0 cm BI $parameters ID '),
+      ...payload,
+      ...ascii.encode('\nEI Q 0 0 3 3 re f'),
+    ]),
+  );
+  return file.displayList(0);
 }
 
 Uint8List _stream(Uint8List data, String entries) => Uint8List.fromList([

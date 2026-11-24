@@ -97,6 +97,50 @@ abstract final class PdfFilters {
     return PdfFilterResult.ok(data);
   }
 
+  /// Decode one inline-image Flate stream and the filters following it.
+  static ({PdfFilterResult result, int consumed})? decodeInlineFlatePrefix(
+    Uint8List data,
+    PdfCosDict dict, {
+    required int maxOutputBytes,
+    required PdfCos? Function(PdfCos?) resolve,
+  }) {
+    final ({Uint8List bytes, int consumed}) prefix;
+    try {
+      prefix = PdfFlate.decompressZlibPrefix(
+        data,
+        maxOutputBytes: maxOutputBytes,
+      );
+    } on ZipDeflateException {
+      return null;
+    } on FormatException {
+      return null;
+    }
+    final filters = _filterNames(resolve(dict['Filter']), resolve);
+    final parms = _decodeParms(
+      resolve(dict['DecodeParms']), filters.length, resolve,
+    );
+    try {
+      final samples = _pngPredict(prefix.bytes, parms.firstOrNull ?? PdfCosDict());
+      if (filters.length <= 1) {
+        return (result: PdfFilterResult.ok(samples), consumed: prefix.consumed);
+      }
+      final rest = PdfCosDict({...dict.values})
+        ..['Filter'] = PdfCosArray([
+          for (final name in filters.skip(1)) PdfCosName(name),
+        ])
+        ..['DecodeParms'] = PdfCosArray(parms.skip(1).toList());
+      return (
+        result: decodeResult(samples, rest, resolve: resolve, decodeDct: true),
+        consumed: prefix.consumed,
+      );
+    } on FormatException {
+      return (
+        result: const PdfFilterResult.unsupported('FlateDecode'),
+        consumed: prefix.consumed,
+      );
+    }
+  }
+
   static Uint8List _one(
     Uint8List data,
     String name,

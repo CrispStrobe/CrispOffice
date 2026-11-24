@@ -11,6 +11,9 @@ enum PdfPageRenderIssue {
   /// The page or one of its streams exceeded the render byte budget.
   contentLimit,
 
+  /// An inline image could not be read or decoded.
+  inlineImage,
+
   /// Page interpretation failed before a display list could be produced.
   interpreterFailure,
 }
