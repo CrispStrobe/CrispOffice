@@ -301,6 +301,67 @@ class AppDelegate: FlutterAppDelegate {
     }
   }
 
+
+  private var mailPasteboardChannel: FlutterMethodChannel?
+
+  // Reads Finder file promises or a pasted image as bounded bytes. Flutter's
+  // Clipboard API cannot expose these types on macOS.
+  func registerMailPasteboardChannel(binaryMessenger: FlutterBinaryMessenger) {
+    guard mailPasteboardChannel == nil else { return }
+    let channel = FlutterMethodChannel(
+      name: "crispoffice/mail_pasteboard", binaryMessenger: binaryMessenger)
+    mailPasteboardChannel = channel
+    channel.setMethodCallHandler { call, result in
+      guard call.method == "read" else {
+        result(FlutterMethodNotImplemented)
+        return
+      }
+      let pasteboard = NSPasteboard.general
+      let options: [NSPasteboard.ReadingOptionKey: Any] = [
+        .urlReadingFileURLsOnly: true
+      ]
+      if let urls = pasteboard.readObjects(
+        forClasses: [NSURL.self], options: options) as? [URL], !urls.isEmpty {
+        var items: [[String: Any]] = []
+        let limit = 100 * 1024 * 1024
+        for url in urls.prefix(8) {
+          guard url.isFileURL,
+                let data = try? Data(contentsOf: url),
+                !data.isEmpty,
+                data.count <= limit else { continue }
+          items.append([
+            "name": url.lastPathComponent,
+            "bytes": FlutterStandardTypedData(bytes: data),
+            "mediaType": NSNull(),
+          ])
+        }
+        result(items)
+        return
+      }
+      if let png = pasteboard.data(forType: .png), !png.isEmpty,
+         png.count <= 20 * 1024 * 1024 {
+        result([[
+          "name": "pasted-image.png",
+          "bytes": FlutterStandardTypedData(bytes: png),
+          "mediaType": "image/png",
+        ]])
+        return
+      }
+      if let tiff = pasteboard.data(forType: .tiff),
+         let rep = NSBitmapImageRep(data: tiff),
+         let png = rep.representation(using: .png, properties: [:]),
+         !png.isEmpty, png.count <= 20 * 1024 * 1024 {
+        result([[
+          "name": "pasted-image.png",
+          "bytes": FlutterStandardTypedData(bytes: png),
+          "mediaType": "image/png",
+        ]])
+        return
+      }
+      result([])
+    }
+  }
+
 }
 
 // Scoped file-keychain adapter ported from CrispCloud 4ee4eef5.
@@ -842,64 +903,4 @@ final class CustomKeychainStore {
       return values
     }
   }
-  private var mailPasteboardChannel: FlutterMethodChannel?
-
-  // Reads Finder file promises or a pasted image as bounded bytes. Flutter's
-  // Clipboard API cannot expose these types on macOS.
-  func registerMailPasteboardChannel(binaryMessenger: FlutterBinaryMessenger) {
-    guard mailPasteboardChannel == nil else { return }
-    let channel = FlutterMethodChannel(
-      name: "crispoffice/mail_pasteboard", binaryMessenger: binaryMessenger)
-    mailPasteboardChannel = channel
-    channel.setMethodCallHandler { call, result in
-      guard call.method == "read" else {
-        result(FlutterMethodNotImplemented)
-        return
-      }
-      let pasteboard = NSPasteboard.general
-      let options: [NSPasteboard.ReadingOptionKey: Any] = [
-        .urlReadingFileURLsOnly: true
-      ]
-      if let urls = pasteboard.readObjects(
-        forClasses: [NSURL.self], options: options) as? [URL], !urls.isEmpty {
-        var items: [[String: Any]] = []
-        let limit = 100 * 1024 * 1024
-        for url in urls.prefix(8) {
-          guard url.isFileURL,
-                let data = try? Data(contentsOf: url),
-                !data.isEmpty,
-                data.count <= limit else { continue }
-          items.append([
-            "name": url.lastPathComponent,
-            "bytes": FlutterStandardTypedData(bytes: data),
-            "mediaType": NSNull(),
-          ])
-        }
-        result(items)
-        return
-      }
-      if let png = pasteboard.data(forType: .png), !png.isEmpty,
-         png.count <= 20 * 1024 * 1024 {
-        result([[
-          "name": "pasted-image.png",
-          "bytes": FlutterStandardTypedData(bytes: png),
-          "mediaType": "image/png",
-        ]])
-        return
-      }
-      if let tiff = pasteboard.data(forType: .tiff),
-         let rep = NSBitmapImageRep(data: tiff),
-         let png = rep.representation(using: .png, properties: [:]),
-         !png.isEmpty, png.count <= 20 * 1024 * 1024 {
-        result([[
-          "name": "pasted-image.png",
-          "bytes": FlutterStandardTypedData(bytes: png),
-          "mediaType": "image/png",
-        ]])
-        return
-      }
-      result([])
-    }
-  }
-
 }
