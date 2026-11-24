@@ -119,7 +119,7 @@ class PdfCosStore {
   }
 
   /// streamResult API.
-  PdfFilterResult streamResult(PdfCos? value) {
+  PdfFilterResult streamResult(PdfCos? value, {bool decodeDct = false}) {
     final PdfCos? obj = deref(value);
     if (obj is! PdfCosStream) {
       return const PdfFilterResult.unsupported('NotAStream');
@@ -127,7 +127,9 @@ class PdfCosStore {
     if (obj.raw.length > 64 * 1024 * 1024) {
       return const PdfFilterResult.unsupported('StreamTooLarge');
     }
-    return PdfFilters.decodeResult(obj.raw, obj.dict, resolve: deref);
+    return PdfFilters.decodeResult(
+      obj.raw, obj.dict, resolve: deref, decodeDct: decodeDct,
+    );
   }
 
   /// asDict API.

@@ -600,12 +600,12 @@ class PdfInterpreter {
     if (frame.hidden) {
       return;
     }
-    final double w = pdfCosNumber(raw.dict['Width']) ?? 1;
-    final double h = pdfCosNumber(raw.dict['Height']) ?? 1;
+    final double w = pdfCosNumber(store.deref(raw.dict['Width'])) ?? 1;
+    final double h = pdfCosNumber(store.deref(raw.dict['Height'])) ?? 1;
     final (double x, double y) = frame.map(0, 0);
     final (double x1, double y1) = frame.map(1, 1);
-    final PdfFilterResult decoded = store.streamResult(raw);
-    final bool jpeg = _isJpeg(raw.dict);
+    final PdfFilterResult decoded = store.streamResult(raw, decodeDct: true);
+    final bool jpeg = decoded.jpegEncoded;
     var pixels = decoded.bytes ?? Uint8List(0);
     final int pw = w.round();
     final int ph = h.round();
@@ -615,8 +615,8 @@ class PdfInterpreter {
         pdfCosInt(raw.dict['BitsPerComponent']) ?? (imageMask ? 1 : 8);
     final bool invert = _decodeInverts(raw.dict);
     var hasAlpha = decoded.jpxImage?.hasAlpha ?? false;
-    if (decoded.jpxImage != null) {
-      // JPX has already resolved its own sample layout and alpha.
+    if (decoded.jpxImage != null || decoded.dctImage != null) {
+      // JPEG/JPX have already resolved their sample layout.
     } else if (imageMask && !jpeg && pixels.isNotEmpty) {
       final int maskBpc = _isBilevelCodec(raw.dict) &&
               pixels.length == pw * ph ? 8 : bpc;
@@ -637,11 +637,16 @@ class PdfInterpreter {
         }
       }
     }
+    var invalidDctMask = false;
     if (!jpeg && !imageMask && pixels.length == pw * ph * 3) {
       final Uint8List? mask = _smaskGray(raw.dict, pw, ph);
       if (mask != null) {
         pixels = _composeSMask(pixels, mask, pw, ph);
         hasAlpha = true;
+      } else if (decoded.dctImage != null &&
+          store.deref(raw.dict['SMask']) is PdfCosStream) {
+        // Do not present an opaque image when its declared mask failed.
+        invalidDctMask = true;
       }
     }
     final double ca = ((frame.fill >> 24) & 0xFF) / 255.0;
@@ -670,7 +675,7 @@ class PdfInterpreter {
         height: (y1 - y).abs().clamp(1, 100000),
         bytes: pixels,
         jpeg: jpeg,
-        placeholder: decoded.bytes == null || w < 1 || h < 1,
+        placeholder: decoded.bytes == null || invalidDctMask || w < 1 || h < 1,
         pixelWidth: pw,
         pixelHeight: ph,
         hasAlpha: hasAlpha || softMaskJpeg != null,
@@ -682,13 +687,14 @@ class PdfInterpreter {
 
   bool _isJpeg(PdfCosDict dict) {
     final List<String> names = <String>[];
-    final PdfCos? filter = dict['Filter'];
+    final PdfCos? filter = store.deref(dict['Filter']);
     if (filter is PdfCosName) {
       names.add(filter.value);
     } else if (filter is PdfCosArray) {
       for (final PdfCos item in filter.items) {
-        if (item is PdfCosName) {
-          names.add(item.value);
+        final resolved = store.deref(item);
+        if (resolved is PdfCosName) {
+          names.add(resolved.value);
         }
       }
     }
@@ -774,19 +780,20 @@ class PdfInterpreter {
     if (raw is! PdfCosStream) {
       return null;
     }
-    final PdfFilterResult decoded = store.streamResult(raw);
+    final PdfFilterResult decoded = store.streamResult(raw, decodeDct: true);
     final Uint8List? bytes = decoded.bytes;
-    if (bytes == null) {
+    if (bytes == null || decoded.jpegEncoded) {
       return null;
     }
-    final int mw = (pdfCosNumber(raw.dict['Width']) ?? w).round();
-    final int mh = (pdfCosNumber(raw.dict['Height']) ?? h).round();
+    final int mw = (pdfCosNumber(store.deref(raw.dict['Width'])) ?? w).round();
+    final int mh = (pdfCosNumber(store.deref(raw.dict['Height'])) ?? h).round();
     if (mw != w || mh != h) {
       return null;
     }
-    if (decoded.jpxImage != null) {
-      final image = decoded.jpxImage!;
-      if (!image.isGray || image.hasAlpha || bytes.length != w * h * 3) {
+    if (decoded.jpxImage != null || decoded.dctImage != null) {
+      final gray = decoded.jpxImage?.isGray ?? decoded.dctImage!.isGray;
+      if (!gray || (decoded.jpxImage?.hasAlpha ?? false) ||
+          bytes.length != w * h * 3) {
         return null;
       }
       return Uint8List.fromList(<int>[

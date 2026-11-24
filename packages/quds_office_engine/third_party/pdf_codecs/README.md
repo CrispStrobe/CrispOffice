@@ -24,8 +24,11 @@ release gates.
 JPX supports common Part 1 JP2 and raw J2K device-color XObjects. Non-device
 PDF color spaces, JPX image stencils, complex Part 2 extensions and HTJ2K are
 not claimed. Color management and CMYK accuracy remain bounded by the existing
-device-color approximation. JPEG is still deliberately passed through to
-existing host raster/Office paths. Mixed-mode CCITT Group 3 now shares the
+device-color approximation. 8-bit DeviceGray/DeviceRGB JPEG XObjects now decode in-engine via the
+existing image package (minimum 4.10.2 for bounded decoding), with PDF
+Decode/ColorTransform and JPEG soft masks. Four-component JPEG and non-device
+color spaces still use the bounded legacy host path. The low-level byte API
+continues to return DCT codestreams unless image decoding is requested. Mixed-mode CCITT Group 3 now shares the
 corrected T.4/T.6 decoder with Group 4. Unknown row counts require the
 RTC/EOFB marker unless EndOfBlock is false; known image heights accept
 complete rows without a trailing marker. Uncompressed extensions and

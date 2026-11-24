@@ -5,6 +5,7 @@ import '../../pdf_stream.dart';
 import '../cos/pdf_cos.dart';
 import '../cos/pdf_open_error.dart';
 import 'pdf_ccitt.dart';
+import 'pdf_dct.dart';
 import 'pdf_jbig2.dart';
 import 'pdf_jpx.dart';
 
@@ -25,6 +26,7 @@ abstract final class PdfFilters {
     Uint8List raw,
     PdfCosDict dict, {
     PdfCos? Function(PdfCos?)? resolve,
+    bool decodeDct = false,
   }) {
     PdfCos? resolved(PdfCos? value) => resolve?.call(value) ?? value;
     final List<String> filters = _filterNames(resolved(dict['Filter']), resolved);
@@ -35,6 +37,18 @@ abstract final class PdfFilters {
       final String name = filters[i];
       final PdfCosDict parm = i < parms.length ? parms[i] : PdfCosDict();
       try {
+        if (name == 'DCTDecode' || name == 'DCT') {
+          if (i != filters.length - 1) {
+            return const PdfFilterResult.unsupported('DCTDecode');
+          }
+          if (decodeDct) {
+            final image = PdfDct.decode(data, dict, parm, resolve: resolved);
+            if (image != null) {
+              return PdfFilterResult.dct(image);
+            }
+          }
+          return PdfFilterResult.encodedJpeg(data);
+        }
         if (name == 'JPXDecode') {
           if (i != filters.length - 1) {
             return PdfFilterResult.unsupported(name);
@@ -88,9 +102,6 @@ abstract final class PdfFilters {
       case 'LZWDecode':
       case 'LZW':
         return _pngPredict(_lzw(data, parm), parm);
-      case 'DCTDecode':
-      case 'DCT':
-        return data;
       case 'Crypt':
         return data;
       case 'CCITTFaxDecode':
@@ -413,18 +424,35 @@ abstract final class PdfFilters {
 /// Decoded stream or a named unsupported filter.
 class PdfFilterResult {
   /// ok API.
-  const PdfFilterResult.ok(this.bytes) : unsupported = null, jpxImage = null;
+  const PdfFilterResult.ok(this.bytes)
+    : unsupported = null, jpxImage = null, dctImage = null, jpegEncoded = false;
+
+  /// Original JPEG codestream for legacy byte consumers and host fallback.
+  const PdfFilterResult.encodedJpeg(this.bytes)
+    : unsupported = null, jpxImage = null, dctImage = null, jpegEncoded = true;
+
+  /// Engine-decoded JPEG with normalized RGB samples.
+  PdfFilterResult.dct(PdfDctImage image)
+    : bytes = image.pixels, unsupported = null, jpxImage = null,
+      dctImage = image, jpegEncoded = false;
 
   /// A decoded JPEG 2000 image; bytes are normalized RGB/RGBA samples.
   PdfFilterResult.jpx(PdfJpxImage image)
-    : bytes = image.pixels, unsupported = null, jpxImage = image;
+    : bytes = image.pixels, unsupported = null, jpxImage = image,
+      dctImage = null, jpegEncoded = false;
 
   /// unsupported API.
   const PdfFilterResult.unsupported(this.unsupported)
-    : bytes = null, jpxImage = null;
+    : bytes = null, jpxImage = null, dctImage = null, jpegEncoded = false;
 
   /// Image layout for JPX, independent of PDF dictionary color defaults.
   final PdfJpxImage? jpxImage;
+
+  /// Normalized JPEG layout when image decoding is requested.
+  final PdfDctImage? dctImage;
+
+  /// Whether bytes still contain a JPEG codestream.
+  final bool jpegEncoded;
 
   /// bytes API.
   final Uint8List? bytes;

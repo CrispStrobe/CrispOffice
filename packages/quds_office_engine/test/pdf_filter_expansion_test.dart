@@ -43,7 +43,156 @@ PdfCosDict _predictor(int columns, int colors, int bits, {int predictor = 2}) =>
       }),
     });
 
+// Independent synthetic JPEGs from Pillow/libjpeg, quality 95, 4:4:4.
+const _grayJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/wAALCAAIAAgBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AP9//2Q==';
+const _rgbJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wAARCAAIAAgDAREAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAAB//EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAVAQEBAAAAAAAAAAAAAAAAAAAFCf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AA8Wqw//2Q==';
+const _progressiveJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wgARCAAIAAgDAREAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAABP/EABUBAQEAAAAAAAAAAAAAAAAAAAYI/9oADAMBAAIQAxAAAAEZubf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAEFAn//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AX//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AX//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAY/An//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/IX//2gAMAwEAAgADAAAAEB//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/EH//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/EH//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/EH//2Q==';
+const _rawRgbJpeg =
+    '/9j/7gAOQWRvYmUAZAAAAAAA/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK/8AAEQgACAAIA1IRAEcRAEIRAP/EABUAAQEAAAAAAAAAAAAAAAAAAAkI/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAwDUgBHAEIAAD8AXAT6Z3//2Q==';
+const _orientedJpeg =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/wAALCAAIABABAREA/8QAFQABAQAAAAAAAAAAAAAAAAAACQr/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAA/AB/WAP/Z';
+const _cmykJpeg =
+    '/9j/7gAOQWRvYmUAZAAAAAAA/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK/8AAFAgACAAIBEMRAE0RAFkRAEsRAP/EABUAAQEAAAAAAAAAAAAAAAAAAAkI/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAA4EQwBNAFkASwAAPwBhCGKUNY//2Q==';
+
+PdfCosDict _dct(String cs, {int width = 8, int height = 8}) =>
+    PdfCosDict(<String, PdfCos>{
+      'Filter': const PdfCosName('DCTDecode'),
+      'Width': PdfCosInt(width),
+      'Height': PdfCosInt(height),
+      'BitsPerComponent': const PdfCosInt(8),
+      'ColorSpace': PdfCosName(cs),
+    });
+
+void _expectSolid(Uint8List? pixels, List<int> rgb) {
+  expect(pixels, isNotNull);
+  final samples = pixels!;
+  expect(samples.length, 8 * 8 * 3);
+  for (var i = 0; i < samples.length; i++) {
+    expect(samples[i], closeTo(rgb[i % 3], 3));
+  }
+}
+
 void main() {
+  test('engine DCT baseline gray/RGB and progressive independent pixels', () {
+    for (final (encoded, cs, expected) in [
+      (_grayJpeg, 'DeviceGray', [64, 64, 64]),
+      (_rgbJpeg, 'DeviceRGB', [221, 40, 91]),
+      (_progressiveJpeg, 'DeviceRGB', [20, 180, 90]),
+    ]) {
+      final result = PdfFilters.decodeResult(
+        base64Decode(encoded), _dct(cs), decodeDct: true,
+      );
+      expect(result.unsupported, isNull);
+      expect(result.jpegEncoded, isFalse);
+      expect(result.dctImage?.isGray, cs == 'DeviceGray');
+      _expectSolid(result.bytes, expected);
+    }
+  });
+
+  test('DCT ColorTransform zero, Adobe override and PDF Decode array', () {
+    final original = base64Decode(_rawRgbJpeg);
+    final withoutAdobe = Uint8List.fromList([
+      ...original.sublist(0, 2), ...original.sublist(18),
+    ]);
+    final dict = _dct('DeviceRGB')
+      ..['DecodeParms'] = PdfCosDict({'ColorTransform': const PdfCosInt(0)})
+      ..['Decode'] = PdfCosArray([
+        const PdfCosInt(1), const PdfCosInt(0),
+        const PdfCosInt(0), const PdfCosInt(1),
+        const PdfCosInt(0), const PdfCosReal(0.5),
+      ]);
+    _expectSolid(PdfFilters.decodeResult(
+      withoutAdobe, dict, decodeDct: true,
+    ).bytes, [35, 40, 45]);
+    dict['DecodeParms'] = PdfCosDict({'ColorTransform': const PdfCosInt(1)});
+    _expectSolid(PdfFilters.decodeResult(
+      original, dict, decodeDct: true,
+    ).bytes, [35, 40, 45]);
+  });
+
+  test('DCT ignores standalone EXIF orientation', () {
+    final result = PdfFilters.decodeResult(
+      base64Decode(_orientedJpeg),
+      _dct('DeviceGray', width: 16, height: 8),
+      decodeDct: true,
+    );
+    expect(result.unsupported, isNull);
+    final pixels = result.bytes!;
+    expect(pixels.length, 16 * 8 * 3);
+    for (var y = 0; y < 8; y++) {
+      for (var x = 0; x < 16; x++) {
+        expect(pixels[(y * 16 + x) * 3], closeTo(x < 8 ? 32 : 224, 3));
+      }
+    }
+  });
+
+  test('DCT XObject, filter chain, indirect parms and JPEG soft mask', () {
+    final pdf = PdfFile.open(_imagePdf(
+      _hex(base64Decode(_rgbJpeg)),
+      '/Width 8 /Height 8 /ColorSpace /DeviceRGB /BitsPerComponent 8 '
+      '/Filter [/ASCIIHexDecode /DCT] /DecodeParms [null 6 0 R] /SMask 7 0 R',
+      extras: [
+        ascii.encode('<< /ColorTransform 1 >>'),
+        _stream(base64Decode(_grayJpeg),
+          '/Type /XObject /Subtype /Image /Width 8 /Height 8 '
+          '/ColorSpace /DeviceGray /BitsPerComponent 8 /Filter /DCTDecode '
+          '/Decode [1 0]'),
+      ],
+    ));
+    final op = pdf.displayList(0).ops.whereType<PdfDrawImage>().single;
+    expect(op.placeholder, isFalse);
+    expect(op.jpeg, isFalse);
+    expect(op.hasAlpha, isTrue);
+    expect(op.softMaskJpeg, isNull);
+    expect(op.bytes.length, 8 * 8 * 4);
+    for (var i = 0; i < op.bytes.length; i += 4) {
+      expect(op.bytes[i], closeTo(221, 3));
+      expect(op.bytes[i + 1], closeTo(40, 3));
+      expect(op.bytes[i + 2], closeTo(91, 3));
+      expect(op.bytes[i + 3], closeTo(191, 3));
+    }
+  });
+
+  test('malformed, oversized and mismatched JPEGs are typed unsupported', () {
+    final valid = base64Decode(_grayJpeg);
+    final huge = Uint8List.fromList(valid);
+    for (var i = 0; i < huge.length - 8; i++) {
+      if (huge[i] == 0xff && huge[i + 1] == 0xc0) {
+        huge[i + 5] = huge[i + 6] = 0xff;
+        break;
+      }
+    }
+    for (final bytes in [
+      Uint8List.fromList([0xff, 0xd8, 0xff, 0xd9]),
+      valid.sublist(0, valid.length - 2),
+      huge,
+    ]) {
+      expect(PdfFilters.decodeResult(bytes, _dct('DeviceGray'),
+        decodeDct: true).unsupported, 'DCTDecode');
+    }
+    expect(PdfFilters.decodeResult(valid, _dct('DeviceGray', width: 7),
+      decodeDct: true).unsupported, 'DCTDecode');
+    expect(PdfFilters.decodeResult(valid, _dct('DeviceRGB'),
+      decodeDct: true).unsupported, 'DCTDecode');
+    final pdf = PdfFile.open(_imagePdf(valid.sublist(0, valid.length - 2),
+      '/Width 8 /Height 8 /ColorSpace /DeviceGray /Filter /DCTDecode'));
+    expect(pdf.displayList(0).ops.whereType<PdfDrawImage>().single.placeholder,
+      isTrue);
+  });
+
+  test('four-component JPEG remains a bounded legacy codestream', () {
+    final raw = base64Decode(_cmykJpeg);
+    final result = PdfFilters.decodeResult(raw, _dct('DeviceCMYK'),
+      decodeDct: true);
+    expect(result.jpegEncoded, isTrue);
+    expect(result.bytes, raw);
+    expect(result.dctImage, isNull);
+  });
+
+
   test('JP2 and raw J2K reconstruct independent RGB reference', () {
     for (final fixture in [_rgbJp2, _rgbJ2k]) {
       final decoded = PdfFilters.decodeResult(
