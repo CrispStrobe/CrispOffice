@@ -132,12 +132,12 @@ jobs:
           if-no-files-found: error
           retention-days: 7
       - name: Codec pixel and negative-control tests (VM)
-        run: dart test test/pdf_filter_expansion_test.dart
+        run: dart test test/pdf_filter_expansion_test.dart test/pdf_ccitt_test.dart
       - name: Existing JBIG2 regression
         run: dart test test/fidelity_waves_test.dart -n 'wave 5a JBIG2'
       - name: PDF codec portability (dart2js)
         if: success() || failure()
-        run: dart test --platform node test/pdf_filter_expansion_test.dart
+        run: dart test --platform node test/pdf_filter_expansion_test.dart test/pdf_ccitt_test.dart
 
   editor:
     name: quds_office_editor

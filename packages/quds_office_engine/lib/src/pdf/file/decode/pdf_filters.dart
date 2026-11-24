@@ -53,7 +53,7 @@ abstract final class PdfFilters {
             globals: _jbig2Globals(parm, resolved),
           );
         } else {
-          data = _one(data, name, parm);
+          data = _one(data, name, parm, dict);
         }
       } on PdfFilterUnsupported catch (error) {
         return PdfFilterResult.unsupported(error.filter);
@@ -66,7 +66,12 @@ abstract final class PdfFilters {
     return PdfFilterResult.ok(data);
   }
 
-  static Uint8List _one(Uint8List data, String name, PdfCosDict parm) {
+  static Uint8List _one(
+    Uint8List data,
+    String name,
+    PdfCosDict parm,
+    PdfCosDict dict,
+  ) {
     switch (name) {
       case 'FlateDecode':
       case 'Fl':
@@ -90,7 +95,12 @@ abstract final class PdfFilters {
         return data;
       case 'CCITTFaxDecode':
       case 'CCF':
-        return PdfCcitt.decode(data, parm);
+        return PdfCcitt.decode(
+          data,
+          parm,
+          imageWidth: pdfCosInt(dict['Width']),
+          imageHeight: pdfCosInt(dict['Height']),
+        );
       default:
         throw PdfFilterUnsupported(name);
     }

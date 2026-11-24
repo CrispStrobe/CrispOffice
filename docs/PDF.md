@@ -84,7 +84,7 @@ Required syntax (engine open must succeed when present):
 | `/ASCIIHexDecode`, `/ASCII85Decode` | P6.1 | |
 | `/RunLengthDecode` | P6.1 | |
 | `/DCTDecode` | P6.2 | JPEG image XObject |
-| `/CCITTFaxDecode` | P6.2 | Group 3 1-D and Group 4 (landed). Mixed G3 2-D (`K>0`) is 1-D best-effort |
+| `/CCITTFaxDecode` | P6.2 | Group 3 1-D, mixed 1-D/2-D and Group 4; bounded strict row decoding (uncompressed extensions and damaged-row recovery not supported) |
 | `/LZWDecode` | P6.3 | |
 | `/JBIG2Decode` | P6.5 | Bounded pure-Dart `jbig2` adapter; MMR, arithmetic, symbol/text, refinement and global dictionary streams |
 | `/JPXDecode` | P6.5 | Bounded `j2k` Part 1 JP2/raw J2K; RGB/Gray/CMYK device samples and `/SMaskInData`; advanced color spaces and Part 2 extensions remain unsupported |
