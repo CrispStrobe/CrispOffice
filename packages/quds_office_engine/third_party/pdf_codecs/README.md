@@ -31,6 +31,36 @@ RTC/EOFB marker unless EndOfBlock is false; known image heights accept
 complete rows without a trailing marker. Uncompressed extensions and
 DamagedRowsBeforeError recovery are not supported.
 
+## Preliminary license and provenance review (2026-11-24)
+
+The pinned pub.dev package metadata and published project documentation identify:
+
+| Package | Declared terms | Upstream | Direct dependencies |
+| --- | --- | --- | --- |
+| j2k 1.0.0 | MIT plus JJ2000 notice/license | [insinfo/jpeg2000](https://github.com/insinfo/jpeg2000), JJ2000 | meta, web |
+| jbig2 1.0.0 | Apache-2.0 | [insinfo/jbig2](https://github.com/insinfo/jbig2), Apache PDFBox JBIG2 ImageIO | logging |
+
+Sources: [j2k license](https://pub.dev/packages/j2k/license),
+[j2k origin and limitations](https://pub.dev/packages/j2k),
+[jbig2 license](https://pub.dev/packages/jbig2/license),
+[jbig2 origin and fixture provenance](https://pub.dev/packages/jbig2).
+
+Do not import the upstream JBIG2 non-commercial ITU fixtures into the suite
+or commercial distributions; the synthetic libtiff and OpenJPEG fixtures
+used here have independent provenance. Both package publishers are unverified.
+The JJ2000 license contains standard-conformance restrictions and patent
+cautions; review their applicability to the actual distribution before
+release. The upstream repository's moving main branch is not proof of the
+contents of the pinned hosted archive.
+
+The independent PDF codec CI job archives the exact resolved license and
+notice files from the workspace package configuration and uploads the
+generated root lockfile separately. Missing required notice files fail
+qualification. Review those artifacts against the pinned versions, commit
+the generated lockfile, and include the relevant license texts in the actual
+release/installer notices. Collecting CI evidence alone is not legal approval
+or full supply-chain/security qualification.
+
 ## Validation
 
 Run from the workspace root:

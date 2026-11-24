@@ -134,10 +134,53 @@ jobs:
       - name: Codec pixel and negative-control tests (VM)
         run: dart test test/pdf_filter_expansion_test.dart test/pdf_ccitt_test.dart
       - name: Existing JBIG2 regression
+        if: success() || failure()
         run: dart test test/fidelity_waves_test.dart -n 'wave 5a JBIG2'
       - name: PDF codec portability (dart2js)
         if: success() || failure()
         run: dart test --platform node test/pdf_filter_expansion_test.dart test/pdf_ccitt_test.dart
+      - name: Collect notices from exact resolved package sources
+        if: success() || failure()
+        working-directory: .
+        run: |
+          python3 - <<'PY'
+          import json
+          import shutil
+          from pathlib import Path
+          from urllib.parse import urljoin, urlparse
+          from urllib.request import url2pathname
+
+          config = Path('.dart_tool/package_config.json').resolve()
+          packages = {p['name']: p for p in json.loads(config.read_text())['packages']}
+          required = {
+              'j2k': ('LICENSE', 'LICENSE-JJ2000.txt'),
+              'jbig2': ('LICENSE', 'NOTICE'),
+              'meta': ('LICENSE',),
+              'web': ('LICENSE',),
+              'logging': ('LICENSE',),
+          }
+          out = Path('pdf-codec-license-evidence')
+          for name, files in required.items():
+              uri = urlparse(urljoin(config.as_uri(), packages[name]['rootUri']))
+              if uri.scheme != 'file':
+                  raise SystemExit(f'Expected local resolved package for {name}')
+              package = Path(url2pathname(uri.path))
+              target = out / name
+              target.mkdir(parents=True, exist_ok=True)
+              for filename in (*files, 'pubspec.yaml'):
+                  shutil.copyfile(package / filename, target / filename)
+              for extra in ('NOTICE', 'NOTICE.txt', 'LICENSE.md'):
+                  if (package / extra).is_file():
+                      shutil.copyfile(package / extra, target / extra)
+          PY
+      - name: Upload resolved codec license evidence
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-codec-license-evidence
+          path: pdf-codec-license-evidence/
+          if-no-files-found: error
+          retention-days: 7
 
   editor:
     name: quds_office_editor
