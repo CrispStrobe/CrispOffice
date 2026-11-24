@@ -13,6 +13,7 @@ and detailed acceptance notes are preserved in
 | **Office fidelity** | Close documented ODF and legacy gaps; preserve unknown structures only where the model supports them; keep vendor comparisons reproducible |
 | **Typing performance** | Keep layout, selection, proofing and paint work bounded during active typing; validate release/AOT builds on real documents |
 | **Zotero** | Installed Zotero/Word interop, ODT edge cases and bibliography layout regressions |
+| **Security** | Close the parser, decompression, PDF and signature gaps in the [security register](security-gaps-2026-11.md); keep fuzz reproducers as regressions |
 | **Verification** | Turn local feature tests into exact-head hosted, installed and live-provider evidence where the claim requires it |
 
 ## Next
@@ -55,6 +56,7 @@ and detailed acceptance notes are preserved in
 
 ## Tracking
 
+- [Security and parser-robustness gaps](security-gaps-2026-11.md)
 - [Standards coverage](STANDARDS.md)
 - [Mission](MISSION.md)
 - [Office remaining gaps](office-remaining-gaps.md)

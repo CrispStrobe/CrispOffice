@@ -4,26 +4,40 @@ import 'dart:typed_data';
 ///
 /// No `dart:io` dependency — safe on CLI, server, web, and native.
 abstract final class RawDeflate {
-  /// Inflates a raw stream, optionally limiting the bytes produced.
+  /// Output bound used when a caller does not supply a tighter one.
   ///
   /// The limit is checked before growing the output, including backreferences
   /// and stored blocks. It does not depend on an untrusted ZIP size header.
+  static const int defaultMaxOutputBytes = 256 * 1024 * 1024;
+
+  /// Inflates a raw stream, limiting the bytes produced.
+  ///
+  /// A caller can pass a tighter bound from its format or allocation budget.
+  /// Omitting it still applies [defaultMaxOutputBytes], so a future caller
+  /// cannot reintroduce an unbounded expansion path by accident.
   static Uint8List inflate(List<int> data, {int? maxOutputBytes}) {
-    if (maxOutputBytes != null && maxOutputBytes < 0) {
+    final int limit = maxOutputBytes ?? defaultMaxOutputBytes;
+    if (limit < 0) {
       throw ArgumentError.value(maxOutputBytes, 'maxOutputBytes');
     }
-    return _Inflater(data, maxOutputBytes: maxOutputBytes).run();
+    return _Inflater(data, maxOutputBytes: limit).run();
   }
 
   /// Inflates one stream and reports its byte boundary, including bit padding.
   static ({Uint8List bytes, int consumed}) inflatePrefix(
     Uint8List data, {
     required int maxOutputBytes,
+    int windowBytes = 32768,
   }) {
     if (maxOutputBytes < 0) {
       throw ArgumentError.value(maxOutputBytes, 'maxOutputBytes');
     }
-    final inflater = _Inflater(data, maxOutputBytes: maxOutputBytes);
+    RangeError.checkValueInInterval(windowBytes, 256, 32768, 'windowBytes');
+    final inflater = _Inflater(
+      data,
+      maxOutputBytes: maxOutputBytes,
+      windowBytes: windowBytes,
+    );
     final bytes = inflater.run();
     return (bytes: bytes, consumed: inflater._pos);
   }
@@ -35,11 +49,12 @@ abstract final class RawDeflate {
 }
 
 class _Inflater {
-  _Inflater(List<int> data, {this.maxOutputBytes})
+  _Inflater(List<int> data, {required this.maxOutputBytes, this.windowBytes = 32768})
     : _src = data is Uint8List ? data : Uint8List.fromList(data);
 
   final Uint8List _src;
-  final int? maxOutputBytes;
+  final int maxOutputBytes;
+  final int windowBytes;
   int _pos = 0;
   int _bitBuf = 0;
   int _bitCount = 0;
@@ -49,7 +64,7 @@ class _Inflater {
   void _reserveOutput(int additionalBytes) {
     final required = _length + additionalBytes;
     final limit = maxOutputBytes;
-    if (limit != null && required > limit) {
+    if (required > limit) {
       throw const ZipDeflateLimitException('DEFLATE output exceeds its limit');
     }
     if (required <= _out.length) {
@@ -59,7 +74,7 @@ class _Inflater {
     if (capacity < required) {
       capacity = required;
     }
-    if (limit != null && capacity > limit) {
+    if (capacity > limit) {
       capacity = limit;
     }
     _out = Uint8List(capacity)..setRange(0, _length, _out);
@@ -128,7 +143,7 @@ class _Inflater {
         throw ZipDeflateException('Invalid distance symbol $dsym');
       }
       final int distance = _distBase[dsym] + _bits(_distExtra[dsym]);
-      if (distance <= 0 || distance > _length) {
+      if (distance <= 0 || distance > _length || distance > windowBytes) {
         throw const ZipDeflateException('Invalid backreference distance');
       }
       _reserveOutput(length);
@@ -165,10 +180,16 @@ class _Inflater {
         index += repeat;
       } else if (sym == 17) {
         final int repeat = 3 + _bits(3);
+        if (repeat > lengths.length - index) {
+          throw const ZipDeflateException('Code-length repeat overruns table');
+        }
         index += repeat;
         prev = 0;
       } else if (sym == 18) {
         final int repeat = 11 + _bits(7);
+        if (repeat > lengths.length - index) {
+          throw const ZipDeflateException('Code-length repeat overruns table');
+        }
         index += repeat;
         prev = 0;
       } else {

@@ -17,6 +17,9 @@ import 'pdf_display_list.dart';
 
 /// Interprets a page content stream into a [PdfDisplayList].
 class PdfInterpreter {
+  /// Maximum source pixels for one image XObject or inline image.
+  static const int maxImagePixels = 32 * 1024 * 1024;
+
   /// PdfInterpreter API.
   PdfInterpreter(this.store, {this.maxFormDepth = 32, List<PdfLayer>? layers})
     : layers = layers ?? const <PdfLayer>[];
@@ -41,13 +44,18 @@ class PdfInterpreter {
         store.asDict(pageDict['Resources']) ?? PdfCosDict();
     final Uint8List content = _pageContent(pageDict, frame.issues);
     _run(content, resources, frame, 0);
-    _paintAnnotAppearances(pageDict, frame, 0);
+    try {
+      _paintAnnotAppearances(pageDict, frame, 0);
+    } on Exception catch (error) {
+      frame.recordFailure('Annotations: $error');
+    }
     return PdfDisplayList(
       page: page,
       ops: frame.ops,
       runs: frame.runs,
       hotspots: hotspots,
       issues: Set.unmodifiable(frame.issues),
+      error: frame.error,
     );
   }
 
@@ -197,7 +205,13 @@ class PdfInterpreter {
         continue;
       }
       if (tok.op != null) {
-        _exec(tok.op!, stack, resources, frame, depth);
+        try {
+          _exec(tok.op!, stack, resources, frame, depth);
+        } on Exception catch (error) {
+          // Keep the operations already produced and report the failing
+          // operator. Programming errors still escape to fuzzing.
+          frame.recordFailure('${tok.op}: $error');
+        }
         stack.clear();
       } else if (tok.value != null) {
         stack.add(tok.value!);
@@ -550,8 +564,8 @@ class PdfInterpreter {
         if (stack.isNotEmpty && stack.last is _Name) {
           try {
             _doXObject((stack.last as _Name).value, resources, frame, depth);
-          } catch (_) {
-            break;
+          } on Exception catch (error) {
+            frame.recordFailure('Do ${(stack.last as _Name).value}: $error');
           }
         }
       case 'BMC':
@@ -646,12 +660,34 @@ class PdfInterpreter {
     final double h = pdfCosNumber(store.deref(raw.dict['Height'])) ?? 1;
     final (double x, double y) = frame.map(0, 0);
     final (double x1, double y1) = frame.map(1, 1);
+    final int pw = w.isFinite && w <= 65535 ? w.round() : 0;
+    final int ph = h.isFinite && h <= 65535 ? h.round() : 0;
+    if (pw < 1 || ph < 1 || pw * ph > maxImagePixels) {
+      frame.issues.add(PdfPageRenderIssue.contentLimit);
+      frame.ops.add(
+        PdfDrawImage(
+          x: math.min(x, x1),
+          y: math.min(y, y1),
+          width: (x1 - x).abs().clamp(1, 100000),
+          height: (y1 - y).abs().clamp(1, 100000),
+          bytes: Uint8List(0),
+          placeholder: true,
+          blend: frame.blend,
+        ),
+      );
+      return;
+    }
     final PdfFilterResult decoded =
         decodedStream ?? store.streamResult(raw, decodeDct: true);
+    if (decoded.bytes == null) {
+      frame.issues.add(
+        decoded.limitExceeded
+            ? PdfPageRenderIssue.contentLimit
+            : PdfPageRenderIssue.imageStream,
+      );
+    }
     final bool jpeg = decoded.jpegEncoded;
     var pixels = decoded.bytes ?? Uint8List(0);
-    final int pw = w.round();
-    final int ph = h.round();
     final bool imageMask =
         _flag(raw.dict['ImageMask']) || _flag(raw.dict['IM']);
     final int bpc =
@@ -661,8 +697,9 @@ class PdfInterpreter {
     if (decoded.jpxImage != null || decoded.dctImage != null) {
       // JPEG/JPX have already resolved their sample layout.
     } else if (imageMask && !jpeg && pixels.isNotEmpty) {
-      final int maskBpc = _isBilevelCodec(raw.dict) &&
-              pixels.length == pw * ph ? 8 : bpc;
+      final int maskBpc = _isBilevelCodec(raw.dict) && pixels.length == pw * ph
+          ? 8
+          : bpc;
       pixels = _stencilRgba(pixels, pw, ph, maskBpc, frame.fill, invert);
       hasAlpha = true;
     } else if (!jpeg && pixels.isNotEmpty) {
@@ -691,6 +728,7 @@ class PdfInterpreter {
           store.deref(raw.dict['SMask']) is PdfCosStream) {
         // Do not present an opaque image when its declared mask failed.
         invalidDctMask = true;
+        frame.issues.add(PdfPageRenderIssue.imageStream);
       }
     }
     final double ca = ((frame.fill >> 24) & 0xFF) / 255.0;
@@ -749,12 +787,14 @@ class PdfInterpreter {
     final PdfCos? filter = dict['Filter'];
     if (filter is PdfCosName) {
       return filter.value == 'CCITTFaxDecode' ||
-          filter.value == 'CCF' || filter.value == 'JBIG2Decode';
+          filter.value == 'CCF' ||
+          filter.value == 'JBIG2Decode';
     }
     if (filter is PdfCosArray) {
       for (final PdfCos item in filter.items) {
         if (item is PdfCosName &&
-            (item.value == 'CCITTFaxDecode' || item.value == 'CCF' ||
+            (item.value == 'CCITTFaxDecode' ||
+                item.value == 'CCF' ||
                 item.value == 'JBIG2Decode')) {
           return true;
         }
@@ -1709,6 +1749,14 @@ class _Frame {
 
   final PdfPageInfo page;
   final PdfInterpreter interp;
+
+  /// First recoverable interpreter failure on this page, if any.
+  String? error;
+
+  void recordFailure(String message) {
+    issues.add(PdfPageRenderIssue.interpreterFailure);
+    error ??= message;
+  }
 
   (double, double) get currentPoint {
     if (path.isEmpty) {
