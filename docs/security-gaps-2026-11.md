@@ -98,6 +98,27 @@ dart test test/pdf_file_test.dart test/pdf_filter_expansion_test.dart
 - PDF signatures now expose the distinction between a digest match and actual
   signature/trust verification.
 
+### Fonts and compound files
+
+- `GlyphOutlineDecoder` now checks contour count, monotonic endpoint order,
+  instruction length, flag repeats and the point budget before allocation.
+  Residual cursor range failures become an empty outline.
+- `CfbfFile` checks stream size and FAT/DIFAT/mini-FAT sector indices before
+  every `ByteSource.view`; hostile MSG/compound streams produce typed
+  `CfbfException` instead of `RangeError`.
+- `tool/fuzz/fuzz_font.dart` covers SFNT, CFF, cmap, GSUB/GPOS and glyph
+  outlines; `cfbf_reader_bounds_test.dart` and `glyph_outline_bounds_test.dart`
+  pin the minimized repros.
+
+Regression tests:
+
+```bash
+cd packages/quds_office_engine
+dart test test/cfbf_reader_bounds_test.dart test/bounded_cfb_reader_test.dart \
+  test/glyph_outline_bounds_test.dart
+dart run tool/fuzz/fuzz_font.dart 10000
+```
+
 ## Open work, in priority order
 
 ### P0 — real signature trust and color correctness (S1)
