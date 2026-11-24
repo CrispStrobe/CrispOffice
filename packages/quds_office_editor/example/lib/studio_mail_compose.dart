@@ -40,6 +40,7 @@ class StudioMailComposeDialog extends StatefulWidget {
     this.canSend = true,
     this.composeToolsStore,
     this.isComposeToolsCurrent,
+    this.maxAttachmentBytes = StudioMailAttachments.defaultMaxTotalBytes,
   });
 
   final StudioStrings strings;
@@ -55,6 +56,10 @@ class StudioMailComposeDialog extends StatefulWidget {
   /// Account-owned writing tools, independent of the draft's immutable text.
   final StudioMailComposeToolsStore? composeToolsStore;
   final bool Function()? isComposeToolsCurrent;
+
+  /// Per-account attachment payload bound. The default is 20 MiB; a host may
+  /// pass a larger verified provider claim (mailbox.org currently 100 MiB).
+  final int maxAttachmentBytes;
 
   /// Persists an immutable editor snapshot, including unfinished recipients.
   /// A failed save keeps the composer open and prevents submission.
@@ -502,7 +507,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     try {
       final files = await select();
       if (!mounted || files == null) return;
-      final next = await loader.read(files, existing: _attachments);
+      final next = await loader.read(
+        files,
+        existing: _attachments,
+        maxTotalBytes: widget.maxAttachmentBytes,
+      );
       if (!mounted || !identical(_attachmentLoader, loader)) return;
       setState(() => _attachments = next);
       _edited();
@@ -534,7 +543,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       _attachments = StudioMailAttachments.from([
         for (var i = 0; i < _attachments.items.length; i++)
           if (i != index) _attachments.items[i],
-      ]);
+      ], maxTotalBytes: widget.maxAttachmentBytes);
       _attachmentFailed = false;
     });
     _edited();

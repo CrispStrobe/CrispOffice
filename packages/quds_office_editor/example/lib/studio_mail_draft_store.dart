@@ -910,8 +910,9 @@ final class SqliteStudioMailDraftStore
                 name: attachment.displayName,
                 bytes: attachment.content.copyBytes(),
                 mediaType: attachment.mediaType,
+                maxBytes: StudioMailAttachments.hardMaxTotalBytes,
               ),
-          ]),
+          ], maxTotalBytes: StudioMailAttachments.hardMaxTotalBytes),
         ),
         submissionUncertain: editor.submissionUncertain,
       );

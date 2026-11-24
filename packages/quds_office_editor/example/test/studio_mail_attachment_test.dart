@@ -37,6 +37,8 @@ StudioMailDraft _draft(
 
 void main() {
   test('attachment policy is 20 MiB by default', () {
+    expect(StudioMailAttachments.defaultMaxTotalBytes, 20 * 1024 * 1024);
+    expect(StudioMailAttachments.hardMaxTotalBytes, 100 * 1024 * 1024);
     expect(StudioMailAttachments.maxTotalBytes, 20 * 1024 * 1024);
     expect(StudioMailAttachments.maxCount, 10);
   });

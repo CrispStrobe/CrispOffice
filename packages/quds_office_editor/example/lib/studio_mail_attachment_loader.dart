@@ -44,6 +44,7 @@ final class StudioMailAttachmentLoader {
   Future<StudioMailAttachments> read(
     List<PlatformFile> files, {
     StudioMailAttachments existing = const StudioMailAttachments.empty(),
+    int maxTotalBytes = StudioMailAttachments.defaultMaxTotalBytes,
   }) async {
     _checkCurrent();
     if (_reading || readTimeout <= Duration.zero) {
@@ -59,7 +60,7 @@ final class StudioMailAttachmentLoader {
     for (final file in files) {
       StudioMailAttachment.validateName(file.name);
       if (file.size < 0) throw const StudioMailAttachmentReadFailure();
-      if (file.size > StudioMailAttachments.maxTotalBytes - declaredBytes) {
+      if (file.size > maxTotalBytes - declaredBytes) {
         throw const StudioMailAttachmentException(
           StudioMailAttachmentProblem.tooLarge,
         );
@@ -73,13 +74,19 @@ final class StudioMailAttachmentLoader {
       var actualBytes = existing.totalBytes;
       for (final file in files) {
         _checkCurrent();
-        final remaining = StudioMailAttachments.maxTotalBytes - actualBytes;
+        final remaining = maxTotalBytes - actualBytes;
         final bytes = await _readFile(file, remaining);
         _checkCurrent();
-        result.add(StudioMailAttachment(name: file.name, bytes: bytes));
+        result.add(
+          StudioMailAttachment(
+            name: file.name,
+            bytes: bytes,
+            maxBytes: maxTotalBytes,
+          ),
+        );
         actualBytes += bytes.length;
       }
-      return StudioMailAttachments.from(result);
+      return StudioMailAttachments.from(result, maxTotalBytes: maxTotalBytes);
     } on StudioMailAttachmentException {
       rethrow;
     } on StudioMailAttachmentReadCancelled {

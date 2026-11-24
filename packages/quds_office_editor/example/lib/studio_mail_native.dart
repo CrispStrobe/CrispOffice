@@ -2266,6 +2266,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         builder: (context) => StudioMailComposeDialog(
           strings: widget.strings,
           from: account.email,
+          maxAttachmentBytes:
+              account.email.toLowerCase().endsWith('@mailbox.org')
+              ? StudioMailAttachments.hardMaxTotalBytes
+              : StudioMailAttachments.defaultMaxTotalBytes,
           initialDraft: _draft ?? initial,
           previousSubmissionUncertain: _submissionUncertain,
           composeToolsStore: switch (store) {

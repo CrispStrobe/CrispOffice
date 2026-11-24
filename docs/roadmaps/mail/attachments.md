@@ -43,13 +43,13 @@ including EML, are sent as `application/octet-stream`.
 | Bound | Behavior |
 | --- | --- |
 | Attachment count | At most 10 across the entire draft, including empty files and duplicate names |
-| Combined attachment payload | At most 20 MiB (20,971,520 bytes), before base64 encoding; provider limits may be lower |
-| Individual file | The remaining draft byte budget; a single file can use the complete 20 MiB |
+| Combined attachment payload | 20 MiB (20,971,520 bytes) by default; mailbox.org uses 64 MiB derived from its 100 MB message-size claim; other providers may be lower |
+| Individual file | The remaining draft byte budget; a single file can use the complete account policy (20 MiB default, 64 MiB mailbox.org) |
 | Filename | At most 255 UTF-8 bytes; a basename with valid Unicode and no path separators, control characters, line/paragraph separators, directional control marks, surrounding whitespace, `.` or `..` |
 | Stream read deadline | 30 seconds per file by default; elapsed time applies across all chunks of that file |
 | Body | Existing 1 MiB UTF-8 limit and no null characters |
 | Subject | Existing 512-character limit and no header controls |
-| Canonical wire message | At most 40 MiB (41,943,040 ASCII bytes), checked before transport; server limits are not inferred |
+| Canonical wire message | At most 150 MiB (157,286,400 ASCII bytes), checked before transport; server limits are not inferred |
 
 The complete selection's declared sizes and names are admitted before any stream
 is opened. Actual chunk sizes are checked before retention and must total exactly
@@ -147,9 +147,11 @@ The production codec recovers every file and the complete body. The probe
 records a separate allowance estimate for the private Bcc header and request
 wrapper; it does not capture a live provider request or establish a server's
 quota. It is a serialization bound probe, not a device-wide performance claim.
-The current 20 MiB payload and 40 MiB wire bounds have not yet been re-qualified
-against a live provider; mailbox.org's published limit is a message-size claim,
-not a promise that a 100 MB attachment will be accepted.
+The 20 MiB default and 64 MiB mailbox.org policy have not yet been re-qualified
+against a live provider. mailbox.org's published 100 MB is a message-size
+claim; the attachment budget is deliberately lower after base64 and headers.
+The composer names the source: ordinary accounts show the CrispOffice default,
+mailbox.org shows its larger policy.
 
 Live-provider delivery, actual native picker behavior on each installed OS and
 real browser persistence remain separate qualifications.

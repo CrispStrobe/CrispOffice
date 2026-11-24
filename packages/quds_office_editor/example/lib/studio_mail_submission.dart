@@ -7,7 +7,7 @@ import 'studio_mail_draft.dart';
 
 /// Leaves room for private Bcc headers and the providers' outer base64 request
 /// encoding beneath the default 32 MiB cloud request budget.
-const studioMailMaxWireBytes = 40 * 1024 * 1024;
+const studioMailMaxWireBytes = 150 * 1024 * 1024;
 
 /// Constructs ASCII-safe MIME with visible To/Cc and no Bcc header.
 /// The caller must use the envelope in [StudioMailDraft.recipients], including

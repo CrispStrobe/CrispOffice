@@ -29,9 +29,10 @@ final class StudioMailAttachment {
     required String name,
     required Uint8List bytes,
     String? mediaType,
+    int maxBytes = StudioMailAttachments.defaultMaxTotalBytes,
   }) {
     validateName(name);
-    if (bytes.length > StudioMailAttachments.maxTotalBytes) {
+    if (bytes.length > maxBytes) {
       throw const StudioMailAttachmentException(
         StudioMailAttachmentProblem.tooLarge,
       );
@@ -130,8 +131,9 @@ final class StudioMailAttachments {
   const StudioMailAttachments.empty() : items = const [], totalBytes = 0;
 
   factory StudioMailAttachments.from(
-    Iterable<StudioMailAttachment> attachments,
-  ) {
+    Iterable<StudioMailAttachment> attachments, {
+    int maxTotalBytes = defaultMaxTotalBytes,
+  }) {
     final selected = <StudioMailAttachment>[];
     var bytes = 0;
     for (final attachment in attachments) {
@@ -157,7 +159,10 @@ final class StudioMailAttachments {
   /// relationships are carried into the text draft. All names, types and byte
   /// counts are admitted before copying any payload. Nothing is silently
   /// dropped, renamed or relabeled, including unsupported message containers.
-  factory StudioMailAttachments.forwarded(List<MailAttachment> attachments) {
+  factory StudioMailAttachments.forwarded(
+    List<MailAttachment> attachments, {
+    int maxTotalBytes = defaultMaxTotalBytes,
+  }) {
     if (attachments.length > maxCount) {
       throw const StudioMailAttachmentException(
         StudioMailAttachmentProblem.tooMany,
@@ -184,14 +189,24 @@ final class StudioMailAttachments {
           name: attachment.displayName,
           bytes: attachment.content.bytes,
           mediaType: attachment.mediaType,
+          maxBytes: maxTotalBytes,
         ),
-    ]);
+    ], maxTotalBytes: maxTotalBytes);
   }
 
   const StudioMailAttachments._(this.items, this.totalBytes);
 
   static const maxCount = 10;
-  static const maxTotalBytes = 20 * 1024 * 1024;
+
+  /// Product default for an ordinary account.
+  static const defaultMaxTotalBytes = 20 * 1024 * 1024;
+
+  /// Provider-specific ceiling accepted by the UI when the host has a verified
+  /// claim (currently mailbox.org's published message-size limit).
+  static const hardMaxTotalBytes = 100 * 1024 * 1024;
+
+  /// Backwards-compatible default used by older callers/tests.
+  static const maxTotalBytes = defaultMaxTotalBytes;
 
   final List<StudioMailAttachment> items;
   final int totalBytes;
