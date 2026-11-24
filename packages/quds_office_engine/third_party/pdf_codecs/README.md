@@ -24,11 +24,14 @@ release gates.
 JPX supports common Part 1 JP2 and raw J2K device-color XObjects. Non-device
 PDF color spaces, JPX image stencils, complex Part 2 extensions and HTJ2K are
 not claimed. Color management and CMYK accuracy remain bounded by the existing
-device-color approximation. 8-bit DeviceGray/DeviceRGB JPEG XObjects now decode in-engine via the
-existing image package (minimum 4.10.2 for bounded decoding), with PDF
-Decode/ColorTransform and JPEG soft masks. Four-component JPEG and non-device
-color spaces still use the bounded legacy host path. The low-level byte API
-continues to return DCT codestreams unless image decoding is requested. Mixed-mode CCITT Group 3 now shares the
+device-color approximation. 8-bit DeviceGray, DeviceRGB and DeviceCMYK JPEG
+XObjects decode in the engine via the existing image package (minimum 4.10.2
+for bounded decoding). Four-component JPEGs preserve the CMYK component
+samples, reconstructing them from YCCK when required, so PDF Decode ranges
+apply before conversion to RGB. JPEG soft masks compose in the engine.
+Non-device color spaces still use the bounded host path. The low-level
+byte API returns DCT codestreams unless image decoding is requested.
+Mixed-mode CCITT Group 3 shares the
 corrected T.4/T.6 decoder with Group 4. Unknown row counts require the
 RTC/EOFB marker unless EndOfBlock is false; known image heights accept
 complete rows without a trailing marker. Uncompressed extensions and
@@ -87,3 +90,6 @@ with Pillow 12.3.0 / libtiff 4.7.1, using WhiteIsZero TIFF single-strip
 payloads. They cover T4Options 0/1/5 and T.6, transitions at column zero,
 long makeup runs, both polarities, EOL/RTC/EOFB, byte alignment, and invalid
 streams. The code words are defined by ITU-T T.4 and T.6.
+
+JPEG tests use synthetic Pillow/libjpeg fixtures and cover Adobe transform
+precedence, CMYK Decode, YCCK reconstruction, and soft mask composition.

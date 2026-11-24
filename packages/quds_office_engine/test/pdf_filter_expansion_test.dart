@@ -56,6 +56,23 @@ const _orientedJpeg =
     '/9j/4AAQSkZJRgABAQAAAQABAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/wAALCAAIABABAREA/8QAFQABAQAAAAAAAAAAAAAAAAAACQr/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAA/AB/WAP/Z';
 const _cmykJpeg =
     '/9j/7gAOQWRvYmUAZAAAAAAA/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK/8AAFAgACAAIBEMRAE0RAFkRAEsRAP/EABUAAQEAAAAAAAAAAAAAAAAAAAkI/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAA4EQwBNAFkASwAAPwBhCGKUNY//2Q==';
+// Pillow 13.0.0/libjpeg-turbo 3.2.0, quality 95, 4:4:4. Encode inverted
+// (Y, Cb, Cr, K) tuples (102,173,88,208) and (198,55,199,70) in 8x8 blocks,
+// then set the Adobe transform byte to 2. The same independent decoder
+// reports CMYK inks (46,115,182,47) and (255,172,69,185).
+const _ycckJpeg =
+    '/9j/7gAOQWRvYmUAZAAAAAAC/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK'
+    '/8AAFAgACAAQBEMRAE0RAFkRAEsRAP/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBh'
+    'NRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SV'
+    'lpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/aAA4EQwBNAFkASwAAPwDxevrSvl+v1Ar9gK'
+    '/Cev28r+dev//Z';
+
+final _invertCmyk = PdfCosArray([
+  for (var channel = 0; channel < 4; channel++) ...[
+    const PdfCosInt(1),
+    const PdfCosInt(0),
+  ],
+]);
 
 PdfCosDict _dct(String cs, {int width = 8, int height = 8}) =>
     PdfCosDict(<String, PdfCos>{
@@ -183,13 +200,101 @@ void main() {
       isTrue);
   });
 
-  test('four-component JPEG remains a bounded legacy codestream', () {
+  test('DCT CMYK applies PDF Decode to the original four samples', () {
+    // libjpeg decodes this Adobe CMYK fixture to inks (30, 60, 90, 20).
+    // The actual codestream samples are (225, 195, 165, 235).
     final raw = base64Decode(_cmykJpeg);
-    final result = PdfFilters.decodeResult(raw, _dct('DeviceCMYK'),
-      decodeDct: true);
-    expect(result.jpegEncoded, isTrue);
-    expect(result.bytes, raw);
-    expect(result.dctImage, isNull);
+    final dict = _dct('DeviceCMYK');
+    final markerless = Uint8List.fromList([
+      ...raw.sublist(0, 2),
+      ...raw.sublist(18),
+    ]);
+    for (final input in [raw, markerless]) {
+      final identity = PdfFilters.decodeResult(input, dict, decodeDct: true);
+      expect(identity.unsupported, isNull);
+      _expectSolid(identity.bytes, [2, 5, 7]);
+    }
+
+    dict['Decode'] = _invertCmyk;
+    dict['DecodeParms'] =
+        PdfCosDict({'ColorTransform': const PdfCosInt(1)});
+    final inverted = PdfFilters.decodeResult(raw, dict, decodeDct: true);
+    expect(inverted.unsupported, isNull);
+    expect(inverted.jpegEncoded, isFalse);
+    expect(inverted.dctImage?.isGray, isFalse);
+    _expectSolid(inverted.bytes, [207, 180, 152]);
+
+    final invalidAdobe = Uint8List.fromList(raw)..[17] = 1;
+    final unsupported = PdfFilters.decodeResult(invalidAdobe, dict,
+        decodeDct: true);
+    expect(unsupported.unsupported, 'DCTDecode');
+  });
+
+  test('DCT YCCK reconstructs CMYK before applying PDF Decode', () {
+    final adobe = base64Decode(_ycckJpeg);
+    final markerless = Uint8List.fromList([
+      ...adobe.sublist(0, 2),
+      ...adobe.sublist(18),
+    ]);
+    for (final (raw, transform) in [(adobe, 0), (markerless, 1)]) {
+      final dict = _dct('DeviceCMYK', width: 16)
+        ..['Decode'] = _invertCmyk
+        ..['DecodeParms'] = PdfCosDict({'ColorTransform': PdfCosInt(transform)});
+      final result = PdfFilters.decodeResult(raw, dict, decodeDct: true);
+      expect(result.unsupported, isNull);
+      expect(result.jpegEncoded, isFalse);
+      final pixels = result.bytes!;
+      expect(pixels.length, 16 * 8 * 3);
+      for (var y = 0; y < 8; y++) {
+        for (var x = 0; x < 16; x++) {
+          final expected = x < 8 ? [170, 114, 60] : [0, 23, 51];
+          final offset = (y * 16 + x) * 3;
+          for (var i = 0; i < 3; i++) {
+            expect(pixels[offset + i], closeTo(expected[i], 2));
+          }
+        }
+      }
+    }
+  });
+
+  test('DCT CMYK XObject composes a JPEG soft mask in the display list', () {
+    final pdf = PdfFile.open(_imagePdf(
+      base64Decode(_cmykJpeg),
+      '/Width 8 /Height 8 /ColorSpace /DeviceCMYK /Filter /DCTDecode '
+      '/Decode [1 0 1 0 1 0 1 0] /SMask 6 0 R',
+      extras: [
+        _stream(base64Decode(_grayJpeg),
+            '/Type /XObject /Subtype /Image /Width 8 /Height 8 '
+            '/ColorSpace /DeviceGray /BitsPerComponent 8 /Filter /DCTDecode'),
+      ],
+    ));
+    final op = pdf.displayList(0).ops.whereType<PdfDrawImage>().single;
+    expect(op.placeholder, isFalse);
+    expect(op.jpeg, isFalse);
+    expect(op.hasAlpha, isTrue);
+    expect(op.bytes.length, 8 * 8 * 4);
+    const rgba = [207, 180, 152, 64];
+    for (var i = 0; i < op.bytes.length; i++) {
+      expect(op.bytes[i], closeTo(rgba[i % 4], 3));
+    }
+  });
+
+  test('four-component JPEG retains the encoded API and ICC host path', () {
+    final raw = base64Decode(_cmykJpeg);
+    final icc = _dct('DeviceCMYK')
+      ..['ColorSpace'] = PdfCosArray([
+        const PdfCosName('ICCBased'),
+        const PdfCosRef(6, 0),
+      ]);
+    for (final result in [
+      PdfFilters.decodeResult(raw, _dct('DeviceCMYK')),
+      PdfFilters.decodeResult(raw, icc, decodeDct: true),
+    ]) {
+      expect(result.unsupported, isNull);
+      expect(result.jpegEncoded, isTrue);
+      expect(result.bytes, raw);
+      expect(result.dctImage, isNull);
+    }
   });
 
 
