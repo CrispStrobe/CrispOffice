@@ -60,6 +60,8 @@ receipt. A green local run is not hosted, installed or live-provider evidence.
 | SEC-023 | S1 | OpenType table amplification | GSUB/GPOS read lookup and subtable counts without totals, GPOS coverage-2 could iterate billions of ranges, and composite glyph outlines recursed through self-references. | **Closed**: 4,096 lookup/subtable caps, 4,096 coverage-glyph cap, composite depth 16 + active-glyph set, `loca` bounds. Differential shaping remains SEC-011. |
 | SEC-024 | S1 | PDF image dimensions | Image XObject width/height were trusted before `w*h*4` allocations; an empty ImageMask could request gigabytes. Inline images multiplied width/height without a budget. | **Closed**: 32 MP and 65,535-dimension caps before decode; placeholder on rejection. |
 | SEC-025 | S1 | JBIG2 error escape | `jbig2 1.0.0` can throw `UnsupportedError` for legal unknown-length segments; the adapter did not catch that `Error`, so the image vanished and the page could abort. | **Mitigated**: `UnsupportedError` maps to typed `PdfFilterUnsupported`; the dependency's 32-bit allocation fields still need a fork/budget (SEC-009). |
+| SEC-026 | S1 | Glyph outline bounds | `GlyphOutlineDecoder` trusted each glyph's contour count, non-monotonic endpoints, instruction length and repeat flags. A font with a valid SFNT directory but hostile `glyf` data escaped `RangeError` from the byte cursor (fuzz: 160 escapes, minimal 319,622-byte font). | **Closed**: contour/endpoint/instruction/repeat bounds are checked before allocation; `decode` converts any residual cursor `RangeError` to an empty outline. Regression `glyph_outline_bounds_test.dart`; `fuzz_font.dart` covers SFNT/CFF/cmap/GSUB/GPOS/outlines. |
+| SEC-027 | S1 | CFBF stream sectors | `CfbfFile._readFatStream` and `_readFat` used an untrusted directory start sector or DIFAT/FAT index to call `ByteSource.view` before checking the FAT/container bounds. A small mutated MSG escaped `RangeError` from the Outlook MSG preview (fuzz: 10 escapes in 50,003 runs). | **Closed**: FAT size, FAT index, mini-FAT index and every sector view are checked before allocation/read; typed `CfbfException` is returned. Regressions `cfbf_reader_bounds_test.dart`; CrispCloud `fuzz_mail.dart` is clean over the same MSG seed. |
 
 ## Closed in this audit wave
 
@@ -142,6 +144,7 @@ The engine is pure Dart, so the high-value targets run without Flutter:
 | PDF COS | `PdfFile.open` | writer PDF, encrypted PDF, xref stream |
 | PDF filters | `PdfFilters.decodeResult`, `PdfFile.displayList` | Flate, predictor, JPX, JBIG2, CCITT |
 | XML/OOXML | `XmlDocument.parse`, `WordDeserializer().read` | minimal package parts |
+| Fonts | `SfntFont.parse`, `PdfCffHost.forFlutter`, GSUB/GPOS, `GlyphOutlineDecoder` | bundled Liberation/Noto/Tajawal faces |
 | Legacy DOC | `legacy_doc_parser` entry | small binary fixture |
 
 `covfuzz` is the preferred runner because it already provides blind mutation,
@@ -162,6 +165,7 @@ dart run tool/fuzz/fuzz_deflate.dart
 dart run tool/fuzz/fuzz_zip.dart
 dart run tool/fuzz/fuzz_pdf.dart
 dart run tool/fuzz/fuzz_xml.dart
+dart run tool/fuzz/fuzz_font.dart
 
 # deep target, only when clang/libFuzzer is available
 dart run fuzz run --max-total-time=60 test/fuzz/pdf_cos_fuzz.dart
