@@ -237,17 +237,20 @@ class PdfFile {
           ),
     ];
     try {
-      return PdfInterpreter(store, layers: layers).interpret(
-        page: rec.info,
-        pageDict: rec.dict,
-        hotspots: spots,
-      );
-    } catch (_) {
+      return PdfInterpreter(
+        store,
+        layers: layers,
+      ).interpret(page: rec.info, pageDict: rec.dict, hotspots: spots);
+    } on Exception catch (error) {
+      // A malformed page must not abort the whole file, but it must not look
+      // like a legitimately empty page either. Programming errors (Error
+      // subclasses) are deliberately allowed to escape and reach fuzzing.
       return PdfDisplayList(
         page: rec.info,
         ops: const <PdfPaintOp>[],
         runs: const <PdfTextRun>[],
         hotspots: spots,
+        error: error.toString(),
       );
     }
   }
@@ -308,7 +311,11 @@ class PdfFile {
   }
 
   /// insertPage API.
-  void insertBlankPage(int index, {double width = 595.28, double height = 841.89}) {
+  void insertBlankPage(
+    int index, {
+    double width = 595.28,
+    double height = 841.89,
+  }) {
     final int at = index.clamp(0, _pages.length);
     final PdfPageInfo info = PdfPageInfo(
       index: at,
@@ -469,7 +476,9 @@ class PdfFile {
         utf8.decode(_pageStream(rec.dict), allowMalformed: true),
         rect,
       );
-      rec.pendingContent = Uint8List.fromList(utf8.encode('$stripped\n$overlay'));
+      rec.pendingContent = Uint8List.fromList(
+        utf8.encode('$stripped\n$overlay'),
+      );
       rec.dirty = true;
     }
   }
@@ -604,8 +613,10 @@ class PdfFile {
     }
     final _Inherit next = inherit.child(dict);
     final String type = pdfCosName(dict['Type']) ?? '';
-    if (type == 'Page' || (type.isEmpty && dict['Kids'] == null && dict['MediaBox'] != null)) {
-      final PdfBox media = next.media ?? const PdfBox(llx: 0, lly: 0, urx: 595.28, ury: 841.89);
+    if (type == 'Page' ||
+        (type.isEmpty && dict['Kids'] == null && dict['MediaBox'] != null)) {
+      final PdfBox media =
+          next.media ?? const PdfBox(llx: 0, lly: 0, urx: 595.28, ury: 841.89);
       final PdfBox crop = next.crop ?? media;
       out.add(
         PdfPageRec(
@@ -683,12 +694,10 @@ class PdfFile {
         : store.streamBytes(catalog['Metadata']);
     if (meta != null) {
       xmp = utf8.decode(meta, allowMalformed: true);
-      final RegExpMatch? p = RegExp(
-        r'pdfaid:part[>\"]+\s*(\d+)',
-      ).firstMatch(xmp);
-      final RegExpMatch? c = RegExp(
-        r'pdfaid:conformance[>\"]+\s*([A-Z])',
-      ).firstMatch(xmp);
+      final RegExpMatch? p = RegExp(r'pdfaid:part[>\"]+\s*(\d+)')
+          .firstMatch(xmp);
+      final RegExpMatch? c = RegExp(r'pdfaid:conformance[>\"]+\s*([A-Z])')
+          .firstMatch(xmp);
       part = p?.group(1);
       conf = c?.group(1);
     }
@@ -772,7 +781,10 @@ class PdfFile {
     if (value is PdfCosDict) {
       final String s = pdfCosName(value['S']) ?? '';
       if (s == 'URI') {
-        return PdfLinkAction(uri: pdfCosText(value['URI']), kind: PdfLinkKind.uri);
+        return PdfLinkAction(
+          uri: pdfCosText(value['URI']),
+          kind: PdfLinkKind.uri,
+        );
       }
       if (s == 'GoTo') {
         value = store.deref(value['D']);
@@ -789,8 +801,9 @@ class PdfFile {
       }
     }
     if (value is PdfCosName || value is PdfCosString) {
-      final String key =
-          value is PdfCosName ? value.value : (value as PdfCosString).asText;
+      final String key = value is PdfCosName
+          ? value.value
+          : (value as PdfCosString).asText;
       final PdfCos? named = _lookupNamedDest(store, catalog, key);
       if (named != null) {
         return _dest(store, catalog, named, pages, depth: depth + 1);
@@ -824,8 +837,9 @@ class PdfFile {
       }
     }
     final PdfCosDict? names = store.asDict(catalog['Names']);
-    final PdfCosDict? tree =
-        names == null ? null : store.asDict(names['Dests']);
+    final PdfCosDict? tree = names == null
+        ? null
+        : store.asDict(names['Dests']);
     if (tree == null) {
       return null;
     }
@@ -844,9 +858,8 @@ class PdfFile {
     final PdfCosArray? entries = store.asArray(node['Names']);
     if (entries != null) {
       for (int i = 0; i + 1 < entries.items.length; i += 2) {
-        final String key = pdfCosText(entries.items[i]) ??
-            pdfCosName(entries.items[i]) ??
-            '';
+        final String key =
+            pdfCosText(entries.items[i]) ?? pdfCosName(entries.items[i]) ?? '';
         if (key == name) {
           return store.deref(entries.items[i + 1]);
         }
@@ -882,7 +895,11 @@ class PdfFile {
     return null;
   }
 
-  static int? _pageIndex(PdfCosStore store, PdfCos ref, List<PdfPageRec> pages) {
+  static int? _pageIndex(
+    PdfCosStore store,
+    PdfCos ref,
+    List<PdfPageRec> pages,
+  ) {
     if (ref is PdfCosNull) {
       return null;
     }
@@ -1043,8 +1060,7 @@ class PdfFile {
     ];
   }
 
-  static bool _flag(PdfCos? value) =>
-      value is PdfCosBool && value.value;
+  static bool _flag(PdfCos? value) => value is PdfCosBool && value.value;
 
   static PdfViewerPrefs _readViewerPrefs(
     PdfCosStore store,
@@ -1073,7 +1089,9 @@ class PdfFile {
     final PdfCosArray? occds = store.asArray(oc['OCGs']);
     final PdfCosDict? config = store.asDict(oc['D']);
     final Set<int> off = <int>{};
-    final PdfCosArray? offArr = config == null ? null : store.asArray(config['OFF']);
+    final PdfCosArray? offArr = config == null
+        ? null
+        : store.asArray(config['OFF']);
     if (offArr != null) {
       for (final PdfCos item in offArr.items) {
         if (item is PdfCosRef) {
@@ -1102,9 +1120,14 @@ class PdfFile {
     return out;
   }
 
-  static List<PdfEmbeddedFile> _readEmbedded(PdfCosStore store, PdfCosDict catalog) {
+  static List<PdfEmbeddedFile> _readEmbedded(
+    PdfCosStore store,
+    PdfCosDict catalog,
+  ) {
     final PdfCosDict? names = store.asDict(catalog['Names']);
-    final PdfCosDict? tree = names == null ? null : store.asDict(names['EmbeddedFiles']);
+    final PdfCosDict? tree = names == null
+        ? null
+        : store.asDict(names['EmbeddedFiles']);
     final PdfCosArray? arr = tree == null ? null : store.asArray(tree['Names']);
     if (arr == null) {
       return <PdfEmbeddedFile>[];
@@ -1140,7 +1163,8 @@ class PdfFile {
     List<PdfPageRec> pages,
     int depth,
   ) {
-    final String role = pdfCosName(dict['S']) ??
+    final String role =
+        pdfCosName(dict['S']) ??
         (pdfCosName(dict['Type']) == 'StructTreeRoot'
             ? 'StructTreeRoot'
             : 'NonStruct');

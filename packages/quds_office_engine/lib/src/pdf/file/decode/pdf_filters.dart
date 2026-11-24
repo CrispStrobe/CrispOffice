@@ -27,9 +27,15 @@ abstract final class PdfFilters {
     PdfCos? Function(PdfCos?)? resolve,
   }) {
     PdfCos? resolved(PdfCos? value) => resolve?.call(value) ?? value;
-    final List<String> filters = _filterNames(resolved(dict['Filter']), resolved);
-    final List<PdfCosDict> parms =
-        _decodeParms(resolved(dict['DecodeParms']), filters.length, resolved);
+    final List<String> filters = _filterNames(
+      resolved(dict['Filter']),
+      resolved,
+    );
+    final List<PdfCosDict> parms = _decodeParms(
+      resolved(dict['DecodeParms']),
+      filters.length,
+      resolved,
+    );
     var data = raw;
     for (int i = 0; i < filters.length; i++) {
       final String name = filters[i];
@@ -70,7 +76,10 @@ abstract final class PdfFilters {
     switch (name) {
       case 'FlateDecode':
       case 'Fl':
-        return _pngPredict(PdfFlate.decompress(data), parm);
+        return _pngPredict(
+          PdfFlate.decompress(data, maxOutputBytes: PdfFlate.maxDecodedBytes),
+          parm,
+        );
       case 'ASCIIHexDecode':
       case 'AHx':
         return _asciiHex(data);
@@ -153,15 +162,26 @@ abstract final class PdfFilters {
       resolve,
     );
     const allowed = <String>{
-      'FlateDecode', 'Fl', 'LZWDecode', 'LZW',
-      'ASCII85Decode', 'A85', 'ASCIIHexDecode', 'AHx',
-      'RunLengthDecode', 'RL', 'Crypt',
+      'FlateDecode',
+      'Fl',
+      'LZWDecode',
+      'LZW',
+      'ASCII85Decode',
+      'A85',
+      'ASCIIHexDecode',
+      'AHx',
+      'RunLengthDecode',
+      'RL',
+      'Crypt',
     };
     if (names.any((name) => !allowed.contains(name))) {
       throw const PdfFilterUnsupported('JBIG2Decode');
     }
-    final Uint8List? bytes =
-        decodeResult(stream.raw, stream.dict, resolve: resolve).bytes;
+    final Uint8List? bytes = decodeResult(
+      stream.raw,
+      stream.dict,
+      resolve: resolve,
+    ).bytes;
     if (bytes == null || bytes.length > 16 * 1024 * 1024) {
       throw const PdfFilterUnsupported('JBIG2Decode');
     }
@@ -287,8 +307,10 @@ abstract final class PdfFilters {
     final int columns = pdfCosInt(parm['Columns']) ?? 1;
     final int colors = pdfCosInt(parm['Colors']) ?? 1;
     final int bpc = pdfCosInt(parm['BitsPerComponent']) ?? 8;
-    if (columns < 1 || columns > 16 * 1024 * 1024 ||
-        colors < 1 || colors > 32 ||
+    if (columns < 1 ||
+        columns > 16 * 1024 * 1024 ||
+        colors < 1 ||
+        colors > 32 ||
         !const <int>{1, 2, 4, 8, 16}.contains(bpc)) {
       throw const FormatException('Invalid predictor dimensions');
     }
@@ -356,7 +378,8 @@ abstract final class PdfFilters {
         final int previous = (i - colors) * bpc;
         final int value =
             (_readSample(out, base, pos, bpc) +
-                _readSample(out, base, previous, bpc)) & mask;
+                _readSample(out, base, previous, bpc)) &
+            mask;
         _writeSample(out, base, pos, bpc, value);
       }
     }
@@ -372,7 +395,11 @@ abstract final class PdfFilters {
   }
 
   static void _writeSample(
-    Uint8List data, int base, int bit, int bpc, int value,
+    Uint8List data,
+    int base,
+    int bit,
+    int bpc,
+    int value,
   ) {
     final int index = base + (bit >> 3);
     if (bpc == 16) {
@@ -407,11 +434,14 @@ class PdfFilterResult {
 
   /// A decoded JPEG 2000 image; bytes are normalized RGB/RGBA samples.
   PdfFilterResult.jpx(PdfJpxImage image)
-    : bytes = image.pixels, unsupported = null, jpxImage = image;
+    : bytes = image.pixels,
+      unsupported = null,
+      jpxImage = image;
 
   /// unsupported API.
   const PdfFilterResult.unsupported(this.unsupported)
-    : bytes = null, jpxImage = null;
+    : bytes = null,
+      jpxImage = null;
 
   /// Image layout for JPX, independent of PDF dictionary color defaults.
   final PdfJpxImage? jpxImage;

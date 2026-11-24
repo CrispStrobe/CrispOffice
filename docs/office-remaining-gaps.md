@@ -1,6 +1,7 @@
 # Office format remaining work
 
-Status: 15 November 2026.
+Status: 24 November 2026. Security-ranked parser and format gaps are tracked
+separately in [security-gaps-2026-11.md](security-gaps-2026-11.md).
 
 This file tracks engine/editor work that is not complete. The host-level backlog
 is maintained in the CrispCloud repository

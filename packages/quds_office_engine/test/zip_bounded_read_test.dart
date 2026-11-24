@@ -71,6 +71,15 @@ void main() {
     );
   }
 
+  test('recovery stream reads cap actual decoded output', () async {
+    final writer = ZipWriter()..addFile('bomb', Uint8List(1024 * 1024));
+    final reader = ZipReader.fromBytes(writer.close());
+    await expectLater(
+      reader.openStream('bomb', maxBytes: 1024).toList(),
+      throwsA(isA<ZipDeflateLimitException>()),
+    );
+  });
+
   test('empty streams can use a zero-byte budget', () {
     expect(
       RawDeflate.inflate(RawDeflate.deflate([]), maxOutputBytes: 0),
