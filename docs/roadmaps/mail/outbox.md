@@ -125,9 +125,10 @@ production native SQLite adapter supplies the durable outbox capability.
 - Up to 100 local outbox entries per scoped account, within the existing SQLite
   account/blob quotas. Terminal cleanup releases storage; queued or uncertain
   work is not silently evicted.
-- Existing ten-attachment/10 MiB combined decoded attachment limit, 1 MiB plain
-  body limit and 22 MiB generated-wire limit. The frozen envelope includes all
-  validated To/Cc/Bcc recipients.
+- Current ten-attachment/20 MiB combined decoded attachment limit, 1 MiB plain
+  body limit and 40 MiB generated-wire limit. The frozen envelope includes all
+  validated To/Cc/Bcc recipients. Provider message limits remain authoritative
+  and may reject a locally admissible message.
 - Native application-data storage is local and unencrypted. Credentials and
   tokens do not enter the outbox. No server-side Drafts synchronization is added.
 - The [scheduling continuation](scheduled-send.md) adds foreground Send later

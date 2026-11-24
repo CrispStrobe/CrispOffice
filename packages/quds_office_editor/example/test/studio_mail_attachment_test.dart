@@ -36,6 +36,11 @@ StudioMailDraft _draft(
 );
 
 void main() {
+  test('attachment policy is 20 MiB by default', () {
+    expect(StudioMailAttachments.maxTotalBytes, 20 * 1024 * 1024);
+    expect(StudioMailAttachments.maxCount, 10);
+  });
+
   test('ordinary const drafts retain an immutable empty attachment bundle', () {
     const draft = StudioMailDraft(to: _sender, subject: '', body: '');
     expect(draft.attachments.isEmpty, isTrue);

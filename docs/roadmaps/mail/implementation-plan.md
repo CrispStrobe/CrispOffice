@@ -462,7 +462,7 @@ baseline `479e1e03` identity.
 now provide bounded To/Cc/Bcc composition, explicit-envelope Bcc separation,
 visible-participant replies and retained uncertain drafts in the Studio host.
 The later [outgoing attachment increment](attachments.md) adds immutable local
-file snapshots, atomic/cancellable selection, ten-file/10 MiB limits, exact
+file snapshots, atomic/cancellable selection, ten-file/20 MiB limits, exact
 base64 parts and ASCII-safe RFC 2231 filenames to that shared foreground path.
 The pure draft model is independent of the widget surface. Current locked-graph
 qualification is recorded with the attachment increment, separately from the

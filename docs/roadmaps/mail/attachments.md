@@ -43,13 +43,13 @@ including EML, are sent as `application/octet-stream`.
 | Bound | Behavior |
 | --- | --- |
 | Attachment count | At most 10 across the entire draft, including empty files and duplicate names |
-| Combined attachment payload | At most 10 MiB (10,485,760 bytes), before base64 encoding |
-| Individual file | The remaining draft byte budget; a single file can use the complete 10 MiB |
+| Combined attachment payload | At most 20 MiB (20,971,520 bytes), before base64 encoding; provider limits may be lower |
+| Individual file | The remaining draft byte budget; a single file can use the complete 20 MiB |
 | Filename | At most 255 UTF-8 bytes; a basename with valid Unicode and no path separators, control characters, line/paragraph separators, directional control marks, surrounding whitespace, `.` or `..` |
 | Stream read deadline | 30 seconds per file by default; elapsed time applies across all chunks of that file |
 | Body | Existing 1 MiB UTF-8 limit and no null characters |
 | Subject | Existing 512-character limit and no header controls |
-| Canonical wire message | At most 22 MiB (23,068,672 ASCII bytes), checked before transport |
+| Canonical wire message | At most 40 MiB (41,943,040 ASCII bytes), checked before transport; server limits are not inferred |
 
 The complete selection's declared sizes and names are admitted before any stream
 is opened. Actual chunk sizes are checked before retention and must total exactly
@@ -139,7 +139,7 @@ adds the complete model/MIME, recipient/reply/threading, vendor codec/builder,
 file-reader, composer and provider-host suites. Together they check immutable
 ownership, empty and duplicate files, names and media-type admission, count/byte
 limits, exact attachment hashes, MIME structure, Bcc absence and reply threading.
-A maximum-size probe combines ten files totaling 10 MiB with a 1 MiB body of
+A prior maximum-size probe combined ten files totaling 10 MiB with a 1 MiB body of
 quotes, whose escaped HTML expands sixfold. In the recorded run the canonical
 message is 21,986,572 bytes and its outer-base64 representation is 29,315,432
 bytes, below the 22 MiB wire guard and default 32 MiB cloud request budget.
@@ -147,6 +147,9 @@ The production codec recovers every file and the complete body. The probe
 records a separate allowance estimate for the private Bcc header and request
 wrapper; it does not capture a live provider request or establish a server's
 quota. It is a serialization bound probe, not a device-wide performance claim.
+The current 20 MiB payload and 40 MiB wire bounds have not yet been re-qualified
+against a live provider; mailbox.org's published limit is a message-size claim,
+not a promise that a 100 MB attachment will be accepted.
 
 Live-provider delivery, actual native picker behavior on each installed OS and
 real browser persistence remain separate qualifications.
