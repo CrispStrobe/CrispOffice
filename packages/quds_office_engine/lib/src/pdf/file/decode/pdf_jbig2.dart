@@ -33,6 +33,13 @@ abstract final class PdfJbig2 {
       return image.toGrayscale();
     } on jb.Jbig2Exception {
       throw const PdfFilterUnsupported('JBIG2Decode');
+    } on Exception {
+      // Segment parsing in jbig2 1.0.0 can also throw a plain Exception.
+      throw const PdfFilterUnsupported('JBIG2Decode');
+    } on ArgumentError {
+      throw const PdfFilterUnsupported('JBIG2Decode');
+    } on StateError {
+      throw const PdfFilterUnsupported('JBIG2Decode');
     }
   }
 }

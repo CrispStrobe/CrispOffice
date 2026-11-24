@@ -187,6 +187,12 @@ void main() {
 
   test('wave 5a JBIG2 MMR generic region decodes; junk stays placeholder', () {
     final Uint8List white = PdfJbig2.decode(_jbig2White8x1(), PdfCosDict());
+    // Invalid standalone organization/header must not escape as a raw
+    // exception from the third-party segment parser.
+    final malformed = _jbig2White8x1()..[8] = 0;
+    final PdfFile bad = PdfFile.open(_jbig2Pdf(malformed));
+    expect(bad.displayList(0).ops.whereType<PdfDrawImage>().first.placeholder,
+        isTrue);
     expect(white.length, 8);
     expect(white.every((int b) => b == 0xFF), isTrue);
 
@@ -228,10 +234,10 @@ void main() {
 Uint8List _jbig2White8x1() {
   final BytesBuilder out = BytesBuilder();
   out.add(<int>[0x97, 0x4A, 0x42, 0x32, 0x0D, 0x0A, 0x1A, 0x0A]);
-  out.add(<int>[0x00]);
+  out.add(<int>[0x01]); // Sequential organization; known page count.
   out.add(_u32(1));
   // Page information, type 48, page 1, 19 bytes.
-  out.add(_u32(0));
+  out.add(_u32(1));
   out.addByte(48);
   out.addByte(0);
   out.addByte(1);
@@ -241,11 +247,12 @@ Uint8List _jbig2White8x1() {
   out.add(_u32(196));
   out.add(_u32(196));
   out.addByte(0);
-  out.add(<int>[0xFF, 0xFF]);
-  // Immediate generic region type 36.
-  final Uint8List mmr = Uint8List.fromList(<int>[0x80]);
-  out.add(_u32(1));
-  out.addByte(36);
+  out.add(<int>[0, 0]); // Non-striped page.
+  // Immediate generic region type 38 (36 is intermediate). One V(0)
+  // followed by the two EOLs of the Group 4 end-of-facsimile-block marker.
+  final Uint8List mmr = Uint8List.fromList(<int>[0x80, 0x08, 0, 0x80]);
+  out.add(_u32(2));
+  out.addByte(38);
   out.addByte(0);
   out.addByte(1);
   out.add(_u32(18 + mmr.length));
@@ -257,12 +264,12 @@ Uint8List _jbig2White8x1() {
   out.addByte(1);
   out.add(mmr);
   // End of page / file.
-  out.add(_u32(2));
+  out.add(_u32(3));
   out.addByte(49);
   out.addByte(0);
   out.addByte(1);
   out.add(_u32(0));
-  out.add(_u32(3));
+  out.add(_u32(4));
   out.addByte(51);
   out.addByte(0);
   out.addByte(0);

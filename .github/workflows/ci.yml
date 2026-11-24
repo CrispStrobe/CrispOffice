@@ -108,7 +108,35 @@ jobs:
         run: python -m unittest discover -s tool/fidelity -p 'test_*.py'
       - run: dart analyze --fatal-infos
       - run: dart test
+
+  pdf_codecs:
+    name: PDF codec qualification (VM and dart2js)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/quds_office_engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Upload resolved workspace lockfile
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-codec-workspace-lock
+          path: pubspec.lock
+          if-no-files-found: error
+          retention-days: 7
+      - name: Codec pixel and negative-control tests (VM)
+        run: dart test test/pdf_filter_expansion_test.dart
+      - name: Existing JBIG2 regression
+        run: dart test test/fidelity_waves_test.dart -n 'wave 5a JBIG2'
       - name: PDF codec portability (dart2js)
+        if: success() || failure()
         run: dart test --platform node test/pdf_filter_expansion_test.dart
 
   editor:
