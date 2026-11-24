@@ -105,7 +105,7 @@ window, rejects preset dictionaries, and checks Adler-32. ZIP uses raw
 DEFLATE through the shared inflater with its own output budget.
 
 Inline images support unfiltered samples and ASCIIHex, ASCII85, RunLength,
-and zlib-wrapped Flate as the first filter. Filter chains then use the
+zlib-wrapped Flate, and JPEG framing. Filter chains then use the
 usual stream decoder. Binary sample bytes are preserved, and the lexer
 finds the expected end of the data before accepting the PDF end operator.
 For a malformed image with an unknown boundary, interpretation preserves
