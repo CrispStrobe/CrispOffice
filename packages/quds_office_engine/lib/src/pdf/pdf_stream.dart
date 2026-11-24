@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import '../opc/zip/deflate_codec.dart';
+import 'file/cos/pdf_open_error.dart';
 
 /// FlateDecode wrapper for PDF content and font streams.
 abstract final class PdfFlate {
@@ -14,52 +15,52 @@ abstract final class PdfFlate {
     return _zlibWrap(raw, data);
   }
 
-  /// Inflates a FlateDecode stream (zlib, or raw DEFLATE if the wrapper is absent).
-  ///
-  /// Producers often omit or truncate the Adler-32 trailer. The inflater stops
-  /// at BFINAL, so leftover checksum bytes are ignored — they must not be
-  /// sliced off before inflate.
+  /// Inflates an RFC 1950 wrapped PDF Flate stream and verifies its checksum.
   static Uint8List decompress(
     Uint8List data, {
     int maxOutputBytes = maxDecodedBytes,
+  }) => decompressZlibPrefix(data, maxOutputBytes: maxOutputBytes).bytes;
+
+  /// Decode a checksummed zlib stream followed by unrelated PDF content.
+  static ({Uint8List bytes, int consumed}) decompressZlibPrefix(
+    Uint8List data, {
+    required int maxOutputBytes,
   }) {
     if (maxOutputBytes < 0) {
       throw ArgumentError.value(maxOutputBytes, 'maxOutputBytes');
     }
-    if (data.length < 2) {
-      throw const FormatException('Truncated Flate stream');
+    if (data.length < 8) {
+      throw const FormatException('Truncated zlib stream');
     }
-    final int limit = maxOutputBytes.clamp(0, maxDecodedBytes);
-    if (_isZlibHeader(data[0], data[1])) {
-      var start = 2;
-      if (data[1] & 0x20 != 0) {
-        if (data.length < 6) {
-          throw const FormatException('Truncated zlib dictionary');
-        }
-        start = 6;
-      }
-      try {
-        return RawDeflate.inflate(
-          Uint8List.sublistView(data, start),
-          maxOutputBytes: limit,
-        );
-      } on ZipDeflateLimitException {
-        rethrow;
-      } on ZipDeflateException {
-        if (data.length > start + 4) {
-          return RawDeflate.inflate(
-            Uint8List.sublistView(data, start, data.length - 4),
-            maxOutputBytes: limit,
-          );
-        }
-        rethrow;
-      }
+    final int cmf = data[0];
+    final int flg = data[1];
+    final int cinfo = cmf >> 4;
+    if ((cmf & 15) != 8 || cinfo > 7 || ((cmf << 8) + flg) % 31 != 0) {
+      throw const FormatException('Invalid zlib header');
     }
-    return RawDeflate.inflate(data, maxOutputBytes: limit);
-  }
-
-  static bool _isZlibHeader(int cmf, int flg) {
-    return (cmf & 0x0F) == 8 && ((cmf << 8) + flg) % 31 == 0;
+    if ((flg & 0x20) != 0) {
+      throw const FormatException('Preset zlib dictionaries are unsupported');
+    }
+    final ({Uint8List bytes, int consumed}) result;
+    try {
+      result = RawDeflate.inflatePrefix(
+        Uint8List.sublistView(data, 2),
+        maxOutputBytes: maxOutputBytes.clamp(0, maxDecodedBytes),
+        windowBytes: 1 << (cinfo + 8),
+      );
+    } on ZipDeflateLimitException {
+      throw const PdfOpenException(
+        PdfOpenError.limit,
+        'Decoded Flate stream exceeds its limit',
+      );
+    }
+    final tail = 2 + result.consumed;
+    if (tail + 4 > data.length ||
+        ByteData.sublistView(data, tail, tail + 4).getUint32(0) !=
+            _adler32(result.bytes)) {
+      throw const FormatException('Missing or invalid zlib Adler-32 checksum');
+    }
+    return (bytes: result.bytes, consumed: tail + 4);
   }
 
   static Uint8List _zlibWrap(Uint8List rawDeflate, List<int> original) {
@@ -83,6 +84,6 @@ abstract final class PdfFlate {
       a = (a + byte) % 65521;
       b = (b + a) % 65521;
     }
-    return ((b << 16) | a) & 0xFFFFFFFF;
+    return b * 65536 + a;
   }
 }

@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.16.1"
+  covfuzz:
+    dependency: transitive
+    description:
+      name: covfuzz
+      sha256: fdd664943c6efa21d676c0f145b106d17afebcd3ae3da6415474f46417c86205
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   cross_file:
     dependency: transitive
     description:

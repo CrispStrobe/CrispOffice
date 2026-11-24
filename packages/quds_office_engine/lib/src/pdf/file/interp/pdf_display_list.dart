@@ -11,6 +11,12 @@ enum PdfPageRenderIssue {
   /// The page or one of its streams exceeded the render byte budget.
   contentLimit,
 
+  /// An inline image could not be read or decoded.
+  inlineImage,
+
+  /// An image XObject could not be decoded.
+  imageStream,
+
   /// Page interpretation failed before a display list could be produced.
   interpreterFailure,
 }
@@ -24,6 +30,7 @@ class PdfDisplayList {
     List<PdfTextRun>? runs,
     List<PdfHotspot>? hotspots,
     this.issues = const <PdfPageRenderIssue>{},
+    this.error,
   }) : ops = ops ?? <PdfPaintOp>[],
        runs = runs ?? <PdfTextRun>[],
        hotspots = hotspots ?? <PdfHotspot>[];
@@ -42,6 +49,12 @@ class PdfDisplayList {
 
   /// Failures observed during interpretation. A valid blank page has none.
   final Set<PdfPageRenderIssue> issues;
+
+  /// First recoverable interpretation error, when details are available.
+  final String? error;
+
+  /// Whether the page may have missing content.
+  bool get failed => issues.isNotEmpty || error != null;
 
   /// plainText API.
   String get plainText {
@@ -276,7 +289,15 @@ final class PdfClipPath extends PdfPaintOp {
 /// Class PdfPathVerb.
 class PdfPathVerb {
   /// PdfPathVerb API.
-  const PdfPathVerb(this.kind, this.x, this.y, [this.x2 = 0, this.y2 = 0, this.x3 = 0, this.y3 = 0]);
+  const PdfPathVerb(
+    this.kind,
+    this.x,
+    this.y, [
+    this.x2 = 0,
+    this.y2 = 0,
+    this.x3 = 0,
+    this.y3 = 0,
+  ]);
 
   /// kind API.
   final PdfPathKind kind;

@@ -40,6 +40,11 @@ abstract final class PdfJbig2 {
       throw const PdfFilterUnsupported('JBIG2Decode');
     } on StateError {
       throw const PdfFilterUnsupported('JBIG2Decode');
+    } on UnsupportedError {
+      // Legal/unknown-length JBIG2 segments and some 32-bit header forms are
+      // rejected by the current codec with an Error. Degrade to a typed image
+      // placeholder instead of aborting the whole page/open.
+      throw const PdfFilterUnsupported('JBIG2Decode');
     }
   }
 }

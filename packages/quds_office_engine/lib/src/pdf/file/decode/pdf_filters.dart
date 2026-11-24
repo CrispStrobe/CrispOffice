@@ -20,6 +20,9 @@ abstract final class PdfFilters {
     if (bytes != null) {
       return bytes;
     }
+    if (result.limitExceeded) {
+      throw const PdfOpenException(PdfOpenError.limit, 'Decoded stream too large');
+    }
     throw PdfFilterUnsupported(result.unsupported ?? 'Unknown');
   }
 
@@ -36,9 +39,15 @@ abstract final class PdfFilters {
     }
     final int limit = maxOutputBytes.clamp(0, maxDecodedBytes);
     PdfCos? resolved(PdfCos? value) => resolve?.call(value) ?? value;
-    final List<String> filters = _filterNames(resolved(dict['Filter']), resolved);
-    final List<PdfCosDict> parms =
-        _decodeParms(resolved(dict['DecodeParms']), filters.length, resolved);
+    final List<String> filters = _filterNames(
+      resolved(dict['Filter']),
+      resolved,
+    );
+    final List<PdfCosDict> parms = _decodeParms(
+      resolved(dict['DecodeParms']),
+      filters.length,
+      resolved,
+    );
     var data = raw;
     for (int i = 0; i < filters.length; i++) {
       final String name = filters[i];
@@ -80,6 +89,9 @@ abstract final class PdfFilters {
         return PdfFilterResult.unsupported(error.filter);
       } on ZipDeflateLimitException {
         return PdfFilterResult.unsupported(name, limitExceeded: true);
+      } on PdfOpenException catch (error) {
+        if (error.error != PdfOpenError.limit) rethrow;
+        return PdfFilterResult.unsupported(name, limitExceeded: true);
       } on _OutputLimit {
         return PdfFilterResult.unsupported(name, limitExceeded: true);
       } on ZipDeflateException {
@@ -95,6 +107,53 @@ abstract final class PdfFilters {
       );
     }
     return PdfFilterResult.ok(data);
+  }
+
+  /// Decode one inline-image Flate stream and the filters following it.
+  static ({PdfFilterResult result, int consumed})? decodeInlineFlatePrefix(
+    Uint8List data,
+    PdfCosDict dict, {
+    required int maxOutputBytes,
+    required PdfCos? Function(PdfCos?) resolve,
+  }) {
+    final ({Uint8List bytes, int consumed}) prefix;
+    try {
+      prefix = PdfFlate.decompressZlibPrefix(
+        data,
+        maxOutputBytes: maxOutputBytes,
+      );
+    } on ZipDeflateException {
+      return null;
+    } on PdfOpenException catch (error) {
+      if (error.error != PdfOpenError.limit) rethrow;
+      return null;
+    } on FormatException {
+      return null;
+    }
+    final filters = _filterNames(resolve(dict['Filter']), resolve);
+    final parms = _decodeParms(
+      resolve(dict['DecodeParms']), filters.length, resolve,
+    );
+    try {
+      final samples = _pngPredict(prefix.bytes, parms.firstOrNull ?? PdfCosDict());
+      if (filters.length <= 1) {
+        return (result: PdfFilterResult.ok(samples), consumed: prefix.consumed);
+      }
+      final rest = PdfCosDict({...dict.values})
+        ..['Filter'] = PdfCosArray([
+          for (final name in filters.skip(1)) PdfCosName(name),
+        ])
+        ..['DecodeParms'] = PdfCosArray(parms.skip(1).toList());
+      return (
+        result: decodeResult(samples, rest, resolve: resolve, decodeDct: true),
+        consumed: prefix.consumed,
+      );
+    } on FormatException {
+      return (
+        result: const PdfFilterResult.unsupported('FlateDecode'),
+        consumed: prefix.consumed,
+      );
+    }
   }
 
   static Uint8List _one(
@@ -113,10 +172,10 @@ abstract final class PdfFilters {
         );
       case 'ASCIIHexDecode':
       case 'AHx':
-        return _asciiHex(data);
+        return _asciiHex(data, limit);
       case 'ASCII85Decode':
       case 'A85':
-        return _ascii85(data);
+        return _ascii85(data, limit);
       case 'RunLengthDecode':
       case 'RL':
         return _runLength(data, limit);
@@ -195,40 +254,55 @@ abstract final class PdfFilters {
       resolve,
     );
     const allowed = <String>{
-      'FlateDecode', 'Fl', 'LZWDecode', 'LZW',
-      'ASCII85Decode', 'A85', 'ASCIIHexDecode', 'AHx',
-      'RunLengthDecode', 'RL', 'Crypt',
+      'FlateDecode',
+      'Fl',
+      'LZWDecode',
+      'LZW',
+      'ASCII85Decode',
+      'A85',
+      'ASCIIHexDecode',
+      'AHx',
+      'RunLengthDecode',
+      'RL',
+      'Crypt',
     };
     if (names.any((name) => !allowed.contains(name))) {
       throw const PdfFilterUnsupported('JBIG2Decode');
     }
-    final Uint8List? bytes =
-        decodeResult(stream.raw, stream.dict, resolve: resolve).bytes;
+    final Uint8List? bytes = decodeResult(
+      stream.raw,
+      stream.dict,
+      resolve: resolve,
+    ).bytes;
     if (bytes == null || bytes.length > 16 * 1024 * 1024) {
       throw const PdfFilterUnsupported('JBIG2Decode');
     }
     return bytes;
   }
 
-  static Uint8List _asciiHex(Uint8List data) {
-    final List<int> nibbles = <int>[];
+  static Uint8List _asciiHex(Uint8List data, int limit) {
+    final out = BytesBuilder();
+    int? high;
     for (final int b in data) {
       if (b == 0x3E) {
         break;
       }
       final int v = _hex(b);
       if (v >= 0) {
-        nibbles.add(v);
+        if (high == null) {
+          high = v;
+        } else {
+          _checkOutput(out, 1, limit);
+          out.addByte((high << 4) | v);
+          high = null;
+        }
       }
     }
-    if (nibbles.length.isOdd) {
-      nibbles.add(0);
+    if (high != null) {
+      _checkOutput(out, 1, limit);
+      out.addByte(high << 4);
     }
-    final Uint8List out = Uint8List(nibbles.length ~/ 2);
-    for (int i = 0; i < out.length; i++) {
-      out[i] = (nibbles[i * 2] << 4) | nibbles[i * 2 + 1];
-    }
-    return out;
+    return out.takeBytes();
   }
 
   static int _hex(int b) {
@@ -244,8 +318,8 @@ abstract final class PdfFilters {
     return -1;
   }
 
-  static Uint8List _ascii85(Uint8List data) {
-    final BytesBuilder out = BytesBuilder(copy: false);
+  static Uint8List _ascii85(Uint8List data, int limit) {
+    final BytesBuilder out = BytesBuilder();
     var acc = 0;
     var n = 0;
     for (int i = 0; i < data.length; i++) {
@@ -254,6 +328,7 @@ abstract final class PdfFilters {
         break;
       }
       if (b == 0x7A && n == 0) {
+        _checkOutput(out, 4, limit);
         out.add(Uint8List(4));
         continue;
       }
@@ -266,6 +341,7 @@ abstract final class PdfFilters {
       acc = acc * 85 + (b - 0x21);
       n++;
       if (n == 5) {
+        _checkOutput(out, 4, limit);
         out.addByte((acc >> 24) & 0xFF);
         out.addByte((acc >> 16) & 0xFF);
         out.addByte((acc >> 8) & 0xFF);
@@ -275,6 +351,7 @@ abstract final class PdfFilters {
       }
     }
     if (n > 0) {
+      _checkOutput(out, n - 1, limit);
       for (int i = n; i < 5; i++) {
         acc = acc * 85 + 84;
       }
@@ -337,8 +414,10 @@ abstract final class PdfFilters {
     final int columns = pdfCosInt(parm['Columns']) ?? 1;
     final int colors = pdfCosInt(parm['Colors']) ?? 1;
     final int bpc = pdfCosInt(parm['BitsPerComponent']) ?? 8;
-    if (columns < 1 || columns > 16 * 1024 * 1024 ||
-        colors < 1 || colors > 32 ||
+    if (columns < 1 ||
+        columns > 16 * 1024 * 1024 ||
+        colors < 1 ||
+        colors > 32 ||
         !const <int>{1, 2, 4, 8, 16}.contains(bpc)) {
       throw const FormatException('Invalid predictor dimensions');
     }
@@ -406,7 +485,8 @@ abstract final class PdfFilters {
         final int previous = (i - colors) * bpc;
         final int value =
             (_readSample(out, base, pos, bpc) +
-                _readSample(out, base, previous, bpc)) & mask;
+                _readSample(out, base, previous, bpc)) &
+            mask;
         _writeSample(out, base, pos, bpc, value);
       }
     }
@@ -422,7 +502,11 @@ abstract final class PdfFilters {
   }
 
   static void _writeSample(
-    Uint8List data, int base, int bit, int bpc, int value,
+    Uint8List data,
+    int base,
+    int bit,
+    int bpc,
+    int value,
   ) {
     final int index = base + (bit >> 3);
     if (bpc == 16) {

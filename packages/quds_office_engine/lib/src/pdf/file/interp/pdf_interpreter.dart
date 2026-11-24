@@ -3,6 +3,8 @@ import 'dart:typed_data';
 
 import '../../../fonts/sfnt_parser.dart';
 import '../cos/pdf_cos.dart';
+import '../cos/pdf_cos_reader.dart';
+import '../cos/pdf_open_error.dart';
 import '../cos/pdf_store.dart';
 import '../decode/pdf_filters.dart';
 import '../model/pdf_extra.dart';
@@ -15,6 +17,9 @@ import 'pdf_display_list.dart';
 
 /// Interprets a page content stream into a [PdfDisplayList].
 class PdfInterpreter {
+  /// Maximum source pixels for one image XObject or inline image.
+  static const int maxImagePixels = 32 * 1024 * 1024;
+
   /// PdfInterpreter API.
   PdfInterpreter(this.store, {this.maxFormDepth = 32, List<PdfLayer>? layers})
     : layers = layers ?? const <PdfLayer>[];
@@ -37,16 +42,20 @@ class PdfInterpreter {
     final _Frame frame = _Frame(page, this);
     final PdfCosDict resources =
         store.asDict(pageDict['Resources']) ?? PdfCosDict();
-    final issues = <PdfPageRenderIssue>{};
-    final Uint8List content = _pageContent(pageDict, issues);
+    final Uint8List content = _pageContent(pageDict, frame.issues);
     _run(content, resources, frame, 0);
-    _paintAnnotAppearances(pageDict, frame, 0);
+    try {
+      _paintAnnotAppearances(pageDict, frame, 0);
+    } on Exception catch (error) {
+      frame.recordFailure('Annotations: $error');
+    }
     return PdfDisplayList(
       page: page,
       ops: frame.ops,
       runs: frame.runs,
       hotspots: hotspots,
-      issues: Set.unmodifiable(issues),
+      issues: Set.unmodifiable(frame.issues),
+      error: frame.error,
     );
   }
 
@@ -177,18 +186,32 @@ class PdfInterpreter {
     }
     final List<Object> stack = <Object>[];
     final _Lexer lex = _Lexer(data);
+    final int initialGraphicsDepth = frame._stack.length;
     while (true) {
       final _Tok? tok = lex.next();
       if (tok == null) {
         break;
       }
       if (tok.op == 'BI') {
-        _inlineImage(lex, resources, frame);
+        if (!_inlineImage(lex, resources, frame)) {
+          frame.issues.add(PdfPageRenderIssue.inlineImage);
+          while (frame._stack.length > initialGraphicsDepth) {
+            frame.restore();
+            frame.ops.add(const PdfRestoreGState());
+          }
+          break;
+        }
         stack.clear();
         continue;
       }
       if (tok.op != null) {
-        _exec(tok.op!, stack, resources, frame, depth);
+        try {
+          _exec(tok.op!, stack, resources, frame, depth);
+        } on Exception catch (error) {
+          // Keep the operations already produced and report the failing
+          // operator. Programming errors still escape to fuzzing.
+          frame.recordFailure('${tok.op}: $error');
+        }
         stack.clear();
       } else if (tok.value != null) {
         stack.add(tok.value!);
@@ -541,8 +564,8 @@ class PdfInterpreter {
         if (stack.isNotEmpty && stack.last is _Name) {
           try {
             _doXObject((stack.last as _Name).value, resources, frame, depth);
-          } catch (_) {
-            break;
+          } on Exception catch (error) {
+            frame.recordFailure('Do ${(stack.last as _Name).value}: $error');
           }
         }
       case 'BMC':
@@ -625,18 +648,46 @@ class PdfInterpreter {
     if (subtype != 'Image') {
       return;
     }
-    if (frame.hidden) {
-      return;
-    }
+    _paintImage(raw, frame);
+  }
+
+  void _paintImage(
+    PdfCosStream raw,
+    _Frame frame, {
+    PdfFilterResult? decodedStream,
+  }) {
     final double w = pdfCosNumber(store.deref(raw.dict['Width'])) ?? 1;
     final double h = pdfCosNumber(store.deref(raw.dict['Height'])) ?? 1;
     final (double x, double y) = frame.map(0, 0);
     final (double x1, double y1) = frame.map(1, 1);
-    final PdfFilterResult decoded = store.streamResult(raw, decodeDct: true);
+    final int pw = w.isFinite && w <= 65535 ? w.round() : 0;
+    final int ph = h.isFinite && h <= 65535 ? h.round() : 0;
+    if (pw < 1 || ph < 1 || pw * ph > maxImagePixels) {
+      frame.issues.add(PdfPageRenderIssue.contentLimit);
+      frame.ops.add(
+        PdfDrawImage(
+          x: math.min(x, x1),
+          y: math.min(y, y1),
+          width: (x1 - x).abs().clamp(1, 100000),
+          height: (y1 - y).abs().clamp(1, 100000),
+          bytes: Uint8List(0),
+          placeholder: true,
+          blend: frame.blend,
+        ),
+      );
+      return;
+    }
+    final PdfFilterResult decoded =
+        decodedStream ?? store.streamResult(raw, decodeDct: true);
+    if (decoded.bytes == null) {
+      frame.issues.add(
+        decoded.limitExceeded
+            ? PdfPageRenderIssue.contentLimit
+            : PdfPageRenderIssue.imageStream,
+      );
+    }
     final bool jpeg = decoded.jpegEncoded;
     var pixels = decoded.bytes ?? Uint8List(0);
-    final int pw = w.round();
-    final int ph = h.round();
     final bool imageMask =
         _flag(raw.dict['ImageMask']) || _flag(raw.dict['IM']);
     final int bpc =
@@ -646,8 +697,9 @@ class PdfInterpreter {
     if (decoded.jpxImage != null || decoded.dctImage != null) {
       // JPEG/JPX have already resolved their sample layout.
     } else if (imageMask && !jpeg && pixels.isNotEmpty) {
-      final int maskBpc = _isBilevelCodec(raw.dict) &&
-              pixels.length == pw * ph ? 8 : bpc;
+      final int maskBpc = _isBilevelCodec(raw.dict) && pixels.length == pw * ph
+          ? 8
+          : bpc;
       pixels = _stencilRgba(pixels, pw, ph, maskBpc, frame.fill, invert);
       hasAlpha = true;
     } else if (!jpeg && pixels.isNotEmpty) {
@@ -658,7 +710,8 @@ class PdfInterpreter {
         final int n = _colorComponents(raw.dict);
         final bool gray = n == 1 || _isBilevelCodec(raw.dict);
         if (gray) {
-          final int bits = pixels.length == pw * ph ? 8 : bpc;
+          final int bits =
+              _isBilevelCodec(raw.dict) && pixels.length == pw * ph ? 8 : bpc;
           pixels = _expandGray(pixels, pw, ph, bits, invert: invert);
         } else if (n == 4 && pixels.length == pw * ph * 4) {
           pixels = _cmykToRgb(pixels, pw, ph);
@@ -675,6 +728,7 @@ class PdfInterpreter {
           store.deref(raw.dict['SMask']) is PdfCosStream) {
         // Do not present an opaque image when its declared mask failed.
         invalidDctMask = true;
+        frame.issues.add(PdfPageRenderIssue.imageStream);
       }
     }
     final double ca = ((frame.fill >> 24) & 0xFF) / 255.0;
@@ -733,12 +787,14 @@ class PdfInterpreter {
     final PdfCos? filter = dict['Filter'];
     if (filter is PdfCosName) {
       return filter.value == 'CCITTFaxDecode' ||
-          filter.value == 'CCF' || filter.value == 'JBIG2Decode';
+          filter.value == 'CCF' ||
+          filter.value == 'JBIG2Decode';
     }
     if (filter is PdfCosArray) {
       for (final PdfCos item in filter.items) {
         if (item is PdfCosName &&
-            (item.value == 'CCITTFaxDecode' || item.value == 'CCF' ||
+            (item.value == 'CCITTFaxDecode' ||
+                item.value == 'CCF' ||
                 item.value == 'JBIG2Decode')) {
           return true;
         }
@@ -1241,64 +1297,75 @@ class PdfInterpreter {
     }
   }
 
-  void _inlineImage(_Lexer lex, PdfCosDict _, _Frame frame) {
-    final PdfCosDict dict = PdfCosDict();
-    while (true) {
-      final _Tok? key = lex.next();
-      if (key == null) {
-        return;
-      }
-      if (key.op == 'ID' || key.op == 'EI') {
-        break;
-      }
-      if (key.value is! _Name) {
-        continue;
-      }
-      final _Tok? val = lex.next();
-      if (val == null) {
-        return;
-      }
-      final String name = (key.value! as _Name).value;
-      final Object? v = val.value;
-      if (v is _Name) {
-        dict[name] = PdfCosName(v.value);
-      } else if (v is num) {
-        dict[name] = PdfCosInt(v.round());
-      }
-      if (val.op == 'ID') {
-        break;
-      }
+  bool _inlineImage(_Lexer lex, PdfCosDict resources, _Frame frame) {
+    final dict = lex.readInlineDictionary();
+    if (dict == null) return false;
+
+    final width = pdfCosInt(dict['Width']) ?? 0;
+    final height = pdfCosInt(dict['Height']) ?? 0;
+    final isMask = _flag(dict['ImageMask']);
+    final bits = pdfCosInt(dict['BitsPerComponent']) ?? (isMask ? 1 : 8);
+    final colorSpace = dict['ColorSpace'];
+    if (colorSpace is PdfCosName &&
+        !const {'DeviceGray', 'G', 'DeviceRGB', 'RGB', 'DeviceCMYK', 'CMYK'}
+            .contains(colorSpace.value)) {
+      final resolved = store.asDict(resources['ColorSpace'])?[colorSpace.value];
+      if (resolved == null) return false;
+      dict['ColorSpace'] = resolved;
+    } else if (colorSpace == null) {
+      dict['ColorSpace'] = const PdfCosName('DeviceGray');
     }
-    lex.skipWs();
-    final int width = pdfCosInt(dict['Width'] ?? dict['W']) ?? 0;
-    final int height = pdfCosInt(dict['Height'] ?? dict['H']) ?? 0;
-    final int bpc = pdfCosInt(dict['BitsPerComponent'] ?? dict['BPC']) ?? 8;
-    final int row = width <= 0 ? 0 : ((width * bpc + 7) ~/ 8);
-    final int need = row * height;
-    final Uint8List raw = lex.take(need);
-    lex.skipWs();
-    final _Tok? ei = lex.next();
-    if (ei?.op != 'EI' && ei?.op != null) {
-      // Trailing token consumed.
+    final channels = isMask ? 1 : _colorComponents(dict);
+    final validDimensions = width > 0 &&
+        height > 0 &&
+        width <= 8192 &&
+        height <= 8192 &&
+        width * height <= 16 * 1024 * 1024 &&
+        const {1, 2, 4, 8}.contains(bits) &&
+        (!isMask || bits == 1) &&
+        (channels == 1 || bits == 8);
+    final sampleBytes =
+        validDimensions ? ((width * channels * bits + 7) ~/ 8) * height : null;
+    final filter = dict['Filter'];
+    final outer = filter is PdfCosArray ? filter.items.firstOrNull : filter;
+    final ({PdfFilterResult result, int consumed})? flate;
+    if (const {'FlateDecode', 'Fl'}.contains(pdfCosName(outer))) {
+      if (sampleBytes == null) return false;
+      flate = PdfFilters.decodeInlineFlatePrefix(
+        lex.inlineImageBytes,
+        dict,
+        maxOutputBytes: filter is PdfCosArray && filter.items.length > 1
+            ? PdfFilters.maxDecodedBytes
+            : sampleBytes + height,
+        resolve: store.deref,
+      );
+      if (flate == null) return false;
+    } else {
+      flate = null;
     }
-    if (width < 1 || height < 1 || frame.hidden) {
-      return;
-    }
-    final (double x, double y) = frame.map(0, 0);
-    final (double x1, double y1) = frame.map(1, 1);
-    frame.ops.add(
-      PdfDrawImage(
-        x: math.min(x, x1),
-        y: math.min(y, y1),
-        width: (x1 - x).abs().clamp(1, 100000),
-        height: (y1 - y).abs().clamp(1, 100000),
-        bytes: _expandGray(raw, width, height, bpc),
-        jpeg: false,
-        placeholder: false,
-        pixelWidth: width,
-        pixelHeight: height,
-      ),
+    final raw = lex.takeInlineImage(
+      outer,
+      sampleBytes,
+      flateBytes: flate?.consumed,
     );
+    if (raw == null) return false;
+    if (frame.hidden) return true;
+
+    final stream = PdfCosStream(dict, raw);
+    final decoded = flate?.result ?? store.streamResult(stream, decodeDct: true);
+    final laidOut = decoded.dctImage != null ||
+        decoded.jpxImage != null ||
+        decoded.jpegEncoded;
+    final expandedBilevel = _isBilevelCodec(dict) &&
+        decoded.bytes?.length == width * height;
+    if (!validDimensions ||
+        decoded.bytes == null ||
+        (!laidOut && !expandedBilevel && decoded.bytes?.length != sampleBytes)) {
+      frame.issues.add(PdfPageRenderIssue.inlineImage);
+      return true;
+    }
+    _paintImage(stream, frame, decodedStream: decoded);
+    return true;
   }
 
   static bool _flag(PdfCos? value) => value is PdfCosBool && value.value;
@@ -1419,18 +1486,21 @@ class PdfInterpreter {
       }
       return rgb;
     }
-    if (bpc == 1) {
-      final int stride = (w + 7) >> 3;
+    if (bpc == 1 || bpc == 2 || bpc == 4) {
+      final int stride = (w * bpc + 7) >> 3;
       if (raw.length < stride * h || w < 1 || h < 1) {
         return raw;
       }
+      final int maxSample = (1 << bpc) - 1;
       final Uint8List rgb = Uint8List(w * h * 3);
       var o = 0;
       for (int y = 0; y < h; y++) {
         for (int x = 0; x < w; x++) {
-          final int byte = raw[y * stride + (x >> 3)];
-          final int bit = (byte >> (7 - (x & 7))) & 1;
-          final int g = (invert ? bit == 0 : bit != 0) ? 255 : 0;
+          final int offset = x * bpc;
+          final int byte = raw[y * stride + (offset >> 3)];
+          final int sample = (byte >> (8 - bpc - (offset & 7))) & maxSample;
+          final int gray = sample * 255 ~/ maxSample;
+          final int g = invert ? 255 - gray : gray;
           rgb[o++] = g;
           rgb[o++] = g;
           rgb[o++] = g;
@@ -1680,6 +1750,14 @@ class _Frame {
   final PdfPageInfo page;
   final PdfInterpreter interp;
 
+  /// First recoverable interpreter failure on this page, if any.
+  String? error;
+
+  void recordFailure(String message) {
+    issues.add(PdfPageRenderIssue.interpreterFailure);
+    error ??= message;
+  }
+
   (double, double) get currentPoint {
     if (path.isEmpty) {
       return (0, 0);
@@ -1747,6 +1825,7 @@ class _Frame {
   final List<PdfPathVerb> path = <PdfPathVerb>[];
   final List<PdfPaintOp> ops = <PdfPaintOp>[];
   final List<PdfTextRun> runs = <PdfTextRun>[];
+  final Set<PdfPageRenderIssue> issues = <PdfPageRenderIssue>{};
   int fill = 0xFF000000;
   int stroke = 0xFF000000;
   double lineWidth = 1;
@@ -2439,14 +2518,111 @@ class _Lexer {
   final Uint8List bytes;
   var _i = 0;
 
-  void skipWs() => _skip();
-
-  Uint8List take(int n) {
-    final int end = (_i + n).clamp(0, bytes.length);
-    final Uint8List out = Uint8List.sublistView(bytes, _i, end);
-    _i = end;
-    return out;
+  PdfCosDict? readInlineDictionary() {
+    const maxHeaderBytes = 16 * 1024;
+    final headerEnd = math.min(_i + maxHeaderBytes, bytes.length);
+    final reader = PdfCosReader(Uint8List.sublistView(bytes, _i, headerEnd));
+    final dict = PdfCosDict();
+    try {
+      for (var fields = 0; fields <= 64; fields++) {
+        reader.skipWsAndComments();
+        final start = reader.offset;
+        final data = reader.bytes;
+        if (start + 2 < data.length &&
+            data[start] == 0x49 &&
+            data[start + 1] == 0x44 &&
+            _white(data[start + 2])) {
+          // The single delimiter after ID belongs to the syntax. Bytes after
+          // it may themselves look like PDF whitespace or comments.
+          _i += start + 3;
+          if (data[start + 2] == 0x0D &&
+              _i < bytes.length && bytes[_i] == 0x0A) {
+            _i++;
+          }
+          return dict;
+        }
+        if (fields == 64 || !reader.hasMore || data[start] != 0x2F) return null;
+        final key = reader.parseValue() as PdfCosName;
+        final canonical = switch (key.value) {
+          'W' => 'Width',
+          'H' => 'Height',
+          'BPC' => 'BitsPerComponent',
+          'CS' => 'ColorSpace',
+          'D' => 'Decode',
+          'DP' => 'DecodeParms',
+          'F' => 'Filter',
+          'IM' => 'ImageMask',
+          _ => key.value,
+        };
+        dict[canonical] = reader.parseValue();
+      }
+    } on PdfOpenException {
+      return null;
+    }
+    return null;
   }
+
+  Uint8List get inlineImageBytes => Uint8List.sublistView(bytes, _i);
+
+  Uint8List? takeInlineImage(
+    PdfCos? outer,
+    int? sampleBytes, {
+    int? flateBytes,
+  }) {
+    final start = _i;
+    final end = switch (pdfCosName(outer)) {
+      'FlateDecode' || 'Fl' when flateBytes != null => start + flateBytes,
+      'ASCIIHexDecode' || 'AHx' => _asciiImageEnd(terminator: 0x3E),
+      'ASCII85Decode' || 'A85' => _asciiImageEnd(terminator: 0x3E, prefix: 0x7E),
+      'RunLengthDecode' || 'RL' => _runLengthImageEnd(),
+      null when (outer == null || outer is PdfCosNull) && sampleBytes != null =>
+        start + sampleBytes,
+      _ => null,
+    };
+    if (end == null || end >= bytes.length || !_white(bytes[end])) return null;
+    _i = end;
+    _skip();
+    if (_i + 1 >= bytes.length ||
+        bytes[_i] != 0x45 ||
+        bytes[_i + 1] != 0x49 ||
+        (_i + 2 < bytes.length && !_delim(bytes[_i + 2]))) {
+      return null;
+    }
+    _i += 2;
+    return Uint8List.sublistView(bytes, start, end);
+  }
+
+  int? _asciiImageEnd({required int terminator, int? prefix}) {
+    for (var at = _i; at < bytes.length; at++) {
+      final byte = bytes[at];
+      if (byte == terminator &&
+          (prefix == null || (at > _i && bytes[at - 1] == prefix))) {
+        return at + 1;
+      }
+      final valid = prefix == null
+          ? (byte >= 0x30 && byte <= 0x39) ||
+              (byte >= 0x41 && byte <= 0x46) ||
+              (byte >= 0x61 && byte <= 0x66)
+          : (byte >= 0x21 && byte <= 0x75) || byte == 0x7A ||
+              (byte == prefix && at + 1 < bytes.length && bytes[at + 1] == terminator);
+      if (!valid && !_white(byte)) return null;
+    }
+    return null;
+  }
+
+  int? _runLengthImageEnd() {
+    var at = _i;
+    while (at < bytes.length) {
+      final length = bytes[at++];
+      if (length == 128) return at;
+      at += length < 128 ? length + 1 : 1;
+    }
+    return null;
+  }
+
+  static bool _white(int value) =>
+      value == 0 || value == 9 || value == 10 || value == 12 ||
+      value == 13 || value == 32;
 
   _Tok? next() {
     _skip();

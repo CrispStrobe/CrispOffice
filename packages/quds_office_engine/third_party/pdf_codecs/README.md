@@ -99,3 +99,14 @@ bytes per stream. A page's content streams share a 64 MiB budget. The
 display list reports unreadable or oversized content, and a valid blank
 page reports no issues. A readable content stream can still render when
 another stream in the same page fails to decode.
+
+PDF Flate requires the RFC 1950 zlib wrapper, validates the advertised
+window, rejects preset dictionaries, and checks Adler-32. ZIP uses raw
+DEFLATE through the shared inflater with its own output budget.
+
+Inline images support unfiltered samples and ASCIIHex, ASCII85, RunLength,
+and zlib-wrapped Flate as the first filter. Filter chains then use the
+usual stream decoder. Binary sample bytes are preserved, and the lexer
+finds the expected end of the data before accepting the PDF end operator.
+For a malformed image with an unknown boundary, interpretation preserves
+the earlier paint commands and reports an inline-image issue.
