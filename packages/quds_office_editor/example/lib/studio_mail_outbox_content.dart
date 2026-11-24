@@ -133,8 +133,8 @@ final class StudioMailOutboxContent {
   /// Covers every bounded Studio composition, including ten MiB of files and
   /// the escaped HTML alternative of a one-MiB plain-text body.
   static const readBudget = MailReadBudget(
-    maxRawBytes: 22 * 1024 * 1024,
-    maxDecodedBytes: 20 * 1024 * 1024,
+    maxRawBytes: 48 * 1024 * 1024,
+    maxDecodedBytes: 40 * 1024 * 1024,
     maxBodyBytes: 8 * 1024 * 1024,
     maxAttachmentBytes: StudioMailAttachments.maxTotalBytes,
     maxAttachments: StudioMailAttachments.maxCount,

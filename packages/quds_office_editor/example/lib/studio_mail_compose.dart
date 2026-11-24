@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cross_file/cross_file.dart';
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -16,6 +18,7 @@ import 'studio_mail_compose_tools_strings.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_outbox_strings.dart';
+import 'studio_mail_pasteboard.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_threading.dart';
 import 'studio_strings.dart';
@@ -83,6 +86,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   StudioMailAttachmentLoader? _attachmentLoader;
   bool _pickingAttachments = false;
   bool _attachmentFailed = false;
+  bool _dragActive = false;
+  bool _finishAborted = false;
   StudioMailDraftProblem? _problem;
   Timer? _autosave;
   Future<bool>? _pendingSave;
@@ -287,10 +292,15 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     }
     setState(() {
       _finishing = true;
+      _finishAborted = false;
       _queueFailed = false;
     });
     final saved = await _save();
     if (!mounted) return;
+    if (_finishAborted) {
+      setState(() => _finishing = false);
+      return;
+    }
     if (!saved) {
       setState(() => _finishing = false);
       return;
@@ -430,6 +440,58 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   }
 
   Future<void> _pickAttachments() async {
+    await _readAttachmentFiles(() async {
+      final selection = await FilePicker.platform.pickFiles(
+        allowMultiple: true,
+        withData: false,
+        withReadStream: true,
+      );
+      return selection?.files;
+    });
+  }
+
+  Future<void> _addDroppedFiles(List<XFile> files) async {
+    await _readAttachmentFiles(() async {
+      final platformFiles = <PlatformFile>[];
+      for (final file in files.take(8)) {
+        final length = await file.length();
+        platformFiles.add(
+          PlatformFile(
+            name: file.name.isNotEmpty
+                ? file.name
+                : file.path.split(RegExp(r'[/\\]')).last,
+            size: length,
+            readStream: file.openRead(),
+          ),
+        );
+      }
+      return platformFiles;
+    });
+  }
+
+  Future<void> _pasteAttachment() async {
+    if (_pickingAttachments || _finishing || _recoveringCache) return;
+    try {
+      final items = await const StudioMailPasteboard().read();
+      if (!mounted || items.isEmpty) return;
+      await _readAttachmentFiles(
+        () async => <PlatformFile>[
+          for (final item in items)
+            PlatformFile(
+              name: item.name,
+              size: item.bytes.length,
+              bytes: item.bytes,
+            ),
+        ],
+      );
+    } on Object {
+      if (mounted) setState(() => _attachmentFailed = true);
+    }
+  }
+
+  Future<void> _readAttachmentFiles(
+    Future<List<PlatformFile>?> Function() select,
+  ) async {
     if (_pickingAttachments || _recoveringCache) return;
     final loader = StudioMailAttachmentLoader();
     setState(() {
@@ -438,13 +500,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       _attachmentFailed = false;
     });
     try {
-      final selection = await FilePicker.platform.pickFiles(
-        allowMultiple: true,
-        withData: false,
-        withReadStream: true,
-      );
-      if (!mounted || selection == null) return;
-      final next = await loader.read(selection.files, existing: _attachments);
+      final files = await select();
+      if (!mounted || files == null) return;
+      final next = await loader.read(files, existing: _attachments);
       if (!mounted || !identical(_attachmentLoader, loader)) return;
       setState(() => _attachments = next);
       _edited();
@@ -463,6 +521,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         });
       }
     }
+  }
+
+  void _abortFinish() {
+    if (!_finishing) return;
+    setState(() => _finishAborted = true);
   }
 
   void _removeAttachment(int index) {
@@ -681,6 +744,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             TextButton.icon(
+              key: const ValueKey('studio-mail-manage-signatures'),
+              onPressed: available ? _manageComposeTools : null,
+              icon: const Icon(Icons.draw),
+              label: Text(strings.mailComposeSignature),
+            ),
+            TextButton.icon(
               key: const ValueKey('studio-mail-compose-tools'),
               onPressed: available ? _manageComposeTools : null,
               icon: const Icon(Icons.edit_note),
@@ -809,397 +878,471 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       StudioMailDraftProblem.body => strings.mailInvalidBody,
       null => null,
     };
-    return PopScope<StudioMailDraft>(
-      canPop:
-          !_recoveringCache &&
-          !_initialToolsPending &&
-          !_editingTools &&
-          (widget.onSaveDraft == null || _allowPop),
-      onPopInvokedWithResult: (didPop, _) {
-        if (!didPop) unawaited(_finish(send: false));
-      },
-      child: Dialog(
-        insetPadding: const EdgeInsets.all(12),
-        child: AbsorbPointer(
-          absorbing: _finishing || _recoveringCache || _initialToolsPending,
-          child: SizedBox(
-            width: 720,
-            height: 680,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: LayoutBuilder(
-                builder: (context, constraints) => SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Text(
-                        strings.compose,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        widget.from,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 12),
-                      TextField(
-                        controller: _to,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: strings.to,
-                          helperText: strings.mailRecipientListHint,
-                          helperMaxLines: 2,
-                          suffixIcon: _showCopies
-                              ? null
-                              : TextButton(
-                                  onPressed: () =>
-                                      setState(() => _showCopies = true),
-                                  child: Text(strings.mailCopyRecipients),
-                                ),
-                        ),
-                      ),
-                      if (_showCopies) ...[
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: _cc,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: strings.mailCc,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: _bcc,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: strings.mailBcc,
-                          ),
-                        ),
-                      ],
-                      const SizedBox(height: 8),
-                      TextField(
-                        controller: _subject,
-                        decoration: InputDecoration(labelText: strings.subject),
-                      ),
-                      const SizedBox(height: 8),
-                      Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: TextButton.icon(
-                          key: const ValueKey('studio-mail-add-attachments'),
-                          onPressed: _pickingAttachments
-                              ? null
-                              : _pickAttachments,
-                          icon: _pickingAttachments
-                              ? const SizedBox(
-                                  width: 18,
-                                  height: 18,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : const Icon(Icons.attach_file),
-                          label: Text(
-                            _pickingAttachments
-                                ? strings.mailReadingAttachments
-                                : strings.mailAddAttachments,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        strings.mailAttachmentSummary(
-                          _attachments.items.length,
-                          _attachments.totalBytes,
-                        ),
-                        textDirection: TextDirection.ltr,
-                        textAlign:
-                            Directionality.of(context) == TextDirection.rtl
-                            ? TextAlign.right
-                            : TextAlign.left,
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      for (
-                        var index = 0;
-                        index < _attachments.items.length;
-                        index++
-                      )
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.insert_drive_file_outlined,
-                              size: 18,
+    return Stack(
+      children: [
+        PopScope<StudioMailDraft>(
+          canPop:
+              !_recoveringCache &&
+              !_initialToolsPending &&
+              !_editingTools &&
+              (widget.onSaveDraft == null || _allowPop),
+          onPopInvokedWithResult: (didPop, _) {
+            if (!didPop) unawaited(_finish(send: false));
+          },
+          child: Dialog(
+            insetPadding: const EdgeInsets.all(12),
+            child: DropTarget(
+              onDragEntered: (_) {
+                if (_finishing || _recoveringCache || _initialToolsPending) {
+                  return;
+                }
+                if (mounted) setState(() => _dragActive = true);
+              },
+              onDragExited: (_) {
+                if (mounted && _dragActive) setState(() => _dragActive = false);
+              },
+              onDragDone: (details) {
+                if (mounted && _dragActive) setState(() => _dragActive = false);
+                if (_finishing || _recoveringCache || _initialToolsPending) {
+                  return;
+                }
+                unawaited(_addDroppedFiles(details.files));
+              },
+              child: AbsorbPointer(
+                absorbing:
+                    _finishing || _recoveringCache || _initialToolsPending,
+                child: SizedBox(
+                  width: 720,
+                  height: 680,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) => SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Text(
+                              strings.compose,
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                _attachments.items[index].name,
-                                textDirection: TextDirection.ltr,
-                                textAlign:
-                                    Directionality.of(context) ==
-                                        TextDirection.rtl
-                                    ? TextAlign.right
-                                    : TextAlign.left,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
+                            const SizedBox(height: 4),
+                            Text(
+                              widget.from,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 12),
+                            TextField(
+                              controller: _to,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                labelText: strings.to,
+                                helperText: strings.mailRecipientListHint,
+                                helperMaxLines: 2,
+                                suffixIcon: _showCopies
+                                    ? null
+                                    : TextButton(
+                                        onPressed: () =>
+                                            setState(() => _showCopies = true),
+                                        child: Text(strings.mailCopyRecipients),
+                                      ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            if (_showCopies) ...[
+                              const SizedBox(height: 8),
+                              TextField(
+                                controller: _cc,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  labelText: strings.mailCc,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              TextField(
+                                controller: _bcc,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  labelText: strings.mailBcc,
+                                ),
+                              ),
+                            ],
+                            const SizedBox(height: 8),
+                            TextField(
+                              controller: _subject,
+                              decoration: InputDecoration(
+                                labelText: strings.subject,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Align(
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Wrap(
+                                spacing: 4,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  TextButton.icon(
+                                    key: const ValueKey(
+                                      'studio-mail-add-attachments',
+                                    ),
+                                    onPressed: _pickingAttachments
+                                        ? null
+                                        : _pickAttachments,
+                                    icon: _pickingAttachments
+                                        ? const SizedBox(
+                                            width: 18,
+                                            height: 18,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                            ),
+                                          )
+                                        : const Icon(Icons.attach_file),
+                                    label: Text(
+                                      _pickingAttachments
+                                          ? strings.mailReadingAttachments
+                                          : strings.mailAddAttachments,
+                                    ),
+                                  ),
+                                  TextButton.icon(
+                                    key: const ValueKey(
+                                      'studio-mail-paste-attachment',
+                                    ),
+                                    onPressed:
+                                        _pickingAttachments ||
+                                            _finishing ||
+                                            _recoveringCache
+                                        ? null
+                                        : _pasteAttachment,
+                                    icon: const Icon(Icons.content_paste),
+                                    label: const Text('Paste attachment'),
+                                  ),
+                                  if (_pickingAttachments)
+                                    TextButton(
+                                      key: const ValueKey(
+                                        'studio-mail-abort-attachments',
+                                      ),
+                                      onPressed: () =>
+                                          _attachmentLoader?.cancel(),
+                                      child: const Text('Abort'),
+                                    ),
+                                ],
+                              ),
+                            ),
                             Text(
-                              strings.mailAttachmentSize(
-                                _attachments.items[index].length,
+                              strings.mailAttachmentSummary(
+                                _attachments.items.length,
+                                _attachments.totalBytes,
                               ),
                               textDirection: TextDirection.ltr,
+                              textAlign:
+                                  Directionality.of(context) ==
+                                      TextDirection.rtl
+                                  ? TextAlign.right
+                                  : TextAlign.left,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
-                            IconButton(
-                              key: ValueKey(
-                                'studio-mail-remove-attachment-$index',
-                              ),
-                              tooltip: strings.mailRemoveAttachment(
-                                _attachments.items[index].name,
-                              ),
-                              onPressed: _pickingAttachments
-                                  ? null
-                                  : () => _removeAttachment(index),
-                              icon: const Icon(Icons.close, size: 18),
-                            ),
-                          ],
-                        ),
-                      if (_attachmentFailed)
-                        Text(
-                          strings.mailAttachmentFailed,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                      const SizedBox(height: 12),
-                      if (_toolsOwner != null) ...[
-                        _composeToolsToolbar(),
-                        const SizedBox(height: 8),
-                      ],
-                      Text(strings.mailPlainTextBody),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        height:
-                            (constraints.maxHeight -
-                                    (widget.previousSubmissionUncertain
-                                        ? 436
-                                        : 340) -
-                                    88 -
-                                    (_attachments.items.length * 48) -
-                                    (_attachmentFailed ? 72 : 0) -
-                                    (_showCopies ? 128 : 0) -
-                                    (feedback == null ? 0 : 64))
-                                .clamp(180.0, 440.0),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).dividerColor,
-                            ),
-                          ),
-                          child: LayoutBuilder(
-                            builder: (context, bodyConstraints) {
-                              _fitBodyToWidth(bodyConstraints.maxWidth);
-                              return QudsWordEditor(
-                                key: const ValueKey<String>(
-                                  'studio-mail-compose-body',
-                                ),
-                                controller: _body,
-                                focusNode: _bodyFocus,
-                                enableLiveProofing: false,
-                                showReviewStatus: false,
-                                toolbarBuilder: (_, _) =>
-                                    const SizedBox.shrink(),
-                                statusBarBuilder: (_, _) =>
-                                    const SizedBox.shrink(),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      if (feedback != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Text(
-                            feedback,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                          ),
-                        ),
-                      if (widget.previousSubmissionUncertain)
-                        CheckboxListTile(
-                          contentPadding: EdgeInsets.zero,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text(strings.mailRetryAcknowledgement),
-                          value: _retryAcknowledged,
-                          onChanged: (value) => setState(
-                            () => _retryAcknowledged = value ?? false,
-                          ),
-                        ),
-                      const SizedBox(height: 8),
-                      if (widget.onSaveDraft != null)
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Semantics(
-                                liveRegion: true,
-                                child: Text(
-                                  _recoveringCache
-                                      ? strings.mailCacheClearing
-                                      : _saveFailed
-                                      ? strings.mailDraftSaveFailed
-                                      : _pendingSave != null ||
-                                            _savedRevision != _editRevision
-                                      ? strings.mailDraftSaving
-                                      : _savedRevision == 0 &&
-                                            widget.initialDraft == null
-                                      ? strings.mailDraftAutosave
-                                      : strings.mailDraftSaved,
-                                  key: const ValueKey(
-                                    'studio-mail-draft-status',
+                            for (
+                              var index = 0;
+                              index < _attachments.items.length;
+                              index++
+                            )
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.insert_drive_file_outlined,
+                                    size: 18,
                                   ),
-                                  style: _saveFailed
-                                      ? TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.error,
-                                        )
-                                      : null,
-                                ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      _attachments.items[index].name,
+                                      textDirection: TextDirection.ltr,
+                                      textAlign:
+                                          Directionality.of(context) ==
+                                              TextDirection.rtl
+                                          ? TextAlign.right
+                                          : TextAlign.left,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    strings.mailAttachmentSize(
+                                      _attachments.items[index].length,
+                                    ),
+                                    textDirection: TextDirection.ltr,
+                                  ),
+                                  IconButton(
+                                    key: ValueKey(
+                                      'studio-mail-remove-attachment-$index',
+                                    ),
+                                    tooltip: strings.mailRemoveAttachment(
+                                      _attachments.items[index].name,
+                                    ),
+                                    onPressed: _pickingAttachments
+                                        ? null
+                                        : () => _removeAttachment(index),
+                                    icon: const Icon(Icons.close, size: 18),
+                                  ),
+                                ],
                               ),
-                            ),
-                            if (_saveFailed)
-                              TextButton(
-                                onPressed: _finishing || _recoveringCache
-                                    ? null
-                                    : _saveInBackground,
-                                child: Text(strings.mailDraftRetrySave),
-                              ),
-                          ],
-                        ),
-                      if (_recoveringCache) const LinearProgressIndicator(),
-                      if (_saveFailed && widget.onClearMailCache != null)
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: TextButton.icon(
-                            key: const ValueKey(
-                              'studio-mail-compose-clear-cache',
-                            ),
-                            onPressed: _finishing || _recoveringCache
-                                ? null
-                                : _clearMailCache,
-                            icon: const Icon(Icons.delete_sweep_outlined),
-                            label: Text(strings.mailCacheClear),
-                          ),
-                        ),
-                      if (_cacheClearFailed)
-                        Text(
-                          strings.mailCacheDraftClearFailed,
-                          key: const ValueKey(
-                            'studio-mail-compose-cache-error',
-                          ),
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                      if (_cacheCleanupReport case final report?)
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              strings.mailCacheCleared(
-                                report.removedViews,
-                                report.evictedBodies,
-                                report.removedHeaders,
-                              ),
-                              key: const ValueKey(
-                                'studio-mail-compose-cache-cleared',
-                              ),
-                            ),
-                            if (report.hasMore)
-                              Text(strings.mailCacheDraftClearMore),
-                            if (report.retainedBodies > 0)
+                            if (_attachmentFailed)
                               Text(
-                                strings.mailCacheProtected(
-                                  report.retainedBodies,
+                                strings.mailAttachmentFailedFor(
+                                  StudioMailAttachments.maxTotalBytes,
+                                ),
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.error,
                                 ),
                               ),
+                            const SizedBox(height: 12),
+                            if (_toolsOwner != null) ...[
+                              _composeToolsToolbar(),
+                              const SizedBox(height: 8),
+                            ],
+                            Text(strings.mailPlainTextBody),
+                            const SizedBox(height: 4),
+                            SizedBox(
+                              height:
+                                  (constraints.maxHeight -
+                                          (widget.previousSubmissionUncertain
+                                              ? 436
+                                              : 340) -
+                                          88 -
+                                          (_attachments.items.length * 48) -
+                                          (_attachmentFailed ? 72 : 0) -
+                                          (_showCopies ? 128 : 0) -
+                                          (feedback == null ? 0 : 64))
+                                      .clamp(180.0, 440.0),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Theme.of(context).dividerColor,
+                                  ),
+                                ),
+                                child: LayoutBuilder(
+                                  builder: (context, bodyConstraints) {
+                                    _fitBodyToWidth(bodyConstraints.maxWidth);
+                                    return QudsWordEditor(
+                                      key: const ValueKey<String>(
+                                        'studio-mail-compose-body',
+                                      ),
+                                      controller: _body,
+                                      focusNode: _bodyFocus,
+                                      enableLiveProofing: false,
+                                      showReviewStatus: false,
+                                      toolbarBuilder: (_, _) =>
+                                          const SizedBox.shrink(),
+                                      statusBarBuilder: (_, _) =>
+                                          const SizedBox.shrink(),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            if (feedback != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8),
+                                child: Text(
+                                  feedback,
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                ),
+                              ),
+                            if (widget.previousSubmissionUncertain)
+                              CheckboxListTile(
+                                contentPadding: EdgeInsets.zero,
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                                title: Text(strings.mailRetryAcknowledgement),
+                                value: _retryAcknowledged,
+                                onChanged: (value) => setState(
+                                  () => _retryAcknowledged = value ?? false,
+                                ),
+                              ),
+                            const SizedBox(height: 8),
+                            if (widget.onSaveDraft != null)
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Semantics(
+                                      liveRegion: true,
+                                      child: Text(
+                                        _recoveringCache
+                                            ? strings.mailCacheClearing
+                                            : _saveFailed
+                                            ? strings.mailDraftSaveFailed
+                                            : _pendingSave != null ||
+                                                  _savedRevision !=
+                                                      _editRevision
+                                            ? strings.mailDraftSaving
+                                            : _savedRevision == 0 &&
+                                                  widget.initialDraft == null
+                                            ? strings.mailDraftAutosave
+                                            : strings.mailDraftSaved,
+                                        key: const ValueKey(
+                                          'studio-mail-draft-status',
+                                        ),
+                                        style: _saveFailed
+                                            ? TextStyle(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.error,
+                                              )
+                                            : null,
+                                      ),
+                                    ),
+                                  ),
+                                  if (_saveFailed)
+                                    TextButton(
+                                      onPressed: _finishing || _recoveringCache
+                                          ? null
+                                          : _saveInBackground,
+                                      child: Text(strings.mailDraftRetrySave),
+                                    ),
+                                ],
+                              ),
+                            if (_recoveringCache)
+                              const LinearProgressIndicator(),
+                            if (_saveFailed && widget.onClearMailCache != null)
+                              Align(
+                                alignment: AlignmentDirectional.centerStart,
+                                child: TextButton.icon(
+                                  key: const ValueKey(
+                                    'studio-mail-compose-clear-cache',
+                                  ),
+                                  onPressed: _finishing || _recoveringCache
+                                      ? null
+                                      : _clearMailCache,
+                                  icon: const Icon(Icons.delete_sweep_outlined),
+                                  label: Text(strings.mailCacheClear),
+                                ),
+                              ),
+                            if (_cacheClearFailed)
+                              Text(
+                                strings.mailCacheDraftClearFailed,
+                                key: const ValueKey(
+                                  'studio-mail-compose-cache-error',
+                                ),
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                              ),
+                            if (_cacheCleanupReport case final report?)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    strings.mailCacheCleared(
+                                      report.removedViews,
+                                      report.evictedBodies,
+                                      report.removedHeaders,
+                                    ),
+                                    key: const ValueKey(
+                                      'studio-mail-compose-cache-cleared',
+                                    ),
+                                  ),
+                                  if (report.hasMore)
+                                    Text(strings.mailCacheDraftClearMore),
+                                  if (report.retainedBodies > 0)
+                                    Text(
+                                      strings.mailCacheProtected(
+                                        report.retainedBodies,
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            if (_queueFailed)
+                              Text(
+                                strings.mailQueueFailed,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                              ),
+                            if (!widget.canSend)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                ),
+                                child: Text(strings.mailDraftConnectToSend),
+                              ),
+                            OverflowBar(
+                              alignment: MainAxisAlignment.end,
+                              spacing: 8,
+                              children: <Widget>[
+                                if (_saveFailed)
+                                  TextButton(
+                                    onPressed:
+                                        _finishing ||
+                                            _recoveringCache ||
+                                            _pendingSave != null
+                                        ? null
+                                        : _closeWithoutSaving,
+                                    child: Text(strings.mailDraftCloseUnsaved),
+                                  ),
+                                TextButton(
+                                  onPressed: _finishing || _recoveringCache
+                                      ? null
+                                      : () => _finish(send: false),
+                                  child: Text(
+                                    widget.onSaveDraft == null
+                                        ? strings.cancel
+                                        : strings.mailDraftSaveClose,
+                                  ),
+                                ),
+                                if (widget.onQueueDraft != null)
+                                  TextButton.icon(
+                                    key: const ValueKey('studio-mail-queue'),
+                                    onPressed:
+                                        !widget.canSend ||
+                                            _finishing ||
+                                            _recoveringCache ||
+                                            _pickingAttachments ||
+                                            (widget.previousSubmissionUncertain &&
+                                                !_retryAcknowledged)
+                                        ? null
+                                        : () =>
+                                              _finish(send: true, queue: true),
+                                    icon: const Icon(Icons.outbox_outlined),
+                                    label: Text(strings.mailQueue),
+                                  ),
+                                FilledButton.icon(
+                                  onPressed:
+                                      !widget.canSend ||
+                                          _finishing ||
+                                          _recoveringCache ||
+                                          _pickingAttachments ||
+                                          (widget.previousSubmissionUncertain &&
+                                              !_retryAcknowledged)
+                                      ? null
+                                      : () => _finish(send: true),
+                                  icon: const Icon(Icons.send),
+                                  label: Text(strings.send),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                      if (_queueFailed)
-                        Text(
-                          strings.mailQueueFailed,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                      if (!widget.canSend)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: Text(strings.mailDraftConnectToSend),
-                        ),
-                      OverflowBar(
-                        alignment: MainAxisAlignment.end,
-                        spacing: 8,
-                        children: <Widget>[
-                          if (_saveFailed)
-                            TextButton(
-                              onPressed:
-                                  _finishing ||
-                                      _recoveringCache ||
-                                      _pendingSave != null
-                                  ? null
-                                  : _closeWithoutSaving,
-                              child: Text(strings.mailDraftCloseUnsaved),
-                            ),
-                          TextButton(
-                            onPressed: _finishing || _recoveringCache
-                                ? null
-                                : () => _finish(send: false),
-                            child: Text(
-                              widget.onSaveDraft == null
-                                  ? strings.cancel
-                                  : strings.mailDraftSaveClose,
-                            ),
-                          ),
-                          if (widget.onQueueDraft != null)
-                            TextButton.icon(
-                              key: const ValueKey('studio-mail-queue'),
-                              onPressed:
-                                  !widget.canSend ||
-                                      _finishing ||
-                                      _recoveringCache ||
-                                      _pickingAttachments ||
-                                      (widget.previousSubmissionUncertain &&
-                                          !_retryAcknowledged)
-                                  ? null
-                                  : () => _finish(send: true, queue: true),
-                              icon: const Icon(Icons.outbox_outlined),
-                              label: Text(strings.mailQueue),
-                            ),
-                          FilledButton.icon(
-                            onPressed:
-                                !widget.canSend ||
-                                    _finishing ||
-                                    _recoveringCache ||
-                                    _pickingAttachments ||
-                                    (widget.previousSubmissionUncertain &&
-                                        !_retryAcknowledged)
-                                ? null
-                                : () => _finish(send: true),
-                            icon: const Icon(Icons.send),
-                            label: Text(strings.send),
-                          ),
-                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      ),
+        if (_finishing)
+          PositionedDirectional(
+            top: 8,
+            end: 8,
+            child: TextButton(
+              key: const ValueKey('studio-mail-abort'),
+              onPressed: _abortFinish,
+              child: const Text('Abort'),
+            ),
+          ),
+      ],
     );
   }
 }

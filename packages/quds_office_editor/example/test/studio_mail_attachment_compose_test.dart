@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -239,6 +240,30 @@ void main() {
       unawaited(stream.close());
     },
   );
+
+  testWidgets('dropped files become attachments', (tester) async {
+    await _open(tester, (_) {});
+    final target = tester.widget<DropTarget>(find.byType(DropTarget));
+    target.onDragDone!(
+      DropDoneDetails(
+        files: [
+          DropItemFile.fromData(
+            Uint8List.fromList(<int>[1, 2, 3, 4]),
+            name: 'dropped.pdf',
+            path: 'dropped.pdf',
+          ),
+        ],
+        localPosition: Offset.zero,
+        globalPosition: Offset.zero,
+      ),
+    );
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await _pump(tester);
+    expect(find.text(_strings.mailAttachmentSummary(1, 4)), findsOneWidget);
+    expect(find.text('dropped.pdf'), findsOneWidget);
+  });
 
   testWidgets('closing during file read cancels the active stream', (
     tester,

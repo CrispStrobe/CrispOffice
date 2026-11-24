@@ -5,10 +5,10 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 /// Work and logical-byte limits, independent of filesystem/browser quotas.
 final class MailStoreLimits {
   const MailStoreLimits({
-    this.maxBlobBytes = 32 * 1024 * 1024,
-    this.maxTransactionBlobBytes = 64 * 1024 * 1024,
+    this.maxBlobBytes = 64 * 1024 * 1024,
+    this.maxTransactionBlobBytes = 128 * 1024 * 1024,
     this.maxMetadataCodeUnits = 2 * 1024 * 1024,
-    this.maxAccountBytes = 256 * 1024 * 1024,
+    this.maxAccountBytes = 512 * 1024 * 1024,
     this.maxMessagesPerAccount = 100000,
     this.maxIndexCodeUnits = 65536,
     this.maxQueryCodeUnits = 256,

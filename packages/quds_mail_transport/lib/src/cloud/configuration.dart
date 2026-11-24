@@ -123,7 +123,7 @@ final class MailCloudLimits {
     this.maxPageSize = 100,
     this.maxMailboxes = 1000,
     this.maxResponseBytes = 48 * 1024 * 1024,
-    this.maxRequestBytes = 32 * 1024 * 1024,
+    this.maxRequestBytes = 64 * 1024 * 1024,
     this.maxCursorBytes = 16000,
     this.maxHeaderBytes = 256 * 1024,
     this.maxRequestsPerOperation = 256,

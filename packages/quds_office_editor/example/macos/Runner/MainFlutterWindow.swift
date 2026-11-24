@@ -25,6 +25,8 @@ class MainFlutterWindow: NSWindow {
       binaryMessenger: flutterViewController.engine.binaryMessenger)
     (NSApplication.shared.delegate as? AppDelegate)?.biometricVaultKeychain.register(
       binaryMessenger: flutterViewController.engine.binaryMessenger)
+    (NSApplication.shared.delegate as? AppDelegate)?.registerMailPasteboardChannel(
+      binaryMessenger: flutterViewController.engine.binaryMessenger)
 
     super.awakeFromNib()
   }

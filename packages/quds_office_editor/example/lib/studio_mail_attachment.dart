@@ -191,7 +191,7 @@ final class StudioMailAttachments {
   const StudioMailAttachments._(this.items, this.totalBytes);
 
   static const maxCount = 10;
-  static const maxTotalBytes = 10 * 1024 * 1024;
+  static const maxTotalBytes = 20 * 1024 * 1024;
 
   final List<StudioMailAttachment> items;
   final int totalBytes;

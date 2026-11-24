@@ -1701,7 +1701,8 @@ final class ApiMailCloudProvider
         )) {
       return _failure(MailProblemCode.invalidInput);
     }
-    if (message.wire.length > const MailReadBudget().maxRawBytes ||
+    if (message.wire.length >
+            const MailReadBudget(maxRawBytes: 48 * 1024 * 1024).maxRawBytes ||
         ((message.wire.length + 2) ~/ 3) * 4 > limits.maxRequestBytes) {
       return _failure(MailProblemCode.quotaExceeded);
     }
