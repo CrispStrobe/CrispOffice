@@ -37,7 +37,8 @@ class PdfInterpreter {
     final _Frame frame = _Frame(page, this);
     final PdfCosDict resources =
         store.asDict(pageDict['Resources']) ?? PdfCosDict();
-    final Uint8List content = _pageContent(pageDict);
+    final issues = <PdfPageRenderIssue>{};
+    final Uint8List content = _pageContent(pageDict, issues);
     _run(content, resources, frame, 0);
     _paintAnnotAppearances(pageDict, frame, 0);
     return PdfDisplayList(
@@ -45,6 +46,7 @@ class PdfInterpreter {
       ops: frame.ops,
       runs: frame.runs,
       hotspots: hotspots,
+      issues: Set.unmodifiable(issues),
     );
   }
 
@@ -127,20 +129,46 @@ class PdfInterpreter {
     return null;
   }
 
-  Uint8List _pageContent(PdfCosDict pageDict) {
-    final PdfCos? contents = pageDict['Contents'];
-    if (contents is PdfCosArray) {
-      final BytesBuilder out = BytesBuilder(copy: false);
-      for (final PdfCos item in contents.items) {
-        final Uint8List? part = store.streamBytes(item);
-        if (part != null) {
-          out.add(part);
+  Uint8List _pageContent(PdfCosDict pageDict, Set<PdfPageRenderIssue> issues) {
+    final PdfCos? value = pageDict['Contents'];
+    if (value == null || value is PdfCosNull) {
+      return Uint8List(0);
+    }
+    final PdfCos? contents = store.deref(value);
+
+    Uint8List? read(PdfCos? stream, int maxBytes) {
+      final result = store.streamResult(stream, maxOutputBytes: maxBytes);
+      if (result.limitExceeded) {
+        issues.add(PdfPageRenderIssue.contentLimit);
+      } else if (result.bytes == null || result.jpegEncoded ||
+          result.jpxImage != null) {
+        issues.add(PdfPageRenderIssue.contentStream);
+        return null;
+      }
+      return result.bytes;
+    }
+
+    const maxBytes = PdfFilters.maxDecodedBytes;
+    if (contents is! PdfCosArray) {
+      return read(contents, maxBytes) ?? Uint8List(0);
+    }
+    final out = BytesBuilder(copy: false);
+    for (final item in contents.items) {
+      final separatorBytes = out.isEmpty ? 0 : 1;
+      final remaining = maxBytes - out.length - separatorBytes;
+      if (remaining < 0) {
+        issues.add(PdfPageRenderIssue.contentLimit);
+        break;
+      }
+      final part = read(item, remaining);
+      if (part != null && part.isNotEmpty) {
+        if (!out.isEmpty) {
           out.addByte(0x20);
         }
+        out.add(part);
       }
-      return out.takeBytes();
     }
-    return store.streamBytes(contents) ?? Uint8List(0);
+    return out.takeBytes();
   }
 
   void _run(Uint8List data, PdfCosDict resources, _Frame frame, int depth) {

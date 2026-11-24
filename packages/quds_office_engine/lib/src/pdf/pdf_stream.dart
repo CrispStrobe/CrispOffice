@@ -4,6 +4,9 @@ import '../opc/zip/deflate_codec.dart';
 
 /// FlateDecode wrapper for PDF content and font streams.
 abstract final class PdfFlate {
+  /// Maximum decoded bytes in a PDF Flate stream.
+  static const int maxDecodedBytes = 64 * 1024 * 1024;
+
   /// compress API.
   static Uint8List compress(List<int> data) {
     final Uint8List raw = RawDeflate.deflate(data);
@@ -16,10 +19,17 @@ abstract final class PdfFlate {
   /// Producers often omit or truncate the Adler-32 trailer. The inflater stops
   /// at BFINAL, so leftover checksum bytes are ignored — they must not be
   /// sliced off before inflate.
-  static Uint8List decompress(Uint8List data) {
+  static Uint8List decompress(
+    Uint8List data, {
+    int maxOutputBytes = maxDecodedBytes,
+  }) {
+    if (maxOutputBytes < 0) {
+      throw ArgumentError.value(maxOutputBytes, 'maxOutputBytes');
+    }
     if (data.length < 2) {
       throw const FormatException('Truncated Flate stream');
     }
+    final int limit = maxOutputBytes.clamp(0, maxDecodedBytes);
     if (_isZlibHeader(data[0], data[1])) {
       var start = 2;
       if (data[1] & 0x20 != 0) {
@@ -29,17 +39,23 @@ abstract final class PdfFlate {
         start = 6;
       }
       try {
-        return RawDeflate.inflate(Uint8List.sublistView(data, start));
+        return RawDeflate.inflate(
+          Uint8List.sublistView(data, start),
+          maxOutputBytes: limit,
+        );
+      } on ZipDeflateLimitException {
+        rethrow;
       } on ZipDeflateException {
         if (data.length > start + 4) {
           return RawDeflate.inflate(
             Uint8List.sublistView(data, start, data.length - 4),
+            maxOutputBytes: limit,
           );
         }
         rethrow;
       }
     }
-    return RawDeflate.inflate(data);
+    return RawDeflate.inflate(data, maxOutputBytes: limit);
   }
 
   static bool _isZlibHeader(int cmf, int flg) {

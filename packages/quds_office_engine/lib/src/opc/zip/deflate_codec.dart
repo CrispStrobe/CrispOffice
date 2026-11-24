@@ -30,13 +30,26 @@ class _Inflater {
   int _pos = 0;
   int _bitBuf = 0;
   int _bitCount = 0;
-  final List<int> _out = <int>[];
+  Uint8List _out = Uint8List(0);
+  int _length = 0;
 
-  void _checkOutput(int additionalBytes) {
+  void _reserveOutput(int additionalBytes) {
+    final required = _length + additionalBytes;
     final limit = maxOutputBytes;
-    if (limit != null && additionalBytes > limit - _out.length) {
+    if (limit != null && required > limit) {
       throw const ZipDeflateLimitException('DEFLATE output exceeds its limit');
     }
+    if (required <= _out.length) {
+      return;
+    }
+    var capacity = _out.isEmpty ? 256 : _out.length * 2;
+    if (capacity < required) {
+      capacity = required;
+    }
+    if (limit != null && capacity > limit) {
+      capacity = limit;
+    }
+    _out = Uint8List(capacity)..setRange(0, _length, _out);
   }
 
   /// run API.
@@ -57,7 +70,7 @@ class _Inflater {
           throw const ZipDeflateException('Invalid DEFLATE block type');
       }
     }
-    return Uint8List.fromList(_out);
+    return _length == _out.length ? _out : _out.sublist(0, _length);
   }
 
   void _stored() {
@@ -75,8 +88,9 @@ class _Inflater {
     if (_pos + len > _src.length) {
       throw const ZipDeflateException('Stored block overruns input');
     }
-    _checkOutput(len);
-    _out.addAll(Uint8List.sublistView(_src, _pos, _pos + len));
+    _reserveOutput(len);
+    _out.setRange(_length, _length + len, _src, _pos);
+    _length += len;
     _pos += len;
   }
 
@@ -84,8 +98,8 @@ class _Inflater {
     while (true) {
       final int sym = lit.decode(this);
       if (sym < 256) {
-        _checkOutput(1);
-        _out.add(sym);
+        _reserveOutput(1);
+        _out[_length++] = sym;
         continue;
       }
       if (sym == 256) {
@@ -101,13 +115,13 @@ class _Inflater {
         throw ZipDeflateException('Invalid distance symbol $dsym');
       }
       final int distance = _distBase[dsym] + _bits(_distExtra[dsym]);
-      if (distance <= 0 || distance > _out.length) {
+      if (distance <= 0 || distance > _length) {
         throw const ZipDeflateException('Invalid backreference distance');
       }
-      _checkOutput(length);
-      final int start = _out.length - distance;
+      _reserveOutput(length);
+      final int start = _length - distance;
       for (int i = 0; i < length; i++) {
-        _out.add(_out[start + i]);
+        _out[_length++] = _out[start + i];
       }
     }
   }

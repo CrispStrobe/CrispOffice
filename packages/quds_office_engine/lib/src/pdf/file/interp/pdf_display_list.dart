@@ -3,6 +3,18 @@ import 'dart:typed_data';
 import '../model/pdf_annot.dart';
 import '../model/pdf_page_info.dart';
 
+/// Why a page's display list may be incomplete.
+enum PdfPageRenderIssue {
+  /// A page content stream could not be read or decoded.
+  contentStream,
+
+  /// The page or one of its streams exceeded the render byte budget.
+  contentLimit,
+
+  /// Page interpretation failed before a display list could be produced.
+  interpreterFailure,
+}
+
 /// Device-independent page paint ops (ISO 32000 content stream result).
 class PdfDisplayList {
   /// PdfDisplayList API.
@@ -11,6 +23,7 @@ class PdfDisplayList {
     List<PdfPaintOp>? ops,
     List<PdfTextRun>? runs,
     List<PdfHotspot>? hotspots,
+    this.issues = const <PdfPageRenderIssue>{},
   }) : ops = ops ?? <PdfPaintOp>[],
        runs = runs ?? <PdfTextRun>[],
        hotspots = hotspots ?? <PdfHotspot>[];
@@ -26,6 +39,9 @@ class PdfDisplayList {
 
   /// hotspots API.
   final List<PdfHotspot> hotspots;
+
+  /// Failures observed during interpretation. A valid blank page has none.
+  final Set<PdfPageRenderIssue> issues;
 
   /// plainText API.
   String get plainText {

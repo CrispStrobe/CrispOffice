@@ -93,3 +93,9 @@ streams. The code words are defined by ITU-T T.4 and T.6.
 
 JPEG tests use synthetic Pillow/libjpeg fixtures and cover Adobe transform
 precedence, CMYK Decode, YCCK reconstruction, and soft mask composition.
+
+PDF Flate, LZW, and RunLength decoding accepts at most 64 MiB of decoded
+bytes per stream. A page's content streams share a 64 MiB budget. The
+display list reports unreadable or oversized content, and a valid blank
+page reports no issues. A readable content stream can still render when
+another stream in the same page fails to decode.

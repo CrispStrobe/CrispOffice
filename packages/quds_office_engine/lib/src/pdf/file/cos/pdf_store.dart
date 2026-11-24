@@ -119,16 +119,27 @@ class PdfCosStore {
   }
 
   /// streamResult API.
-  PdfFilterResult streamResult(PdfCos? value, {bool decodeDct = false}) {
+  PdfFilterResult streamResult(
+    PdfCos? value, {
+    bool decodeDct = false,
+    int maxOutputBytes = PdfFilters.maxDecodedBytes,
+  }) {
     final PdfCos? obj = deref(value);
     if (obj is! PdfCosStream) {
       return const PdfFilterResult.unsupported('NotAStream');
     }
     if (obj.raw.length > 64 * 1024 * 1024) {
-      return const PdfFilterResult.unsupported('StreamTooLarge');
+      return const PdfFilterResult.unsupported(
+        'StreamTooLarge',
+        limitExceeded: true,
+      );
     }
     return PdfFilters.decodeResult(
-      obj.raw, obj.dict, resolve: deref, decodeDct: decodeDct,
+      obj.raw,
+      obj.dict,
+      resolve: deref,
+      decodeDct: decodeDct,
+      maxOutputBytes: maxOutputBytes,
     );
   }
 

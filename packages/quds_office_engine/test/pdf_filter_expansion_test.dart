@@ -93,6 +93,20 @@ void _expectSolid(Uint8List? pixels, List<int> rgb) {
 }
 
 void main() {
+  test('PDF filters distinguish stream limits from invalid filters', () {
+    final dict = PdfCosDict({'Filter': const PdfCosName('RunLengthDecode')});
+    final encoded = Uint8List.fromList([253, 65, 128]);
+    expect(PdfFilters.decodeResult(encoded, dict, maxOutputBytes: 4).bytes,
+        [65, 65, 65, 65]);
+    final limited = PdfFilters.decodeResult(encoded, dict, maxOutputBytes: 3);
+    expect(limited.bytes, isNull);
+    expect(limited.unsupported, 'RunLengthDecode');
+    expect(limited.limitExceeded, isTrue);
+
+    dict['Filter'] = const PdfCosName('NoSuchFilter');
+    expect(PdfFilters.decodeResult(encoded, dict).limitExceeded, isFalse);
+  });
+
   test('engine DCT baseline gray/RGB and progressive independent pixels', () {
     for (final (encoded, cs, expected) in [
       (_grayJpeg, 'DeviceGray', [64, 64, 64]),
