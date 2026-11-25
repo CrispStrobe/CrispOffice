@@ -7,6 +7,13 @@ typedef _RunStyleProjection = ({
   bool hasBaseline,
 });
 
+typedef _ParagraphStyleProjection = ({
+  String paragraphXml,
+  WmlRunProps? marker,
+  bool hasSpacingAfter,
+  bool hasLineSpacing,
+});
+
 /// Resolve only declared properties, from defaults through table/paragraph/
 /// character styles to direct formatting. Missing values never reset a parent.
 class _StyleCascade {
@@ -23,6 +30,12 @@ class _StyleCascade {
   // Reuse effective run formatting within one document cascade. Table
   // formatting can depend on cell coordinates and uses the normal path.
   final _runStyles = <(String?, String?, String), _RunStyleProjection>{};
+  final _paragraphStyles =
+      <
+        (String?, String),
+        ({_ParagraphStyleProjection projection, WmlParagraphProps? properties})
+      >{};
+  final _styleChains = <String, List<XmlElement>>{};
 
   bool _load({bool includeTheme = true}) {
     final package = document.package;
@@ -653,21 +666,31 @@ class _StyleCascade {
     ];
   }
 
-  List<XmlElement> chain(String? id, [Set<String>? seen]) {
-    if (id == null || !styles.containsKey(id)) return [];
-    seen ??= {};
-    if (!seen.add(id)) return []; // Invalid cyclic input must terminate.
-    final style = styles[id]!;
-    return [
-      ...chain(
-        _wordChild(
-          style,
-          'basedOn',
-        )?.getAttribute('val', namespaceUri: OfficeNamespaces.w),
-        seen,
-      ),
-      style,
-    ];
+  List<XmlElement> chain(String? id) {
+    if (id == null) return const [];
+    final cached = _styleChains[id];
+    if (cached != null) return cached;
+    if (!styles.containsKey(id)) return const [];
+
+    final derivedFirst = <XmlElement>[];
+    final seen = <String>{};
+    // Build from this root so a cyclic source keeps the same precedence
+    // regardless of which other style was resolved first.
+    String? next = id;
+    while (next != null && seen.add(next)) {
+      final style = styles[next];
+      if (style == null) break;
+      derivedFirst.add(style);
+      next = _wordChild(
+        style,
+        'basedOn',
+      )?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+    }
+    final resolved = List<XmlElement>.unmodifiable(derivedFirst.reversed);
+    if (resolved.length <= 64 && _styleChains.length < 256) {
+      _styleChains[id] = resolved;
+    }
+    return resolved;
   }
 
   static XmlElement _numberingProjection(XmlElement source) {
@@ -1066,90 +1089,79 @@ class _StyleCascade {
       }
       return;
     }
-    final direct = WordPropertyIo.parse(
-      p.properties.sourcePropertiesXml,
-      'pPr',
-    );
+    final source = p.properties.sourcePropertiesXml ?? '';
     final id = p.properties.styleId ?? defaultParagraph;
-    final paragraphChain = chain(id);
-    final pp = merged('pPr', [
-      _wordChild(_wordChild(defaults, 'pPrDefault'), 'pPr'),
-      for (final t in tableLayers) _wordChild(t, 'pPr'),
-      for (final s in paragraphChain) _wordChild(s, 'pPr'),
-      direct,
-    ]);
-    // Preserve non-formatting paragraph metadata (fields, notes, bookmarks).
-    final source = p.properties.sourcePropertiesXml;
-    final old = p.properties;
-    p.properties = WmlParagraphProps(
-      // Native defaults apply when no imported layer declares spacing. The
-      // editor's new-paragraph defaults (8 pt / 1.15 lines) must not appear
-      // merely because an unrelated heading caused a styles part to be added.
-      spacingAfter: 0,
-      lineSpacing: 1,
-      styleId: old.styleId,
-      defaultStyleId: defaultParagraph,
-      fieldInstruction: old.fieldInstruction,
-      fieldBegin: old.fieldBegin,
-      fieldSeparate: old.fieldSeparate,
-      fieldEnd: old.fieldEnd,
-      pageNumberField: old.pageNumberField,
-      bookmarkName: old.bookmarkName,
-      sourceBookmarkName: old.sourceBookmarkName,
-      noteId: old.noteId,
-      endnoteRef: old.endnoteRef,
-      listLabel: old.listLabel,
-      listLabelUsesSpace: old.listLabelUsesSpace,
-      listRestart: old.listRestart,
-      columnBreakBefore: old.columnBreakBefore,
-    );
-    reader._parsePPr(
-      XmlPullReader(XmlDocument(root: pp).toXmlString(declaration: false))
-        ..next(),
-      p.properties,
-    );
-    if (tableLayers.isNotEmpty && preserveTableSpacing) {
-      if (pp.firstChild('spacing')?.getAttribute('after') == null) {
-        p.properties.spacingAfter = old.spacingAfter;
-      }
-      if (pp.firstChild('spacing')?.getAttribute('line') == null) {
-        p.properties.lineSpacing = old.lineSpacing;
-      }
-    }
-    p.properties.sourcePropertiesXml = source ?? '';
-    final markerProperties = _wordChild(pp, 'rPr');
-    final markerStyleId = _wordChild(
-      markerProperties,
-      'rStyle',
-    )?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
-    final paragraphRunStyles = paragraphChain
+    // Cached paragraph and run projections need no inheritance traversal.
+    late final paragraphChain = chain(id);
+    late final paragraphRunStyles = paragraphChain
         .map((style) => _wordChild(style, 'rPr'))
         .whereType<XmlElement>()
         .toSet();
-    final markerStyles = [
-      ...paragraphRunStyles,
-      for (final s in chain(markerStyleId)) _wordChild(s, 'rPr'),
-    ];
-    final markerXml = merged(
-      'rPr',
-      [
-        _wordChild(_wordChild(defaults, 'rPrDefault'), 'rPr'),
-        for (final t in tableLayers) _wordChild(t, 'rPr'),
-        ...markerStyles,
-        markerProperties,
-      ],
-      toggleLayers: markerStyles.whereType<XmlElement>().toSet(),
-      paragraphRunLayers: paragraphRunStyles,
-    );
-    if (markerXml.childElements.isNotEmpty) {
-      final marker = WmlRunProps(kerningHalfPoints: _missingStyles ? 1 : null);
-      reader._parseRPr(
-        XmlPullReader(
-          XmlDocument(root: markerXml).toXmlString(declaration: false),
-        )..next(),
-        marker,
+    final old = p.properties;
+    final key = (old.styleId, source);
+    final canCache = tableLayers.isEmpty && source.length <= 4096;
+    final cached = canCache ? _paragraphStyles[key] : null;
+    final projection =
+        cached?.projection ??
+        _projectParagraphStyle(
+          source,
+          tableLayers,
+          paragraphChain,
+          paragraphRunStyles,
+        );
+    final template = cached?.properties;
+    final properties =
+        template?.copy() ??
+        WmlParagraphProps(
+          // Native defaults differ from the editor's new-paragraph defaults.
+          spacingAfter: 0,
+          lineSpacing: 1,
+          styleId: old.styleId,
+          defaultStyleId: defaultParagraph,
+        );
+    if (template == null) {
+      reader._parsePPr(
+        XmlPullReader(projection.paragraphXml)..next(),
+        properties,
       );
-      p.properties.importedParagraphMark = marker;
+    }
+    if (cached == null && canCache && _paragraphStyles.length < 256) {
+      _paragraphStyles[key] = (
+        projection: projection,
+        // A section property can trigger story reads. Keep parsing those
+        // projections for each occurrence even if their XML is reused.
+        properties: projection.paragraphXml.contains('sectPr')
+            ? null
+            : properties.copy(),
+      );
+    }
+    // Source identity and field metadata belong to the individual paragraph.
+    p.properties = properties
+      ..fieldInstruction = old.fieldInstruction
+      ..fieldBegin = old.fieldBegin
+      ..fieldSeparate = old.fieldSeparate
+      ..fieldEnd = old.fieldEnd
+      ..pageNumberField = old.pageNumberField
+      ..bookmarkName = old.bookmarkName
+      ..sourceBookmarkName = old.sourceBookmarkName
+      ..noteId = old.noteId
+      ..endnoteRef = old.endnoteRef
+      ..listLabel = old.listLabel
+      ..listLabelUsesSpace = old.listLabelUsesSpace
+      ..listRestart = old.listRestart
+      ..columnBreakBefore = old.columnBreakBefore;
+    if (tableLayers.isNotEmpty && preserveTableSpacing) {
+      if (!projection.hasSpacingAfter) {
+        p.properties.spacingAfter = old.spacingAfter;
+      }
+      if (!projection.hasLineSpacing) {
+        p.properties.lineSpacing = old.lineSpacing;
+      }
+    }
+    p.properties.sourcePropertiesXml = source;
+    if (projection.marker case final marker?) {
+      // The projection is shared, while each paragraph owns its mark.
+      p.properties.importedParagraphMark = marker.copy();
     }
     p.properties.importedValues = WordPropertyIo.paragraphValues(p.properties);
     for (var index = 0; index < p.inlines.length; index++) {
@@ -1219,6 +1231,57 @@ class _StyleCascade {
         );
       }
     }
+  }
+
+  _ParagraphStyleProjection _projectParagraphStyle(
+    String source,
+    List<XmlElement> tableLayers,
+    List<XmlElement> paragraphChain,
+    Set<XmlElement> paragraphRunStyles,
+  ) {
+    final pp = merged('pPr', [
+      _wordChild(_wordChild(defaults, 'pPrDefault'), 'pPr'),
+      for (final t in tableLayers) _wordChild(t, 'pPr'),
+      for (final s in paragraphChain) _wordChild(s, 'pPr'),
+      WordPropertyIo.parse(source, 'pPr'),
+    ]);
+    final spacing = pp.firstChild('spacing');
+    final markerProperties = _wordChild(pp, 'rPr');
+    final markerStyleId = _wordChild(
+      markerProperties,
+      'rStyle',
+    )?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+    final markerStyles = [
+      ...paragraphRunStyles,
+      for (final s in chain(markerStyleId)) _wordChild(s, 'rPr'),
+    ];
+    final marker = merged(
+      'rPr',
+      [
+        _wordChild(_wordChild(defaults, 'rPrDefault'), 'rPr'),
+        for (final t in tableLayers) _wordChild(t, 'rPr'),
+        ...markerStyles,
+        markerProperties,
+      ],
+      toggleLayers: markerStyles.whereType<XmlElement>().toSet(),
+      paragraphRunLayers: paragraphRunStyles,
+    );
+    WmlRunProps? parsedMarker;
+    if (marker.childElements.isNotEmpty) {
+      parsedMarker = WmlRunProps(kerningHalfPoints: null);
+      reader._parseRPr(
+        XmlPullReader(
+          XmlDocument(root: marker).toXmlString(declaration: false),
+        )..next(),
+        parsedMarker,
+      );
+    }
+    return (
+      paragraphXml: XmlDocument(root: pp).toXmlString(declaration: false),
+      marker: parsedMarker,
+      hasSpacingAfter: spacing?.getAttribute('after') != null,
+      hasLineSpacing: spacing?.getAttribute('line') != null,
+    );
   }
 
   _RunStyleProjection _projectRunStyle(

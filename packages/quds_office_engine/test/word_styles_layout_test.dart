@@ -56,6 +56,48 @@ const String _bulletNumbering =
     '</w:abstractNum><w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num>';
 
 void main() {
+  test('repeated paragraph projections own their tabs and bookmarks', () {
+    final doc = _open(
+      [
+        for (final (i, name) in ['one', 'two'].indexed)
+          '<w:p><w:pPr><w:tabs><w:tab w:val="left" w:pos="720"/>'
+          '</w:tabs></w:pPr><w:bookmarkStart w:id="$i" w:name="$name"/>'
+          '<w:r><w:t>$name</w:t></w:r><w:bookmarkEnd w:id="$i"/></w:p>',
+      ].join(),
+      styles: '<w:docDefaults><w:pPrDefault><w:pPr>'
+          '<w:spacing w:after="120"/>'
+          '</w:pPr></w:pPrDefault></w:docDefaults>',
+    );
+    final paragraphs = doc.paragraphs.toList();
+    expect(paragraphs.map((p) => p.properties.spacingAfter), [6, 6]);
+    expect(WordBookmarks.textByName(doc, 'one'), 'one');
+    expect(WordBookmarks.textByName(doc, 'two'), 'two');
+    expect(paragraphs.first.properties.tabs, hasLength(1));
+    paragraphs.first.properties.tabs.clear();
+    expect(paragraphs.last.properties.tabs, hasLength(1));
+  });
+
+  test('cyclic styles retain precedence for each requested style', () {
+    final doc = _open(
+      [
+        for (final style in ['A', 'B', 'A', 'B'])
+          '<w:p><w:pPr><w:pStyle w:val="$style"/></w:pPr>'
+          '<w:r><w:t>Body</w:t></w:r></w:p>',
+      ].join(),
+      styles:
+          '<w:style w:type="paragraph" w:styleId="A"><w:basedOn w:val="B"/>'
+          '<w:rPr><w:color w:val="CC0000"/></w:rPr></w:style>'
+          '<w:style w:type="paragraph" w:styleId="B"><w:basedOn w:val="A"/>'
+          '<w:rPr><w:color w:val="0000CC"/></w:rPr></w:style>',
+    );
+    expect(
+      doc.paragraphs.map(
+        (paragraph) => (paragraph.inlines.single as WmlRun).properties.color,
+      ),
+      ['CC0000', '0000CC', 'CC0000', '0000CC'],
+    );
+  });
+
   test('empty direct paragraph flags enable settings disabled by a style', () {
     final doc = _open(
       '<w:p><w:pPr><w:pStyle w:val="Disabled"/>'

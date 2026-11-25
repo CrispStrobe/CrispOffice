@@ -163,6 +163,8 @@ class _NoteStory {
             source,
             sourceParagraph: originalOf[cloned],
             proofingOffsets: offsetsOf[cloned],
+            // Transfer unshifted glyphs out of the discarded transient layout.
+            reuseGlyphs: height == 0,
           ),
         );
         bottom = math.max(bottom, line.y + line.height);
@@ -309,6 +311,26 @@ class _NoteProofingOffsets extends ListBase<int?> {
       throw UnsupportedError('Note proofing offsets are read-only');
 }
 
+// Keep the sum in placement order, with the separator added by the caller.
+class _NotePageReservation {
+  _NotePageReservation();
+
+  _NotePageReservation.fromSlices(List<_NoteSlice> existing) {
+    for (final slice in existing) {
+      add(slice);
+    }
+  }
+
+  final slices = <_NoteSlice>[];
+  double _height = 0;
+  double get height => _height;
+
+  void add(_NoteSlice slice) {
+    slices.add(slice);
+    _height += slice.height;
+  }
+}
+
 class _NoteSlice {
   _NoteSlice(this.story, this.start, this.end, this.section, this.sectionIndex);
   final _NoteStory story;
@@ -340,35 +362,38 @@ LaidOutLine _noteLine(
   int paragraphIndex = -1,
   WmlParagraph? sourceParagraph,
   List<int?>? proofingOffsets,
+  bool reuseGlyphs = false,
 }) => LaidOutLine(
-  glyphs: <LaidOutGlyph>[
-    for (final LaidOutGlyph g in line.glyphs)
-      LaidOutGlyph(
-        glyph: g.glyph,
-        displayText: g.displayText,
-        displayOffset: g.displayOffset,
-        sourceEnd: g.sourceEnd,
-        actualText: g.actualText,
-        x: g.x + dx,
-        y: g.y + dy,
-        color: g.color,
-        fontSize: g.fontSize,
-        bold: g.bold,
-        underline: g.underline,
-        italic: g.italic,
-        kerning: g.kerning,
-        strike: g.strike,
-        highlight: g.highlight,
-        fontFamily: g.fontFamily,
-        vertAlign: g.vertAlign,
-        positionHalfPoints: g.positionHalfPoints,
-        hyperlink: g.hyperlink,
-        commentIds: g.commentIds,
-        advance: g.advance,
-        paintDx: g.paintDx,
-        paintDy: g.paintDy,
-      ).._baselineShift = g._baselineShift,
-  ],
+  glyphs: reuseGlyphs && dx == 0 && dy == 0
+      ? line.glyphs
+      : <LaidOutGlyph>[
+        for (final LaidOutGlyph g in line.glyphs)
+          LaidOutGlyph(
+            glyph: g.glyph,
+            displayText: g.displayText,
+            displayOffset: g.displayOffset,
+            sourceEnd: g.sourceEnd,
+            actualText: g.actualText,
+            x: g.x + dx,
+            y: g.y + dy,
+            color: g.color,
+            fontSize: g.fontSize,
+            bold: g.bold,
+            underline: g.underline,
+            italic: g.italic,
+            kerning: g.kerning,
+            strike: g.strike,
+            highlight: g.highlight,
+            fontFamily: g.fontFamily,
+            vertAlign: g.vertAlign,
+            positionHalfPoints: g.positionHalfPoints,
+            hyperlink: g.hyperlink,
+            commentIds: g.commentIds,
+            advance: g.advance,
+            paintDx: g.paintDx,
+            paintDy: g.paintDy,
+          ).._baselineShift = g._baselineShift,
+      ],
   x: line.x + dx,
   y: line.y + dy,
   width: line.width,
