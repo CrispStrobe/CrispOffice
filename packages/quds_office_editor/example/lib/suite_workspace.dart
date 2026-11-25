@@ -716,6 +716,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   buildStudioTasks(
                                     _t('Tasks', 'Aufgaben', 'المهام'),
                                     _closeTasks,
+                                    chromeBuilder: (_) =>
+                                        _titleBar(tasks: true),
+                                    compactRibbon: _ribbonPreferences.compact,
+                                    showCommandLabels:
+                                        _ribbonPreferences.showCommandLabels,
+                                    showGroupLabels:
+                                        _ribbonPreferences.showGroupLabels,
                                   )
                                 else
                                   const SizedBox.shrink(),
@@ -1571,8 +1578,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return true;
   }
 
-  Widget _titleBar({BuildContext? mailContext, VoidCallback? onCloseMail}) {
-    void switchFromMail(SuiteApp app) {
+  Widget _titleBar({
+    BuildContext? mailContext,
+    VoidCallback? onCloseMail,
+    bool tasks = false,
+  }) {
+    final document = mailContext == null && !tasks;
+    void switchWorkspace(SuiteApp app) {
+      if (tasks) _closeTasks();
       if (onCloseMail != null) {
         onCloseMail();
       } else if (mailContext != null) {
@@ -1582,7 +1595,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
 
     return Material(
-      color: mailContext == null ? _appAccent : const Color(0xFF285A93),
+      color: document ? _appAccent : const Color(0xFF285A93),
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -1635,60 +1648,59 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               ],
                             ),
                           ),
-                          if (mailContext == null &&
+                          if (document &&
                               StudioWindow.isDesktop &&
                               !StudioWindow.isMacOS)
                             StudioFileMenu(
                               label: _t('File', 'Datei', 'ملف'),
                               groups: _desktopFileGroups,
                             ),
-                          if (mailContext == null) _titleQuickAccess(),
+                          if (document) _titleQuickAccess(),
                           Row(
                             children: <Widget>[
                               StudioAppSwitcher(
                                 label: _strings.documents,
                                 icon: Icons.description_outlined,
-                                selected:
-                                    mailContext == null &&
-                                    _app == SuiteApp.word,
-                                onTap: () => switchFromMail(SuiteApp.word),
+                                selected: document && _app == SuiteApp.word,
+                                onTap: () => switchWorkspace(SuiteApp.word),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.spreadsheets,
                                 icon: Icons.grid_on_outlined,
-                                selected:
-                                    mailContext == null &&
-                                    _app == SuiteApp.excel,
-                                onTap: () => switchFromMail(SuiteApp.excel),
+                                selected: document && _app == SuiteApp.excel,
+                                onTap: () => switchWorkspace(SuiteApp.excel),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.presentations,
                                 icon: Icons.slideshow_outlined,
                                 selected:
-                                    mailContext == null &&
-                                    _app == SuiteApp.powerpoint,
+                                    document && _app == SuiteApp.powerpoint,
                                 onTap: () =>
-                                    switchFromMail(SuiteApp.powerpoint),
+                                    switchWorkspace(SuiteApp.powerpoint),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.pdf,
                                 icon: Icons.picture_as_pdf_outlined,
-                                selected:
-                                    mailContext == null && _app == SuiteApp.pdf,
-                                onTap: () => switchFromMail(SuiteApp.pdf),
+                                selected: document && _app == SuiteApp.pdf,
+                                onTap: () => switchWorkspace(SuiteApp.pdf),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.mail,
                                 icon: Icons.mail_outline,
                                 selected: mailContext != null,
-                                onTap: mailContext == null ? _openMail : () {},
+                                onTap: mailContext != null
+                                    ? () {}
+                                    : () {
+                                        if (tasks) _closeTasks();
+                                        _openMail();
+                                      },
                               ),
                               if (!kIsWeb)
                                 StudioAppSwitcher(
                                   label: _t('Tasks', 'Aufgaben', 'المهام'),
                                   icon: Icons.checklist_outlined,
-                                  selected: false,
-                                  onTap: _openTasks,
+                                  selected: tasks,
+                                  onTap: tasks ? () {} : _openTasks,
                                 ),
                             ],
                           ),
@@ -1702,7 +1714,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     horizontal: 10,
                                   ),
                                   child: Text(
-                                    mailContext == null
+                                    tasks
+                                        ? _t('Tasks', 'Aufgaben', 'المهام')
+                                        : document
                                         ? _documentLabel
                                         : _strings.mailTitle,
                                     maxLines: 1,
@@ -1725,7 +1739,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                   ),
                   IconButton(
-                    key: mailContext == null ? _settingsButtonKey : null,
+                    key: document ? _settingsButtonKey : null,
                     tooltip: _strings.settings,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
@@ -1741,7 +1755,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     onPressed: _openSettings,
                   ),
                   IconButton(
-                    key: mailContext == null ? _accountButtonKey : null,
+                    key: document ? _accountButtonKey : null,
                     tooltip: _strings.account,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,

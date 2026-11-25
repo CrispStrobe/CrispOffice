@@ -19,10 +19,25 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'credentials/secure_storage_service.dart';
 import 'studio_credential_storage.dart';
+import 'studio_chrome.dart';
 import 'studio_tasks_ews_sync.dart';
+import 'studio_tasks_google_sync.dart';
 
-Widget buildStudioTasks(String title, VoidCallback close) =>
-    StudioTasksPage(title: title, onClose: close);
+Widget buildStudioTasks(
+  String title,
+  VoidCallback close, {
+  WidgetBuilder? chromeBuilder,
+  bool compactRibbon = true,
+  bool showCommandLabels = true,
+  bool showGroupLabels = false,
+}) => StudioTasksPage(
+  title: title,
+  onClose: close,
+  chromeBuilder: chromeBuilder,
+  compactRibbon: compactRibbon,
+  showCommandLabels: showCommandLabels,
+  showGroupLabels: showGroupLabels,
+);
 
 const _davProfiles = [
   CalDavServerProfile.generic,
@@ -49,9 +64,17 @@ final class StudioTasksPage extends StatefulWidget {
     this.openDavClient,
     this.openEwsProvider,
     this.onClose,
+    this.chromeBuilder,
+    this.compactRibbon = true,
+    this.showCommandLabels = true,
+    this.showGroupLabels = false,
   });
   final String title;
   final VoidCallback? onClose;
+  final WidgetBuilder? chromeBuilder;
+  final bool compactRibbon;
+  final bool showCommandLabels;
+  final bool showGroupLabels;
   final Future<Database> Function()? openDatabase;
   final StudioCredentialStorage? credentialStorage;
   final http.Client Function()? openDavClient;
@@ -68,7 +91,9 @@ final class StudioTasksPage extends StatefulWidget {
 
 final class _StudioTasksPageState extends State<StudioTasksPage>
     with WidgetsBindingObserver {
-  static const _accountKey = 'crispoffice.tasks.account.v1';
+  static const _legacyAccountKey = 'crispoffice.tasks.account.v1';
+  static const _accountsKey = 'crispoffice.tasks.accounts.v2';
+  final _records = <TaskAccountId, Map<String, Object?>>{};
   static final _device = TaskAccountId('personal', provider: 'local');
   static final _personal = TaskList(
     id: TaskListId('personal', account: _device),
@@ -171,32 +196,95 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   Future<void> _restore() async {
     final vault = _vault = await _credentialStorage.storage;
     _vaultRevision = _credentialStorage.revision;
-    final saved = await vault.read(_accountKey);
-    if (!mounted || saved == null) return;
-    final record = jsonDecode(saved) as Map<String, Object?>;
-    final provider = record['provider'] as String;
-    final account = TaskAccountId(record['id'] as String, provider: provider);
+    final saved = await vault.read(_accountsKey);
+    if (!mounted || _vaultRevision != _credentialStorage.revision) return;
+    TaskAccountId? active;
+    if (saved != null) {
+      final catalog = jsonDecode(saved) as Map<String, Object?>;
+      for (final row in catalog['accounts'] as List<Object?>) {
+        final record = row as Map<String, Object?>;
+        final account = _recordAccount(record);
+        _records[account] = record;
+        if (catalog['active'] case [
+          final provider,
+          final id,
+        ] when provider == account.provider && id == account.value) {
+          active = account;
+        }
+      }
+    } else {
+      final legacy = await vault.read(_legacyAccountKey);
+      if (!mounted || _vaultRevision != _credentialStorage.revision) return;
+      if (legacy != null) {
+        final record = jsonDecode(legacy) as Map<String, Object?>;
+        active = _recordAccount(record);
+        _records[active] = record;
+        await _saveCatalog(vault, _records, active);
+        await vault.delete(_legacyAccountKey);
+      }
+    }
+    final account = active ?? _records.keys.firstOrNull;
+    if (account != null) await _openSaved(account, vault);
+  }
+
+  TaskAccountId _recordAccount(Map<String, Object?> record) => TaskAccountId(
+    record['id'] as String,
+    provider: record['provider'] as String,
+  );
+
+  Future<void> _saveCatalog(
+    SecureStorage vault,
+    Map<TaskAccountId, Map<String, Object?>> accounts,
+    TaskAccountId? active,
+  ) => vault.write(
+    _accountsKey,
+    jsonEncode({
+      'active': active == null ? null : [active.provider, active.value],
+      'accounts': accounts.values.toList(),
+    }),
+  );
+
+  Future<void> _openSaved(TaskAccountId account, SecureStorage vault) async {
+    if (!mounted || _vaultRevision != _credentialStorage.revision) return;
+    final record = _records[account]!;
+    final previous = _syncLease;
+    _closeConnection?.call();
+    _closeConnection = null;
+    if (previous != null && previous.account != account) {
+      _require(_store!.disconnect(previous));
+    }
     _record = record;
     _syncLease = _require(_store!.connect(account));
     _lists = [
       for (final row in (record['lists'] as List<Object?>? ?? []))
         (list: _decodeList(account, row), sync: null),
     ];
-    if (_lists.isNotEmpty) {
-      final remembered = _lists
-          .where((entry) => entry.list.id.value == record['selected'])
-          .firstOrNull;
-      _selected = (remembered ?? _lists.first).list.id;
-      _reload();
-    }
+    _selected = _preferredList(record, _lists);
+    _reload();
     await _resumeConnection(record, vault, account);
-    final selected = record['selected'];
-    if (selected is String &&
-        _lists.any((entry) => entry.list.id.value == selected)) {
-      _selected = TaskListId(selected, account: account);
-    }
     await _syncSelected();
   }
+
+  TaskListId _preferredList(
+    Map<String, Object?> record,
+    List<_Selection> lists,
+  ) =>
+      (lists
+                  .where((entry) => entry.list.id.value == record['selected'])
+                  .firstOrNull ??
+              lists.firstOrNull)
+          ?.list
+          .id ??
+      _personal.id;
+
+  void _switchSaved(TaskAccountId? account) => _run(() async {
+    final vault = _vault;
+    if (account == null || account == _syncLease?.account || vault == null) {
+      return;
+    }
+    await _saveCatalog(vault, _records, account);
+    await _openSaved(account, vault);
+  });
 
   Future<void> _resumeConnection(
     Map<String, Object?> record,
@@ -241,13 +329,15 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       ],
     };
     if (!mounted || _vaultRevision != _credentialStorage.revision) return;
-    await vault.write(_accountKey, jsonEncode(persisted));
+    final updated = {..._records, lease.account: persisted};
+    await _saveCatalog(vault, updated, lease.account);
     if (!mounted || _vaultRevision != _credentialStorage.revision) return;
+    _records[lease.account] = persisted;
     _record = persisted;
     _syncLease = lease;
     _lists = lists;
     if (!_lists.any((entry) => entry.list.id == _selected)) {
-      _selected = _lists.firstOrNull?.list.id ?? _personal.id;
+      _selected = _preferredList(persisted, lists);
     }
   }
 
@@ -367,6 +457,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       tokens?.dispose();
       closeProvider?.call();
     };
+    final enableWrites = record['writes'] == true;
     final configuration = MailOAuthConfiguration(
       service: microsoft
           ? MailCloudService.microsoft365
@@ -374,6 +465,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       clientId: record['client'] as String,
       clientSecret: record['googleDesktopSecret'] as String?,
       tasksOnly: true,
+      googleTaskWrites: !microsoft && enableWrites,
     );
     final vaultRevision = _credentialStorage.revision;
     String? issuedToken = refreshToken;
@@ -412,7 +504,6 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     }
     final Future<TaskResult<TaskListPage>> Function(String?) fetchLists;
     final Future<TaskResult<bool>> Function(TaskAccountLease, TaskList) sync;
-    final enableWrites = microsoft && record['writes'] == true;
     if (microsoft) {
       final transport = NativeGraphTaskHttpTransport();
       closeProvider = transport.close;
@@ -434,18 +525,27 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         account: account,
         mailAccount: mail,
         tokens: source,
+        enableWrites: enableWrites,
       );
       closeProvider = provider.close;
       fetchLists = (cursor) => provider.lists(session.begin(), cursor: cursor);
-      sync = (lease, list) => TaskPullWorker(_store!).refresh(
-        lease,
-        list.id,
-        (position) => provider.pull(
-          list.id,
-          cursor: position.cursor,
-          lease: session.begin(),
-        ),
-      );
+      sync = (lease, list) => enableWrites
+          ? syncStudioGoogleTasks(
+              TaskSyncWorker(_store!),
+              lease,
+              provider,
+              list,
+              session,
+            )
+          : TaskPullWorker(_store!).refresh(
+              lease,
+              list.id,
+              (position) => provider.pull(
+                list.id,
+                cursor: position.cursor,
+                lease: session.begin(),
+              ),
+            );
     }
     final lists = <TaskListId, TaskList>{};
     String? cursor;
@@ -535,6 +635,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final lease = _syncLease;
     if (lease != null) _store?.disconnect(lease);
     _record = null;
+    _records.clear();
     _vault = null;
     _vaultRevision = null;
     _syncLease = null;
@@ -583,7 +684,10 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 )
                 .toString();
       final account = TaskAccountId(id, provider: provider);
-      final record = {...proposed, 'id': id};
+      final record = {...?_records[account], ...proposed, 'id': id};
+      final previous = _syncLease;
+      final priorClose = _closeConnection;
+      _closeConnection = null;
       try {
         if (_isTaskCloud(provider)) {
           await _connectTaskCloud(record, vault, account);
@@ -592,32 +696,48 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         } else {
           await _connectDav(record, vault, account);
         }
-        await _syncSelected();
       } on Object {
         _closeConnection?.call();
-        if (_isTaskCloud(provider) && _record?['id'] != id) {
+        if (mounted && _vaultRevision == _credentialStorage.revision) {
+          _closeConnection = priorClose;
+        } else {
+          priorClose?.call();
+        }
+        if (_isTaskCloud(provider) && !_records.containsKey(account)) {
           await vault.delete(_refreshKey(account));
         }
         rethrow;
       }
+      priorClose?.call();
+      if (!mounted || _vaultRevision != _credentialStorage.revision) return;
+      if (previous != null && previous.account != account) {
+        _require(_store!.disconnect(previous));
+      }
+      await _syncSelected();
     });
   }
 
   void _disconnect() => _run(() async {
     final lease = _syncLease;
-    if (lease != null) {
-      _require(_store!.disconnect(lease));
-      _closeConnection?.call();
-      if (_isTaskCloud(lease.account.provider)) {
-        await _vault!.delete(_refreshKey(lease.account));
-      }
-    }
-    await _vault!.delete(_accountKey);
+    final vault = _vault;
+    if (lease == null || vault == null) return;
+    final updated = {..._records}..remove(lease.account);
+    final next = updated.keys.firstOrNull;
+    await _saveCatalog(vault, updated, next);
+    if (!mounted || _vaultRevision != _credentialStorage.revision) return;
+    _records.remove(lease.account);
+    _require(_store!.disconnect(lease));
+    _closeConnection?.call();
+    _closeConnection = null;
     _record = null;
     _syncLease = null;
     _lists = [];
     _selected = _personal.id;
     _notice = null;
+    if (_isTaskCloud(lease.account.provider)) {
+      await vault.delete(_refreshKey(lease.account));
+    }
+    if (next != null) await _openSaved(next, vault);
   });
 
   static String _randomId() {
@@ -637,7 +757,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       final record = _record;
       if (record != null && id != _personal.id) {
         record['selected'] = id.value;
-        await _vault!.write(_accountKey, jsonEncode(record));
+        await _saveCatalog(_vault!, _records, _syncLease?.account);
       }
       await _syncSelected();
     });
@@ -727,6 +847,8 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
     final busy = _running != null;
     final ready = _store != null;
     final connected = _record != null;
@@ -735,30 +857,35 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         if (edit.remoteId != null) edit.remoteId!: edit,
     };
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        leading: widget.onClose == null
-            ? null
-            : BackButton(onPressed: widget.onClose),
-        actions: [
-          if (connected)
-            TextButton(
-              onPressed: busy ? null : _disconnect,
-              child: const Text('Disconnect'),
-            )
-          else
-            TextButton(
-              onPressed: !ready || busy ? null : _connect,
-              child: const Text('Connect account'),
+      backgroundColor: colors.surface,
+      appBar: widget.chromeBuilder != null
+          ? null
+          : AppBar(
+              backgroundColor: colors.surface,
+              foregroundColor: colors.onSurface,
+              title: Text(widget.title),
+              leading: widget.onClose == null
+                  ? null
+                  : BackButton(onPressed: widget.onClose),
+              actions: [
+                if (connected)
+                  TextButton(
+                    onPressed: busy ? null : _disconnect,
+                    child: const Text('Disconnect'),
+                  ),
+                TextButton(
+                  onPressed: !ready || busy ? null : _connect,
+                  child: Text(connected ? 'Add account' : 'Connect account'),
+                ),
+                IconButton(
+                  tooltip: 'Sync now',
+                  onPressed: busy || !connected ? null : () => _refresh(),
+                  icon: const Icon(Icons.sync),
+                ),
+              ],
             ),
-          IconButton(
-            tooltip: 'Sync now',
-            onPressed: busy || !connected ? null : () => _refresh(),
-            icon: const Icon(Icons.sync),
-          ),
-        ],
-      ),
-      floatingActionButton: !ready || _selection.list.readOnly
+      floatingActionButton:
+          widget.chromeBuilder != null || !ready || _selection.list.readOnly
           ? null
           : FloatingActionButton(
               tooltip: 'Add task',
@@ -767,16 +894,56 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
             ),
       body: Column(
         children: [
+          if (widget.chromeBuilder case final chrome?) ...[
+            chrome(context),
+            _ribbon(ready: ready, connected: connected, busy: busy),
+          ],
           if (busy) const LinearProgressIndicator(),
           if (_notice case final notice?)
             Padding(
               padding: const EdgeInsets.all(12),
               child: Text(notice, key: const ValueKey('tasks-status')),
             ),
+          if (_records.length > 1)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Account'),
+                  const SizedBox(width: 12),
+                  DropdownButton<TaskAccountId>(
+                    value: _syncLease?.account,
+                    dropdownColor: colors.surface,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: colors.onSurface,
+                    ),
+                    onChanged: busy ? null : _switchSaved,
+                    items: [
+                      for (final entry in _records.entries)
+                        DropdownMenuItem(
+                          value: entry.key,
+                          child: Text(
+                            entry.value['label'] as String? ??
+                                entry.value['login'] as String? ??
+                                (entry.key.provider == 'google'
+                                    ? 'Google Tasks'
+                                    : 'Microsoft To Do'),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.all(12),
             child: DropdownButton<TaskListId>(
               value: _selected,
+              dropdownColor: colors.surface,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: colors.onSurface,
+              ),
               onChanged: busy ? null : _select,
               items: [
                 DropdownMenuItem(
@@ -802,6 +969,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               children: [
                 Expanded(
                   child: TextField(
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: colors.onSurface,
+                    ),
                     onChanged: (value) =>
                         setState(() => _query = value.trim().toLowerCase()),
                     decoration: const InputDecoration(
@@ -840,6 +1010,96 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     );
   }
 
+  Widget _ribbon({
+    required bool ready,
+    required bool connected,
+    required bool busy,
+  }) {
+    final scheme = Theme.of(context).colorScheme;
+    Widget command(IconData icon, String label, VoidCallback? action) =>
+        StudioCmd(
+          icon: icon,
+          label: label,
+          accent: scheme.primary,
+          foreground: scheme.onSurface,
+          onPressed: action,
+        );
+    return Material(
+      color: scheme.surface,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: StudioTabChip(
+              label: widget.title,
+              selected: true,
+              accent: scheme.primary,
+              onTap: () {},
+            ),
+          ),
+          StudioRibbonStyle(
+            compact: widget.compactRibbon,
+            showCommandLabels: widget.showCommandLabels,
+            showGroupLabels: widget.showGroupLabels,
+            child: SizedBox(
+              height: StudioRibbonStrip.preferredHeight(
+                context,
+                compact: widget.compactRibbon,
+                showCommandLabels: widget.showCommandLabels,
+                showGroupLabels: widget.showGroupLabels,
+              ),
+              child: StudioRibbonStrip(
+                groups: [
+                  StudioRibbonGroup(
+                    id: 'task-actions',
+                    title: 'Tasks',
+                    children: [
+                      command(
+                        Icons.add_task,
+                        'Add task',
+                        !ready || _selection.list.readOnly
+                            ? null
+                            : () => _edit(null),
+                      ),
+                    ],
+                  ),
+                  StudioRibbonGroup(
+                    id: 'task-connection',
+                    title: 'Accounts',
+                    children: [
+                      if (connected)
+                        command(
+                          Icons.link_off,
+                          'Disconnect',
+                          busy ? null : _disconnect,
+                        ),
+                      command(
+                        Icons.person_add_alt,
+                        connected ? 'Add account' : 'Connect account',
+                        !ready || busy ? null : _connect,
+                      ),
+                      command(
+                        Icons.sync,
+                        'Sync now',
+                        busy || !connected ? null : () => _refresh(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Divider(
+            height: 2,
+            thickness: 2,
+            color: scheme.primary.withValues(alpha: 0.35),
+          ),
+        ],
+      ),
+    );
+  }
+
   bool _matches(TaskFields? fields) =>
       (_includeCompleted || fields?.status != TaskStatus.completed) &&
       (_query.isEmpty ||
@@ -848,7 +1108,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
 
   Widget _row(TaskFields? fields, {LocalTaskEdit? edit, RemoteTask? remote}) {
     final completed = fields?.status == TaskStatus.completed;
-    final editable = fields != null && !_selection.list.readOnly;
+    final original =
+        remote ??
+        _cached.where((task) => task.id == edit?.remoteId).firstOrNull;
+    final assigned = original != null && googleTaskIsAssigned(original);
+    final editable = fields != null && !_selection.list.readOnly && !assigned;
     final remoteDeleteAvailable =
         _selected.account.provider != 'ews' || _record?['ewsDeletes'] == true;
     final canDelete =
@@ -866,33 +1130,35 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               edit.problem ?? TaskProblemCode.conflict,
             ),
           };
+    final colors = Theme.of(context).colorScheme;
     final due = fields?.due;
-    return ListTile(
+    void toggle(bool checked) {
+      final patch = TaskPatch(
+        status: TaskFieldPatch.set(
+          checked ? TaskStatus.completed : TaskStatus.notStarted,
+        ),
+        completedAt: checked
+            ? const TaskFieldPatch.unchanged()
+            : const TaskFieldPatch.clear(),
+      );
+      _save(patch.applyTo(fields!), edit, remote);
+    }
+
+    final tile = ListTile(
+      textColor: colors.onSurface,
+      iconColor: colors.onSurfaceVariant,
       leading: Checkbox(
         value: completed,
-        onChanged: !editable
-            ? null
-            : (checked) {
-                final patch = TaskPatch(
-                  status: TaskFieldPatch.set(
-                    checked == true
-                        ? TaskStatus.completed
-                        : TaskStatus.notStarted,
-                  ),
-                  completedAt: checked == true
-                      ? const TaskFieldPatch.unchanged()
-                      : const TaskFieldPatch.clear(),
-                );
-                _save(patch.applyTo(fields), edit, remote);
-              },
+        onChanged: editable ? (checked) => toggle(checked == true) : null,
       ),
       title: Text(fields?.title ?? 'Deleted task'),
-      subtitle: status == null && due == null
+      subtitle: status == null && due == null && !assigned
           ? null
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (due != null) Text('Due ${_taskDueDate(due)}'),
+                if (assigned) const Text('Assigned in Google Docs or Chat'),
                 if (status != null) Text(status),
               ],
             ),
@@ -915,7 +1181,84 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               icon: const Icon(Icons.delete_outline),
             ),
     );
+    if (!editable) return tile;
+    final list = _selected;
+    return Dismissible(
+      key: ValueKey((list, edit?.id ?? remote!.id.value, edit != null)),
+      direction: canDelete
+          ? DismissDirection.horizontal
+          : DismissDirection.startToEnd,
+      background: _swipeAction(
+        leading: true,
+        color: colors.secondaryContainer,
+        foreground: colors.onSecondaryContainer,
+        icon: completed ? Icons.undo : Icons.check,
+        label: completed ? 'Reopen' : 'Complete',
+      ),
+      secondaryBackground: _swipeAction(
+        leading: false,
+        color: colors.errorContainer,
+        foreground: colors.onErrorContainer,
+        icon: Icons.delete_outline,
+        label: 'Delete',
+      ),
+      confirmDismiss: (direction) async {
+        if (!mounted || _selected != list) return false;
+        if (direction == DismissDirection.startToEnd) {
+          toggle(!completed);
+        } else if (canDelete &&
+            await _confirmSwipeDelete(fields.title) &&
+            mounted &&
+            _selected == list) {
+          _save(null, edit, remote);
+        }
+        return false;
+      },
+      child: tile,
+    );
   }
+
+  Widget _swipeAction({
+    required bool leading,
+    required Color color,
+    required Color foreground,
+    required IconData icon,
+    required String label,
+  }) => Container(
+    padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
+    alignment: leading
+        ? AlignmentDirectional.centerStart
+        : AlignmentDirectional.centerEnd,
+    color: color,
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, color: foreground),
+        const SizedBox(width: 8),
+        Text(label, style: TextStyle(color: foreground)),
+      ],
+    ),
+  );
+
+  Future<bool> _confirmSwipeDelete(String title) async =>
+      await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Delete task?'),
+          content: Text(title),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Delete task'),
+            ),
+          ],
+        ),
+      ) ??
+      false;
 }
 
 final class _EwsTaskCredentials implements MailCredentialStore {
@@ -1011,6 +1354,7 @@ class _TaskConnectionDialog extends StatefulWidget {
 }
 
 class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
+  final _label = TextEditingController();
   final _login = TextEditingController();
   final _password = TextEditingController();
   final _url = TextEditingController(text: 'https://dav.mailbox.org/');
@@ -1032,11 +1376,13 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
   bool get _google => _provider == 'google';
   bool get _ews => _provider == 'ews';
   bool _graphWrites = false;
+  bool _googleWrites = false;
   bool _ewsDeletes = false;
 
   @override
   void dispose() {
     for (final field in [
+      _label,
       _login,
       _password,
       _url,
@@ -1078,10 +1424,16 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                   ),
                   DropdownMenuItem(
                     value: 'google',
-                    child: Text('Google Tasks (read-only)'),
+                    child: Text('Google Tasks'),
                   ),
                   DropdownMenuItem(value: 'ews', child: Text('Exchange EWS')),
                 ],
+              ),
+              TextFormField(
+                controller: _label,
+                decoration: const InputDecoration(
+                  labelText: 'Account name (optional)',
+                ),
               ),
               if (_graph) ...[
                 TextFormField(
@@ -1115,6 +1467,12 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                   decoration: const InputDecoration(
                     labelText: 'Google desktop client secret (if issued)',
                   ),
+                ),
+                CheckboxListTile(
+                  value: _googleWrites,
+                  onChanged: (value) => setState(() => _googleWrites = value!),
+                  title: const Text('Allow Google task edits'),
+                  subtitle: const Text('Assigned tasks stay read-only.'),
                 ),
               ] else ...[
                 if (_ews) ...[
@@ -1214,18 +1572,25 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
             _graph
                 ? {
                     'provider': 'graph',
+                    if (_label.text.trim().isNotEmpty)
+                      'label': _label.text.trim(),
                     'client': _client.text.trim(),
                     'writes': _graphWrites,
                   }
                 : _google
                 ? {
                     'provider': 'google',
+                    if (_label.text.trim().isNotEmpty)
+                      'label': _label.text.trim(),
                     'client': _googleClient.text.trim(),
+                    'writes': _googleWrites,
                     if (_googleSecret.text.trim().isNotEmpty)
                       'googleDesktopSecret': _googleSecret.text.trim(),
                   }
                 : {
                     'provider': _provider,
+                    if (_label.text.trim().isNotEmpty)
+                      'label': _label.text.trim(),
                     'url': (_ews ? _ewsUrl : _url).text.trim(),
                     'login': _login.text.trim(),
                     'secret': _password.text,

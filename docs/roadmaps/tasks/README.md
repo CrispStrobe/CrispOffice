@@ -52,8 +52,13 @@ Writable lists support adding, editing and completing tasks. Deletion depends
 on the provider. The app saves edits locally first and shows pending changes,
 unconfirmed writes or conflicts in the task rows.
 
-Studio restores one connected remote account at a time. While the Tasks pane
-is open, the timer and app-resume refresh visit every list on that account.
+Use **Add account** to save another connection, then choose an account in the
+picker. Studio restores the selected account and retains the other connections
+in the credential vault. One remote account syncs at a time. The timer and
+app-resume refresh visit every list on that account while Tasks is open.
+Swipe toward the trailing side to complete or reopen an editable task. Swipe
+toward the leading side to open the delete confirmation when deletion is
+available. The checkbox and Delete button provide the same actions.
 **Sync now** refreshes the selected remote list, or all remote lists when **On
 this device** is selected.
 
@@ -67,7 +72,7 @@ this device** is selected.
 | ownCloud Classic / Infinite Scale | Generic CalDAV when VTODO is advertised | Validate the exact edition, installed groupware, and version. Infinite Scale groupware was explicitly work in progress in November 2026. |
 | Radicale / Baikal | Generic CalDAV | Smaller self-hosted interoperability targets; test rather than assuming protocol identity guarantees behavior. |
 | Exchange Server on premises | Native EWS Tasks reader | Task-folder discovery, durable incoming cursors, and queued task creation and updates. Studio offers opt-in deletion to Deleted Items. |
-| Gmail / Google Tasks | Google Tasks REST API | Read-only lists and task snapshots through a dedicated desktop OAuth grant. |
+| Gmail / Google Tasks | Google Tasks REST API | Task snapshots and opt-in writes for personal tasks through a dedicated desktop OAuth grant. Live OAuth qualification remains open. |
 | Native Open-Xchange HTTP API | Optional deployment-specific JSON adapter | For hosts that support external API authentication; mailbox.org native API availability is not established by generic OX documentation. |
 | Vikunja | Dedicated REST v2 adapter | Richer task backend; implement against its public API after the common model and synchronization boundaries stabilize. |
 | Microsoft Planner | Separate Graph Planner adapter | Assigned team work is distinct from the To Do resource model. |

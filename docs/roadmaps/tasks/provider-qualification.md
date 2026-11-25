@@ -44,12 +44,21 @@ and [app registration audiences](https://learn.microsoft.com/en-us/entra/identit
 
 ## Gmail / Google Tasks
 
-Studio requests `https://www.googleapis.com/auth/tasks.readonly` for Google
-Tasks through a desktop OAuth client. Enable the Google Tasks API for the
+Studio requests `https://www.googleapis.com/auth/tasks.readonly` by default.
+**Allow Google task edits** requests `https://www.googleapis.com/auth/tasks`
+through the same desktop OAuth flow. Enable the Google Tasks API for the
 client's Google Cloud project and add the account under test users if the
 project uses an external testing audience. Gmail mail keeps its existing
 scope. The Tasks API supplies list and task page tokens. Each complete
 Studio snapshot reconciles removals in the local cache.
+
+The writer checks the current task revision and assignment before it sends
+a sparse patch or delete with `If-Match`. Tasks assigned through Docs or Chat
+are read-only in Studio. A lost insert response keeps the local attempt
+unconfirmed because Google assigns the task ID and the API exposes no
+client operation ID. The worker can reconcile ambiguous updates and deletes
+against complete later snapshots. Live stale-write and field-clear behavior
+still need qualification.
 
 - [Google Tasks scopes](https://developers.google.com/workspace/tasks/auth)
 - [Google desktop client setup](https://developers.google.com/identity/protocols/oauth2/native-app)
