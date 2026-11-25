@@ -3967,8 +3967,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             }
             final account = _account;
             final elapsed = Stopwatch()..start();
-            if (account != null)
+            if (account != null) {
               _logMailActivity(account, 'cache sync started');
+            }
             try {
               final report = await synchronizer.synchronizeMailbox(
                 frozen,

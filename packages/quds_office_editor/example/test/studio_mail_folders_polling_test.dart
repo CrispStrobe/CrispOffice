@@ -8,7 +8,7 @@ mail.Mailbox _folder(String path, [mail.MailboxFlag? role]) => mail.Mailbox(
   encodedName: path.split('.').last,
   encodedPath: path,
   pathSeparator: '.',
-  flags: [if (role != null) role],
+  flags: [?role],
 );
 
 void main() {
