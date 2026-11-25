@@ -159,6 +159,7 @@ void main() {
         'https://oauth2.googleapis.com/token',
         'https://tasks.googleapis.com/tasks/v1/users/@me/lists',
         'https://tasks.googleapis.com/tasks/v1/lists/id/tasks?pageToken=opaque',
+        'https://tasks.googleapis.com/tasks/v1/lists/id/tasks/task-id',
         'https://login.microsoftonline.com/common/oauth2/v2.0/token',
       ]) {
         expect(
@@ -177,7 +178,7 @@ void main() {
         'https://graph.microsoft.com/v1.0/me/messages#secret',
         'https://graph.microsoft.com/v1.0/me/%5csecrets',
         'https://oauth2.googleapis.com/token?forward=secret',
-        'https://tasks.googleapis.com/tasks/v1/lists/id/tasks/other',
+        'https://tasks.googleapis.com/tasks/v1/lists/id/tasks/other/move',
         'https://tasks.googleapis.com/tasks/v1/lists/id%2Fother/tasks',
         'https://tasks.googleapis.com.evil.test/tasks/v1/users/@me/lists',
         'https://login.microsoftonline.com/common/oauth2/v2.0/token?x=1',

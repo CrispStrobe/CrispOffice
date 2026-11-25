@@ -48,13 +48,14 @@ final class NativeMailCloudHttpTransport implements MailCloudHttpTransport {
             uri.path.startsWith('/v1.0/users('),
       'tasks.googleapis.com' =>
         uri.path == '/tasks/v1/users/@me/lists' ||
-            (uri.pathSegments.length == 5 &&
+            ([5, 6].contains(uri.pathSegments.length) &&
                 uri.pathSegments[0] == 'tasks' &&
                 uri.pathSegments[1] == 'v1' &&
                 uri.pathSegments[2] == 'lists' &&
-                uri.pathSegments[3].isNotEmpty &&
-                !uri.pathSegments[3].contains('/') &&
-                uri.pathSegments[4] == 'tasks'),
+                uri.pathSegments[4] == 'tasks' &&
+                _googleIdSegment(uri.pathSegments[3]) &&
+                (uri.pathSegments.length == 5 ||
+                    _googleIdSegment(uri.pathSegments[5]))),
       'oauth2.googleapis.com' => uri.path == '/token' && !uri.hasQuery,
       'login.microsoftonline.com' =>
         RegExp(
@@ -65,6 +66,19 @@ final class NativeMailCloudHttpTransport implements MailCloudHttpTransport {
     };
   }
 
+  static bool _googleIdSegment(String value) =>
+      value.isNotEmpty && !value.contains('/');
+
+  static bool _allowedTaskMethod(Uri uri, String method) =>
+      switch (uri.pathSegments.length) {
+        5 when uri.pathSegments[2] == 'lists' => const {
+          'GET',
+          'POST',
+        }.contains(method),
+        6 => const {'GET', 'PATCH', 'DELETE'}.contains(method),
+        _ => method == 'GET',
+      };
+
   @override
   Future<MailCloudHttpResponse> send(
     MailCloudHttpRequest request, {
@@ -74,7 +88,7 @@ final class NativeMailCloudHttpTransport implements MailCloudHttpTransport {
   }) async {
     if (!allowedUri(request.uri) ||
         (request.uri.host == 'tasks.googleapis.com' &&
-            request.method != 'GET') ||
+            !_allowedTaskMethod(request.uri, request.method)) ||
         !const {'GET', 'POST', 'PATCH', 'DELETE'}.contains(request.method) ||
         timeout <= Duration.zero ||
         timeout > const Duration(minutes: 5) ||

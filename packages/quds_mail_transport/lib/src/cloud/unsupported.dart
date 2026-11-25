@@ -107,13 +107,14 @@ final class _UnsupportedCloudProvider
   void dispose() {}
 }
 
-GoogleTaskReader createGoogleTaskReader({
+GoogleTaskProvider createGoogleTaskReader({
   required TaskAccountId account,
   required MailAccountId mailAccount,
   required MailCloudTokenSource tokens,
+  bool enableWrites = false,
 }) => const _UnsupportedGoogleTaskReader();
 
-final class _UnsupportedGoogleTaskReader implements GoogleTaskReader {
+final class _UnsupportedGoogleTaskReader implements GoogleTaskProvider {
   const _UnsupportedGoogleTaskReader();
   @override
   Future<TaskResult<TaskListPage>> lists(
@@ -129,5 +130,32 @@ final class _UnsupportedGoogleTaskReader implements GoogleTaskReader {
   }) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
 
   @override
+  Future<TaskResult<RemoteTask>> create(
+    TaskListId list,
+    TaskFields fields,
+    MailOperationLease lease,
+  ) async => const TaskFailure(_unsupportedTaskWrite);
+
+  @override
+  Future<TaskResult<RemoteTask>> update(
+    TaskId id,
+    TaskPatch patch, {
+    required String revision,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(_unsupportedTaskWrite);
+
+  @override
+  Future<TaskResult<TaskUnit>> delete(
+    TaskId id, {
+    required String revision,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(_unsupportedTaskWrite);
+
+  @override
   void close() {}
 }
+
+const _unsupportedTaskWrite = TaskProblem(
+  TaskProblemCode.unsupported,
+  mutationMayHaveOccurred: false,
+);

@@ -7,6 +7,8 @@ import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'configuration.dart';
 import 'http.dart';
 
+part 'task_writer.dart';
+
 /// Google Tasks lists and paginated snapshots using a delegated Tasks grant.
 abstract interface class GoogleTaskReader {
   Future<TaskResult<TaskListPage>> lists(
@@ -23,18 +25,16 @@ abstract interface class GoogleTaskReader {
   void close();
 }
 
-final class ApiGoogleTaskReader implements GoogleTaskReader {
+final class ApiGoogleTaskReader extends _GoogleTaskConnection
+    with _GoogleTaskWrites
+    implements GoogleTaskProvider {
   ApiGoogleTaskReader({
-    required this.account,
-    required this.mailAccount,
-    required this.tokens,
-    required this.transport,
+    required super.account,
+    required super.mailAccount,
+    required super.tokens,
+    required super.transport,
+    super.enableWrites,
   });
-
-  final TaskAccountId account;
-  final MailAccountId mailAccount;
-  final MailCloudTokenSource tokens;
-  final MailCloudHttpTransport transport;
 
   @override
   Future<TaskResult<TaskListPage>> lists(
@@ -50,7 +50,7 @@ final class ApiGoogleTaskReader implements GoogleTaskReader {
           TaskList(
             id: TaskListId(_id(row['id']), account: account),
             name: _string(row['title']),
-            readOnly: true,
+            readOnly: !enableWrites,
             revision: _optional(row['etag']),
           ),
       ],
@@ -124,39 +124,17 @@ final class ApiGoogleTaskReader implements GoogleTaskReader {
       return const TaskFailure(TaskProblem(TaskProblemCode.invalidInput));
     }
     try {
-      lease.checkCurrent();
-      final token = await tokens.accessToken(lease);
-      if (token case MailFailure(:final problem)) {
-        return _mailFailure(problem);
-      }
-      lease.checkCurrent();
-      final response = await transport.send(
-        MailCloudHttpRequest(
-          method: 'GET',
-          uri: Uri(
-            scheme: 'https',
-            host: 'tasks.googleapis.com',
-            pathSegments: ['tasks', 'v1', ...path],
-            queryParameters: {
-              ...query,
-              'maxResults': '100',
-              'pageToken': ?pageToken,
-            },
-          ),
-          headers: {
-            'authorization':
-                'Bearer ${(token as MailSuccess<MailCloudAccessToken>).value.value}',
-            'accept': 'application/json',
-          },
-        ),
-        lease: lease,
-        timeout: const Duration(seconds: 30),
-        maxResponseBytes: 4 * 1024 * 1024,
+      final response = await _send(
+        lease,
+        'GET',
+        path,
+        query: {...query, 'maxResults': '100', 'pageToken': ?pageToken},
       );
       lease.checkCurrent();
       if (response.statusCode != 200) {
         return TaskFailure(
           TaskProblem(switch (response.statusCode) {
+            400 when pageToken != null => TaskProblemCode.cursorExpired,
             400 => TaskProblemCode.invalidInput,
             401 => TaskProblemCode.authenticationRequired,
             403 => TaskProblemCode.permissionDenied,
