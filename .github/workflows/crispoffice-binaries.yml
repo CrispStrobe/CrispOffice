@@ -74,7 +74,8 @@ jobs:
         # before it applies the sparse checkout. Materialize only the source
         # used by the Windows build.
         run: |
-          git archive --format=tar.gz --output="$RUNNER_TEMP/crispoffice-windows-source.tar.gz"             HEAD packages third_party pubspec.yaml pubspec.lock analysis_options.yaml
+          archive="$RUNNER_TEMP/crispoffice-windows-source.tar.gz"
+          git archive --format=tar.gz --output="$archive" HEAD packages third_party pubspec.yaml pubspec.lock analysis_options.yaml
           git rev-parse HEAD
       - uses: actions/upload-artifact@v4
         with:

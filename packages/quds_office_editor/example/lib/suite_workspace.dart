@@ -33,7 +33,8 @@ import 'studio_linguistic_analysis.dart';
 import 'studio_mail.dart';
 import 'studio_calendar_unavailable.dart'
     if (dart.library.io) 'studio_calendar.dart';
-import 'studio_connections_dialog.dart';
+import 'studio_connections_unavailable.dart'
+    if (dart.library.io) 'studio_connections_dialog.dart';
 import 'studio_strings.dart';
 import 'studio_tasks_unavailable.dart' if (dart.library.io) 'studio_tasks.dart';
 import 'studio_pdf_gallery.dart';
