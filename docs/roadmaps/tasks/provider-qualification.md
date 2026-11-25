@@ -53,6 +53,13 @@ VTODO filtering; ETag/412 behavior; resource deletion; sync-token expiry and
 fallback; preserved properties; all-day/floating/TZID dates; recurring/subtask
 round trips; permissions on shared collections.
 
+The prepared VPS instance ran Nextcloud 33.0.11. A disposable account and
+VTODO list passed creation, UID recovery, update, server-side HTTP 412 for a
+stale If-Match, incremental sync and a deletion tombstone. The test runner
+verified collection absence and the temporary account was deleted. Cleanup
+bypassed Nextcloud's calendar trash only for the ownership-verified fixture.
+See the [Nextcloud calendar trash documentation](https://docs.nextcloud.com/server/stable/admin_manual/groupware/calendar.html#trash-bin).
+
 ## mailbox.org / Open-Xchange
 
 
@@ -119,7 +126,21 @@ Qualification is per server/version and requires advertised VTODO, basic CRUD,
 auth, dates, conflicts and sync recovery. Do not promise a specific ownCloud
 Tasks web app works with an untested release.
 
+A disposable ownCloud Classic 10.15.0 container on the VPS passed the same
+basic task round trip and fixture deletion checks. The existing 10.15.0 site
+was disabled and its configured PHP 7.4 FPM socket was absent. The test used
+the official matching image and fresh storage. The container, data and image
+were removed afterward. See the [official ownCloud server image](https://hub.docker.com/r/owncloud/server).
+
 ## Exchange Server / EWS
+
+The configured Exchange host accepted the supplied credentials over NTLM.
+A read-only `GetFolder` for the distinguished `tasks` folder returned HTTP
+200 and `NoError` through curl. The same probe through CrispOffice's native
+EWS transport returned `permissionDenied`. No task was changed. A Studio
+EWS Tasks adapter and native interoperability remain to be implemented and
+qualified. Microsoft To Do uses its own Graph OAuth grant.
+
 
 - [Exchange Online EWS retirement timeline and on-premises distinction](https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361)
 - [EWS task folders/items](https://learn.microsoft.com/en-us/exchange/client-developer/exchange-web-services/folders-and-items-in-ews-in-exchange)

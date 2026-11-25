@@ -32,24 +32,37 @@ client when disconnecting the account. Use one client per account.
 - HTTP responses, XML structure and resource counts are bounded. A failed or
   incomplete report leaves the caller's stored cursor and cached tasks intact.
 
-The API has fixture and loopback coverage. Live mailbox.org basic tasks
-passed on a disposable list. Other deployments have separate qualification gates.
+The API has fixture and loopback coverage. Basic VTODO sync passed on
+mailbox.org, Nextcloud 33.0.11 and an isolated ownCloud Classic 10.15.0 server.
 
-## Live mailbox.org test
+## Live CalDAV tests
 
-From the workspace root, run discovery using environment variables or pass a
-credential file containing `MBOX_LOGIN` and `MBOX_PW`.
+Provide credentials through environment variables or a private dotenv file.
+The runner accepts these prefixes.
+
+| Profile | Variables |
+| --- | --- |
+| `mailbox.org` | `MBOX_LOGIN`, `MBOX_PW`, optional `MBOX_DAV_URL` |
+| `nextcloud` | `NEXTCLOUD_LOGIN`, `NEXTCLOUD_PW`, `NEXTCLOUD_DAV_URL` |
+| `owncloud` | `OWNCLOUD_LOGIN`, `OWNCLOUD_PW`, `OWNCLOUD_DAV_URL` |
+
+Supply the DAV endpoint, usually the installation's `remote.php/dav/` URL for
+Nextcloud and ownCloud Classic. A local SSH tunnel can use plain HTTP by passing
+`--allow-loopback-http`; the adapter permits this only on loopback.
 
 ```sh
-dart packages/quds_tasks_caldav/tool/live_mailbox.dart ../.env
-dart packages/quds_tasks_caldav/tool/live_mailbox.dart ../.env --isolated
+dart packages/quds_tasks_caldav/tool/live_caldav.dart /path/to/.env --profile=mailbox.org
+dart packages/quds_tasks_caldav/tool/live_caldav.dart /path/to/.env --profile=nextcloud --isolated
+dart packages/quds_tasks_caldav/tool/live_caldav.dart /path/to/.env --profile=owncloud --isolated
 ```
 
-The second command creates a uniquely named test list, verifies ownership
-before testing and removes it afterward. Set `MBOX_TASK_TEST_URL` to use an
-existing empty test list instead. The runner verifies create, read-back
-recovery, update, server-side stale-ETag rejection, incremental changes and
-deletion. Its logs report operation statuses without credentials or task data.
+Without `--isolated` or a provider-prefixed `*_TASK_TEST_URL`, the run only
+discovers lists. The isolated run provisions and removes an ownership-verified
+test list. For Nextcloud, cleanup bypasses the recoverable calendar trash
+only for that verified fixture. An explicit `*_TASK_TEST_URL` uses a dedicated
+empty test list and leaves the list in place. Both write modes verify create,
+read-back recovery, update, server-side stale-ETag rejection, incremental changes
+and deletion. The runner prints statuses without credentials or task data.
 
 ## What works
 

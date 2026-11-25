@@ -182,10 +182,25 @@ Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
   qualification. Extended fields, account revocation, shared lists and
   long-running cross-provider workflows remain outside this live check.
 
+## Checkpoint 10 — VPS CalDAV and Exchange probes
+
+- The [shared CalDAV runner](../../../packages/quds_tasks_caldav/README.md)
+  now supports Nextcloud and ownCloud Classic profiles. Basic task operations
+  passed on the VPS Nextcloud 33.0.11 installation and a disposable ownCloud
+  Classic 10.15.0 container. Both used disposable credentials and collections.
+- Nextcloud fixture cleanup verified HTTP 404 and removed the temporary account.
+  The matching ownCloud container, data and image were removed. The VPS's
+  existing ownCloud site remains disabled with its original configuration.
+- The supplied Exchange credentials authenticated an explicit NTLM, read-only
+  Tasks-folder request. The native CrispOffice EWS transport returned
+  `permissionDenied` on its probe. This qualifies account access for future
+  EWS Tasks work. Graph OAuth remains a separate live qualification.
+
 ## Next execution sequence
 
-1. Qualify Microsoft To Do and Nextcloud against designated accounts and lists,
-   including normalization, conflict recovery, permission changes and revocation.
+1. Qualify Microsoft To Do with a delegated OAuth grant and designated list.
+   Extend the CalDAV acceptance cases to permission changes, normalization and
+   revocation.
 2. Extend the Studio workflow to multiple simultaneously connected accounts.
 3. Continue T7-T9 with extended fields, additional providers and optional bridging.
 
