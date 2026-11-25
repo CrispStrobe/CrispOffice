@@ -91,9 +91,11 @@ frozen Outbox bytes.
 
 Save as template captures the compose owner, account, tools epoch, immutable
 settings object and draft revision. A changed owner or draft cannot publish a
-stale snapshot after the editor returns. The template-management dialog also
-requires the same pending settings object, even when a replacement object has
-the same durable revision.
+stale snapshot after the editor returns. The template-management dialog checks
+the complete pending settings, including ordered immutable entries, even when
+changed content has the same durable revision. An equivalent settings wrapper
+from a normal parent rebuild keeps the editor current; an actual pending edit
+retires it.
 
 The template Apply handler checks ownership before capture and before returning
 the result. A retained callback after retirement displays stale feedback, and

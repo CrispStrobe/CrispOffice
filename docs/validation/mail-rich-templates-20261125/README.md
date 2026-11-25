@@ -1,7 +1,7 @@
 # Mail rich templates — continuation validation
 
 Recorded **25 November 2026**. Feature source:
-[`8fc87a208aa3ff8a75ba037045c18907f70d3ab7`](https://github.com/CrispStrobe/quds_office_suite/commit/8fc87a208aa3ff8a75ba037045c18907f70d3ab7).
+[`93445de76e82f6ec4f799d1eab7c75f1d9406b43`](https://github.com/CrispStrobe/quds_office_suite/commit/93445de76e82f6ec4f799d1eab7c75f1d9406b43).
 
 This record follows the original
 [rich-composition qualification](../mail-rich-compose-20261125/README.md).
@@ -63,14 +63,20 @@ python docs/validation/mail-rich-templates-20261125/schema_sql_smoke.py .
 | --- | ---: | --- |
 | Core compose settings | 7 | Rich/plain agreement, immutable copies, explicit clearing, empty typing styles, per-template and aggregate bounds |
 | Store/settings/migrations | 16 | Real close/reopen, formatting-only revisions, stale/failed writes, quota rollback, corrupt HTML/UTF-8/types/version, transfer preflight, schema-21 rollback/retry and historical upgrades |
-| Template editor widgets | 8 | Metadata/text/format-only preservation, reopen, unsupported-content Undo, conflict recovery, retired owners and same-revision pending settings |
+| Template editor widgets | 9 | Metadata/text/format-only preservation, reopen, unsupported-content Undo, conflict recovery, retired owners, same-revision pending changes and equivalent settings rebuilds |
 | Existing rich-compose widgets | 2 | Rich whole-message replacement through save/send; changed-draft refusal during Save as template |
 | Sender/template integration | 2 | Conflict rejection and native settings reopen through draft/Outbox/private-Bcc recovery |
-| **Total new registrations** | **35** | Supplied source; runtime execution tracked below |
+| **Total new registrations** | **36** | Supplied source; runtime execution tracked below |
 
 Ten existing migration-related test files update current-version expectations
 to 22. Deliberate old-version fixtures remain unchanged, and future-version
 rejection fixtures advance to 23/24.
+
+A final parent-integration review found that Writing tools creates a new settings
+wrapper during ordinary rebuilds. The follow-up source compares all pending
+scalars and ordered immutable members instead of outer-object identity. The
+ninth template-editor regression verifies that an equivalent wrapper keeps the
+editor usable while actual pending changes still retire it.
 
 ## First real Flutter results for the preceding source
 

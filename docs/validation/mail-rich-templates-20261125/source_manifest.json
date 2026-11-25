@@ -1,5 +1,5 @@
 {
-  "source_commit": "8fc87a208aa3ff8a75ba037045c18907f70d3ab7",
+  "source_commit": "93445de76e82f6ec4f799d1eab7c75f1d9406b43",
   "files": [
     {
       "path": "packages/quds_mail_core/lib/src/model/compose_settings.dart",
@@ -111,9 +111,9 @@
     },
     {
       "path": "packages/quds_office_editor/example/lib/studio_mail_identity_templates.dart",
-      "bytes": 23554,
-      "sha256": "24541df276997f693f0707e41f9f77d06d99de2846e80911bc15ef363c908a32",
-      "git_blob_sha": "903da5ae48f41c7691b240abc639413610721e53"
+      "bytes": 24575,
+      "sha256": "236c4844424ff6a66dbad9df8a4ae00e1dc3c8ff1faf1c64dc1f41f5e8ed50ba",
+      "git_blob_sha": "3ee40ff16bd690aa5fea426c4827c16c9feebe70"
     },
     {
       "path": "packages/quds_office_editor/example/lib/studio_mail_identity_strings.dart",
@@ -147,9 +147,9 @@
     },
     {
       "path": "packages/quds_office_editor/example/test/studio_mail_rich_template_editor_test.dart",
-      "bytes": 12256,
-      "sha256": "b752f8761f99c8f98b566331f42634198ed11713d4f0f18a9384f6def3005d3f",
-      "git_blob_sha": "0c6064df3f2230aacf763252e0a009185ce47d97"
+      "bytes": 14915,
+      "sha256": "65fb815f07c66c60a756d7bf590702b56a241d70c14eceb465a4ff0843162c57",
+      "git_blob_sha": "b2fd1172aa171f7de1daf20af120aea17a19d7ba"
     }
   ]
 }
