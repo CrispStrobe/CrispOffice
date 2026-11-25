@@ -15,7 +15,7 @@ clients are references, not compatibility claims.
 | Accounts | IMAP/SMTP, EWS, Gmail, Microsoft 365; remembered chooser; one live account at a time | Multiple simultaneous sessions, system-browser OAuth/PKCE, account discovery |
 | Mailbox | Browse, cached views, resumable sync, persistent cross-folder conversation keys, search | Complete shared workspace, unified inbox, provider thread discovery |
 | Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search and row metadata, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
-| Compose | Plain-text Word surface, signatures, Quick Text, attachments, durable sender snapshots, account-owned identities and full-message templates | Rich HTML composition, inline images, cloud/EWS alias authorization, per-identity signatures |
+| Compose | Word surface with bounded rich formatting and matching plain/HTML alternatives, local rich recovery, inert Outbox review, signatures, Quick Text, attachments, durable sender snapshots, identities and plain full-message templates | New rich-control Flutter runtime acceptance, inline images, richer templates, cloud/EWS alias authorization, per-identity signatures |
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
 | Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS, bounded one-folder IMAP/EWS/Gmail/Graph provider search with supported fields and explicit count precision | Richer provider grammar, missing participant/body fields, multi-folder scope, indexed discovery, live adapter qualification |
 | Attachments | Bounded read-only open; attach files | Attach current document/PDF, edit received attachment copy, Office workflow |
@@ -46,7 +46,9 @@ clients are references, not compatibility claims.
 - Bulk organization through the existing durable journal.
 
 ### P3 — Composition
-- Safe rich HTML compose with plain-text alternative.
+- [Bounded rich HTML compose with plain-text alternative](rich-composition.md)
+  is implemented through draft recovery and Outbox; installed/widget execution
+  remains an acceptance boundary.
 - Inline images and deterministic MIME generation.
 - Multiple sender identities/alias routing.
 - Full-message templates, signatures and Quick Text.
@@ -97,6 +99,12 @@ Use these as comparison targets, not pixel-copy targets:
 
 The [25 November extension record](extension-20261125.md) separates source and
 local test evidence from live-provider, installed-platform and release gates.
+
+The [rich composition continuation](rich-composition.md) now adds the next
+cohesive authoring slice. Next validate its toolbar/recovery flows in Flutter,
+then extend the explicit format contract for inline images and richer templates.
+Provider Sent/Drafts reconciliation and simultaneous-account lifecycle remain
+separate substantial work; neither follows automatically from rich MIME support.
 
 ## Acceptance rules
 

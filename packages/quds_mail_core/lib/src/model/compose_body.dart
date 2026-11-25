@@ -55,8 +55,9 @@ final class MailComposeRun {
       _textBytes(decoded, limit: maxLinkBytes, multiline: false);
       if (decoded.contains('\\')) return false;
       final uri = Uri.tryParse(value);
-      if (uri == null || !uri.hasScheme || uri.userInfo.isNotEmpty)
+      if (uri == null || !uri.hasScheme || uri.userInfo.isNotEmpty) {
         return false;
+      }
       if (uri.scheme == 'http' || uri.scheme == 'https') {
         return uri.hasAuthority && uri.host.isNotEmpty && uri.port <= 65535;
       }
@@ -227,8 +228,9 @@ int _textBytes(String value, {required int limit, bool multiline = true}) {
   for (var i = 0; i < value.length; i++) {
     final code = value.codeUnitAt(i);
     if (code < 0x20 || (code >= 0x7f && code <= 0x9f)) {
-      if (!multiline || (code != 0x09 && code != 0x0a && code != 0x0d))
+      if (!multiline || (code != 0x09 && code != 0x0a && code != 0x0d)) {
         _invalid();
+      }
     }
     if (code < 0x80) {
       bytes++;
@@ -272,7 +274,9 @@ String _writeHtml(List<MailComposeParagraph> paragraphs) {
       if (run.link case final link?) {
         output.write('<a href="');
         output.escaped(link);
-        output.write('">');
+        // Override user-agent link underlining so the authored run controls
+        // decoration consistently in the editor, preview and transmitted HTML.
+        output.write('" style="text-decoration:inherit">');
       }
       output.escaped(run.text);
       if (run.link != null) output.write('</a>');
@@ -373,8 +377,9 @@ final class _ComposeHtmlReader {
       final runs = <MailComposeRun>[];
       while (!take('</p>')) {
         if (take('<br />')) {
-          if (runs.isEmpty || runs.any((run) => run.text.isNotEmpty))
+          if (runs.isEmpty || runs.any((run) => run.text.isNotEmpty)) {
             _invalid();
+          }
           expect('</p>');
           break;
         }
@@ -391,7 +396,7 @@ final class _ComposeHtmlReader {
           link = _decode(
             until('"', maxLength: MailComposeRun.maxLinkBytes * 6),
           );
-          expect('">');
+          expect('" style="text-decoration:inherit">');
         }
         final text = StringBuffer();
         final close = link == null ? '</span>' : '</a>';

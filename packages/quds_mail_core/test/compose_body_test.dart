@@ -117,6 +117,52 @@ void main() {
     }
   });
 
+  test('link decoration follows authored underline and strike flags', () {
+    for (final underline in [false, true]) {
+      for (final strike in [false, true]) {
+        final body = MailComposeBody(
+          paragraphs: [
+            MailComposeParagraph(
+              runs: [
+                MailComposeRun(
+                  text: 'Link',
+                  link: 'https://example.test',
+                  underline: underline,
+                  strike: strike,
+                ),
+              ],
+            ),
+          ],
+        );
+        expect(
+          body.html,
+          contains(
+            '<a href="https://example.test" '
+            'style="text-decoration:inherit">Link</a>',
+          ),
+        );
+        final restored = MailComposeBody.fromHtml(body.html);
+        expect(restored.paragraphs.single.runs.single.underline, underline);
+        expect(restored.paragraphs.single.runs.single.strike, strike);
+        expect(
+          () => MailComposeBody.fromHtml(
+            body.html.replaceAll(' style="text-decoration:inherit"', ''),
+          ),
+          throwsFormatException,
+        );
+        expect(
+          () => MailComposeBody.fromHtml(
+            body.html.replaceAll(
+              'text-decoration:inherit',
+              'text-decoration:underline',
+            ),
+          ),
+          throwsFormatException,
+        );
+      }
+    }
+  });
+
   for (final link in [
     'https://example.test/path?q=hello%20world#fragment',
     'http://example.test:8080/',

@@ -21,11 +21,24 @@ import 'studio_mail_identity_strings.dart';
 import 'studio_mail_identity_templates.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_pasteboard.dart';
+import 'studio_mail_rich_body.dart';
+import 'studio_mail_rich_strings.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_threading.dart';
 import 'studio_strings.dart';
 
 export 'studio_mail_draft.dart';
+
+typedef _MailToolbarState = ({
+  bool bold,
+  bool italic,
+  bool underline,
+  bool strike,
+  WmlJustification alignment,
+  bool? rightToLeft,
+  bool canUndo,
+  bool canRedo,
+});
 
 /// Recipient/subject fields are host chrome. The body uses the shared Word
 /// RenderBox surface, including its IME, selection, accessibility and undo.
@@ -127,6 +140,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   bool _toolsLoadFailed = false;
   bool _toolsInsertionFailed = false;
   bool _toolsSelectionFailed = false;
+  bool _bodyUnsupported = false;
+  bool _initialBodyConflict = false;
+  bool _editingLink = false;
+  String? _richFeedback;
+  _MailToolbarState? _lastToolbarState;
+  bool _toolbarRefreshPending = false;
 
   @override
   void initState() {
@@ -140,7 +159,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _sender = widget.initialDraft?.sender;
     _thread = widget.initialDraft?.thread ?? const StudioMailThread.empty();
     _subject = TextEditingController(text: widget.initialDraft?.subject ?? '');
-    final document = WmlDocument.empty(text: widget.initialDraft?.body ?? '');
+    final richBody = widget.initialDraft?.richBody;
+    _initialBodyConflict =
+        richBody != null && richBody.plainText != widget.initialDraft!.body;
+    final document = richBody == null || _initialBodyConflict
+        ? WmlDocument.empty(text: widget.initialDraft?.body ?? '')
+        : studioMailDocumentFromRichBody(richBody);
     for (final section in document.sections) {
       section.margins = const WmlPageMargins(
         top: 12,
@@ -167,7 +191,16 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       proofingService: OfficeProofingService(providers: const []),
     );
     _body.proofing.enabled = false;
-    _lastObserved = _snapshot();
+    try {
+      _lastObserved = _snapshot();
+      _bodyUnsupported = !_lastObserved!.hasConsistentBody;
+    } on Object {
+      _bodyUnsupported = true;
+    }
+    if (_bodyUnsupported) {
+      _problem = StudioMailDraftProblem.body;
+      _saveFailed = widget.onSaveDraft != null;
+    }
     for (final controller in [_to, _cc, _bcc, _subject, _body]) {
       controller.addListener(_edited);
     }
@@ -203,44 +236,85 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     super.dispose();
   }
 
-  StudioMailDraft _snapshot() => StudioMailDraft(
-    to: _to.text,
-    cc: _cc.text,
-    bcc: _bcc.text,
-    subject: _subject.text,
-    body: _body.document.paragraphs
-        .map((paragraph) => paragraph.text)
-        .join('\n'),
-    sender: _sender,
-    thread: _thread,
-    attachments: _attachments,
-  );
+  StudioMailDraft _snapshot() {
+    if (_initialBodyConflict) throw const FormatException();
+    // Validate the Word structure before taking its text. The optional
+    // converter keeps legacy plain drafts outside rich-only HTML/run limits.
+    final body = studioMailOptionalRichBodyFromDocument(_body.document);
+    return StudioMailDraft(
+      to: _to.text,
+      cc: _cc.text,
+      bcc: _bcc.text,
+      subject: _subject.text,
+      body:
+          body?.plainText ??
+          _body.document.paragraphs
+              .map((paragraph) => paragraph.text)
+              .join('\n'),
+      richBody: body,
+      sender: _sender,
+      thread: _thread,
+      attachments: _attachments,
+    );
+  }
+
+  StudioMailDraft? _snapshotOrReport() {
+    try {
+      final draft = _snapshot();
+      if (!draft.hasConsistentBody) throw const FormatException();
+      return draft;
+    } on Object {
+      if (mounted) {
+        setState(() {
+          _bodyUnsupported = true;
+          _problem = StudioMailDraftProblem.body;
+          _saveFailed = widget.onSaveDraft != null;
+        });
+      }
+      return null;
+    }
+  }
 
   void _edited() {
     if (!mounted || _replacingTemplate) return;
-    final next = _snapshot();
+    final next = _snapshotOrReport();
+    if (next == null) {
+      _autosave?.cancel();
+      _editRevision++;
+      return;
+    }
+    final recovered = _bodyUnsupported;
+    _bodyUnsupported = false;
     final previous = _lastObserved;
-    if (previous != null &&
+    if (!recovered &&
+        previous != null &&
         next.to == previous.to &&
         next.cc == previous.cc &&
         next.bcc == previous.bcc &&
         next.subject == previous.subject &&
         next.body == previous.body &&
+        next.richBody?.html == previous.richBody?.html &&
         next.sender == previous.sender &&
         next.thread.inReplyTo == previous.thread.inReplyTo &&
         next.thread.references == previous.thread.references &&
         identical(next.attachments, previous.attachments)) {
+      // Selection changes still update formatting and Undo/Redo controls.
+      _refreshToolbar();
       return;
     }
     _lastObserved = next;
     _editRevision++;
+    setState(() {
+      _richFeedback = null;
+      if (_problem == StudioMailDraftProblem.body) _problem = null;
+      _saveFailed = false;
+    });
     if (widget.onSaveDraft == null) return;
     _autosave?.cancel();
     // A late IME/editor notification remains part of the next immutable save,
     // but cannot start a write while cleanup owns the recovery flow.
     if (_recoveringCache) return;
     _autosave = Timer(const Duration(milliseconds: 500), _saveInBackground);
-    setState(() => _saveFailed = false);
   }
 
   void _saveInBackground() => unawaited(_save());
@@ -251,6 +325,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       return _pendingSave ?? Future<bool>.value(false);
     }
     final save = widget.onSaveDraft;
+    if (_bodyUnsupported) return Future.value(false);
     if (save == null) return Future.value(true);
     final pending = _pendingSave;
     if (pending != null) return pending;
@@ -267,6 +342,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       await Future<void>.value();
       // An edit arriving during a write gets its own later immutable revision.
       while (mounted && _savedRevision != _editRevision) {
+        _body.commitPendingEdits();
         final revision = _editRevision;
         final snapshot = _snapshot();
         await save(snapshot);
@@ -294,17 +370,24 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         _recoveringCache ||
         _initialToolsPending ||
         _editingTools ||
+        _editingLink ||
         (send && _pickingAttachments)) {
       return;
     }
     if (send && widget.previousSubmissionUncertain && !_retryAcknowledged) {
       return;
     }
+    if (!send && !queue && widget.onSaveDraft == null) {
+      _attachmentLoader?.cancel();
+      Navigator.pop(context);
+      return;
+    }
     if (!send) _attachmentLoader?.cancel();
     _body.commitPendingEdits();
     _edited();
     FocusScope.of(context).unfocus();
-    final snapshot = _snapshot();
+    final snapshot = _snapshotOrReport();
+    if (snapshot == null) return;
     if (send) {
       final problem = snapshot.problem;
       if (problem != null) {
@@ -335,7 +418,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       setState(() => _finishing = false);
       return;
     }
-    final finalSnapshot = _snapshot();
+    final finalSnapshot = _snapshotOrReport();
+    if (finalSnapshot == null) {
+      setState(() => _finishing = false);
+      return;
+    }
     if (send && finalSnapshot.problem != null) {
       setState(() {
         _problem = finalSnapshot.problem;
@@ -586,6 +673,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       _toolsCurrent &&
       !_loadingTools &&
       !_editingTools &&
+      !_editingLink &&
       !_pickingAttachments &&
       !_finishing &&
       !_recoveringCache;
@@ -729,7 +817,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       end += length;
       if (i < range.startPara) start += length;
     }
-    final body = _snapshot().body;
+    final snapshot = _snapshotOrReport();
+    if (snapshot == null) return;
+    // Caret offsets belong to the live Word strings. A newly formatted legacy
+    // draft may still contain CRLF there, while its immutable rich alternative
+    // is already normalized to LF; do not apply live offsets to that projection.
+    final body = paragraphs.map((paragraph) => paragraph.text).join('\n');
     // These supported selection shapes match the Word insertion contract.
     // Partial cross-paragraph ranges were refused above without changing text.
     final next = body.replaceRange(start, end, text);
@@ -762,6 +855,301 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       _toolsSelectionFailed = false;
     });
     if (requestFocus) _bodyFocus.requestFocus();
+  }
+
+  bool get _canFormatBody =>
+      mounted &&
+      !_finishing &&
+      !_recoveringCache &&
+      !_initialToolsPending &&
+      !_editingTools &&
+      !_editingLink;
+
+  _MailToolbarState get _toolbarState {
+    final run = _body.activeRunProps;
+    final paragraph = _body.activeParagraphProperties;
+    return (
+      bold: run.bold,
+      italic: run.italic,
+      underline: run.underline != WmlUnderline.none,
+      strike: run.strike,
+      alignment: paragraph.justification,
+      rightToLeft: paragraph.rightToLeft,
+      canUndo: _body.canUndo,
+      canRedo: _body.canRedo,
+    );
+  }
+
+  void _refreshToolbar() {
+    if (_toolbarRefreshPending || _lastToolbarState == _toolbarState) return;
+    _toolbarRefreshPending = true;
+    // Controller focus/layout notifications may arrive while a child builds.
+    // Defer chrome updates and avoid rebuilding for unchanged caret formatting.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _toolbarRefreshPending = false;
+      if (mounted && _lastToolbarState != _toolbarState) setState(() {});
+    });
+    WidgetsBinding.instance.ensureVisualUpdate();
+  }
+
+  void _formatBody(void Function() action) {
+    if (!_canFormatBody) return;
+    _body.commitPendingEdits();
+    try {
+      action();
+      _edited();
+    } on Object {
+      setState(() => _richFeedback = widget.strings.mailRichUnsupported);
+    }
+    _bodyFocus.requestFocus();
+  }
+
+  Future<void> _addLink() async {
+    if (!_canFormatBody) return;
+    _body.commitPendingEdits();
+    _edited();
+    if (_bodyUnsupported) return;
+    final revision = _editRevision;
+    final range = _body.caret.normalizedRange;
+    final collapsed = _body.caret.isCollapsed;
+    final owner = widget.from;
+    final initialDraft = widget.initialDraft;
+    FocusScope.of(context).unfocus();
+    setState(() => _editingLink = true);
+    try {
+      final value = await showDialog<({String address, String label})>(
+        context: context,
+        builder: (_) => _StudioMailLinkDialog(
+          strings: widget.strings,
+          needsLabel: collapsed,
+        ),
+      );
+      if (!mounted || value == null) return;
+      if (owner != widget.from ||
+          !identical(initialDraft, widget.initialDraft) ||
+          revision != _editRevision ||
+          range != _body.caret.normalizedRange ||
+          collapsed != _body.caret.isCollapsed) {
+        setState(() => _richFeedback = widget.strings.mailRichChanged);
+        return;
+      }
+      _body.insertHyperlink(
+        text: value.label,
+        link: WmlHyperlink(url: value.address),
+      );
+      _edited();
+    } on Object {
+      if (mounted) {
+        setState(() => _richFeedback = widget.strings.mailRichUnsupported);
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _editingLink = false);
+        _bodyFocus.requestFocus();
+      }
+    }
+  }
+
+  Future<void> _pasteBody({required bool keepTextOnly}) async {
+    if (!_canFormatBody || _pickingAttachments) return;
+    _body.commitPendingEdits();
+    _edited();
+    final revision = _editRevision;
+    final range = _body.caret.normalizedRange;
+    final owner = widget.from;
+    final initialDraft = widget.initialDraft;
+    bool current() =>
+        mounted &&
+        _canFormatBody &&
+        !_pickingAttachments &&
+        widget.from == owner &&
+        identical(widget.initialDraft, initialDraft) &&
+        revision == _editRevision &&
+        range == _body.caret.normalizedRange;
+    try {
+      final items = await const StudioMailPasteboard().read();
+      if (!current()) return;
+      if (items.isEmpty) {
+        await _body.pasteFromClipboard(
+          mode: keepTextOnly
+              ? OfficePasteMode.keepTextOnly
+              : OfficePasteMode.keepSource,
+          isCurrent: current,
+        );
+        return;
+      }
+      await _readAttachmentFiles(
+        () async => <PlatformFile>[
+          for (final item in items)
+            PlatformFile(
+              name: item.name,
+              size: item.bytes.length,
+              bytes: item.bytes,
+            ),
+        ],
+      );
+    } on Object {
+      if (mounted && widget.from == owner) {
+        setState(() => _richFeedback = widget.strings.mailRichUnsupported);
+      }
+    }
+  }
+
+  Widget _richToolbar() {
+    final strings = widget.strings;
+    final run = _body.activeRunProps;
+    final paragraph = _body.activeParagraphProperties;
+    _lastToolbarState = _toolbarState;
+    Widget button(
+      String key,
+      String tooltip,
+      IconData icon,
+      void Function() action, {
+      bool selected = false,
+      bool enabled = true,
+    }) => IconButton(
+      key: ValueKey(key),
+      tooltip: tooltip,
+      icon: Icon(icon),
+      isSelected: selected,
+      onPressed: _canFormatBody && enabled ? () => _formatBody(action) : null,
+    );
+    final alignments = <WmlJustification, String>{
+      WmlJustification.left: strings.mailRichLeft,
+      WmlJustification.center: strings.mailRichCenter,
+      WmlJustification.right: strings.mailRichRight,
+      WmlJustification.justify: strings.mailRichJustify,
+    };
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(strings.mailRichBody),
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            button(
+              'studio-mail-bold',
+              strings.mailRichBold,
+              Icons.format_bold,
+              () => _body.applyRunFormat((props) => props.bold = !run.bold),
+              selected: run.bold,
+            ),
+            button(
+              'studio-mail-italic',
+              strings.mailRichItalic,
+              Icons.format_italic,
+              () => _body.applyRunFormat((props) => props.italic = !run.italic),
+              selected: run.italic,
+            ),
+            button(
+              'studio-mail-underline',
+              strings.mailRichUnderline,
+              Icons.format_underline,
+              () => _body.applyRunFormat(
+                (props) => props.underline = run.underline == WmlUnderline.none
+                    ? WmlUnderline.single
+                    : WmlUnderline.none,
+              ),
+              selected: run.underline != WmlUnderline.none,
+            ),
+            button(
+              'studio-mail-strike',
+              strings.mailRichStrike,
+              Icons.format_strikethrough,
+              () => _body.applyRunFormat((props) => props.strike = !run.strike),
+              selected: run.strike,
+            ),
+            PopupMenuButton<WmlJustification>(
+              key: const ValueKey('studio-mail-alignment'),
+              tooltip: strings.mailRichAlignment,
+              enabled: _canFormatBody,
+              icon: Icon(switch (paragraph.justification) {
+                WmlJustification.center => Icons.format_align_center,
+                WmlJustification.right => Icons.format_align_right,
+                WmlJustification.justify => Icons.format_align_justify,
+                _ => Icons.format_align_left,
+              }),
+              onSelected: (alignment) => _formatBody(
+                () => _body.applyParagraphFormat((props) {
+                  props.justification = alignment;
+                  props.explicitJustification = true;
+                }),
+              ),
+              itemBuilder: (_) => [
+                for (final entry in alignments.entries)
+                  CheckedPopupMenuItem(
+                    value: entry.key,
+                    checked: paragraph.justification == entry.key,
+                    child: Text(entry.value),
+                  ),
+              ],
+            ),
+            button(
+              'studio-mail-paragraph-direction',
+              paragraph.rightToLeft == true
+                  ? strings.mailRichLtr
+                  : strings.mailRichRtl,
+              paragraph.rightToLeft == true
+                  ? Icons.format_textdirection_r_to_l
+                  : Icons.format_textdirection_l_to_r,
+              () => _body.applyParagraphFormat((props) {
+                final rtl = paragraph.rightToLeft != true;
+                props.rightToLeft = rtl;
+                props.explicitJustification = true;
+                if (rtl && props.justification == WmlJustification.left) {
+                  props.justification = WmlJustification.right;
+                } else if (!rtl &&
+                    props.justification == WmlJustification.right) {
+                  props.justification = WmlJustification.left;
+                }
+              }),
+              selected: paragraph.rightToLeft == true,
+            ),
+            IconButton(
+              key: const ValueKey('studio-mail-add-link'),
+              tooltip: strings.mailRichLink,
+              icon: const Icon(Icons.link),
+              onPressed: _canFormatBody ? _addLink : null,
+            ),
+            button(
+              'studio-mail-undo',
+              strings.mailRichUndo,
+              Icons.undo,
+              _body.undo,
+              enabled: _body.canUndo,
+            ),
+            button(
+              'studio-mail-redo',
+              strings.mailRichRedo,
+              Icons.redo,
+              _body.redo,
+              enabled: _body.canRedo,
+            ),
+          ],
+        ),
+        Text(
+          strings.mailRichHelp,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        if (_bodyUnsupported)
+          Semantics(
+            liveRegion: true,
+            child: Text(
+              _initialBodyConflict
+                  ? strings.mailRichConflict
+                  : strings.mailRichUnsupported,
+              key: const ValueKey('studio-mail-rich-unsupported'),
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        if (_richFeedback case final feedback?)
+          Text(
+            feedback,
+            key: const ValueKey('studio-mail-rich-feedback'),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+      ],
+    );
   }
 
   bool get _senderAllowed =>
@@ -902,12 +1290,26 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       final prepared = applyStudioMailTemplate(template, settings);
       _replacingTemplate = true;
       try {
-        _body.selectAll();
-        if (prepared.body.isEmpty) {
-          _body.deleteSelectionOr(backward: true);
-        } else if (!_body.insertPlainText(prepared.body)) {
-          throw const StudioMailComposeToolsException();
+        // Confirmed full-message replacement must not inherit an old run's
+        // links or paragraph formatting through plain-text insertion.
+        final document = WmlDocument.empty(text: prepared.body);
+        for (final section in document.sections) {
+          section.margins = const WmlPageMargins(
+            top: 12,
+            bottom: 12,
+            left: 12,
+            right: 12,
+            header: 0,
+            footer: 0,
+          );
         }
+        _body.document = document;
+        _body.commands.clear();
+        _body.documentCaret
+          ..paragraphIndex = 0
+          ..logicalIndex = 0
+          ..collapseSelection();
+        _body.relayout();
         _to.text = prepared.to;
         _cc.text = prepared.cc;
         _bcc.text = prepared.bcc;
@@ -917,6 +1319,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         _attachments = prepared.attachments;
         _showCopies = prepared.cc.isNotEmpty || prepared.bcc.isNotEmpty;
         _problem = null;
+        _bodyUnsupported = false;
+        _initialBodyConflict = false;
+        _richFeedback = null;
         _templateError = null;
       } finally {
         _replacingTemplate = false;
@@ -940,7 +1345,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     if (!_canUseTools || settings == null || owner == null) return;
     _body.commitPendingEdits();
     _edited();
-    final snapshot = _snapshot();
+    final snapshot = _snapshotOrReport();
+    if (snapshot == null) return;
+    final revision = _editRevision;
     final epoch = _toolsEpoch;
     final sender = snapshot.sender;
     final identity = sender == null
@@ -970,6 +1377,33 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         identical(settings, _composeSettings);
     setState(() => _editingTools = true);
     try {
+      if (snapshot.richBody != null) {
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) => AlertDialog(
+            title: Text(widget.strings.mailRichTemplateTitle),
+            content: Text(widget.strings.mailRichTemplateHelp),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext, false),
+                child: Text(widget.strings.cancel),
+              ),
+              FilledButton(
+                key: const ValueKey('studio-mail-template-plain-confirm'),
+                onPressed: () => Navigator.pop(dialogContext, true),
+                child: Text(widget.strings.mailRichTemplateConfirm),
+              ),
+            ],
+          ),
+        );
+        if (!mounted || !current() || confirmed != true) return;
+        if (revision != _editRevision) {
+          setState(
+            () => _templateError = widget.strings.mailMessageTemplateChanged,
+          );
+          return;
+        }
+      }
       final template = await showStudioMailTemplateEditor(
         context,
         strings: widget.strings,
@@ -1170,7 +1604,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
 
   void _fitBodyToWidth(double width) {
     // The shared Word canvas reserves 64 logical pixels on each side and a
-    // 14-pixel scrollbar. Reflow this disposable plain-text mail document at
+    // 14-pixel scrollbar. Reflow this disposable mail document at
     // normal zoom instead of shrinking a full paper page (or hiding RTL text
     // beyond the viewport). Resizing must not replace the controller, source
     // paragraphs, input connection, selection or undo history.
@@ -1210,6 +1644,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
               !_recoveringCache &&
               !_initialToolsPending &&
               !_editingTools &&
+              !_editingLink &&
               (widget.onSaveDraft == null || _allowPop),
           onPopInvokedWithResult: (didPop, _) {
             if (!didPop) unawaited(_finish(send: false));
@@ -1238,7 +1673,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                     _finishing || _recoveringCache || _initialToolsPending,
                 child: SizedBox(
                   width: 720,
-                  height: 680,
+                  height: 760,
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: LayoutBuilder(
@@ -1421,7 +1856,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                               _composeToolsToolbar(),
                               const SizedBox(height: 8),
                             ],
-                            Text(strings.mailPlainTextBody),
+                            _richToolbar(),
                             const SizedBox(height: 4),
                             SizedBox(
                               height:
@@ -1430,6 +1865,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                               ? 436
                                               : 340) -
                                           88 -
+                                          96 -
                                           (_attachments.items.length * 48) -
                                           (_attachmentFailed ? 72 : 0) -
                                           (_showCopies ? 128 : 0) -
@@ -1452,37 +1888,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                       focusNode: _bodyFocus,
                                       enableLiveProofing: false,
                                       showReviewStatus: false,
-                                      onPasteOverride:
-                                          ({required keepTextOnly}) async {
-                                            if (_pickingAttachments ||
-                                                _finishing ||
-                                                _recoveringCache) {
-                                              return;
-                                            }
-                                            final items =
-                                                await const StudioMailPasteboard()
-                                                    .read();
-                                            if (items.isEmpty) {
-                                              _body.pasteFromClipboard(
-                                                mode: keepTextOnly
-                                                    ? OfficePasteMode
-                                                          .keepTextOnly
-                                                    : OfficePasteMode
-                                                          .keepSource,
-                                              );
-                                              return;
-                                            }
-                                            await _readAttachmentFiles(
-                                              () async => <PlatformFile>[
-                                                for (final item in items)
-                                                  PlatformFile(
-                                                    name: item.name,
-                                                    size: item.bytes.length,
-                                                    bytes: item.bytes,
-                                                  ),
-                                              ],
-                                            );
-                                          },
+                                      onPasteOverride: _pasteBody,
                                       toolbarBuilder: (_, _) =>
                                           const SizedBox.shrink(),
                                       statusBarBuilder: (_, _) =>
@@ -1538,9 +1944,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                         ),
                                         style: _saveFailed
                                             ? TextStyle(
-                                                color: Theme.of(
-                                                  context,
-                                                ).colorScheme.error,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .error,
                                               )
                                             : null,
                                       ),
@@ -1699,4 +2105,100 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       ],
     );
   }
+}
+
+class _StudioMailLinkDialog extends StatefulWidget {
+  const _StudioMailLinkDialog({
+    required this.strings,
+    required this.needsLabel,
+  });
+
+  final StudioStrings strings;
+  final bool needsLabel;
+
+  @override
+  State<_StudioMailLinkDialog> createState() => _StudioMailLinkDialogState();
+}
+
+class _StudioMailLinkDialogState extends State<_StudioMailLinkDialog> {
+  final _address = TextEditingController();
+  final _label = TextEditingController();
+  bool _invalid = false;
+
+  @override
+  void dispose() {
+    _address.dispose();
+    _label.dispose();
+    super.dispose();
+  }
+
+  void _confirm() {
+    final address = _address.text.trim();
+    if (!MailComposeRun.isSupportedLink(address) ||
+        (widget.needsLabel && _label.text.trim().isEmpty) ||
+        _label.text.contains(RegExp(r'[\x00-\x1f\x7f]'))) {
+      setState(() => _invalid = true);
+      return;
+    }
+    Navigator.pop(context, (address: address, label: _label.text));
+  }
+
+  @override
+  Widget build(BuildContext context) => Directionality(
+    textDirection: widget.strings.language == StudioLanguage.ar
+        ? TextDirection.rtl
+        : TextDirection.ltr,
+    child: AlertDialog(
+      title: Text(widget.strings.mailRichLink),
+      content: SizedBox(
+        width: 420,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(widget.strings.mailRichLinkHelp),
+              const SizedBox(height: 12),
+              TextField(
+                key: const ValueKey('studio-mail-link-address'),
+                controller: _address,
+                autofocus: true,
+                maxLength: 2048,
+                textDirection: TextDirection.ltr,
+                keyboardType: TextInputType.url,
+                decoration: InputDecoration(
+                  labelText: widget.strings.mailRichLinkAddress,
+                ),
+              ),
+              if (widget.needsLabel)
+                TextField(
+                  key: const ValueKey('studio-mail-link-label'),
+                  controller: _label,
+                  maxLength: 2048,
+                  decoration: InputDecoration(
+                    labelText: widget.strings.mailRichLinkLabel,
+                  ),
+                ),
+              if (_invalid)
+                Text(
+                  widget.strings.mailRichLinkInvalid,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(widget.strings.cancel),
+        ),
+        FilledButton(
+          key: const ValueKey('studio-mail-link-confirm'),
+          onPressed: _confirm,
+          child: Text(widget.strings.mailRichLink),
+        ),
+      ],
+    ),
+  );
 }

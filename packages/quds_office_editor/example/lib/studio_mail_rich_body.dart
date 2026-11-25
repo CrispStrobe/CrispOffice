@@ -82,7 +82,8 @@ MailComposeBody? studioMailOptionalRichBodyFromDocument(WmlDocument document) {
 
 List<WmlBlock> _checkedBlocks(WmlDocument document) {
   if (document.sections.length != 1 ||
-      document.package != null ||
+      (document.package != null &&
+          !_isDormantEditorNumbering(document.package!)) ||
       document.comments.isNotEmpty ||
       document.footnotes.isNotEmpty ||
       document.endnotes.isNotEmpty ||
@@ -119,6 +120,110 @@ List<WmlBlock> _checkedBlocks(WmlDocument document) {
     _unsupported();
   }
   return section.blocks;
+}
+
+// Word's list command retains its reusable numbering definitions after Undo.
+// Those definitions carry no authored content once all paragraph list props
+// have been undone. Admit only the exact in-memory shells the editor creates;
+// imported packages, extra parts and modified definitions remain unsupported.
+bool _isDormantEditorNumbering(OpcPackage package) {
+  if (package.sourceLength != 0 || package.partNames.length != 2) return false;
+  for (final expected in _editorNumberingPackages) {
+    if (!_sameStringMap(
+          package.contentTypes.defaults,
+          expected.contentTypes.defaults,
+        ) ||
+        !_sameStringMap(
+          package.contentTypes.overrides,
+          expected.contentTypes.overrides,
+        ) ||
+        !_sameRelationships(
+          package.packageRelationships,
+          expected.packageRelationships,
+        )) {
+      continue;
+    }
+    var matches = true;
+    for (final expectedPart in expected.parts) {
+      final actual = package.getPart(expectedPart.uri);
+      if (actual == null ||
+          actual.contentType != expectedPart.contentType ||
+          actual.length != expectedPart.length ||
+          !_sameRelationships(
+            actual.relationships,
+            expectedPart.relationships,
+          ) ||
+          !_sameBytes(actual.bytesView, expectedPart.bytesView)) {
+        matches = false;
+        break;
+      }
+    }
+    if (matches) {
+      // OPC can also contain relationships whose source part is absent. The
+      // deterministic small package encoding checks that otherwise invisible
+      // metadata too, after every public part has matched the bounded shell.
+      return _sameBytes(
+        package.save(deflateLevel: 0),
+        _editorNumberingArchives[expected]!,
+      );
+    }
+  }
+  return false;
+}
+
+final List<OpcPackage> _editorNumberingPackages = [
+  for (final kinds in const [
+    [true],
+    [false],
+    [true, false],
+    [false, true],
+  ])
+    _editorNumberingPackage(kinds),
+];
+
+final Map<OpcPackage, List<int>> _editorNumberingArchives = {
+  for (final package in _editorNumberingPackages)
+    package: package.save(deflateLevel: 0),
+};
+
+OpcPackage _editorNumberingPackage(List<bool> kinds) {
+  final document = WmlDocument.empty();
+  for (final numbered in kinds) {
+    WordLists.numberingId(document, numbered: numbered);
+  }
+  return document.package!;
+}
+
+bool _sameStringMap(Map<String, String> actual, Map<String, String> expected) =>
+    actual.length == expected.length &&
+    expected.entries.every((entry) => actual[entry.key] == entry.value);
+
+bool _sameBytes(List<int> actual, List<int> expected) {
+  if (actual.length != expected.length) return false;
+  for (var index = 0; index < actual.length; index++) {
+    if (actual[index] != expected[index]) return false;
+  }
+  return true;
+}
+
+bool _sameRelationships(
+  RelationshipCollection actual,
+  RelationshipCollection expected,
+) {
+  if (actual.length != expected.length) return false;
+  final actualItems = actual.items;
+  final expectedItems = expected.items;
+  for (var index = 0; index < actualItems.length; index++) {
+    final item = actualItems[index];
+    final expectedItem = expectedItems[index];
+    if (item.id != expectedItem.id ||
+        item.type != expectedItem.type ||
+        item.target != expectedItem.target ||
+        item.targetMode != expectedItem.targetMode) {
+      return false;
+    }
+  }
+  return true;
 }
 
 WmlParagraph _checkedParagraph(WmlBlock block) {

@@ -1,8 +1,7 @@
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_office_studio/studio_mail_rich_body.dart';
 import 'package:test/test.dart';
-
-import '../lib/studio_mail_rich_body.dart';
 
 void main() {
   test(
@@ -141,6 +140,98 @@ void main() {
     expect(restored.paragraphs.single.inlines.single, isA<WmlRun>());
     expect(restored.paragraphs.single.text, isEmpty);
     expect(studioMailRichBodyFromDocument(restored), snapshot);
+  });
+
+  test('Undo of a list can retain dormant editor numbering definitions', () {
+    for (final kinds in const [
+      [true],
+      [false],
+      [true, false],
+      [false, true],
+    ]) {
+      final document = WmlDocument.empty(text: 'Recover this body');
+      final paragraph = document.paragraphs.single;
+      for (final numbered in kinds) {
+        final before = paragraph.properties.copy();
+        paragraph.properties
+          ..numId = WordLists.numberingId(document, numbered: numbered)
+          ..listLabel = numbered ? '1. ' : '• ';
+        expect(
+          () => studioMailOptionalRichBodyFromDocument(document),
+          throwsFormatException,
+        );
+        // applyParagraphFormat's history restores the paragraph properties,
+        // retaining the reusable package definitions for redo and later lists.
+        paragraph.properties = before;
+        expect(document.package, isNotNull);
+        expect(studioMailOptionalRichBodyFromDocument(document), isNull);
+        expect(
+          studioMailRichBodyFromDocument(document).plainText,
+          'Recover this body',
+        );
+      }
+      (paragraph.inlines.single as WmlRun).properties.bold = true;
+      expect(
+        studioMailOptionalRichBodyFromDocument(document)!
+            .paragraphs
+            .single
+            .runs
+            .single
+            .bold,
+        isTrue,
+      );
+    }
+  });
+
+  test('numbering residue cannot admit imported or modified package state', () {
+    WmlDocument generated() {
+      final document = WmlDocument.empty(text: 'Keep');
+      WordLists.numberingId(document, numbered: true);
+      return document;
+    }
+
+    final imported = generated();
+    imported.package = OpcPackage.openBytes(imported.package!.save());
+    final extraPart = generated();
+    extraPart.package!.createPart('/word/hidden.xml', 'application/xml', [1]);
+    final changedNumbering = generated();
+    changedNumbering.package!
+        .getPart('/word/numbering.xml')!
+        .writeText('<w:numbering/>');
+    final changedDocument = generated();
+    changedDocument.package!.getPart('/word/document.xml')!.writeText('hidden');
+    final externalRelationship = generated();
+    externalRelationship.package!
+        .relationshipsFor('/word/document.xml')
+        .add(
+          type: RelationshipTypes.hyperlink,
+          target: 'https://example.test/private',
+          targetMode: RelationshipTargetMode.external,
+        );
+    final changedTypes = generated();
+    changedTypes.package!.contentTypes.setDefault('private', 'private/type');
+    final orphanRelationships = generated();
+    orphanRelationships.package!
+        .relationshipsFor('/word/absent.xml')
+        .add(
+          type: RelationshipTypes.hyperlink,
+          target: 'https://example.test/private',
+          targetMode: RelationshipTargetMode.external,
+        );
+    for (final document in [
+      imported,
+      extraPart,
+      changedNumbering,
+      changedDocument,
+      externalRelationship,
+      changedTypes,
+      orphanRelationships,
+    ]) {
+      expect(
+        () => studioMailOptionalRichBodyFromDocument(document),
+        throwsFormatException,
+      );
+    }
   });
 
   final unsupportedRuns = <String, WmlRun>{

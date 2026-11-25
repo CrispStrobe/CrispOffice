@@ -11,6 +11,16 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [durable rich-composition continuation](rich-composition.md) preserves
+supported formatting through the Word editor, local draft recovery, MIME and
+Outbox edit-copy. It adds explicit formatting controls and inert formatted
+Outbox review in EN/DE/AR. Plain and HTML alternatives derive from one bounded
+model; unknown markup and divergent snapshots fail explicitly. The
+[qualification record](../../validation/mail-rich-compose-20261125/README.md)
+separates executed Dart/SQLite checks from unexecuted Flutter widget and
+installed-client acceptance. This continuation builds on the identity/search
+extension below and adds no provider operation or database migration.
+
 The [25 November extension](extension-20261125.md) adds durable
 [sender identities and full-message templates](sender-identities-templates.md),
 including a native composer workflow and immutable draft/Outbox sender snapshots.
@@ -151,7 +161,7 @@ M00–M14 scope. The immediate delivery sequence appears after the table.
 | 2 | Everyday mailbox workspace (M04W/M06) | Verified four-provider remembered-account chooser with exact routing, draft-safe explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive with remembered custom destinations, membership recovery, resumable header sync and bounded offline downloads | Retained multi-account sessions, complete shared synchronized workspace and unified live Inbox, durable retention/background scheduling and broader provider membership reconciliation |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands with exact saved destinations | Repository-event-driven shared saved views, EWS/Gmail/Graph provider search, provider-native thread discovery, provider keyword mapping and scheduled/background rule execution |
-| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
+| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain and bounded rich composition with matching HTML, To/Cc/Bcc, reply all, inert text quotes, attachments, signatures, Quick Text, sender identities and plain full-message templates; durable rich recovery and inert Outbox review | Flutter runtime acceptance of new controls, inline images, richer templates, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
 Each increment needs an actual user path, typed failure/recovery behavior,

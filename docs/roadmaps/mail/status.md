@@ -22,6 +22,7 @@ interrupted work.
 | Conversations | Persisted cross-folder conversation keys (schema v20) with conservative reference-derived roots and loaded-row folding |
 | Mailbox chrome | Two compact rows: search + Filters + help, then selected/shown/loaded stats, sort and selection controls; auto-pagination in native IMAP/EWS |
 | Compose tools | Signatures, Quick Text, attachments, account-owned sender identities and full-message templates; immutable From/display-name/Reply-To through draft and Outbox recovery; schema v21 settings migration |
+| Rich composition | Bounded canonical formatting, matching plain/HTML MIME, Word editor controls, local draft recovery and Outbox edit-copy/review; no new schema; new Flutter widget/installed-client execution remains open |
 | Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
@@ -30,7 +31,21 @@ interrupted work.
 | Formatted HTML | Safe table/style rendering with bounded sanitizer, 256-level default HTML depth for transactional mail, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
 | Reader metadata | Compact From/To/Cc/Bcc/Reply-To/date-time card and bounded selectable raw-header inspection with copy; independent of the body mode |
 
-## Latest increment: identities, templates and provider search
+## Latest continuation: durable rich composition
+
+The [rich-composition guide](rich-composition.md) specifies the supported
+formatting and explicit refusal boundaries. Bold, italic, underline,
+strikethrough, safe links, alignment and text direction survive autosave,
+database close/reopen, MIME and Outbox editing. Legacy plain drafts retain
+their separate persistence and send limits. Rich Outbox review is bounded
+selectable text with no active links or resource loading.
+
+The [current qualification record](../../validation/mail-rich-compose-20261125/README.md)
+records actual Dart/SQLite tests and source checks. New Flutter widget tests
+are supplied separately from execution; installed app and live-client rendering
+acceptance remain open. No existing provider acceptance claim is expanded.
+
+## Previous increment: identities, templates and provider search
 
 The [extension record](extension-20261125.md) covers the 25 November source,
 remote checkpoints and executed local checks. [Sender identities and templates](sender-identities-templates.md)

@@ -23,7 +23,7 @@ than wrapped text fields.
 | **Presentations** | PPTX editing, slide/shape layout, rich text, animations and Morph |
 | **PDF** | Viewer/editor, annotations, forms, page organisation and export |
 | **Reports** | `.qrep` band reports rendered by the engine to PDF, XLSX and DOCX |
-| **Mail** | IMAP, Exchange EWS, Gmail and Microsoft 365; durable drafts, Outbox, cached mail, search and flag journal in the native Studio |
+| **Mail** | IMAP, Exchange EWS, Gmail and Microsoft 365; durable plain/rich drafts, Outbox, cached mail, provider search, sender identities and flag journal in the native Studio |
 | **Automation** | Native macros/MCP bridge and bounded Excel/Word/PowerPoint VBA subsets |
 
 ## Screenshots
@@ -128,6 +128,7 @@ Detailed records:
 - [Proofing roadmap](docs/PROOFING.md)
 - [Zotero support](docs/zotero-support.md)
 - [Mail roadmap](docs/roadmaps/mail/README.md)
+- [Rich Mail composition and qualification](docs/roadmaps/mail/rich-composition.md)
 - [Tasks and multi-provider sync roadmap](docs/roadmaps/tasks/README.md)
 - [VBA parity](docs/VBA_PARITY_ROADMAP.md)
 - [Typing/autocorrect performance roadmap](docs/roadmaps/typing-autocorrect-performance.md)
