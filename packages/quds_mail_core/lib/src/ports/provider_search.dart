@@ -107,7 +107,8 @@ final class MailProviderSearchResult {
             (totalCount == null)) ||
         (countPrecision == MailSearchCountPrecision.exact &&
             (totalCount! < messages.length ||
-                (hasMore && totalCount! <= messages.length)))) {
+                (hasMore && totalCount! <= messages.length) ||
+                (!hasMore && totalCount! != messages.length)))) {
       throw ArgumentError('Invalid provider search result.');
     }
   }

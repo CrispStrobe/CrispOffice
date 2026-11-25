@@ -14,9 +14,9 @@ durable flags, Move/Delete/Archive; local tags and previewed rules; persistent
 conversation keys; and a bounded HTML reader. A connected host owns one live
 account at a time.
 
-The current desktop roadmap identifies sender identities and full-message
-templates as its next composition increment. Server search is implemented only
-in the IMAP host. This extension follows those existing seams instead of
+At the baseline, the desktop roadmap identified sender identities and
+full-message templates as its next composition increment. Server search was
+implemented only in the IMAP host. This extension follows those existing seams instead of
 introducing a second persistence or delivery mechanism.
 
 | Area | Extension | Required evidence |
@@ -47,13 +47,52 @@ than silently broadening the query. Counts must distinguish exact totals,
 provider estimates and unknown totals. Results use the existing reader and
 account/session checks. Search itself does not mutate mail.
 
+## Delivered and locally verified
+
+The implementation is complete on the checkpoint branch:
+
+- [Sender identities and full-message templates](sender-identities-templates.md)
+  cover management, explicit sender selection, durable snapshots, literal
+  templates and confirmed replacement in the native composer.
+- [Provider-search adapters](provider-search-adapters.md) extend selected-folder
+  search to Exchange EWS, Gmail and Microsoft 365, with supported-field controls,
+  cancellation and honest count precision in Studio.
+- SQLite schema 21 preserves existing account settings through an additive,
+  revision-checked migration. Existing drafts and frozen Outbox messages are
+  independent of later settings edits.
+
 ## Verification record
 
-Implementation and verification are in progress. Final executed commands,
-results, checkpoint identities and remaining acceptance gates are recorded
-here before the review handoff. Historical roadmap test totals do not qualify
-these new changes.
+The [local validation record](../../validation/mail-extensions-20261125/README.md)
+contains executed commands, source fingerprints, passing counts, resolved test
+issues and remaining gates. Final full suites passed: **698 core**, **1,238
+store**, **649 native transport**, and **13 browser-boundary** tests. Studio
+runs passed **483 composition/recovery**, **91 search/Exchange**, **99 native
+and Outbox host**, **59 cloud host**, **8 final template/RTL**, and **3 final
+search-feedback** tests; these groups overlap and must not be summed as unique
+cases. Strict core/store/transport and changed-Studio analysis passed.
+
+Independent review found and corrected one EWS edge case: an exhausted page
+sequence can disagree with the provider's total. Such a result now carries an
+estimate; the shared result model rejects contradictory exact totals.
+
+## Remote preservation
+
+The work was incrementally checkpointed on GitHub:
+
+| Checkpoint | Contents |
+| --- | --- |
+| `f8b3768` | Mail audit, boundaries and extension plan |
+| `0e34523` | Core/store identities, templates and schema migration |
+| `793d90a` | Shared search contract and cloud/EWS adapters |
+| `48add45` | Native composition and connected-search user paths |
+| `e144ef2` | Migration repairs, alias-host/RTL validation and workflow docs |
+
+The final checkpoint adds the independent count-precision correction and this
+validation record. The pull request's commit history contains its exact identity.
 
 Live provider interoperability, installed desktop/mobile acceptance, browser
 persistence and a signed release remain separate gates. This source work does
-not claim they have passed.
+not claim they have passed. The next substantial gaps are richer HTML/inline
+composition, provider Drafts/Sent reconciliation, background sending and multiple
+simultaneous account sessions.

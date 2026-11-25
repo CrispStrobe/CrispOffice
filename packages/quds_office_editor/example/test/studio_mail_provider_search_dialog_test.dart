@@ -129,13 +129,16 @@ void main() {
     );
     await _search(tester);
     expect(
-      find.textContaining('without quotes and backslashes'),
+      find.textContaining('without quotes, backslashes or wildcards'),
       findsOneWidget,
     );
     failure = MailProblemCode.authenticationRequired;
     await tester.tap(find.byKey(const ValueKey('studio-mail-server-run')));
     await tester.pumpAndSettle();
     expect(find.textContaining('Reconnect the account'), findsOneWidget);
-    expect(find.textContaining('without quotes and backslashes'), findsNothing);
+    expect(
+      find.textContaining('without quotes, backslashes or wildcards'),
+      findsNothing,
+    );
   });
 }

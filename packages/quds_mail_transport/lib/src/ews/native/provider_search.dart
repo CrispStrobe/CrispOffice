@@ -76,6 +76,12 @@ extension _EwsProviderSearch on NativeMailEwsProvider {
       if (total != null && total < messages.length) {
         throw const EwsException(MailProblemCode.providerFailure);
       }
+      if (!more && total != scanned) {
+        // A final page and its reported total can describe different mailbox
+        // observations. Keep usable headers without claiming a complete exact
+        // result when pagination exhausted fewer identities than reported.
+        exact = false;
+      }
       return MailProviderSearchResult(
         mailbox: request.mailbox,
         messages: messages.take(request.maxResults).toList(),

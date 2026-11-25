@@ -91,5 +91,7 @@ reload/recovery path.
 
 This increment does not provide HTML composition, inline-image templates,
 per-identity signatures, provider Drafts/Sent synchronization or automatic
-background sending. Live provider alias acceptance and installed-platform
+background sending. Reply All retains its existing primary-account self-filter;
+configured aliases are not automatically removed from reply recipients.
+Live provider alias acceptance and installed-platform
 qualification remain separate from the synthetic and local test results.

@@ -168,4 +168,30 @@ void main() {
     );
     expect(estimate.countPrecision, MailSearchCountPrecision.estimate);
   });
+
+  test('an exact complete count must match the returned cardinality', () {
+    for (final rows in [
+      <MailHeaderRecord>[],
+      [header(account)],
+    ]) {
+      expect(
+        () => MailProviderSearchResult(
+          mailbox: mailbox,
+          messages: rows,
+          hasMore: false,
+          totalCount: 5,
+          countPrecision: MailSearchCountPrecision.exact,
+        ),
+        throwsArgumentError,
+      );
+      final complete = MailProviderSearchResult(
+        mailbox: mailbox,
+        messages: rows,
+        hasMore: false,
+        totalCount: rows.length,
+        countPrecision: MailSearchCountPrecision.exact,
+      );
+      expect(complete.totalCount, complete.messages.length);
+    }
+  });
 }

@@ -16,9 +16,9 @@ extension StudioMailServerSearchStrings on StudioStrings {
   );
   String get mailServerSearchField => _t('Search in', 'Suchen in', 'البحث في');
   String get mailProviderSearchHelp => _t(
-    'Searches this folder on the provider, with at most 50 results. Only supported fields are offered. Provider indexing and phrase matching determine coverage; totals may be estimated or unavailable. Quotes and backslashes may be unsupported by the provider.',
-    'Durchsucht diesen Ordner beim Anbieter mit höchstens 50 Treffern. Es werden nur unterstützte Felder angeboten. Indexierung und Phrasensuche des Anbieters bestimmen die Abdeckung; Gesamtzahlen können geschätzt oder unbekannt sein. Anführungszeichen und umgekehrte Schrägstriche werden möglicherweise nicht unterstützt.',
-    'يبحث في هذا المجلد لدى المزود ويعرض 50 نتيجة كحد أقصى. تتوفر الحقول المدعومة فقط. تعتمد التغطية على فهرسة المزود ومطابقة العبارات؛ وقد يكون العدد تقديريًا أو غير متاح. قد لا يدعم المزود علامات الاقتباس والشرطات المائلة العكسية.',
+    'Searches this folder on the provider, with at most 50 results. Only supported fields are offered. Provider indexing and phrase matching determine coverage; totals may be estimated or unavailable. Quotes, backslashes and wildcards may be unsupported by the provider.',
+    'Durchsucht diesen Ordner beim Anbieter mit höchstens 50 Treffern. Es werden nur unterstützte Felder angeboten. Indexierung und Phrasensuche des Anbieters bestimmen die Abdeckung; Gesamtzahlen können geschätzt oder unbekannt sein. Anführungszeichen, umgekehrte Schrägstriche und Platzhalter werden möglicherweise nicht unterstützt.',
+    'يبحث في هذا المجلد لدى المزود ويعرض 50 نتيجة كحد أقصى. تتوفر الحقول المدعومة فقط. تعتمد التغطية على فهرسة المزود ومطابقة العبارات؛ وقد يكون العدد تقديريًا أو غير متاح. قد لا يدعم المزود علامات الاقتباس والشرطات المائلة العكسية وأحرف البدل.',
   );
   String mailServerSearchFolder(String folder) =>
       _t('Folder: $folder', 'Ordner: $folder', 'المجلد: $folder');
@@ -57,9 +57,9 @@ extension StudioMailServerSearchStrings on StudioStrings {
     'فشل البحث على الخادم. لم يتغير المجلد أو رسائله.',
   );
   String get mailServerSearchUnsupported => _t(
-    'This provider cannot search that field or literal text. Try a supported field or text without quotes and backslashes.',
-    'Dieser Anbieter kann dieses Feld oder diesen Suchtext nicht durchsuchen. Versuchen Sie ein unterstütztes Feld oder Text ohne Anführungszeichen und umgekehrte Schrägstriche.',
-    'لا يمكن لهذا المزود البحث في هذا الحقل أو النص. جرّب حقلًا مدعومًا أو نصًا دون علامات اقتباس وشرطات مائلة عكسية.',
+    'This provider cannot search that field or literal text. Try a supported field or text without quotes, backslashes or wildcards.',
+    'Dieser Anbieter kann dieses Feld oder diesen Suchtext nicht durchsuchen. Versuchen Sie ein unterstütztes Feld oder Text ohne Anführungszeichen, umgekehrte Schrägstriche und Platzhalter.',
+    'لا يمكن لهذا المزود البحث في هذا الحقل أو النص. جرّب حقلًا مدعومًا أو نصًا دون علامات اقتباس أو شرطات مائلة عكسية أو أحرف بدل.',
   );
   String get mailServerSearchAuthorization => _t(
     'Search needs a valid sign-in and permission to read this folder. Reconnect the account and try again.',

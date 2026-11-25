@@ -327,6 +327,30 @@ void main() {
     );
 
     test(
+      'EWS exhausted pages with a larger reported count remain estimates',
+      () async {
+        for (final ids in [<String>[], ['a']]) {
+          final f = _Fixture();
+          f.scripts.add([
+            ('FindItem', (_) => found(ids, total: 5)),
+            if (ids.isNotEmpty)
+              ('GetItem', (_) => _response('GetItem', _item('a'))),
+          ]);
+          final result = _value(
+            await f.provider().search(
+              MailProviderSearchRequest(mailbox: _mailbox, query: 'hello'),
+              lease: f.session.begin(),
+            ),
+          );
+          expect(result.messages, hasLength(ids.length));
+          expect(result.hasMore, isFalse);
+          expect(result.totalCount, 5);
+          expect(result.countPrecision, MailSearchCountPrecision.estimate);
+        }
+      },
+    );
+
+    test(
       'EWS malformed counts and stalled cursors fail before header IO',
       () async {
         for (final response in [

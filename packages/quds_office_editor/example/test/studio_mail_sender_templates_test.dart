@@ -106,36 +106,39 @@ void main() {
     );
   });
 
-  test('MIME and editable Outbox copies preserve From name and Reply-To without exposing Bcc', () {
-    final draft = _draft();
-    final wire = buildStudioMailMessage(
-      draft,
-      'account@example.test',
-    ).renderMessage();
-    final parsed = const QudsMimeCodec().parse(utf8.encode(wire)).message!;
-    expect(parsed.envelope.from.single.address, _identity.address);
-    expect(parsed.envelope.from.single.displayName, _identity.displayName);
-    expect(parsed.envelope.replyTo.single.address, _identity.replyTo);
-    expect(parsed.envelope.bcc, isEmpty);
-    expect(wire.contains('hidden@example.test'), isFalse);
-    final entry = MailOutboxEntry.queued(
-      id: 'outbox',
-      prepared: MailPreparedMessage(
-        account: _account,
-        draftId: 'draft',
-        draftRevision: 1,
-        wire: MailBytes(utf8.encode(wire)),
-        envelope: MailTransportEnvelope(
-          sender: _identity.address,
-          recipients: draft.recipients.envelope,
+  test(
+    'MIME and editable Outbox copies preserve From name and Reply-To without exposing Bcc',
+    () {
+      final draft = _draft();
+      final wire = buildStudioMailMessage(
+        draft,
+        'account@example.test',
+      ).renderMessage();
+      final parsed = const QudsMimeCodec().parse(utf8.encode(wire)).message!;
+      expect(parsed.envelope.from.single.address, _identity.address);
+      expect(parsed.envelope.from.single.displayName, _identity.displayName);
+      expect(parsed.envelope.replyTo.single.address, _identity.replyTo);
+      expect(parsed.envelope.bcc, isEmpty);
+      expect(wire.contains('hidden@example.test'), isFalse);
+      final entry = MailOutboxEntry.queued(
+        id: 'outbox',
+        prepared: MailPreparedMessage(
+          account: _account,
+          draftId: 'draft',
+          draftRevision: 1,
+          wire: MailBytes(utf8.encode(wire)),
+          envelope: MailTransportEnvelope(
+            sender: _identity.address,
+            recipients: draft.recipients.envelope,
+          ),
         ),
-      ),
-      now: DateTime.utc(2026, 11, 25),
-    );
-    final restored = StudioMailOutboxContent.fromEntry(entry).draft;
-    expect(restored.sender, draft.sender);
-    expect(restored.bcc, draft.bcc);
-  });
+        now: DateTime.utc(2026, 11, 25),
+      );
+      final restored = StudioMailOutboxContent.fromEntry(entry).draft;
+      expect(restored.sender, draft.sender);
+      expect(restored.bcc, draft.bcc);
+    },
+  );
 
   test('invalid sender headers are rejected before MIME construction', () {
     for (final sender in [
