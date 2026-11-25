@@ -24,6 +24,12 @@ final _microsoft = MailOAuthConfiguration(
   clientId: '00000000-0000-0000-0000-000000000001',
   tenant: 'organizations',
 );
+final _microsoftTasks = MailOAuthConfiguration(
+  service: MailCloudService.microsoft365,
+  clientId: '00000000-0000-0000-0000-000000000001',
+  tenant: 'organizations',
+  includeTasks: true,
+);
 final _redirect = Uri.parse('http://127.0.0.1:41234/oauth2/callback');
 const _tokenSecret = 'fixture-access-token';
 const _refreshSecret = 'fixture-refresh-token';
@@ -175,6 +181,43 @@ final class _Server extends Stream<HttpRequest> implements HttpServer {
 }
 
 void main() {
+  group('optional Microsoft task consent', () {
+    test(
+      'mail-only scopes stay unchanged and tasks require explicit opt-in',
+      () {
+        expect(_microsoft.includeTasks, isFalse);
+        expect(_microsoft.scopes, const [
+          'https://graph.microsoft.com/Mail.ReadWrite',
+          'https://graph.microsoft.com/Mail.Send',
+          'https://graph.microsoft.com/User.Read',
+          'offline_access',
+        ]);
+        expect(_microsoftTasks.scopes, containsAll(_microsoft.scopes));
+        expect(
+          _microsoftTasks.scopes,
+          contains('https://graph.microsoft.com/Tasks.ReadWrite'),
+        );
+        final uri = MailOAuthChallenge.generate().authorizationUri(
+          _microsoftTasks,
+          _redirect,
+        );
+        expect(uri.queryParameters['scope'], _microsoftTasks.scopes.join(' '));
+        expect(uri.queryParameters, isNot(contains('client_secret')));
+      },
+    );
+
+    test('task consent is rejected for a non-Microsoft registration', () {
+      expect(
+        () => MailOAuthConfiguration(
+          service: MailCloudService.gmail,
+          clientId: 'desktop-test.apps.googleusercontent.com',
+          includeTasks: true,
+        ),
+        throwsArgumentError,
+      );
+    });
+  });
+
   group('PKCE challenge and callback', () {
     test('uses independent random URL-safe state and verifier with S256', () {
       final first = MailOAuthChallenge.generate();
@@ -594,6 +637,54 @@ void main() {
         expect(form['scope'], _microsoft.scopes.join(' '));
         expect(form, isNot(contains('client_secret')));
         expect(transport.requests.last.uri, _microsoft.tokenEndpoint);
+      },
+    );
+
+    test(
+      'task opt-in rejects a mail-only grant and accepts qualified scopes',
+      () async {
+        transport.handler = (_) async =>
+            _tokenResponse(scope: 'Mail.ReadWrite Mail.Send User.Read');
+        expect(
+          await exchange(configuration: _microsoftTasks),
+          _failure(MailProblemCode.permissionDenied),
+        );
+        for (final scope in [
+          'Mail.ReadWrite Mail.Send User.Read Tasks.ReadWrite',
+          _microsoftTasks.scopes.join(' '),
+        ]) {
+          transport.handler = (_) async => _tokenResponse(scope: scope);
+          expect(
+            await exchange(configuration: _microsoftTasks),
+            isA<MailSuccess<MailCloudTokenSource>>(),
+          );
+        }
+      },
+    );
+
+    test(
+      'task refresh requests consented scope and clears a downgraded grant',
+      () async {
+        transport.handler = (_) async => _tokenResponse(
+          scope: 'Mail.ReadWrite Mail.Send User.Read Tasks.ReadWrite',
+        );
+        final session = await source(configuration: _microsoftTasks);
+        transport.handler = (_) async =>
+            _tokenResponse(scope: 'Mail.ReadWrite Mail.Send User.Read');
+        expect(
+          await session.accessToken(lease, forceRefresh: true),
+          _failure(MailProblemCode.permissionDenied),
+        );
+        expect(
+          _form(transport.requests.last)['scope'],
+          _microsoftTasks.scopes.join(' '),
+        );
+        final requestCount = transport.requests.length;
+        expect(
+          await session.accessToken(lease),
+          _failure(MailProblemCode.authenticationRequired),
+        );
+        expect(transport.requests, hasLength(requestCount));
       },
     );
 

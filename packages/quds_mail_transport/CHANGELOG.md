@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add explicit Microsoft `MailOAuthConfiguration.includeTasks` consent opt-in.
+  Default mail scopes remain unchanged; opted-in authorization and refresh also
+  require delegated `Tasks.ReadWrite`. Reject the option for non-Microsoft
+  registrations and reject explicit mail-only/downgraded token grants. This is
+  authorization groundwork for the Tasks roadmap, not a Studio Tasks feature.
+
 - Add Gmail Archive through removal of only the Inbox label. Require an explicit,
   complete response label set and matching message identity before confirmation;
   malformed or lost acknowledgements remain uncertain without replay. Resolve

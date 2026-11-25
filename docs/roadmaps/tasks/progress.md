@@ -21,6 +21,23 @@ durable task synchronization and live account qualification remain outstanding.
 
 No user task service has been connected or modified for this planning checkpoint.
 
+Remote plan commit: `77be5cf8c37b2fbc83bf5cc2a3fed716b1109eff`.
+
+## Checkpoint 1 — explicit Microsoft task consent
+
+- Added `MailOAuthConfiguration.includeTasks`, defaulting to false. Opted-in
+  Microsoft authorization and refresh request `Tasks.ReadWrite`; Gmail rejects
+  the option. Existing mail-only scopes are unchanged.
+- Verified that an explicit token grant missing task permission is rejected and
+  a downgraded refresh clears the unusable credentials.
+- Updated the mail provider setup notes and package changelog. The current Mail
+  dialog does not enable this flag automatically; Tasks UI integration remains
+  a later milestone.
+- Validation: formatter clean; targeted analyzer clean; **37 OAuth and real
+  loopback fixture tests passed**. No real Microsoft login or task was used.
+- Runtime and commands are recorded in
+  [the validation record](../../validation/tasks-20261125/README.md).
+
 ## Validation and remote checkpoints
 
 Each following entry records the completed scope, actual checks, remaining

@@ -80,6 +80,21 @@ the ephemeral OAuth listener, matching the existing debug entitlement. The
 implementation binds only to loopback and closes the listener on completion or
 cancellation. Installed signing/sandbox acceptance remains a deployment check.
 
+### Optional Microsoft task consent
+
+The transport exposes `MailOAuthConfiguration(includeTasks: true, ...)` for
+Microsoft registrations when a host explicitly enables To Do integration. It
+adds delegated Graph `Tasks.ReadWrite` to the mail scopes and retains that scope
+during refresh. The default remains mail-only. A host must run a new
+authorization/consent flow; toggling configuration does not upgrade an existing
+token or provision an Entra application permission by itself. Explicit token
+responses missing the requested task scope are rejected.
+
+This option is a public authorization boundary for the
+[Tasks roadmap](../tasks/README.md). It does not add a Tasks screen, durable
+credentials, background synchronization, or a tasks-only OAuth setup to the
+current Studio mail dialog. Those are separate milestones.
+
 ### Preconfigure the client IDs
 
 Both fields can be entered at setup or supplied to a desktop build:

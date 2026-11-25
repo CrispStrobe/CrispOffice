@@ -34,10 +34,12 @@ final class MailOAuthConfiguration {
     required this.clientId,
     this.tenant = 'common',
     this.clientSecret,
+    this.includeTasks = false,
   }) {
     if (!RegExp(r'^[A-Za-z0-9._-]{1,1024}$').hasMatch(clientId) ||
         !RegExp(r'^[A-Za-z0-9][A-Za-z0-9.-]{0,253}$').hasMatch(tenant) ||
         tenant.contains('..') ||
+        (includeTasks && service != MailCloudService.microsoft365) ||
         (clientSecret != null &&
             (service != MailCloudService.gmail ||
                 clientSecret!.isEmpty ||
@@ -52,16 +54,22 @@ final class MailOAuthConfiguration {
   final String tenant;
   final String? clientSecret;
 
+  /// Request delegated To Do access during a new Microsoft authorization.
+  /// Existing mail-only sessions do not gain task consent by changing this flag.
+  /// Hosts enable it only when the user connects Tasks, then authorize again.
+  final bool includeTasks;
+
   List<String> get scopes => switch (service) {
     MailCloudService.gmail => const [
       'https://www.googleapis.com/auth/gmail.modify',
     ],
-    MailCloudService.microsoft365 => const [
+    MailCloudService.microsoft365 => List<String>.unmodifiable([
       'https://graph.microsoft.com/Mail.ReadWrite',
       'https://graph.microsoft.com/Mail.Send',
       'https://graph.microsoft.com/User.Read',
+      if (includeTasks) 'https://graph.microsoft.com/Tasks.ReadWrite',
       'offline_access',
-    ],
+    ]),
   };
 
   Uri get authorizationEndpoint => switch (service) {
