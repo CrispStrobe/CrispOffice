@@ -30,7 +30,18 @@ final class CalDavTodoDocument {
     this._definedTimeZones,
   );
 
-  factory CalDavTodoDocument.parse(String source) {
+  factory CalDavTodoDocument.parse(String source) =>
+      _parse(source, allowOtherComponents: false)!;
+
+  /// Reads a calendar resource from a mixed calendar. Well-formed resources
+  /// containing only other component types do not project to a task.
+  static CalDavTodoDocument? parseCalendarResource(String source) =>
+      _parse(source, allowOtherComponents: true);
+
+  static CalDavTodoDocument? _parse(
+    String source, {
+    required bool allowOtherComponents,
+  }) {
     _validateSource(source);
     final lines = _readLines(source);
     final stack = <String>[];
@@ -38,6 +49,7 @@ final class CalDavTodoDocument {
     final indexes = <String, List<int>>{};
     final definedTimeZones = <String>{};
     var todoCount = 0;
+    var hasOtherComponents = false;
     var rootCount = 0;
     var versionCount = 0;
     var end = -1;
@@ -58,9 +70,7 @@ final class CalDavTodoDocument {
           if (component == 'VTODO') {
             todoCount++;
           } else if (component != 'VTIMEZONE') {
-            throw const FormatException(
-              'A task resource may contain only VTODO and VTIMEZONE children.',
-            );
+            hasOtherComponents = true;
           }
         } else if (component == 'VTODO' || component == 'VCALENDAR') {
           throw const FormatException(
@@ -109,11 +119,15 @@ final class CalDavTodoDocument {
         }
       }
     }
-    if (stack.isNotEmpty ||
-        rootCount != 1 ||
-        versionCount != 1 ||
-        todoCount != 1 ||
-        end < 0) {
+    if (stack.isNotEmpty || rootCount != 1 || versionCount != 1) {
+      throw const FormatException('Expected a complete iCalendar resource.');
+    }
+    if (allowOtherComponents &&
+        todoCount == 0 &&
+        (hasOtherComponents || definedTimeZones.isNotEmpty)) {
+      return null;
+    }
+    if (todoCount != 1 || hasOtherComponents || end < 0) {
       throw const FormatException(
         'Expected one complete VTODO; series resources are not editable.',
       );

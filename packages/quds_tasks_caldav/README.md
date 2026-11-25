@@ -1,9 +1,39 @@
 # quds_tasks_caldav
 
-Pure Dart **VTODO codec and CalDAV connection-profile foundation** for
-CrispOffice. This package does not yet make HTTP requests, authenticate an
-account, synchronize a provider, or add a task UI. No live Nextcloud, ownCloud,
-Open-Xchange, or mailbox.org compatibility certification is implied.
+CrispOffice's CalDAV Tasks provider and preserving iCalendar codec. The
+provider supports account-scoped discovery, task reads and writes, and
+incremental pulls. The host supplies credentials and persists sync state.
+
+## Connecting and synchronizing
+
+Use an HTTPS DAV URL and the account's username and app password. Pass the
+password lookup as `appPassword` on `CalDavTaskProvider`. Native hosts can use
+`createNativeCalDavClient()` from `quds_tasks_caldav_native.dart`; close that
+client when disconnecting the account. Use one client per account.
+
+- `discoverLists()` follows the current principal and calendar homes. Set
+  `collectionUrl` to use a known collection directly. For Nextcloud, use the
+  installation's `remote.php/dav/` endpoint. If a discovery redirect changes
+  origin, configure the destination DAV URL for that account. The provider
+  follows up to two same-origin redirects on the initial discovery request.
+- Calendar collections explicitly excluding VTODO are skipped. A 404 for the
+  optional component-set property permits mixed calendars under RFC 4791.
+  Missing privilege information leaves the collection read-only.
+- `pull()` takes the last committed cursor and an exact list's known remote
+  revisions. Commit each page and its cursor together. A reset page tells the
+  host to pull with a null cursor while retaining the existing base. A full
+  VTODO query and ETag comparison provide the fallback for servers without
+  usable sync tokens. The fallback returns an opaque cursor as well.
+- `create()` uses a host-generated, persisted operation ID and
+  `If-None-Match: *`. `recoverCreate()` checks the deterministic resource
+  and UID after a lost response. `update()` and `delete()` require the strong
+  revision observed by the host and use `If-Match`. Successful writes return
+  the fresh server representation for create and update.
+- HTTP responses, XML structure and resource counts are bounded. A failed or
+  incomplete report leaves the caller's stored cursor and cached tasks intact.
+
+The API has fixture and loopback coverage. Nextcloud, ownCloud, Open-Xchange,
+and mailbox.org require live-account qualification.
 
 ## What works
 
@@ -37,10 +67,6 @@ final changed = original.apply(
 final updatedCalendarText = changed.encode();
 ```
 
-The example deliberately ends at serialization. A future DAV writer must use
-the ETag from the read as `If-Match`, handle conflicts, refetch normalized data,
-and record the new resource revision only after successful reconciliation.
-
 ## Guarded features
 
 The codec can retain advanced data without implementing its semantics. It
@@ -68,8 +94,7 @@ unfolded content line, and 16 component nesting levels. Size and physical-line
 checks precede splitting; folding uses linear buffer accumulation. Forbidden
 raw controls and bare carriage returns are rejected; tabs and valid folds
 remain supported. Invalid or oversized input throws a format error and is
-never interpreted as a successful empty task result. A future HTTP transport
-must separately enforce byte budgets before decoding strings.
+never interpreted as a successful empty task result. The HTTP transport enforces a separate byte budget before decoding strings.
 
 ## Provider profiles
 
@@ -82,7 +107,7 @@ collection on a different origin are rejected.
 | Profile | Connection and capability position |
 | --- | --- |
 | Generic CalDAV | User supplies a server or DAV discovery URL. Discover VTODO support and each collection's permissions. |
-| Nextcloud Tasks | App password or future Login Flow v2 integration. Typical DAV root is `remote.php/dav/` beneath the installation. Subtasks and incremental tokens are documented by Nextcloud; this codec does not yet implement subtask mutations or network sync. |
+| Nextcloud Tasks | App password or future Login Flow v2 integration. Typical DAV root is `remote.php/dav/` beneath the installation. Subtasks and incremental tokens are documented by Nextcloud; Subtask mutations are outside the common editing model. |
 | ownCloud | Identify Classic versus Infinite Scale and the deployed version. Do not infer groupware/task support from file WebDAV. As of 25 November 2026, ownCloud describes `ocis-groupware` as work in progress. |
 | Open-Xchange | User supplies the host. Conservative task defaults disable recurrence, participants, shared/public lists, subtasks, and attachments pending deployment validation. |
 | mailbox.org / Open-Xchange | Default discovery root `https://dav.mailbox.org/`; main mailbox email as username; dedicated CalDAV/CardDAV app credential. The exact task-list URL can be copied from its Properties dialog and is treated as opaque. |

@@ -1,3 +1,13 @@
+## Unreleased
+
+- Add Basic-auth DAV discovery with principal and calendar home lookup,
+  component filtering and collection write privileges.
+- Add sync-collection pagination and token reset, with VTODO calendar-query
+  and ETag/multiget fallback.
+- Add conditional create, update and delete, plus read-only recovery after
+  uncertain creates. Provide a native client and test the full request flow
+  against a local HTTP fixture.
+
 ## 0.1.0
 
 - Add a pure Dart single-VTODO codec bound to `quds_tasks_core` identities,

@@ -1,5 +1,5 @@
 name: quds_tasks_caldav
-description: Preserving iCalendar task codec and CalDAV server profiles for CrispOffice.
+description: CalDAV task synchronization and preserving iCalendar codec for CrispOffice.
 version: 0.1.0
 publish_to: none
 resolution: workspace
@@ -8,7 +8,10 @@ environment:
   sdk: ^3.12.0
 
 dependencies:
+  http: ^1.6.0
+  http_parser: ^4.1.2
   quds_tasks_core: ^0.1.0
+  xml: ^7.0.1
 
 dev_dependencies:
   lints: ^6.0.0
