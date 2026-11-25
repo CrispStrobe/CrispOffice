@@ -101,6 +101,16 @@ Open-Xchange assigned canonical hrefs to new objects and returned bare ETags
 in multistatus reports. The mailbox profile normalizes these tags and omits
 the client-specified sync result limit.
 
+On 25 November 2026, the Calendar adapter discovered a live mailbox.org
+VEVENT calendar and completed Day, Week and Month reports. A disposable
+VEVENT calendar returned both overlapping appointments and a two-day
+all-day event in each range. The server returned one unexpanded daily series
+even though each request included `calendar-data/expand`. Studio displayed
+the unexpanded-series count and omitted that series from the agenda and grid.
+Calendar recurrence expansion remains open for this provider. The server
+accepted deletion of the disposable calendar. Authenticated discovery again
+returned only the original calendar.
+
 mailbox.org explicitly documents bidirectional task synchronization over CalDAV.
 Use `https://dav.mailbox.org/` or the exact task-list Properties URL. Recommend a
 dedicated DAV app password; this is required when 2FA is enabled.

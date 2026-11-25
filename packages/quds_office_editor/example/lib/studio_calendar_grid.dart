@@ -210,27 +210,40 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
     if (mounted && selected != null) widget.openEvent(selected);
   }
 
+  String _clock(BuildContext context, DateTime value) =>
+      MaterialLocalizations.of(context).formatTimeOfDay(
+        TimeOfDay.fromDateTime(value),
+        alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context),
+      );
+
   Widget _tile(_GridEvent tile) {
     final scheme = Theme.of(context).colorScheme;
+    final when = tile.isFullDayEvent
+        ? 'All day'
+        : '${_clock(context, tile.startTime!)} – ${_clock(context, tile.endTime!)}';
     return Padding(
       padding: const EdgeInsetsDirectional.only(end: 2),
       child: Material(
         color: scheme.primaryContainer,
         borderRadius: BorderRadius.circular(4),
         clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: () => widget.openEvent(tile.event!),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                tile.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: scheme.onPrimaryContainer,
-                  fontSize: 12,
+        child: Semantics(
+          button: true,
+          child: InkWell(
+            onTap: () => widget.openEvent(tile.event!),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  tile.title,
+                  semanticsLabel: '${tile.title}, $when',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: scheme.onPrimaryContainer,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ),
@@ -258,7 +271,12 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
             MaterialLocalizations.of(context).formatFullDate(date),
             events.map((tile) => tile.event!),
           ),
-          child: Text('+${events.length - 2}'),
+          child: Text(
+            '+${events.length - 2}',
+            semanticsLabel:
+                'Show all events for '
+                '${MaterialLocalizations.of(context).formatFullDate(date)}',
+          ),
         ),
     ],
   );
@@ -319,10 +337,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
       DateTime to,
     ) => _tile(events.first);
     String clock(DateTime value, {DateTime? secondaryDate}) =>
-        locale.formatTimeOfDay(
-          TimeOfDay.fromDateTime(value),
-          alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context),
-        );
+        _clock(context, value);
     final grid = switch (widget.period) {
       StudioCalendarPeriod.day => DayView<CalDavEvent>(
         controller: _controller,
@@ -378,14 +393,20 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
           // MonthView 2.0 stores its builder as a raw generic internally.
           monthViewBuilders: MonthViewBuilders<Object?>(
             headerBuilder: (_) => const SizedBox.shrink(),
-            weekDayStringBuilder: (index) =>
-                locale.narrowWeekdays[(index + 1) % 7],
+            weekDayBuilder: (index) => ColoredBox(
+              color: scheme.surfaceContainer,
+              child: SizedBox(
+                height: 40,
+                child: Center(
+                  child: Text(
+                    locale.narrowWeekdays[(index + 1) % 7],
+                    style: TextStyle(color: scheme.onSurface),
+                  ),
+                ),
+              ),
+            ),
             cellBuilder: (day, events, today, inMonth, _) =>
                 _monthCell(day, events.cast<_GridEvent>(), today, inMonth),
-          ),
-          monthViewThemeSettings: MonthViewThemeSettings(
-            weekDayBackgroundColor: scheme.surfaceContainer,
-            weekDayTextStyle: TextStyle(color: scheme.onSurface),
           ),
         ),
       ),

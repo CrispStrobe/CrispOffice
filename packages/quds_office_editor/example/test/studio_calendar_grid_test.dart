@@ -61,6 +61,11 @@ void main() {
     final second = tester.getRect(tile('Second overlap'));
     expect(first.bottom, greaterThan(second.top));
     expect(first.overlaps(second), isFalse);
+    final spoken = find.bySemanticsLabel(
+      RegExp(r'^First overlap, .*9:00.*10:45'),
+    );
+    expect(spoken, findsOneWidget);
+    expect(tester.getSemantics(spoken).flagsCollection.isButton, isTrue);
 
     await tester.sendKeyEvent(LogicalKeyboardKey.tab);
     await tester.pumpAndSettle();
