@@ -42,6 +42,47 @@ void main() {
       expect(space, 'preserve');
     });
 
+    test('token matching checks the full name and attribute namespace', () {
+      final reader = XmlPullReader(
+        '<p:root xmlns:p="urn:p" xmlns:q="urn:q" '
+        'p:identifier="long" q:id="other" p:id="wanted"></q:root>',
+      );
+      expect(reader.next(), isTrue);
+      expect(reader.getAttribute('id'), 'other');
+      expect(reader.getAttribute('id', namespaceUri: 'urn:p'), 'wanted');
+      expect(reader.getAttribute('identi'), isNull);
+      expect(
+        reader.next,
+        throwsA(
+          isA<XmlParseException>().having(
+            (error) => error.toString(),
+            'message',
+            contains('expected </p:root> but found </q:root>'),
+          ),
+        ),
+      );
+    });
+
+    test('event names survive empty tags and follow namespace scope', () {
+      final reader = XmlPullReader(
+        '<root xmlns:p="urn:outer"><p:child xmlns:p="urn:inner"/>'
+        '<p:sibling/></root>',
+      );
+      expect(reader.next(), isTrue);
+      expect(reader.localName, 'root');
+      expect(reader.next(), isTrue);
+      expect(reader.localName, 'child');
+      expect(reader.namespaceUri, 'urn:inner');
+      expect(reader.next(), isTrue);
+      expect(reader.eventType, XmlEventType.endElement);
+      expect(reader.localName, 'child');
+      expect(reader.qualifiedName, 'p:child');
+      expect(reader.namespaceUri, 'urn:outer');
+      expect(reader.next(), isTrue);
+      expect(reader.localName, 'sibling');
+      expect(reader.namespaceUri, 'urn:outer');
+    });
+
     test('handles empty elements, comments, and CDATA', () {
       const String xml =
           '<root><!--c--><empty attr="x"/><![CDATA[raw <&>]]></root>';
