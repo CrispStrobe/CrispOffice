@@ -79,7 +79,10 @@ final class CalDavCalendarProvider {
           'Calendar report contains an unexpected resource.',
         );
       }
-      final agenda = readCalDavAgenda(_requiredText(row, cal, 'calendar-data'));
+      final agenda = readCalDavAgenda(
+        _requiredText(row, cal, 'calendar-data'),
+        window: (start: start, end: end),
+      );
       unexpanded += agenda.unexpandedSeries;
       events.addAll(agenda.events);
       if (events.length > maxDavRows) {

@@ -107,9 +107,14 @@ VEVENT calendar returned both overlapping appointments and a two-day
 all-day event in each range. The server returned one unexpanded daily series
 even though each request included `calendar-data/expand`. Studio displayed
 the unexpanded-series count and omitted that series from the agenda and grid.
-Calendar recurrence expansion remains open for this provider. The server
-accepted deletion of the disposable calendar. Authenticated discovery again
-returned only the original calendar.
+The server accepted deletion of that disposable calendar. Authenticated
+discovery again returned only the original calendar.
+
+A follow-up live test confirmed the local recurrence fallback. mailbox.org
+returned a daily series without expansion. CrispOffice produced the two
+expected occurrences within a three-day report and honored the excluded date.
+The disposable calendar was deleted and its absence verified by discovery.
+Named-timezone and more complex rules still depend on server expansion.
 
 mailbox.org explicitly documents bidirectional task synchronization over CalDAV.
 Use `https://dav.mailbox.org/` or the exact task-list Properties URL. Recommend a

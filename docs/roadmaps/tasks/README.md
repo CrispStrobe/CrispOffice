@@ -79,7 +79,7 @@ layout for the same date range. Select a date number to open that day. Weeks
 start on Monday. Date navigation reuses discovery results for the selected
 account. Refresh runs discovery again.
 
-Open an event to see its time and location. **Create follow-up task** starts an
+Open an event to see its time, location and description. **Create follow-up task** starts an
 editable task with the event's title and start date. Mail offers the same
 command with the message subject and sender. The task is saved to **On this
 device** only after confirmation. The source message or event stays unchanged.
@@ -90,6 +90,13 @@ timezone, floating times retain their wall clock, and all-day end dates are
 exclusive. The grid lists events with unresolved named timezones and intervals
 it cannot place in **Events without a grid position**. The agenda remains
 available for the same date range.
+
+When the DAV server returns a recurring series without expansion, CrispOffice
+can expand bounded daily and weekly rules for all-day, UTC and floating events.
+Supported rules include weekday lists, intervals, counts and end dates. In a
+single resource, added dates, exclusions and explicit moves or cancellations
+are accounted for. Series that need an unresolved named timezone or unsupported
+recurrence rules remain flagged in the agenda.
 
 Calendar milestones include a persistent event cache, conditional CalDAV
 create/edit/delete with conflict handling, recurrence editing, invitations,

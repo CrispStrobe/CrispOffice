@@ -26,7 +26,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:unsupported-series
 DTSTART:20261125T120000Z
-RRULE:FREQ=DAILY
+RRULE:FREQ=MONTHLY
 SUMMARY:Series
 END:VEVENT
 BEGIN:VEVENT
@@ -51,6 +51,7 @@ String _collection(String href, String name, String kind) => _row(
 );
 
 void main() {
+  _recurrenceTests();
   test(
     'preserves all-day dates and reads expanded instances without cancelled events',
     () {
@@ -145,4 +146,179 @@ void main() {
       expect(requests, hasLength(3));
     },
   );
+}
+
+void _recurrenceTests() {
+  test('expands a daily series with exclusions and moved exceptions', () {
+    final agenda = readCalDavAgenda(
+      r'''BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:daily
+DTSTART:20261123T090000Z
+DTEND:20261123T100000Z
+RRULE:FREQ=DAILY;COUNT=5
+EXDATE:20261124T090000Z
+RDATE:20261127T090000Z,20261130T090000Z
+DESCRIPTION:Bring the form\nMeet at reception
+SUMMARY:Daily appointment
+END:VEVENT
+BEGIN:VEVENT
+UID:daily
+RECURRENCE-ID:20261125T090000Z
+DTSTART:20261125T110000Z
+DTEND:20261125T120000Z
+SUMMARY:Moved appointment
+END:VEVENT
+BEGIN:VEVENT
+UID:daily
+RECURRENCE-ID:20261126T090000Z
+STATUS:CANCELLED
+END:VEVENT
+BEGIN:VEVENT
+UID:daily
+RECURRENCE-ID:20261127T090000Z
+DTSTART:20261201T110000Z
+DTEND:20261201T120000Z
+SUMMARY:Moved out of range
+END:VEVENT
+END:VCALENDAR''',
+      window: (
+        start: DateTime.utc(2026, 11, 23),
+        end: DateTime.utc(2026, 12, 1),
+      ),
+    );
+    expect(agenda.unexpandedSeries, 0);
+    expect(agenda.events.map((event) => event.start.value), [
+      '20261123T090000Z',
+      '20261130T090000Z',
+      '20261125T110000Z',
+    ]);
+    expect(agenda.events.first.end?.value, '20261123T100000Z');
+    expect(
+      agenda.events.first.description,
+      'Bring the form\nMeet at reception',
+    );
+    expect(agenda.events.last.recurrenceId?.value, '20261125T090000Z');
+  });
+
+  test('counts weekdays from DTSTART and fast-forwards old series', () {
+    final agenda = readCalDavAgenda(
+      '''BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:weekly
+DTSTART:20261125T090000Z
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=MO,WE,FR;COUNT=4
+SUMMARY:Weekly appointment
+END:VEVENT
+BEGIN:VEVENT
+UID:old
+DTSTART:19000101T143000Z
+RRULE:FREQ=DAILY;UNTIL=20261211T143000Z
+SUMMARY:Old series
+END:VEVENT
+END:VCALENDAR''',
+      window: (
+        start: DateTime.utc(2026, 12, 6),
+        end: DateTime.utc(2026, 12, 13),
+      ),
+    );
+    expect(agenda.unexpandedSeries, 0);
+    expect(
+      agenda.events
+          .where((event) => event.uid == 'weekly')
+          .map((event) => event.start.value),
+      ['20261207T090000Z', '20261209T090000Z'],
+    );
+    expect(agenda.events.where((event) => event.uid == 'old'), hasLength(6));
+  });
+
+  test('keeps floating weekday events at the same wall-clock time', () {
+    final agenda = readCalDavAgenda(
+      '''BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:weekday
+DTSTART:20260327T090000
+RRULE:FREQ=DAILY;BYDAY=MO,TU,WE,TH,FR;COUNT=3
+SUMMARY:Weekday appointment
+END:VEVENT
+END:VCALENDAR''',
+      window: (
+        start: DateTime(2026, 3, 27).toUtc(),
+        end: DateTime(2026, 4, 2).toUtc(),
+      ),
+    );
+    expect(agenda.unexpandedSeries, 0);
+    expect(agenda.events.map((event) => event.start.value), [
+      '20260327T090000',
+      '20260330T090000',
+      '20260331T090000',
+    ]);
+    expect(
+      agenda.events.every(
+        (event) => event.start.kind == CalDavDateKind.floating,
+      ),
+      isTrue,
+    );
+  });
+
+  test('preserves exclusive all-day bounds for a continuation', () {
+    final agenda = readCalDavAgenda(
+      '''BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:days
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261125
+RRULE:FREQ=WEEKLY
+SUMMARY:Multi-day appointment
+END:VEVENT
+END:VCALENDAR''',
+      window: (
+        start: DateTime(2026, 11, 24).toUtc(),
+        end: DateTime(2026, 11, 25).toUtc(),
+      ),
+    );
+    final event = agenda.events.single;
+    expect(event.start.value, '20261123');
+    expect(event.end?.value, '20261125');
+    expect(event.recurrenceId?.kind, CalDavDateKind.date);
+    expect(agenda.unexpandedSeries, 0);
+  });
+
+  test('leaves unsafe recurrence rules and ranged exceptions unexpanded', () {
+    for (final parts in [
+      ('DTSTART;TZID=Europe/Berlin:20261123T090000', 'RRULE:FREQ=DAILY', ''),
+      ('DTSTART:20261123T090000Z', 'RRULE:FREQ=MONTHLY;BYDAY=2MO', ''),
+      ('DTSTART:20261123T090000Z', 'RRULE:FREQ=DAILY;INTERVAL=0', ''),
+      (
+        'DTSTART:20261123T090000Z',
+        'RRULE:FREQ=DAILY',
+        '''BEGIN:VEVENT
+UID:unsupported
+RECURRENCE-ID;RANGE=THISANDFUTURE:20261125T090000Z
+DTSTART:20261125T110000Z
+END:VEVENT''',
+      ),
+    ]) {
+      final agenda = readCalDavAgenda(
+        '''BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:unsupported
+${parts.$1}
+${parts.$2}
+END:VEVENT
+${parts.$3.isEmpty ? '' : '${parts.$3}\n'}END:VCALENDAR''',
+        window: (
+          start: DateTime.utc(2026, 11, 23),
+          end: DateTime.utc(2026, 12, 1),
+        ),
+      );
+      expect(agenda.unexpandedSeries, 1);
+      expect(agenda.events, isEmpty);
+    }
+  });
 }

@@ -74,8 +74,9 @@ void main() {
     final reports = <String>[];
     const event =
         'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\n'
-        'UID:fixture\nDTSTART;VALUE=DATE:20261125\nSUMMARY:Fixture appointment\n'
-        'END:VEVENT\nEND:VCALENDAR';
+        'UID:fixture\nDTSTART;VALUE=DATE:20261125\nSUMMARY:Fixture appointment\nDESCRIPTION:Bring the signed form\n'
+        'END:VEVENT\nBEGIN:VEVENT\nUID:repeat\nDTSTART;VALUE=DATE:20261125\n'
+        'RRULE:FREQ=DAILY;COUNT=2\nSUMMARY:Recurring appointment\nEND:VEVENT\nEND:VCALENDAR';
 
     await tester.pumpWidget(
       MaterialApp(
@@ -121,9 +122,11 @@ void main() {
     expect(find.text('Shared window chrome'), findsOneWidget);
     expect(find.text('Personal calendar'), findsOneWidget);
     expect(find.text('Fixture appointment'), findsOneWidget);
+    expect(find.text('Recurring appointment'), findsNWidgets(2));
     expect(paths, ['/', '/home/', '/home/events/']);
     await tester.tap(find.text('Fixture appointment'));
     await tester.pumpAndSettle();
+    expect(find.text('Bring the signed form'), findsOneWidget);
     await tester.tap(find.text('Create follow-up task'));
     await tester.pumpAndSettle();
     expect(

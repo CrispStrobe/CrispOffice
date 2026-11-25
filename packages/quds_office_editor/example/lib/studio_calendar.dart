@@ -243,6 +243,12 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                   padding: const EdgeInsets.only(top: 12),
                   child: SelectableText(location),
                 ),
+              if (event.description case final description?
+                  when description.trim().isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: SelectableText(description),
+                ),
             ],
           ),
         ),
@@ -447,9 +453,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           if (_agenda?.unexpandedSeries case final count? when count > 0)
             Padding(
               padding: const EdgeInsets.all(12),
-              child: Text(
-                '$count recurring series could not be expanded by the server.',
-              ),
+              child: Text('$count recurring series could not be expanded.'),
             ),
           Expanded(
             child: _grid && _agenda != null
