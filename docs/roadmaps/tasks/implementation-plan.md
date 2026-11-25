@@ -10,8 +10,8 @@ Date: 2026-11-25. This is the engineering companion to the
 | Portable domain | `packages/quds_tasks_core` | Immutable field values, identities, capabilities, typed failures, sparse patches, pure reconciliation |
 | Microsoft tasks | `packages/quds_tasks_graph` | Graph JSON mapping, account-scoped HTTP/token ports, list/task deltas, bounded task CRUD |
 | DAV tasks | `packages/quds_tasks_caldav` | iCalendar VTODO codec, server profiles, collection discovery, conditional resource operations |
-| Durable repository | Future `packages/quds_tasks_store` | SQLite transactions, migrations, pending operations, sync state, local queries, restart recovery |
-| Coordinator | Core service plus host scheduling | Account/list serialization, pull/merge/push, recovery, retry scheduling, cancellation generations |
+| Durable repository | `packages/quds_tasks_store` | SQLite inbound snapshots, cursors and restart recovery. Local working copies and pending operations are planned. |
+| Coordinator | Pull worker in `quds_tasks_store`, with host scheduling planned | Resumable pulls and account-generation fencing. Merge, push and retry scheduling are planned. |
 | Studio | Task UI package and native Studio host | Tasks workspace, account setup, consent, conflict controls, notification choices and credential vault |
 | Later providers | EWS / OX HTTP / Vikunja / Planner modules | Implement the shared task boundary with explicit capability and fidelity differences |
 

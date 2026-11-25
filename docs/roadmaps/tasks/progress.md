@@ -124,15 +124,42 @@ Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
   checkpoints. The final checkpoint's SHA is available in GitHub history rather
   than embedded recursively in its own contents.
 
+## Checkpoint 6 — CalDAV network provider
+
+- Added Basic authentication, principal and calendar-home discovery, an exact
+  collection path and per-operation privileges. Credentialed requests stay on the
+  configured origin. VTODO filtering supports mixed collections.
+- Added strong-ETag conditional update and delete, deterministic create with
+  `If-None-Match: *`, read-only recovery after uncertain creates and canonical
+  resource reads after successful writes.
+- Added bounded multistatus parsing, sync-token continuation and reset, plus
+  VTODO ETag/multiget fallback. Mock DAV and native loopback fixtures exercise
+  these paths. The provider is implemented in `c9e05dca9`.
+
+## Checkpoint 7 — durable inbound synchronization
+
+- Added `quds_tasks_store`. Task snapshots and continuation state commit in one
+  SQLite transaction. The worker resumes after restart and handles expired cursors
+  while retaining prior rows until a full baseline completes.
+- Account generations and database/list identity checks fence late results.
+  Tested persistence, rollback, competing commits, disconnect during a request
+  and CalDAV ETag reuse through the store.
+- The store currently persists remote snapshots. Local editing, durable outbox
+  intents, write acknowledgment and host scheduling remain T4/T5.
+- Validation on Dart 3.13.7 passed for **119 VM tests** across Tasks Core,
+  Graph, CalDAV and the SQLite store. Strict analysis and formatting passed
+  for both changed packages, the CalDAV portability probe ran in Node, and
+  the workspace resolved offline with the existing lockfile. Hosted CI and
+  live provider accounts still need verification.
+
 ## Next execution sequence
 
-1. Finish T3's DAV HTTP provider: bounded XML/multistatus handling, principal/home
-   discovery, VTODO filtering, credential origins, conditional operations,
-   `sync-collection` and ETag fallback. Exercise a local DAV fixture first.
-2. Implement T4 durable storage and outbox with atomic page/cursor commits,
-   crash recovery, account generation checks and revision-aware acknowledgment.
-   Define canonical acknowledgment for Graph's date and HTML normalization so
-   a successful write cannot cause endless dirty states or erase a later edit.
+1. Extend T4 with stable local task IDs, edit revisions, transactional three-way
+   reconciliation and a durable outbox for provider mutations and uncertain
+   results. Define canonical acknowledgment for Graph's date and HTML
+   normalization so a successful write preserves edits made during the request.
+2. Exercise complete pull/merge/push and retry behavior through restart,
+   including uncertainty after a provider accepted a write.
 3. Add T5 host consent, a tasks-only sign-in option, credential vault, selected
    lists and Tasks UI. `MailOAuthConfiguration.includeTasks` currently adds task
    permission to a mail grant; it does not implement these host flows. Enforce

@@ -7,6 +7,7 @@ name: Tasks
       - 'packages/quds_tasks_core/**'
       - 'packages/quds_tasks_graph/**'
       - 'packages/quds_tasks_caldav/**'
+      - 'packages/quds_tasks_store/**'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - 'analysis_options.yaml'
@@ -17,6 +18,7 @@ name: Tasks
       - 'packages/quds_tasks_core/**'
       - 'packages/quds_tasks_graph/**'
       - 'packages/quds_tasks_caldav/**'
+      - 'packages/quds_tasks_store/**'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - 'analysis_options.yaml'
@@ -43,6 +45,7 @@ jobs:
           - quds_tasks_core
           - quds_tasks_graph
           - quds_tasks_caldav
+          - quds_tasks_store
     defaults:
       run:
         working-directory: packages/${{ matrix.package }}
@@ -67,7 +70,8 @@ jobs:
       - name: Test on Dart VM
         run: dart test --platform vm
       - name: Compile and run portable entry
+        if: matrix.package != 'quds_tasks_store'
         run: |
           mkdir -p build/tasks
           dart compile js test/compile/portable_import.dart -o build/tasks/portable_import.js
-          node build/tasks/portable_import.js
+          node -e 'globalThis.self = globalThis; require("./build/tasks/portable_import.js")'

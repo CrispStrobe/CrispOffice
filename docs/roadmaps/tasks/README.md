@@ -26,21 +26,22 @@ different statuses.** See [progress](progress.md),
 
 ## Current delivery
 
-As of the first implementation series on 25 November 2026:
+Implementation status on 25 November 2026
 
 | Milestone | Delivered status |
 | --- | --- |
 | T0 | Roadmap and provider evidence saved to remote main. |
 | T1 | Portable model, sparse patches and pure reconciliation implemented and tested. |
 | T2 | Graph adapter and explicit task-consent configuration implemented and tested; host consent UI and live qualification remain. |
-| T3 | CalDAV codec and profiles implemented and tested; HTTP discovery, conditional writes and synchronization remain. |
-| T4-T9 | Planned; no durable background synchronization or Studio Tasks workspace exists yet. |
+| T3 | CalDAV discovery, conditional writes, sync tokens and ETag fallback implemented and exercised with local fixtures. Live qualification is T6. |
+| T4 | SQLite inbound store and resumable pull worker implemented. Editable local state, outbox and push recovery remain. |
+| T5-T9 | Planned. |
 
-The first series has **132 passing targeted tests** across mail consent, task
-core, Graph and CalDAV, plus portable JavaScript/Node checks for the three task
-packages. See the [validation record](../../validation/tasks-20261125/README.md)
-for the exact scope and runtime limitations. Fixture success is not live
-Microsoft, Nextcloud, ownCloud or mailbox.org qualification.
+The first series passed **132 targeted tests** across mail consent, task
+core, Graph and the CalDAV codec. The
+[progress record](progress.md) tracks the later CalDAV provider and SQLite store
+checks. Live Microsoft, Nextcloud, ownCloud and mailbox.org qualification
+remains a separate milestone.
 
 ## Backend choices
 
