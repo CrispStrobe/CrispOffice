@@ -675,6 +675,46 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     }
   }
 
+  Future<void> _viewTask(TaskFields fields) => showDialog<void>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(fields.title),
+      content: SizedBox(
+        width: 460,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(switch (fields.status) {
+                TaskStatus.notStarted => 'Not started',
+                TaskStatus.inProgress => 'In progress',
+                TaskStatus.completed => 'Completed',
+                TaskStatus.waitingOnOthers => 'Waiting on others',
+                TaskStatus.deferred => 'Deferred',
+                TaskStatus.cancelled => 'Cancelled',
+              }),
+              if (fields.due case final due?) Text('Due ${_taskDueDate(due)}'),
+              if (fields.notes case TaskText(
+                :final value,
+              ) when value.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: SelectableText(value),
+                ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Close'),
+        ),
+      ],
+    ),
+  );
+
   void _resolve(LocalTaskEdit edit, bool keepLocal) {
     final lease = _syncLease;
     if (lease == null) return;
@@ -826,6 +866,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               edit.problem ?? TaskProblemCode.conflict,
             ),
           };
+    final due = fields?.due;
     return ListTile(
       leading: Checkbox(
         value: completed,
@@ -846,8 +887,20 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               },
       ),
       title: Text(fields?.title ?? 'Deleted task'),
-      subtitle: status == null ? null : Text(status),
-      onTap: !editable ? null : () => _edit(fields, edit: edit, remote: remote),
+      subtitle: status == null && due == null
+          ? null
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (due != null) Text('Due ${_taskDueDate(due)}'),
+                if (status != null) Text(status),
+              ],
+            ),
+      onTap: fields == null
+          ? null
+          : editable
+          ? () => _edit(fields, edit: edit, remote: remote)
+          : () => _viewTask(fields),
       trailing: edit?.state == TaskEditState.blocked
           ? PopupMenuButton<bool>(
               onSelected: (keep) => _resolve(edit!, keep),
@@ -1195,6 +1248,12 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
   );
 }
 
+String _taskDueDate(TaskDateValue date) => switch (date) {
+  TaskDate(:final year, :final month, :final day) =>
+    '${year.toString().padLeft(4, '0')}-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}',
+  TaskDateTime(:final localDateTime) => localDateTime.substring(0, 10),
+};
+
 class _TaskFieldsDialog extends StatefulWidget {
   const _TaskFieldsDialog({this.fields});
   final TaskFields? fields;
@@ -1214,13 +1273,6 @@ class _TaskFieldsDialogState extends State<_TaskFieldsDialog> {
     _notes.dispose();
     super.dispose();
   }
-
-  String _dueLabel(TaskDateValue? date) => switch (date) {
-    TaskDate(:final year, :final month, :final day) =>
-      '${year.toString().padLeft(4, '0')}-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}',
-    TaskDateTime(:final localDateTime) => localDateTime.substring(0, 10),
-    null => 'Set due date',
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -1264,7 +1316,7 @@ class _TaskFieldsDialogState extends State<_TaskFieldsDialog> {
                       });
                     }
                   },
-                  child: Text(_dueLabel(due)),
+                  child: Text(due == null ? 'Set due date' : _taskDueDate(due)),
                 ),
                 if (due != null)
                   IconButton(

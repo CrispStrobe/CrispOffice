@@ -221,6 +221,21 @@ void main() {
       await tester.pump(const Duration(minutes: 2));
       await tester.pumpAndSettle();
       expect(provider.pulls, [provider.primary.id, provider.secondary.id]);
+      await tester.tap(
+        find.widgetWithText(DropdownButton<TaskListId>, 'Exchange Tasks'),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Other Exchange list').last);
+      await tester.pumpAndSettle();
+      expect(find.text('Read-only list'), findsOneWidget);
+      expect(find.text('Due 2027-01-15'), findsOneWidget);
+      expect(find.byTooltip('Add task'), findsNothing);
+      await tester.tap(find.text('Shared task'));
+      await tester.pumpAndSettle();
+      expect(find.text('Visible private fixture note'), findsOneWidget);
+      expect(find.text('Save task'), findsNothing);
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
       await tester.pumpWidget(const SizedBox.shrink());
     },
   );
@@ -311,6 +326,7 @@ final class _EwsFixture implements EwsTaskProvider {
       secondary = TaskList(
         id: TaskListId('secondary', account: account),
         name: 'Other Exchange list',
+        readOnly: true,
       );
 
   final TaskList primary;
@@ -338,6 +354,16 @@ final class _EwsFixture implements EwsTaskProvider {
         list: list,
         upserts: [
           if (task case final current? when current.id.list == list) current,
+          if (list == secondary.id)
+            RemoteTask(
+              id: TaskId('read-only-task', list: list),
+              fields: TaskFields(
+                title: 'Shared task',
+                notes: const TaskText('Visible private fixture note'),
+                due: TaskDate(2027, 1, 15),
+              ),
+              revision: 'ro1',
+            ),
         ],
         tombstones: [],
         checkpoint: 'live',
