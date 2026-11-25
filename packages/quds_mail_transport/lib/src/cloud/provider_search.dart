@@ -37,7 +37,8 @@ extension _CloudProviderSearch on ApiMailCloudProvider {
     _Operation operation,
   ) async {
     final parts = [_searchPhrase(request)];
-    if (request.receivedAfter case final date? when date.millisecondsSinceEpoch > 0) {
+    if (request.receivedAfter case final date?
+        when date.millisecondsSinceEpoch > 0) {
       // Gmail's after: bound is exclusive. Widen by one second, then check
       // internalDate after retrieval to implement an exact inclusive bound.
       parts.add('after:${date.millisecondsSinceEpoch ~/ 1000 - 1}');
@@ -68,7 +69,7 @@ extension _CloudProviderSearch on ApiMailCloudProvider {
             'q': parts.join(' '),
             'maxResults': '$pageSize',
             'includeSpamTrash': 'true',
-            if (token != null) 'pageToken': token,
+            'pageToken': ?token,
           },
         ),
       );
@@ -155,7 +156,9 @@ extension _CloudProviderSearch on ApiMailCloudProvider {
     var pages = 0;
     while (uri != null && scanned < candidateLimit && pages < 8) {
       operation.check();
-      if (!visited.add(uri.toString())) _fail(MailProblemCode.providerFailure);
+      if (!visited.add(uri.toString())) {
+        _fail(MailProblemCode.providerFailure);
+      }
       final data = await _json(operation, 'GET', uri);
       final values = _array(data['value']);
       if (values.length > pageSize) _fail(MailProblemCode.quotaExceeded);
@@ -170,8 +173,9 @@ extension _CloudProviderSearch on ApiMailCloudProvider {
         if (request.receivedAfter != null || request.receivedBefore != null) {
           final raw = _text(item['receivedDateTime'], max: 64);
           final date = DateTime.tryParse(raw);
-          if (date == null || !date.isUtc)
+          if (date == null || !date.isUtc) {
             _fail(MailProblemCode.providerFailure);
+          }
           if (!_withinSearchDates(date, request)) continue;
         }
         // The response page has already been bounded and checked. Limit the

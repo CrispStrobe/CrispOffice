@@ -143,6 +143,11 @@ void main() {
     database.execute('DROP TABLE mail_rules');
     database.execute('DROP INDEX IF EXISTS messages_conversation');
     database.execute('ALTER TABLE messages DROP COLUMN conversation');
+    database.execute('DROP TABLE account_message_templates');
+    database.execute('DROP TABLE account_sender_identities');
+    database.execute(
+      'ALTER TABLE account_compose_settings DROP COLUMN default_sender_identity',
+    );
     database.userVersion = 17;
 
     store = _value(
@@ -178,6 +183,11 @@ void main() {
     database.execute('DROP TABLE mail_rules');
     database.execute('DROP INDEX IF EXISTS messages_conversation');
     database.execute('ALTER TABLE messages DROP COLUMN conversation');
+    database.execute('DROP TABLE account_message_templates');
+    database.execute('DROP TABLE account_sender_identities');
+    database.execute(
+      'ALTER TABLE account_compose_settings DROP COLUMN default_sender_identity',
+    );
     database.userVersion = 18;
 
     store = _value(

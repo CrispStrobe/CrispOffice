@@ -164,8 +164,9 @@ Future<void> _expectLocalWork(
   MailAccountId account,
 ) async {
   expect(
-    MailStoreCodec.encodeDraft(_value(await store.loadDraft(account, 'draft'))!)
-        .data,
+    MailStoreCodec.encodeDraft(
+      _value(await store.loadDraft(account, 'draft'))!,
+    ).data,
     MailStoreCodec.encodeDraft(_draft(account)).data,
   );
   final queued = _value(await store.recoverOutbox(account)).single;
@@ -175,6 +176,60 @@ Future<void> _expectLocalWork(
     'hidden@example.test',
   ]);
   expect(queued.state, MailOutboxState.queued);
+}
+
+sqlite.Database _legacyComposeDatabase(int version) {
+  final legacy = sqlite.sqlite3.openInMemory();
+  final schemas = <int, List<String>>{
+    1: schemaV1,
+    2: schemaV2,
+    3: schemaV3,
+    4: schemaV4,
+    5: schemaV5,
+    6: schemaV6,
+    7: schemaV7,
+    8: schemaV8,
+    9: schemaV9,
+    10: schemaV10,
+    11: schemaV11,
+    12: schemaV12,
+    13: schemaV13,
+    14: schemaV14,
+    15: schemaV15,
+    17: schemaV17,
+    18: schemaV18,
+    19: schemaV19,
+    20: schemaV20,
+  };
+  for (final entry in schemas.entries) {
+    if (entry.key > version) break;
+    for (final sql in entry.value) {
+      legacy.execute(sql);
+    }
+  }
+  legacy.execute(
+    'INSERT INTO store_profile(singleton,host_id,profile_id) VALUES(1,?,?)',
+    [_profile.hostId, _profile.value],
+  );
+  legacy.execute(
+    'INSERT INTO accounts(id,provider,display_name,state) VALUES(?,?,?,?)',
+    [_account.value, 'imap', 'Legacy', 'loggedOut'],
+  );
+  legacy.execute(
+    'INSERT INTO account_compose_settings(account,revision,signature,signature_new,signature_replies) VALUES(?,7,?,1,0)',
+    [_account.value, 'Legacy 📨\r\nsignature'],
+  );
+  legacy.execute(
+    'INSERT INTO account_quick_texts(account,position,id,name,name_key,text) VALUES(?,0,?,?,?,?)',
+    [_account.value, 'text', 'Text', 'text', 'Unchanged'],
+  );
+  final encoded = MailStoreCodec.encodeDraft(_draft(_account));
+  legacy.execute(
+    'INSERT INTO drafts(account,id,revision,data) VALUES(?,?,?,?)',
+    [_account.value, 'draft', 1, encoded.data],
+  );
+  legacy.userVersion = version;
+  return legacy;
 }
 
 void main() {
@@ -744,54 +799,57 @@ void main() {
   );
 
   group('sender identity and template storage', () {
-    test('round-trips complete literal snapshots and independent revisions after reopen', () async {
-      final saved = _value(
-        await store.saveComposeSettings(
-          _extendedSettings(),
-          expectedRevision: 0,
-        ),
-      );
-      await store.close();
-      store = await _open(database);
-      final restored = _value(await store.loadComposeSettings(_account));
-      expect(restored.revision, saved.revision);
-      expect(restored.defaultSenderIdentityId, 'work');
-      expect(restored.senderIdentities.map((item) => item.id), [
-        'work',
-        'alternate',
-      ]);
-      expect(restored.senderIdentities.first.displayName, 'مرحبا 📨');
-      expect(restored.senderIdentities.first.replyTo, 'reply@example.test');
-      expect(restored.templates.first.bcc, 'private@example.test');
-      expect(restored.templates.first.body, saved.templates.first.body);
-      expect(restored.templates.first.senderIdentityId, 'work');
-      expect(restored.templates.last.to, 'unfinished@');
-      expect(restored.templates.last.senderIdentityId, isNull);
-      expect(() => restored.senderIdentities.clear(), throwsUnsupportedError);
-      expect(() => restored.templates.clear(), throwsUnsupportedError);
-      final updated = _value(
-        await store.saveComposeSettings(
-          restored.copyWith(
-            senderIdentities: restored.senderIdentities.reversed.toList(),
-            templates: restored.templates.reversed.toList(),
-            defaultSenderIdentityId: 'alternate',
+    test(
+      'round-trips complete literal snapshots and independent revisions after reopen',
+      () async {
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
           ),
-          expectedRevision: restored.revision,
-        ),
-      );
-      expect(updated.revision, 2);
-      expect(
-        _value(await store.loadComposeSettings(_account)).templates.first.id,
-        'blank',
-      );
-      _problem(
-        await store.saveComposeSettings(
-          saved,
-          expectedRevision: saved.revision,
-        ),
-        MailProblemCode.conflict,
-      );
-    });
+        );
+        await store.close();
+        store = await _open(database);
+        final restored = _value(await store.loadComposeSettings(_account));
+        expect(restored.revision, saved.revision);
+        expect(restored.defaultSenderIdentityId, 'work');
+        expect(restored.senderIdentities.map((item) => item.id), [
+          'work',
+          'alternate',
+        ]);
+        expect(restored.senderIdentities.first.displayName, 'مرحبا 📨');
+        expect(restored.senderIdentities.first.replyTo, 'reply@example.test');
+        expect(restored.templates.first.bcc, 'private@example.test');
+        expect(restored.templates.first.body, saved.templates.first.body);
+        expect(restored.templates.first.senderIdentityId, 'work');
+        expect(restored.templates.last.to, 'unfinished@');
+        expect(restored.templates.last.senderIdentityId, isNull);
+        expect(() => restored.senderIdentities.clear(), throwsUnsupportedError);
+        expect(() => restored.templates.clear(), throwsUnsupportedError);
+        final updated = _value(
+          await store.saveComposeSettings(
+            restored.copyWith(
+              senderIdentities: restored.senderIdentities.reversed.toList(),
+              templates: restored.templates.reversed.toList(),
+              defaultSenderIdentityId: 'alternate',
+            ),
+            expectedRevision: restored.revision,
+          ),
+        );
+        expect(updated.revision, 2);
+        expect(
+          _value(await store.loadComposeSettings(_account)).templates.first.id,
+          'blank',
+        );
+        _problem(
+          await store.saveComposeSettings(
+            saved,
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.conflict,
+        );
+      },
+    );
 
     test(
       'deleting referenced senders requires atomic explicit reference clearing',
@@ -833,87 +891,93 @@ void main() {
       },
     );
 
-    test('failure rolls back senders, references, templates and the shared revision', () async {
-      final saved = _value(
-        await store.saveComposeSettings(
-          _extendedSettings(),
-          expectedRevision: 0,
-        ),
-      );
-      failCommit = true;
-      _problem(
-        await store.saveComposeSettings(
-          saved.copyWith(
-            senderIdentities: [],
-            templates: [],
-            clearDefaultSenderIdentity: true,
-            signature: 'Changed',
-            quickTexts: [],
+    test(
+      'failure rolls back senders, references, templates and the shared revision',
+      () async {
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
           ),
-          expectedRevision: saved.revision,
-        ),
-        MailProblemCode.storageFailure,
-      );
-      final restored = _value(await store.loadComposeSettings(_account));
-      expect(restored.revision, saved.revision);
-      expect(restored.signature, saved.signature);
-      expect(restored.quickTexts.length, saved.quickTexts.length);
-      expect(
-        restored.senderIdentities.first.address,
-        saved.senderIdentities.first.address,
-      );
-      expect(restored.defaultSenderIdentityId, saved.defaultSenderIdentityId);
-      expect(restored.templates.first.body, saved.templates.first.body);
-    });
-
-    test('logout keeps templates; account and profile removal erase only owned data', () async {
-      await _register(store, _other);
-      await _seedLocalWork(store, _other);
-      _value(
-        await store.saveComposeSettings(
-          _extendedSettings(),
-          expectedRevision: 0,
-        ),
-      );
-      _value(
-        await store.saveComposeSettings(
-          _extendedSettings(account: _other),
-          expectedRevision: 0,
-        ),
-      );
-      _value(await store.logout(MailAccountSession(_account)));
-      expect(
-        _value(await store.loadComposeSettings(_account)).templates.length,
-        2,
-      );
-      _value(await store.removeAccount(_account));
-      for (final table in [
-        'account_sender_identities',
-        'account_message_templates',
-      ]) {
-        expect(
-          database
-              .select('SELECT DISTINCT account FROM $table')
-              .single['account'],
-          _other.value,
         );
-      }
-      _problem(
-        await store.saveComposeSettings(
-          _extendedSettings(),
-          expectedRevision: 0,
-        ),
-        MailProblemCode.unavailable,
-      );
-      await _expectLocalWork(store, _other);
-      _value(await store.removeProfile());
-      for (final table in [
-        'account_sender_identities',
-        'account_message_templates',
-      ]) {
-        expect(database.select('SELECT * FROM $table'), isEmpty);
-      }
-    });
+        failCommit = true;
+        _problem(
+          await store.saveComposeSettings(
+            saved.copyWith(
+              senderIdentities: [],
+              templates: [],
+              clearDefaultSenderIdentity: true,
+              signature: 'Changed',
+              quickTexts: [],
+            ),
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.storageFailure,
+        );
+        final restored = _value(await store.loadComposeSettings(_account));
+        expect(restored.revision, saved.revision);
+        expect(restored.signature, saved.signature);
+        expect(restored.quickTexts.length, saved.quickTexts.length);
+        expect(
+          restored.senderIdentities.first.address,
+          saved.senderIdentities.first.address,
+        );
+        expect(restored.defaultSenderIdentityId, saved.defaultSenderIdentityId);
+        expect(restored.templates.first.body, saved.templates.first.body);
+      },
+    );
+
+    test(
+      'logout keeps templates; account and profile removal erase only owned data',
+      () async {
+        await _register(store, _other);
+        await _seedLocalWork(store, _other);
+        _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        _value(
+          await store.saveComposeSettings(
+            _extendedSettings(account: _other),
+            expectedRevision: 0,
+          ),
+        );
+        _value(await store.logout(MailAccountSession(_account)));
+        expect(
+          _value(await store.loadComposeSettings(_account)).templates.length,
+          2,
+        );
+        _value(await store.removeAccount(_account));
+        for (final table in [
+          'account_sender_identities',
+          'account_message_templates',
+        ]) {
+          expect(
+            database
+                .select('SELECT DISTINCT account FROM $table')
+                .single['account'],
+            _other.value,
+          );
+        }
+        _problem(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+          MailProblemCode.unavailable,
+        );
+        await _expectLocalWork(store, _other);
+        _value(await store.removeProfile());
+        for (final table in [
+          'account_sender_identities',
+          'account_message_templates',
+        ]) {
+          expect(database.select('SELECT * FROM $table'), isEmpty);
+        }
+      },
+    );
 
     test(
       'reset and alias changes do not mutate drafts or frozen Outbox payloads',
@@ -1177,60 +1241,67 @@ void main() {
     );
   });
 
+  test(
+    'schema 20 migration failure rolls back all new compose structures',
+    () async {
+      final legacy = _legacyComposeDatabase(20);
+      try {
+        final failed = await SqliteMailRepository.open(
+          executor: NativeDatabase.opened(
+            legacy,
+            closeUnderlyingOnClose: false,
+          ),
+          profile: _profile,
+          faultInjector: (point) {
+            if (point == MailStoreCheckpoint.migrationCreated) {
+              throw const MailStoreStorageException(
+                MailProblemCode.storageFailure,
+              );
+            }
+          },
+        );
+        _problem(failed, MailProblemCode.storageFailure);
+        expect(legacy.userVersion, 20);
+        expect(
+          legacy
+              .select('PRAGMA table_info(account_compose_settings)')
+              .map((row) => row['name']),
+          isNot(contains('default_sender_identity')),
+        );
+        expect(
+          legacy.select(
+            "SELECT name FROM sqlite_master WHERE name IN ('account_sender_identities','account_message_templates')",
+          ),
+          isEmpty,
+        );
+        expect(
+          legacy
+              .select('SELECT signature FROM account_compose_settings')
+              .single['signature'],
+          'Legacy 📨\r\nsignature',
+        );
+        final retried = await _open(legacy);
+        try {
+          expect(legacy.userVersion, 21);
+          final retained = _value(await retried.loadComposeSettings(_account));
+          expect(retained.revision, 7);
+          expect(retained.quickTexts.single.text, 'Unchanged');
+          expect(retained.senderIdentities, isEmpty);
+        } finally {
+          await retried.close();
+        }
+      } finally {
+        legacy.close();
+      }
+    },
+  );
+
   for (var version = 10; version <= 20; version++) {
     test(
       'schema $version retains existing compose settings when adding identities and templates',
       () async {
-        final legacy = sqlite.sqlite3.openInMemory();
-        final schemas = <int, List<String>>{
-          1: schemaV1,
-          2: schemaV2,
-          3: schemaV3,
-          4: schemaV4,
-          5: schemaV5,
-          6: schemaV6,
-          7: schemaV7,
-          8: schemaV8,
-          9: schemaV9,
-          10: schemaV10,
-          11: schemaV11,
-          12: schemaV12,
-          13: schemaV13,
-          14: schemaV14,
-          15: schemaV15,
-          17: schemaV17,
-          18: schemaV18,
-          19: schemaV19,
-          20: schemaV20,
-        };
-        for (final entry in schemas.entries) {
-          if (entry.key > version) break;
-          for (final sql in entry.value) {
-            legacy.execute(sql);
-          }
-        }
-        legacy.execute(
-          'INSERT INTO store_profile(singleton,host_id,profile_id) VALUES(1,?,?)',
-          [_profile.hostId, _profile.value],
-        );
-        legacy.execute(
-          'INSERT INTO accounts(id,provider,display_name,state) VALUES(?,?,?,?)',
-          [_account.value, 'imap', 'Legacy', 'loggedOut'],
-        );
-        legacy.execute(
-          'INSERT INTO account_compose_settings(account,revision,signature,signature_new,signature_replies) VALUES(?,7,?,1,0)',
-          [_account.value, 'Legacy 📨\r\nsignature'],
-        );
-        legacy.execute(
-          'INSERT INTO account_quick_texts(account,position,id,name,name_key,text) VALUES(?,0,?,?,?,?)',
-          [_account.value, 'text', 'Text', 'text', 'Unchanged'],
-        );
+        final legacy = _legacyComposeDatabase(version);
         final encoded = MailStoreCodec.encodeDraft(_draft(_account));
-        legacy.execute(
-          'INSERT INTO drafts(account,id,revision,data) VALUES(?,?,?,?)',
-          [_account.value, 'draft', 1, encoded.data],
-        );
-        legacy.userVersion = version;
         final migrated = await _open(legacy);
         try {
           expect(legacy.userVersion, 21);
@@ -1331,8 +1402,9 @@ void main() {
           encoded.data,
         );
         if (version == 9) {
-          final search = _value(await migrated.listSavedHeaderSearches())
-              .single;
+          final search = _value(
+            await migrated.listSavedHeaderSearches(),
+          ).single;
           expect(search.query, 'is:unread');
           expect(search.accountIds, ['verified']);
           expect(search.revision, 1);

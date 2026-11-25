@@ -232,33 +232,34 @@ final class SqliteMailRepository
 
   /// Registration is explicit. Removed IDs are permanently retired, preventing
   /// stale callbacks from attaching to a newly created account with the same ID.
-  Future<MailResult<MailUnit>> createAccount(MailStoreAccount account) =>
-      _write(() async {
-        _scope(account.id);
-        _id(account.id.value);
-        if (account.state != MailStoredAccountState.active ||
-            account.displayName.length > 1024 ||
-            (account.credentialReference?.length ?? 0) > 1024) {
-          _fail(MailProblemCode.invalidInput);
-        }
-        if (account.credentialReference case final reference?) _id(reference);
-        final marker = (await _rows('SELECT removed FROM store_profile'))
-            .single;
-        if (marker.read<int>('removed') != 0)
-          _fail(MailProblemCode.unavailable);
-        await _db.customStatement(
-          'INSERT INTO accounts(id,provider,display_name,credential_ref,state) VALUES(?,?,?,?,?)',
-          [
-            account.id.value,
-            account.provider.name,
-            account.displayName,
-            account.credentialReference,
-            'active',
-          ],
-        );
-        await _quota(account.id);
-        return MailUnit.value;
-      });
+  Future<MailResult<MailUnit>> createAccount(
+    MailStoreAccount account,
+  ) => _write(() async {
+    _scope(account.id);
+    _id(account.id.value);
+    if (account.state != MailStoredAccountState.active ||
+        account.displayName.length > 1024 ||
+        (account.credentialReference?.length ?? 0) > 1024) {
+      _fail(MailProblemCode.invalidInput);
+    }
+    if (account.credentialReference case final reference?) _id(reference);
+    final marker = (await _rows('SELECT removed FROM store_profile')).single;
+    if (marker.read<int>('removed') != 0) {
+      _fail(MailProblemCode.unavailable);
+    }
+    await _db.customStatement(
+      'INSERT INTO accounts(id,provider,display_name,credential_ref,state) VALUES(?,?,?,?,?)',
+      [
+        account.id.value,
+        account.provider.name,
+        account.displayName,
+        account.credentialReference,
+        'active',
+      ],
+    );
+    await _quota(account.id);
+    return MailUnit.value;
+  });
 
   Future<MailResult<List<MailStoreAccount>>> listAccounts() => _run(
     () async => [

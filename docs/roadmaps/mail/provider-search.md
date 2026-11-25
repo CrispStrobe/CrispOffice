@@ -1,7 +1,10 @@
 # Provider-side folder search
 
-**Status:** IMAP implementation 23 November 2026. EWS, Gmail and Microsoft 365
-provider search remain open.
+**Status:** IMAP implementation 23 November 2026. The
+[25 November adapters](provider-search-adapters.md) add EWS, Gmail and Microsoft
+365 search through a shared typed port and the native Studio dialog. This page
+retains the original IMAP contract and live evidence; the new adapters have
+separate field/count semantics and live-qualification gates.
 
 ## User path
 
@@ -49,8 +52,9 @@ protocol failure shows a generic error and preserves the folder and messages.
 
 ## Limits
 
-- IMAP only in this increment; the capability is not exposed for EWS, Gmail or
-  Microsoft 365 without a provider-specific implementation.
+- This original implementation is IMAP-specific. EWS/Gmail/Microsoft 365 now
+  use the [shared optional search port and provider adapters](provider-search-adapters.md),
+  with only their supported fields exposed in Studio.
 - One field and one literal term; Boolean operators, date ranges, attachment
   text and multi-folder scope remain subsequent work.
 - Server-side indexing is not guaranteed. A zero result is evidence only for

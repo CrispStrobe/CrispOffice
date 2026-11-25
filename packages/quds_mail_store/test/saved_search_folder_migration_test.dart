@@ -91,7 +91,13 @@ void main() {
       'account_quick_texts',
     ])
       table: [
-        for (final row in database.select('SELECT * FROM $table'))
+        // Compare the published columns; new compose defaults are covered by
+        // the schema-21 migration tests and do not alter these authored values.
+        for (final row in database.select(
+          table == 'account_compose_settings'
+              ? 'SELECT account,revision,signature,signature_new,signature_replies FROM $table'
+              : 'SELECT * FROM $table',
+        ))
           Map<String, Object?>.from(row),
       ],
     'saved_header_searches': [

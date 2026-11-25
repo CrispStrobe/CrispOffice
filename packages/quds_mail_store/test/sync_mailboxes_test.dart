@@ -616,6 +616,8 @@ void main() {
         database.execute('DROP TABLE mailbox_move_revisions');
         database.execute('DROP TABLE membership_item_observations');
         database.execute('DROP TABLE saved_header_search_folders');
+        database.execute('DROP TABLE account_message_templates');
+        database.execute('DROP TABLE account_sender_identities');
         database.execute('DROP TABLE account_quick_texts');
         database.execute('DROP TABLE account_compose_settings');
         database.execute('DROP TABLE account_archive_settings');

@@ -60,14 +60,19 @@ class _StudioMailIdentityTemplatesState
     final settings = widget.settings;
     final result = await showDialog<MailSenderIdentity>(
       context: context,
-      builder: (_) => _SenderDialog(
-        strings: widget.strings,
-        settings: settings,
-        initial: identity,
-        isCurrent: () =>
-            _canEdit &&
-            (settings.account == widget.settings.account &&
-                settings.revision == widget.settings.revision),
+      builder: (_) => Directionality(
+        textDirection: widget.strings.language == StudioLanguage.ar
+            ? TextDirection.rtl
+            : TextDirection.ltr,
+        child: _SenderDialog(
+          strings: widget.strings,
+          settings: settings,
+          initial: identity,
+          isCurrent: () =>
+              _canEdit &&
+              (settings.account == widget.settings.account &&
+                  settings.revision == widget.settings.revision),
+        ),
       ),
     );
     if (!_canEdit ||
@@ -373,7 +378,7 @@ class _SenderDialogState extends State<_SenderDialog> {
             key: const ValueKey('studio-mail-identity-address'),
             controller: _address,
             keyboardType: TextInputType.emailAddress,
-            maxLength: 320,
+            maxLength: MailSenderIdentity.maxAddressCodeUnits,
             decoration: InputDecoration(
               labelText: widget.strings.mailSenderAddress,
             ),
@@ -381,7 +386,7 @@ class _SenderDialogState extends State<_SenderDialog> {
           TextField(
             key: const ValueKey('studio-mail-identity-display'),
             controller: _display,
-            maxLength: 256,
+            maxLength: MailSenderIdentity.maxDisplayNameCodeUnits,
             decoration: InputDecoration(
               labelText: widget.strings.mailSenderDisplayName,
             ),
@@ -390,7 +395,7 @@ class _SenderDialogState extends State<_SenderDialog> {
             key: const ValueKey('studio-mail-identity-reply-to'),
             controller: _reply,
             keyboardType: TextInputType.emailAddress,
-            maxLength: 320,
+            maxLength: MailSenderIdentity.maxAddressCodeUnits,
             decoration: InputDecoration(
               labelText: widget.strings.mailSenderReplyTo,
             ),
@@ -427,12 +432,17 @@ Future<MailMessageTemplate?> showStudioMailTemplateEditor(
   bool createFromSnapshot = false,
 }) => showDialog<MailMessageTemplate>(
   context: context,
-  builder: (_) => _TemplateDialog(
-    strings: strings,
-    settings: settings,
-    isCurrent: isCurrent,
-    initial: initial,
-    createFromSnapshot: createFromSnapshot,
+  builder: (_) => Directionality(
+    textDirection: strings.language == StudioLanguage.ar
+        ? TextDirection.rtl
+        : TextDirection.ltr,
+    child: _TemplateDialog(
+      strings: strings,
+      settings: settings,
+      isCurrent: isCurrent,
+      initial: initial,
+      createFromSnapshot: createFromSnapshot,
+    ),
   ),
 );
 
@@ -585,13 +595,13 @@ class _TemplateDialogState extends State<_TemplateDialog> {
             TextField(
               key: ValueKey('studio-mail-template-${field.key}'),
               controller: field.controller,
-              maxLength: 4096,
+              maxLength: MailMessageTemplate.maxRecipientCodeUnits,
               decoration: InputDecoration(labelText: field.label),
             ),
           TextField(
             key: const ValueKey('studio-mail-template-subject'),
             controller: _subject,
-            maxLength: 512,
+            maxLength: MailMessageTemplate.maxSubjectCodeUnits,
             decoration: InputDecoration(labelText: widget.strings.subject),
           ),
           const SizedBox(height: 12),

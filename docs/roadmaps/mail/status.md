@@ -1,6 +1,6 @@
 # Mail implementation status
 
-Updated **22 November 2026**. This page is the current summary. The detailed
+Updated **25 November 2026**. This page is the current summary. The detailed
 change log and per-feature qualification record is preserved in
 [Mail status details](status-details.md).
 
@@ -18,10 +18,10 @@ interrupted work.
 | Gmail / Microsoft 365 | Implemented through provider presets; live-account acceptance open |
 | Offline store | Durable drafts, Outbox, cached headers/bodies, search journal |
 | Scheduled send | Foreground only; UTC deadlines and a short Undo window |
-| Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; explicit local `body:` searches retained plain-text bodies; IMAP "Search on server" covers one selected folder with body/subject/From/To, optional received-date ranges, a 50-row cap and explicit match count; no EWS/Graph provider search or attachment extraction |
+| Search | Local cached headers, Boolean/people fields, saved queries and cached `body:` search; selected-folder server search for IMAP, EWS, Gmail and Microsoft 365 with supported-field controls, date ranges, a 50-row display cap and exact/estimated/unknown counts; new adapter live acceptance remains open |
 | Conversations | Persisted cross-folder conversation keys (schema v20) with conservative reference-derived roots and loaded-row folding |
 | Mailbox chrome | Two compact rows: search + Filters + help, then selected/shown/loaded stats, sort and selection controls; auto-pagination in native IMAP/EWS |
-| Compose tools | Signatures, Quick Text, attachments and draft recovery |
+| Compose tools | Signatures, Quick Text, attachments, account-owned sender identities and full-message templates; immutable From/display-name/Reply-To through draft and Outbox recovery; schema v21 settings migration |
 | Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
@@ -30,7 +30,21 @@ interrupted work.
 | Formatted HTML | Safe table/style rendering with bounded sanitizer, 256-level default HTML depth for transactional mail, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
 | Reader metadata | Compact From/To/Cc/Bcc/Reply-To/date-time card and bounded selectable raw-header inspection with copy; independent of the body mode |
 
-## Latest integration: account ownership and remembered Archive
+## Latest increment: identities, templates and provider search
+
+The [extension record](extension-20261125.md) covers the 25 November source,
+remote checkpoints and executed local checks. [Sender identities and templates](sender-identities-templates.md)
+provide explicit authoring defaults without changing existing drafts or frozen
+Outbox messages. Native SMTP supports configured sender addresses subject to
+server permission; Exchange/cloud hosts retain primary-address submission.
+
+[Provider search](provider-search-adapters.md) now has a shared optional port
+and native Studio path for EWS, Gmail and Microsoft 365. Only each adapter's
+supported fields are offered, unsupported literal syntax is rejected explicitly,
+and estimates/unknown totals are not presented as exact counts. Queries and
+opened results retain the current account and selected-folder generation.
+
+## Previous integration: account ownership and remembered Archive
 
 The [current integration record](../../validation/mail-account-workspace-20261122/README.md)
 records qualification for the combined connected-account and Archive source. Compose, manual
@@ -362,7 +376,8 @@ Host-specific limits:
 - Server-side or OS-background scheduled send.
 - Provider Sent reconciliation after submission.
 - Provider-native conversation/thread discovery beyond the local conservative key.
-- Indexed body search; EWS, Gmail and Microsoft 365 provider search.
+- Broader indexed body search, missing provider search fields, richer grammar
+  and multi-folder server search; live acceptance of the new adapters.
 - Continuous refresh of shared saved views.
 - Simultaneous background accounts and a live cross-account unified Inbox.
 - Provider-aware categories/tags and scheduled/background rule execution.

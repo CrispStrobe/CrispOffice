@@ -797,9 +797,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         DropdownButtonFormField<int>(
-          key: ValueKey(
-            'studio-mail-sender-${sender.hashCode}-${settings.revision}',
-          ),
+          key: ValueKey((sender, settings.revision)),
           initialValue: selected,
           isExpanded: true,
           decoration: InputDecoration(labelText: strings.mailSenderAddress),

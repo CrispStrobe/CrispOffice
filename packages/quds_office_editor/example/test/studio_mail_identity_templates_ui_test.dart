@@ -8,6 +8,7 @@ import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_compose_tools.dart';
 import 'package:quds_office_studio/studio_mail_compose_tools_dialog.dart';
 import 'package:quds_office_studio/studio_mail_identity_strings.dart';
+import 'package:quds_office_studio/studio_mail_identity_templates.dart';
 import 'package:quds_office_studio/studio_mail_threading.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -85,6 +86,145 @@ Future<void> _enter(WidgetTester tester, String key, String text) async {
 }
 
 void main() {
+  for (final language in [StudioLanguage.de, StudioLanguage.ar]) {
+    testWidgets(
+      'narrow enlarged ${language.name} template keeps the Word editor and local direction',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(420, 760));
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+        final strings = StudioStrings(language);
+        MailMessageTemplate? result;
+        await tester.pumpWidget(
+          MaterialApp(
+            builder: (context, child) => MediaQuery(
+              data: MediaQuery.of(
+                context,
+              ).copyWith(textScaler: TextScaler.linear(1.4)),
+              child: child!,
+            ),
+            home: Scaffold(
+              body: Builder(
+                builder: (context) => TextButton(
+                  onPressed: () async {
+                    result = await showStudioMailTemplateEditor(
+                      context,
+                      strings: strings,
+                      settings: _settings(),
+                      isCurrent: () => true,
+                    );
+                  },
+                  child: const Text('Open template'),
+                ),
+              ),
+            ),
+          ),
+        );
+        await _tap(tester, find.text('Open template'));
+        await _enter(tester, 'template-name', 'Localized template');
+        final body = tester
+            .widget<QudsWordEditor>(_key('template-body'))
+            .controller;
+        expect(
+          Directionality.of(tester.element(_key('template-body'))),
+          language == StudioLanguage.ar ? TextDirection.rtl : TextDirection.ltr,
+        );
+        expect(body.insertPlainText('Grüße\nمرحبا'), isTrue);
+        await _tap(tester, _key('template-apply'));
+        expect(result?.body, 'Grüße\nمرحبا');
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'saving the current message as a template preserves the draft and links its selected identity',
+    (tester) async {
+      await _size(tester);
+      final tools = _Tools(_settings());
+      final source = StudioMailDraft(
+        to: 'reader@example.test',
+        bcc: 'hidden@example.test',
+        subject: 'A subject',
+        body: 'Existing body',
+        sender: StudioMailSender.fromIdentity(_alias),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: StudioMailComposeDialog(
+              strings: _strings,
+              from: 'account@example.test',
+              allowSenderAliases: true,
+              initialDraft: source,
+              composeToolsStore: tools,
+            ),
+          ),
+        ),
+      );
+      await _pump(tester);
+      await _tap(tester, _key('save-template'));
+      await _enter(tester, 'template-name', 'Snapshot template');
+      await _tap(tester, _key('template-apply'));
+      expect(tools.writes, 1);
+      final template = tools.settings.templates.last;
+      expect(template.to, source.to);
+      expect(template.bcc, source.bcc);
+      expect(template.body, source.body);
+      expect(template.senderIdentityId, _alias.id);
+      final body = tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller;
+      expect(
+        body.document.paragraphs.map((p) => p.text).join('\n'),
+        source.body,
+      );
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('an empty-body template removes all prior body paragraphs', (
+    tester,
+  ) async {
+    await _size(tester);
+    final tools = _Tools(
+      _settings().copyWith(
+        templates: const [
+          MailMessageTemplate(id: 'empty', name: 'Empty body', subject: 'New'),
+        ],
+      ),
+    );
+    final saves = <StudioMailDraft>[];
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: StudioMailComposeDialog(
+            strings: _strings,
+            from: 'account@example.test',
+            initialDraft: const StudioMailDraft(
+              to: 'reader@example.test',
+              subject: 'Old',
+              body: 'First\nSecond',
+            ),
+            composeToolsStore: tools,
+            onSaveDraft: (snapshot) async => saves.add(snapshot),
+          ),
+        ),
+      ),
+    );
+    await _pump(tester);
+    await _tap(tester, _key('use-template'));
+    await _tap(tester, find.text('Empty body').last);
+    await _tap(tester, _key('template-replace-confirm'));
+    await tester.pump(const Duration(milliseconds: 600));
+    await _pump(tester);
+    expect(saves.last.body, isEmpty);
+    expect(saves.last.to, isEmpty);
+    expect(saves.last.subject, 'New');
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets(
     'identity and template management save one complete settings revision',
     (tester) async {

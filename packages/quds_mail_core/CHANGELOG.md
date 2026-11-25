@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add optional typed, read-only provider folder search with bounded literal
+  queries, explicit supported fields, UTC received-date bounds and immutable
+  account-scoped results. Distinguish exact, estimated and unknown cardinality;
+  reject duplicate identities and inconsistent exact count/truncation evidence.
+
 - Add bounded immutable sender identities and literal full-message templates to
   account-owned compose settings, with an optional default sender, exact local
   identity references, strict Unicode/header validation and immutable snapshots.

@@ -73,7 +73,7 @@ extension _EwsProviderSearch on NativeMailEwsProvider {
         }
         pages++;
       } while (more && scanned < candidateLimit && pages < 8);
-      if (total != null && total! < messages.length) {
+      if (total != null && total < messages.length) {
         throw const EwsException(MailProblemCode.providerFailure);
       }
       return MailProviderSearchResult(
