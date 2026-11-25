@@ -22,6 +22,7 @@ import 'studio_credential_storage.dart';
 import 'studio_chrome.dart';
 import 'studio_tasks_ews_sync.dart';
 import 'studio_tasks_google_sync.dart';
+import 'studio_productivity_accounts.dart';
 
 Widget buildStudioTasks(
   String title,
@@ -38,14 +39,6 @@ Widget buildStudioTasks(
   showCommandLabels: showCommandLabels,
   showGroupLabels: showGroupLabels,
 );
-
-const _davProfiles = [
-  CalDavServerProfile.generic,
-  CalDavServerProfile.mailboxOrg,
-  CalDavServerProfile.openXchange,
-  CalDavServerProfile.nextcloud,
-  CalDavServerProfile.owncloud,
-];
 
 bool _isTaskCloud(String provider) =>
     provider == 'graph' || provider == 'google';
@@ -91,8 +84,6 @@ final class StudioTasksPage extends StatefulWidget {
 
 final class _StudioTasksPageState extends State<StudioTasksPage>
     with WidgetsBindingObserver {
-  static const _legacyAccountKey = 'crispoffice.tasks.account.v1';
-  static const _accountsKey = 'crispoffice.tasks.accounts.v2';
   final _records = <TaskAccountId, Map<String, Object?>>{};
   static final _device = TaskAccountId('personal', provider: 'local');
   static final _personal = TaskList(
@@ -196,48 +187,22 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   Future<void> _restore() async {
     final vault = _vault = await _credentialStorage.storage;
     _vaultRevision = _credentialStorage.revision;
-    final saved = await vault.read(_accountsKey);
+    final catalog = await StudioTaskAccountCatalog.load(vault);
     if (!mounted || _vaultRevision != _credentialStorage.revision) return;
-    TaskAccountId? active;
-    if (saved != null) {
-      final catalog = jsonDecode(saved) as Map<String, Object?>;
-      for (final row in catalog['accounts'] as List<Object?>) {
-        final record = row as Map<String, Object?>;
-        final account = _recordAccount(record);
-        _records[account] = record;
-        if (catalog['active'] case [
-          final provider,
-          final id,
-        ] when provider == account.provider && id == account.value) {
-          active = account;
-        }
-      }
-    } else {
-      final legacy = await vault.read(_legacyAccountKey);
-      if (!mounted || _vaultRevision != _credentialStorage.revision) return;
-      if (legacy != null) {
-        final record = jsonDecode(legacy) as Map<String, Object?>;
-        active = _recordAccount(record);
-        _records[active] = record;
-        await _saveCatalog(vault, _records, active);
-        await vault.delete(_legacyAccountKey);
-      }
+    _records.addAll(catalog.records);
+    if (catalog.fromLegacy) {
+      await _saveCatalog(vault, _records, catalog.active);
+      await vault.delete(studioTasksLegacyKey);
     }
-    final account = active ?? _records.keys.firstOrNull;
-    if (account != null) await _openSaved(account, vault);
+    if (catalog.active case final account?) await _openSaved(account, vault);
   }
-
-  TaskAccountId _recordAccount(Map<String, Object?> record) => TaskAccountId(
-    record['id'] as String,
-    provider: record['provider'] as String,
-  );
 
   Future<void> _saveCatalog(
     SecureStorage vault,
     Map<TaskAccountId, Map<String, Object?>> accounts,
     TaskAccountId? active,
   ) => vault.write(
-    _accountsKey,
+    studioTasksAccountsKey,
     jsonEncode({
       'active': active == null ? null : [active.provider, active.value],
       'accounts': accounts.values.toList(),
@@ -348,22 +313,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   ) async {
     final client = widget.openDavClient?.call() ?? createNativeCalDavClient();
     _closeConnection = client.close;
-    final url = Uri.parse(record['url'] as String);
-    final exact = record['collection'] as String?;
     final provider = CalDavTaskProvider(
       account: account,
-      settings: CalDavConnectionSettings(
-        profile:
-            _davProfiles
-                .where((profile) => profile.id == record['davProfile'])
-                .firstOrNull ??
-            (url.origin == 'https://dav.mailbox.org'
-                ? CalDavServerProfile.mailboxOrg
-                : CalDavServerProfile.generic),
-        username: record['login'] as String,
-        discoveryUrl: url,
-        collectionUrl: exact == null ? null : Uri.parse(exact),
-      ),
+      settings: studioDavSettings(record),
       client: client,
       appPassword: () async => _vaultRevision == _credentialStorage.revision
           ? record['secret'] as String
@@ -924,11 +876,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                         DropdownMenuItem(
                           value: entry.key,
                           child: Text(
-                            entry.value['label'] as String? ??
-                                entry.value['login'] as String? ??
-                                (entry.key.provider == 'google'
-                                    ? 'Google Tasks'
-                                    : 'Microsoft To Do'),
+                            studioTaskAccountLabel(entry.key, entry.value),
                           ),
                         ),
                     ],
@@ -1517,7 +1465,7 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                       _davProfile = value!;
                     }),
                     items: [
-                      for (final profile in _davProfiles)
+                      for (final profile in studioDavProfiles)
                         DropdownMenuItem(
                           value: profile,
                           child: Text(profile.label),

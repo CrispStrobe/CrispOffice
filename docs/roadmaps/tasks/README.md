@@ -62,6 +62,18 @@ available. The checkbox and Delete button provide the same actions.
 **Sync now** refreshes the selected remote list, or all remote lists when **On
 this device** is selected.
 
+## Connections and Calendar
+
+**Connections** in the native title bar lists saved Mail and Tasks connections.
+It groups entries with an exact matching email login. The display does not
+transfer credentials between protocols or grant additional OAuth scopes.
+
+The native **Calendar** workspace reuses a saved Tasks CalDAV connection and
+discovers its event calendars. An exact task-list URL affects Tasks only. Use
+the Calendar account and calendar pickers to select a weekly agenda. This
+version reads events and server-expanded occurrences. Calendar editing, offline
+event storage, and Google and Exchange calendar adapters remain open.
+
 ## Backend choices
 
 | Backend | Planned connection | Scope and qualification boundary |

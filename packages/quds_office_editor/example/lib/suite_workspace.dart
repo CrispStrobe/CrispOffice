@@ -31,6 +31,9 @@ import 'studio_iso_image.dart';
 import 'studio_iso_image_dialog.dart';
 import 'studio_linguistic_analysis.dart';
 import 'studio_mail.dart';
+import 'studio_calendar_unavailable.dart'
+    if (dart.library.io) 'studio_calendar.dart';
+import 'studio_connections_dialog.dart';
 import 'studio_strings.dart';
 import 'studio_tasks_unavailable.dart' if (dart.library.io) 'studio_tasks.dart';
 import 'studio_pdf_gallery.dart';
@@ -226,6 +229,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   bool _mailEverOpened = false;
   bool _tasksOpen = false;
   bool _tasksEverOpened = false;
+  bool _calendarOpen = false;
 
   @override
   void initState() {
@@ -695,7 +699,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 ? const Color(0xFF1B1B1B)
                                 : const Color(0xFFE8E8E8),
                             body: IndexedStack(
-                              index: _tasksOpen ? 2 : (_mailOpen ? 1 : 0),
+                              index: _calendarOpen
+                                  ? 3
+                                  : (_tasksOpen ? 2 : (_mailOpen ? 1 : 0)),
                               children: <Widget>[
                                 Column(
                                   children: <Widget>[
@@ -718,6 +724,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     _closeTasks,
                                     chromeBuilder: (_) =>
                                         _titleBar(tasks: true),
+                                    compactRibbon: _ribbonPreferences.compact,
+                                    showCommandLabels:
+                                        _ribbonPreferences.showCommandLabels,
+                                    showGroupLabels:
+                                        _ribbonPreferences.showGroupLabels,
+                                  )
+                                else
+                                  const SizedBox.shrink(),
+                                if (_calendarOpen)
+                                  buildStudioCalendar(
+                                    _t('Calendar', 'Kalender', 'التقويم'),
+                                    (_) => _titleBar(calendar: true),
+                                    _openConnections,
                                     compactRibbon: _ribbonPreferences.compact,
                                     showCommandLabels:
                                         _ribbonPreferences.showCommandLabels,
@@ -1002,7 +1021,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }) {
     // Mail owns its focused key handlers. Keep the incoming empty shortcut map
     // so native text editing can reach Flutter's default text shortcuts.
-    if (_mailOpen || _tasksOpen) {
+    if (_mailOpen || _tasksOpen || _calendarOpen) {
       return const <ShortcutActivator, VoidCallback>{};
     }
     final overrides = _acceptedShortcutOverrides(base);
@@ -1053,7 +1072,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Map<ShortcutActivator, VoidCallback> _reservedShortcutBindings() {
-    if (_mailOpen || _tasksOpen) {
+    if (_mailOpen || _tasksOpen || _calendarOpen) {
       return const <ShortcutActivator, VoidCallback>{};
     }
     final base = _baseShortcutBindings();
@@ -1114,7 +1133,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ? KeyEventResult.ignored
         : KeyEventResult.handled;
     if (document != null) _workspaceDirectionChord.reset();
-    if (_tasksOpen ||
+    if (_calendarOpen ||
+        _tasksOpen ||
         _mailOpen ||
         !mounted ||
         !_wordRouteIsCurrent ||
@@ -1176,7 +1196,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     // Native text Actions remain valid in Mail or a dialog. Their fallback
     // separately refuses to reach a hidden document.
     if (id.startsWith('edit.')) return true;
-    if (_mailOpen || _tasksOpen || !_wordRouteIsCurrent) return false;
+    if (_mailOpen || _tasksOpen || _calendarOpen || !_wordRouteIsCurrent) {
+      return false;
+    }
     if (id.startsWith('file.')) return _fileActionsAvailable;
     final textInput = _focusedTextInput != null;
     final commentFormatting =
@@ -1363,6 +1385,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
     if (!_mailOpen &&
         !_tasksOpen &&
+        !_calendarOpen &&
         (ModalRoute.isCurrentOf(context) ?? true)) {
       fallback();
     }
@@ -1551,12 +1574,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
     // Mail is cached inline while switching apps. Quit is terminal, so dispose
     // it now and let its draft owner flush before approving the native close.
-    if (_mailEverOpened || _tasksEverOpened) {
+    if (_mailEverOpened || _tasksEverOpened || _calendarOpen) {
       setState(() {
         _mailOpen = false;
         _mailEverOpened = false;
         _tasksOpen = false;
         _tasksEverOpened = false;
+        _calendarOpen = false;
       });
       await WidgetsBinding.instance.endOfFrame;
       if (!mounted) return false;
@@ -1582,10 +1606,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     BuildContext? mailContext,
     VoidCallback? onCloseMail,
     bool tasks = false,
+    bool calendar = false,
   }) {
-    final document = mailContext == null && !tasks;
+    final document = mailContext == null && !tasks && !calendar;
     void switchWorkspace(SuiteApp app) {
       if (tasks) _closeTasks();
+      if (calendar) _closeCalendar();
       if (onCloseMail != null) {
         onCloseMail();
       } else if (mailContext != null) {
@@ -1692,6 +1718,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     ? () {}
                                     : () {
                                         if (tasks) _closeTasks();
+                                        if (calendar) _closeCalendar();
                                         _openMail();
                                       },
                               ),
@@ -1700,7 +1727,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   label: _t('Tasks', 'Aufgaben', 'المهام'),
                                   icon: Icons.checklist_outlined,
                                   selected: tasks,
-                                  onTap: tasks ? () {} : _openTasks,
+                                  onTap: tasks
+                                      ? () {}
+                                      : () {
+                                          if (calendar) _closeCalendar();
+                                          _openTasks();
+                                        },
+                                ),
+                              if (!kIsWeb)
+                                StudioAppSwitcher(
+                                  label: _t('Calendar', 'Kalender', 'التقويم'),
+                                  icon: Icons.calendar_month_outlined,
+                                  selected: calendar,
+                                  onTap: calendar ? () {} : _openCalendar,
                                 ),
                             ],
                           ),
@@ -1714,7 +1753,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     horizontal: 10,
                                   ),
                                   child: Text(
-                                    tasks
+                                    calendar
+                                        ? _t('Calendar', 'Kalender', 'التقويم')
+                                        : tasks
                                         ? _t('Tasks', 'Aufgaben', 'المهام')
                                         : document
                                         ? _documentLabel
@@ -1770,6 +1811,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     onPressed: _openAccount,
                   ),
+                  if (!kIsWeb)
+                    IconButton(
+                      tooltip: _t('Connections', 'Verbindungen', 'الاتصالات'),
+                      visualDensity: VisualDensity.compact,
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints.tightFor(
+                        width: 32,
+                        height: 36,
+                      ),
+                      icon: const Icon(
+                        Icons.manage_accounts_outlined,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onPressed: _openConnections,
+                    ),
                   if (StudioWindow.usesCaptionButtons)
                     const SizedBox(width: 138),
                 ],
@@ -2334,6 +2391,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     setState(() {
       _mailEverOpened = true;
       _mailOpen = true;
+      _tasksOpen = false;
+      _calendarOpen = false;
     });
   }
 
@@ -2343,6 +2402,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     setState(() {
       _tasksEverOpened = true;
       _tasksOpen = true;
+      _calendarOpen = false;
     });
     unawaited(
       StudioWindow.setTitle(
@@ -2350,6 +2410,33 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       ),
     );
   }
+
+  void _openCalendar() {
+    _zoteroHostGeneration++;
+    _workspaceDirectionChord.reset();
+    setState(() {
+      _calendarOpen = true;
+    });
+    unawaited(
+      StudioWindow.setTitle(
+        '${_t('Calendar', 'Kalender', 'التقويم')} — CrispOffice',
+      ),
+    );
+  }
+
+  void _closeCalendar() {
+    if (!_calendarOpen) return;
+    _zoteroHostGeneration++;
+    setState(() => _calendarOpen = false);
+    final title = _tasksOpen
+        ? _t('Tasks', 'Aufgaben', 'المهام')
+        : _mailOpen
+        ? _strings.mailTitle
+        : _chromeTitle;
+    unawaited(StudioWindow.setTitle('$title — CrispOffice'));
+  }
+
+  void _openConnections() => unawaited(showStudioConnections(_themedContext));
 
   void _closeTasks() {
     if (!_tasksOpen) return;
@@ -4127,6 +4214,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       mounted &&
       !_mailOpen &&
       !_tasksOpen &&
+      !_calendarOpen &&
       _app == SuiteApp.word &&
       !_word.isDisposed;
 
@@ -8225,7 +8313,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   KeyEventResult _onWorkspaceDirectionKey(FocusNode node, KeyEvent event) {
-    if (_mailOpen || _tasksOpen || !_canMutate) {
+    if (_mailOpen || _tasksOpen || _calendarOpen || !_canMutate) {
       _workspaceDirectionChord.reset();
       return KeyEventResult.ignored;
     }
