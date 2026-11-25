@@ -23,6 +23,7 @@ const _composeTemplateColumns = <String, int>{
   'bcc_text': MailMessageTemplate.maxRecipientCodeUnits,
   'subject': MailMessageTemplate.maxSubjectCodeUnits,
   'body': MailMessageTemplate.maxBodyCodeUnits,
+  'body_html': MailMessageTemplate.maxRichBodyCodeUnits,
   'sender_identity': MailSenderIdentity.maxIdCodeUnits,
 };
 
@@ -139,7 +140,7 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
       'account_message_templates',
       MailComposeSettings.maxTemplates,
       _composeTemplateColumns,
-      nullableColumns: const {'sender_identity'},
+      nullableColumns: const {'sender_identity', 'body_html'},
     );
     if (settingsCount > 1 ||
         (settingsCount == 0 &&
@@ -240,6 +241,10 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
     final templates = <MailMessageTemplate>[];
     for (var index = 0; index < storedTemplates.length; index++) {
       final template = storedTemplates[index];
+      final html = _composeStoredOptionalText(template, 'body_html');
+      if (html != null && html.length > MailMessageTemplate.maxRichBodyCodeUnits) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
       final item = MailMessageTemplate(
         id: _composeStoredText(template, 'id'),
         name: _composeStoredText(template, 'name'),
@@ -248,6 +253,7 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
         bcc: _composeStoredText(template, 'bcc_text'),
         subject: _composeStoredText(template, 'subject'),
         body: _composeStoredText(template, 'body'),
+        richBody: html == null ? null : MailComposeBody.fromHtml(html),
         senderIdentityId: _composeStoredOptionalText(
           template,
           'sender_identity',
@@ -380,8 +386,8 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
       final item = saved.templates[index];
       await _db.customStatement(
         'INSERT INTO account_message_templates(account,position,id,name,name_key,'
-        'to_text,cc_text,bcc_text,subject,body,sender_identity) '
-        'VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+        'to_text,cc_text,bcc_text,subject,body,body_html,sender_identity) '
+        'VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
         [
           saved.account.value,
           index,
@@ -393,6 +399,7 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
           item.bcc,
           item.subject,
           item.body,
+          item.richBody?.html,
           item.senderIdentityId,
         ],
       );

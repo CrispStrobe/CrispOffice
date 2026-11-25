@@ -331,7 +331,7 @@ void main() {
         }
         final after = sqlite.sqlite3.open(file.path);
         try {
-          expect(after.userVersion, 21);
+          expect(after.userVersion, 22);
           expect(
             _schema(after).where(
               (row) =>
@@ -423,7 +423,7 @@ void main() {
           }
           final migrated = sqlite.sqlite3.open(file.path);
           try {
-            expect(migrated.userVersion, 21);
+            expect(migrated.userVersion, 22);
             expect(
               _snapshot(migrated)
                 ..remove('account_archive_settings')

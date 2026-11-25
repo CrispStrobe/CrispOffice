@@ -879,6 +879,7 @@ final class SqliteMailRepository
           'bcc_text',
           'subject',
           'body',
+          'body_html',
           'sender_identity',
         ],
       ),

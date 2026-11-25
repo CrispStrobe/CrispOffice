@@ -462,4 +462,124 @@ void main() {
       },
     );
   });
+
+  group('rich message templates', () {
+    MailComposeBody rich(String text) => MailComposeBody(
+      paragraphs: [
+        MailComposeParagraph(
+          runs: [MailComposeRun(text: text, bold: true)],
+          rightToLeft: true,
+        ),
+      ],
+    );
+
+    MailMessageTemplate template(MailComposeBody body) => MailMessageTemplate(
+      id: 'rich',
+      name: 'Formatted',
+      body: body.plainText,
+      richBody: body,
+    );
+
+    test('owns rich content across copies until it is explicitly cleared', () {
+      final body = rich('مرحبا 📨');
+      final original = template(body);
+      expect(original.isValid, isTrue);
+      final renamed = original.copyWith(name: 'Renamed');
+      expect(identical(renamed.richBody, body), isTrue);
+      expect(renamed.richBody!.paragraphs.single.runs.single.bold, isTrue);
+      expect(renamed.body, body.plainText);
+      expect(original.copyWith(body: 'Changed').isValid, isFalse);
+      final plain = original.copyWith(body: 'Changed', clearRichBody: true);
+      expect(plain.isValid, isTrue);
+      expect(plain.richBody, isNull);
+      expect(original.richBody, body);
+      expect(original.toString(), 'MailMessageTemplate(redacted)');
+    });
+
+    test('normalizes only line endings when matching plain and rich text', () {
+      final body = rich('one\ntwo\nمرحبا');
+      final item = template(body);
+      expect(item.copyWith(body: 'one\r\ntwo\rمرحبا').isValid, isTrue);
+      for (final different in [
+        ' one\ntwo\nمرحبا',
+        'one\ntwo\nمرحبا ',
+        'one\ntwo\n',
+        'one\ntwo\nother',
+      ]) {
+        expect(item.copyWith(body: different).isValid, isFalse);
+      }
+    });
+
+    test('legacy literal markup never acquires an inferred rich alternative', () {
+      const item = MailMessageTemplate(
+        id: 'plain',
+        name: 'Plain',
+        body: '<b>literal</b>\r\n\$name',
+      );
+      expect(item.isValid, isTrue);
+      expect(item.richBody, isNull);
+      expect(item.copyWith(name: 'Renamed').body, item.body);
+      expect(item.copyWith(name: 'Renamed').richBody, isNull);
+    });
+
+    test('empty paragraph typing marks remain authored template content', () {
+      final item = template(rich(''));
+      expect(item.isValid, isTrue);
+      expect(item.body, isEmpty);
+      expect(item.richBody!.hasFormatting, isTrue);
+      expect(item.richBody!.paragraphs.single.rightToLeft, isTrue);
+      expect(item.richBody!.paragraphs.single.runs.single.bold, isTrue);
+    });
+
+    test('rich bodies keep the existing plain UTF-16 budget', () {
+      expect(template(rich('📨' * 8192)).isValid, isTrue);
+      expect(template(rich('📨' * 8193)).isValid, isFalse);
+      expect(template(rich('x' * 16385)).isValid, isFalse);
+    });
+
+    test('canonical HTML has an exact independent UTF-16 budget', () {
+      final overhead = rich('').html.length - '<br />'.length;
+      final plainUnits =
+          (MailMessageTemplate.maxRichBodyCodeUnits - overhead) ~/ 4;
+      final prefix = '<' * plainUnits;
+      final remaining =
+          MailMessageTemplate.maxRichBodyCodeUnits - rich(prefix).html.length;
+      final exact = rich('$prefix${'x' * remaining}');
+      expect(
+        exact.plainText.length,
+        lessThan(MailMessageTemplate.maxBodyCodeUnits),
+      );
+      expect(exact.html.length, MailMessageTemplate.maxRichBodyCodeUnits);
+      expect(template(exact).isValid, isTrue);
+      final tooLarge = rich('${exact.plainText}x');
+      expect(tooLarge.html.length, MailMessageTemplate.maxRichBodyCodeUnits + 1);
+      expect(template(tooLarge).isValid, isFalse);
+    });
+
+    test('both alternatives count toward the shared settings budget', () {
+      final item = template(rich('x' * 3000));
+      final plain = MailComposeSettings(
+        account: _account,
+        templates: [item.copyWith(clearRichBody: true)],
+        quickTexts: [
+          for (var index = 0; index < 7; index++)
+            _text(id: '$index', name: '$index', text: 'x' * 16000),
+        ],
+      );
+      final formatted = plain.copyWith(templates: [item]);
+      expect(
+        formatted.metadataCodeUnits,
+        plain.metadataCodeUnits + item.richBody!.html.length,
+      );
+      final remaining =
+          MailComposeSettings.maxMetadataCodeUnits - formatted.metadataCodeUnits;
+      expect(
+        remaining,
+        inInclusiveRange(1, MailComposeSettings.maxSignatureCodeUnits),
+      );
+      final exact = formatted.copyWith(signature: 'x' * remaining);
+      expect(exact.isValid, isTrue);
+      expect(exact.copyWith(signature: '${exact.signature}x').isValid, isFalse);
+    });
+  });
 }

@@ -165,7 +165,7 @@ void main() {
       _value(await store.loadMessageTags(_account, MailMessageId('message-1'))),
       isEmpty,
     );
-    expect(database.select('PRAGMA user_version').single.values.single, 21);
+    expect(database.select('PRAGMA user_version').single.values.single, 22);
     expect(
       database
           .select(
@@ -201,7 +201,7 @@ void main() {
       ),
     );
     expect(_value(await store.listMailRules(_account)), isEmpty);
-    expect(database.select('PRAGMA user_version').single.values.single, 21);
+    expect(database.select('PRAGMA user_version').single.values.single, 22);
     expect(
       database
           .select(
