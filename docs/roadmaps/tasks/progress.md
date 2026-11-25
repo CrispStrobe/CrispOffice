@@ -81,6 +81,30 @@ Remote core commit: `47c075883aef5a4a81004d262e5c0a77a73ac945`.
 - No Microsoft account was connected. Personal/work account behavior, extension
   recovery and date-only display parity still require live acceptance tests.
 
+Remote Graph commit: `c090f3072164297bb40c85ced7d1a1111d08d03a`.
+
+## Checkpoint 4 — CalDAV codec and provider profiles
+
+- Added `quds_tasks_caldav`: a bounded single-VTODO parser, common field
+  projection, explicit patches, and retained original iCalendar data. No-op
+  serialization is exact; unrelated properties, parameters, alarms, timezone
+  definitions and UID survive supported edits.
+- Kept civil dates, floating times, UTC and zoned wall times distinct. Zoned
+  writes require a retained matching timezone definition; directly comparable
+  DUE must follow DTSTART. Unsupported recurrence, delegation, relationship and
+  duration changes fail explicitly instead of flattening advanced task data.
+- Added credential-free generic, Nextcloud, ownCloud, Open-Xchange and mailbox.org
+  profiles. The mailbox preset uses `https://dav.mailbox.org/` discovery, a
+  dedicated DAV credential, and an opaque task-list URL supplied/discovered for
+  that account. Its OX capabilities remain conservative until live testing.
+- Fixed resource/line/depth budgets and content-line validation bound untrusted
+  parsing and reject property-name injection.
+- Validation: **35 tests passed**, strict analysis and formatting clean,
+  JavaScript compilation and a real VTODO round-trip smoke in Node passed.
+- **T3 is partial:** the codec/profile foundation performs no HTTP requests.
+  DAV authentication, discovery, sync REPORTs, ETag conditional writes, token
+  recovery and live server qualification remain required.
+
 ## Validation and remote checkpoints
 
 Each following entry records the completed scope, actual checks, remaining

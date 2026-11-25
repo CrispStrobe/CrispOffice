@@ -83,3 +83,21 @@ No live Graph request was made. Conditional-write semantics, native network
 behavior against Microsoft, personal/work account consent, extension expansion,
 and To Do date-only display remain acceptance gates. Protected-list admission,
 durable state and token persistence remain host integration responsibilities.
+
+## CalDAV codec/profile checkpoint
+
+From `packages/quds_tasks_caldav`, strict analysis and formatting passed. The
+direct installed runner executed **35 passing tests**. JavaScript compilation
+of `test/compile/portable_import.dart` and execution in Node passed; the smoke
+performs a real parse/patch/serialize/reparse cycle and date projection.
+
+Cases cover exact no-op preservation, explicit clearing, unknown parameters,
+alarms and timezone retention, escaping/folding, identity and ETags, completion
+and reopening, malformed/advanced-resource refusal, date-kind distinctions,
+strict DTSTART/DUE ordering, required timezone definitions, profile URL rules,
+control/property-name injection, and resource/line/depth budgets.
+
+This package contains no DAV HTTP implementation yet. No Nextcloud, ownCloud,
+OX or mailbox.org account was accessed. The tests certify codec/profile
+behavior only; they do not establish authentication, discovery, server
+normalization, conditional writes, incremental sync or deployment compatibility.
