@@ -856,56 +856,17 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               padding: const EdgeInsets.all(12),
               child: Text(notice, key: const ValueKey('tasks-status')),
             ),
-          if (_records.length > 1)
+          if (widget.chromeBuilder == null)
             Padding(
-              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              padding: const EdgeInsets.all(12),
+              child: Wrap(
+                spacing: 12,
                 children: [
-                  const Text('Account'),
-                  const SizedBox(width: 12),
-                  DropdownButton<TaskAccountId>(
-                    value: _syncLease?.account,
-                    dropdownColor: colors.surface,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: colors.onSurface,
-                    ),
-                    onChanged: busy ? null : _switchSaved,
-                    items: [
-                      for (final entry in _records.entries)
-                        DropdownMenuItem(
-                          value: entry.key,
-                          child: Text(
-                            studioTaskAccountLabel(entry.key, entry.value),
-                          ),
-                        ),
-                    ],
-                  ),
+                  _listSelector(busy),
+                  if (_records.length > 1) _accountSelector(busy),
                 ],
               ),
             ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: DropdownButton<TaskListId>(
-              value: _selected,
-              dropdownColor: colors.surface,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: colors.onSurface,
-              ),
-              onChanged: busy ? null : _select,
-              items: [
-                DropdownMenuItem(
-                  value: _personal.id,
-                  child: Text(_personal.name),
-                ),
-                for (final entry in _lists)
-                  DropdownMenuItem(
-                    value: entry.list.id,
-                    child: Text(entry.list.name),
-                  ),
-              ],
-            ),
-          ),
           if (_selection.list.readOnly)
             const Padding(
               padding: EdgeInsets.only(bottom: 8),
@@ -958,6 +919,52 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     );
   }
 
+  Widget _listSelector(bool busy) => SizedBox(
+    width: 174,
+    child: Tooltip(
+      message: 'Task list',
+      child: DropdownButton<TaskListId>(
+        key: const ValueKey('studio-task-list-selector'),
+        isExpanded: true,
+        value: _selected,
+        onChanged: busy ? null : _select,
+        items: [
+          DropdownMenuItem(
+            value: _personal.id,
+            child: Text(_personal.name, overflow: TextOverflow.ellipsis),
+          ),
+          for (final entry in _lists)
+            DropdownMenuItem(
+              value: entry.list.id,
+              child: Text(entry.list.name, overflow: TextOverflow.ellipsis),
+            ),
+        ],
+      ),
+    ),
+  );
+
+  Widget _accountSelector(bool busy) => SizedBox(
+    width: 174,
+    child: Tooltip(
+      message: 'Task account',
+      child: DropdownButton<TaskAccountId>(
+        isExpanded: true,
+        value: _syncLease?.account,
+        onChanged: busy ? null : _switchSaved,
+        items: [
+          for (final entry in _records.entries)
+            DropdownMenuItem(
+              value: entry.key,
+              child: Text(
+                studioTaskAccountLabel(entry.key, entry.value),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+        ],
+      ),
+    ),
+  );
+
   Widget _ribbon({
     required bool ready,
     required bool connected,
@@ -977,15 +984,6 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: StudioTabChip(
-              label: widget.title,
-              selected: true,
-              accent: scheme.primary,
-              onTap: () {},
-            ),
-          ),
           StudioRibbonStyle(
             compact: widget.compactRibbon,
             showCommandLabels: widget.showCommandLabels,
@@ -1003,6 +1001,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                     id: 'task-actions',
                     title: 'Tasks',
                     children: [
+                      _listSelector(busy),
                       command(
                         Icons.add_task,
                         'Add task',
@@ -1016,6 +1015,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                     id: 'task-connection',
                     title: 'Accounts',
                     children: [
+                      if (_records.length > 1) _accountSelector(busy),
                       if (connected)
                         command(
                           Icons.link_off,

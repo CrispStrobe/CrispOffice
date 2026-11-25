@@ -11,6 +11,7 @@ import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_credential_storage.dart';
 import 'package:quds_office_studio/studio_tasks.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqlite3/sqlite3.dart';
 
@@ -89,6 +90,14 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.text('Shared shell'), findsOneWidget);
+      expect(find.byType(StudioTabChip), findsNothing);
+      expect(
+        find.descendant(
+          of: find.byType(StudioRibbonStrip),
+          matching: find.byKey(const ValueKey('studio-task-list-selector')),
+        ),
+        findsOneWidget,
+      );
       expect(find.byType(AppBar), findsNothing);
       expect(
         tester.widget<Scaffold>(find.byType(Scaffold)).backgroundColor,
