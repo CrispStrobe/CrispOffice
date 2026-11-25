@@ -48,6 +48,11 @@ dependencies:
     path: ../../quds_mail_mime
   quds_mail_store:
     path: ../../quds_mail_store
+  quds_tasks_core: ^0.1.0
+  quds_tasks_caldav: ^0.1.0
+  quds_tasks_graph: ^0.1.0
+  quds_tasks_store: ^0.1.0
+  sqlite3: 3.9.1
   quds_mail_ui:
     path: ../../quds_mail_ui
   window_manager: ^0.5.1

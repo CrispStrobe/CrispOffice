@@ -19,6 +19,7 @@ Future<MailResult<MailCloudTokenSource>> authorizeNativeMailCloud({
   Duration timeout = const Duration(minutes: 5),
   Future<HttpServer> Function()? bindServer,
   MailCloudHttpTransport Function()? transportFactory,
+  Future<void> Function(String)? saveRefreshToken,
 }) async {
   if (lease.account != account ||
       timeout <= Duration.zero ||
@@ -224,6 +225,7 @@ Future<MailResult<MailCloudTokenSource>> authorizeNativeMailCloud({
       timeout: remaining < const Duration(seconds: 30)
           ? remaining
           : const Duration(seconds: 30),
+      saveRefreshToken: saveRefreshToken,
     );
     if (exchanged is MailSuccess<MailCloudTokenSource>) {
       if (!lease.isCurrent) {

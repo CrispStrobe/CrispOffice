@@ -100,6 +100,7 @@ final class MailOAuthTokenSession implements MailCloudTokenSource {
     required this.transport,
     required this.log,
     required this.clock,
+    this.saveRefreshToken,
   });
 
   final MailOAuthConfiguration configuration;
@@ -107,10 +108,36 @@ final class MailOAuthTokenSession implements MailCloudTokenSource {
   final MailCloudHttpTransport transport;
   final MailCloudLogSink? log;
   final DateTime Function() clock;
+  final Future<void> Function(String)? saveRefreshToken;
   MailCloudAccessToken? _token;
   String? _refreshToken;
   Future<MailResult<MailCloudAccessToken>>? _refreshing;
   bool _disposed = false;
+
+  /// Restores a tasks-only grant from the host's secure credential vault.
+  static MailCloudTokenSource restoreTasks({
+    required MailOAuthConfiguration configuration,
+    required MailAccountId account,
+    required MailCloudHttpTransport transport,
+    required String refreshToken,
+    required Future<void> Function(String) saveRefreshToken,
+  }) {
+    if (!configuration.tasksOnly ||
+        refreshToken.isEmpty ||
+        refreshToken.length > 64 * 1024 ||
+        refreshToken.contains(RegExp(r'[\x00-\x20\x7f]'))) {
+      transport.close();
+      throw ArgumentError('Invalid saved Tasks grant.');
+    }
+    return MailOAuthTokenSession._(
+      configuration: configuration,
+      account: account,
+      transport: transport,
+      log: null,
+      clock: DateTime.now,
+      saveRefreshToken: saveRefreshToken,
+    ).._refreshToken = refreshToken;
+  }
 
   /// Ownership of transport transfers to the returned session on success and
   /// it is closed on failure. No authorization code is ever automatically retried.
@@ -124,6 +151,7 @@ final class MailOAuthTokenSession implements MailCloudTokenSource {
     required MailOperationLease lease,
     MailCloudLogSink? log,
     DateTime Function()? clock,
+    Future<void> Function(String)? saveRefreshToken,
     Duration timeout = const Duration(seconds: 30),
   }) async {
     final session = MailOAuthTokenSession._(
@@ -132,6 +160,7 @@ final class MailOAuthTokenSession implements MailCloudTokenSource {
       transport: transport,
       log: log,
       clock: clock ?? DateTime.now,
+      saveRefreshToken: saveRefreshToken,
     );
     try {
       if (lease.account != account ||
@@ -371,6 +400,17 @@ final class MailOAuthTokenSession implements MailCloudTokenSource {
       lease.checkCurrent();
       if (_disposed) {
         throw const MailCloudException(MailProblem(MailProblemCode.cancelled));
+      }
+      if (refresh is String &&
+          refresh != _refreshToken &&
+          saveRefreshToken != null) {
+        await saveRefreshToken!(refresh);
+        lease.checkCurrent();
+        if (_disposed) {
+          throw const MailCloudException(
+            MailProblem(MailProblemCode.cancelled),
+          );
+        }
       }
       // Commit both fields only after fully validating the response and lease.
       _token = access;

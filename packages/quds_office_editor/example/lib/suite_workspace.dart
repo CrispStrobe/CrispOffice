@@ -32,6 +32,7 @@ import 'studio_iso_image_dialog.dart';
 import 'studio_linguistic_analysis.dart';
 import 'studio_mail.dart';
 import 'studio_strings.dart';
+import 'studio_tasks_unavailable.dart' if (dart.library.io) 'studio_tasks.dart';
 import 'studio_pdf_gallery.dart';
 import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
@@ -223,6 +224,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   bool _nativeDialogOpen = false;
   bool _mailOpen = false;
   bool _mailEverOpened = false;
+  bool _tasksOpen = false;
+  bool _tasksEverOpened = false;
 
   @override
   void initState() {
@@ -692,7 +695,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 ? const Color(0xFF1B1B1B)
                                 : const Color(0xFFE8E8E8),
                             body: IndexedStack(
-                              index: _mailOpen ? 1 : 0,
+                              index: _tasksOpen ? 2 : (_mailOpen ? 1 : 0),
                               children: <Widget>[
                                 Column(
                                   children: <Widget>[
@@ -707,6 +710,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 ),
                                 if (_mailEverOpened)
                                   _mailPane()
+                                else
+                                  const SizedBox.shrink(),
+                                if (_tasksEverOpened)
+                                  buildStudioTasks(
+                                    _t('Tasks', 'Aufgaben', 'المهام'),
+                                    _closeTasks,
+                                  )
                                 else
                                   const SizedBox.shrink(),
                               ],
@@ -985,7 +995,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }) {
     // Mail owns its focused key handlers. Keep the incoming empty shortcut map
     // so native text editing can reach Flutter's default text shortcuts.
-    if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
+    if (_mailOpen || _tasksOpen) {
+      return const <ShortcutActivator, VoidCallback>{};
+    }
     final overrides = _acceptedShortcutOverrides(base);
     final aliasCodes = {
       for (final aliases in _shortcutAliases.values)
@@ -1034,7 +1046,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Map<ShortcutActivator, VoidCallback> _reservedShortcutBindings() {
-    if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
+    if (_mailOpen || _tasksOpen) {
+      return const <ShortcutActivator, VoidCallback>{};
+    }
     final base = _baseShortcutBindings();
     final reserved = _reservedShortcutCodes(base);
     return {
@@ -1093,7 +1107,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ? KeyEventResult.ignored
         : KeyEventResult.handled;
     if (document != null) _workspaceDirectionChord.reset();
-    if (_mailOpen ||
+    if (_tasksOpen ||
+        _mailOpen ||
         !mounted ||
         !_wordRouteIsCurrent ||
         (document != null &&
@@ -1154,7 +1169,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     // Native text Actions remain valid in Mail or a dialog. Their fallback
     // separately refuses to reach a hidden document.
     if (id.startsWith('edit.')) return true;
-    if (_mailOpen || !_wordRouteIsCurrent) return false;
+    if (_mailOpen || _tasksOpen || !_wordRouteIsCurrent) return false;
     if (id.startsWith('file.')) return _fileActionsAvailable;
     final textInput = _focusedTextInput != null;
     final commentFormatting =
@@ -1339,7 +1354,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         return;
       }
     }
-    if (!_mailOpen && (ModalRoute.isCurrentOf(context) ?? true)) fallback();
+    if (!_mailOpen &&
+        !_tasksOpen &&
+        (ModalRoute.isCurrentOf(context) ?? true)) {
+      fallback();
+    }
   }
 
   List<List<StudioMenuAction>> get _desktopEditGroups =>
@@ -1525,10 +1544,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
     // Mail is cached inline while switching apps. Quit is terminal, so dispose
     // it now and let its draft owner flush before approving the native close.
-    if (_mailEverOpened) {
+    if (_mailEverOpened || _tasksEverOpened) {
       setState(() {
         _mailOpen = false;
         _mailEverOpened = false;
+        _tasksOpen = false;
+        _tasksEverOpened = false;
       });
       await WidgetsBinding.instance.endOfFrame;
       if (!mounted) return false;
@@ -1662,6 +1683,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 selected: mailContext != null,
                                 onTap: mailContext == null ? _openMail : () {},
                               ),
+                              if (!kIsWeb)
+                                StudioAppSwitcher(
+                                  label: _t('Tasks', 'Aufgaben', 'المهام'),
+                                  icon: Icons.checklist_outlined,
+                                  selected: false,
+                                  onTap: _openTasks,
+                                ),
                             ],
                           ),
                           SizedBox(
@@ -2293,6 +2321,33 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _mailEverOpened = true;
       _mailOpen = true;
     });
+  }
+
+  void _openTasks() {
+    _zoteroHostGeneration++;
+    _workspaceDirectionChord.reset();
+    setState(() {
+      _tasksEverOpened = true;
+      _tasksOpen = true;
+    });
+    unawaited(
+      StudioWindow.setTitle(
+        '${_t('Tasks', 'Aufgaben', 'المهام')} — CrispOffice',
+      ),
+    );
+  }
+
+  void _closeTasks() {
+    if (!_tasksOpen) return;
+    _zoteroHostGeneration++;
+    setState(() => _tasksOpen = false);
+    unawaited(
+      StudioWindow.setTitle(
+        _mailOpen
+            ? '${_strings.mailTitle} — CrispOffice'
+            : '$_chromeTitle — CrispOffice',
+      ),
+    );
   }
 
   void _closeMail() {
@@ -4055,7 +4110,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   bool get _zoteroHostIsCurrent =>
-      mounted && !_mailOpen && _app == SuiteApp.word && !_word.isDisposed;
+      mounted &&
+      !_mailOpen &&
+      !_tasksOpen &&
+      _app == SuiteApp.word &&
+      !_word.isDisposed;
 
   bool get _canOpenZotero =>
       _zoteroHostIsCurrent && !_zoteroOpen && _wordRouteIsCurrent;
@@ -8152,7 +8211,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   KeyEventResult _onWorkspaceDirectionKey(FocusNode node, KeyEvent event) {
-    if (_mailOpen || !_canMutate) {
+    if (_mailOpen || _tasksOpen || !_canMutate) {
       _workspaceDirectionChord.reset();
       return KeyEventResult.ignored;
     }

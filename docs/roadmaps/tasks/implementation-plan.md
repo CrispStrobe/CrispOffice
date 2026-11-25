@@ -10,9 +10,9 @@ Date: 2026-11-25. This is the engineering companion to the
 | Portable domain | `packages/quds_tasks_core` | Immutable field values, identities, capabilities, typed failures, sparse patches, pure reconciliation |
 | Microsoft tasks | `packages/quds_tasks_graph` | Graph JSON mapping, account-scoped HTTP/token ports, list/task deltas, bounded task CRUD |
 | DAV tasks | `packages/quds_tasks_caldav` | iCalendar VTODO codec, server profiles, collection discovery, conditional resource operations |
-| Durable repository | `packages/quds_tasks_store` | SQLite inbound snapshots, cursors and restart recovery. Local working copies and pending operations are planned. |
-| Coordinator | Pull worker in `quds_tasks_store`, with host scheduling planned | Resumable pulls and account-generation fencing. Merge, push and retry scheduling are planned. |
-| Studio | Task UI package and native Studio host | Tasks workspace, account setup, consent, conflict controls, notification choices and credential vault |
+| Durable repository | `packages/quds_tasks_store` | SQLite working copies, remote snapshots, cursors, outbox, conflict state and restart recovery. |
+| Coordinator | Sync worker in `quds_tasks_store`, driven by Studio | Resumable pulls, merges, writes, retry scheduling and account-generation fencing. |
+| Studio | Native Studio Tasks pane | Tasks workspace, account setup, consent, conflict controls, notification choices and credential vault |
 | Later providers | EWS / OX HTTP / Vikunja / Planner modules | Implement the shared task boundary with explicit capability and fidelity differences |
 
 Protocol packages use public, injectable transport/authentication boundaries.

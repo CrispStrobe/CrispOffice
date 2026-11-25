@@ -181,6 +181,42 @@ final class _Server extends Stream<HttpRequest> implements HttpServer {
 }
 
 void main() {
+  test('tasks-only authorization and refresh request no mail grants', () async {
+    final configuration = MailOAuthConfiguration(
+      service: MailCloudService.microsoft365,
+      clientId: 'fixture-client',
+      tasksOnly: true,
+    );
+    expect(configuration.scopes, [
+      'https://graph.microsoft.com/Tasks.ReadWrite',
+      'offline_access',
+    ]);
+    final session = MailAccountSession(_account);
+    final transport = _Transport((request) async {
+      final form = Uri.splitQueryString(utf8.decode(request.body));
+      expect(form['refresh_token'], 'stored-refresh');
+      expect(form['scope'], configuration.scopes.join(' '));
+      return _tokenResponse(
+        scope: 'Tasks.ReadWrite',
+        refresh: 'rotated-refresh',
+      );
+    });
+    final stored = <String>[];
+    final restored = MailOAuthTokenSession.restoreTasks(
+      configuration: configuration,
+      account: _account,
+      transport: transport,
+      refreshToken: 'stored-refresh',
+      saveRefreshToken: (value) async => stored.add(value),
+    );
+    addTearDown(restored.dispose);
+    expect(
+      await restored.accessToken(session.begin()),
+      isA<MailSuccess<MailCloudAccessToken>>(),
+    );
+    expect(stored, ['rotated-refresh']);
+  });
+
   group('optional Microsoft task consent', () {
     test(
       'mail-only scopes stay unchanged and tasks require explicit opt-in',

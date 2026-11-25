@@ -23,6 +23,23 @@ Future<MailResult<MailCloudTokenSource>> authorizeMailCloud({
   Duration timeout = const Duration(minutes: 5),
 }) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
 
+Future<MailResult<MailCloudTokenSource>> authorizeTasksCloud({
+  required MailOAuthConfiguration configuration,
+  required MailAccountId account,
+  required Future<bool> Function(Uri) openBrowser,
+  required MailOperationLease lease,
+  required Future<void> Function(String) saveRefreshToken,
+}) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
+
+MailCloudTokenSource restoreTasksCloud({
+  required MailOAuthConfiguration configuration,
+  required MailAccountId account,
+  required String refreshToken,
+  required Future<void> Function(String) saveRefreshToken,
+}) => throw UnsupportedError(
+  'Tasks authorization requires a native browser callback.',
+);
+
 final class _UnsupportedCloudProvider
     implements MailCloudProvider, MailFlagObserver, MailMembershipObserver {
   _UnsupportedCloudProvider(this.account);

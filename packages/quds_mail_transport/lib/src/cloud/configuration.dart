@@ -35,11 +35,13 @@ final class MailOAuthConfiguration {
     this.tenant = 'common',
     this.clientSecret,
     this.includeTasks = false,
+    this.tasksOnly = false,
   }) {
     if (!RegExp(r'^[A-Za-z0-9._-]{1,1024}$').hasMatch(clientId) ||
         !RegExp(r'^[A-Za-z0-9][A-Za-z0-9.-]{0,253}$').hasMatch(tenant) ||
         tenant.contains('..') ||
-        (includeTasks && service != MailCloudService.microsoft365) ||
+        ((includeTasks || tasksOnly) &&
+            service != MailCloudService.microsoft365) ||
         (clientSecret != null &&
             (service != MailCloudService.gmail ||
                 clientSecret!.isEmpty ||
@@ -59,15 +61,21 @@ final class MailOAuthConfiguration {
   /// Hosts enable it only when the user connects Tasks, then authorize again.
   final bool includeTasks;
 
+  /// Requests Microsoft To Do access without mail permissions.
+  final bool tasksOnly;
+
   List<String> get scopes => switch (service) {
     MailCloudService.gmail => const [
       'https://www.googleapis.com/auth/gmail.modify',
     ],
     MailCloudService.microsoft365 => List<String>.unmodifiable([
-      'https://graph.microsoft.com/Mail.ReadWrite',
-      'https://graph.microsoft.com/Mail.Send',
-      'https://graph.microsoft.com/User.Read',
-      if (includeTasks) 'https://graph.microsoft.com/Tasks.ReadWrite',
+      if (!tasksOnly) ...[
+        'https://graph.microsoft.com/Mail.ReadWrite',
+        'https://graph.microsoft.com/Mail.Send',
+        'https://graph.microsoft.com/User.Read',
+      ],
+      if (includeTasks || tasksOnly)
+        'https://graph.microsoft.com/Tasks.ReadWrite',
       'offline_access',
     ]),
   };

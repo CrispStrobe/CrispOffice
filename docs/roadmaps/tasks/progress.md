@@ -152,23 +152,42 @@ Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
   the workspace resolved offline with the existing lockfile. Hosted CI and
   live provider accounts still need verification.
 
+## Checkpoint 8 — durable outbound sync and Studio Tasks
+
+- Added the SQLite outbox, offline edits, three-way merge and conflict resolution,
+  revision-aware acknowledgments and persisted retry deadlines. Recovery uses
+  reads and retains unresolved operations for later checks.
+- Added the native Tasks pane with a device-local list, task editing and
+  completion, search, and CalDAV and Microsoft To Do connection setup. Studio
+  stores app passwords and refresh grants in the selected credential backend
+  and keeps the active task list syncing during the desktop session.
+- Microsoft sign-in requests Tasks access and offline access. Microsoft edits
+  require an explicit opt-in while the atomic write contract is unqualified.
+- Validation passed for **170 focused Dart VM tests**, three Studio Tasks widget
+  tests, 65 related Studio Mail and shortcut regressions, and both adapter
+  JavaScript/Node probes. The Tasks widget tests exercise offline persistence,
+  completion, search, deletion, pane close, and secure connect and disconnect.
+
+## Checkpoint 9 — live mailbox.org qualification
+
+- Authenticated against mailbox.org and exercised create, UID-based recovery,
+  update, live HTTP 412 on a stale If-Match, incremental sync and deletion
+  tombstones in a disposable VTODO collection. Both task and collection
+  deletion were verified.
+- The deployed Open-Xchange server assigned opaque resource URLs, returned
+  bare multistatus ETags and rejected a client-specified sync page size.
+  Added profile-specific handling and fixture regressions.
+- Reproduce with the [live mailbox runner](../../../packages/quds_tasks_caldav/README.md).
+  Microsoft and Nextcloud live credentials are still required for their
+  qualification. Extended fields, account revocation, shared lists and
+  long-running cross-provider workflows remain outside this live check.
+
 ## Next execution sequence
 
-1. Extend T4 with stable local task IDs, edit revisions, transactional three-way
-   reconciliation and a durable outbox for provider mutations and uncertain
-   results. Define canonical acknowledgment for Graph's date and HTML
-   normalization so a successful write preserves edits made during the request.
-2. Exercise complete pull/merge/push and retry behavior through restart,
-   including uncertainty after a provider accepted a write.
-3. Add T5 host consent, a tasks-only sign-in option, credential vault, selected
-   lists and Tasks UI. `MailOAuthConfiguration.includeTasks` currently adds task
-   permission to a mail grant; it does not implement these host flows. Enforce
-   protected/read-only list metadata before admitting writes.
-4. Run T6 against designated Microsoft, Nextcloud and mailbox.org test lists.
-   Include date boundaries, recurrence refusal, unknown enums, moves, lost list
-   access, normalization, conflicts, revocation and ambiguous-write recovery.
-5. Continue T7-T9 in the roadmap: extended fields and servers, on-premises EWS,
-   host-supported native OX, Vikunja, Planner, optional bridging and webhooks.
+1. Qualify Microsoft To Do and Nextcloud against designated accounts and lists,
+   including normalization, conflict recovery, permission changes and revocation.
+2. Extend the Studio workflow to multiple simultaneously connected accounts.
+3. Continue T7-T9 with extended fields, additional providers and optional bridging.
 
 ## Validation and remote checkpoints
 

@@ -26,22 +26,23 @@ different statuses.** See [progress](progress.md),
 
 ## Current delivery
 
-Implementation status on 25 November 2026
+Implementation status
 
 | Milestone | Delivered status |
 | --- | --- |
 | T0 | Roadmap and provider evidence saved to remote main. |
 | T1 | Portable model, sparse patches and pure reconciliation implemented and tested. |
-| T2 | Graph adapter and explicit task-consent configuration implemented and tested; host consent UI and live qualification remain. |
-| T3 | CalDAV discovery, conditional writes, sync tokens and ETag fallback implemented and exercised with local fixtures. Live qualification is T6. |
-| T4 | SQLite inbound store and resumable pull worker implemented. Editable local state, outbox and push recovery remain. |
-| T5-T9 | Planned. |
+| T2 | Graph adapter, tasks-only consent, and secure refresh-token restore are implemented. Live Microsoft qualification remains. |
+| T3 | CalDAV discovery, conditional writes and sync are implemented. Live mailbox.org basic VTODO operations passed. |
+| T4 | SQLite stores local edits, remote snapshots, atomic cursors, write attempts, conflicts and retry deadlines. |
+| T5 | Native Studio Tasks supports device-local tasks, one selected remote account, and synchronization during the Studio session. |
+| T6 | Live mailbox.org basic task operations passed on an isolated list. Microsoft, Nextcloud and expanded acceptance cases remain. |
+| T7-T9 | Planned. |
 
 The first series passed **132 targeted tests** across mail consent, task
 core, Graph and the CalDAV codec. The
 [progress record](progress.md) tracks the later CalDAV provider and SQLite store
-checks. Live Microsoft, Nextcloud, ownCloud and mailbox.org qualification
-remains a separate milestone.
+checks. Live Microsoft and Nextcloud qualification remains pending.
 
 ## Backend choices
 
