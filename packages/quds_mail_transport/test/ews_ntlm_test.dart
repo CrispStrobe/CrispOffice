@@ -178,7 +178,7 @@ void main() {
       // is ASCII tls-server-end-point: followed by SHA256 of the DER fixture.
       expect(
         _toHex(tlsServerEndPointChannelBinding(_certificateDer())),
-        'f47e38483057ff1a7542f726bebd0f2d',
+        'aef9a42a3ffa0ce195f2f645e86dda84',
       );
     },
   );

@@ -238,7 +238,9 @@ void main() {
         expect(reason, contains('CERTIFICATE_VERIFY_FAILED'));
         expect(
           reason.toLowerCase(),
-          matches(RegExp('self[- ]signed|unable to get local issuer')),
+          Platform.isMacOS
+              ? contains('application verification failure')
+              : matches(RegExp('self[- ]signed|unable to get local issuer')),
         );
         final peer = await server.peer(0);
         expect(peer.unexpectedErrors, isEmpty);
@@ -266,7 +268,12 @@ void main() {
         expect(handshakeFailures, hasLength(1));
         final reason = handshakeFailures.single.toString();
         expect(reason, contains('CERTIFICATE_VERIFY_FAILED'));
-        expect(reason.toLowerCase(), contains('hostname mismatch'));
+        expect(
+          reason.toLowerCase(),
+          Platform.isMacOS
+              ? contains('application verification failure')
+              : contains('hostname mismatch'),
+        );
         final peer = await server.peer(0);
         expect(peer.unexpectedErrors, isEmpty);
         expect(

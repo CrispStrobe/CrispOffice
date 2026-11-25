@@ -7,6 +7,8 @@ import 'package:crypto/crypto.dart';
 import 'package:enough_mail/enough_mail.dart';
 import 'package:test/test.dart';
 
+import 'support/tls_server.dart';
+
 const _deadline = Duration(seconds: 10);
 const _payloadLength = 1024 * 1024;
 
@@ -22,16 +24,13 @@ void main() {
         final listener = server.listen((socket) {
           final peer = _TlsPeer(
             socket,
-            _serverContext(),
+            localTlsServerContext(),
             implicitTls: implicitTls,
           );
           peers.add(peer);
           accepted.complete(peer);
         });
-        final client = ImapClient(
-          securityContext: SecurityContext(withTrustedRoots: false)
-            ..setTrustedCertificates(_fixture('public-test-ca.pem').path),
-        );
+        final client = ImapClient(securityContext: localTlsTrustContext());
         try {
           await client
               .connectToServer(
@@ -86,7 +85,7 @@ void main() {
         final listener = server.listen((socket) {
           final peer = _TlsPeer(
             socket,
-            _serverContext(),
+            localTlsServerContext(),
             implicitTls: implicitTls,
           );
           peers.add(peer);
@@ -146,12 +145,9 @@ void main() {
       final server = await ServerSocket.bind(InternetAddress.loopbackIPv4, 0);
       final peers = <_TlsPeer>[];
       final listener = server.listen((socket) {
-        peers.add(_TlsPeer(socket, _serverContext(), implicitTls: true));
+        peers.add(_TlsPeer(socket, localTlsServerContext(), implicitTls: true));
       });
-      final client = _CapturingImapClient(
-        SecurityContext(withTrustedRoots: false)
-          ..setTrustedCertificates(_fixture('public-test-ca.pem').path),
-      );
+      final client = _CapturingImapClient(localTlsTrustContext());
       StreamController<List<int>>? producer;
       try {
         await client
@@ -227,24 +223,6 @@ final class _CapturingImapClient extends ImapClient {
     return secured;
   }
 }
-
-File _fixture(String name) {
-  for (final directory in [
-    'test/support/tls',
-    'packages/quds_mail_transport/test/support/tls',
-  ]) {
-    final file = File('$directory/$name');
-    if (file.existsSync()) return file;
-  }
-  throw FileSystemException(
-    'Public loopback TLS test fixture was not found.',
-    name,
-  );
-}
-
-SecurityContext _serverContext() => SecurityContext()
-  ..useCertificateChain(_fixture('public-test-server.pem').path)
-  ..usePrivateKey(_fixture('public-test-server-key.pem').path);
 
 final class _TlsPeer {
   _TlsPeer(this.socket, this.context, {required bool implicitTls}) {

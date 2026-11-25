@@ -11,7 +11,7 @@ SecurityContext localTlsServerContext() => SecurityContext()
 
 SecurityContext localTlsTrustContext() =>
     SecurityContext(withTrustedRoots: false)
-      ..setTrustedCertificates(_fixture('loopback-cert.pem').path);
+      ..setTrustedCertificates(_fixture('loopback-root.pem').path);
 
 File _fixture(String name) {
   for (final directory in [
