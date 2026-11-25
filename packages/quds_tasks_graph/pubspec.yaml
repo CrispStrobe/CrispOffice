@@ -1,0 +1,16 @@
+name: quds_tasks_graph
+description: Portable Microsoft Graph To Do task adapter with bounded HTTP ports.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  quds_tasks_core:
+    path: ../quds_tasks_core
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0

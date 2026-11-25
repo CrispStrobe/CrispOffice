@@ -65,3 +65,21 @@ local deletion when remote versions or unknown payloads differ. Coupled-field
 regressions cover reopening against a remote completion timestamp and reversed
 start/due dates, without guessed conversions between date kinds or zones. These
 tests validate an in-memory reconciliation plan, not durable synchronization.
+
+## Microsoft Graph adapter checkpoint
+
+From `packages/quds_tasks_graph`, strict analysis and formatting passed. The
+direct installed runner executed **35 passing tests**. JavaScript compilation
+of `test/compile/portable_import.dart` and execution in Node both passed.
+
+Fake-transport tests cover scoped cursors and credential origin, list/task
+delta pagination, empty continuations, final-event handling for repeated IDs,
+tombstones, sparse and explicit-clear writes, date/HTML preservation, fresh
+recurrence checks before completion changes, operation-marker recovery,
+authentication refresh, throttling, expired cursors, uncertain writes, and
+byte/item limits. Native policy tests exercise refusal before unsafe dispatch.
+
+No live Graph request was made. Conditional-write semantics, native network
+behavior against Microsoft, personal/work account consent, extension expansion,
+and To Do date-only display remain acceptance gates. Protected-list admission,
+durable state and token persistence remain host integration responsibilities.

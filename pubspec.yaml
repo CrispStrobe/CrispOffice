@@ -12,6 +12,7 @@ environment:
 
 workspace:
   - packages/quds_tasks_core
+  - packages/quds_tasks_graph
   - packages/quds_mail_core
   - packages/quds_mail_mime
   - packages/quds_mail_store

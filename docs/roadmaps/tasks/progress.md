@@ -58,6 +58,29 @@ Remote consent commit: `12dacab624cc655ac7b8734be9dfb0c83797fde2`.
 - This is a complete portable planning library. It performs no network or
   database IO; durable transactions/outbox and host integration remain T4/T5.
 
+Remote core commit: `47c075883aef5a4a81004d262e5c0a77a73ac945`.
+
+## Checkpoint 3 — Microsoft Graph To Do adapter
+
+- Added `quds_tasks_graph` with injectable account-bound tokens/HTTP and an
+  optional native HTTPS transport. It implements list discovery, list/task delta
+  pages, exact task reads, create, sparse update, delete, and read-only recovery
+  of uncertain creates using a stable operation marker.
+- Bound cursors to the account, operation and exact collection. Empty pages,
+  repeated identities and tombstones retain their intended change semantics.
+- Enforced transport deadlines, byte/item limits and no redirects. Mutations
+  never automatically retry; ambiguous outcomes remain explicit.
+- Preserved remote date/timezone pairs and unknown JSON fields. Completion
+  changes inspect recurrence first; unsupported recurrence behavior is refused.
+- Validation: **35 tests passed**, strict analysis and formatting clean,
+  JavaScript import compilation and Node execution passed.
+- Conditional writes are not advertised. A read/write race remains until live
+  qualification establishes an atomic server contract. Host code must enforce
+  discovery's protected-list metadata, persist pages/outbox atomically, fence
+  disconnected accounts and retain tokens securely before enabling sync.
+- No Microsoft account was connected. Personal/work account behavior, extension
+  recovery and date-only display parity still require live acceptance tests.
+
 ## Validation and remote checkpoints
 
 Each following entry records the completed scope, actual checks, remaining
