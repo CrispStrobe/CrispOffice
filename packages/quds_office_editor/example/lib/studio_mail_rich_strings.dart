@@ -70,16 +70,9 @@ extension StudioMailRichStrings on StudioStrings {
     'Der gespeicherte Text und die Formatierung stimmen nicht überein. Der gespeicherte Klartext wird angezeigt. Schließen Sie ohne Speichern, um den ursprünglichen Entwurf für die Wiederherstellung zu behalten.',
     'لا يتطابق النص المحفوظ مع التنسيق. يظهر النص العادي المحفوظ. أغلق دون حفظ للاحتفاظ بالمسودة الأصلية واستعادتها لاحقًا.',
   );
-  String get mailRichTemplateTitle => _richText(
-    'Save a plain-text template?',
-    'Klartextvorlage speichern?',
-    'حفظ قالب نصي عادي؟',
+  String get mailRichTemplateConflict => _richText(
+    'The template text and formatting disagree. The saved plain text is shown. Cancel to keep the original template for recovery.',
+    'Text und Formatierung der Vorlage stimmen nicht überein. Der gespeicherte Klartext wird angezeigt. Brechen Sie ab, um die ursprüngliche Vorlage für die Wiederherstellung zu behalten.',
+    'لا يتطابق نص القالب مع تنسيقه. يظهر النص العادي المحفوظ. ألغِ العملية للاحتفاظ بالقالب الأصلي واستعادته لاحقًا.',
   );
-  String get mailRichTemplateHelp => _richText(
-    'Message templates currently keep plain text. This template will include the text without formatting. The draft keeps its formatting.',
-    'Nachrichtenvorlagen speichern derzeit Klartext. Diese Vorlage enthält den Text ohne Formatierung. Der Entwurf behält seine Formatierung.',
-    'تحتفظ قوالب الرسائل حاليًا بالنص العادي. سيتضمن هذا القالب النص دون تنسيق. تحتفظ المسودة بتنسيقها.',
-  );
-  String get mailRichTemplateConfirm =>
-      _richText('Use plain text', 'Klartext verwenden', 'استخدام النص العادي');
 }

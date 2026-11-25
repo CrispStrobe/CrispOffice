@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'studio_mail_compose_tools.dart';
 import 'studio_mail_compose_tools_strings.dart';
 import 'studio_mail_identity_strings.dart';
+import 'studio_mail_rich_body.dart';
+import 'studio_mail_rich_strings.dart';
 import 'studio_mail_strings.dart';
 import 'studio_strings.dart';
 
@@ -122,13 +125,10 @@ class _StudioMailIdentityTemplatesState
       settings: settings,
       initial: template,
       isCurrent: () =>
-          _canEdit &&
-          (settings.account == widget.settings.account &&
-              settings.revision == widget.settings.revision),
+          _canEdit && identical(settings, widget.settings),
     );
     if (!_canEdit ||
-        !(settings.account == widget.settings.account &&
-            settings.revision == widget.settings.revision) ||
+        !identical(settings, widget.settings) ||
         result == null) {
       return;
     }
@@ -472,12 +472,20 @@ class _TemplateDialogState extends State<_TemplateDialog> {
     text: widget.initial?.subject ?? '',
   );
   late final WordEditorController _body;
+  late final bool _initialBodyConflict;
   late String? _sender = widget.initial?.senderIdentityId;
   bool _invalid = false;
+  bool _bodyUnsupported = false;
   @override
   void initState() {
     super.initState();
-    final document = WmlDocument.empty(text: widget.initial?.body ?? '');
+    final richBody = widget.initial?.richBody;
+    _initialBodyConflict =
+        richBody != null &&
+        richBody.plainText != studioMailComposeText(widget.initial!.body);
+    final document = richBody == null || _initialBodyConflict
+        ? WmlDocument.empty(text: widget.initial?.body ?? '')
+        : studioMailDocumentFromRichBody(richBody);
     for (final section in document.sections) {
       section.pageSize = section.pageSize.copyWith(width: 360);
       section.margins = const WmlPageMargins(
@@ -517,8 +525,27 @@ class _TemplateDialogState extends State<_TemplateDialog> {
   }
 
   void _apply() {
-    if (!widget.isCurrent()) return;
+    if (!mounted) return;
+    if (!widget.isCurrent()) {
+      // The owner can retire while the modal route is otherwise unchanged.
+      // Refresh its feedback and controls when a retained callback is used.
+      setState(() {});
+      return;
+    }
+    if (_initialBodyConflict) return;
     _body.commitPendingEdits();
+    final MailComposeBody? richBody;
+    try {
+      // Plain templates retain their existing text/structure limits. This
+      // still checks unsupported Word content before taking a text snapshot.
+      richBody = studioMailOptionalRichBodyFromDocument(_body.document);
+    } on Object {
+      setState(() {
+        _bodyUnsupported = true;
+        _invalid = false;
+      });
+      return;
+    }
     final item = MailMessageTemplate(
       id: widget.initial != null && !widget.createFromSnapshot
           ? widget.initial!.id
@@ -528,9 +555,12 @@ class _TemplateDialogState extends State<_TemplateDialog> {
       cc: _cc.text,
       bcc: _bcc.text,
       subject: _subject.text,
-      body: _body.document.paragraphs
-          .map((paragraph) => paragraph.text)
-          .join('\n'),
+      body:
+          richBody?.plainText ??
+          _body.document.paragraphs
+              .map((paragraph) => paragraph.text)
+              .join('\n'),
+      richBody: richBody,
       senderIdentityId: _sender,
     );
     final next = widget.settings.copyWith(
@@ -541,7 +571,14 @@ class _TemplateDialogState extends State<_TemplateDialog> {
       ],
     );
     if (!next.isValid) {
-      setState(() => _invalid = true);
+      setState(() {
+        _bodyUnsupported = false;
+        _invalid = true;
+      });
+      return;
+    }
+    if (!widget.isCurrent()) {
+      setState(() {});
       return;
     }
     Navigator.of(context).pop(item);
@@ -628,6 +665,18 @@ class _TemplateDialogState extends State<_TemplateDialog> {
               },
             ),
           ),
+          if (_initialBodyConflict)
+            Text(
+              widget.strings.mailRichTemplateConflict,
+              key: const ValueKey('studio-mail-template-rich-conflict'),
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          if (_bodyUnsupported)
+            Text(
+              widget.strings.mailRichUnsupported,
+              key: const ValueKey('studio-mail-template-rich-unsupported'),
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
           if (_invalid)
             Text(
               widget.strings.mailMessageTemplateInvalid,
@@ -644,7 +693,7 @@ class _TemplateDialogState extends State<_TemplateDialog> {
       ),
       FilledButton(
         key: const ValueKey('studio-mail-template-apply'),
-        onPressed: widget.isCurrent() ? _apply : null,
+        onPressed: widget.isCurrent() && !_initialBodyConflict ? _apply : null,
         child: Text(widget.strings.mailComposeQuickTextApply),
       ),
     ],

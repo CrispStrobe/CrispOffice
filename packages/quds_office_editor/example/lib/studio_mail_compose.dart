@@ -1308,9 +1308,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       final prepared = applyStudioMailTemplate(template, settings);
       _replacingTemplate = true;
       try {
-        // Confirmed full-message replacement must not inherit an old run's
-        // links or paragraph formatting through plain-text insertion.
-        final document = WmlDocument.empty(text: prepared.body);
+        // Replace the complete document so only the selected template's
+        // supported formatting survives, without old links or undo history.
+        final document = prepared.richBody == null
+            ? WmlDocument.empty(text: prepared.body)
+            : studioMailDocumentFromRichBody(prepared.richBody!);
         for (final section in document.sections) {
           section.margins = const WmlPageMargins(
             top: 12,
@@ -1387,41 +1389,16 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       bcc: snapshot.bcc,
       subject: snapshot.subject,
       body: snapshot.body,
+      richBody: snapshot.richBody,
       senderIdentityId: identity?.id,
     );
     bool current() =>
         _toolsCurrent &&
         epoch == _toolsEpoch &&
+        revision == _editRevision &&
         identical(settings, _composeSettings);
     setState(() => _editingTools = true);
     try {
-      if (snapshot.richBody != null) {
-        final confirmed = await showDialog<bool>(
-          context: context,
-          builder: (dialogContext) => AlertDialog(
-            title: Text(widget.strings.mailRichTemplateTitle),
-            content: Text(widget.strings.mailRichTemplateHelp),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(dialogContext, false),
-                child: Text(widget.strings.cancel),
-              ),
-              FilledButton(
-                key: const ValueKey('studio-mail-template-plain-confirm'),
-                onPressed: () => Navigator.pop(dialogContext, true),
-                child: Text(widget.strings.mailRichTemplateConfirm),
-              ),
-            ],
-          ),
-        );
-        if (!mounted || !current() || confirmed != true) return;
-        if (revision != _editRevision) {
-          setState(
-            () => _templateError = widget.strings.mailMessageTemplateChanged,
-          );
-          return;
-        }
-      }
       final template = await showStudioMailTemplateEditor(
         context,
         strings: widget.strings,

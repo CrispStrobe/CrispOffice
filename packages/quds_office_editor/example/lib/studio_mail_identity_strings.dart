@@ -70,9 +70,9 @@ extension StudioMailIdentityStrings on StudioStrings {
   String get mailMessageTemplateSave =>
       _identityText('Save as template', 'Als Vorlage speichern', 'حفظ كقالب');
   String get mailMessageTemplateHelp => _identityText(
-    'Save recipients, subject, plain-text body and an optional sender. Templates contain no attachments and never send a message automatically.',
-    'Speichern Sie Empfänger, Betreff, Klartext und optional einen Absender. Vorlagen enthalten keine Anhänge und senden niemals automatisch eine Nachricht.',
-    'احفظ المستلمين والموضوع والنص ومرسلًا اختياريًا. لا تحتوي القوالب على مرفقات ولا ترسل رسالة تلقائيًا.',
+    'Save recipients, subject, supported text formatting and an optional sender. Templates contain no attachments and never send a message automatically.',
+    'Speichern Sie Empfänger, Betreff, unterstützte Textformatierungen und optional einen Absender. Vorlagen enthalten keine Anhänge und senden niemals automatisch eine Nachricht.',
+    'احفظ المستلمين والموضوع وتنسيقات النص المدعومة ومرسلًا اختياريًا. لا تحتوي القوالب على مرفقات ولا ترسل رسالة تلقائيًا.',
   );
   String get mailMessageTemplateReplace => _identityText(
     'Replace this draft?',
@@ -85,9 +85,9 @@ extension StudioMailIdentityStrings on StudioStrings {
     'يستبدل القالب المستلمين والموضوع والنص والمرسل. تُزال المرفقات الحالية وروابط الرد. ينشئ ذلك رسالة مستقلة ولا يرسلها.',
   );
   String get mailMessageTemplateInvalid => _identityText(
-    'Use a unique name, a subject of at most 512 characters and a body of at most 16,384 characters. Recipient fields are checked again before sending.',
-    'Verwenden Sie einen eindeutigen Namen, höchstens 512 Zeichen im Betreff und 16.384 Zeichen im Text. Empfänger werden vor dem Senden erneut geprüft.',
-    'استخدم اسمًا فريدًا وموضوعًا لا يتجاوز 512 حرفًا ونصًا لا يتجاوز 16,384 حرفًا. تُفحص حقول المستلمين مجددًا قبل الإرسال.',
+    'Use a unique name, a subject of at most 512 characters and a body of at most 16,384 characters. Simplify formatting or remove unused writing tools if storage is full. Recipient fields are checked again before sending.',
+    'Verwenden Sie einen eindeutigen Namen, höchstens 512 Zeichen im Betreff und 16.384 Zeichen im Text. Vereinfachen Sie bei vollem Speicher die Formatierung oder entfernen Sie ungenutzte Schreibhilfen. Empfänger werden vor dem Senden erneut geprüft.',
+    'استخدم اسمًا فريدًا وموضوعًا لا يتجاوز 512 حرفًا ونصًا لا يتجاوز 16,384 حرفًا. بسّط التنسيق أو احذف أدوات الكتابة غير المستخدمة إذا امتلأت مساحة التخزين. تُفحص حقول المستلمين مجددًا قبل الإرسال.',
   );
   String get mailMessageTemplateChanged => _identityText(
     'The draft or account changed while the template was open. Review the current draft and try again.',

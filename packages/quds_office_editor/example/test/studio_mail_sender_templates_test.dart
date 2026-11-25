@@ -106,6 +106,114 @@ void main() {
     );
   });
 
+  test('rich templates reject conflicting alternatives before application', () {
+    final rich = MailComposeBody(
+      paragraphs: [
+        MailComposeParagraph(runs: [MailComposeRun(text: 'Rich', bold: true)]),
+      ],
+    );
+    final conflicting = _template.copyWith(body: 'Other', richBody: rich);
+    final settings = _settings().copyWith(templates: [conflicting]);
+    expect(settings.isValid, isFalse);
+    expect(
+      () => applyStudioMailTemplate(conflicting, settings),
+      throwsA(isA<StudioMailComposeToolsException>()),
+    );
+  });
+
+  test(
+    'a rich template reopens and retains both alternatives in the frozen Outbox copy',
+    () async {
+      final directory = await Directory.systemTemp.createTemp(
+        'studio-rich-template-',
+      );
+      final opened = <StudioMailDraftStore>[];
+      final identity = StudioMailDraftAccount(
+        provider: 'imap',
+        endpoint: 'imaps://mail.example.test:993',
+        login: 'writer',
+        sender: 'account@example.test',
+      );
+      final rich = MailComposeBody(
+        paragraphs: [
+          MailComposeParagraph(
+            alignment: MailComposeAlignment.center,
+            runs: [
+              MailComposeRun(text: 'Formatted <literal> ', bold: true),
+              MailComposeRun(
+                text: 'link',
+                italic: true,
+                link: 'https://example.test/status?a=1&b=2',
+              ),
+            ],
+          ),
+          MailComposeParagraph(
+            rightToLeft: true,
+            runs: [MailComposeRun(text: 'مرحبا 🌍', underline: true)],
+          ),
+        ],
+      );
+      final template = _template.copyWith(
+        body: rich.plainText.replaceAll('\n', '\r\n'),
+        richBody: rich,
+      );
+      Future<StudioMailDraftStore> open() async {
+        final store = await openStudioMailDraftStore(
+          identity,
+          appDirectory: directory,
+        );
+        opened.add(store);
+        return store;
+      }
+
+      try {
+        final first = await open();
+        await first.load();
+        final firstTools = first as StudioMailComposeToolsStore;
+        final initial = await firstTools.loadComposeSettings();
+        await firstTools.saveComposeSettings(
+          initial.copyWith(
+            templates: [template],
+            senderIdentities: const [_identity],
+          ),
+        );
+        await first.close();
+
+        final second = await open();
+        await second.load();
+        final settings = await (second as StudioMailComposeToolsStore)
+            .loadComposeSettings();
+        final restoredTemplate = settings.templates.single;
+        expect(restoredTemplate.body, template.body);
+        expect(restoredTemplate.richBody!.html, rich.html);
+        final draft = applyStudioMailTemplate(restoredTemplate, settings);
+        expect(draft.body, rich.plainText);
+        expect(draft.richBody!.html, rich.html);
+        expect(draft.hasConsistentBody, isTrue);
+        expect(draft.sender, StudioMailSender.fromIdentity(_identity));
+        await second.save(draft, submissionUncertain: false);
+        final entry = await (second as StudioMailOutboxStore).enqueueOutbox(
+          draft,
+          'account@example.test',
+        );
+        final copy = StudioMailOutboxContent.fromEntry(entry).draft;
+        expect(copy.body, rich.plainText);
+        expect(copy.richBody!.html, rich.html);
+        expect(copy.bcc, template.bcc);
+        expect(copy.sender, draft.sender);
+        final parsed = const QudsMimeCodec()
+            .parse(entry.prepared.wire.bytes)
+            .message!;
+        expect(parsed.envelope.bcc, isEmpty);
+      } finally {
+        for (final store in opened.reversed) {
+          await store.close();
+        }
+        await directory.delete(recursive: true);
+      }
+    },
+  );
+
   test(
     'MIME and editable Outbox copies preserve From name and Reply-To without exposing Bcc',
     () {

@@ -192,7 +192,9 @@ void main() {
       final controller = _body(tester);
       controller.caret.logicalIndex = _plain.body.length;
       controller.caret.collapseSelection();
-      controller.insertText('\nNext paragraph');
+      controller.insertParagraphBreak();
+      controller.insertText('Next paragraph');
+      expect(controller.document.paragraphs, hasLength(2));
       await _pump(tester);
       await tester.pump(const Duration(milliseconds: 600));
       expect(saved.last.body, '${_plain.body}\nNext paragraph');
@@ -226,11 +228,14 @@ void main() {
       expect(_body(tester).activeRunProps.bold, isFalse);
       expect(saved.last.richBody, isNull);
       await _tap(tester, _key('bold'));
-      _body(tester).insertText('First\n');
+      _body(tester).insertText('First');
+      _body(tester).insertParagraphBreak();
+      expect(_body(tester).document.paragraphs, hasLength(2));
       await _pump(tester);
       await tester.pump(const Duration(milliseconds: 600));
       final reopened = saved.last;
       expect(reopened.body, 'First\n');
+      expect(reopened.richBody!.paragraphs, hasLength(2));
       expect(reopened.richBody!.paragraphs.last.runs.single.text, isEmpty);
       expect(reopened.richBody!.paragraphs.last.runs.single.bold, isTrue);
       await tester.pumpWidget(const SizedBox.shrink());
@@ -273,10 +278,13 @@ void main() {
       final controller = _body(tester);
       controller.caret.logicalIndex = rich.plainText.length;
       controller.caret.collapseSelection();
-      controller.insertText('\nContinuation');
+      controller.insertParagraphBreak();
+      controller.insertText('Continuation');
+      expect(controller.document.paragraphs, hasLength(2));
       await _pump(tester);
       await tester.pump(const Duration(milliseconds: 600));
       expect(saved.last.body, '${rich.plainText}\nContinuation');
+      expect(saved.last.richBody!.paragraphs, hasLength(2));
       final continuation = saved.last.richBody!.paragraphs.last.runs.single;
       expect(continuation.text, 'Continuation');
       expect(continuation.link, isNull);
@@ -490,7 +498,7 @@ void main() {
   );
 
   testWidgets(
-    'saving a rich template confirms plain text while preserving the live reply and attachment',
+    'saving a rich template preserves formatting and the live reply and attachment',
     (tester) async {
       final rich = _rich();
       final tools = _Tools();
@@ -519,13 +527,23 @@ void main() {
         ),
       );
       await _tap(tester, _key('save-template'));
-      expect(find.text(_strings.mailRichTemplateHelp), findsOneWidget);
       expect(tools.writes, 0);
-      await _tap(tester, _key('template-plain-confirm'));
-      await tester.enterText(_key('template-name'), 'Plain snapshot');
+      final templateBody = tester
+          .widget<QudsWordEditor>(_key('template-body'))
+          .controller;
+      expect(
+        templateBody.document.paragraphs.single.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .bold,
+        isTrue,
+      );
+      await tester.enterText(_key('template-name'), 'Rich snapshot');
       await _tap(tester, _key('template-apply'));
       expect(tools.writes, 1);
       expect(tools.settings.templates.single.body, rich.plainText);
+      expect(tools.settings.templates.single.richBody!.html, rich.html);
       expect(
         _body(tester).document.paragraphs.single.inlines
             .whereType<WmlRun>()
@@ -540,6 +558,98 @@ void main() {
       expect(sent!.attachments, same(attachments));
       expect(sent!.bcc, 'private@example.test');
       expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'a rich template replaces the document and preserves its formatting through send',
+    (tester) async {
+      final rich = _rich();
+      final template = MailMessageTemplate(
+        id: 'rich-template',
+        name: 'Rich template',
+        to: 'new@example.test',
+        bcc: 'template-private@example.test',
+        subject: 'Rich replacement',
+        body: rich.plainText,
+        richBody: rich,
+      );
+      final tools = _Tools(templates: [template]);
+      final saved = <StudioMailDraft>[];
+      StudioMailDraft? sent;
+      await _open(
+        tester,
+        tools: tools,
+        save: (draft) async => saved.add(draft),
+        finish: (draft) => sent = draft,
+        initial: StudioMailDraft(
+          to: _plain.to,
+          cc: 'old-copy@example.test',
+          subject: _plain.subject,
+          body: 'Old body',
+          thread: StudioMailThread.replyTo(
+            MailEnvelope(messageId: '<old-parent@example.test>'),
+          ),
+          attachments: StudioMailAttachments.from([
+            StudioMailAttachment(
+              name: 'old.txt',
+              bytes: Uint8List.fromList([65]),
+            ),
+          ]),
+        ),
+      );
+      _body(tester).insertText(' old edit');
+      await _pump(tester);
+      await _tap(tester, _key('use-template'));
+      await _tap(tester, find.text('Rich template'));
+      await _tap(tester, _key('template-replace-confirm'));
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(saved.last.richBody!.html, rich.html);
+      expect(saved.last.to, template.to);
+      expect(saved.last.cc, isEmpty);
+      expect(saved.last.bcc, template.bcc);
+      expect(saved.last.thread.inReplyTo, isNull);
+      expect(saved.last.thread.references, isEmpty);
+      expect(saved.last.attachments.isEmpty, isTrue);
+      expect(tester.widget<IconButton>(_key('undo')).onPressed, isNull);
+      await _tap(tester, find.widgetWithText(FilledButton, _strings.send));
+      expect(sent!.richBody!.html, rich.html);
+      expect(sent!.body, rich.plainText);
+      expect(sent!.subject, template.subject);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'a draft revision change while saving a template prevents a stale settings write',
+    (tester) async {
+      final rich = _rich();
+      final tools = _Tools();
+      await _open(
+        tester,
+        tools: tools,
+        initial: StudioMailDraft(
+          to: _plain.to,
+          subject: _plain.subject,
+          body: rich.plainText,
+          richBody: rich,
+        ),
+      );
+      final liveBody = _body(tester);
+      await _tap(tester, _key('save-template'));
+      await tester.enterText(_key('template-name'), 'Stale snapshot');
+      liveBody.insertText(' changed after snapshot');
+      await _pump(tester);
+      await _tap(tester, _key('template-apply'));
+      expect(tools.writes, 0);
+      expect(tools.settings.templates, isEmpty);
+      expect(_key('template-body'), findsOneWidget);
+      expect(
+        liveBody.document.paragraphs.single.text,
+        contains('changed after snapshot'),
+      );
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
     },
   );
 

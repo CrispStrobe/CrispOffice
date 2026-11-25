@@ -153,6 +153,7 @@ StudioMailDraft applyStudioMailTemplate(
     bcc: template.bcc,
     subject: template.subject,
     body: studioMailComposeText(template.body),
+    richBody: template.richBody,
     sender: identity == null ? null : StudioMailSender.fromIdentity(identity),
   );
 }

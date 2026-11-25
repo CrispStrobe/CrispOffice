@@ -337,9 +337,12 @@ void main() {
     await tester.enterText(_field(strings.mailBcc), 'hidden@example.invalid');
     final body = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
     body.controller.insertText('Group message');
+    // Finish the pending field/caret scroll before measuring the Send target.
+    await _pump(tester);
     final send = find.widgetWithText(FilledButton, strings.send);
     await tester.ensureVisible(send);
     await _pump(tester);
+    expect(send.hitTestable(), findsOneWidget);
     await tester.tap(send);
     await _pump(tester);
     expect(snapshot?.recipients.envelope, [
