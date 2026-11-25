@@ -54,13 +54,14 @@ CalDavTaskProvider _provider(
   String owner = 'account',
   bool exact = true,
   String? password = 'app-password',
+  CalDavServerProfile profile = CalDavServerProfile.generic,
 }) {
   final client = MockClient(handle);
   addTearDown(client.close);
   return CalDavTaskProvider(
     account: TaskAccountId(owner, provider: 'caldav'),
     settings: CalDavConnectionSettings(
-      profile: CalDavServerProfile.generic,
+      profile: profile,
       username: 'dav-user',
       discoveryUrl: Uri.parse('$_origin/'),
       collectionUrl: exact ? Uri.parse('$_origin$_list') : null,
@@ -390,6 +391,72 @@ void main() {
     expect(expired.checkpoint, isNull);
   });
 
+  test(
+    'mailbox sync accepts its bare ETags and omits a client result limit',
+    () async {
+      const bare = '<d:getetag>ox-version</d:getetag>';
+      final provider = _provider((request) async {
+        if (request.method == 'PROPFIND') {
+          return _multi(
+            _props(
+              _list,
+              '$_calendar$_tasks$_sync<d:sync-token>urn:sync:1</d:sync-token>',
+            ),
+          );
+        }
+        if (request.body.contains('calendar-query')) return _multi('');
+        if (request.body.contains('calendar-multiget')) {
+          return _multi(_props(_a, bare + _data(_todo)));
+        }
+        expect(request.body, isNot(contains('nresults')));
+        return _multi(
+          '${_props(_a, bare)}<d:sync-token>urn:sync:2</d:sync-token>',
+        );
+      }, profile: CalDavServerProfile.mailboxOrg);
+      final list = await _discover(provider);
+      final first = _value(await provider.pull(list, knownRevisions: {}));
+      final second = _value(
+        await provider.pull(list, knownRevisions: {}, cursor: first.checkpoint),
+      );
+      expect(second.upserts.single.revision, '"ox-version"');
+    },
+  );
+
+  test(
+    'a DAV result-limit precondition retries only the read without the limit',
+    () async {
+      var reports = 0;
+      final provider = _provider((request) async {
+        if (request.method == 'PROPFIND') {
+          return _multi(
+            _props(
+              _list,
+              '$_calendar$_tasks$_sync<d:sync-token>urn:sync:1</d:sync-token>',
+            ),
+          );
+        }
+        if (request.body.contains('calendar-query')) return _multi('');
+        reports++;
+        if (reports == 1) {
+          expect(request.body, contains('nresults'));
+          return http.Response(
+            '<d:error $_ns><d:number-of-matches-within-limits/></d:error>',
+            507,
+          );
+        }
+        expect(request.body, isNot(contains('nresults')));
+        return _multi('<d:sync-token>urn:sync:2</d:sync-token>');
+      });
+      final list = await _discover(provider);
+      final first = _value(await provider.pull(list, knownRevisions: {}));
+      final second = _value(
+        await provider.pull(list, knownRevisions: {}, cursor: first.checkpoint),
+      );
+      expect(second.checkpoint, isNot(first.checkpoint));
+      expect(reports, 2);
+    },
+  );
+
   test('unsupported sync report falls back to a complete ETag query', () async {
     var queries = 0;
     final provider = _provider((request) async {
@@ -537,6 +604,47 @@ void main() {
       );
       expect(problem.code, TaskProblemCode.unsupported);
       expect(problem.mutationMayHaveOccurred, isTrue);
+    },
+  );
+
+  test(
+    'create and recovery find a server-assigned href by exact UID',
+    () async {
+      String? accepted;
+      var writes = 0;
+      final provider = _provider((request) async {
+        if (request.method == 'PROPFIND') {
+          return _multi(_props(_list, '$_calendar$_tasks$_rights'));
+        }
+        if (request.method == 'PUT') {
+          writes++;
+          accepted = request.body;
+          return http.Response('', 201);
+        }
+        if (request.method == 'GET') return http.Response('', 404);
+        if (request.body.contains('calendar-query')) {
+          expect(request.body, contains('server-id@crispoffice'));
+          return _multi(_props(_b, _etag('mapped')));
+        }
+        return _multi(_props(_b, _etag('mapped') + _data(accepted!)));
+      });
+      final list = await _discover(provider);
+      final created = _value(
+        await provider.create(
+          list,
+          operationId: 'server-id',
+          fields: const TaskFields(title: 'Mapped'),
+          timestamp: DateTime.utc(2030),
+        ),
+      );
+      expect(created.id, _task(list, _b));
+      expect(
+        _value(
+          await provider.recoverCreate(list, operationId: 'server-id'),
+        )?.id,
+        created.id,
+      );
+      expect(writes, 1);
     },
   );
 

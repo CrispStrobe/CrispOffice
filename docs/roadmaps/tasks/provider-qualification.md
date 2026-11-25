@@ -55,6 +55,14 @@ round trips; permissions on shared collections.
 
 ## mailbox.org / Open-Xchange
 
+
+A live mailbox.org run passed basic VTODO discovery and CRUD on an isolated
+collection, including UID recovery, HTTP 412 for a stale If-Match, a sync-token
+delta and a deletion tombstone. It also verified removal of the test list.
+Open-Xchange assigned canonical hrefs to new objects and returned bare ETags
+in multistatus reports. The mailbox profile normalizes these tags and omits
+the client-specified sync result limit.
+
 mailbox.org explicitly documents bidirectional task synchronization over CalDAV.
 Use `https://dav.mailbox.org/` or the exact task-list Properties URL. Recommend a
 dedicated DAV app password; this is required when 2FA is enabled.

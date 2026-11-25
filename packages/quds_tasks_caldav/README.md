@@ -32,8 +32,24 @@ client when disconnecting the account. Use one client per account.
 - HTTP responses, XML structure and resource counts are bounded. A failed or
   incomplete report leaves the caller's stored cursor and cached tasks intact.
 
-The API has fixture and loopback coverage. Nextcloud, ownCloud, Open-Xchange,
-and mailbox.org require live-account qualification.
+The API has fixture and loopback coverage. Live mailbox.org basic tasks
+passed on a disposable list. Other deployments have separate qualification gates.
+
+## Live mailbox.org test
+
+From the workspace root, run discovery using environment variables or pass a
+credential file containing `MBOX_LOGIN` and `MBOX_PW`.
+
+```sh
+dart packages/quds_tasks_caldav/tool/live_mailbox.dart ../.env
+dart packages/quds_tasks_caldav/tool/live_mailbox.dart ../.env --isolated
+```
+
+The second command creates a uniquely named test list, verifies ownership
+before testing and removes it afterward. Set `MBOX_TASK_TEST_URL` to use an
+existing empty test list instead. The runner verifies create, read-back
+recovery, update, server-side stale-ETag rejection, incremental changes and
+deletion. Its logs report operation statuses without credentials or task data.
 
 ## What works
 

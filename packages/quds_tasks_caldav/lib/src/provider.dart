@@ -203,13 +203,21 @@ final class CalDavTaskProvider {
     if (token == null) {
       return _snapshot(list, collection, known, tryToken: false);
     }
-    final response = await _xml(
+    Future<http.Response> syncReport({required bool limited}) => _xml(
       'REPORT',
       collection,
       '<D:sync-collection $namespaces><D:sync-token>${xmlText(token)}</D:sync-token>'
-          '<D:sync-level>1</D:sync-level><D:limit><D:nresults>256</D:nresults></D:limit>'
+          '<D:sync-level>1</D:sync-level>'
+          '${limited ? '<D:limit><D:nresults>256</D:nresults></D:limit>' : ''}'
           '<D:prop><D:getetag/></D:prop></D:sync-collection>',
     );
+    // OX can reject a client-specified page size even for a single change.
+    var response = await syncReport(limited: !_oxProfile);
+    if (!_oxProfile &&
+        response.statusCode == 507 &&
+        _hasDavError(response, 'number-of-matches-within-limits')) {
+      response = await syncReport(limited: false);
+    }
     if (const {403, 409, 410}.contains(response.statusCode) &&
         _hasDavError(response, 'valid-sync-token')) {
       return TaskSyncPage(
@@ -220,6 +228,9 @@ final class CalDavTaskProvider {
       );
     }
     if (const {405, 501}.contains(response.statusCode) ||
+        (response.statusCode == 507 &&
+            (_oxProfile ||
+                _hasDavError(response, 'number-of-matches-within-limits'))) ||
         (response.statusCode == 403 &&
             _hasDavError(response, 'supported-report'))) {
       return _snapshot(list, collection, known, tryToken: false);
@@ -434,13 +445,47 @@ final class CalDavTaskProvider {
     required String operationId,
   }) => _run(() async {
     final id = _creationId(list, operationId);
+    final uid = _creationUid(operationId);
     final item = await _read(list, id);
-    if (item == null) return null;
-    if (item.document.uid != _creationUid(operationId)) {
+    if (item == null) return _findCreatedUid(list, uid);
+    if (item.document.uid != uid) {
       throw const DavFailure(TaskProblemCode.conflict);
     }
     return item.document.toRemoteTask(id, etag: item.etag);
   });
+
+  // A server can assign a different resource href after accepting a PUT.
+  // The operation's exact UID is the durable correlation key in that case.
+  Future<RemoteTask?> _findCreatedUid(CalDavTaskList list, String uid) async {
+    final collection = _collection(list);
+    final rows = await _multi(
+      'REPORT',
+      collection,
+      '<C:calendar-query $namespaces><D:prop><D:getetag/></D:prop>'
+          '<C:filter><C:comp-filter name="VCALENDAR"><C:comp-filter name="VTODO">'
+          '<C:prop-filter name="UID"><C:text-match collation="i;octet">${xmlText(uid)}'
+          '</C:text-match></C:prop-filter></C:comp-filter></C:comp-filter></C:filter>'
+          '</C:calendar-query>',
+      depth: '1',
+    );
+    final changes = _changes(list, collection, rows, incremental: false);
+    final fetched = await _fetch(
+      list,
+      collection,
+      changes.etags,
+      {},
+      mixed: false,
+    );
+    RemoteTask? match;
+    for (final candidate in fetched.upserts) {
+      if (CalDavTodoDocument.parse(candidate.providerData!.raw).uid != uid) {
+        continue;
+      }
+      if (match != null) throw const DavFailure(TaskProblemCode.conflict);
+      match = candidate;
+    }
+    return match;
+  }
 
   Future<TaskResult<RemoteTask>> update(
     CalDavTaskList list,
@@ -539,6 +584,15 @@ final class CalDavTaskProvider {
     try {
       final stored = await _read(list, id);
       final writtenTag = _etag(response.headers['etag']);
+      if (stored == null && condition.containsKey('if-none-match')) {
+        final canonical = await _findCreatedUid(list, document.uid);
+        if (canonical != null &&
+            (writtenTag == null ||
+                !_strong(writtenTag) ||
+                canonical.revision == writtenTag)) {
+          return canonical;
+        }
+      }
       if (stored == null ||
           stored.document.uid != document.uid ||
           (writtenTag != null &&
@@ -672,6 +726,24 @@ final class CalDavTaskProvider {
     allowDiscoveryRedirect: discovery,
   );
 
+  bool get _oxProfile =>
+      settings.profile == CalDavServerProfile.mailboxOrg ||
+      settings.profile == CalDavServerProfile.openXchange;
+
+  String? _etag(String? raw) {
+    final value = raw?.trim();
+    if (value == null || value.length > 1024) return null;
+    if (RegExp(r'^(?:W/)?"[\x21\x23-\x7e\x80-\xff]*"$').hasMatch(value)) {
+      return value;
+    }
+    // Open-Xchange can return an unquoted tag in a DAV multistatus.
+    // Canonicalize only simple tokens under the explicit OX profiles.
+    if (_oxProfile && RegExp(r'^[A-Za-z0-9._~:=+/-]{1,512}$').hasMatch(value)) {
+      return '"$value"';
+    }
+    return null;
+  }
+
   String _encodeCursor(CalDavTaskList list, String? token) =>
       jsonEncode([1, account.provider, account.value, list.id.value, token]);
 
@@ -747,15 +819,6 @@ String? _serverToken(String? token) {
     throw const FormatException('Invalid DAV sync token.');
   }
   return token;
-}
-
-String? _etag(String? raw) {
-  final value = raw?.trim();
-  return value != null &&
-          value.length <= 1024 &&
-          RegExp(r'^(?:W/)?"[\x21\x23-\x7e\x80-\xff]*"$').hasMatch(value)
-      ? value
-      : null;
 }
 
 bool _strong(String tag) => !tag.startsWith('W/');
