@@ -3,12 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_server_search.dart';
+import 'studio_mail_provider_search.dart';
 import 'studio_mail_server_search_strings.dart';
 import 'studio_strings.dart';
 
 typedef StudioMailServerSearchRunner =
     Future<StudioMailServerSearchResult> Function(
       StudioMailServerSearchField field,
+      StudioMailServerSearchRange range,
+      String query,
+      MailCancellationToken cancellation,
+    );
+
+/// Typed cloud/Exchange search without coupling provider results to IMAP MIME.
+typedef StudioMailProviderSearchRunner =
+    Future<MailProviderSearchResult> Function(
+      MailProviderSearchField field,
       StudioMailServerSearchRange range,
       String query,
       MailCancellationToken cancellation,
@@ -21,39 +31,162 @@ Future<mail.MimeMessage?> showStudioMailServerSearchDialog(
   required StudioMailServerSearchRunner search,
 }) => showDialog<mail.MimeMessage>(
   context: context,
-  builder: (_) => _StudioMailServerSearchDialog(
+  builder: (_) => _StudioMailServerSearchDialog<mail.MimeMessage>(
     strings: strings,
     mailboxName: mailboxName,
-    search: search,
+    fields: StudioMailServerSearchField.values,
+    help: strings.mailServerSearchHelp,
+    search: (field, range, query, cancellation) async {
+      final result = await search(field, range, query, cancellation);
+      return _SearchPage(
+        totalMatches: result.totalMatches,
+        precision: MailSearchCountPrecision.exact,
+        hasMore: result.truncated,
+        rows: [
+          for (final message in result.messages)
+            _SearchRow(
+              value: message,
+              id: '${message.uid}',
+              subject: message.decodeSubject() ?? '',
+              from:
+                  message.from
+                      ?.map(
+                        (address) => address.personalName?.isNotEmpty == true
+                            ? '${address.personalName} <${address.email}>'
+                            : address.email,
+                      )
+                      .join(', ') ??
+                  '',
+              date: message.decodeDate(),
+            ),
+        ],
+      );
+    },
   ),
 );
 
-class _StudioMailServerSearchDialog extends StatefulWidget {
+Future<MailHeaderRecord?> showStudioMailProviderSearchDialog(
+  BuildContext context, {
+  required StudioStrings strings,
+  required String mailboxName,
+  required Set<MailProviderSearchField> fields,
+  required StudioMailProviderSearchRunner search,
+}) {
+  if (fields.isEmpty) throw ArgumentError.value(fields, 'fields');
+  final available = [
+    for (final field in StudioMailServerSearchField.values)
+      if (fields.any((supported) => supported.name == field.name)) field,
+  ];
+  return showDialog<MailHeaderRecord>(
+    context: context,
+    builder: (_) => _StudioMailServerSearchDialog<MailHeaderRecord>(
+      strings: strings,
+      mailboxName: mailboxName,
+      fields: available,
+      help: strings.mailProviderSearchHelp,
+      search: (field, range, query, cancellation) async {
+        final result = await search(
+          MailProviderSearchField.values.byName(field.name),
+          range,
+          query,
+          cancellation,
+        );
+        return _SearchPage(
+          totalMatches: result.totalCount,
+          precision: result.countPrecision,
+          hasMore: result.hasMore,
+          rows: [
+            for (final header in result.messages)
+              _SearchRow(
+                value: header,
+                id: header.id.value,
+                subject: header.envelope.subject,
+                from: header.envelope.from
+                    .map(
+                      (address) => address.displayName?.isNotEmpty == true
+                          ? '${address.displayName} <${address.address}>'
+                          : address.address,
+                    )
+                    .join(', '),
+                date: header.envelope.sentAt,
+              ),
+          ],
+        );
+      },
+    ),
+  );
+}
+
+final class _SearchRow<T> {
+  const _SearchRow({
+    required this.value,
+    required this.id,
+    required this.subject,
+    required this.from,
+    this.date,
+  });
+  final T value;
+  final String id;
+  final String subject;
+  final String from;
+  final DateTime? date;
+}
+
+final class _SearchPage<T> {
+  const _SearchPage({
+    required this.rows,
+    required this.precision,
+    required this.hasMore,
+    this.totalMatches,
+  });
+  final List<_SearchRow<T>> rows;
+  final int? totalMatches;
+  final MailSearchCountPrecision precision;
+  final bool hasMore;
+}
+
+class _StudioMailServerSearchDialog<T> extends StatefulWidget {
   const _StudioMailServerSearchDialog({
     required this.strings,
     required this.mailboxName,
+    required this.fields,
+    required this.help,
     required this.search,
   });
 
   final StudioStrings strings;
   final String mailboxName;
-  final StudioMailServerSearchRunner search;
+  final List<StudioMailServerSearchField> fields;
+  final String help;
+  final Future<_SearchPage<T>> Function(
+    StudioMailServerSearchField,
+    StudioMailServerSearchRange,
+    String,
+    MailCancellationToken,
+  )
+  search;
 
   @override
-  State<_StudioMailServerSearchDialog> createState() =>
-      _StudioMailServerSearchDialogState();
+  State<_StudioMailServerSearchDialog<T>> createState() =>
+      _StudioMailServerSearchDialogState<T>();
 }
 
-class _StudioMailServerSearchDialogState
-    extends State<_StudioMailServerSearchDialog> {
+class _StudioMailServerSearchDialogState<T>
+    extends State<_StudioMailServerSearchDialog<T>> {
   final _query = TextEditingController();
-  StudioMailServerSearchField _field = StudioMailServerSearchField.body;
+  late StudioMailServerSearchField _field;
   StudioMailServerSearchRange _range = StudioMailServerSearchRange.anyTime;
   MailCancellationSource? _source;
-  StudioMailServerSearchResult? _result;
+  _SearchPage<T>? _result;
   bool _running = false;
   bool _stopping = false;
   String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _field = widget.fields.first;
+  }
 
   @override
   void dispose() {
@@ -101,6 +234,23 @@ class _StudioMailServerSearchDialogState
       setState(() {
         _running = false;
         _stopping = false;
+      });
+    } on StudioMailProviderSearchFailure catch (error) {
+      if (!mounted || !identical(source, _source)) return;
+      setState(() {
+        _running = false;
+        _stopping = false;
+        _error = switch (error.code) {
+          MailProblemCode.invalidInput =>
+            widget.strings.mailServerSearchInvalid,
+          MailProblemCode.unsupported =>
+            widget.strings.mailServerSearchUnsupported,
+          MailProblemCode.authenticationRequired ||
+          MailProblemCode.permissionDenied =>
+            widget.strings.mailServerSearchAuthorization,
+          MailProblemCode.cancelled || MailProblemCode.staleOperation => null,
+          _ => widget.strings.mailServerSearchFailed,
+        };
       });
     } on FormatException {
       if (!mounted || !identical(source, _source)) return;
@@ -169,7 +319,13 @@ class _StudioMailServerSearchDialogState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(strings.mailServerSearchHelp),
+            Text(widget.help),
+            const SizedBox(height: 4),
+            Text(
+              strings.mailServerSearchFolder(widget.mailboxName),
+              key: const ValueKey('studio-mail-server-folder'),
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -183,7 +339,7 @@ class _StudioMailServerSearchDialogState
                       labelText: strings.mailServerSearchField,
                     ),
                     items: [
-                      for (final field in StudioMailServerSearchField.values)
+                      for (final field in widget.fields)
                         DropdownMenuItem(
                           value: field,
                           child: Text(_fieldLabel(strings, field) ?? ''),
@@ -260,53 +416,59 @@ class _StudioMailServerSearchDialogState
             if (result != null) ...[
               const SizedBox(height: 8),
               Text(
-                strings.mailServerSearchCount(
-                  result.totalMatches,
-                  result.messages.length,
-                ),
+                switch (result.precision) {
+                  MailSearchCountPrecision.exact =>
+                    strings.mailServerSearchCount(
+                      result.totalMatches!,
+                      result.rows.length,
+                    ),
+                  MailSearchCountPrecision.estimate =>
+                    strings.mailServerSearchEstimate(
+                      result.totalMatches!,
+                      result.rows.length,
+                    ),
+                  MailSearchCountPrecision.unknown =>
+                    strings.mailServerSearchUnknown(result.rows.length),
+                },
                 key: const ValueKey('studio-mail-server-count'),
                 style: Theme.of(context).textTheme.labelLarge,
               ),
-              if (result.truncated)
+              if (result.hasMore)
                 Text(
-                  strings.mailServerSearchTruncated,
+                  result.precision == MailSearchCountPrecision.exact
+                      ? strings.mailServerSearchTruncated
+                      : strings.mailServerSearchMorePossible,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               const SizedBox(height: 4),
               Expanded(
-                child: result.isEmpty
+                child: result.rows.isEmpty
                     ? Center(child: Text(strings.mailServerSearchEmpty))
                     : ListView.separated(
-                        itemCount: result.messages.length,
+                        itemCount: result.rows.length,
                         separatorBuilder: (_, _) => const Divider(height: 1),
                         itemBuilder: (context, index) {
-                          final message = result.messages[index];
-                          final from = message.from
-                              ?.map(
-                                (address) =>
-                                    address.personalName?.isNotEmpty == true
-                                    ? '${address.personalName} <${address.email}>'
-                                    : address.email,
-                              )
-                              .join(', ');
+                          final message = result.rows[index];
                           return ListTile(
                             key: ValueKey(
-                              'studio-mail-server-result-${message.uid}',
+                              'studio-mail-server-result-${message.id}',
                             ),
                             title: Text(
-                              message.decodeSubject() ?? '(no subject)',
+                              message.subject.isEmpty
+                                  ? strings.mailServerSearchNoSubject
+                                  : message.subject,
                             ),
                             subtitle: Text(
                               [
-                                if (from != null && from.isNotEmpty) from,
-                                ?message.decodeDate()?.toLocal().toString(),
+                                if (message.from.isNotEmpty) message.from,
+                                ?message.date?.toLocal().toString(),
                               ].join('\n'),
                             ),
                             isThreeLine: true,
                             trailing: const Icon(Icons.open_in_new, size: 18),
                             onTap: _running
                                 ? null
-                                : () => Navigator.pop(context, message),
+                                : () => Navigator.pop(context, message.value),
                           );
                         },
                       ),

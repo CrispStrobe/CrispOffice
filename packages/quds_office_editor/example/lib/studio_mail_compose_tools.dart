@@ -34,11 +34,29 @@ StudioMailDraft applyStudioMailDefaultSignature(
   required bool replyOrForward,
 }) {
   if (!settings.isValid) throw const StudioMailComposeToolsException();
+  final identity = settings.defaultSenderIdentityId == null
+      ? null
+      : settings.senderIdentities.firstWhere(
+          (item) => item.id == settings.defaultSenderIdentityId,
+        );
+  final sender =
+      draft.sender ??
+      (identity == null ? null : StudioMailSender.fromIdentity(identity));
   if (settings.signature.isEmpty ||
       !(replyOrForward
           ? settings.signatureForReplies
           : settings.signatureForNewMessages)) {
-    return draft;
+    if (sender == draft.sender) return draft;
+    return StudioMailDraft(
+      to: draft.to,
+      cc: draft.cc,
+      bcc: draft.bcc,
+      subject: draft.subject,
+      body: draft.body,
+      sender: sender,
+      thread: draft.thread,
+      attachments: draft.attachments,
+    );
   }
   final signature = studioMailSignatureText(settings.signature);
   // Replies retain an editable blank paragraph and put the signature before
@@ -60,8 +78,34 @@ StudioMailDraft applyStudioMailDefaultSignature(
     bcc: draft.bcc,
     subject: draft.subject,
     body: body,
+    sender: sender,
     thread: draft.thread,
     attachments: draft.attachments,
+  );
+}
+
+/// Applies a complete, literal template as a new message. The host confirms
+/// replacement before calling this; it does not carry attachments or reply
+/// threading into an unrelated reusable message.
+StudioMailDraft applyStudioMailTemplate(
+  MailMessageTemplate template,
+  MailComposeSettings settings,
+) {
+  if (!settings.isValid || !settings.templates.contains(template)) {
+    throw const StudioMailComposeToolsException();
+  }
+  final identity = template.senderIdentityId == null
+      ? null
+      : settings.senderIdentities.firstWhere(
+          (item) => item.id == template.senderIdentityId,
+        );
+  return StudioMailDraft(
+    to: template.to,
+    cc: template.cc,
+    bcc: template.bcc,
+    subject: template.subject,
+    body: studioMailComposeText(template.body),
+    sender: identity == null ? null : StudioMailSender.fromIdentity(identity),
   );
 }
 

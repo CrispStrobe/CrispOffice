@@ -49,11 +49,11 @@ final class StudioMailOutboxContent {
       if (!StudioMailDraft.isSupportedAddress(transport.sender) ||
           envelope.from.length != 1 ||
           envelope.from.single.address != transport.sender ||
-          _hasNames(envelope.from) ||
           _hasNames(envelope.to) ||
           _hasNames(envelope.cc) ||
           envelope.bcc.isNotEmpty ||
-          envelope.replyTo.isNotEmpty ||
+          envelope.replyTo.length > 1 ||
+          _hasNames(envelope.replyTo) ||
           transport.recipients.length > StudioMailRecipients.maxRecipients) {
         _unsupported();
       }
@@ -63,7 +63,8 @@ final class StudioMailOutboxContent {
       // hidden headers, inline content and renamed files cannot disappear here.
       final root = mime.MimeMessage.parseFromText(utf8.decode(wire.bytes));
       final files = _Shape(source).validate(root);
-      _addressHeader(root, 'from', envelope.from);
+      _senderHeader(root, envelope.from.single);
+      _addressHeader(root, 'reply-to', envelope.replyTo);
       _addressHeader(root, 'to', envelope.to);
       _addressHeader(root, 'cc', envelope.cc);
       final visible = [...envelope.to, ...envelope.cc];
@@ -112,6 +113,13 @@ final class StudioMailOutboxContent {
         // transport line breaks. The parsed message and exact EML stay intact;
         // literal standalone CR characters remain literal.
         body: plain.replaceAll('\r\n', '\n'),
+        sender: StudioMailSender(
+          address: envelope.from.single.address,
+          displayName: envelope.from.single.displayName ?? '',
+          replyTo: envelope.replyTo.isEmpty
+              ? ''
+              : envelope.replyTo.single.address,
+        ),
         thread: thread,
         attachments: StudioMailAttachments.forwarded(files),
       );
@@ -224,6 +232,16 @@ void _addressHeader(mime.MimePart root, String name, List<MailAddress> values) {
       ? <String>[]
       : raw.split(',').map((value) => value.trim()).toList();
   if (!_sameStrings(fields, values.map((value) => value.address).toList())) {
+    _unsupported();
+  }
+}
+
+void _senderHeader(mime.MimePart root, MailAddress expected) {
+  final values = root.decodeHeaderMailAddressValue('from');
+  if (values == null ||
+      values.length != 1 ||
+      values.single.email != expected.address ||
+      (values.single.personalName ?? '') != (expected.displayName ?? '')) {
     _unsupported();
   }
 }
@@ -348,6 +366,7 @@ final class _Shape {
             if (attachment) 'content-disposition',
             if (root) ...{
               'from',
+              'reply-to',
               'to',
               'cc',
               'subject',

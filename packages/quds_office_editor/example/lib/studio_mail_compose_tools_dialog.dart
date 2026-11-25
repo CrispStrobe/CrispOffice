@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_compose_tools_strings.dart';
+import 'studio_mail_identity_templates.dart';
 import 'studio_strings.dart';
 
 /// Edits one account's writing tools locally, then saves the entire revision.
@@ -40,6 +41,9 @@ class _StudioMailComposeToolsDialogState
   final _quickNameFocus = FocusNode();
   final _quickTextFocus = FocusNode();
   late List<MailQuickText> _quickTexts;
+  late List<MailSenderIdentity> _senderIdentities;
+  late List<MailMessageTemplate> _templates;
+  String? _defaultSenderIdentityId;
   late bool _signatureForNew;
   late bool _signatureForReplies;
   bool _saving = false;
@@ -62,6 +66,10 @@ class _StudioMailComposeToolsDialogState
     signatureForNewMessages: _signatureForNew,
     signatureForReplies: _signatureForReplies,
     quickTexts: _quickTexts,
+    senderIdentities: _senderIdentities,
+    templates: _templates,
+    defaultSenderIdentityId: _defaultSenderIdentityId,
+    clearDefaultSenderIdentity: _defaultSenderIdentityId == null,
   );
 
   @override
@@ -72,6 +80,9 @@ class _StudioMailComposeToolsDialogState
     _signatureForNew = _base.signatureForNewMessages;
     _signatureForReplies = _base.signatureForReplies;
     _quickTexts = [..._base.quickTexts];
+    _senderIdentities = [..._base.senderIdentities];
+    _templates = [..._base.templates];
+    _defaultSenderIdentityId = _base.defaultSenderIdentityId;
   }
 
   @override
@@ -140,6 +151,7 @@ class _StudioMailComposeToolsDialogState
       setState(() => _editError = widget.strings.mailComposeToolsInvalid);
       return;
     }
+    FocusScope.of(context).unfocus();
     setState(() {
       _quickTexts = updated;
       _editing = false;
@@ -151,6 +163,7 @@ class _StudioMailComposeToolsDialogState
 
   void _cancelText() {
     if (!_canEdit) return;
+    FocusScope.of(context).unfocus();
     setState(() {
       _editing = false;
       _editingId = null;
@@ -410,6 +423,22 @@ class _StudioMailComposeToolsDialogState
                   label: Text(widget.strings.mailComposeQuickTextAdd),
                 ),
               ),
+            const Divider(height: 24),
+            StudioMailIdentityTemplates(
+              strings: widget.strings,
+              settings: _settings,
+              enabled: _canEdit && !_editing,
+              isCurrent: () => _canEdit && !_editing,
+              onChanged: (settings) {
+                if (!_canEdit || _editing) return;
+                setState(() {
+                  _senderIdentities = [...settings.senderIdentities];
+                  _templates = [...settings.templates];
+                  _defaultSenderIdentityId = settings.defaultSenderIdentityId;
+                  _error = null;
+                });
+              },
+            ),
             if (_saving)
               Padding(
                 padding: const EdgeInsets.only(top: 12),

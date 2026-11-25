@@ -17,6 +17,8 @@ import 'studio_mail_compose_tools_dialog.dart';
 import 'studio_mail_compose_tools_strings.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_drafts_strings.dart';
+import 'studio_mail_identity_strings.dart';
+import 'studio_mail_identity_templates.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_pasteboard.dart';
 import 'studio_mail_strings.dart';
@@ -38,6 +40,7 @@ class StudioMailComposeDialog extends StatefulWidget {
     this.onQueueDraft,
     this.onClearMailCache,
     this.canSend = true,
+    this.allowSenderAliases = false,
     this.composeToolsStore,
     this.isComposeToolsCurrent,
     this.maxAttachmentBytes = StudioMailAttachments.defaultMaxTotalBytes,
@@ -52,6 +55,10 @@ class StudioMailComposeDialog extends StatefulWidget {
   /// The finish handler also checks this, so a retained callback cannot send
   /// after the host has disabled submission.
   final bool canSend;
+
+  /// Qualified native SMTP hosts may submit user-selected From addresses.
+  /// Other adapters retain the authored sender but require the account address.
+  final bool allowSenderAliases;
 
   /// Account-owned writing tools, independent of the draft's immutable text.
   final StudioMailComposeToolsStore? composeToolsStore;
@@ -88,6 +95,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   bool _retryAcknowledged = false;
   late bool _showCopies;
   late StudioMailAttachments _attachments;
+  StudioMailSender? _sender;
+  late StudioMailThread _thread;
+  bool _replacingTemplate = false;
+  String? _templateError;
   StudioMailAttachmentLoader? _attachmentLoader;
   bool _pickingAttachments = false;
   bool _attachmentFailed = false;
@@ -126,6 +137,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _showCopies = _cc.text.isNotEmpty || _bcc.text.isNotEmpty;
     _attachments =
         widget.initialDraft?.attachments ?? const StudioMailAttachments.empty();
+    _sender = widget.initialDraft?.sender;
+    _thread = widget.initialDraft?.thread ?? const StudioMailThread.empty();
     _subject = TextEditingController(text: widget.initialDraft?.subject ?? '');
     final document = WmlDocument.empty(text: widget.initialDraft?.body ?? '');
     for (final section in document.sections) {
@@ -198,12 +211,13 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     body: _body.document.paragraphs
         .map((paragraph) => paragraph.text)
         .join('\n'),
-    thread: widget.initialDraft?.thread ?? const StudioMailThread.empty(),
+    sender: _sender,
+    thread: _thread,
     attachments: _attachments,
   );
 
   void _edited() {
-    if (!mounted) return;
+    if (!mounted || _replacingTemplate) return;
     final next = _snapshot();
     final previous = _lastObserved;
     if (previous != null &&
@@ -212,6 +226,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         next.bcc == previous.bcc &&
         next.subject == previous.subject &&
         next.body == previous.body &&
+        next.sender == previous.sender &&
+        next.thread.inReplyTo == previous.thread.inReplyTo &&
+        next.thread.references == previous.thread.references &&
         identical(next.attachments, previous.attachments)) {
       return;
     }
@@ -269,6 +286,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
 
   Future<void> _finish({required bool send, bool queue = false}) async {
     if ((send || queue) && !widget.canSend) return;
+    if ((send || queue) && !_senderAllowed) {
+      setState(() => _problem = StudioMailDraftProblem.sender);
+      return;
+    }
     if (_finishing ||
         _recoveringCache ||
         _initialToolsPending ||
@@ -310,7 +331,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       setState(() => _finishing = false);
       return;
     }
-    if ((send || queue) && !widget.canSend) {
+    if ((send || queue) && (!widget.canSend || !_senderAllowed)) {
       setState(() => _finishing = false);
       return;
     }
@@ -497,7 +518,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   Future<void> _readAttachmentFiles(
     Future<List<PlatformFile>?> Function() select,
   ) async {
-    if (_pickingAttachments || _recoveringCache) return;
+    if (_pickingAttachments ||
+        _recoveringCache ||
+        _editingTools ||
+        _finishing) {
+      return;
+    }
     final loader = StudioMailAttachmentLoader();
     setState(() {
       _attachmentLoader = loader;
@@ -560,6 +586,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       _toolsCurrent &&
       !_loadingTools &&
       !_editingTools &&
+      !_pickingAttachments &&
       !_finishing &&
       !_recoveringCache;
 
@@ -601,10 +628,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
           settings,
           replyOrForward: false,
         );
+        _sender = prepared.sender;
         if (prepared.body != _snapshot().body) {
           _insertComposeText(prepared.body, requestFocus: false);
           _body.jumpToParagraph(0);
         }
+        _edited();
       }
     } on Object {
       if (_toolsCurrent && epoch == _toolsEpoch) {
@@ -735,6 +764,248 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     if (requestFocus) _bodyFocus.requestFocus();
   }
 
+  bool get _senderAllowed =>
+      _sender == null ||
+      _sender!.isValid &&
+          (widget.allowSenderAliases || _sender!.address == widget.from);
+
+  Widget _senderControl() {
+    final settings = _composeSettings;
+    final strings = widget.strings;
+    final sender = _sender;
+    if (settings == null || _toolsOwner == null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            sender == null
+                ? widget.from
+                : '${sender.displayName} <${sender.address}>',
+            maxLines: 2,
+          ),
+          if (!_senderAllowed) Text(strings.mailSenderRestricted),
+        ],
+      );
+    }
+    final index = sender == null
+        ? -1
+        : settings.senderIdentities.indexWhere(
+            (identity) => StudioMailSender.fromIdentity(identity) == sender,
+          );
+    final selected = sender != null && index == -1 ? -2 : index;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        DropdownButtonFormField<int>(
+          key: ValueKey(
+            'studio-mail-sender-${sender.hashCode}-${settings.revision}',
+          ),
+          initialValue: selected,
+          isExpanded: true,
+          decoration: InputDecoration(labelText: strings.mailSenderAddress),
+          items: [
+            DropdownMenuItem(
+              value: -1,
+              child: Text(
+                '${strings.mailSenderPrimary} · ${widget.from}',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            if (selected == -2)
+              DropdownMenuItem(
+                value: -2,
+                enabled: false,
+                child: Text(
+                  '${strings.mailSenderSaved} · ${sender!.address}',
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            for (var i = 0; i < settings.senderIdentities.length; i++)
+              DropdownMenuItem(
+                value: i,
+                child: Text(
+                  '${settings.senderIdentities[i].name} · ${settings.senderIdentities[i].address}',
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+          ],
+          onChanged: _canUseTools
+              ? (value) {
+                  if (!_canUseTools ||
+                      !identical(settings, _composeSettings) ||
+                      value == null ||
+                      value < -1 ||
+                      value >= settings.senderIdentities.length) {
+                    return;
+                  }
+                  setState(() {
+                    _sender = value == -1
+                        ? null
+                        : StudioMailSender.fromIdentity(
+                            settings.senderIdentities[value],
+                          );
+                    _problem = null;
+                  });
+                  _edited();
+                }
+              : null,
+        ),
+        if (sender != null && sender.replyTo.isNotEmpty)
+          Text('${strings.mailSenderReplyTo}: ${sender.replyTo}'),
+        if (!_senderAllowed)
+          Text(
+            strings.mailSenderRestricted,
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+      ],
+    );
+  }
+
+  Future<void> _applyTemplate(
+    MailMessageTemplate template,
+    MailComposeSettings settings,
+  ) async {
+    if (!_canUseTools || !identical(settings, _composeSettings)) return;
+    _body.commitPendingEdits();
+    _edited();
+    final revision = _editRevision;
+    final epoch = _toolsEpoch;
+    FocusScope.of(context).unfocus();
+    setState(() => _editingTools = true);
+    try {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text(widget.strings.mailMessageTemplateReplace),
+          content: Text(widget.strings.mailMessageTemplateReplaceHelp),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(widget.strings.cancel),
+            ),
+            FilledButton(
+              key: const ValueKey('studio-mail-template-replace-confirm'),
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(widget.strings.mailMessageTemplateUse),
+            ),
+          ],
+        ),
+      );
+      if (!mounted || confirmed != true) return;
+      if (!_toolsCurrent ||
+          epoch != _toolsEpoch ||
+          revision != _editRevision ||
+          !identical(settings, _composeSettings)) {
+        setState(
+          () => _templateError = widget.strings.mailMessageTemplateChanged,
+        );
+        return;
+      }
+      final prepared = applyStudioMailTemplate(template, settings);
+      _replacingTemplate = true;
+      try {
+        _body.selectAll();
+        if (prepared.body.isEmpty) {
+          _body.deleteSelectionOr(backward: true);
+        } else if (!_body.insertPlainText(prepared.body)) {
+          throw const StudioMailComposeToolsException();
+        }
+        _to.text = prepared.to;
+        _cc.text = prepared.cc;
+        _bcc.text = prepared.bcc;
+        _subject.text = prepared.subject;
+        _sender = prepared.sender;
+        _thread = prepared.thread;
+        _attachments = prepared.attachments;
+        _showCopies = prepared.cc.isNotEmpty || prepared.bcc.isNotEmpty;
+        _problem = null;
+        _templateError = null;
+      } finally {
+        _replacingTemplate = false;
+      }
+      _edited();
+      _focusBodyAtEnd();
+    } on Object {
+      if (mounted) {
+        setState(
+          () => _templateError = widget.strings.mailMessageTemplateInvalid,
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _editingTools = false);
+    }
+  }
+
+  Future<void> _saveTemplate() async {
+    final settings = _composeSettings;
+    final owner = _toolsOwner;
+    if (!_canUseTools || settings == null || owner == null) return;
+    _body.commitPendingEdits();
+    _edited();
+    final snapshot = _snapshot();
+    final epoch = _toolsEpoch;
+    final sender = snapshot.sender;
+    final identity = sender == null
+        ? null
+        : settings.senderIdentities
+              .where((item) => StudioMailSender.fromIdentity(item) == sender)
+              .firstOrNull;
+    // An unregistered saved sender must not silently become the account sender
+    // when this draft is converted into a reusable template.
+    if (sender != null && identity == null) {
+      setState(() => _templateError = widget.strings.mailSenderInvalid);
+      return;
+    }
+    final candidate = MailMessageTemplate(
+      id: 'new-template',
+      name: '',
+      to: snapshot.to,
+      cc: snapshot.cc,
+      bcc: snapshot.bcc,
+      subject: snapshot.subject,
+      body: snapshot.body,
+      senderIdentityId: identity?.id,
+    );
+    bool current() =>
+        _toolsCurrent &&
+        epoch == _toolsEpoch &&
+        identical(settings, _composeSettings);
+    setState(() => _editingTools = true);
+    try {
+      final template = await showStudioMailTemplateEditor(
+        context,
+        strings: widget.strings,
+        settings: settings,
+        initial: candidate,
+        createFromSnapshot: true,
+        isCurrent: current,
+      );
+      if (!current() || template == null) return;
+      final saved = await owner.saveComposeSettings(
+        settings.copyWith(templates: [...settings.templates, template]),
+      );
+      if (!current()) return;
+      if (!saved.isValid ||
+          saved.account != settings.account ||
+          saved.revision != settings.revision + 1) {
+        throw const StudioMailComposeToolsException();
+      }
+      setState(() {
+        _composeSettings = saved;
+        _templateError = null;
+      });
+    } on Object {
+      if (mounted) {
+        setState(() {
+          _templateError = widget.strings.mailComposeToolsSaveUnconfirmed;
+        });
+        if (current()) await _loadComposeTools();
+      }
+    } finally {
+      if (mounted) setState(() => _editingTools = false);
+    }
+  }
+
   Widget _composeToolsToolbar() {
     final strings = widget.strings;
     final settings = _composeSettings;
@@ -804,6 +1075,44 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                 child: Text(strings.mailComposeInsertQuickText),
               ),
             ),
+            PopupMenuButton<MailMessageTemplate>(
+              key: const ValueKey('studio-mail-use-template'),
+              enabled: available && settings.templates.isNotEmpty,
+              tooltip: strings.mailMessageTemplateUse,
+              onSelected: (item) {
+                if (settings != null &&
+                    currentMenu() &&
+                    settings.templates.contains(item)) {
+                  unawaited(_applyTemplate(item, settings));
+                }
+              },
+              itemBuilder: (_) => [
+                for (final item
+                    in settings?.templates ?? <MailMessageTemplate>[])
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(item.name, maxLines: 2),
+                  ),
+              ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+                child: Text(strings.mailMessageTemplateUse),
+              ),
+            ),
+            TextButton.icon(
+              key: const ValueKey('studio-mail-save-template'),
+              onPressed:
+                  available &&
+                      settings.templates.length <
+                          MailComposeSettings.maxTemplates
+                  ? _saveTemplate
+                  : null,
+              icon: const Icon(Icons.post_add),
+              label: Text(strings.mailMessageTemplateSave),
+            ),
           ],
         ),
         if (_loadingTools)
@@ -833,6 +1142,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         if (_toolsInsertionFailed)
           Text(
             strings.mailComposeToolsInsertionFailed,
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+        if (_templateError case final error?)
+          Text(
+            error,
             style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),
       ],
@@ -885,6 +1199,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       StudioMailDraftProblem.recipient => strings.mailInvalidRecipient,
       StudioMailDraftProblem.subject => strings.mailInvalidSubject,
       StudioMailDraftProblem.body => strings.mailInvalidBody,
+      StudioMailDraftProblem.sender =>
+        _senderAllowed
+            ? strings.mailSenderInvalid
+            : strings.mailSenderRestricted,
       null => null,
     };
     return Stack(
@@ -935,11 +1253,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const SizedBox(height: 4),
-                            Text(
-                              widget.from,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                            _senderControl(),
                             const SizedBox(height: 12),
                             TextField(
                               controller: _to,
@@ -1336,6 +1650,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                     key: const ValueKey('studio-mail-queue'),
                                     onPressed:
                                         !widget.canSend ||
+                                            !_senderAllowed ||
                                             _finishing ||
                                             _recoveringCache ||
                                             _pickingAttachments ||
@@ -1350,6 +1665,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                 FilledButton.icon(
                                   onPressed:
                                       !widget.canSend ||
+                                          !_senderAllowed ||
                                           _finishing ||
                                           _recoveringCache ||
                                           _pickingAttachments ||

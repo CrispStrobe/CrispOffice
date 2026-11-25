@@ -983,38 +983,44 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (!_currentSession(client, generation)) {
         return false;
       }
-      if (candidate case StudioMailOutboxStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailArchiveSettingsStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailArchiveSettingsStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailComposeToolsStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailComposeToolsStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
-          when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(
+        :final mailboxStore,
+      ) when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
-          when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(
+        :final flagJournal,
+      ) when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -2017,7 +2023,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   ) => (message, {required attemptId}) async {
     if (!_currentSession(client, generation) ||
         message.account != store.account ||
-        message.envelope.sender != account.email) {
+        !StudioMailDraft.isSupportedAddress(message.envelope.sender)) {
       return MailSubmissionResult(
         attemptId: attemptId,
         outcome: MailSubmissionOutcome.rejected,
@@ -2260,6 +2266,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         builder: (context) => StudioMailComposeDialog(
           strings: widget.strings,
           from: account.email,
+          allowSenderAliases: true,
           maxAttachmentBytes:
               account.email.toLowerCase().endsWith('@mailbox.org')
               ? StudioMailAttachments.hardMaxTotalBytes
@@ -2341,6 +2348,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       attempted = true;
       await client.sendMessage(
         message,
+        from: mail.MailAddress(
+          draft.sender?.displayName ?? '',
+          draft.sender?.address ?? account.email,
+        ),
         appendToSent: false,
         recipients: [
           for (final address in draft.recipients.envelope)

@@ -411,32 +411,45 @@ final class SqliteStudioMailDraftStore
     required String id,
     required int revision,
     required bool uncertain,
-  }) => MailDraft(
-    id: id,
-    account: account,
-    revision: revision,
-    envelope: MailEnvelope(
-      subject: draft.subject,
-      inReplyTo: draft.thread.inReplyTo,
-      references: draft.thread.references?.split(' ') ?? const [],
-    ),
-    body: MailBody(plainText: draft.body),
-    attachments: [
-      for (var index = 0; index < draft.attachments.items.length; index++)
-        MailAttachment(
-          partPath: 'attachment-$index',
-          mediaType: draft.attachments.items[index].mediaType,
-          displayName: draft.attachments.items[index].name,
-          content: draft.attachments.items[index].content,
-        ),
-    ],
-    editorState: MailDraftEditorState(
-      to: draft.to,
-      cc: draft.cc,
-      bcc: draft.bcc,
-      submissionUncertain: uncertain,
-    ),
-  );
+  }) {
+    if (draft.sender != null && !draft.sender!.isValid) {
+      throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+    }
+    return MailDraft(
+      id: id,
+      account: account,
+      revision: revision,
+      envelope: MailEnvelope(
+        from: [
+          if (draft.sender case final sender?)
+            MailAddress(sender.address, displayName: sender.displayName),
+        ],
+        replyTo: [
+          if (draft.sender case final sender? when sender.replyTo.isNotEmpty)
+            MailAddress(sender.replyTo),
+        ],
+        subject: draft.subject,
+        inReplyTo: draft.thread.inReplyTo,
+        references: draft.thread.references?.split(' ') ?? const [],
+      ),
+      body: MailBody(plainText: draft.body),
+      attachments: [
+        for (var index = 0; index < draft.attachments.items.length; index++)
+          MailAttachment(
+            partPath: 'attachment-$index',
+            mediaType: draft.attachments.items[index].mediaType,
+            displayName: draft.attachments.items[index].name,
+            content: draft.attachments.items[index].content,
+          ),
+      ],
+      editorState: MailDraftEditorState(
+        to: draft.to,
+        cc: draft.cc,
+        bcc: draft.bcc,
+        submissionUncertain: uncertain,
+      ),
+    );
+  }
 
   @override
   Future<StudioMailDraftCatalogPage> listDrafts({String? afterId}) =>
@@ -629,7 +642,7 @@ final class SqliteStudioMailDraftStore
       draftRevision: sourceRevision,
       wire: MailBytes(utf8.encode(message.renderMessage())),
       envelope: MailTransportEnvelope(
-        sender: sender,
+        sender: draft.sender?.address ?? sender,
         recipients: draft.recipients.envelope,
       ),
     );
@@ -874,6 +887,8 @@ final class SqliteStudioMailDraftStore
       if (editor == null) throw const FormatException();
       if (editor.isCleared) {
         if (stored.envelope.subject.isNotEmpty ||
+            stored.envelope.from.isNotEmpty ||
+            stored.envelope.replyTo.isNotEmpty ||
             stored.envelope.inReplyTo != null ||
             stored.envelope.references.isNotEmpty ||
             stored.body.plainText != null ||
@@ -884,6 +899,24 @@ final class SqliteStudioMailDraftStore
         return null;
       }
       final envelope = stored.envelope;
+      if (envelope.from.length > 1 ||
+          envelope.replyTo.length > 1 ||
+          envelope.replyTo.any(
+            (address) => address.displayName?.isNotEmpty ?? false,
+          ) ||
+          envelope.from.isEmpty && envelope.replyTo.isNotEmpty) {
+        throw const FormatException();
+      }
+      final sender = envelope.from.isEmpty
+          ? null
+          : StudioMailSender(
+              address: envelope.from.single.address,
+              displayName: envelope.from.single.displayName ?? '',
+              replyTo: envelope.replyTo.isEmpty
+                  ? ''
+                  : envelope.replyTo.single.address,
+            );
+      if (sender != null && !sender.isValid) throw const FormatException();
       final thread = envelope.inReplyTo == null
           ? const StudioMailThread.empty()
           : StudioMailThread.replyTo(
@@ -903,6 +936,7 @@ final class SqliteStudioMailDraftStore
           bcc: editor.bcc,
           subject: envelope.subject,
           body: stored.body.plainText ?? '',
+          sender: sender,
           thread: thread,
           attachments: StudioMailAttachments.from([
             for (final attachment in stored.attachments)

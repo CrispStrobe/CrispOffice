@@ -15,6 +15,15 @@ extension StudioMailServerSearchStrings on StudioStrings {
     'يبحث في المجلد المحدد بالكامل على خادم البريد. تُعرض أول 50 نتيجة فقط، ولا يُبحث في نص المرفقات، وتحدد فهرسة المزود النص الذي يمكن العثور عليه.',
   );
   String get mailServerSearchField => _t('Search in', 'Suchen in', 'البحث في');
+  String get mailProviderSearchHelp => _t(
+    'Searches this folder on the provider, with at most 50 results. Only supported fields are offered. Provider indexing and phrase matching determine coverage; totals may be estimated or unavailable. Quotes and backslashes may be unsupported by the provider.',
+    'Durchsucht diesen Ordner beim Anbieter mit höchstens 50 Treffern. Es werden nur unterstützte Felder angeboten. Indexierung und Phrasensuche des Anbieters bestimmen die Abdeckung; Gesamtzahlen können geschätzt oder unbekannt sein. Anführungszeichen und umgekehrte Schrägstriche werden möglicherweise nicht unterstützt.',
+    'يبحث في هذا المجلد لدى المزود ويعرض 50 نتيجة كحد أقصى. تتوفر الحقول المدعومة فقط. تعتمد التغطية على فهرسة المزود ومطابقة العبارات؛ وقد يكون العدد تقديريًا أو غير متاح. قد لا يدعم المزود علامات الاقتباس والشرطات المائلة العكسية.',
+  );
+  String mailServerSearchFolder(String folder) =>
+      _t('Folder: $folder', 'Ordner: $folder', 'المجلد: $folder');
+  String get mailServerSearchNoSubject =>
+      _t('(no subject)', '(kein Betreff)', '(بلا موضوع)');
   String get mailServerSearchBody =>
       _t('Message body', 'Nachrichtentext', 'نص الرسالة');
   String get mailServerSearchSubject => _t('Subject', 'Betreff', 'الموضوع');
@@ -47,6 +56,16 @@ extension StudioMailServerSearchStrings on StudioStrings {
     'Die Serversuche ist fehlgeschlagen. Der Ordner und seine Nachrichten wurden nicht geändert.',
     'فشل البحث على الخادم. لم يتغير المجلد أو رسائله.',
   );
+  String get mailServerSearchUnsupported => _t(
+    'This provider cannot search that field or literal text. Try a supported field or text without quotes and backslashes.',
+    'Dieser Anbieter kann dieses Feld oder diesen Suchtext nicht durchsuchen. Versuchen Sie ein unterstütztes Feld oder Text ohne Anführungszeichen und umgekehrte Schrägstriche.',
+    'لا يمكن لهذا المزود البحث في هذا الحقل أو النص. جرّب حقلًا مدعومًا أو نصًا دون علامات اقتباس وشرطات مائلة عكسية.',
+  );
+  String get mailServerSearchAuthorization => _t(
+    'Search needs a valid sign-in and permission to read this folder. Reconnect the account and try again.',
+    'Die Suche erfordert eine gültige Anmeldung und Leseberechtigung für diesen Ordner. Verbinden Sie das Konto erneut und versuchen Sie es noch einmal.',
+    'يتطلب البحث تسجيل دخول صالحًا وإذنًا لقراءة هذا المجلد. أعد ربط الحساب وحاول مجددًا.',
+  );
   String get mailServerSearchEmpty => _t(
     'No messages matched in this folder.',
     'Keine Nachrichten in diesem Ordner gefunden.',
@@ -63,6 +82,21 @@ extension StudioMailServerSearchStrings on StudioStrings {
     '$total matches · showing $shown',
     '$total Treffer · $shown angezeigt',
     '$total نتيجة · يتم عرض $shown',
+  );
+  String mailServerSearchEstimate(int total, int shown) => _t(
+    'About $total matches · showing $shown',
+    'Etwa $total Treffer · $shown angezeigt',
+    'نحو $total نتيجة · يتم عرض $shown',
+  );
+  String mailServerSearchUnknown(int shown) => _t(
+    'Showing $shown · total unavailable',
+    '$shown angezeigt · Gesamtzahl unbekannt',
+    'يتم عرض $shown · العدد الإجمالي غير متاح',
+  );
+  String get mailServerSearchMorePossible => _t(
+    'More matches may be available beyond this result limit. Refine the search.',
+    'Außerhalb dieser Ergebnisgrenze können weitere Treffer vorhanden sein. Verfeinern Sie die Suche.',
+    'قد تتوفر نتائج إضافية تتجاوز هذا الحد. حسّن البحث.',
   );
   String get mailServerSearchTruncated => _t(
     'More matches exist. Refine the search to narrow the result.',
