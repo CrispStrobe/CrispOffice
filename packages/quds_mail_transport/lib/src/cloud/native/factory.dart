@@ -1,4 +1,5 @@
 import 'package:quds_tasks_core/quds_tasks_core.dart';
+
 import 'dart:io';
 
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -84,13 +85,15 @@ MailCloudTokenSource restoreTasksCloud({
   saveRefreshToken: saveRefreshToken,
 );
 
-GoogleTaskReader createGoogleTaskReader({
+GoogleTaskProvider createGoogleTaskReader({
   required TaskAccountId account,
   required MailAccountId mailAccount,
   required MailCloudTokenSource tokens,
+  bool enableWrites = false,
 }) => ApiGoogleTaskReader(
   account: account,
   mailAccount: mailAccount,
   tokens: tokens,
+  enableWrites: enableWrites,
   transport: NativeMailCloudHttpTransport(),
 );

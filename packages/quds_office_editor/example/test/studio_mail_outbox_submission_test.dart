@@ -106,6 +106,7 @@ final class _Client extends Fake implements mail.MailClient {
   final senders = <String?>[];
   final recipients = <List<String>?>[];
   final appendRequests = <bool>[];
+  final sentMailboxes = <mail.Mailbox?>[];
   final unicodeRequests = <bool>[];
   final eightBitRequests = <bool>[];
   Future<void> Function(mail.MimeMessage message)? onSend;
@@ -127,6 +128,7 @@ final class _Client extends Fake implements mail.MailClient {
       recipients?.map((recipient) => recipient.email).toList(),
     );
     appendRequests.add(appendToSent);
+    sentMailboxes.add(sentMailbox);
     unicodeRequests.add(supportUnicode);
     eightBitRequests.add(use8BitEncoding);
     await onSend?.call(message);
@@ -134,6 +136,40 @@ final class _Client extends Fake implements mail.MailClient {
 }
 
 void main() {
+  test(
+    'Sent filing failure leaves SMTP accepted and persists the warning',
+    () async {
+      final entry = _queued();
+      final store = _Store(entry);
+      final sent = mail.Mailbox(
+        encodedName: 'Sent',
+        encodedPath: 'INBOX.Sent',
+        pathSeparator: '.',
+        flags: [mail.MailboxFlag.sent],
+      );
+      final client = _Client();
+      client.onSend = (_) async => throw mail.MailSendPostSubmissionException(
+        client,
+        sentCopyError: StateError('IMAP APPEND refused'),
+      );
+      final result = await submitStudioMailOutbox(
+        store: store,
+        entry: entry,
+        isCurrent: () => true,
+        submit: (message, {required attemptId}) => submitStudioMailNativeOutbox(
+          client,
+          message,
+          attemptId: attemptId,
+          sentMailbox: sent,
+        ),
+      );
+      expect(result.state, MailOutboxState.submitted);
+      expect(result.result!.sentCopySaved, isFalse);
+      expect(client.appendRequests, [true]);
+      expect(client.sentMailboxes, [same(sent)]);
+    },
+  );
+
   test(
     'durable begin completes before the provider sees frozen bytes',
     () async {

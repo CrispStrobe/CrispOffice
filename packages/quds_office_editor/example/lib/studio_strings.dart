@@ -63,9 +63,9 @@ final class StudioStrings {
     'CrispOffice مساحة عمل مستقلة للمستندات وجداول البيانات والعروض التقديمية.',
   );
   String get legalNotice => _t(
-    'Microsoft Office are trademarks of the Microsoft group of companies. CrispOffice is not affiliated with or endorsed by Microsoft. Product names describe file formats and compatibility only.',
-    'Microsoft Office sind Marken der Microsoft-Unternehmensgruppe. CrispOffice steht in keiner Verbindung zu Microsoft und wird nicht von Microsoft unterstützt. Produktnamen beschreiben ausschließlich Dateiformate und Kompatibilität.',
-    'Microsoft Office علامات تجارية لمجموعة شركات Microsoft. CrispOffice غير تابع لشركة Microsoft وغير معتمد منها. تُستخدم أسماء المنتجات فقط لوصف صيغ الملفات والتوافق.',
+    'Product names are used only to describe file formats and compatibility.',
+    'Produktnamen dienen ausschließlich zur Beschreibung von Dateiformaten und Kompatibilität.',
+    'تُستخدم أسماء المنتجات فقط لوصف صيغ الملفات والتوافق.',
   );
   String get licenses => _t(
     'Open-source licences',
@@ -111,9 +111,14 @@ final class StudioStrings {
     'تُحرَّر المستندات وجداول البيانات والعروض التقديمية محليًا بواسطة محرك CrispOffice المستقل. لا يلزم تثبيت Microsoft Office.',
   );
   String get aboutSourceText => _t(
-    'CrispOffice is built on the MIT-licensed Quds Office engine and editor, with additional independent work by CrispStrobe. Corresponding source is available from the project repository.',
-    'CrispOffice basiert auf der MIT-lizenzierten Quds-Office-Engine und dem Editor, ergänzt durch unabhängige Arbeit von CrispStrobe. Der zugehörige Quellcode ist im Projekt-Repository verfügbar.',
-    'يعتمد CrispOffice على محرك ومحرر Quds Office المرخّصين بموجب MIT، مع أعمال مستقلة إضافية من CrispStrobe. يتوفر الكود المصدري المقابل في مستودع المشروع.',
+    'CrispOffice began as a fork of the MIT-licensed Quds Office Suite by Mohammed Asaad Asaad. CrispStrobe continues development independently.',
+    'CrispOffice entstand als Fork der MIT-lizenzierten Quds Office Suite von Mohammed Asaad Asaad. CrispStrobe entwickelt CrispOffice eigenständig weiter.',
+    'بدأ CrispOffice كتفرّع من Quds Office Suite التي طوّرها Mohammed Asaad Asaad بترخيص MIT. وتواصل CrispStrobe تطوير CrispOffice بشكل مستقل.',
+  );
+  String get aboutSourceProject => _t(
+    'Original Quds Office Suite',
+    'Originalprojekt Quds Office Suite',
+    'مشروع Quds Office Suite الأصلي',
   );
   String get serviceProvider =>
       _t('Service Provider', 'Dienstanbieter', 'مزوّد الخدمة');

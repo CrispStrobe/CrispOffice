@@ -62,7 +62,12 @@ class XmlPullReader {
   /// root API.
   final List<_NsScope> _nsStack;
   final List<_AttrSlice> _attrs = <_AttrSlice>[];
-  final List<String> _elementStack = <String>[];
+  // Most tags need only a few slots. Keep peak attribute counts on
+  // unusually wide tags from extending the lifetime of all their slots.
+  List<_AttrSlice>? _attributePool;
+  static const _attributePoolLimit = 16;
+  // Each open tag contributes its start and end offsets into _source.
+  final List<int> _elementStack = <int>[];
 
   /// eventType API.
   XmlEventType get eventType => _type;
@@ -152,9 +157,9 @@ class XmlPullReader {
       _emptyElement = false;
       _type = XmlEventType.endElement;
       if (_elementStack.isNotEmpty) {
-        _elementStack.removeLast();
+        _elementStack.length -= 2;
       }
-      _depth = _elementStack.length;
+      _depth = _elementStack.length ~/ 2;
       if (_nsStack.length > 1) {
         _nsStack.removeLast();
       }
@@ -326,8 +331,10 @@ class XmlPullReader {
       _skipSpaces();
     }
     _nsStack.add(scope);
-    _elementStack.add(qualifiedName);
-    _depth = _elementStack.length;
+    _elementStack
+      ..add(_nameStart)
+      ..add(_nameEnd);
+    _depth = _elementStack.length ~/ 2;
   }
 
   void _readEndElement() {
@@ -339,27 +346,40 @@ class XmlPullReader {
     if (_elementStack.isEmpty) {
       throw XmlParseException('Unexpected end tag </$qualifiedName>', _pos);
     }
-    final String open = _elementStack.removeLast();
-    if (open.length != _nameEnd - _nameStart ||
-        !_source.startsWith(open, _nameStart)) {
+    final openEnd = _elementStack.removeLast();
+    final openStart = _elementStack.removeLast();
+    if (!_matchesOpenName(openStart, openEnd)) {
+      final open = _slice(openStart, openEnd);
       throw XmlParseException(
         'Mismatched end tag: expected </$open> but found </$qualifiedName>',
         _pos,
       );
     }
-    _qualifiedName = open;
-    _depth = _elementStack.length;
+    _depth = _elementStack.length ~/ 2;
     if (_nsStack.length > 1) {
       _nsStack.removeLast();
     }
+  }
+
+  bool _matchesOpenName(int start, int end) {
+    final length = end - start;
+    if (length != _nameEnd - _nameStart) return false;
+    for (var i = 0; i < length; i++) {
+      if (_source.codeUnitAt(start + i) != _source.codeUnitAt(_nameStart + i)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   void _readQName() {
     _nameStart = _pos;
     _prefixStart = _pos;
     _prefixEnd = _pos;
-    while (_pos < _source.length && _isNameChar(_source.codeUnitAt(_pos))) {
-      if (_source.codeUnitAt(_pos) == _colon && _prefixEnd == _prefixStart) {
+    while (_pos < _source.length) {
+      final ch = _source.codeUnitAt(_pos);
+      if (!_isNameChar(ch)) break;
+      if (ch == _colon && _prefixEnd == _prefixStart) {
         _prefixEnd = _pos;
       }
       _pos++;
@@ -381,8 +401,10 @@ class XmlPullReader {
   _AttrSlice _readAttribute() {
     final int qStart = _pos;
     int prefixEnd = qStart;
-    while (_pos < _source.length && _isNameChar(_source.codeUnitAt(_pos))) {
-      if (_source.codeUnitAt(_pos) == _colon && prefixEnd == qStart) {
+    while (_pos < _source.length) {
+      final ch = _source.codeUnitAt(_pos);
+      if (!_isNameChar(ch)) break;
+      if (ch == _colon && prefixEnd == qStart) {
         prefixEnd = _pos;
       }
       _pos++;
@@ -401,8 +423,10 @@ class XmlPullReader {
     _pos++;
     final int vStart = _pos;
     bool hasEntities = false;
-    while (_pos < _source.length && _source.codeUnitAt(_pos) != quote) {
-      if (_source.codeUnitAt(_pos) == _amp) {
+    while (_pos < _source.length) {
+      final ch = _source.codeUnitAt(_pos);
+      if (ch == quote) break;
+      if (ch == _amp) {
         hasEntities = true;
       }
       _pos++;
@@ -410,24 +434,34 @@ class XmlPullReader {
     final int vEnd = _pos;
     _expect(quote, 'Unterminated attribute value');
 
-    return _AttrSlice(
-      nameStart: qStart,
-      nameEnd: qEnd,
-      prefixEnd: prefixEnd,
-      valueStart: vStart,
-      valueEnd: vEnd,
-      hasEntities: hasEntities,
-      isXmlns:
+    final index = _attrs.length;
+    final pool = _attributePool ??= <_AttrSlice>[];
+    final _AttrSlice attr;
+    if (index < pool.length) {
+      attr = pool[index];
+    } else {
+      attr = _AttrSlice();
+      if (index < _attributePoolLimit) pool.add(attr);
+    }
+    return attr
+      ..nameStart = qStart
+      ..nameEnd = qEnd
+      ..prefixEnd = prefixEnd
+      ..valueStart = vStart
+      ..valueEnd = vEnd
+      ..hasEntities = hasEntities
+      ..isXmlns =
           (prefixEnd == qStart ? qEnd : prefixEnd) == qStart + 5 &&
-          _source.startsWith('xmlns', qStart),
-    );
+          _source.startsWith('xmlns', qStart);
   }
 
   void _readText() {
     _type = XmlEventType.characters;
     _textStart = _pos;
-    while (_pos < _source.length && _source.codeUnitAt(_pos) != _lt) {
-      if (_source.codeUnitAt(_pos) == _amp) {
+    while (_pos < _source.length) {
+      final ch = _source.codeUnitAt(_pos);
+      if (ch == _lt) break;
+      if (ch == _amp) {
         _textHasEntities = true;
       }
       _pos++;
@@ -708,36 +742,13 @@ int _entityCodePoint(String body) {
 }
 
 class _AttrSlice {
-  _AttrSlice({
-    required this.nameStart,
-    required this.nameEnd,
-    required this.prefixEnd,
-    required this.valueStart,
-    required this.valueEnd,
-    required this.hasEntities,
-    required this.isXmlns,
-  });
-
-  /// nameStart API.
-  final int nameStart;
-
-  /// nameEnd API.
-  final int nameEnd;
-
-  /// prefixEnd API.
-  final int prefixEnd;
-
-  /// valueStart API.
-  final int valueStart;
-
-  /// valueEnd API.
-  final int valueEnd;
-
-  /// hasEntities API.
-  final bool hasEntities;
-
-  /// isXmlns API.
-  final bool isXmlns;
+  int nameStart = 0;
+  int nameEnd = 0;
+  int prefixEnd = 0;
+  int valueStart = 0;
+  int valueEnd = 0;
+  bool hasEntities = false;
+  bool isXmlns = false;
 
   /// qualified API.
   String qualified(String source) => source.substring(nameStart, nameEnd);

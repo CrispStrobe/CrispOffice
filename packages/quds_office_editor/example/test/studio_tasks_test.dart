@@ -11,6 +11,7 @@ import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_credential_storage.dart';
 import 'package:quds_office_studio/studio_tasks.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqlite3/sqlite3.dart';
 
@@ -70,6 +71,65 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
+  testWidgets(
+    'Tasks uses the shell ribbon and theme surface, and supports both swipes',
+    (tester) async {
+      final theme = ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        scaffoldBackgroundColor: Colors.grey,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: theme,
+          home: StudioTasksPage(
+            title: 'Tasks',
+            chromeBuilder: (_) => const Text('Shared shell'),
+            openDatabase: () async => sqlite3.openInMemory(),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Shared shell'), findsOneWidget);
+      expect(find.byType(StudioTabChip), findsNothing);
+      expect(
+        find.descendant(
+          of: find.byType(StudioRibbonStrip),
+          matching: find.byKey(const ValueKey('studio-task-list-selector')),
+        ),
+        findsOneWidget,
+      );
+      expect(find.byType(AppBar), findsNothing);
+      expect(
+        tester.widget<Scaffold>(find.byType(Scaffold)).backgroundColor,
+        theme.colorScheme.surface,
+      );
+      await tester.tap(find.byTooltip('Add task'));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.widgetWithText(TextField, 'Title'),
+        'Swipe fixture',
+      );
+      await tester.tap(find.text('Save task'));
+      await tester.pumpAndSettle();
+      await tester.drag(find.text('Swipe fixture'), const Offset(520, 0));
+      await tester.pumpAndSettle();
+      expect(tester.widget<Checkbox>(find.byType(Checkbox)).value, isTrue);
+
+      await tester.drag(find.text('Swipe fixture'), const Offset(-520, 0));
+      await tester.pumpAndSettle();
+      expect(find.text('Delete task?'), findsOneWidget);
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(find.text('Swipe fixture'), findsOneWidget);
+      await tester.drag(find.text('Swipe fixture'), const Offset(-520, 0));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Delete task'));
+      await tester.pumpAndSettle();
+      expect(find.text('Swipe fixture'), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
   testWidgets('native Tasks pane exposes its close action', (tester) async {
     var closed = false;
     await tester.pumpWidget(
@@ -121,13 +181,21 @@ void main() {
       find.widgetWithText(DropdownButton<String>, 'Exchange EWS'),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Google Tasks (read-only)').last);
+    await tester.tap(find.text('Google Tasks').last);
     await tester.pumpAndSettle();
     expect(
       find.widgetWithText(TextFormField, 'Google desktop client ID'),
       findsOneWidget,
     );
     expect(find.widgetWithText(TextFormField, 'Password'), findsNothing);
+    expect(
+      tester
+          .widget<CheckboxListTile>(
+            find.widgetWithText(CheckboxListTile, 'Allow Google task edits'),
+          )
+          .value,
+      isFalse,
+    );
     await tester.tap(find.text('Cancel'));
     await tester.pumpAndSettle();
     await tester.pumpWidget(const SizedBox.shrink());
@@ -240,6 +308,91 @@ void main() {
     },
   );
 
+  testWidgets('adds an account without overwriting the saved mailbox and switches back', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+    final vault = InMemorySecureStorage();
+    final selection = StudioCredentialStorage(
+      systemStorageFactory: () async => vault,
+    );
+    addTearDown(selection.dispose);
+    await vault.write(
+      'crispoffice.tasks.account.v1',
+      jsonEncode({
+        'id': 'legacy-mailbox',
+        'provider': 'caldav',
+        'url': 'https://dav.mailbox.org/',
+        'collection': 'https://dav.mailbox.org/first/',
+        'login': 'First mailbox',
+        'secret': 'first-password',
+        'lists': [
+          ['https://dav.mailbox.org/first/', 'First list', false],
+        ],
+      }),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudioTasksPage(
+          title: 'Tasks',
+          openDatabase: () async => sqlite3.openInMemory(),
+          credentialStorage: selection,
+          openDavClient: () => MockClient((request) async {
+            final first = request.url.path == '/first/';
+            final label = first ? 'First list' : 'Second list';
+            final username = first ? 'First mailbox' : 'Second mailbox';
+            final password = first ? 'first-password' : 'second-password';
+            expect(
+              request.headers['authorization'],
+              'Basic ${base64.encode(utf8.encode('$username:$password'))}',
+            );
+            final value = request.method != 'PROPFIND'
+                ? ''
+                : '<d:response><d:href>${request.url.path}</d:href><d:propstat><d:prop>'
+                      '<d:resourcetype><c:calendar/></d:resourcetype><d:displayname>$label</d:displayname>'
+                      '<c:supported-calendar-component-set><c:comp name="VTODO"/></c:supported-calendar-component-set>'
+                      '</d:prop><d:status>HTTP/1.1 200 OK</d:status></d:propstat></d:response>';
+            return http.Response(
+              '<d:multistatus xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">$value</d:multistatus>',
+              207,
+            );
+          }),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('First list'), findsOneWidget);
+    expect(await vault.read('crispoffice.tasks.account.v1'), isNull);
+    await tester.tap(find.text('Add account'));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Exact task-list URL (optional)'),
+      'https://dav.mailbox.org/second/',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Username'),
+      'Second mailbox',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'App password'),
+      'second-password',
+    );
+    await tester.tap(find.widgetWithText(FilledButton, 'Connect'));
+    await tester.pumpAndSettle();
+    expect(find.text('Second list'), findsOneWidget);
+    await tester.tap(
+      find.widgetWithText(DropdownButton<TaskAccountId>, 'Second mailbox'),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('First mailbox').last);
+    await tester.pumpAndSettle();
+    expect(find.text('First list'), findsOneWidget);
+    final saved =
+        jsonDecode((await vault.read('crispoffice.tasks.accounts.v2'))!) as Map;
+    expect(saved['accounts'], hasLength(2));
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('CalDAV connect and disconnect use the selected credential vault', (
     tester,
   ) async {
@@ -249,7 +402,7 @@ void main() {
       systemStorageFactory: () async => vault,
     );
     addTearDown(selection.dispose);
-    const key = 'crispoffice.tasks.account.v1';
+    const key = 'crispoffice.tasks.accounts.v2';
     const login = 'fixture-user';
     const password = 'fixture-app-password';
     const exact = 'https://dav.mailbox.org/tasks/';
@@ -302,7 +455,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Fixture list'), findsOneWidget);
     expect(requests, ['PROPFIND', 'REPORT']);
-    final saved = jsonDecode((await vault.read(key))!) as Map<String, Object?>;
+    final catalog =
+        jsonDecode((await vault.read(key))!) as Map<String, Object?>;
+    final saved = (catalog['accounts'] as List).single as Map<String, Object?>;
     expect(saved['secret'], password);
     expect(saved['davProfile'], 'mailbox.org');
     expect(
@@ -311,7 +466,7 @@ void main() {
     );
     await tester.tap(find.text('Disconnect'));
     await tester.pumpAndSettle();
-    expect(await vault.read(key), isNull);
+    expect((jsonDecode((await vault.read(key))!) as Map)['accounts'], isEmpty);
     expect(find.text('Connect account'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
   });

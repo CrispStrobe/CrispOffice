@@ -94,6 +94,13 @@ class _StudioAboutDialogState extends State<StudioAboutDialog> {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
+  Widget _upstreamLink() => TextButton.icon(
+    icon: const Icon(Icons.open_in_new, size: 16),
+    label: Text(strings.aboutSourceProject),
+    onPressed: () =>
+        _launch('https://github.com/MohammedAsaadAsaad/quds_office_suite'),
+  );
+
   Widget _sectionTitle(BuildContext context, String title) => Text(
     title,
     style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -181,6 +188,10 @@ class _StudioAboutDialogState extends State<StudioAboutDialog> {
               const SizedBox(height: 16),
               _sectionTitle(context, strings.disclaimer),
               _sectionText(context, strings.disclaimerText),
+              const SizedBox(height: 16),
+              _sectionTitle(context, strings.aboutSource),
+              _sectionText(context, strings.aboutSourceText),
+              _upstreamLink(),
               const SizedBox(height: 20),
               Wrap(
                 spacing: 16,
@@ -215,11 +226,9 @@ class _StudioAboutDialogState extends State<StudioAboutDialog> {
                     context: context,
                     applicationName: strings.appTitle,
                     applicationVersion: _version?.label,
-                    applicationIcon: const Icon(
-                      Icons.auto_awesome_mosaic,
-                      size: 48,
-                    ),
-                    applicationLegalese: strings.legalNotice,
+                    applicationIcon: _upstreamLink(),
+                    applicationLegalese:
+                        '${strings.aboutSourceText}\n\n${strings.legalNotice}',
                   ),
                 ),
               ),

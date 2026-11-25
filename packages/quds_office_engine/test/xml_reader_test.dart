@@ -63,6 +63,16 @@ void main() {
       );
     });
 
+    test('closing tags match the complete opening name at their depth', () {
+      final reader = XmlPullReader('<é><élément></élément></é>');
+      for (final name in ['é', 'élément', 'élément', 'é']) {
+        expect(reader.next(), isTrue);
+        expect(reader.qualifiedName, name);
+      }
+      final shorter = XmlPullReader('<élément></é>')..next();
+      expect(shorter.next, throwsA(isA<XmlParseException>()));
+    });
+
     test('event names survive empty tags and follow namespace scope', () {
       final reader = XmlPullReader(
         '<root xmlns:p="urn:outer"><p:child xmlns:p="urn:inner"/>'
@@ -81,6 +91,30 @@ void main() {
       expect(reader.next(), isTrue);
       expect(reader.localName, 'sibling');
       expect(reader.namespaceUri, 'urn:outer');
+    });
+
+    test('attribute slots reset when the next tag has fewer attributes', () {
+      final many = List.generate(20, (i) => 'a$i="$i"').join(' ');
+      final reader = XmlPullReader(
+        '<root xmlns:p="urn:p"><p:wide $many p:val="&amp;"/>'
+        '<p:narrow val="plain"/><p:empty/></root>',
+      );
+      expect(reader.next(), isTrue);
+      expect(reader.next(), isTrue);
+      expect(reader.attributeCount, 21);
+      expect(reader.getAttribute('val', namespaceUri: 'urn:p'), '&');
+      expect(reader.getAttribute('a19'), '19');
+      expect(reader.next(), isTrue);
+      expect(reader.eventType, XmlEventType.endElement);
+      expect(reader.attributeCount, 21);
+      expect(reader.next(), isTrue);
+      expect(reader.attributeCount, 1);
+      expect(reader.attributesAsMap(), {'val': 'plain'});
+      expect(reader.getAttribute('val', namespaceUri: 'urn:p'), isNull);
+      expect(() => reader.attributeValue(1), throwsRangeError);
+      expect(reader.next(), isTrue);
+      expect(reader.next(), isTrue);
+      expect(reader.attributeCount, 0);
     });
 
     test('handles empty elements, comments, and CDATA', () {

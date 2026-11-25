@@ -175,6 +175,7 @@ final class _Client extends Fake implements mail.MailClient {
   int selections = 0;
   final sent = <mail.MimeMessage>[];
   final appendRequests = <bool>[];
+  final sentMailboxes = <mail.Mailbox?>[];
   final recipientLists = <List<mail.MailAddress>?>[];
   final senderAddresses = <mail.MailAddress?>[];
   mail.Mailbox? _selectedMailbox;
@@ -248,6 +249,7 @@ final class _Client extends Fake implements mail.MailClient {
   }) async {
     sent.add(message);
     appendRequests.add(appendToSent);
+    sentMailboxes.add(sentMailbox);
     recipientLists.add(recipients);
     senderAddresses.add(from);
     await onSend?.call(message);
@@ -1822,73 +1824,81 @@ void main() {
     },
   );
 
-  testWidgets('native direct send keeps the saved alias and private envelope', (
-    tester,
-  ) async {
-    const alias = StudioMailSender(
-      address: 'alias@example.invalid',
-      displayName: 'Writer, Grüße',
-      replyTo: 'replies@example.invalid',
-    );
-    const draft = StudioMailDraft(
-      to: 'recipient@example.invalid',
-      cc: 'copy@example.invalid',
-      bcc: 'hidden@example.invalid',
-      subject: 'Saved alias message',
-      body: 'An explicitly authored message.',
-      sender: alias,
-    );
-    final drafts = MemoryStudioMailDrafts();
-    final client = _Client();
-    await _open(
-      tester,
-      (account) {
-        expect(account.email, 'reader@example.invalid');
-        return client;
-      },
-      draftStoreFactory: (account) {
-        drafts.records[account.account.value] = const StudioMailStoredDraft(
-          draft: draft,
-          submissionUncertain: false,
-        );
-        return drafts.open(account);
-      },
-    );
-    await _connect(tester);
-    expect(client.sent, isEmpty);
-    await tester.tap(find.widgetWithText(TextButton, _strings.compose));
-    await _pump(tester);
-    final composer = tester.widget<StudioMailComposeDialog>(
-      find.byType(StudioMailComposeDialog),
-    );
-    expect(composer.allowSenderAliases, isTrue);
-    expect(composer.initialDraft!.sender, alias);
-    final send = find.widgetWithText(FilledButton, _strings.send);
-    await tester.ensureVisible(send);
-    await tester.tap(send);
-    await _pump(tester);
+  testWidgets(
+    'native direct send files the saved alias and preserves its private envelope',
+    (tester) async {
+      const alias = StudioMailSender(
+        address: 'alias@example.invalid',
+        displayName: 'Writer, Grüße',
+        replyTo: 'replies@example.invalid',
+      );
+      const draft = StudioMailDraft(
+        to: 'recipient@example.invalid',
+        cc: 'copy@example.invalid',
+        bcc: 'hidden@example.invalid',
+        subject: 'Saved alias message',
+        body: 'An explicitly authored message.',
+        sender: alias,
+      );
+      final drafts = MemoryStudioMailDrafts();
+      final sent = mail.Mailbox(
+        encodedName: 'Sent',
+        encodedPath: 'INBOX.Sent',
+        flags: [mail.MailboxFlag.sent],
+        pathSeparator: '.',
+      );
+      final client = _Client()..boxes.add(sent);
+      await _open(
+        tester,
+        (account) {
+          expect(account.email, 'reader@example.invalid');
+          return client;
+        },
+        draftStoreFactory: (account) {
+          drafts.records[account.account.value] = const StudioMailStoredDraft(
+            draft: draft,
+            submissionUncertain: false,
+          );
+          return drafts.open(account);
+        },
+      );
+      await _connect(tester);
+      expect(client.sent, isEmpty);
+      await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+      await _pump(tester);
+      final composer = tester.widget<StudioMailComposeDialog>(
+        find.byType(StudioMailComposeDialog),
+      );
+      expect(composer.allowSenderAliases, isTrue);
+      expect(composer.initialDraft!.sender, alias);
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
 
-    final message = client.sent.single;
-    final wire = message.renderMessage();
-    final parsed = const QudsMimeCodec().parse(utf8.encode(wire)).message!;
-    expect(client.senderAddresses.single?.email, alias.address);
-    expect(client.senderAddresses.single?.personalName, alias.displayName);
-    expect(parsed.envelope.from.single.address, alias.address);
-    expect(parsed.envelope.from.single.displayName, alias.displayName);
-    expect(parsed.envelope.replyTo.single.address, alias.replyTo);
-    expect(parsed.envelope.bcc, isEmpty);
-    expect(wire, isNot(contains('hidden@example.invalid')));
-    expect(client.recipientLists.single!.map((item) => item.email), [
-      'recipient@example.invalid',
-      'copy@example.invalid',
-      'hidden@example.invalid',
-    ]);
-    expect(client.appendRequests, [false]);
-    expect(drafts.records, isEmpty);
-    expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
-    expect(tester.takeException(), isNull);
-    await _close(tester);
-  });
+      final message = client.sent.single;
+      final wire = message.renderMessage();
+      final parsed = const QudsMimeCodec().parse(utf8.encode(wire)).message!;
+      expect(client.senderAddresses.single?.email, alias.address);
+      expect(client.senderAddresses.single?.personalName, alias.displayName);
+      expect(parsed.envelope.from.single.address, alias.address);
+      expect(parsed.envelope.from.single.displayName, alias.displayName);
+      expect(parsed.envelope.replyTo.single.address, alias.replyTo);
+      expect(parsed.envelope.bcc, isEmpty);
+      expect(wire, isNot(contains('hidden@example.invalid')));
+      expect(client.recipientLists.single!.map((item) => item.email), [
+        'recipient@example.invalid',
+        'copy@example.invalid',
+        'hidden@example.invalid',
+      ]);
+      expect(client.appendRequests, [true]);
+      expect(client.sentMailboxes.single, same(sent));
+      expect(drafts.records, isEmpty);
+      expect(find.text(_strings.mailSubmissionFiled), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await _close(tester);
+    },
+  );
 
   testWidgets('composing sends the draft and reports success or failure', (
     tester,

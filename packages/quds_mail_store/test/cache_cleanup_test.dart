@@ -124,6 +124,55 @@ void main() {
   });
 
   test(
+    'snapshot expiry is account scoped and preserves cached bodies',
+    () async {
+      final other = MailAccountId('other-account', profile: _profile);
+      await create(other);
+      final inbox = _box('INBOX');
+      final header = _header(1, inbox);
+      final first = await save(inbox, [header]);
+      await cache(header);
+      final otherInbox = MailMailbox(
+        id: MailMailboxId('INBOX', account: other),
+        displayName: 'Inbox',
+      );
+      await save(otherInbox, [_header(1, otherInbox)]);
+
+      expect(
+        _value(
+          await store.expireMailboxViews(
+            _account,
+            capturedBefore: first.capturedAt,
+          ),
+        ),
+        0,
+      );
+      expect(
+        _value(
+          await store.expireMailboxViews(
+            _account,
+            capturedBefore: first.capturedAt.add(const Duration(days: 1)),
+          ),
+        ),
+        1,
+      );
+      expect(
+        _value(await store.loadCachedMessage(_account, header.id)),
+        isNotNull,
+      );
+      expect(
+        _value(
+          await store.expireMailboxViews(
+            other,
+            capturedBefore: first.capturedAt.add(const Duration(days: 1)),
+          ),
+        ),
+        1,
+      );
+    },
+  );
+
+  test(
     'explicit cleanup frees automatic-cache quota for an exact saved draft',
     () async {
       await store.close();

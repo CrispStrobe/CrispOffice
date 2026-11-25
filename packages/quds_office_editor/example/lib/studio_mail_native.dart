@@ -24,6 +24,7 @@ import 'studio_mail_account_navigation_strings.dart';
 import 'studio_mail_bulk_status.dart';
 import 'studio_mail_body_download.dart';
 import 'studio_mail_flag_journal.dart';
+import 'studio_mail_folders.dart';
 import 'studio_mail_journal_dialog.dart';
 import 'studio_mail_journal_strings.dart';
 import 'studio_mail_archive_folder_action.dart';
@@ -58,6 +59,7 @@ import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
+import 'studio_mail_polling.dart';
 import 'studio_mail_remote_images.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
@@ -252,6 +254,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   int _sessionGeneration = 0;
   mail.MailAccount? _account;
   List<mail.Mailbox> _mailboxes = const <mail.Mailbox>[];
+  final _expandedFolders = <String>{};
+  bool _unreadOnly = false;
+  Timer? _mailPollTimer;
+  NativeStudioMailMessageLoader? _pollProbe;
+  mail.Mailbox? _pollInboxMailbox;
+  int _pollMinutes = StudioMailPollPreferences.defaultMinutes;
+  int _snapshotRetention = 0;
+  final _mailPollActivity = ValueNotifier<List<String>>([]);
+  String? _pollAccount;
   mail.Mailbox? _mailbox;
   List<mail.MimeMessage> _messages = const <mail.MimeMessage>[];
   mail.MimeMessage? _selected;
@@ -778,6 +789,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   @override
   void dispose() {
+    _cancelMailPolling();
+    _mailPollActivity.dispose();
     WidgetsBinding.instance.removeObserver(this);
     if (widget.credentialStore == null) {
       StudioCredentialStorage.instance.removeListener(
@@ -1590,6 +1603,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _messageMailbox = observedMailbox;
         _account = account;
         _mailboxes = boxes;
+        _expandedFolders.clear();
+        _unreadOnly = false;
         _mailbox = inbox;
         _messages = page.messages;
         _nextHeaders = page.next;
@@ -1604,6 +1619,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _notice = null;
       });
       adopted = true;
+      if (loader is NativeStudioMailMessageLoader && inbox.isInbox) {
+        unawaited(
+          _startMailPolling(client, account, observedMailbox, generation),
+        );
+      }
       _retireReader(previous);
       final restored = await _restoreDraftStore(
         client,
@@ -1620,6 +1640,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               ),
       );
       if (!_currentSession(client, generation)) return;
+      if (_pollAccount != null) {
+        unawaited(_expireMailSnapshots(client, account, generation));
+      }
       if (!restored) await validateNavigation();
       if (!sameDestination()) throw const _StudioMailNavigationExpired();
       // Only a fully validated session may fulfil the selected sign-in intent.
@@ -1721,141 +1744,140 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
-  Future<void> _selectMailbox(mail.Mailbox mailbox, {bool more = false}) =>
-      runStudioMailOperation(() async {
-        final client = _client;
-        final loader = _messageLoader;
-        if (client == null ||
-            loader == null ||
-            _accountNavigationPending ||
-            _navigationReleaseRequired ||
-            _busy ||
-            _dialogOpen ||
-            more &&
-                (_needsRefresh ||
-                    _nextHeaders == null ||
-                    _messages.length >= _maxHeaders ||
-                    _messageMailbox == null ||
-                    mailbox.path != _mailbox?.path ||
-                    loader is! StudioMailMailboxBrowser)) {
-          return;
-        }
-        final generation = _sessionGeneration;
-        final previous = more ? null : _reader;
-        final cursor = more ? _nextHeaders : null;
-        setState(() => _busy = true);
-        try {
-          await _stopCachedView(retainMetadata: more);
-        } on StudioMailMailboxStoreException {
-          // The failed drain already quarantined the source account and kept
-          // its observers for the explicit release control.
-          return;
-        }
+  Future<void> _selectMailbox(
+    mail.Mailbox mailbox, {
+    bool more = false,
+    bool unreadOnly = false,
+  }) => runStudioMailOperation(() async {
+    final client = _client;
+    final loader = _messageLoader;
+    if (client == null ||
+        loader == null ||
+        _accountNavigationPending ||
+        _navigationReleaseRequired ||
+        _busy ||
+        _dialogOpen ||
+        more &&
+            (_needsRefresh ||
+                _nextHeaders == null ||
+                _messages.length >= _maxHeaders ||
+                _messageMailbox == null ||
+                mailbox.path != _mailbox?.path ||
+                loader is! StudioMailMailboxBrowser)) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    final previous = more ? null : _reader;
+    final cursor = more ? _nextHeaders : null;
+    setState(() => _busy = true);
+    try {
+      await _stopCachedView(retainMetadata: more);
+    } on StudioMailMailboxStoreException {
+      // The failed drain already quarantined the source account and kept
+      // its observers for the explicit release control.
+      return;
+    }
+    if (!_currentSession(client, generation)) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+      if (!more) {
+        _mailboxGeneration++;
+        _bulkReport = null;
+        _bulkSubjects = const {};
+        _mailbox = mailbox;
+        _unreadOnly = unreadOnly;
+        _messageMailbox = null;
+        _selected = null;
+        _messages = const <mail.MimeMessage>[];
+        _nextHeaders = null;
+        _usedHeaderCursors.clear();
+        _confirmedFlags.clear();
+        _reader = null;
+        _showCompactMessage = false;
+      }
+    });
+    _retireReader(previous);
+    try {
+      final mail.Mailbox observedMailbox;
+      if (more) {
+        observedMailbox = _messageMailbox!;
+      } else {
+        final selected = await client.selectMailbox(mailbox);
         if (!_currentSession(client, generation)) return;
+        observedMailbox = (client.selectedMailbox ?? selected).copyWith();
+      }
+      final remaining = _maxHeaders - (more ? _messages.length : 0);
+      final limit = remaining < _pageSize ? remaining : _pageSize;
+      final StudioMailHeaderPage page;
+      if (loader is StudioMailMailboxBrowser) {
+        page = await (loader as StudioMailMailboxBrowser).fetchHeaders(
+          observedMailbox,
+          cursor: cursor,
+          limit: limit,
+        );
+      } else {
+        page = StudioMailHeaderPage(
+          messages: await client.fetchMessages(
+            mailbox: mailbox,
+            count: limit,
+            fetchPreference: mail.FetchPreference.envelope,
+          ),
+        );
+      }
+      if (!_currentSession(client, generation)) return;
+      _validateHeaderPage(page, observedMailbox, cursor: cursor, limit: limit);
+      final membershipCapabilities = more
+          ? _membershipCapabilities
+          : await _readMembershipCapabilities(loader);
+      if (!_currentSession(client, generation)) return;
+      final messages = <String, mail.MimeMessage>{
+        if (more)
+          for (final message in _messages) _messageKey(message): message,
+        for (final message in page.messages)
+          _messageKey(message, mailbox: observedMailbox): message,
+      };
+      setState(() {
+        if (cursor != null) _usedHeaderCursors.add(cursor.value);
+        _messages = messages.values.toList();
+        _membershipCapabilities = membershipCapabilities;
+        final retained = Set<mail.MimeMessage>.identity()..addAll(_messages);
+        _confirmedFlags.removeWhere(
+          (message, _) => !retained.contains(message),
+        );
+        _repositoryFlags.removeWhere(
+          (message, _) => !retained.contains(message),
+        );
+        if (more && _selected != null) {
+          _selected = messages[_messageKey(_selected!)];
+        }
+        _messageMailbox = observedMailbox;
+        if (!more && mailbox.isInbox) _pollInboxMailbox = observedMailbox;
+        _nextHeaders = page.next;
+        _needsRefresh = false;
+        _bulkReport = null;
+        _bulkSubjects = const {};
+      });
+      await _saveCachedView(client, generation);
+      if (_currentSession(client, generation)) {
+        setState(() => _busy = false);
+      }
+    } on Object catch (error) {
+      if (_currentSession(client, generation)) {
         setState(() {
-          _busy = true;
-          _error = null;
-          _notice = null;
-          if (!more) {
-            _mailboxGeneration++;
-            _bulkReport = null;
-            _bulkSubjects = const {};
-            _mailbox = mailbox;
-            _messageMailbox = null;
-            _selected = null;
-            _messages = const <mail.MimeMessage>[];
-            _nextHeaders = null;
-            _usedHeaderCursors.clear();
-            _confirmedFlags.clear();
-            _reader = null;
-            _showCompactMessage = false;
+          _busy = false;
+          if (error is StudioMailMessageLoadException &&
+              error.code == MailProblemCode.conflict) {
+            _needsRefresh = true;
+            _error = widget.strings.mailWorkspaceRefreshRequired;
+          } else {
+            _error = widget.strings.mailMailboxFailed;
           }
         });
-        _retireReader(previous);
-        try {
-          final mail.Mailbox observedMailbox;
-          if (more) {
-            observedMailbox = _messageMailbox!;
-          } else {
-            final selected = await client.selectMailbox(mailbox);
-            if (!_currentSession(client, generation)) return;
-            observedMailbox = (client.selectedMailbox ?? selected).copyWith();
-          }
-          final remaining = _maxHeaders - (more ? _messages.length : 0);
-          final limit = remaining < _pageSize ? remaining : _pageSize;
-          final StudioMailHeaderPage page;
-          if (loader is StudioMailMailboxBrowser) {
-            page = await (loader as StudioMailMailboxBrowser).fetchHeaders(
-              observedMailbox,
-              cursor: cursor,
-              limit: limit,
-            );
-          } else {
-            page = StudioMailHeaderPage(
-              messages: await client.fetchMessages(
-                mailbox: mailbox,
-                count: limit,
-                fetchPreference: mail.FetchPreference.envelope,
-              ),
-            );
-          }
-          if (!_currentSession(client, generation)) return;
-          _validateHeaderPage(
-            page,
-            observedMailbox,
-            cursor: cursor,
-            limit: limit,
-          );
-          final membershipCapabilities = more
-              ? _membershipCapabilities
-              : await _readMembershipCapabilities(loader);
-          if (!_currentSession(client, generation)) return;
-          final messages = <String, mail.MimeMessage>{
-            if (more)
-              for (final message in _messages) _messageKey(message): message,
-            for (final message in page.messages)
-              _messageKey(message, mailbox: observedMailbox): message,
-          };
-          setState(() {
-            if (cursor != null) _usedHeaderCursors.add(cursor.value);
-            _messages = messages.values.toList();
-            _membershipCapabilities = membershipCapabilities;
-            final retained = Set<mail.MimeMessage>.identity()
-              ..addAll(_messages);
-            _confirmedFlags.removeWhere(
-              (message, _) => !retained.contains(message),
-            );
-            _repositoryFlags.removeWhere(
-              (message, _) => !retained.contains(message),
-            );
-            if (more && _selected != null) {
-              _selected = messages[_messageKey(_selected!)];
-            }
-            _messageMailbox = observedMailbox;
-            _nextHeaders = page.next;
-            _needsRefresh = false;
-            _bulkReport = null;
-            _bulkSubjects = const {};
-          });
-          await _saveCachedView(client, generation);
-          if (_currentSession(client, generation)) {
-            setState(() => _busy = false);
-          }
-        } on Object catch (error) {
-          if (_currentSession(client, generation)) {
-            setState(() {
-              _busy = false;
-              if (error is StudioMailMessageLoadException &&
-                  error.code == MailProblemCode.conflict) {
-                _needsRefresh = true;
-                _error = widget.strings.mailWorkspaceRefreshRequired;
-              } else {
-                _error = widget.strings.mailMailboxFailed;
-              }
-            });
-          }
-        }
-      });
+      }
+    }
+  });
 
   Future<void> _openMessage(mail.MimeMessage message) =>
       runStudioMailOperation(() async {
@@ -2015,6 +2037,30 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     if (chosen != null && current()) await _openComposer(null);
   });
 
+  // Gmail files messages submitted to its own SMTP endpoint.
+  bool _providerFilesSent(mail.MailAccount account) =>
+      account.incoming.serverConfig.hostname.toLowerCase() ==
+          'imap.gmail.com' &&
+      account.outgoing.serverConfig.hostname.toLowerCase() == 'smtp.gmail.com';
+
+  mail.Mailbox? _sentMailbox(mail.MailAccount account) =>
+      _providerFilesSent(account) ? null : studioMailSentMailbox(_mailboxes);
+
+  String _submissionNotice(bool? filed, {bool followUpFailed = false}) {
+    final strings = widget.strings;
+    if (filed == false) {
+      return followUpFailed
+          ? strings.mailSubmissionFollowUpFailed
+          : strings.mailSubmissionAccepted;
+    }
+    final confirmation = filed == true
+        ? strings.mailSubmissionFiled
+        : strings.messageSent;
+    return followUpFailed
+        ? '$confirmation. ${strings.sentCleanupWarning}'
+        : confirmation;
+  }
+
   StudioMailOutboxSubmit _outboxSubmit(
     mail.MailClient client,
     mail.MailAccount account,
@@ -2029,7 +2075,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         outcome: MailSubmissionOutcome.rejected,
       );
     }
-    return submitStudioMailNativeOutbox(client, message, attemptId: attemptId);
+    return submitStudioMailNativeOutbox(
+      client,
+      message,
+      attemptId: attemptId,
+      sentMailbox: _sentMailbox(account),
+      providerFilesSent: _providerFilesSent(account),
+    );
   };
 
   Future<void> _openOutbox() => runStudioMailOperation(() async {
@@ -2158,7 +2210,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (!_currentSession(client, generation)) return;
       setState(() {
         _notice = completed.state == MailOutboxState.submitted
-            ? widget.strings.mailSubmissionAccepted
+            ? _submissionNotice(completed.result!.sentCopySaved)
             : '${widget.strings.mailOutboxState(completed.state)}. ${widget.strings.mailOutboxInspect}';
         if (completed.state == MailOutboxState.uncertain ||
             (completed.priorSubmissionUncertain &&
@@ -2339,6 +2391,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _notice = widget.strings.sending;
     });
     var attempted = false;
+    final sentMailbox = _sentMailbox(account);
+    final providerFilesSent = _providerFilesSent(account);
     final pending = _beginSubmissionStorage(store);
     try {
       final message = buildStudioMailMessage(draft, account.email);
@@ -2352,7 +2406,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           draft.sender?.displayName ?? '',
           draft.sender?.address ?? account.email,
         ),
-        appendToSent: false,
+        appendToSent: sentMailbox != null,
+        sentMailbox: sentMailbox,
         recipients: [
           for (final address in draft.recipients.envelope)
             mail.MailAddress('', address),
@@ -2365,7 +2420,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           _draft = cleared ? null : draft;
           _submissionUncertain = !cleared;
           _notice = cleared
-              ? widget.strings.mailSubmissionAccepted
+              ? _submissionNotice(
+                  providerFilesSent ? null : sentMailbox != null,
+                )
               : widget.strings.mailDraftAcceptedCleanupFailed;
         });
       }
@@ -2383,7 +2440,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             _submissionUncertain = !cleared;
             _error = null;
             _notice = cleared
-                ? widget.strings.mailSubmissionFollowUpFailed
+                ? _submissionNotice(
+                    providerFilesSent
+                        ? null
+                        : sentMailbox != null && error.sentCopyError == null,
+                    followUpFailed: error.cleanupError != null,
+                  )
                 : widget.strings.mailDraftAcceptedCleanupFailed;
           } else {
             // An outcome from another client cannot confirm this submission.
@@ -3908,12 +3970,38 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 MailProblemCode.staleOperation,
               );
             }
-            return synchronizer.synchronizeMailbox(
-              frozen,
-              repository: syncStore,
-              cancellation: cancellation,
-              onProgress: onProgress,
-            );
+            final account = _account;
+            final elapsed = Stopwatch()..start();
+            if (account != null) {
+              _logMailActivity(account, 'cache sync started');
+            }
+            try {
+              final report = await synchronizer.synchronizeMailbox(
+                frozen,
+                repository: syncStore,
+                cancellation: cancellation,
+                onProgress: onProgress,
+              );
+              if (account != null && current()) {
+                _logMailActivity(
+                  account,
+                  'cache sync ${report.status.name}, ${elapsed.elapsedMilliseconds} ms, '
+                  'pages=${report.committedPages}, upserts=${report.upsertCount}, '
+                  'removed=${report.tombstoneCount}, more=${report.hasMore}, '
+                  'problem=${report.problem?.code.name ?? 'none'}',
+                );
+              }
+              return report;
+            } on Object catch (error) {
+              if (account != null && current()) {
+                _logMailActivity(
+                  account,
+                  'cache sync failed, ${elapsed.elapsedMilliseconds} ms, '
+                  'problem=${studioMailPollFailure(error, code: error is StudioMailMessageLoadException ? error.code.name : null)}',
+                );
+              }
+              rethrow;
+            }
           },
         ),
       );
@@ -4316,15 +4404,261 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
+  void _cancelMailPolling() {
+    _mailPollTimer?.cancel();
+    _mailPollTimer = null;
+    _pollProbe?.dispose();
+    _pollProbe = null;
+    _pollInboxMailbox = null;
+    _snapshotRetention = 0;
+  }
+
+  Future<void> _startMailPolling(
+    mail.MailClient client,
+    mail.MailAccount account,
+    mail.Mailbox inbox,
+    int generation,
+  ) async {
+    final key = _imapLocalIdentity(account).account.value;
+    var interval = StudioMailPollPreferences.defaultMinutes;
+    var retention = 0;
+    var settingsFailed = false;
+    try {
+      interval = await StudioMailPollPreferences.load(key);
+      retention = await StudioMailPollPreferences.loadSnapshotDays(key);
+    } on Object {
+      settingsFailed = true;
+    }
+    if (!_currentSession(client, generation)) return;
+    setState(() {
+      _pollInboxMailbox = inbox;
+      _snapshotRetention = retention;
+    });
+    _scheduleMailPolling(key, interval);
+    if (settingsFailed) _logMailActivity(account, 'settings load failed');
+    _logMailActivity(
+      account,
+      'connected, Inbox headers=${_messages.length}, polling interval=$interval min',
+    );
+
+    unawaited(_expireMailSnapshots(client, account, generation));
+  }
+
+  Future<void> _expireMailSnapshots(
+    mail.MailClient client,
+    mail.MailAccount account,
+    int generation,
+  ) async {
+    final store = _draftStore;
+    if (_snapshotRetention == 0 || store is! StudioMailMailboxStoreOwner) {
+      return;
+    }
+    final mailboxStore = (store as StudioMailMailboxStoreOwner).mailboxStore;
+    if (mailboxStore is! SqliteStudioMailMailboxStore ||
+        mailboxStore.account != _imapLocalIdentity(account).account) {
+      return;
+    }
+    try {
+      final removed = await mailboxStore.expireMailboxViews(
+        DateTime.now().toUtc().subtract(Duration(days: _snapshotRetention)),
+      );
+      if (removed != 0 && _currentSession(client, generation)) {
+        _logMailActivity(account, 'expired offline folder snapshots=$removed');
+      }
+    } on Object catch (error) {
+      if (_currentSession(client, generation)) {
+        _logMailActivity(
+          account,
+          'snapshot expiry failed (${error.runtimeType})',
+        );
+      }
+    }
+  }
+
+  void _scheduleMailPolling(String account, int minutes) {
+    _mailPollTimer?.cancel();
+    if (_pollAccount != account) _mailPollActivity.value = [];
+    _pollAccount = account;
+    _pollMinutes = minutes;
+    _mailPollTimer = minutes == 0
+        ? null
+        : Timer.periodic(Duration(minutes: minutes), (_) {
+            unawaited(_pollInbox());
+          });
+  }
+
+  void _logMailActivity(mail.MailAccount account, String event) {
+    final server = account.incoming.serverConfig;
+    final entries = _mailPollActivity.value;
+    _mailPollActivity.value = [
+      ...entries.skip(entries.length >= 80 ? entries.length - 79 : 0),
+      '${DateTime.now().toUtc().toIso8601String()} ${server.socketType.name} ${server.hostname}:${server.port} $event',
+    ];
+  }
+
+  Future<void> _pollInbox({bool manual = false}) async {
+    final client = _client;
+    final account = _account;
+    final inbox = _pollInboxMailbox;
+    final loader = _messageLoader;
+    if (client == null ||
+        account == null ||
+        inbox == null ||
+        loader is! NativeStudioMailMessageLoader) {
+      return;
+    }
+    if (_busy ||
+        _dialogOpen ||
+        _accountNavigationPending ||
+        _navigationReleaseRequired ||
+        _pollProbe != null) {
+      _logMailActivity(
+        account,
+        'INBOX ${manual ? 'manual' : 'scheduled'} check deferred (busy)',
+      );
+
+      return;
+    }
+    final generation = _sessionGeneration;
+    final timer = Stopwatch()..start();
+    final source = manual ? 'manual' : 'scheduled';
+    _logMailActivity(account, 'INBOX $source check started');
+    NativeStudioMailMessageLoader? probe;
+    try {
+      probe = NativeStudioMailMessageLoader(
+        account,
+        persistentAccount: _imapLocalIdentity(account).account,
+      );
+      _pollProbe = probe;
+      final observed = await probe.fetchHeaders(inbox, limit: _pageSize);
+      if (_currentSession(client, generation)) {
+        unawaited(_expireMailSnapshots(client, account, generation));
+      }
+      if (!_currentSession(client, generation)) return;
+      var newHeaders = 0;
+      final openInbox = _messageMailbox;
+      if (openInbox != null &&
+          openInbox.path == inbox.path &&
+          _mailbox?.path == inbox.path &&
+          !_busy &&
+          !_dialogOpen &&
+          !_accountNavigationPending &&
+          !_navigationReleaseRequired) {
+        final current = _messages.map(_messageKey).toSet();
+        newHeaders = observed.messages
+            .where(
+              (message) =>
+                  !current.contains(_messageKey(message, mailbox: inbox)),
+            )
+            .length;
+        if (newHeaders != 0 || manual) {
+          setState(() => _busy = true);
+          try {
+            final page = await loader.fetchHeaders(openInbox, limit: _pageSize);
+            if (!_currentSession(client, generation)) return;
+            _validateHeaderPage(page, openInbox, limit: _pageSize);
+            setState(() {
+              _messages = page.messages;
+              _nextHeaders = page.next;
+              _usedHeaderCursors.clear();
+              final retained = Set<mail.MimeMessage>.identity()
+                ..addAll(page.messages);
+              _confirmedFlags.removeWhere(
+                (message, _) => !retained.contains(message),
+              );
+              _repositoryFlags.removeWhere(
+                (message, _) => !retained.contains(message),
+              );
+            });
+            await _saveCachedView(client, generation);
+          } finally {
+            if (_currentSession(client, generation)) {
+              setState(() => _busy = false);
+            }
+          }
+        }
+      }
+      _logMailActivity(
+        account,
+        'INBOX $source check ok, ${timer.elapsedMilliseconds} ms, '
+        'headers=${observed.messages.length}, new in open Inbox=$newHeaders',
+      );
+    } on Object catch (error) {
+      if (_currentSession(client, generation)) {
+        final code = error is StudioMailMessageLoadException
+            ? error.code.name
+            : null;
+        _logMailActivity(
+          account,
+          'INBOX $source check failed, ${timer.elapsedMilliseconds} ms, '
+          'problem=${studioMailPollFailure(error, code: code)}',
+        );
+      }
+    } finally {
+      if (identical(_pollProbe, probe)) {
+        _pollProbe = null;
+        probe?.dispose();
+      }
+    }
+  }
+
+  Future<void> _openMailAccountSettings() async {
+    final account = _account;
+    final client = _client;
+    final key = _pollAccount;
+    if (account == null || client == null || key == null || _dialogOpen) return;
+    final generation = _sessionGeneration;
+    await showStudioMailPolling(
+      context,
+      strings: widget.strings,
+      label: account.email,
+      interval: _pollMinutes,
+      snapshotDays: _snapshotRetention,
+      activity: _mailPollActivity,
+      save: (minutes) async {
+        await StudioMailPollPreferences.save(key, minutes);
+        if (_currentSession(client, generation)) {
+          _scheduleMailPolling(key, minutes);
+        }
+      },
+      saveSnapshotDays: (days) async {
+        await StudioMailPollPreferences.saveSnapshotDays(key, days);
+        if (_currentSession(client, generation)) {
+          _snapshotRetention = days;
+          await _expireMailSnapshots(client, account, generation);
+        }
+      },
+      poll: () async {
+        if (_currentSession(client, generation)) await _pollInbox(manual: true);
+      },
+    );
+  }
+
   Future<void> _refreshMailbox() async {
     final mailbox = _mailbox;
-    if (mailbox == null ||
+    final account = _account;
+    final client = _client;
+    if (account == null ||
+        client == null ||
+        mailbox == null ||
         _accountNavigationPending ||
         _navigationOwnerPending ||
         _navigationReleaseRequired) {
       return;
     }
-    await _selectMailbox(mailbox);
+    final generation = _sessionGeneration;
+    final timer = Stopwatch()..start();
+    _logMailActivity(account, 'manual folder refresh started');
+    await _selectMailbox(mailbox, unreadOnly: _unreadOnly);
+    if (_currentSession(client, generation)) {
+      final outcome = _error == null
+          ? 'ok, headers=${_messages.length}'
+          : 'failed';
+      _logMailActivity(
+        account,
+        'manual folder refresh $outcome, ${timer.elapsedMilliseconds} ms',
+      );
+    }
   }
 
   Future<void> _routeProviderAccounts(
@@ -4440,6 +4774,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _mailboxGeneration++;
     _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
     _bulkCancellation = null;
+    _cancelMailPolling();
     _sessionGeneration++;
     final admissionPending = _draftRestoreInFlight != null;
     if (admissionPending) {
@@ -4964,6 +5299,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   : _openSynchronization,
             ),
           _folderArchiveButton(),
+          if (_pollInboxMailbox != null)
+            command(
+              key: const ValueKey('studio-mail-account-settings'),
+              icon: Icons.manage_history_outlined,
+              tooltip: widget.strings.mailAccountSettings,
+              onPressed: _dialogOpen ? null : _openMailAccountSettings,
+            ),
           command(
             icon: Icons.refresh,
             tooltip: widget.strings.refresh,
@@ -5796,39 +6138,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                             ),
                           ),
                           const Divider(height: 1),
-                          Expanded(
-                            child: ListView(
-                              children: <Widget>[
-                                for (final box in _mailboxes)
-                                  ListTile(
-                                    dense: true,
-                                    selected: box.path == _mailbox?.path,
-                                    leading: Icon(
-                                      box.isInbox
-                                          ? Icons.inbox_outlined
-                                          : box.isSent
-                                          ? Icons.send_outlined
-                                          : box.isDrafts
-                                          ? Icons.edit_note
-                                          : box.isJunk
-                                          ? Icons.report_gmailerrorred_outlined
-                                          : box.isTrash
-                                          ? Icons.delete_outline
-                                          : Icons.folder_outlined,
-                                      size: 18,
-                                    ),
-                                    title: Text(
-                                      box.name,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    onTap: !box.isNotSelectable
-                                        ? () => _selectMailbox(box)
-                                        : null,
-                                  ),
-                              ],
-                            ),
-                          ),
+                          Expanded(child: _folderSidebar()),
                         ],
                       ),
                     ),
@@ -5854,6 +6164,110 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ],
                 ),
         ),
+      ],
+    );
+  }
+
+  Widget _folderSidebar() {
+    final rows = studioMailFolderRows(
+      _mailboxes,
+      expandedPaths: _expandedFolders,
+    );
+    final inbox = rows
+        .where((row) => row.box.isInbox && row.depth == 0)
+        .firstOrNull
+        ?.box;
+    final nextRoot = rows.indexWhere(
+      (row) => row.depth == 0 && row.box != inbox,
+    );
+    final split = nextRoot < 0 ? rows.length : nextRoot;
+    final sent = studioMailSentMailbox(_mailboxes);
+    Widget folder(StudioMailFolderRow row) {
+      final box = row.box;
+      return Row(
+        key: ValueKey(('imap-folder', box.path)),
+        children: [
+          SizedBox(width: 6 + row.depth.clamp(0, 5) * 14.0),
+          if (row.hasChildren)
+            SizedBox(
+              width: 32,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                tooltip: row.expanded
+                    ? widget.strings.mailCollapseFolder(box.name)
+                    : widget.strings.mailExpandFolder(box.name),
+                icon: Icon(
+                  row.expanded ? Icons.expand_more : Icons.chevron_right,
+                ),
+                onPressed: () => setState(() {
+                  if (!_expandedFolders.remove(box.path)) {
+                    _expandedFolders.add(box.path);
+                  }
+                }),
+              ),
+            )
+          else
+            const SizedBox(width: 32),
+          Expanded(
+            child: ListTile(
+              dense: true,
+              contentPadding: const EdgeInsetsDirectional.only(end: 8),
+              horizontalTitleGap: 6,
+              minLeadingWidth: 20,
+              selected: !_unreadOnly && box.path == _mailbox?.path,
+              leading: Icon(
+                box.isInbox
+                    ? Icons.inbox_outlined
+                    : box == sent
+                    ? Icons.send_outlined
+                    : box.isDrafts
+                    ? Icons.edit_note
+                    : box.isJunk
+                    ? Icons.report_gmailerrorred_outlined
+                    : box.isTrash
+                    ? Icons.delete_outline
+                    : box.isArchive
+                    ? Icons.archive_outlined
+                    : Icons.folder_outlined,
+                size: 18,
+              ),
+              title: Text(
+                box.isInbox && row.depth == 0
+                    ? widget.strings.mailInbox
+                    : box.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: box.isNotSelectable || _busy || _dialogOpen
+                  ? null
+                  : () => _selectMailbox(box),
+            ),
+          ),
+        ],
+      );
+    }
+
+    return ListView(
+      children: [
+        for (final row in rows.take(split)) folder(row),
+        if (inbox != null && !inbox.isNotSelectable)
+          ListTile(
+            dense: true,
+            selected: _unreadOnly,
+            leading: const Icon(Icons.mark_email_unread_outlined, size: 18),
+            title: Text(widget.strings.mailUnreadInInbox),
+            onTap: _busy || _dialogOpen
+                ? null
+                : () => _selectMailbox(inbox, unreadOnly: true),
+          ),
+        if (_draftStore is StudioMailOutboxStore)
+          ListTile(
+            dense: true,
+            leading: const Icon(Icons.outbox_outlined, size: 18),
+            title: Text(widget.strings.mailOutbox),
+            onTap: _busy || _dialogOpen ? null : _openOutbox,
+          ),
+        for (final row in rows.skip(split)) folder(row),
       ],
     );
   }
@@ -6184,7 +6598,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       bulkStatus: _bulkStatus(),
       strings: widget.strings.mailMessageListStrings,
       items: [
-        for (final message in _messages)
+        for (final message
+            in _unreadOnly
+                ? _messages.where((message) => _observedRead(message) == false)
+                : _messages)
           MailMessageListItem(
             id: _messageKey(message),
             subject: message.decodeSubject() ?? '(no subject)',
@@ -6315,12 +6732,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 isExpanded: true,
                 value: _mailbox?.path,
                 items: [
-                  for (final box in _mailboxes)
-                    if (!box.isNotSelectable)
+                  for (final row in studioMailFolderRows(_mailboxes))
+                    if (!row.box.isNotSelectable)
                       DropdownMenuItem(
-                        value: box.path,
+                        value: row.box.path,
                         child: Text(
-                          box.name,
+                          '${'  ' * row.depth.clamp(0, 5)}${row.box.isInbox && row.depth == 0 ? widget.strings.mailInbox : row.box.name}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

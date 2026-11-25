@@ -183,15 +183,36 @@ extension StudioMailFeedback on StudioStrings {
   );
 
   String get mailAttachmentFailed => mailAttachmentFailedFor(20 * 1024 * 1024);
+  String get mailAccountSettings => _mailText(
+    'Mail account settings',
+    'E-Mail-Kontoeinstellungen',
+    'إعدادات حساب البريد',
+  );
+  String get mailInbox => _mailText('Inbox', 'Posteingang', 'الوارد');
+  String get mailUnreadInInbox => _mailText(
+    'Unread in Inbox',
+    'Ungelesen im Posteingang',
+    'غير مقروءة في الوارد',
+  );
+  String mailExpandFolder(String name) =>
+      _mailText('Expand $name', '$name aufklappen', 'توسيع $name');
+  String mailCollapseFolder(String name) =>
+      _mailText('Collapse $name', '$name zuklappen', 'طي $name');
+
   String get mailSubmissionAccepted => _mailText(
-    'The sending server accepted the message. This session does not save a Sent copy.',
-    'Der Versandserver hat die Nachricht angenommen. Diese Sitzung speichert keine Kopie unter „Gesendet“.',
-    'قبل خادم الإرسال الرسالة. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
+    'The sending server accepted the message. A copy could not be saved to Sent.',
+    'Der Versandserver hat die Nachricht angenommen. Eine Kopie konnte nicht im Ordner „Gesendet“ gespeichert werden.',
+    'قبل خادم الإرسال الرسالة. تعذّر حفظ نسخة في البريد المرسل.',
+  );
+  String get mailSubmissionFiled => _mailText(
+    'Message sent and saved to Sent.',
+    'Nachricht gesendet und unter „Gesendet“ gespeichert.',
+    'أُرسلت الرسالة وحُفظت في البريد المرسل.',
   );
   String get mailSubmissionFollowUpFailed => _mailText(
-    'The sending server accepted the message, but follow-up cleanup failed. Do not resend this message. This session does not save a Sent copy.',
-    'Der Versandserver hat die Nachricht angenommen, aber die anschließende Bereinigung ist fehlgeschlagen. Diese Nachricht nicht erneut senden. Diese Sitzung speichert keine Kopie unter „Gesendet“.',
-    'قبل خادم الإرسال الرسالة، لكن التنظيف اللاحق فشل. لا ترسل هذه الرسالة مجددًا. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
+    'The sending server accepted the message, but follow-up cleanup failed. Do not resend this message. A copy could not be saved to Sent.',
+    'Der Versandserver hat die Nachricht angenommen, aber die anschließende Bereinigung ist fehlgeschlagen. Diese Nachricht nicht erneut senden. Eine Kopie konnte nicht im Ordner „Gesendet“ gespeichert werden.',
+    'قبل خادم الإرسال الرسالة، لكن التنظيف اللاحق فشل. لا ترسل هذه الرسالة مجددًا. تعذّر حفظ نسخة في البريد المرسل.',
   );
   String get mailSubmissionUncertain => _mailText(
     'Submission could not be confirmed. Your draft is retained. Check delivery before sending it again.',

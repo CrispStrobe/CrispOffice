@@ -49,10 +49,10 @@ final class _Transport implements MailCloudHttpTransport {
     required int maxResponseBytes,
   }) async {
     requests.add(request);
-    expect(request.method, 'GET');
     expect(NativeMailCloudHttpTransport.allowedUri(request.uri), isTrue);
     expect(request.headers['authorization'], 'Bearer fixture');
     final reply = replies.removeAt(0);
+    if (reply is MailCloudException) throw reply;
     return reply is MailCloudHttpResponse
         ? reply
         : MailCloudHttpResponse(
@@ -81,6 +81,216 @@ void main() {
       transport: transport,
     );
   });
+
+  GoogleTaskProvider writer() => ApiGoogleTaskReader(
+    account: _account,
+    mailAccount: _mail,
+    tokens: tokens,
+    transport: transport,
+    enableWrites: true,
+  );
+
+  final list = TaskListId('personal', account: _account);
+  final id = TaskId('task-1', list: list);
+
+  Map<String, Object?> task({
+    String revision = 'rev-1',
+    String title = 'Fixture',
+    String status = 'needsAction',
+    bool assigned = false,
+  }) => {
+    'id': id.value,
+    'etag': revision,
+    'title': title,
+    'status': status,
+    if (assigned) 'assignmentInfo': {'surfaceType': 'SPACE'},
+  };
+
+  test('opt-in Google Tasks writes use a Tasks-only grant', () {
+    final grant = MailOAuthConfiguration(
+      service: MailCloudService.gmail,
+      clientId: 'fixture',
+      tasksOnly: true,
+      googleTaskWrites: true,
+    );
+    expect(grant.scopes, ['https://www.googleapis.com/auth/tasks']);
+    expect(
+      () => MailOAuthConfiguration(
+        service: MailCloudService.gmail,
+        clientId: 'fixture',
+        googleTaskWrites: true,
+      ),
+      throwsArgumentError,
+    );
+  });
+
+  test(
+    'creates, sends a sparse conditional update, and conditionally deletes',
+    () async {
+      final provider = writer();
+      final due = TaskDate(2027, 1, 15);
+      transport.replies.addAll([
+        {
+          'items': [
+            {'id': list.value, 'title': 'Personal'},
+          ],
+        },
+        {
+          ...task(),
+          'due': '2027-01-15T00:00:00.000Z',
+          'notes': 'Original notes',
+        },
+        task(),
+        task(revision: 'rev-2', title: 'Edited'),
+        task(revision: 'rev-2', title: 'Edited'),
+        MailCloudHttpResponse(statusCode: 204),
+      ]);
+
+      final discovered = _value(await provider.lists(session.begin()));
+      expect(discovered.lists.single.readOnly, isFalse);
+      final created = _value(
+        await provider.create(
+          list,
+          TaskFields(
+            title: 'Fixture',
+            notes: const TaskText('Original notes'),
+            due: due,
+          ),
+          session.begin(),
+        ),
+      );
+      final updated = _value(
+        await provider.update(
+          created.id,
+          const TaskPatch(
+            title: TaskFieldPatch.set('Edited'),
+            notes: TaskFieldPatch.clear(),
+          ),
+          revision: created.revision!,
+          lease: session.begin(),
+        ),
+      );
+      expect(updated.fields.title, 'Edited');
+      _value(
+        await provider.delete(
+          id,
+          revision: updated.revision!,
+          lease: session.begin(),
+        ),
+      );
+      expect(transport.requests.map((request) => request.method), [
+        'GET',
+        'POST',
+        'GET',
+        'PATCH',
+        'GET',
+        'DELETE',
+      ]);
+      expect(jsonDecode(utf8.decode(transport.requests[1].body)), {
+        'title': 'Fixture',
+        'notes': 'Original notes',
+        'due': '2027-01-15T00:00:00.000Z',
+      });
+      expect(
+        transport.requests[3].uri.path,
+        '/tasks/v1/lists/personal/tasks/task-1',
+      );
+      expect(transport.requests[3].headers['if-match'], '"rev-1"');
+      expect(jsonDecode(utf8.decode(transport.requests[3].body)), {
+        'title': 'Edited',
+        'notes': null,
+      });
+      expect(transport.requests.last.headers['if-match'], '"rev-2"');
+      expect(transport.requests.last.body, isEmpty);
+    },
+  );
+
+  test('refuses assigned tasks and stale revisions before writing', () async {
+    final provider = writer();
+    transport.replies.addAll([task(assigned: true), task(revision: 'new')]);
+    final assigned = await provider.delete(
+      id,
+      revision: 'rev-1',
+      lease: session.begin(),
+    );
+    final problem = (assigned as TaskFailure<TaskUnit>).problem;
+    expect(problem.code, TaskProblemCode.permissionDenied);
+    expect(problem.mutationMayHaveOccurred, isFalse);
+    final stale = await provider.update(
+      id,
+      const TaskPatch(title: TaskFieldPatch.set('Edited')),
+      revision: 'rev-1',
+      lease: session.begin(),
+    );
+    expect(
+      (stale as TaskFailure<RemoteTask>).problem.code,
+      TaskProblemCode.conflict,
+    );
+    expect(stale.problem.mutationMayHaveOccurred, isFalse);
+    expect(transport.requests.map((request) => request.method), ['GET', 'GET']);
+  });
+
+  test(
+    'keeps lost inserts uncertain and known preconditions retry-safe',
+    () async {
+      final provider = writer();
+      transport.replies.addAll([
+        const MailCloudException(
+          MailProblem(MailProblemCode.unavailable),
+          requestMayHaveReachedServer: true,
+        ),
+        task(),
+        MailCloudHttpResponse(statusCode: 412),
+      ]);
+      final lost = await provider.create(
+        list,
+        const TaskFields(title: 'Maybe'),
+        session.begin(),
+      );
+      expect(
+        (lost as TaskFailure<RemoteTask>).problem.mutationMayHaveOccurred,
+        isTrue,
+      );
+      expect(transport.requests, hasLength(1));
+      final rejected = await provider.update(
+        id,
+        const TaskPatch(title: TaskFieldPatch.set('Edited')),
+        revision: 'rev-1',
+        lease: session.begin(),
+      );
+      expect(
+        (rejected as TaskFailure<RemoteTask>).problem.code,
+        TaskProblemCode.conflict,
+      );
+      expect(rejected.problem.mutationMayHaveOccurred, isFalse);
+    },
+  );
+
+  test(
+    'read-only grants and unsafe entity tags never dispatch requests',
+    () async {
+      final disabled = await (reader as GoogleTaskProvider).create(
+        list,
+        const TaskFields(title: 'Fixture'),
+        session.begin(),
+      );
+      expect(
+        (disabled as TaskFailure<RemoteTask>).problem.code,
+        TaskProblemCode.permissionDenied,
+      );
+      final rejected = await writer().delete(
+        id,
+        revision: '*',
+        lease: session.begin(),
+      );
+      expect(
+        (rejected as TaskFailure<TaskUnit>).problem.code,
+        TaskProblemCode.invalidInput,
+      );
+      expect(transport.requests, isEmpty);
+      expect(tokens.requests, 0);
+    },
+  );
 
   test('Google Tasks gives no permission to read or modify Gmail', () {
     final configuration = MailOAuthConfiguration(

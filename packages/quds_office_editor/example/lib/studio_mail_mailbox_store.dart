@@ -524,6 +524,16 @@ final class SqliteStudioMailMailboxStore
         return message;
       });
 
+  Future<int> expireMailboxViews(DateTime capturedBefore) => _serialize(
+    () async => _value(
+      await _repository.expireMailboxViews(
+        account,
+        capturedBefore: capturedBefore,
+        limit: _repository.limits.maxPageSize.clamp(1, 100),
+      ),
+    ),
+  );
+
   @override
   Future<MailCacheCleanupReport> clearCache() => _serialize(
     () async => _value(
