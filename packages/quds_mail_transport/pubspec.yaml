@@ -15,6 +15,7 @@ dependencies:
     path: ../../third_party/enough_mail
   quds_mail_core:
     path: ../quds_mail_core
+  quds_tasks_core: ^0.1.0
   quds_mail_mime:
     path: ../quds_mail_mime
 

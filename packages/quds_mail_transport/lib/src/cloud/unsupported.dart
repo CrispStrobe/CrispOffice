@@ -1,7 +1,9 @@
+import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 
 import 'configuration.dart';
+import 'task_reader.dart';
 
 MailCloudProvider createMailCloudProvider({
   required MailCloudConfiguration configuration,
@@ -103,4 +105,29 @@ final class _UnsupportedCloudProvider
   );
   @override
   void dispose() {}
+}
+
+GoogleTaskReader createGoogleTaskReader({
+  required TaskAccountId account,
+  required MailAccountId mailAccount,
+  required MailCloudTokenSource tokens,
+}) => const _UnsupportedGoogleTaskReader();
+
+final class _UnsupportedGoogleTaskReader implements GoogleTaskReader {
+  const _UnsupportedGoogleTaskReader();
+  @override
+  Future<TaskResult<TaskListPage>> lists(
+    MailOperationLease lease, {
+    String? cursor,
+  }) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+
+  @override
+  Future<TaskResult<TaskSyncPage>> pull(
+    TaskListId list, {
+    required MailOperationLease lease,
+    String? cursor,
+  }) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+
+  @override
+  void close() {}
 }

@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:xml/xml.dart';
 import 'package:xml/xml_events.dart';
 
 import 'configuration.dart';
 import 'errors.dart';
+
+part 'task_soap.dart';
 
 const _soap = 'http://schemas.xmlsoap.org/soap/envelope/';
 const _messages =
@@ -199,24 +202,52 @@ final class EwsSoap {
         );
       });
 
-  String findFolders({required int offset, required int limit}) =>
-      _request('FindFolder', (builder) {
-        _folderShape(builder);
-        builder.element(
-          'm:IndexedPageFolderView',
-          attributes: {
-            'MaxEntriesReturned': '$limit',
-            'Offset': '$offset',
-            'BasePoint': 'Beginning',
-          },
-        );
-        builder.element(
-          'm:ParentFolderIds',
-          nest: () {
-            _folderId(builder, 'msgfolderroot', distinguished: true);
-          },
-        );
-      }, attributes: const {'Traversal': 'Deep'});
+  String findFolders({
+    required int offset,
+    required int limit,
+    bool taskFolders = false,
+  }) => _request('FindFolder', (builder) {
+    _folderShape(builder);
+    builder.element(
+      'm:IndexedPageFolderView',
+      attributes: {
+        'MaxEntriesReturned': '$limit',
+        'Offset': '$offset',
+        'BasePoint': 'Beginning',
+      },
+    );
+    if (taskFolders) {
+      builder.element(
+        'm:Restriction',
+        nest: () {
+          builder.element(
+            't:IsEqualTo',
+            nest: () {
+              builder.element(
+                't:FieldURI',
+                attributes: {'FieldURI': 'folder:FolderClass'},
+              );
+              builder.element(
+                't:FieldURIOrConstant',
+                nest: () {
+                  builder.element(
+                    't:Constant',
+                    attributes: {'Value': 'IPF.Task'},
+                  );
+                },
+              );
+            },
+          );
+        },
+      );
+    }
+    builder.element(
+      'm:ParentFolderIds',
+      nest: () {
+        _folderId(builder, 'msgfolderroot', distinguished: true);
+      },
+    );
+  }, attributes: const {'Traversal': 'Deep'});
 
   String findItems(
     String folderId, {
@@ -563,7 +594,7 @@ final class EwsSoap {
     return EwsItemIdPage(items: result, lastPage: page.$1, nextOffset: page.$2);
   });
 
-  EwsSyncChanges sync(String xml) => _guard(() {
+  EwsSyncChanges sync(String xml, {bool tasks = false}) => _guard(() {
     final responses = _responses(xml, 'SyncFolderItems');
     if (responses.length != 1) _invalid();
     final response = responses.single!;
@@ -588,7 +619,11 @@ final class EwsSoap {
       if (kind == EwsChangeKind.create || kind == EwsChangeKind.update) {
         final items = change.childElements.toList();
         if (items.length != 1) _invalid();
-        _mailItem(items.single);
+        if (tasks) {
+          _taskItem(items.single);
+        } else {
+          _mailItem(items.single);
+        }
         id = _one(items.single, 'ItemId', _types);
       } else {
         id = _one(change, 'ItemId', _types);

@@ -12,6 +12,7 @@ import 'package:quds_mail_transport/src/ews/cursor.dart';
 import 'package:quds_mail_transport/src/ews/errors.dart';
 import 'package:quds_mail_transport/src/ews/native/http_client.dart';
 import 'package:quds_mail_transport/src/ews/native/provider.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:test/test.dart';
 
 final _account = MailAccountId(
@@ -223,6 +224,233 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  group('Exchange Tasks', () {
+    final account = TaskAccountId('tasks', provider: 'ews');
+
+    TaskSuccess<T> success<T>(TaskResult<T> result) {
+      expect(result, isA<TaskSuccess<T>>());
+      return result as TaskSuccess<T>;
+    }
+
+    List<_Step> listScript() => [
+      (
+        'GetFolder',
+        (request) {
+          expect(request, contains('DistinguishedFolderId Id="tasks"'));
+          return _response(
+            'GetFolder',
+            _success(
+              'GetFolder',
+              '<m:Folders>${_folder('task-folder', kind: 'IPF.Task')}</m:Folders>',
+            ),
+          );
+        },
+      ),
+    ];
+
+    test('reads task properties and resumes a persisted sync cursor', () async {
+      final fixture = _Fixture();
+      final reader = NativeEwsTaskReader(
+        account: account,
+        connection: fixture.provider(),
+      );
+      fixture.scripts.addAll([
+        listScript(),
+        [
+          (
+            'SyncFolderItems',
+            (request) {
+              expect(request, contains('FolderId Id="task-folder"'));
+              expect(request, isNot(contains('SyncState')));
+              return _sync(
+                'first',
+                '<t:Create><t:Task><t:ItemId Id="task-1" ChangeKey="old"/></t:Task></t:Create>',
+                last: false,
+              );
+            },
+          ),
+          (
+            'GetItem',
+            (request) {
+              expect(request, contains('task:CompleteDate'));
+              expect(request, contains('item:ParentFolderId'));
+              return _response(
+                'GetItem',
+                _success(
+                  'GetItem',
+                  '<m:Items><t:Task>'
+                      '<t:ItemId Id="task-1" ChangeKey="current"/>'
+                      '<t:ParentFolderId Id="task-folder"/>'
+                      '<t:Subject>Task</t:Subject><t:Body BodyType="Text">Notes</t:Body>'
+                      '<t:Status>Completed</t:Status><t:Importance>High</t:Importance>'
+                      '<t:CompleteDate>2026-11-25T09:30:00+01:00</t:CompleteDate>'
+                      '</t:Task></m:Items>',
+                ),
+              );
+            },
+          ),
+        ],
+        [
+          (
+            'SyncFolderItems',
+            (request) {
+              expect(request, contains('<m:SyncState>first</m:SyncState>'));
+              return _sync('second', _change('Delete', 'task-1'));
+            },
+          ),
+        ],
+        [
+          (
+            'SyncFolderItems',
+            (request) => _response(
+              'SyncFolderItems',
+              _error('SyncFolderItems', 'ErrorInvalidSyncStateData'),
+            ),
+          ),
+        ],
+      ]);
+      final list = success(
+        await reader.defaultTaskList(fixture.session.begin()),
+      ).value;
+      expect(list.readOnly, isTrue);
+      final first = success(
+        await reader.pullTasks(list.id, lease: fixture.session.begin()),
+      ).value;
+      expect(first.nextCursor, isNotNull);
+      final task = first.upserts.single;
+      expect(task.revision, 'current');
+      expect(task.fields.title, 'Task');
+      expect(task.fields.notes, const TaskText('Notes'));
+      expect(task.fields.status, TaskStatus.completed);
+      expect(task.fields.priority, TaskPriority.high);
+      expect(
+        task.fields.completedAt,
+        TaskDateTime('2026-11-25T08:30:00', timeZone: 'UTC'),
+      );
+      final second = success(
+        await reader.pullTasks(
+          list.id,
+          cursor: first.nextCursor,
+          lease: fixture.session.begin(),
+        ),
+      ).value;
+      expect(second.tombstones.single, task.id);
+      expect(second.checkpoint, isNotNull);
+      final reset = success(
+        await reader.pullTasks(
+          list.id,
+          cursor: second.checkpoint,
+          lease: fixture.session.begin(),
+        ),
+      ).value;
+      expect(reset.resetRequired, isTrue);
+      expect(
+        fixture.clients.expand((client) => client.requests).every((r) => !r.$3),
+        isTrue,
+      );
+    });
+
+    test('discovers more than one task folder and keeps the default first', () async {
+      final fixture = _Fixture();
+      final reader = NativeEwsTaskReader(
+        account: account,
+        connection: fixture.provider(),
+      );
+      fixture.scripts.add([
+        ...listScript(),
+        (
+          'FindFolder',
+          (request) {
+            expect(request, contains('Constant Value="IPF.Task"'));
+            expect(request, contains('Offset="0"'));
+            return _response(
+              'FindFolder',
+              _success(
+                'FindFolder',
+                '<m:RootFolder IncludesLastItemInRange="false" IndexedPagingOffset="1">'
+                    '<t:Folders>${_folder('task-folder', kind: 'IPF.Task')}</t:Folders></m:RootFolder>',
+              ),
+            );
+          },
+        ),
+        (
+          'FindFolder',
+          (request) {
+            expect(request, contains('Offset="1"'));
+            return _response(
+              'FindFolder',
+              _success(
+                'FindFolder',
+                '<m:RootFolder IncludesLastItemInRange="true">'
+                    '<t:Folders>${_folder('another-folder', kind: 'IPF.Task')}</t:Folders></m:RootFolder>',
+              ),
+            );
+          },
+        ),
+      ]);
+      final lists = success(
+        await reader.taskLists(fixture.session.begin()),
+      ).value;
+      expect(lists.map((list) => list.id.value), [
+        'task-folder',
+        'another-folder',
+      ]);
+      final foreign = TaskListId('not-discovered', account: account);
+      final bad = await reader.pullTasks(
+        foreign,
+        lease: fixture.session.begin(),
+      );
+      expect(
+        (bad as TaskFailure<TaskSyncPage>).problem.code,
+        TaskProblemCode.invalidInput,
+      );
+      expect(fixture.vault.loads, 1);
+    });
+
+    test('rejects a GetItem reply from a different folder', () async {
+      final fixture = _Fixture();
+      final reader = NativeEwsTaskReader(
+        account: account,
+        connection: fixture.provider(),
+      );
+      fixture.scripts.addAll([
+        listScript(),
+        [
+          (
+            'SyncFolderItems',
+            (_) => _sync(
+              'next',
+              '<t:Update><t:Task><t:ItemId Id="task-1" ChangeKey="key"/></t:Task></t:Update>',
+            ),
+          ),
+          (
+            'GetItem',
+            (_) => _response(
+              'GetItem',
+              _success(
+                'GetItem',
+                '<m:Items><t:Task><t:ItemId Id="task-1" ChangeKey="fresh"/>'
+                    '<t:ParentFolderId Id="foreign-folder"/></t:Task></m:Items>',
+              ),
+            ),
+          ),
+        ],
+      ]);
+      final list = success(
+        await reader.defaultTaskList(fixture.session.begin()),
+      ).value;
+      final result = await reader.pullTasks(
+        list.id,
+        lease: fixture.session.begin(),
+      );
+      expect(result, isA<TaskFailure<TaskSyncPage>>());
+      expect(
+        (result as TaskFailure<TaskSyncPage>).problem.code,
+        TaskProblemCode.providerFailure,
+      );
+    });
+  });
+
   test('EWS rejects Gmail Archive before credentials or SOAP', () async {
     final fixture = _Fixture();
     final provider = fixture.provider();

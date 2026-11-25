@@ -1994,12 +1994,17 @@ void main() {
           final h = _Harness(
             service,
             limits: const MailCloudLimits(
-              operationTimeout: Duration(milliseconds: 30),
+              operationTimeout: Duration(seconds: 1),
             ),
           );
           final gate = Completer<MailCloudHttpResponse>();
           h.transport.handler = (_) => gate.future;
           final result = await h.send();
+          expect(
+            h.transport.mailRequests,
+            hasLength(1),
+            reason: 'This case requires the deadline to expire after dispatch.',
+          );
           expect(result.outcome, MailSubmissionOutcome.uncertain);
           gate.complete(
             service == MailCloudService.gmail

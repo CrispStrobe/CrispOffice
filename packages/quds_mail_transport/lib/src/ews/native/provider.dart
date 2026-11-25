@@ -3,12 +3,17 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart';
 
 import '../configuration.dart';
 import '../cursor.dart';
 import '../errors.dart';
 import '../soap.dart';
+import '../tasks.dart';
+
 import 'http_client.dart';
+
+part 'task_reader.dart';
 
 /// Internal transport seam; the public factory exposes no HTTP client/secret.
 typedef EwsHttpClientFactory =
@@ -261,17 +266,37 @@ final class NativeMailEwsProvider
   @override
   Future<MailResult<List<MailMailbox>>> listMailboxes(
     MailOperationLease lease,
-  ) => _run(lease, (client, operation) async {
-    final result = <MailMailbox>[];
+  ) => _run(
+    lease,
+    (client, operation) async => List.unmodifiable([
+      for (final folder in await _findFolders(client, operation))
+        if (folder.isMailFolder)
+          MailMailbox(
+            id: MailMailboxId(folder.id, account: account),
+            displayName: folder.displayName,
+          ),
+    ]),
+  );
+
+  Future<List<EwsFolder>> _findFolders(
+    EwsHttpClient client,
+    _Operation operation, {
+    bool taskFolders = false,
+  }) async {
+    final result = <EwsFolder>[];
     final seen = <String>{};
+    final count = math.min(limits.maxPageSize, limits.maxMailboxes);
     var offset = 0;
     var pages = 0;
     while (true) {
-      final count = math.min(limits.maxPageSize, limits.maxMailboxes);
       final xml = await operation.post(
         client,
         'FindFolder',
-        _soap.findFolders(offset: offset, limit: count),
+        _soap.findFolders(
+          offset: offset,
+          limit: count,
+          taskFolders: taskFolders,
+        ),
       );
       final page = _soap.folders(xml, 'FindFolder');
       if (page.folders.length > count || ++pages > limits.maxMailboxes) {
@@ -284,23 +309,16 @@ final class NativeMailEwsProvider
         if (seen.length > limits.maxMailboxes) {
           throw const EwsException(MailProblemCode.quotaExceeded);
         }
-        if (folder.isMailFolder) {
-          result.add(
-            MailMailbox(
-              id: MailMailboxId(folder.id, account: account),
-              displayName: folder.displayName,
-            ),
-          );
-        }
+        result.add(folder);
       }
-      if (page.lastPage) return List.unmodifiable(result);
+      if (page.lastPage) return result;
       final next = page.nextOffset;
       if (next == null || next <= offset || next > 0x7fffffff) {
         throw const EwsException(MailProblemCode.providerFailure);
       }
       offset = next;
     }
-  });
+  }
 
   Future<List<EwsItem?>> _items(
     EwsHttpClient client,

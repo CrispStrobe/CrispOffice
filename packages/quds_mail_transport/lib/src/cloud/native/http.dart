@@ -46,6 +46,15 @@ final class NativeMailCloudHttpTransport implements MailCloudHttpTransport {
             uri.path.startsWith('/v1.0/me/') ||
             uri.path.startsWith('/v1.0/users/') ||
             uri.path.startsWith('/v1.0/users('),
+      'tasks.googleapis.com' =>
+        uri.path == '/tasks/v1/users/@me/lists' ||
+            (uri.pathSegments.length == 5 &&
+                uri.pathSegments[0] == 'tasks' &&
+                uri.pathSegments[1] == 'v1' &&
+                uri.pathSegments[2] == 'lists' &&
+                uri.pathSegments[3].isNotEmpty &&
+                !uri.pathSegments[3].contains('/') &&
+                uri.pathSegments[4] == 'tasks'),
       'oauth2.googleapis.com' => uri.path == '/token' && !uri.hasQuery,
       'login.microsoftonline.com' =>
         RegExp(
@@ -64,6 +73,8 @@ final class NativeMailCloudHttpTransport implements MailCloudHttpTransport {
     required int maxResponseBytes,
   }) async {
     if (!allowedUri(request.uri) ||
+        (request.uri.host == 'tasks.googleapis.com' &&
+            request.method != 'GET') ||
         !const {'GET', 'POST', 'PATCH', 'DELETE'}.contains(request.method) ||
         timeout <= Duration.zero ||
         timeout > const Duration(minutes: 5) ||

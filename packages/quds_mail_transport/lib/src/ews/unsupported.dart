@@ -1,7 +1,9 @@
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart';
 
 import 'configuration.dart';
+import 'tasks.dart';
 
 /// Browsers cannot provide this native integrated-auth transport. The fallback
 /// touches neither credentials nor the codec and advertises no empty success.
@@ -86,4 +88,35 @@ final class _UnsupportedEwsProvider
     outcome: MailSubmissionOutcome.rejected,
     problem: const MailProblem(MailProblemCode.unsupported),
   );
+}
+
+EwsTaskReader createEwsTaskReader({
+  required TaskAccountId account,
+  required MailEwsConfiguration configuration,
+  required MailCredentialStore credentialStore,
+  MailEwsLimits limits = const MailEwsLimits(),
+}) {
+  limits.validate();
+  return const _UnsupportedEwsTaskReader();
+}
+
+final class _UnsupportedEwsTaskReader implements EwsTaskReader {
+  const _UnsupportedEwsTaskReader();
+
+  @override
+  Future<TaskResult<List<TaskList>>> taskLists(
+    MailOperationLease lease,
+  ) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+
+  @override
+  Future<TaskResult<TaskList>> defaultTaskList(
+    MailOperationLease lease,
+  ) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+
+  @override
+  Future<TaskResult<TaskSyncPage>> pullTasks(
+    TaskListId list, {
+    String? cursor,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
 }
