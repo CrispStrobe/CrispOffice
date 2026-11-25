@@ -24,6 +24,24 @@ different statuses.** See [progress](progress.md),
 [implementation plan](implementation-plan.md), and
 [provider evidence and qualification](provider-qualification.md).
 
+## Current delivery
+
+As of the first implementation series on 25 November 2026:
+
+| Milestone | Delivered status |
+| --- | --- |
+| T0 | Roadmap and provider evidence saved to remote main. |
+| T1 | Portable model, sparse patches and pure reconciliation implemented and tested. |
+| T2 | Graph adapter and explicit task-consent configuration implemented and tested; host consent UI and live qualification remain. |
+| T3 | CalDAV codec and profiles implemented and tested; HTTP discovery, conditional writes and synchronization remain. |
+| T4-T9 | Planned; no durable background synchronization or Studio Tasks workspace exists yet. |
+
+The first series has **132 passing targeted tests** across mail consent, task
+core, Graph and CalDAV, plus portable JavaScript/Node checks for the three task
+packages. See the [validation record](../../validation/tasks-20261125/README.md)
+for the exact scope and runtime limitations. Fixture success is not live
+Microsoft, Nextcloud, ownCloud or mailbox.org qualification.
+
 ## Backend choices
 
 | Backend | Planned connection | Scope and qualification boundary |
@@ -79,10 +97,11 @@ T4-T6 must not be marked done merely because protocol fixtures pass.
 
 ## Task coverage
 
-Initial writable fields are title, notes, due date, importance/priority and
-completion. Preserve other remote fields on unrelated edits. Subsequent work
-adds start dates, reminders, categories, recurrence, steps, genuine subtasks,
-attachments and links back to CrispOffice documents or mail.
+Minimum initial product coverage is title, notes, due date, importance/priority
+and completion. Preserve other remote fields on unrelated edits. The Graph
+adapter already maps start dates and reminders; their UI and live round-trip
+qualification remain ahead. Subsequent work adds categories, recurrence, steps,
+genuine subtasks, attachments and links back to CrispOffice documents or mail.
 
 The normalized model must distinguish:
 

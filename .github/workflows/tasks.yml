@@ -1,0 +1,73 @@
+name: Tasks
+
+'on':
+  push:
+    branches: [main]
+    paths:
+      - 'packages/quds_tasks_core/**'
+      - 'packages/quds_tasks_graph/**'
+      - 'packages/quds_tasks_caldav/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'analysis_options.yaml'
+      - '.fvmrc'
+      - '.github/workflows/tasks.yml'
+  pull_request:
+    paths:
+      - 'packages/quds_tasks_core/**'
+      - 'packages/quds_tasks_graph/**'
+      - 'packages/quds_tasks_caldav/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'analysis_options.yaml'
+      - '.fvmrc'
+      - '.github/workflows/tasks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tasks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tasks:
+    name: ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - quds_tasks_core
+          - quds_tasks_graph
+          - quds_tasks_caldav
+    defaults:
+      run:
+        working-directory: packages/${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+      - name: Analyze
+        run: dart analyze --fatal-infos
+      - name: Test on Dart VM
+        run: dart test --platform vm
+      - name: Compile and run portable entry
+        run: |
+          mkdir -p build/tasks
+          dart compile js test/compile/portable_import.dart -o build/tasks/portable_import.js
+          node build/tasks/portable_import.js

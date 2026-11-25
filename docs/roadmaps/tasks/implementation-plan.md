@@ -117,9 +117,24 @@ scope before sending a bearer token. Reject foreign account/list cursors,
 userinfo, fragments and unbounded responses. Encode opaque IDs as path segments.
 
 Basic CRUD comes before checklist, attachment and recurrence workflows. Preserve
-HTML notes and unknown statuses during unrelated edits. Carry remote date/time
-and zone pairs without machine-local conversion. App-only use is a separate
+HTML notes and unrelated provider properties with sparse patches. The initial
+adapter fails a page explicitly for unknown status/importance enums; the worker
+must retain its previous checkpoint and surface the unsupported data, without
+inferring deletion or substituting a known default. Carry remote date/time and
+zone pairs without machine-local conversion. App-only use is a separate
 qualification: current Microsoft endpoint documentation is not uniform.
+
+The host admits write targets using current list metadata and permissions;
+flagged-email/read-only lists must not enter the writable outbox. The initial
+adapter's mutation methods take IDs and do not enforce that admission policy.
+Completion changes inspect recurrence, but that preflight is not atomic and
+does not remove the unconditional read/write race.
+
+Before acknowledging writes, define provider normalization rules: a civil date
+sent to Graph returns as a wall-time/zone pair, and plain notes may return as
+HTML. Advance the synchronized base to the observed server representation while
+preserving later local revisions. Test this explicitly to prevent endless dirty
+states, false conflicts or loss of edits made while the write was in flight.
 
 A desktop client can pull on activation and periodically while running. A
 future server may use renewable task subscriptions as hints to pull deltas;
@@ -208,3 +223,9 @@ Live qualification uses designated disposable lists and supplied test accounts.
 Do not create, change, or delete a user's existing tasks just to run tests.
 Documentation must distinguish compile/fixture checks from actual cloud/server
 interoperability and installed-platform acceptance.
+
+Microsoft acceptance additionally covers complete/reopen recurrence guards,
+unsupported-enum recovery without checkpoint advancement, civil-date and HTML
+normalization, moves between selected/unselected lists, list deletion, and loss
+of shared-list access. Keep `conditionalWrites` disabled until stale-ETag tests
+establish the actual service contract.

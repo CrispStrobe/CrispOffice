@@ -47,7 +47,8 @@ Remote consent commit: `12dacab624cc655ac7b8734be9dfb0c83797fde2`.
   capabilities and failures.
 - Implemented pure three-way reconciliation with sparse pending changes,
   independent-field merging, explicit field/deletion conflicts, account/list
-  isolation and local-revision fencing.
+  isolation and stale-snapshot revision checks. The host must recheck the local
+  revision in its committing transaction.
 - Local deletion conflicts when the remote version or retained unknown content
   changed. Missing evidence never silently authorizes deleting newer work.
 - Coupled-field conflicts prevent a reopen/completion merge or independent
@@ -72,6 +73,7 @@ Remote core commit: `47c075883aef5a4a81004d262e5c0a77a73ac945`.
   never automatically retry; ambiguous outcomes remain explicit.
 - Preserved remote date/timezone pairs and unknown JSON fields. Completion
   changes inspect recurrence first; unsupported recurrence behavior is refused.
+  Unknown status/importance enums fail closed rather than importing defaults.
 - Validation: **35 tests passed**, strict analysis and formatting clean,
   JavaScript import compilation and Node execution passed.
 - Conditional writes are not advertised. A read/write race remains until live
@@ -105,8 +107,46 @@ Remote Graph commit: `c090f3072164297bb40c85ced7d1a1111d08d03a`.
   DAV authentication, discovery, sync REPORTs, ETag conditional writes, token
   recovery and live server qualification remain required.
 
+Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
+
+## Checkpoint 5 — continuous checks and handoff
+
+- Added `.github/workflows/tasks.yml`: all three task packages get formatting,
+  strict analysis, Dart VM tests and portable JavaScript/Node checks with the
+  repository's pinned Flutter SDK. YAML validation passed locally. Hosted CI
+  completion is not established by the local checks.
+- The integrated workspace resolves with `dart pub get --offline
+  --enforce-lockfile`; `pubspec.lock` is unchanged.
+- Total focused checks completed: **132 tests** (37 mail OAuth/loopback, 25 core,
+  35 Graph, 35 CalDAV), strict/targeted analysis, formatting and all three
+  portable smoke programs. See the linked validation record for limitations.
+- All implementation increments are intended as independently reviewable remote
+  checkpoints. The final checkpoint's SHA is available in GitHub history rather
+  than embedded recursively in its own contents.
+
+## Next execution sequence
+
+1. Finish T3's DAV HTTP provider: bounded XML/multistatus handling, principal/home
+   discovery, VTODO filtering, credential origins, conditional operations,
+   `sync-collection` and ETag fallback. Exercise a local DAV fixture first.
+2. Implement T4 durable storage and outbox with atomic page/cursor commits,
+   crash recovery, account generation checks and revision-aware acknowledgment.
+   Define canonical acknowledgment for Graph's date and HTML normalization so
+   a successful write cannot cause endless dirty states or erase a later edit.
+3. Add T5 host consent, a tasks-only sign-in option, credential vault, selected
+   lists and Tasks UI. `MailOAuthConfiguration.includeTasks` currently adds task
+   permission to a mail grant; it does not implement these host flows. Enforce
+   protected/read-only list metadata before admitting writes.
+4. Run T6 against designated Microsoft, Nextcloud and mailbox.org test lists.
+   Include date boundaries, recurrence refusal, unknown enums, moves, lost list
+   access, normalization, conflicts, revocation and ambiguous-write recovery.
+5. Continue T7-T9 in the roadmap: extended fields and servers, on-premises EWS,
+   host-supported native OX, Vikunja, Planner, optional bridging and webhooks.
+
 ## Validation and remote checkpoints
 
-Each following entry records the completed scope, actual checks, remaining
-limits and remote commit. A checkpoint is not a claim that the entire roadmap
-is finished.
+The entries above record completed scope, actual checks, remaining limits and
+remote commits. A checkpoint is not a claim that the entire roadmap is finished.
+Remote updates use the observed branch head and never force-push. A concurrent
+Word proofing improvement (`d2cb6a99`) was fast-forwarded and preserved before
+the final CI/documentation checkpoint.

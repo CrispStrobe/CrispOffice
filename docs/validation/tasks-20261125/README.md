@@ -101,3 +101,16 @@ This package contains no DAV HTTP implementation yet. No Nextcloud, ownCloud,
 OX or mailbox.org account was accessed. The tests certify codec/profile
 behavior only; they do not establish authentication, discovery, server
 normalization, conditional writes, incremental sync or deployment compatibility.
+
+## Integrated workspace and CI configuration
+
+After all three packages were registered in the workspace,
+`dart pub get --offline --enforce-lockfile` passed and `pubspec.lock` remained
+unchanged. The focused test total is **132 passed**: 37 OAuth/loopback, 25 core,
+35 Graph and 35 CalDAV.
+
+The new `.github/workflows/tasks.yml` uses full Flutter 3.47.8 and Node 24 for
+each task package, with formatting, strict analysis, VM tests and the portable
+compile/run probe. Local YAML validation checked the matrix, triggers, SDK pin,
+permissions and probe paths. A hosted workflow result was not established in
+this record; the existing full workspace/Studio suites were not rerun locally.
