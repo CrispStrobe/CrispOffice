@@ -3965,12 +3965,37 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 MailProblemCode.staleOperation,
               );
             }
-            return synchronizer.synchronizeMailbox(
-              frozen,
-              repository: syncStore,
-              cancellation: cancellation,
-              onProgress: onProgress,
-            );
+            final account = _account;
+            final elapsed = Stopwatch()..start();
+            if (account != null)
+              _logMailActivity(account, 'cache sync started');
+            try {
+              final report = await synchronizer.synchronizeMailbox(
+                frozen,
+                repository: syncStore,
+                cancellation: cancellation,
+                onProgress: onProgress,
+              );
+              if (account != null && current()) {
+                _logMailActivity(
+                  account,
+                  'cache sync ${report.status.name}, ${elapsed.elapsedMilliseconds} ms, '
+                  'pages=${report.committedPages}, upserts=${report.upsertCount}, '
+                  'removed=${report.tombstoneCount}, more=${report.hasMore}, '
+                  'problem=${report.problem?.code.name ?? 'none'}',
+                );
+              }
+              return report;
+            } on Object catch (error) {
+              if (account != null && current()) {
+                _logMailActivity(
+                  account,
+                  'cache sync failed, ${elapsed.elapsedMilliseconds} ms, '
+                  'problem=${studioMailPollFailure(error, code: error is StudioMailMessageLoadException ? error.code.name : null)}',
+                );
+              }
+              rethrow;
+            }
           },
         ),
       );
@@ -4379,6 +4404,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _pollProbe?.dispose();
     _pollProbe = null;
     _pollInboxMailbox = null;
+    _snapshotRetention = 0;
   }
 
   Future<void> _startMailPolling(
@@ -4390,18 +4416,25 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final key = _imapLocalIdentity(account).account.value;
     var interval = StudioMailPollPreferences.defaultMinutes;
     var retention = 0;
+    var settingsFailed = false;
     try {
       interval = await StudioMailPollPreferences.load(key);
       retention = await StudioMailPollPreferences.loadSnapshotDays(key);
     } on Object {
-      if (_currentSession(client, generation)) {
-        _logMailActivity(account, 'settings load failed');
-      }
+      settingsFailed = true;
     }
     if (!_currentSession(client, generation)) return;
-    _pollInboxMailbox = inbox;
-    _snapshotRetention = retention;
+    setState(() {
+      _pollInboxMailbox = inbox;
+      _snapshotRetention = retention;
+    });
     _scheduleMailPolling(key, interval);
+    if (settingsFailed) _logMailActivity(account, 'settings load failed');
+    _logMailActivity(
+      account,
+      'connected, Inbox headers=${_messages.length}, polling interval=$interval min',
+    );
+
     unawaited(_expireMailSnapshots(client, account, generation));
   }
 
@@ -4411,8 +4444,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     int generation,
   ) async {
     final store = _draftStore;
-    if (_snapshotRetention == 0 || store is! StudioMailMailboxStoreOwner)
+    if (_snapshotRetention == 0 || store is! StudioMailMailboxStoreOwner) {
       return;
+    }
     final mailboxStore = (store as StudioMailMailboxStoreOwner).mailboxStore;
     if (mailboxStore is! SqliteStudioMailMailboxStore ||
         mailboxStore.account != _imapLocalIdentity(account).account) {
@@ -4472,8 +4506,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _accountNavigationPending ||
         _navigationReleaseRequired ||
         _pollProbe != null) {
-      if (manual)
-        _logMailActivity(account, 'INBOX manual check deferred (busy)');
+      _logMailActivity(
+        account,
+        'INBOX ${manual ? 'manual' : 'scheduled'} check deferred (busy)',
+      );
+
       return;
     }
     final generation = _sessionGeneration;
