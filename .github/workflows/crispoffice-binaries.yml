@@ -2,6 +2,11 @@ name: CrispOffice binaries
 
 on:
   workflow_dispatch:
+    inputs:
+      windows_source_ref:
+        description: Build only Windows from this release ref
+        required: false
+        type: string
   push:
     tags: ['crispoffice-v*']
 
@@ -13,6 +18,7 @@ env:
 
 jobs:
   macos:
+    if: inputs.windows_source_ref == ''
     name: macOS
     runs-on: macos-latest
     timeout-minutes: 45
@@ -55,23 +61,43 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+  windows-source:
+    name: Prepare Windows source
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.windows_source_ref || github.sha }}
+      - name: Archive the Windows workspace
+        # Git for Windows rejects an unrelated proofing fixture named "nul"
+        # before it applies the sparse checkout. Materialize only the source
+        # used by the Windows build.
+        run: |
+          git archive --format=tar.gz --output="$RUNNER_TEMP/crispoffice-windows-source.tar.gz"             HEAD packages third_party pubspec.yaml pubspec.lock analysis_options.yaml
+          git rev-parse HEAD
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-windows-source
+          path: ${{ runner.temp }}/crispoffice-windows-source.tar.gz
+          if-no-files-found: error
+          retention-days: 1
+
   windows:
     name: Windows
+    needs: windows-source
     runs-on: windows-latest
     timeout-minutes: 45
     defaults:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
         with:
-          sparse-checkout: |
-            /packages
-            /third_party
-            /pubspec.yaml
-            /pubspec.lock
-            /analysis_options.yaml
-          sparse-checkout-cone-mode: false
+          name: crispoffice-windows-source
+          path: ${{ runner.temp }}
+      - name: Extract Windows workspace
+        run: tar -xf "$env:RUNNER_TEMP/crispoffice-windows-source.tar.gz"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -102,6 +128,7 @@ jobs:
           retention-days: 14
 
   linux:
+    if: inputs.windows_source_ref == ''
     name: Linux
     runs-on: ubuntu-22.04
     timeout-minutes: 45
@@ -139,6 +166,7 @@ jobs:
           retention-days: 14
 
   android:
+    if: inputs.windows_source_ref == ''
     name: Android arm64
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -184,6 +212,7 @@ jobs:
           retention-days: 14
 
   web:
+    if: inputs.windows_source_ref == ''
     name: Web
     runs-on: ubuntu-latest
     timeout-minutes: 30
