@@ -36,11 +36,14 @@ final class MailOAuthConfiguration {
     this.clientSecret,
     this.includeTasks = false,
     this.tasksOnly = false,
+    this.googleTaskWrites = false,
   }) {
     if (!RegExp(r'^[A-Za-z0-9._-]{1,1024}$').hasMatch(clientId) ||
         !RegExp(r'^[A-Za-z0-9][A-Za-z0-9.-]{0,253}$').hasMatch(tenant) ||
         tenant.contains('..') ||
         (includeTasks && service != MailCloudService.microsoft365) ||
+        (googleTaskWrites &&
+            (!tasksOnly || service != MailCloudService.gmail)) ||
         (clientSecret != null &&
             (service != MailCloudService.gmail ||
                 clientSecret!.isEmpty ||
@@ -63,10 +66,17 @@ final class MailOAuthConfiguration {
   /// Requests the selected service's task access without mail permissions.
   final bool tasksOnly;
 
+  /// Opts a Google Tasks-only grant into create, update and delete operations.
+  final bool googleTaskWrites;
+
   List<String> get scopes => switch (service) {
     MailCloudService.gmail =>
       tasksOnly
-          ? const ['https://www.googleapis.com/auth/tasks.readonly']
+          ? [
+              googleTaskWrites
+                  ? 'https://www.googleapis.com/auth/tasks'
+                  : 'https://www.googleapis.com/auth/tasks.readonly',
+            ]
           : const ['https://www.googleapis.com/auth/gmail.modify'],
     MailCloudService.microsoft365 => List<String>.unmodifiable([
       if (!tasksOnly) ...[
