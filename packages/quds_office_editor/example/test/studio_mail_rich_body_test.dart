@@ -1,7 +1,7 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_office_studio/studio_mail_rich_body.dart';
-import 'package:test/test.dart';
 
 void main() {
   test(
@@ -501,3 +501,4 @@ void main() {
     },
   );
 }
+

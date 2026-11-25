@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_office_studio/studio_mail_rich_preview_data.dart';
-import 'package:test/test.dart';
 
 MailComposeBody _body(String text) => MailComposeBody(
   paragraphs: [
@@ -218,3 +218,4 @@ void main() {
     expect(utf8.decode(utf8.encode(unicode.text)), unicode.text);
   });
 }
+
