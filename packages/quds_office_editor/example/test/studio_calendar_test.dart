@@ -70,6 +70,7 @@ void main() {
     );
     addTearDown(storage.dispose);
     final paths = <String>[];
+    final reports = <String>[];
     const event =
         'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\n'
         'UID:fixture\nDTSTART;VALUE=DATE:20261125\nSUMMARY:Fixture appointment\n'
@@ -107,6 +108,7 @@ void main() {
             };
             if (request.method == 'REPORT') {
               expect(request.body, contains('<C:expand'));
+              reports.add(request.body);
             }
             return http.Response(response, 207, request: request);
           }),
@@ -118,6 +120,33 @@ void main() {
     expect(find.text('Personal calendar'), findsOneWidget);
     expect(find.text('Fixture appointment'), findsOneWidget);
     expect(paths, ['/', '/home/', '/home/events/']);
+    await tester.tap(find.text('Fixture appointment'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Create follow-up task'));
+    await tester.pumpAndSettle();
+    expect(
+      find.widgetWithText(TextField, 'Fixture appointment'),
+      findsOneWidget,
+    );
+    expect(find.text('2026-11-25'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Next week'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Month agenda'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Next month'));
+    await tester.pumpAndSettle();
+    expect(paths, [
+      '/',
+      '/home/',
+      '/home/events/',
+      '/home/events/',
+      '/home/events/',
+      '/home/events/',
+    ]);
+    expect(reports.toSet(), hasLength(4));
     await tester.pumpWidget(const SizedBox.shrink());
   });
 }

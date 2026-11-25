@@ -10,6 +10,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_credential_storage.dart';
+import 'package:quds_office_studio/studio_device_tasks.dart';
 import 'package:quds_office_studio/studio_tasks.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,16 +61,115 @@ void main() {
     await tester.enterText(find.byType(TextField), 'monday');
     await tester.pumpAndSettle();
     expect(find.text('Plan the fixture'), findsOneWidget);
-    await tester.tap(find.text('Completed'));
+    await tester.tap(find.text('All tasks'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Open').last);
     await tester.pumpAndSettle();
     expect(find.text('Plan the fixture'), findsNothing);
-    await tester.tap(find.text('Completed'));
+    await tester.tap(find.text('Open'));
     await tester.pumpAndSettle();
+    await tester.tap(find.text('Completed').last);
+    await tester.pumpAndSettle();
+    expect(find.text('Plan the fixture'), findsOneWidget);
     await tester.tap(find.byTooltip('Delete task'));
     await tester.pumpAndSettle();
     expect(find.text('Plan the fixture'), findsNothing);
     await tester.pumpWidget(const SizedBox.shrink());
   });
+
+  testWidgets(
+    'follow-up capture refreshes mounted Tasks and supports due views',
+    (tester) async {
+      final directory = Directory.systemTemp.createTempSync('crisp-follow-up-');
+      addTearDown(() => directory.deleteSync(recursive: true));
+      final file = '${directory.path}/tasks.sqlite';
+      final today = DateTime.now();
+      final yesterday = DateTime(today.year, today.month, today.day - 1);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StudioTasksPage(
+            title: 'Tasks',
+            openDatabase: () async => sqlite3.open(file),
+            chromeBuilder: (context) => TextButton(
+              onPressed: () => createStudioFollowUpTask(
+                context,
+                title: 'Follow up on appointment',
+                notes: 'Meeting room',
+                due: TaskDate(today.year, today.month, today.day),
+                openDatabase: () async => sqlite3.open(file),
+              ),
+              child: const Text('Capture'),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Capture'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(find.text('No tasks in this list.'), findsOneWidget);
+
+      await tester.tap(find.text('Capture'));
+      await tester.pumpAndSettle();
+      expect(
+        find.widgetWithText(TextField, 'Follow up on appointment'),
+        findsOneWidget,
+      );
+      expect(find.widgetWithText(TextField, 'Meeting room'), findsOneWidget);
+      await tester.tap(find.text('Save task'));
+      await tester.pumpAndSettle();
+      expect(find.text('Follow up on appointment'), findsOneWidget);
+
+      final database = sqlite3.open(file);
+      try {
+        expect(
+          saveStudioDeviceTask(
+                database,
+                TaskFields(
+                  title: 'Late follow-up',
+                  due: TaskDate(yesterday.year, yesterday.month, yesterday.day),
+                ),
+              )
+              is TaskSuccess,
+          isTrue,
+        );
+        expect(
+          saveStudioDeviceTask(
+                database,
+                TaskFields(
+                  title: 'Finished follow-up',
+                  due: TaskDate(today.year, today.month, today.day),
+                  status: TaskStatus.completed,
+                ),
+              )
+              is TaskSuccess,
+          isTrue,
+        );
+      } finally {
+        database.close();
+      }
+      studioDeviceTaskChanges.value++;
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('All tasks'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Due today').last);
+      await tester.pumpAndSettle();
+      expect(find.text('Follow up on appointment'), findsOneWidget);
+      expect(find.text('Late follow-up'), findsNothing);
+      expect(find.text('Finished follow-up'), findsNothing);
+
+      await tester.tap(find.text('Due today'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Overdue').last);
+      await tester.pumpAndSettle();
+      expect(find.text('Late follow-up'), findsOneWidget);
+      expect(find.text('Follow up on appointment'), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
 
   testWidgets(
     'Tasks uses the shell ribbon and theme surface, and supports both swipes',

@@ -1096,6 +1096,31 @@ void main() {
     );
   });
 
+  testWidgets('IMAP follow-up drafts use headers and leave mail unchanged', (
+    tester,
+  ) async {
+    final browser = _Browser()
+      ..pages = (_, _, _) async =>
+          StudioMailHeaderPage(messages: [_header(300, 'Confirm delivery')]);
+    await _show(tester, browser);
+    await tester.tap(_key('imap-message-91:300'));
+    await _pump(tester);
+
+    await tester.tap(find.byTooltip('Create follow-up task'));
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(TextField, 'Confirm delivery'), findsOneWidget);
+    expect(
+      find.widgetWithText(TextField, 'Sender: writer@example.test'),
+      findsOneWidget,
+    );
+    expect(find.text('On this device'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(find.byType(MailMessageView), findsOneWidget);
+    expect(browser.reads, 1);
+    expect(browser.changes, isEmpty);
+  });
+
   testWidgets('IMAP compact Back preserves query filters and selected row', (
     tester,
   ) async {

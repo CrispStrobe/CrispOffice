@@ -9,6 +9,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'studio_device_tasks.dart';
 import 'studio_mail_account_navigation.dart';
 import 'studio_mail_account_navigation_strings.dart';
 import 'studio_mail_archive_action.dart';
@@ -3998,6 +3999,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               },
             ),
             writer: widget.archiveWriter,
+          ),
+          StudioMailFollowUpButton(
+            strings: widget.strings,
+            subject: _blocked ? null : selected?.envelope.subject,
+            senders:
+                selected?.envelope.from.map((address) => address.address) ??
+                const [],
           ),
           IconButton(
             tooltip: widget.strings.reply,

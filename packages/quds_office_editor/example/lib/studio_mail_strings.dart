@@ -8,6 +8,17 @@ extension StudioMailFeedback on StudioStrings {
     StudioLanguage.ar => ar,
   };
 
+  String get mailFollowUpTask => _mailText(
+    'Create follow-up task',
+    'Aufgabe zur Nachverfolgung erstellen',
+    'إنشاء مهمة متابعة',
+  );
+  String get mailUntitledFollowUp => _mailText(
+    'Follow up on message',
+    'Nachricht nachverfolgen',
+    'متابعة الرسالة',
+  );
+
   String get mailDismissNotice =>
       _mailText('Dismiss notice', 'Hinweis ausblenden', 'إخفاء الإشعار');
 

@@ -47,7 +47,10 @@ checks. Live Microsoft To Do qualification remains pending.
 ## Using Tasks in Studio
 
 Open **Tasks** from the CrispOffice suite workspace. The pane has a task-list
-picker, title and notes search, a completed-task filter, and **Sync now**.
+picker, title and notes search, **All tasks**, **Open**, **Due today**,
+**Overdue**, and **Completed** views, and **Sync now**. The due views compare the
+task's displayed due date with the current date and exclude completed and
+cancelled tasks.
 Writable lists support adding, editing and completing tasks. Deletion depends
 on the provider. The app saves edits locally first and shows pending changes,
 unconfirmed writes or conflicts in the task rows.
@@ -70,9 +73,22 @@ transfer credentials between protocols or grant additional OAuth scopes.
 
 The native **Calendar** workspace reuses a saved Tasks CalDAV connection and
 discovers its event calendars. An exact task-list URL affects Tasks only. Use
-the Calendar account and calendar pickers to select a weekly agenda. This
-version reads events and server-expanded occurrences. Calendar editing, offline
-event storage, and Google and Exchange calendar adapters remain open.
+the Calendar account and calendar pickers to choose a calendar. Switch between
+week and month agendas or jump to a date. Date navigation reuses discovery
+results for the selected account. Refresh runs discovery again.
+
+Open an event to see its time and location. **Create follow-up task** starts an
+editable task with the event's title and start date. Mail offers the same
+command with the message subject and sender. The task is saved to **On this
+device** only after confirmation. The source message or event stays unchanged.
+
+Next Calendar milestones are desktop time-grid views, a persistent event
+cache, conditional CalDAV create/edit/delete with conflict handling, and then
+recurrence editing, invitations and RSVP. Google and Exchange calendar adapters
+need their own qualification. A Flutter widget can render the grids from a
+CrispOffice-owned event model. An evaluation should cover all-day and overlapping
+events, keyboard navigation, screen readers, and dark mode before adoption. See
+[calendar_view](https://pub.dev/packages/calendar_view) for a grid candidate.
 
 ## Backend choices
 

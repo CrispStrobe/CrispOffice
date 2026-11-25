@@ -7,6 +7,7 @@ import 'package:quds_tasks_core/quds_tasks_core.dart';
 
 import 'studio_chrome.dart';
 import 'studio_credential_storage.dart';
+import 'studio_device_tasks.dart';
 import 'studio_productivity_accounts.dart';
 
 Widget buildStudioCalendar(
@@ -55,6 +56,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   late final _storage =
       widget.credentialStorage ?? StudioCredentialStorage.instance;
   http.Client? _client;
+  CalDavCalendarProvider? _provider;
   int _generation = 0;
   bool _busy = true;
   String? _error;
@@ -63,7 +65,13 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   List<CalDavCalendar> _calendars = [];
   Uri? _calendar;
   CalDavAgenda? _agenda;
-  DateTime _start = _day(DateTime.now());
+  DateTime _anchor = _day(DateTime.now());
+  bool _month = false;
+
+  DateTime get _start =>
+      _month ? DateTime(_anchor.year, _anchor.month) : _anchor;
+  DateTime get _end =>
+      _month ? DateTime(_anchor.year, _anchor.month + 1) : _day(_anchor, 7);
 
   @override
   void initState() {
@@ -82,10 +90,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   static DateTime _day(DateTime date, [int offset = 0]) =>
       DateTime(date.year, date.month, date.day + offset);
 
-  Future<void> _reload() async {
+  Future<void> _reload({bool rediscover = true}) async {
     final generation = ++_generation;
-    _client?.close();
-    _client = null;
     final revision = _storage.revision;
     bool current() =>
         mounted && generation == _generation && revision == _storage.revision;
@@ -95,62 +101,76 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       _agenda = null;
     });
     try {
-      final vault = await _storage.storage;
-      final catalog = await StudioTaskAccountCatalog.load(vault);
-      if (!current()) return;
-      final accounts = {
-        for (final entry in catalog.records.entries)
-          if (entry.key.provider == 'caldav') entry.key: entry.value,
-      };
-      final account = accounts.containsKey(_account)
-          ? _account
-          : accounts.containsKey(catalog.active)
-          ? catalog.active
-          : accounts.keys.firstOrNull;
-      setState(() {
-        _accounts = {
-          for (final entry in accounts.entries)
-            entry.key: studioTaskAccountLabel(entry.key, entry.value),
+      if (rediscover || _provider == null) {
+        _provider = null;
+        _client?.close();
+        _client = null;
+        setState(() => _calendars = []);
+        final vault = await _storage.storage;
+        final catalog = await StudioTaskAccountCatalog.load(vault);
+        if (!current()) return;
+        final accounts = {
+          for (final entry in catalog.records.entries)
+            if (entry.key.provider == 'caldav') entry.key: entry.value,
         };
-        _account = account;
-        _calendars = [];
-      });
-      if (account == null) return;
-      final client = _client =
-          widget.openDavClient?.call() ?? createNativeCalDavClient();
-      final provider = CalDavCalendarProvider(
-        account: account,
-        settings: studioDavSettings(
-          accounts[account]!,
-          useTaskCollection: false,
-        ),
-        client: client,
-        appPassword: () async {
-          if (!current()) return null;
-          final fresh = await StudioTaskAccountCatalog.load(vault);
-          if (!current()) return null;
-          return fresh.records[account]?['secret'] as String?;
-        },
-      );
-      final lists = await provider.discoverCalendars();
-      if (!current()) return;
-      if (lists case TaskFailure(:final problem)) {
-        setState(() => _error = _problem(problem.code));
-        return;
+        final account = accounts.containsKey(_account)
+            ? _account
+            : accounts.containsKey(catalog.active)
+            ? catalog.active
+            : accounts.keys.firstOrNull;
+        setState(() {
+          _accounts = {
+            for (final entry in accounts.entries)
+              entry.key: studioTaskAccountLabel(entry.key, entry.value),
+          };
+          if (_account != account) _calendar = null;
+          _account = account;
+        });
+        if (account == null) return;
+        final client = _client =
+            widget.openDavClient?.call() ?? createNativeCalDavClient();
+        bool authorized() =>
+            mounted &&
+            identical(_client, client) &&
+            revision == _storage.revision;
+        final provider = CalDavCalendarProvider(
+          account: account,
+          settings: studioDavSettings(
+            accounts[account]!,
+            useTaskCollection: false,
+          ),
+          client: client,
+          appPassword: () async {
+            if (!authorized()) return null;
+            final fresh = await StudioTaskAccountCatalog.load(vault);
+            if (!authorized()) return null;
+            return fresh.records[account]?['secret'] as String?;
+          },
+        );
+        final lists = await provider.discoverCalendars();
+        if (!current()) return;
+        if (lists case TaskFailure(:final problem)) {
+          setState(() => _error = _problem(problem.code));
+          return;
+        }
+        final calendars = (lists as TaskSuccess<List<CalDavCalendar>>).value;
+        final selected =
+            calendars.where((item) => item.url == _calendar).firstOrNull ??
+            calendars.firstOrNull;
+        setState(() {
+          _provider = provider;
+          _calendars = calendars;
+          _calendar = selected?.url;
+        });
       }
-      final calendars = (lists as TaskSuccess<List<CalDavCalendar>>).value;
-      final selected =
-          calendars.where((item) => item.url == _calendar).firstOrNull ??
-          calendars.firstOrNull;
-      setState(() {
-        _calendars = calendars;
-        _calendar = selected?.url;
-      });
+      final selected = _calendars
+          .where((item) => item.url == _calendar)
+          .firstOrNull;
       if (selected == null) return;
-      final result = await provider.agenda(
+      final result = await _provider!.agenda(
         selected,
         start: _start.toUtc(),
-        end: _day(_start, 7).toUtc(),
+        end: _end.toUtc(),
       );
       if (!current()) return;
       setState(() {
@@ -168,9 +188,94 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     }
   }
 
-  void _navigate([int? days]) {
-    _start = days == null ? _day(DateTime.now()) : _day(_start, days);
-    unawaited(_reload());
+  void _navigate([int? direction]) {
+    _anchor = switch (direction) {
+      null => _day(DateTime.now()),
+      _ when _month => DateTime(_anchor.year, _anchor.month + direction),
+      _ => _day(_anchor, direction * 7),
+    };
+    unawaited(_reload(rediscover: false));
+  }
+
+  Future<void> _pickDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2200, 12, 31),
+      initialDate: _anchor,
+    );
+    if (!mounted || picked == null || _busy) return;
+    _anchor = _day(picked);
+    await _reload(rediscover: false);
+  }
+
+  Future<void> _showEvent(CalDavEvent event) async {
+    final locale = MaterialLocalizations.of(context);
+    final title = event.title.isEmpty ? 'Untitled event' : event.title;
+    final followUp = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: [
+              Text(_format(event.start, locale)),
+              if (event.end case final end?
+                  when end.kind != CalDavDateKind.date)
+                Text('Ends ${_format(end, locale)}'),
+              if (event.end?.toTaskDate() case TaskDate(
+                :final year,
+                :final month,
+                :final day,
+              ))
+                if (_day(DateTime(year, month, day), -1) case final last
+                    when _eventDay(event.start).isBefore(last))
+                  Text('Through ${locale.formatMediumDate(last)}'),
+              if (event.location case final location? when location.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: SelectableText(location),
+                ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(context, true),
+            icon: const Icon(Icons.add_task_outlined),
+            label: const Text('Create follow-up task'),
+          ),
+        ],
+      ),
+    );
+    if (!mounted || followUp != true) return;
+    final day = _eventDay(event.start);
+    await createStudioFollowUpTask(
+      context,
+      title: title,
+      due: TaskDate(day.year, day.month, day.day),
+      notes: event.location,
+    );
+  }
+
+  DateTime _eventDay(CalDavDateValue value) => switch (value.toTaskDate()) {
+    TaskDate(:final year, :final month, :final day) => DateTime(
+      year,
+      month,
+      day,
+    ),
+    final TaskDateTime time => _eventTime(value, time),
+  };
+
+  DateTime _eventTime(CalDavDateValue value, TaskDateTime time) {
+    final wall = DateTime.parse('${time.localDateTime}Z');
+    // Keep a zoned or floating event's wall-clock fields intact even when the
+    // corresponding local clock time falls inside a daylight-saving gap.
+    return value.kind == CalDavDateKind.utc ? wall.toLocal() : wall;
   }
 
   String _problem(TaskProblemCode code) => switch (code) {
@@ -200,15 +305,6 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           widget.chromeBuilder(context),
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: StudioTabChip(
-              label: widget.title,
-              selected: true,
-              accent: colors.primary,
-              onTap: () {},
-            ),
-          ),
           StudioRibbonStyle(
             compact: widget.compactRibbon,
             showCommandLabels: widget.showCommandLabels,
@@ -228,8 +324,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                     children: [
                       command(
                         Icons.chevron_left,
-                        'Previous week',
-                        _busy ? null : () => _navigate(-7),
+                        _month ? 'Previous month' : 'Previous week',
+                        _busy ? null : () => _navigate(-1),
                       ),
                       command(
                         Icons.today_outlined,
@@ -238,8 +334,25 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                       ),
                       command(
                         Icons.chevron_right,
-                        'Next week',
-                        _busy ? null : () => _navigate(7),
+                        _month ? 'Next month' : 'Next week',
+                        _busy ? null : () => _navigate(1),
+                      ),
+                      command(
+                        Icons.event_outlined,
+                        'Go to date',
+                        _busy ? null : _pickDate,
+                      ),
+                      command(
+                        _month
+                            ? Icons.view_week_outlined
+                            : Icons.calendar_view_month,
+                        _month ? 'Week agenda' : 'Month agenda',
+                        _busy
+                            ? null
+                            : () {
+                                _month = !_month;
+                                unawaited(_reload(rediscover: false));
+                              },
                       ),
                     ],
                   ),
@@ -273,7 +386,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(
-                  '${date.formatMediumDate(_start)} – ${date.formatMediumDate(_day(_start, 6))}',
+                  '${date.formatMediumDate(_start)} – ${date.formatMediumDate(_day(_end, -1))}',
                 ),
                 if (_accounts.isNotEmpty)
                   DropdownButton<TaskAccountId>(
@@ -302,7 +415,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         ? null
                         : (value) {
                             _calendar = value;
-                            unawaited(_reload());
+                            unawaited(_reload(rediscover: false));
                           },
                     items: [
                       for (final calendar in _calendars)
@@ -332,6 +445,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                           ? 'Connect a CalDAV account in Tasks to see its calendars here.'
                           : _calendars.isEmpty
                           ? 'This account has no event calendars.'
+                          : _month
+                          ? 'No events this month.'
                           : 'No events this week.',
                     ),
                   )
@@ -341,6 +456,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                       final event = events[index];
                       final when = _format(event.start, date);
                       return ListTile(
+                        onTap: () => _showEvent(event),
                         textColor: colors.onSurface,
                         leading: Icon(
                           Icons.event_outlined,
@@ -372,9 +488,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       return '${locale.formatMediumDate(DateTime(year, month, day))} · All day';
     }
     final time = wall as TaskDateTime;
-    final utc = value.kind == CalDavDateKind.utc;
-    final parsed = DateTime.parse('${time.localDateTime}${utc ? 'Z' : ''}');
-    final shown = utc ? parsed.toLocal() : parsed;
+    final shown = _eventTime(value, time);
     final date = locale.formatMediumDate(shown);
     final clock = locale.formatTimeOfDay(TimeOfDay.fromDateTime(shown));
     return '$date · $clock${value.kind == CalDavDateKind.zoned ? ' ${value.timeZone}' : ''}';

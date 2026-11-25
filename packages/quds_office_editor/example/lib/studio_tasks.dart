@@ -6,20 +6,20 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_tasks_graph/quds_tasks_graph_native.dart';
 import 'package:quds_tasks_store/quds_tasks_store.dart';
-import 'package:sqlite3/sqlite3.dart' show Database, sqlite3;
+import 'package:sqlite3/sqlite3.dart' show Database;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'credentials/secure_storage_service.dart';
 import 'studio_credential_storage.dart';
 import 'studio_chrome.dart';
+import 'studio_task_editor.dart';
+import 'studio_device_tasks.dart';
 import 'studio_tasks_ews_sync.dart';
 import 'studio_tasks_google_sync.dart';
 import 'studio_productivity_accounts.dart';
@@ -42,6 +42,34 @@ Widget buildStudioTasks(
 
 bool _isTaskCloud(String provider) =>
     provider == 'graph' || provider == 'google';
+
+enum _TaskView {
+  all('All tasks'),
+  open('Open'),
+  today('Due today'),
+  overdue('Overdue'),
+  completed('Completed');
+
+  const _TaskView(this.label);
+  final String label;
+
+  bool includes(TaskFields fields, String currentDay) {
+    final active =
+        fields.status != TaskStatus.completed &&
+        fields.status != TaskStatus.cancelled;
+    final due = fields.due;
+    return switch (this) {
+      all => true,
+      open => active,
+      today => active && due != null && studioTaskDueDate(due) == currentDay,
+      overdue =>
+        active &&
+            due != null &&
+            studioTaskDueDate(due).compareTo(currentDay) < 0,
+      completed => fields.status == TaskStatus.completed,
+    };
+  }
+}
 
 typedef _Selection = ({
   TaskList list,
@@ -85,12 +113,6 @@ final class StudioTasksPage extends StatefulWidget {
 final class _StudioTasksPageState extends State<StudioTasksPage>
     with WidgetsBindingObserver {
   final _records = <TaskAccountId, Map<String, Object?>>{};
-  static final _device = TaskAccountId('personal', provider: 'local');
-  static final _personal = TaskList(
-    id: TaskListId('personal', account: _device),
-    name: 'On this device',
-  );
-
   late final _credentialStorage =
       widget.credentialStorage ?? StudioCredentialStorage.instance;
   Database? _database;
@@ -100,7 +122,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   SecureStorage? _vault;
   Map<String, Object?>? _record;
   List<_Selection> _lists = [];
-  TaskListId _selected = _personal.id;
+  TaskListId _selected = studioDeviceTaskList.id;
   List<RemoteTask> _cached = [];
   List<LocalTaskEdit> _edits = [];
   Timer? _timer;
@@ -109,19 +131,14 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   String? _notice;
   int? _vaultRevision;
   String _query = '';
-  bool _includeCompleted = true;
-
-  Future<Database> _openDatabase() async {
-    final directory = await getApplicationSupportDirectory();
-    await directory.create(recursive: true);
-    return sqlite3.open(path.join(directory.path, 'tasks.sqlite3'));
-  }
+  _TaskView _view = _TaskView.all;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _credentialStorage.addListener(_credentialsChanged);
+    studioDeviceTaskChanges.addListener(_deviceTasksChanged);
     _run(_initialize);
     _timer = Timer.periodic(
       const Duration(minutes: 2),
@@ -138,6 +155,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _credentialStorage.removeListener(_credentialsChanged);
+    studioDeviceTaskChanges.removeListener(_deviceTasksChanged);
     _timer?.cancel();
     _closeConnection?.call();
     final running = _running;
@@ -172,14 +190,14 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   }
 
   Future<void> _initialize() async {
-    final database = await (widget.openDatabase ?? _openDatabase)();
+    final database = await (widget.openDatabase ?? openStudioTasksDatabase)();
     if (!mounted) {
       database.close();
       return;
     }
     _database = database;
     final store = _store = TaskPullStore(database);
-    _deviceLease = _require(store.connect(_device));
+    _deviceLease = _require(store.connect(studioDeviceTaskList.id.account));
     if (widget.openDatabase != null && widget.credentialStorage == null) return;
     await _restore();
   }
@@ -240,7 +258,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               lists.firstOrNull)
           ?.list
           .id ??
-      _personal.id;
+      studioDeviceTaskList.id;
 
   void _switchSaved(TaskAccountId? account) => _run(() async {
     final vault = _vault;
@@ -538,7 +556,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
 
   _Selection get _selection =>
       _lists.where((entry) => entry.list.id == _selected).firstOrNull ??
-      (list: _personal, sync: null);
+      (list: studioDeviceTaskList, sync: null);
 
   Future<void> _syncSelected() => _syncLists([_selection]);
 
@@ -571,7 +589,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       }
     }
     if (!mounted) return;
-    if (background || _selected == _personal.id) {
+    if (background || _selected == studioDeviceTaskList.id) {
       await _syncLists(_lists);
     } else {
       await _syncSelected();
@@ -592,9 +610,13 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     _vaultRevision = null;
     _syncLease = null;
     _lists = [];
-    _selected = _personal.id;
+    _selected = studioDeviceTaskList.id;
     _notice = 'Credential storage changed. Connect the task account again.';
     _reload();
+  }
+
+  void _deviceTasksChanged() {
+    if (_selected == studioDeviceTaskList.id) _reload();
   }
 
   void _reload() {
@@ -684,7 +706,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     _record = null;
     _syncLease = null;
     _lists = [];
-    _selected = _personal.id;
+    _selected = studioDeviceTaskList.id;
     _notice = null;
     if (_isTaskCloud(lease.account.provider)) {
       await vault.delete(_refreshKey(lease.account));
@@ -707,7 +729,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     _reload();
     _run(() async {
       final record = _record;
-      if (record != null && id != _personal.id) {
+      if (record != null && id != studioDeviceTaskList.id) {
         record['selected'] = id.value;
         await _saveCatalog(_vault!, _records, _syncLease?.account);
       }
@@ -716,7 +738,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   }
 
   void _save(TaskFields? value, LocalTaskEdit? edit, RemoteTask? remote) {
-    final lease = _selected == _personal.id ? _deviceLease : _syncLease;
+    final lease = _selected == studioDeviceTaskList.id
+        ? _deviceLease
+        : _syncLease;
     if (lease == null || _selection.list.readOnly) return;
     final outcome = _store!.saveEdit(
       lease,
@@ -740,7 +764,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final list = _selected;
     final value = await showDialog<TaskFields>(
       context: context,
-      builder: (_) => _TaskFieldsDialog(fields: existing),
+      builder: (_) => StudioTaskFieldsDialog(fields: existing),
     );
     if (mounted && value != null && list == _selected) {
       _save(value, edit, remote);
@@ -766,7 +790,8 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 TaskStatus.deferred => 'Deferred',
                 TaskStatus.cancelled => 'Cancelled',
               }),
-              if (fields.due case final due?) Text('Due ${_taskDueDate(due)}'),
+              if (fields.due case final due?)
+                Text('Due ${studioTaskDueDate(due)}'),
               if (fields.notes case TaskText(
                 :final value,
               ) when value.isNotEmpty)
@@ -808,6 +833,19 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       for (final edit in _edits)
         if (edit.remoteId != null) edit.remoteId!: edit,
     };
+    final now = DateTime.now();
+    final today = studioTaskDueDate(TaskDate(now.year, now.month, now.day));
+    final rows = [
+      for (final task in _cached)
+        if (!overlays.containsKey(task.id) && _matches(task.fields, today))
+          (fields: task.fields, remote: task, edit: null),
+      for (final edit in _edits)
+        if (_matches(edit.fields, today) &&
+            (edit.fields != null ||
+                edit.state != TaskEditState.pending ||
+                _selected != studioDeviceTaskList.id))
+          (fields: edit.fields, remote: null, edit: edit),
+    ];
     return Scaffold(
       backgroundColor: colors.surface,
       appBar: widget.chromeBuilder != null
@@ -889,30 +927,41 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                     ),
                   ),
                 ),
-                FilterChip(
-                  label: const Text('Completed'),
-                  selected: _includeCompleted,
-                  onSelected: (value) =>
-                      setState(() => _includeCompleted = value),
+                const SizedBox(width: 12),
+                DropdownButton<_TaskView>(
+                  value: _view,
+                  onChanged: (view) {
+                    if (view != null) setState(() => _view = view);
+                  },
+                  items: [
+                    for (final view in _TaskView.values)
+                      DropdownMenuItem(value: view, child: Text(view.label)),
+                  ],
                 ),
               ],
             ),
           ),
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(bottom: 88),
-              children: [
-                for (final task in _cached)
-                  if (!overlays.containsKey(task.id) && _matches(task.fields))
-                    _row(task.fields, remote: task),
-                for (final edit in _edits)
-                  if (_matches(edit.fields) &&
-                      (edit.fields != null ||
-                          edit.state != TaskEditState.pending ||
-                          _selected != _personal.id))
-                    _row(edit.fields, edit: edit),
-              ],
-            ),
+            child: rows.isEmpty && !busy
+                ? Center(
+                    child: Text(
+                      _query.isEmpty && _view == _TaskView.all
+                          ? 'No tasks in this list.'
+                          : 'No tasks match this view.',
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 88),
+                    itemCount: rows.length,
+                    itemBuilder: (_, index) {
+                      final row = rows[index];
+                      return _row(
+                        row.fields,
+                        remote: row.remote,
+                        edit: row.edit,
+                      );
+                    },
+                  ),
           ),
         ],
       ),
@@ -930,8 +979,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         onChanged: busy ? null : _select,
         items: [
           DropdownMenuItem(
-            value: _personal.id,
-            child: Text(_personal.name, overflow: TextOverflow.ellipsis),
+            value: studioDeviceTaskList.id,
+            child: Text(
+              studioDeviceTaskList.name,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           for (final entry in _lists)
             DropdownMenuItem(
@@ -1048,11 +1100,13 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     );
   }
 
-  bool _matches(TaskFields? fields) =>
-      (_includeCompleted || fields?.status != TaskStatus.completed) &&
-      (_query.isEmpty ||
-          (fields?.title.toLowerCase().contains(_query) ?? false) ||
-          (fields?.notes?.value.toLowerCase().contains(_query) ?? false));
+  bool _matches(TaskFields? fields, String today) {
+    if (fields == null) return _query.isEmpty;
+    return _view.includes(fields, today) &&
+        (_query.isEmpty ||
+            fields.title.toLowerCase().contains(_query) ||
+            (fields.notes?.value.toLowerCase().contains(_query) ?? false));
+  }
 
   Widget _row(TaskFields? fields, {LocalTaskEdit? edit, RemoteTask? remote}) {
     final completed = fields?.status == TaskStatus.completed;
@@ -1066,7 +1120,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final canDelete =
         editable &&
         (remoteDeleteAvailable || (remote == null && edit?.remoteId == null));
-    final local = _selected == _personal.id;
+    final local = _selected == studioDeviceTaskList.id;
     final String? status = local || edit == null
         ? null
         : switch (edit.state) {
@@ -1105,7 +1159,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (due != null) Text('Due ${_taskDueDate(due)}'),
+                if (due != null) Text('Due ${studioTaskDueDate(due)}'),
                 if (assigned) const Text('Assigned in Google Docs or Chat'),
                 if (status != null) Text(status),
               ],
@@ -1559,121 +1613,4 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
       ),
     ],
   );
-}
-
-String _taskDueDate(TaskDateValue date) => switch (date) {
-  TaskDate(:final year, :final month, :final day) =>
-    '${year.toString().padLeft(4, '0')}-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}',
-  TaskDateTime(:final localDateTime) => localDateTime.substring(0, 10),
-};
-
-class _TaskFieldsDialog extends StatefulWidget {
-  const _TaskFieldsDialog({this.fields});
-  final TaskFields? fields;
-  @override
-  State<_TaskFieldsDialog> createState() => _TaskFieldsDialogState();
-}
-
-class _TaskFieldsDialogState extends State<_TaskFieldsDialog> {
-  late final _title = TextEditingController(text: widget.fields?.title);
-  late final _notes = TextEditingController(text: widget.fields?.notes?.value);
-  TaskDateValue? _due;
-  bool _dueChanged = false;
-
-  @override
-  void dispose() {
-    _title.dispose();
-    _notes.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final due = _dueChanged ? _due : widget.fields?.due;
-    return AlertDialog(
-      title: Text(widget.fields == null ? 'New task' : 'Edit task'),
-      content: SizedBox(
-        width: 460,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: _title,
-              autofocus: true,
-              decoration: const InputDecoration(labelText: 'Title'),
-            ),
-            TextField(
-              controller: _notes,
-              maxLines: 3,
-              decoration: const InputDecoration(labelText: 'Notes'),
-            ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () async {
-                    final picked = await showDatePicker(
-                      context: context,
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(2200),
-                      initialDate:
-                          due is TaskDate &&
-                              due.year >= 1900 &&
-                              due.year <= 2200
-                          ? DateTime(due.year, due.month, due.day)
-                          : DateTime.now(),
-                    );
-                    if (mounted && picked != null) {
-                      setState(() {
-                        _dueChanged = true;
-                        _due = TaskDate(picked.year, picked.month, picked.day);
-                      });
-                    }
-                  },
-                  child: Text(due == null ? 'Set due date' : _taskDueDate(due)),
-                ),
-                if (due != null)
-                  IconButton(
-                    tooltip: 'Clear due date',
-                    onPressed: () => setState(() {
-                      _dueChanged = true;
-                      _due = null;
-                    }),
-                    icon: const Icon(Icons.clear),
-                  ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
-        ),
-        FilledButton(
-          onPressed: () {
-            final title = _title.text.trim();
-            if (title.isEmpty) return;
-            final fields = widget.fields ?? const TaskFields(title: '');
-            final notes = _notes.text;
-            final patch = TaskPatch(
-              title: TaskFieldPatch.set(title),
-              notes: notes == (fields.notes?.value ?? '')
-                  ? const TaskFieldPatch.unchanged()
-                  : notes.isEmpty
-                  ? const TaskFieldPatch.clear()
-                  : TaskFieldPatch.set(TaskText(notes)),
-              due: !_dueChanged
-                  ? const TaskFieldPatch.unchanged()
-                  : due == null
-                  ? const TaskFieldPatch.clear()
-                  : TaskFieldPatch.set(due),
-            );
-            Navigator.pop(context, patch.applyTo(fields));
-          },
-          child: const Text('Save task'),
-        ),
-      ],
-    );
-  }
 }

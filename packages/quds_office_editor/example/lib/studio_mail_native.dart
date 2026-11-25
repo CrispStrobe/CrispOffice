@@ -9,6 +9,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_device_tasks.dart';
 import 'studio_chrome.dart';
 import 'studio_credential_biometric_strings.dart';
 import 'studio_credential_settings.dart';
@@ -6431,6 +6432,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 'imap:${_messageMailbox?.uidValidity ?? 0}:${_selected?.uid ?? 0}',
           ),
           writer: widget.archiveWriter,
+        ),
+        StudioMailFollowUpButton(
+          strings: widget.strings,
+          subject: _busy || _dialogOpen || _selected == null
+              ? null
+              : _selected!.decodeSubject() ?? '',
+          senders: _selected?.from?.map((address) => address.email) ?? const [],
         ),
         _tagsAction(),
         IconButton(
