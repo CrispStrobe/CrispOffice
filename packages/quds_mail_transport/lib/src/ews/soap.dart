@@ -809,6 +809,7 @@ final class EwsSoap {
     String xml,
     String action, {
     bool allowMissing = false,
+    bool taskMutation = false,
   }) {
     if (xml.length > limits.maxResponseBytes ||
         utf8.encode(xml).length > limits.maxResponseBytes) {
@@ -890,6 +891,18 @@ final class EwsSoap {
           throw EwsException(
             _errorCode(code),
             retryAfter: _retryAfter(response),
+            confirmedRejection:
+                taskMutation &&
+                responseClass == 'Error' &&
+                responseMessages.childElements.length == 1 &&
+                const {
+                  'ErrorAccessDenied',
+                  'ErrorInvalidChangeKey',
+                  'ErrorStaleObject',
+                  'ErrorIrresolvableConflict',
+                  'ErrorItemNotFound',
+                  'ErrorCannotCreateTaskInNonTaskFolder',
+                }.contains(code),
             invalidSyncState:
                 responseClass == 'Error' &&
                 action == 'SyncFolderItems' &&

@@ -210,7 +210,7 @@ final class NativeMailEwsProvider
             : MailProblemCode.staleOperation,
       );
     } on EwsException catch (error) {
-      if (client?.mutationStarted ?? false) {
+      if ((client?.mutationStarted ?? false) && !error.confirmedRejection) {
         return _failure(
           MailProblemCode.conflict,
           mutationMayHaveOccurred: true,

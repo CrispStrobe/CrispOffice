@@ -90,17 +90,19 @@ final class _UnsupportedEwsProvider
   );
 }
 
-EwsTaskReader createEwsTaskReader({
+EwsTaskProvider createEwsTaskReader({
   required TaskAccountId account,
   required MailEwsConfiguration configuration,
   required MailCredentialStore credentialStore,
   MailEwsLimits limits = const MailEwsLimits(),
+  bool enableWrites = false,
+  bool enableDeletes = false,
 }) {
   limits.validate();
   return const _UnsupportedEwsTaskReader();
 }
 
-final class _UnsupportedEwsTaskReader implements EwsTaskReader {
+final class _UnsupportedEwsTaskReader implements EwsTaskProvider {
   const _UnsupportedEwsTaskReader();
 
   @override
@@ -119,4 +121,38 @@ final class _UnsupportedEwsTaskReader implements EwsTaskReader {
     String? cursor,
     required MailOperationLease lease,
   }) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+  @override
+  Future<TaskResult<RemoteTask?>> readTask(
+    TaskId id,
+    MailOperationLease lease,
+  ) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+
+  @override
+  Future<TaskResult<RemoteTask>> createTask(
+    TaskListId list,
+    TaskFields fields, {
+    required String operationId,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(
+    TaskProblem(TaskProblemCode.unsupported, mutationMayHaveOccurred: false),
+  );
+
+  @override
+  Future<TaskResult<RemoteTask>> updateTask(
+    TaskId id,
+    TaskPatch patch, {
+    required String revision,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(
+    TaskProblem(TaskProblemCode.unsupported, mutationMayHaveOccurred: false),
+  );
+
+  @override
+  Future<TaskResult<TaskUnit>> deleteTask(
+    TaskId id, {
+    required String revision,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(
+    TaskProblem(TaskProblemCode.unsupported, mutationMayHaveOccurred: false),
+  );
 }

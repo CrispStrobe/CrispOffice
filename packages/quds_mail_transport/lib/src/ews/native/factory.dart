@@ -20,13 +20,19 @@ MailEwsProvider createMailEwsProvider({
   limits: limits,
 );
 
-EwsTaskReader createEwsTaskReader({
+/// Creates a task connection. The caller must opt in to deletion because
+/// Exchange servers can accept DeleteItem without enforcing its ChangeKey.
+EwsTaskProvider createEwsTaskReader({
   required TaskAccountId account,
   required MailEwsConfiguration configuration,
   required MailCredentialStore credentialStore,
   MailEwsLimits limits = const MailEwsLimits(),
+  bool enableWrites = false,
+  bool enableDeletes = false,
 }) => NativeEwsTaskReader(
   account: account,
+  enableWrites: enableWrites,
+  enableDeletes: enableDeletes,
   connection: NativeMailEwsProvider(
     configuration: configuration,
     credentialStore: credentialStore,

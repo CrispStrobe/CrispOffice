@@ -6,10 +6,12 @@ final class EwsException implements Exception {
     this.code, {
     this.retryAfter,
     this.invalidSyncState = false,
+    this.confirmedRejection = false,
   });
   final MailProblemCode code;
   final Duration? retryAfter;
   final bool invalidSyncState;
+  final bool confirmedRejection;
 
   @override
   String toString() => 'EWS operation failed (${code.name}).';

@@ -248,6 +248,254 @@ void main() {
       ),
     ];
 
+    String taskItem(
+      String key, {
+      String title = 'Draft',
+      bool recurring = false,
+      bool marker = false,
+    }) =>
+        '<t:Task><t:ItemId Id="task" ChangeKey="$key"/>'
+        '<t:ParentFolderId Id="task-folder"/><t:Subject>$title</t:Subject>'
+        '<t:IsRecurring>$recurring</t:IsRecurring>'
+        '${marker ? '<t:ExtendedProperty><t:ExtendedFieldURI PropertySetId="36162429-0C2C-4312-9EF6-975E936FCFB2" PropertyName="CrispOfficeTaskOperation" PropertyType="String"/><t:Value>operation-1</t:Value></t:ExtendedProperty>' : ''}'
+        '</t:Task>';
+
+    String taskResult(String action, String value) =>
+        _response(action, _success(action, '<m:Items>$value</m:Items>'));
+
+    test(
+      'creates with a recoverable marker and confirms a sparse update',
+      () async {
+        final fixture = _Fixture();
+        final writer = NativeEwsTaskReader(
+          account: account,
+          connection: fixture.provider(),
+          enableWrites: true,
+        );
+        fixture.scripts.addAll([
+          listScript(),
+          [
+            (
+              'CreateItem',
+              (request) {
+                expect(request, contains('SavedItemFolderId'));
+                expect(request, contains('CrispOfficeTaskOperation'));
+                expect(request, contains('<t:Value>operation-1</t:Value>'));
+                expect(request, contains('<t:Subject>Draft</t:Subject>'));
+                return taskResult('CreateItem', taskItem('v1'));
+              },
+            ),
+            (
+              'GetItem',
+              (request) {
+                expect(request, contains('CrispOfficeTaskOperation'));
+                return taskResult('GetItem', taskItem('v1', marker: true));
+              },
+            ),
+          ],
+          [
+            (
+              'GetItem',
+              (_) => taskResult('GetItem', taskItem('v1', marker: true)),
+            ),
+            (
+              'UpdateItem',
+              (request) {
+                expect(
+                  request,
+                  contains('ConflictResolution="NeverOverwrite"'),
+                );
+                expect(request, contains('ChangeKey="v1"'));
+                expect(request, contains('FieldURI="item:Subject"'));
+                expect(request, isNot(contains('FieldURI="item:Body"')));
+                return taskResult('UpdateItem', taskItem('v2'));
+              },
+            ),
+            (
+              'GetItem',
+              (_) => taskResult(
+                'GetItem',
+                taskItem('v2', title: 'Edited', marker: true),
+              ),
+            ),
+          ],
+        ]);
+        final list = success(
+          await writer.defaultTaskList(fixture.session.begin()),
+        ).value;
+        expect(list.readOnly, isFalse);
+        final created = success(
+          await writer.createTask(
+            list.id,
+            const TaskFields(title: 'Draft'),
+            operationId: 'operation-1',
+            lease: fixture.session.begin(),
+          ),
+        ).value;
+        expect(matchesEwsTaskCreate(created, 'operation-1'), isTrue);
+        final updated = success(
+          await writer.updateTask(
+            created.id,
+            const TaskPatch(title: TaskFieldPatch.set('Edited')),
+            revision: created.revision!,
+            lease: fixture.session.begin(),
+          ),
+        ).value;
+        expect(updated.fields.title, 'Edited');
+        expect(updated.revision, 'v2');
+        expect(matchesEwsTaskCreate(updated, 'operation-1'), isTrue);
+        expect(fixture.clients[1].requests.map((request) => request.$3), [
+          true,
+          false,
+        ]);
+        expect(fixture.clients[2].requests.map((request) => request.$3), [
+          false,
+          true,
+          false,
+        ]);
+      },
+    );
+
+    test(
+      'distinguishes stale-write rejection and lost acknowledgment',
+      () async {
+        final fixture = _Fixture();
+        final writer = NativeEwsTaskReader(
+          account: account,
+          connection: fixture.provider(),
+          enableWrites: true,
+        );
+        fixture.scripts.addAll([
+          listScript(),
+          [
+            ('GetItem', (_) => taskResult('GetItem', taskItem('v1'))),
+            (
+              'UpdateItem',
+              (_) => _response(
+                'UpdateItem',
+                _error('UpdateItem', 'ErrorIrresolvableConflict'),
+              ),
+            ),
+          ],
+          [
+            ('GetItem', (_) => taskResult('GetItem', taskItem('v1'))),
+            (
+              'UpdateItem',
+              (_) => throw const EwsException(MailProblemCode.unavailable),
+            ),
+          ],
+          [
+            (
+              'GetItem',
+              (_) => taskResult('GetItem', taskItem('v1', recurring: true)),
+            ),
+          ],
+        ]);
+        final list = success(
+          await writer.defaultTaskList(fixture.session.begin()),
+        ).value;
+        final task = TaskId('task', list: list.id);
+        const patch = TaskPatch(
+          status: TaskFieldPatch.set(TaskStatus.completed),
+        );
+        Future<TaskProblem> push() async =>
+            (await writer.updateTask(
+                      task,
+                      patch,
+                      revision: 'v1',
+                      lease: fixture.session.begin(),
+                    )
+                    as TaskFailure<RemoteTask>)
+                .problem;
+        final rejection = await push();
+        expect(rejection.code, TaskProblemCode.conflict);
+        expect(rejection.mutationMayHaveOccurred, isFalse);
+        final lost = await push();
+        expect(lost.code, TaskProblemCode.conflict);
+        expect(lost.mutationMayHaveOccurred, isTrue);
+        final recurring = await push();
+        expect(recurring.code, TaskProblemCode.unsupported);
+        expect(recurring.mutationMayHaveOccurred, isFalse);
+        expect(fixture.clients.last.requests.map((request) => request.$1), [
+          'GetItem',
+        ]);
+      },
+    );
+
+    test(
+      'deletion requires opt-in, a current revision, and a nonrecurring task',
+      () async {
+        final fixture = _Fixture();
+        final writer = NativeEwsTaskReader(
+          account: account,
+          connection: fixture.provider(),
+          enableWrites: true,
+          enableDeletes: true,
+        );
+        final disabled = NativeEwsTaskReader(
+          account: account,
+          connection: fixture.provider(),
+          enableWrites: true,
+        );
+        fixture.scripts.addAll([
+          listScript(),
+          listScript(),
+          [('GetItem', (_) => taskResult('GetItem', taskItem('fresh')))],
+          [
+            ('GetItem', (_) => taskResult('GetItem', taskItem('fresh'))),
+            (
+              'DeleteItem',
+              (request) {
+                expect(request, contains('ChangeKey="fresh"'));
+                expect(
+                  request,
+                  contains('AffectedTaskOccurrences="AllOccurrences"'),
+                );
+                expect(request, contains('DeleteType="MoveToDeletedItems"'));
+                return _response('DeleteItem', _success('DeleteItem', ''));
+              },
+            ),
+          ],
+        ]);
+        final list = success(
+          await writer.defaultTaskList(fixture.session.begin()),
+        ).value;
+        success(await disabled.defaultTaskList(fixture.session.begin()));
+        final id = TaskId('task', list: list.id);
+        final blocked = await disabled.deleteTask(
+          id,
+          revision: 'fresh',
+          lease: fixture.session.begin(),
+        );
+        expect(
+          (blocked as TaskFailure<TaskUnit>).problem.mutationMayHaveOccurred,
+          isFalse,
+        );
+        expect(fixture.clients, hasLength(2));
+
+        final stale = await writer.deleteTask(
+          id,
+          revision: 'stale',
+          lease: fixture.session.begin(),
+        );
+        expect(
+          (stale as TaskFailure<TaskUnit>).problem.code,
+          TaskProblemCode.conflict,
+        );
+        expect(stale.problem.mutationMayHaveOccurred, isFalse);
+        expect(fixture.clients.last.requests.map((request) => request.$1), [
+          'GetItem',
+        ]);
+        success(
+          await writer.deleteTask(
+            id,
+            revision: 'fresh',
+            lease: fixture.session.begin(),
+          ),
+        );
+      },
+    );
+
     test('reads task properties and resumes a persisted sync cursor', () async {
       final fixture = _Fixture();
       final reader = NativeEwsTaskReader(

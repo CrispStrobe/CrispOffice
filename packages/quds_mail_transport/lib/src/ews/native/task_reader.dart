@@ -1,7 +1,15 @@
 part of 'provider.dart';
 
-final class NativeEwsTaskReader implements EwsTaskReader {
-  NativeEwsTaskReader({required this.account, required this.connection});
+final class NativeEwsTaskReader implements EwsTaskProvider {
+  NativeEwsTaskReader({
+    required this.account,
+    required this.connection,
+    this.enableWrites = false,
+    this.enableDeletes = false,
+  });
+
+  final bool enableWrites;
+  final bool enableDeletes;
 
   final TaskAccountId account;
   final NativeMailEwsProvider connection;
@@ -67,7 +75,7 @@ final class NativeEwsTaskReader implements EwsTaskReader {
     return TaskList(
       id: TaskListId(folder.id, account: account),
       name: folder.displayName,
-      readOnly: true,
+      readOnly: !enableWrites,
       revision: folder.changeKey,
     );
   }
@@ -163,6 +171,147 @@ final class NativeEwsTaskReader implements EwsTaskReader {
     });
     return _taskResult(result);
   }
+
+  @override
+  Future<TaskResult<RemoteTask?>> readTask(
+    TaskId id,
+    MailOperationLease lease,
+  ) async {
+    if (!_validTask(id)) return _invalidTask();
+    return _taskResult(
+      await connection._run(
+        lease,
+        (client, operation) async => (await _read(client, operation, id))?.$1,
+      ),
+    );
+  }
+
+  @override
+  Future<TaskResult<RemoteTask>> createTask(
+    TaskListId list,
+    TaskFields fields, {
+    required String operationId,
+    required MailOperationLease lease,
+  }) async {
+    if (!enableWrites) return _disabledTaskWrite();
+    if (!_folders.contains(list) ||
+        !connection._validId(operationId) ||
+        fields.title.trim().isEmpty) {
+      return _invalidTask();
+    }
+    return _taskResult(
+      await connection._run(lease, (client, operation) async {
+        final xml = await operation.post(
+          client,
+          'CreateItem',
+          _soap.createTask(list.value, fields, operationId),
+          mutation: true,
+        );
+        final receipt = _soap.taskMutation(xml, 'CreateItem')!;
+        final task = (await _read(
+          client,
+          operation,
+          TaskId(receipt.id, list: list),
+        ))?.$1;
+        if (task == null ||
+            !matchesEwsTaskCreate(task, operationId) ||
+            !matchesEwsTaskUpdate(
+              task,
+              TaskPatch.between(const TaskFields(title: ''), fields),
+            )) {
+          throw const EwsException(MailProblemCode.conflict);
+        }
+        return task;
+      }),
+    );
+  }
+
+  @override
+  Future<TaskResult<RemoteTask>> updateTask(
+    TaskId id,
+    TaskPatch patch, {
+    required String revision,
+    required MailOperationLease lease,
+  }) async {
+    if (!enableWrites) return _disabledTaskWrite();
+    if (!_validTask(id) || !connection._validId(revision) || patch.isEmpty) {
+      return _invalidTask();
+    }
+    return _taskResult(
+      await connection._run(lease, (client, operation) async {
+        final current = await _read(client, operation, id);
+        _requireRevision(current, revision);
+        if (current!.$2 != false &&
+            (patch.status.isChanged ||
+                patch.start.isChanged ||
+                patch.due.isChanged)) {
+          throw const EwsException(MailProblemCode.unsupported);
+        }
+        final xml = await operation.post(
+          client,
+          'UpdateItem',
+          _soap.updateTask(id, revision, patch),
+          mutation: true,
+        );
+        final receipt = _soap.taskMutation(xml, 'UpdateItem')!;
+        if (receipt.id != id.value) {
+          throw const EwsException(MailProblemCode.conflict);
+        }
+        final task = (await _read(client, operation, id))?.$1;
+        if (task == null || !matchesEwsTaskUpdate(task, patch)) {
+          throw const EwsException(MailProblemCode.conflict);
+        }
+        return task;
+      }),
+    );
+  }
+
+  @override
+  Future<TaskResult<TaskUnit>> deleteTask(
+    TaskId id, {
+    required String revision,
+    required MailOperationLease lease,
+  }) async {
+    if (!enableWrites || !enableDeletes) return _disabledTaskWrite();
+    if (!_validTask(id) || !connection._validId(revision)) {
+      return _invalidTask();
+    }
+    return _taskResult(
+      await connection._run(lease, (client, operation) async {
+        final current = await _read(client, operation, id);
+        _requireRevision(current, revision);
+        if (current!.$2 != false) {
+          throw const EwsException(MailProblemCode.unsupported);
+        }
+        final xml = await operation.post(
+          client,
+          'DeleteItem',
+          _soap.deleteTask(id, revision),
+          mutation: true,
+        );
+        _soap.taskMutation(xml, 'DeleteItem');
+        return TaskUnit.value;
+      }),
+    );
+  }
+
+  bool _validTask(TaskId id) =>
+      _folders.contains(id.list) && connection._validId(id.value);
+
+  Future<(RemoteTask, bool?)?> _read(
+    EwsHttpClient client,
+    _Operation operation,
+    TaskId id,
+  ) async => _soap.taskForWrite(
+    await operation.post(client, 'GetItem', _soap.getTasks([id.value])),
+    id,
+  );
+
+  void _requireRevision((RemoteTask, bool?)? item, String revision) {
+    if (item?.$1.revision != revision) {
+      throw const EwsException(MailProblemCode.conflict);
+    }
+  }
 }
 
 TaskResult<T> _taskResult<T>(MailResult<T> result) => switch (result) {
@@ -175,3 +324,11 @@ TaskResult<T> _taskResult<T>(MailResult<T> result) => switch (result) {
     ),
   ),
 };
+
+TaskFailure<T> _invalidTask<T>() => const TaskFailure(
+  TaskProblem(TaskProblemCode.invalidInput, mutationMayHaveOccurred: false),
+);
+
+TaskFailure<T> _disabledTaskWrite<T>() => const TaskFailure(
+  TaskProblem(TaskProblemCode.permissionDenied, mutationMayHaveOccurred: false),
+);
