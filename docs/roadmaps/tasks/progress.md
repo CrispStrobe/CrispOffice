@@ -227,12 +227,28 @@ Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
   Fixture coverage is in place. Live consent needs a Google desktop OAuth client
   with the Tasks API enabled.
 
+## Checkpoint 13 — Exchange push and Studio refresh
+
+- Exchange creates carry a durable operation marker. Updates use sparse fields
+  and a ChangeKey with `NeverOverwrite`. Studio keeps attempts in its outbox and
+  checks pulled data to recover unconfirmed writes. A live disposable folder
+  passed creation with notes and a due date, title and completion changes, a
+  stale-update rejection, and incremental sync after the writes.
+- Exchange deletion is available through an explicit per-account choice.
+  The live server accepted a stale ChangeKey in a raw DeleteItem request.
+  Studio checks the revision and recurrence immediately before moving a task
+  to Deleted Items, with a remaining read/delete race. The live test verified
+  the adapter's delete and the resulting tombstone, then removed the fixtures.
+- The Studio timer and app-resume refresh now visit every list on the connected
+  account. Manual sync targets the selected remote list or all remote lists
+  from the device list.
+
 ## Next execution sequence
 
 1. Qualify Google Tasks and Microsoft To Do with desktop OAuth grants. Extend
    CalDAV acceptance to permission changes, normalization and revocation.
-   Qualify live EWS changes and write behavior on a designated Exchange test
-   folder.
+   Implement Google Tasks pushes and qualify conditional update and delete
+   behavior on a disposable list.
 2. Extend the Studio workflow to multiple simultaneously connected accounts.
 3. Continue T7-T9 with extended fields, additional providers and optional bridging.
 

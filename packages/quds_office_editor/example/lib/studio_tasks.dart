@@ -19,6 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'credentials/secure_storage_service.dart';
 import 'studio_credential_storage.dart';
+import 'studio_tasks_ews_sync.dart';
 
 Widget buildStudioTasks(String title, VoidCallback close) =>
     StudioTasksPage(title: title, onClose: close);
@@ -46,6 +47,7 @@ final class StudioTasksPage extends StatefulWidget {
     this.openDatabase,
     this.credentialStorage,
     this.openDavClient,
+    this.openEwsProvider,
     this.onClose,
   });
   final String title;
@@ -53,6 +55,12 @@ final class StudioTasksPage extends StatefulWidget {
   final Future<Database> Function()? openDatabase;
   final StudioCredentialStorage? credentialStorage;
   final http.Client Function()? openDavClient;
+  final EwsTaskProvider Function(
+    TaskAccountId account,
+    MailEwsConfiguration configuration,
+    MailCredentialStore credentials,
+  )?
+  openEwsProvider;
 
   @override
   State<StudioTasksPage> createState() => _StudioTasksPageState();
@@ -296,24 +304,29 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final session = MailAccountSession(mail);
     _closeConnection = session.dispose;
     final reference = MailCredentialReference(account: mail, key: 'ews-tasks');
-    final reader = createEwsTaskReader(
-      account: account,
-      configuration: MailEwsConfiguration(
-        account: mail,
-        endpoint: Uri.parse(record['url'] as String),
-        username: record['login'] as String,
-        domain: record['domain'] as String,
-        credential: reference,
-        mailboxAddress: record['mailbox'] as String?,
-      ),
-      credentialStore: _EwsTaskCredentials(reference, () {
-        if (session.isDisposed ||
-            _vaultRevision != _credentialStorage.revision) {
-          return null;
-        }
-        return record['secret'] as String;
-      }),
+    final configuration = MailEwsConfiguration(
+      account: mail,
+      endpoint: Uri.parse(record['url'] as String),
+      username: record['login'] as String,
+      domain: record['domain'] as String,
+      credential: reference,
+      mailboxAddress: record['mailbox'] as String?,
     );
+    final credentials = _EwsTaskCredentials(reference, () {
+      if (session.isDisposed || _vaultRevision != _credentialStorage.revision) {
+        return null;
+      }
+      return record['secret'] as String;
+    });
+    final reader =
+        widget.openEwsProvider?.call(account, configuration, credentials) ??
+        createEwsTaskReader(
+          account: account,
+          enableWrites: true,
+          enableDeletes: record['ewsDeletes'] == true,
+          configuration: configuration,
+          credentialStore: credentials,
+        );
     final lists = _require(await reader.taskLists(session.begin()));
     if (!mounted || session.isDisposed) return;
     final lease = _require(_store!.connect(account));
@@ -321,14 +334,12 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       for (final list in lists)
         (
           list: list,
-          sync: () => TaskPullWorker(_store!).refresh(
+          sync: () => syncStudioEwsTasks(
+            TaskSyncWorker(_store!),
             lease,
-            list.id,
-            (position) => reader.pullTasks(
-              list.id,
-              cursor: position.cursor,
-              lease: session.begin(),
-            ),
+            reader,
+            list,
+            session,
           ),
         ),
     ]);
@@ -477,22 +488,26 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       _lists.where((entry) => entry.list.id == _selected).firstOrNull ??
       (list: _personal, sync: null);
 
-  Future<void> _syncSelected({bool background = false}) async {
-    final active = background && _selected == _personal.id
-        ? _lists
-                  .where((entry) => entry.list.id.value == _record?['selected'])
-                  .firstOrNull ??
-              _lists.firstOrNull
-        : _selection;
-    final sync = active?.sync;
-    if (sync == null) return;
-    final result = await sync();
-    if (!mounted) return;
-    _notice = switch (result) {
-      TaskFailure(:final problem) => 'Sync: ${_problemText(problem.code)}',
-      TaskSuccess(value: false) => 'More changes are waiting to sync.',
-      TaskSuccess() => null,
-    };
+  Future<void> _syncSelected() => _syncLists([_selection]);
+
+  Future<void> _syncLists(List<_Selection> lists) async {
+    String? error;
+    var hasMore = false;
+    for (final entry in lists) {
+      final sync = entry.sync;
+      if (sync == null) continue;
+      final result = await sync();
+      if (!mounted || _syncLease?.account != entry.list.id.account) return;
+      switch (result) {
+        case TaskFailure(:final problem):
+          error ??= '${entry.list.name}: ${_problemText(problem.code)}';
+        case TaskSuccess(value: false):
+          hasMore = true;
+        case TaskSuccess():
+          break;
+      }
+    }
+    _notice = error ?? (hasMore ? 'More changes are waiting to sync.' : null);
   }
 
   void _refresh({bool background = false}) => _run(() async {
@@ -503,7 +518,12 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         await _resumeConnection(record, _vault!, _syncLease!.account);
       }
     }
-    if (mounted) await _syncSelected(background: background);
+    if (!mounted) return;
+    if (background || _selected == _personal.id) {
+      await _syncLists(_lists);
+    } else {
+      await _syncSelected();
+    }
   });
 
   void _credentialsChanged() {
@@ -693,9 +713,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
             ),
           IconButton(
             tooltip: 'Sync now',
-            onPressed: busy || !connected || _selected == _personal.id
-                ? null
-                : () => _refresh(),
+            onPressed: busy || !connected ? null : () => _refresh(),
             icon: const Icon(Icons.sync),
           ),
         ],
@@ -733,6 +751,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               ],
             ),
           ),
+          if (_selection.list.readOnly)
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8),
+              child: Text('Read-only list'),
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
@@ -786,6 +809,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   Widget _row(TaskFields? fields, {LocalTaskEdit? edit, RemoteTask? remote}) {
     final completed = fields?.status == TaskStatus.completed;
     final editable = fields != null && !_selection.list.readOnly;
+    final remoteDeleteAvailable =
+        _selected.account.provider != 'ews' || _record?['ewsDeletes'] == true;
+    final canDelete =
+        editable &&
+        (remoteDeleteAvailable || (remote == null && edit?.remoteId == null));
     final local = _selected == _personal.id;
     final String? status = local || edit == null
         ? null
@@ -830,7 +858,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
             )
           : IconButton(
               tooltip: 'Delete task',
-              onPressed: !editable ? null : () => _save(null, edit, remote),
+              onPressed: canDelete ? () => _save(null, edit, remote) : null,
               icon: const Icon(Icons.delete_outline),
             ),
     );
@@ -911,6 +939,7 @@ T _requireMail<T>(MailResult<T> result) => switch (result) {
   ),
 };
 String _problemText(TaskProblemCode code) => switch (code) {
+  TaskProblemCode.unsupported => 'This provider cannot apply this task change.',
   TaskProblemCode.conflict => 'Local and server changes need review.',
   TaskProblemCode.authenticationRequired => 'Reconnect the task account.',
   TaskProblemCode.permissionDenied =>
@@ -950,6 +979,7 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
   bool get _google => _provider == 'google';
   bool get _ews => _provider == 'ews';
   bool _graphWrites = false;
+  bool _ewsDeletes = false;
 
   @override
   void dispose() {
@@ -997,10 +1027,7 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                     value: 'google',
                     child: Text('Google Tasks (read-only)'),
                   ),
-                  DropdownMenuItem(
-                    value: 'ews',
-                    child: Text('Exchange EWS (read-only)'),
-                  ),
+                  DropdownMenuItem(value: 'ews', child: Text('Exchange EWS')),
                 ],
               ),
               if (_graph) ...[
@@ -1058,6 +1085,14 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       labelText: 'Mailbox address (optional)',
+                    ),
+                  ),
+                  CheckboxListTile(
+                    value: _ewsDeletes,
+                    onChanged: (value) => setState(() => _ewsDeletes = value!),
+                    title: const Text('Allow deleting Exchange tasks'),
+                    subtitle: const Text(
+                      'Moves tasks to Deleted Items. Concurrent edits can race with deletion.',
                     ),
                   ),
                 ] else ...[
@@ -1143,6 +1178,7 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                     'secret': _password.text,
                     if (_ews) ...{
                       'domain': _domain.text.trim(),
+                      'ewsDeletes': _ewsDeletes,
                       if (_mailbox.text.trim().isNotEmpty)
                         'mailbox': _mailbox.text.trim(),
                     } else ...{

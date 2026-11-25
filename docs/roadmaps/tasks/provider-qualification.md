@@ -162,10 +162,22 @@ A read-only `GetFolder` for the distinguished `tasks` folder returned
 authenticated HEAD handling. The endpoint confirms persistent authentication
 and returns a same-origin HTTP 302 for the final HEAD. The transport sends SOAP
 to the configured service endpoint on the established TLS connection.
-Studio offers read-only task folder discovery and synchronization over this
-transport. The live probe fetched one task on the default-folder baseline and
-resumed from the saved checkpoint with no new changes. Writes and advanced
-task properties remain to be qualified. Microsoft To Do uses a
+Studio discovers task folders and synchronizes incoming changes over this
+transport. The default-folder read probe used a durable checkpoint and saw
+no new changes. Studio stages outgoing creates and sparse updates in the
+task outbox. Updates send the saved Exchange ChangeKey with
+`ConflictResolution=NeverOverwrite`. Creates carry a named property so an
+unconfirmed write can be matched after a pull without reissuing it. Changes
+that can advance a recurring task series remain disabled. Studio can enable
+deletion per account. The adapter verifies the current revision and
+nonrecurring status first, then asks Exchange to move the task to Deleted
+Items. The live server accepted a raw DeleteItem with an outdated ChangeKey,
+so the adapter's check can race with another client's edit. The Studio
+connection dialog makes remote deletion an explicit choice. On a disposable
+folder, the live server rejected a raw stale update with
+`ErrorIrresolvableConflict`. Adapter creation, notes, due date, completion,
+deletion and incremental change tracking passed. The test removed the test
+folder and its fixtures. Microsoft To Do uses a
 separate Graph OAuth grant.
 
 Run the read-only probe from `packages/quds_mail_transport` with
