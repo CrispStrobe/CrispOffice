@@ -21,7 +21,9 @@ jobs:
         run: |
           dart test test/deflate_test.dart test/zip_bounded_read_test.dart test/pdf_filter_expansion_test.dart test/sheet_formula_test.dart test/word_table_nested_layout_test.dart test/glyph_outline_bounds_test.dart test/cfbf_reader_bounds_test.dart
           dart run tool/fuzz/fuzz_deflate.dart 5000
-          dart run tool/fuzz/fuzz_opc.dart 5000
+          # fuzz_opc is run locally: the repair fallback costs a few ms per
+          # malformed package, which exceeds covfuzz's blind slow-parse budget.
           dart run tool/fuzz/fuzz_pdf.dart 5000
           dart run tool/fuzz/fuzz_xml.dart 5000
           dart run tool/fuzz/fuzz_font.dart 5000
+          dart run tool/fuzz/fuzz_cfb.dart 5000
