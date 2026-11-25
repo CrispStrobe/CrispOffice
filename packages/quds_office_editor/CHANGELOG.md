@@ -4,6 +4,14 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Preserve supported formatting when saving, reopening, editing and applying
+  Mail templates. Keep the custom Word body editor and explicit whole-message
+  replacement; preserve the live draft when saving a reusable snapshot. Refuse
+  unsupported/conflicting template content and stale owner, draft-revision or
+  settings results. Add rich-template migration, SQLite recovery, MIME/Outbox
+  and Flutter widget regression coverage. Fix CI test imports and the actual
+  Enter/visibility fixtures exposed by the first rich-composition runtime run.
+
 - Preserve supported Mail formatting through the Word composer, autosave,
   database recovery, MIME and frozen Outbox edit-copy. Add English/German/Arabic
   bold, italic, underline, strikethrough, safe-link, alignment, direction and
@@ -11,7 +19,7 @@ All notable changes to `quds_office_editor` are documented here.
   rich bodies have matching plain/HTML alternatives; unsupported content and
   inconsistent snapshots fail explicitly. Legacy plain drafts keep their
   independent save and submission limits. Signature insertion retains existing
-  formatting; saving a rich message as a plain template requires confirmation.
+  formatting; full-message templates now retain supported formatting as well.
   Preserve supported empty-paragraph typing styles and fixed link-blue color
   across the integrated Word Enter behavior; stale link/paste results cannot
   mutate a newer selection or compose owner.

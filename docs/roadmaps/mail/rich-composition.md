@@ -1,5 +1,11 @@
 # Durable rich composition
 
+The subsequent [rich-template continuation](rich-templates.md) preserves this
+same supported body in reusable templates and adds schema 22 for template HTML.
+Its [validation record](../../validation/mail-rich-templates-20261125/README.md)
+also tracks the real Flutter results and corrections after the original handoff.
+The intake and original qualification below remain historical source records.
+
 ## Intake and scope — 25 November 2026
 
 This continuation started from `938832e6dc337a880c15c609aeed95b643379da7`
@@ -54,9 +60,10 @@ Studio uses its existing Word RenderBox editor and undo commands. Snapshots
 detect formatting-only changes and preserve supported formatting through
 autosave, close/reopen, signatures/Quick Text, MIME and Outbox edit-copy. Template
 replacement remains an explicit whole-message replacement. Saving a formatted
-message into the existing plain-template system requires a separate confirmation
-that the template keeps text; the source draft retains its formatting. Applying
-a template resets old styles, links, attachments, threading and undo history.
+message as a template now retains supported formatting in an independent
+snapshot; the source draft is unchanged. Applying a template replaces old
+styles and links with the template's content and clears attachments, threading
+and undo history.
 Existing plain drafts and frozen plain Outbox messages remain compatible.
 
 Both plain text and HTML are bounded and must agree. Unknown/corrupt rich state
@@ -126,8 +133,8 @@ outside this increment. Inherited native Sent-copy filing is retained; it is
 not a recipient-delivery receipt or resolution of an uncertain send. No
 placeholder capability is advertised for them.
 
-After installed/widget acceptance, useful next increments are rich-template
-storage, image/CID authoring with deterministic multipart/related MIME, and
+Rich-template storage is implemented in the continuation linked above. Useful
+next increments are image/CID authoring with deterministic multipart/related MIME and
 explicit read-only Sent observations. A Sent observation must not be described
 as recipient delivery or permission to resend an uncertain message. Retained
 multi-account sessions require separate storage-owner and cancellation work.

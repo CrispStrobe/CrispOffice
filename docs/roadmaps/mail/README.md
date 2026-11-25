@@ -11,6 +11,13 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [rich-template continuation](rich-templates.md) extends supported formatting
+through template save, settings recovery, editing and reuse. Additive schema 22
+preserves legacy plain bodies; canonical HTML has explicit per-template and
+aggregate budgets. It also reconciles CI analyzer and widget-fixture findings
+from the original rich-composition checkpoint. See its separate
+[validation record](../../validation/mail-rich-templates-20261125/README.md).
+
 The [durable rich-composition continuation](rich-composition.md) preserves
 supported formatting through the Word editor, local draft recovery, MIME and
 Outbox edit-copy. It adds explicit formatting controls and inert formatted
@@ -161,7 +168,7 @@ M00–M14 scope. The immediate delivery sequence appears after the table.
 | 2 | Everyday mailbox workspace (M04W/M06) | Verified four-provider remembered-account chooser with exact routing, draft-safe explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive with remembered custom destinations, membership recovery, resumable header sync and bounded offline downloads | Retained multi-account sessions, complete shared synchronized workspace and unified live Inbox, durable retention/background scheduling and broader provider membership reconciliation |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands with exact saved destinations | Repository-event-driven shared saved views, EWS/Gmail/Graph provider search, provider-native thread discovery, provider keyword mapping and scheduled/background rule execution |
-| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain and bounded rich composition with matching HTML, To/Cc/Bcc, reply all, inert text quotes, attachments, signatures, Quick Text, sender identities and plain full-message templates; durable rich recovery and inert Outbox review | Flutter runtime acceptance of new controls, inline images, richer templates, attach current document/PDF and edit a copy of a received attachment |
+| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain and bounded rich composition with matching HTML, To/Cc/Bcc, reply all, inert text quotes, attachments, signatures, Quick Text, sender identities and rich full-message templates; durable rich recovery and inert Outbox review | Current-head Flutter acceptance, inline images, lists/tables, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
 Each increment needs an actual user path, typed failure/recovery behavior,
@@ -435,4 +442,3 @@ Source references were checked during planning on 2026-11-18. Recheck the applic
 - [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/), [Mozilla FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/).
 - [IMAP identity specification](https://www.rfc-editor.org/rfc/rfc9051.html), [JMAP mail](https://www.rfc-editor.org/rfc/rfc8621.html), [iCalendar](https://www.rfc-editor.org/rfc/rfc5545.html).
 - [Graph incremental message sync](https://learn.microsoft.com/en-us/graph/delta-query-messages), [Gmail sync](https://developers.google.com/workspace/gmail/api/guides/sync), [Google restricted-scope requirements](https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification).
-

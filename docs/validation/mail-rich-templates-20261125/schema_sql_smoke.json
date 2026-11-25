@@ -1,0 +1,17 @@
+{
+  "result": "passed",
+  "scope": "Actual schemaV21/schemaV22 SQL via Python sqlite3 in an isolated compose-table fixture; not Dart/Drift or whole-schema execution",
+  "sqlite_version": "3.53.1",
+  "checks": [
+    "additive nullable column",
+    "rollback removes column and restores user_version",
+    "legacy literal body preserved byte-for-byte",
+    "settings revision unchanged",
+    "binary column rejected",
+    "SQL byte ceiling enforced",
+    "foreign_key_check empty"
+  ],
+  "schema_source_path": "packages/quds_mail_store/lib/src/schema/database.dart",
+  "schema_source_sha256": "84e799d86dec2290c4c4ecba07f4c21a62ed1abda51c34d45019639c642b8997",
+  "schema_v22_sql_sha256": "471488dbfefde479d75e52840801ba49dffc61f3dca90dfd193b4e3ba8d5c0b8"
+}

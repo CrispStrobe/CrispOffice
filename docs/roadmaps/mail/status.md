@@ -21,8 +21,8 @@ interrupted work.
 | Search | Local cached headers, Boolean/people fields, saved queries and cached `body:` search; selected-folder server search for IMAP, EWS, Gmail and Microsoft 365 with supported-field controls, date ranges, a 50-row display cap and exact/estimated/unknown counts; new adapter live acceptance remains open |
 | Conversations | Persisted cross-folder conversation keys (schema v20) with conservative reference-derived roots and loaded-row folding |
 | Mailbox chrome | Two compact rows: search + Filters + help, then selected/shown/loaded stats, sort and selection controls; auto-pagination in native IMAP/EWS |
-| Compose tools | Signatures, Quick Text, attachments, account-owned sender identities and full-message templates; immutable From/display-name/Reply-To through draft and Outbox recovery; schema v21 settings migration |
-| Rich composition | Bounded canonical formatting, matching plain/HTML MIME, Word editor controls, local draft recovery and Outbox edit-copy/review; no new schema; new Flutter widget/installed-client execution remains open |
+| Compose tools | Signatures, Quick Text, attachments, account-owned sender identities and rich full-message templates; immutable From/display-name/Reply-To through draft and Outbox recovery; additive schema v22 preserves legacy templates |
+| Rich composition | Bounded canonical formatting, matching plain/HTML MIME, Word editor controls, local draft recovery and Outbox edit-copy/review; original rich widget execution exposed three test-fixture defects now corrected; current-head and installed-client acceptance are tracked separately |
 | Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
@@ -31,7 +31,23 @@ interrupted work.
 | Formatted HTML | Safe table/style rendering with bounded sanitizer, 256-level default HTML depth for transactional mail, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
 | Reader metadata | Compact From/To/Cc/Bcc/Reply-To/date-time card and bounded selectable raw-header inspection with copy; independent of the body mode |
 
-## Latest continuation: durable rich composition
+## Latest continuation: rich templates and runtime qualification
+
+[Rich templates](rich-templates.md) preserve the supported canonical body through
+Save as template, settings close/reopen, template editing and whole-message
+replacement. Template settings retain their existing account/revision ownership;
+formatting counts toward explicit per-template, account-settings and store quotas.
+Corrupt alternatives refuse replacement. Schema 22 adds only nullable canonical
+HTML to the existing template table and preserves legacy bodies and revisions.
+
+This continuation also integrates main through `1eb5a9af`, fixes the two new
+undeclared test imports and the inherited redundant editor import, and corrects
+the three runtime fixture failures exposed by the original rich-composition CI.
+The [continuation validation record](../../validation/mail-rich-templates-20261125/README.md)
+separates earlier-head CI results, supplied regression tests, executed SQL checks
+and current-head qualification. No live mail has been sent.
+
+## Previous continuation: durable rich composition
 
 This continuation includes main through `c37614ea`, including the merged identity/search
 work, Word Enter changes, native Sent-copy reporting and connected Inbox polling.
@@ -45,10 +61,11 @@ database close/reopen, MIME and Outbox edit-copy. Legacy plain drafts retain
 their separate persistence and send limits. Rich Outbox review is bounded
 selectable text with no active links or resource loading.
 
-The [current qualification record](../../validation/mail-rich-compose-20261125/README.md)
+The [original qualification record](../../validation/mail-rich-compose-20261125/README.md)
 records actual Dart/SQLite tests and source checks. New Flutter widget tests
-are supplied separately from execution; installed app and live-client rendering
-acceptance remain open. No existing provider acceptance claim is expanded.
+were supplied separately from execution in that checkpoint; the later runtime
+results are in the continuation record above. Installed app and live-client
+rendering acceptance remain open. No provider acceptance claim is expanded.
 
 ## Previous increment: identities, templates and provider search
 
