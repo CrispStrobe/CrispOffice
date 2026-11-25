@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Add bounded immutable sender identities and literal full-message templates to
+  account-owned compose settings, with an optional default sender, exact local
+  identity references, strict Unicode/header validation and immutable snapshots.
+  Recipient text remains editable; provider permission and transport validation
+  are separate from saving local preferences. Templates never retain attachments,
+  thread state or sending instructions.
+
 - Add `recipient:` (To/Cc) and `participant:` (From/To/Cc) header-search
   predicates for names and addresses. Preserve Boolean negation, phrase
   boundaries, bounded queries and the existing public-header scope; bare text

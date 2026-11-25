@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add schema v21 for account-owned sender identities and full-message templates,
+  sharing the existing atomic compose-settings revision. Preserve older settings
+  and authored mail, bound corrupt reads before text transfer, enforce quotas and
+  same-account references, retain preferences on logout, and erase them only with
+  their owner. Identity/template edits never rewrite drafts or frozen Outbox MIME.
+
 - Add schema v17 for account-owned Archive preferences with transactional
   revision comparison, persisted resets, bounded strict metadata reads and
   quota accounting. Retain preferences through logout and mailbox-cache

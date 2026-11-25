@@ -37,6 +37,156 @@ final class MailQuickText {
   String toString() => 'MailQuickText(redacted)';
 }
 
+/// One named sender choice. This is local authored configuration, not proof
+/// that the connected provider permits the address or delegated submission.
+/// Hosts keep the chosen values in each immutable draft and prepared message.
+final class MailSenderIdentity {
+  const MailSenderIdentity({
+    required this.id,
+    required this.name,
+    required this.address,
+    this.displayName = '',
+    this.replyTo = '',
+  });
+
+  static const maxIdCodeUnits = MailQuickText.maxIdCodeUnits;
+  static const maxNameCodeUnits = MailQuickText.maxNameCodeUnits;
+  static const maxAddressCodeUnits = 254;
+  static const maxDisplayNameCodeUnits = 256;
+
+  final String id;
+  final String name;
+  final String address;
+  final String displayName;
+  final String replyTo;
+
+  String get nameKey => name.trim().toLowerCase();
+
+  bool get isValid =>
+      _validComposeIdentity(id) &&
+      _validComposeName(name) &&
+      isSupportedAddress(address) &&
+      displayName.length <= maxDisplayNameCodeUnits &&
+      displayName == displayName.trim() &&
+      _validComposeText(displayName, multiline: false) &&
+      (replyTo.isEmpty || isSupportedAddress(replyTo));
+
+  /// The current ASCII dot-atom/DNS mailbox subset. Display names belong in
+  /// [displayName], not in this field. SMTPUTF8, comments, groups, quoted local
+  /// parts and domain literals need separately negotiated transport support.
+  static bool isSupportedAddress(String value) {
+    if (value.length > maxAddressCodeUnits ||
+        value.codeUnits.any((unit) => unit < 0x21 || unit > 0x7e)) {
+      return false;
+    }
+    final parts = value.split('@');
+    if (parts.length != 2) return false;
+    final local = parts[0];
+    final domain = parts[1];
+    if (local.isEmpty ||
+        local.length > 64 ||
+        local.startsWith('.') ||
+        local.endsWith('.') ||
+        local.contains('..') ||
+        !RegExp(r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$").hasMatch(local)) {
+      return false;
+    }
+    final labels = domain.split('.');
+    final labelPattern = RegExp(
+      r'^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$',
+    );
+    return domain.length <= 253 && labels.every(labelPattern.hasMatch);
+  }
+
+  MailSenderIdentity copyWith({
+    String? name,
+    String? address,
+    String? displayName,
+    String? replyTo,
+  }) => MailSenderIdentity(
+    id: id,
+    name: name ?? this.name,
+    address: address ?? this.address,
+    displayName: displayName ?? this.displayName,
+    replyTo: replyTo ?? this.replyTo,
+  );
+
+  @override
+  String toString() => 'MailSenderIdentity(redacted)';
+}
+
+/// Literal full-message starting text owned by one compose-settings snapshot.
+/// Recipients may be incomplete while authoring a template; the composer still
+/// validates them before sending. No variables, HTML, attachment references,
+/// thread identity or delivery instructions are evaluated or retained here.
+final class MailMessageTemplate {
+  const MailMessageTemplate({
+    required this.id,
+    required this.name,
+    this.to = '',
+    this.cc = '',
+    this.bcc = '',
+    this.subject = '',
+    this.body = '',
+    this.senderIdentityId,
+  });
+
+  static const maxIdCodeUnits = MailQuickText.maxIdCodeUnits;
+  static const maxNameCodeUnits = MailQuickText.maxNameCodeUnits;
+  static const maxRecipientCodeUnits = 25600;
+  static const maxSubjectCodeUnits = 512;
+  static const maxBodyCodeUnits = 16384;
+
+  final String id;
+  final String name;
+  final String to;
+  final String cc;
+  final String bcc;
+  final String subject;
+  final String body;
+  final String? senderIdentityId;
+
+  String get nameKey => name.trim().toLowerCase();
+
+  bool get isValid =>
+      _validComposeIdentity(id) &&
+      _validComposeName(name) &&
+      to.length + cc.length + bcc.length <= maxRecipientCodeUnits &&
+      _validComposeText(to, multiline: false) &&
+      _validComposeText(cc, multiline: false) &&
+      _validComposeText(bcc, multiline: false) &&
+      subject.length <= maxSubjectCodeUnits &&
+      _validComposeText(subject, multiline: false) &&
+      body.length <= maxBodyCodeUnits &&
+      _validComposeText(body, multiline: true) &&
+      (senderIdentityId == null || _validComposeIdentity(senderIdentityId!));
+
+  MailMessageTemplate copyWith({
+    String? name,
+    String? to,
+    String? cc,
+    String? bcc,
+    String? subject,
+    String? body,
+    String? senderIdentityId,
+    bool clearSenderIdentity = false,
+  }) => MailMessageTemplate(
+    id: id,
+    name: name ?? this.name,
+    to: to ?? this.to,
+    cc: cc ?? this.cc,
+    bcc: bcc ?? this.bcc,
+    subject: subject ?? this.subject,
+    body: body ?? this.body,
+    senderIdentityId: clearSenderIdentity
+        ? null
+        : senderIdentityId ?? this.senderIdentityId,
+  );
+
+  @override
+  String toString() => 'MailMessageTemplate(redacted)';
+}
+
 /// Immutable account-owned defaults and reusable literal compose text.
 ///
 /// Loading or changing these defaults must not alter an existing draft. A host
@@ -49,11 +199,20 @@ final class MailComposeSettings {
     this.signatureForNewMessages = false,
     this.signatureForReplies = false,
     List<MailQuickText> quickTexts = const [],
-  }) : quickTexts = List<MailQuickText>.unmodifiable(quickTexts);
+    List<MailSenderIdentity> senderIdentities = const [],
+    List<MailMessageTemplate> templates = const [],
+    this.defaultSenderIdentityId,
+  }) : quickTexts = List<MailQuickText>.unmodifiable(quickTexts),
+       senderIdentities = List<MailSenderIdentity>.unmodifiable(
+         senderIdentities,
+       ),
+       templates = List<MailMessageTemplate>.unmodifiable(templates);
 
   static const maxSignatureCodeUnits = 16384;
   static const maxTextCodeUnits = 16384;
   static const maxQuickTexts = 32;
+  static const maxSenderIdentities = 16;
+  static const maxTemplates = 32;
   static const maxMetadataCodeUnits = 131072;
   static const maxRevision = 9007199254740991;
 
@@ -65,6 +224,12 @@ final class MailComposeSettings {
   final bool signatureForNewMessages;
   final bool signatureForReplies;
   final List<MailQuickText> quickTexts;
+  final List<MailSenderIdentity> senderIdentities;
+  final List<MailMessageTemplate> templates;
+
+  /// Null keeps the connected account's existing sender. Defaults apply only at
+  /// a new-draft boundary and never rewrite recovered drafts or queued mail.
+  final String? defaultSenderIdentityId;
 
   /// Exact UTF-16 budget, including ownership and stored name-match keys.
   int get metadataCodeUnits =>
@@ -80,6 +245,32 @@ final class MailComposeSettings {
             item.name.length +
             item.nameKey.length +
             item.text.length,
+      ) +
+      (defaultSenderIdentityId?.length ?? 0) +
+      senderIdentities.fold<int>(
+        0,
+        (sum, item) =>
+            sum +
+            item.id.length +
+            item.name.length +
+            item.nameKey.length +
+            item.address.length +
+            item.displayName.length +
+            item.replyTo.length,
+      ) +
+      templates.fold<int>(
+        0,
+        (sum, item) =>
+            sum +
+            item.id.length +
+            item.name.length +
+            item.nameKey.length +
+            item.to.length +
+            item.cc.length +
+            item.bcc.length +
+            item.subject.length +
+            item.body.length +
+            (item.senderIdentityId?.length ?? 0),
       );
 
   bool get isValid {
@@ -90,13 +281,39 @@ final class MailComposeSettings {
         revision > maxRevision ||
         signature.length > maxSignatureCodeUnits ||
         !_validComposeText(signature, multiline: true) ||
-        quickTexts.length > maxQuickTexts) {
+        quickTexts.length > maxQuickTexts ||
+        senderIdentities.length > maxSenderIdentities ||
+        templates.length > maxTemplates) {
       return false;
     }
     final ids = <String>{};
     final names = <String>{};
     for (final item in quickTexts) {
       if (!item.isValid || !ids.add(item.id) || !names.add(item.nameKey)) {
+        return false;
+      }
+    }
+    final senderIds = <String>{};
+    final senderNames = <String>{};
+    for (final item in senderIdentities) {
+      if (!item.isValid ||
+          !senderIds.add(item.id) ||
+          !senderNames.add(item.nameKey)) {
+        return false;
+      }
+    }
+    if (defaultSenderIdentityId != null &&
+        !senderIds.contains(defaultSenderIdentityId)) {
+      return false;
+    }
+    final templateIds = <String>{};
+    final templateNames = <String>{};
+    for (final item in templates) {
+      if (!item.isValid ||
+          !templateIds.add(item.id) ||
+          !templateNames.add(item.nameKey) ||
+          (item.senderIdentityId != null &&
+              !senderIds.contains(item.senderIdentityId))) {
         return false;
       }
     }
@@ -109,6 +326,10 @@ final class MailComposeSettings {
     bool? signatureForNewMessages,
     bool? signatureForReplies,
     List<MailQuickText>? quickTexts,
+    List<MailSenderIdentity>? senderIdentities,
+    List<MailMessageTemplate>? templates,
+    String? defaultSenderIdentityId,
+    bool clearDefaultSenderIdentity = false,
   }) => MailComposeSettings(
     account: account,
     revision: revision ?? this.revision,
@@ -117,11 +338,22 @@ final class MailComposeSettings {
         signatureForNewMessages ?? this.signatureForNewMessages,
     signatureForReplies: signatureForReplies ?? this.signatureForReplies,
     quickTexts: quickTexts ?? this.quickTexts,
+    senderIdentities: senderIdentities ?? this.senderIdentities,
+    templates: templates ?? this.templates,
+    defaultSenderIdentityId: clearDefaultSenderIdentity
+        ? null
+        : defaultSenderIdentityId ?? this.defaultSenderIdentityId,
   );
 
   @override
   String toString() => 'MailComposeSettings(redacted)';
 }
+
+bool _validComposeName(String value) =>
+    value.isNotEmpty &&
+    value == value.trim() &&
+    value.length <= MailQuickText.maxNameCodeUnits &&
+    _validComposeText(value, multiline: false);
 
 bool _validComposeIdentity(String value) =>
     value.isNotEmpty &&

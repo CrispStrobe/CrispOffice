@@ -164,31 +164,29 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   });
 
   /// Bounded, explicit backfill for v1 databases; opening never scans all mail.
-  Future<MailResult<int>> reindex(
-    MailAccountId account, {
-    int limit = 100,
-  }) => _write(() async {
-    await _account(account);
-    if (limit < 1 || limit > limits.maxPageSize) {
-      SqliteMailRepository._fail(MailProblemCode.invalidInput);
-    }
-    final rows = await _rows(
-      'SELECT m.* FROM messages m WHERE account=? AND NOT EXISTS '
-      '(SELECT 1 FROM index_state i WHERE i.account=m.account AND i.message=m.id) ORDER BY id LIMIT ?',
-      [account.value, limit],
-    );
-    for (final row in rows) {
-      final header = _header(row, account);
-      await _index(
-        account,
-        header.id,
-        header.envelope,
-        await _cachedPlain(account, header.id),
-      );
-    }
-    await _quota(account);
-    return rows.length;
-  });
+  Future<MailResult<int>> reindex(MailAccountId account, {int limit = 100}) =>
+      _write(() async {
+        await _account(account);
+        if (limit < 1 || limit > limits.maxPageSize) {
+          SqliteMailRepository._fail(MailProblemCode.invalidInput);
+        }
+        final rows = await _rows(
+          'SELECT m.* FROM messages m WHERE account=? AND NOT EXISTS '
+          '(SELECT 1 FROM index_state i WHERE i.account=m.account AND i.message=m.id) ORDER BY id LIMIT ?',
+          [account.value, limit],
+        );
+        for (final row in rows) {
+          final header = _header(row, account);
+          await _index(
+            account,
+            header.id,
+            header.envelope,
+            await _cachedPlain(account, header.id),
+          );
+        }
+        await _quota(account);
+        return rows.length;
+      });
 
   Future<MailResult<MailUnit>> cacheMessage(
     MailAccountId account,
@@ -460,9 +458,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       '(SELECT mailbox FROM mailbox_views WHERE account=? ORDER BY mailbox LIMIT ?)',
       [account.value, account.value, limit],
     );
-    final removedViews = (await _rows(
-      'SELECT changes() AS n',
-    )).single.read<int>('n');
+    final removedViews = (await _rows('SELECT changes() AS n')).single
+        .read<int>('n');
     final evictedBodies = await _evictCacheBodies(
       account,
       limit,
@@ -795,6 +792,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'outbox_attempts',
       'outbox',
       'drafts',
+      'account_message_templates',
+      'account_sender_identities',
       'account_quick_texts',
       'account_compose_settings',
       'account_archive_settings',
@@ -824,6 +823,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   Future<MailResult<MailUnit>> removeProfile() => _write(() async {
     await _db.customStatement('DELETE FROM local_accounts');
     await _db.customStatement('DELETE FROM saved_header_searches');
+    await _db.customStatement('DELETE FROM account_message_templates');
+    await _db.customStatement('DELETE FROM account_sender_identities');
     await _db.customStatement('DELETE FROM account_quick_texts');
     await _db.customStatement('DELETE FROM account_compose_settings');
     await _db.customStatement('DELETE FROM account_archive_settings');

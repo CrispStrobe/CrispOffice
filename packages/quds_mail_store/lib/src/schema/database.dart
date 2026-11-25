@@ -17,7 +17,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 20;
+  int get schemaVersion => 21;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -83,11 +83,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV20) {
         await customStatement(statement);
       }
+      for (final statement in schemaV21) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 20');
+      await customStatement('PRAGMA user_version = 21');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 19 || to != 20) {
+      if (from < 1 || from > 20 || to != 21) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -187,8 +190,13 @@ final class MailStoreDatabase extends GeneratedDatabase {
           }
           await _backfillConversations();
         }
+        if (from < 21) {
+          for (final statement in schemaV21) {
+            await customStatement(statement);
+          }
+        }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 20');
+        await customStatement('PRAGMA user_version = 21');
       });
     },
     beforeOpen: (_) async {
@@ -583,4 +591,35 @@ const schemaV19 = <String>[
 const schemaV20 = <String>[
   'ALTER TABLE messages ADD COLUMN conversation TEXT',
   'CREATE INDEX messages_conversation ON messages(account,conversation)',
+];
+
+/// Sender choices and literal full-message templates share the existing
+/// account-owned settings revision. Earlier settings retain their signature,
+/// snippets and revision; no new sender is selected during migration.
+const schemaV21 = <String>[
+  '''ALTER TABLE account_compose_settings ADD COLUMN default_sender_identity
+    TEXT CHECK(default_sender_identity IS NULL OR
+      (typeof(default_sender_identity) = 'text' AND
+       length(CAST(default_sender_identity AS BLOB)) BETWEEN 1 AND 4096))''',
+  '''CREATE TABLE account_sender_identities (
+    account TEXT NOT NULL REFERENCES account_compose_settings(account)
+      ON DELETE CASCADE,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 15),
+    id TEXT NOT NULL, name TEXT NOT NULL, name_key TEXT NOT NULL,
+    address TEXT NOT NULL, display_name TEXT NOT NULL, reply_to TEXT NOT NULL,
+    PRIMARY KEY(account,id), UNIQUE(account,position), UNIQUE(account,name_key)
+  )''',
+  '''CREATE TABLE account_message_templates (
+    account TEXT NOT NULL REFERENCES account_compose_settings(account)
+      ON DELETE CASCADE,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 31),
+    id TEXT NOT NULL, name TEXT NOT NULL, name_key TEXT NOT NULL,
+    to_text TEXT NOT NULL, cc_text TEXT NOT NULL, bcc_text TEXT NOT NULL,
+    subject TEXT NOT NULL, body TEXT NOT NULL, sender_identity TEXT,
+    PRIMARY KEY(account,id), UNIQUE(account,position), UNIQUE(account,name_key),
+    FOREIGN KEY(account,sender_identity)
+      REFERENCES account_sender_identities(account,id)
+  )''',
 ];

@@ -84,7 +84,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 20);
+        expect(database.userVersion, 21);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -171,7 +171,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 20);
+        expect(database.userVersion, 21);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -329,7 +329,7 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 20);
+        expect(upgraded.userVersion, 21);
       } finally {
         upgraded.close();
       }
@@ -405,7 +405,7 @@ void main() {
         await repository.close();
         expect(_snapshot(file), before);
         final current = sqlite.sqlite3.open(file.path);
-        expect(current.userVersion, 20);
+        expect(current.userVersion, 21);
         expect(current.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           current
@@ -559,7 +559,7 @@ void main() {
         expect(original(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 20);
+          expect(current.userVersion, 21);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current.select(
@@ -690,7 +690,7 @@ void main() {
         expect(original(), before);
         final check = sqlite.sqlite3.open(file.path);
         try {
-          expect(check.userVersion, 20);
+          expect(check.userVersion, 21);
           expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         } finally {
           check.close();
@@ -862,7 +862,7 @@ void main() {
         expect(snapshotV8(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 20);
+          expect(current.userVersion, 21);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current
@@ -883,7 +883,7 @@ void main() {
     );
   }
 
-  for (final version in [21, 22]) {
+  for (final version in [22, 23]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {

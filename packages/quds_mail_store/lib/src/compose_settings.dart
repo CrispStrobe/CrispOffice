@@ -1,7 +1,34 @@
 part of 'repository.dart';
 
-/// Durable plain-text compose preferences belonging to one existing account.
-/// This storage never changes drafts, queued messages or remote provider mail.
+const _composeQuickTextColumns = <String, int>{
+  'id': MailQuickText.maxIdCodeUnits,
+  'name': MailQuickText.maxNameCodeUnits,
+  'name_key': MailQuickText.maxNameCodeUnits * 4,
+  'text': MailQuickText.maxTextCodeUnits,
+};
+const _composeSenderColumns = <String, int>{
+  'id': MailSenderIdentity.maxIdCodeUnits,
+  'name': MailSenderIdentity.maxNameCodeUnits,
+  'name_key': MailSenderIdentity.maxNameCodeUnits * 4,
+  'address': MailSenderIdentity.maxAddressCodeUnits,
+  'display_name': MailSenderIdentity.maxDisplayNameCodeUnits,
+  'reply_to': MailSenderIdentity.maxAddressCodeUnits,
+};
+const _composeTemplateColumns = <String, int>{
+  'id': MailMessageTemplate.maxIdCodeUnits,
+  'name': MailMessageTemplate.maxNameCodeUnits,
+  'name_key': MailMessageTemplate.maxNameCodeUnits * 4,
+  'to_text': MailMessageTemplate.maxRecipientCodeUnits,
+  'cc_text': MailMessageTemplate.maxRecipientCodeUnits,
+  'bcc_text': MailMessageTemplate.maxRecipientCodeUnits,
+  'subject': MailMessageTemplate.maxSubjectCodeUnits,
+  'body': MailMessageTemplate.maxBodyCodeUnits,
+  'sender_identity': MailSenderIdentity.maxIdCodeUnits,
+};
+
+/// Durable compose preferences belonging to one existing account. The complete
+/// signature/snippet/sender/template snapshot shares one atomic revision. These
+/// local settings never change drafts, queued messages or provider mail.
 extension MailComposeSettingsStorage on SqliteMailRepository {
   Future<void> _composeAccount(MailAccountId account) async {
     if (!MailComposeSettings(account: account).isValid) {
@@ -25,23 +52,98 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
   String _composeStoredText(QueryRow row, String column) =>
       utf8.decode(row.read<Uint8List>(column), allowMalformed: false);
 
+  String? _composeStoredOptionalText(QueryRow row, String column) {
+    final bytes = row.readNullable<Uint8List>(column);
+    return bytes == null ? null : utf8.decode(bytes, allowMalformed: false);
+  }
+
+  // Table and column names come only from the fixed internal definitions above.
+  // Counts, scalar types and byte lengths are checked before authored content
+  // crosses the SQLite boundary. UTF-16 budgets are checked by the DTO after
+  // strict UTF-8 decoding; length(TEXT) alone would ignore a trailing NUL.
+  Future<({int count, int bytes})> _preflightComposeRows(
+    MailAccountId account,
+    String table,
+    int maximumCount,
+    Map<String, int> columns, {
+    Set<String> nullableColumns = const {},
+  }) async {
+    final count = (await _rows(
+      'SELECT count(*) AS n FROM $table WHERE account=?',
+      [account.value],
+    )).single.read<int>('n');
+    if (count > maximumCount) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    final invalidConditions = <String>[
+      "typeof(position)!='integer' OR position<0 OR position>=?",
+      for (final column in columns.keys)
+        '${nullableColumns.contains(column) ? '$column IS NOT NULL AND ' : ''}'
+            "(typeof($column)!='text' OR length(CAST($column AS BLOB))>?)",
+    ];
+    final invalid = await _rows(
+      'SELECT 1 AS invalid FROM $table WHERE account=? AND '
+      '(${invalidConditions.map((condition) => '($condition)').join(' OR ')}) '
+      'LIMIT 1',
+      [
+        account.value,
+        maximumCount,
+        ...columns.values.map((units) => units * 4),
+      ],
+    );
+    if (invalid.isNotEmpty) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    final expression = columns.keys
+        .map((column) => 'coalesce(length(CAST($column AS BLOB)),0)')
+        .join('+');
+    final bytes = (await _rows(
+      'SELECT coalesce(sum($expression),0) AS bytes FROM $table WHERE account=?',
+      [account.value],
+    )).single.read<int>('bytes');
+    return (count: count, bytes: bytes);
+  }
+
+  Future<List<QueryRow>> _readComposeRows(
+    MailAccountId account,
+    String table,
+    int maximumCount,
+    Map<String, int> columns,
+  ) => _rows(
+    'SELECT position,${columns.keys.map((column) => 'CAST($column AS BLOB) AS $column').join(',')} '
+    'FROM $table WHERE account=? ORDER BY position LIMIT ${maximumCount + 1}',
+    [account.value],
+  );
+
   Future<MailComposeSettings> _readComposeSettings(
     MailAccountId account,
   ) async {
-    // Count, type and byte checks run before transferring user-authored text.
-    // SQLite length(TEXT) stops at NUL and counts Unicode code points, so byte
-    // lengths bound transfer and the DTO subsequently checks exact UTF-16 units.
-    final counts = (await _rows(
-      'SELECT (SELECT count(*) FROM account_compose_settings WHERE account=?) '
-      'AS settings,(SELECT count(*) FROM account_quick_texts WHERE account=?) '
-      'AS quick_texts',
-      [account.value, account.value],
-    )).single;
-    final settingsCount = counts.read<int>('settings');
-    final quickTextCount = counts.read<int>('quick_texts');
+    final settingsCount = (await _rows(
+      'SELECT count(*) AS n FROM account_compose_settings WHERE account=?',
+      [account.value],
+    )).single.read<int>('n');
+    final textsInfo = await _preflightComposeRows(
+      account,
+      'account_quick_texts',
+      MailComposeSettings.maxQuickTexts,
+      _composeQuickTextColumns,
+    );
+    final sendersInfo = await _preflightComposeRows(
+      account,
+      'account_sender_identities',
+      MailComposeSettings.maxSenderIdentities,
+      _composeSenderColumns,
+    );
+    final templatesInfo = await _preflightComposeRows(
+      account,
+      'account_message_templates',
+      MailComposeSettings.maxTemplates,
+      _composeTemplateColumns,
+      nullableColumns: const {'sender_identity'},
+    );
     if (settingsCount > 1 ||
-        quickTextCount > MailComposeSettings.maxQuickTexts ||
-        (settingsCount == 0 && quickTextCount != 0)) {
+        (settingsCount == 0 &&
+            textsInfo.count + sendersInfo.count + templatesInfo.count != 0)) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
     }
     if (settingsCount == 0) {
@@ -56,52 +158,42 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
       "typeof(revision)!='integer' OR revision<1 OR revision>? OR "
       "typeof(signature)!='text' OR length(CAST(signature AS BLOB))>? OR "
       "typeof(signature_new)!='integer' OR signature_new NOT IN (0,1) OR "
-      "typeof(signature_replies)!='integer' OR signature_replies NOT IN (0,1)) "
-      'UNION ALL SELECT 1 AS invalid FROM account_quick_texts WHERE account=? '
-      "AND (typeof(position)!='integer' OR position<0 OR position>=? OR "
-      "typeof(id)!='text' OR length(CAST(id AS BLOB))>? OR "
-      "typeof(name)!='text' OR length(CAST(name AS BLOB))>? OR "
-      "typeof(name_key)!='text' OR length(CAST(name_key AS BLOB))>? OR "
-      "typeof(text)!='text' OR length(CAST(text AS BLOB))>?) LIMIT 1",
+      "typeof(signature_replies)!='integer' OR signature_replies NOT IN (0,1) OR "
+      '(default_sender_identity IS NOT NULL AND '
+      "(typeof(default_sender_identity)!='text' OR "
+      'length(CAST(default_sender_identity AS BLOB))>?))) LIMIT 1',
       [
         account.value,
         MailComposeSettings.maxRevision,
         MailComposeSettings.maxSignatureCodeUnits * 4,
-        account.value,
-        MailComposeSettings.maxQuickTexts,
-        MailQuickText.maxIdCodeUnits * 4,
-        MailQuickText.maxNameCodeUnits * 4,
-        MailQuickText.maxNameCodeUnits * 16,
-        MailQuickText.maxTextCodeUnits * 4,
+        MailSenderIdentity.maxIdCodeUnits * 4,
       ],
     );
     if (invalid.isNotEmpty) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
     }
-    final bytes = (await _rows(
+    final baseBytes = (await _rows(
       'SELECT length(CAST(signature AS BLOB))+'
-      '(SELECT coalesce(sum(length(CAST(id AS BLOB))+'
-      'length(CAST(name AS BLOB))+length(CAST(name_key AS BLOB))+'
-      'length(CAST(text AS BLOB))),0) FROM account_quick_texts WHERE account=?) '
-      'AS bytes FROM account_compose_settings WHERE account=?',
-      [account.value, account.value],
+      'coalesce(length(CAST(default_sender_identity AS BLOB)),0) AS bytes '
+      'FROM account_compose_settings WHERE account=?',
+      [account.value],
     )).single.read<int>('bytes');
-    if (bytes > _composeMetadataBudget * 4) {
+    if (baseBytes + textsInfo.bytes + sendersInfo.bytes + templatesInfo.bytes >
+        _composeMetadataBudget * 4) {
       SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
     }
-    // Transfer the bounded text as bytes, then decode strictly. A corrupt SQLite
-    // TEXT value containing invalid UTF-8 must not become replacement characters.
     final row = (await _rows(
       'SELECT revision,CAST(signature AS BLOB) AS signature,'
-      'signature_new,signature_replies FROM account_compose_settings '
-      'WHERE account=?',
+      'signature_new,signature_replies,'
+      'CAST(default_sender_identity AS BLOB) AS default_sender_identity '
+      'FROM account_compose_settings WHERE account=?',
       [account.value],
     )).single;
-    final texts = await _rows(
-      'SELECT position,CAST(id AS BLOB) AS id,CAST(name AS BLOB) AS name,'
-      'CAST(name_key AS BLOB) AS name_key,CAST(text AS BLOB) AS text '
-      'FROM account_quick_texts WHERE account=? ORDER BY position LIMIT 33',
-      [account.value],
+    final texts = await _readComposeRows(
+      account,
+      'account_quick_texts',
+      MailComposeSettings.maxQuickTexts,
+      _composeQuickTextColumns,
     );
     final quickTexts = <MailQuickText>[];
     for (var index = 0; index < texts.length; index++) {
@@ -117,6 +209,56 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
       }
       quickTexts.add(item);
     }
+    final senders = await _readComposeRows(
+      account,
+      'account_sender_identities',
+      MailComposeSettings.maxSenderIdentities,
+      _composeSenderColumns,
+    );
+    final senderIdentities = <MailSenderIdentity>[];
+    for (var index = 0; index < senders.length; index++) {
+      final sender = senders[index];
+      final item = MailSenderIdentity(
+        id: _composeStoredText(sender, 'id'),
+        name: _composeStoredText(sender, 'name'),
+        address: _composeStoredText(sender, 'address'),
+        displayName: _composeStoredText(sender, 'display_name'),
+        replyTo: _composeStoredText(sender, 'reply_to'),
+      );
+      if (sender.read<int>('position') != index ||
+          item.nameKey != _composeStoredText(sender, 'name_key')) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+      senderIdentities.add(item);
+    }
+    final storedTemplates = await _readComposeRows(
+      account,
+      'account_message_templates',
+      MailComposeSettings.maxTemplates,
+      _composeTemplateColumns,
+    );
+    final templates = <MailMessageTemplate>[];
+    for (var index = 0; index < storedTemplates.length; index++) {
+      final template = storedTemplates[index];
+      final item = MailMessageTemplate(
+        id: _composeStoredText(template, 'id'),
+        name: _composeStoredText(template, 'name'),
+        to: _composeStoredText(template, 'to_text'),
+        cc: _composeStoredText(template, 'cc_text'),
+        bcc: _composeStoredText(template, 'bcc_text'),
+        subject: _composeStoredText(template, 'subject'),
+        body: _composeStoredText(template, 'body'),
+        senderIdentityId: _composeStoredOptionalText(
+          template,
+          'sender_identity',
+        ),
+      );
+      if (template.read<int>('position') != index ||
+          item.nameKey != _composeStoredText(template, 'name_key')) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+      templates.add(item);
+    }
     final settings = MailComposeSettings(
       account: account,
       revision: row.read<int>('revision'),
@@ -124,6 +266,12 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
       signatureForNewMessages: row.read<int>('signature_new') == 1,
       signatureForReplies: row.read<int>('signature_replies') == 1,
       quickTexts: quickTexts,
+      senderIdentities: senderIdentities,
+      templates: templates,
+      defaultSenderIdentityId: _composeStoredOptionalText(
+        row,
+        'default_sender_identity',
+      ),
     );
     if (!settings.isValid) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
@@ -171,22 +319,31 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
     final saved = settings.copyWith(revision: expectedRevision + 1);
     await _db.customStatement(
       'INSERT INTO account_compose_settings(account,revision,signature,'
-      'signature_new,signature_replies) VALUES(?,?,?,?,?) '
+      'signature_new,signature_replies,default_sender_identity) VALUES(?,?,?,?,?,?) '
       'ON CONFLICT(account) DO UPDATE SET revision=excluded.revision,'
       'signature=excluded.signature,signature_new=excluded.signature_new,'
-      'signature_replies=excluded.signature_replies',
+      'signature_replies=excluded.signature_replies,'
+      'default_sender_identity=excluded.default_sender_identity',
       [
         saved.account.value,
         saved.revision,
         saved.signature,
         saved.signatureForNewMessages ? 1 : 0,
         saved.signatureForReplies ? 1 : 0,
+        saved.defaultSenderIdentityId,
       ],
     );
-    await _db.customStatement(
-      'DELETE FROM account_quick_texts WHERE account=?',
-      [saved.account.value],
-    );
+    // Templates reference identities. Replace both collections within the same
+    // transaction, removing dependent rows first and inserting owners first.
+    for (final table in [
+      'account_message_templates',
+      'account_sender_identities',
+      'account_quick_texts',
+    ]) {
+      await _db.customStatement('DELETE FROM $table WHERE account=?', [
+        saved.account.value,
+      ]);
+    }
     for (var index = 0; index < saved.quickTexts.length; index++) {
       final item = saved.quickTexts[index];
       await _db.customStatement(
@@ -199,6 +356,44 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
           item.name,
           item.nameKey,
           item.text,
+        ],
+      );
+    }
+    for (var index = 0; index < saved.senderIdentities.length; index++) {
+      final item = saved.senderIdentities[index];
+      await _db.customStatement(
+        'INSERT INTO account_sender_identities(account,position,id,name,name_key,'
+        'address,display_name,reply_to) VALUES(?,?,?,?,?,?,?,?)',
+        [
+          saved.account.value,
+          index,
+          item.id,
+          item.name,
+          item.nameKey,
+          item.address,
+          item.displayName,
+          item.replyTo,
+        ],
+      );
+    }
+    for (var index = 0; index < saved.templates.length; index++) {
+      final item = saved.templates[index];
+      await _db.customStatement(
+        'INSERT INTO account_message_templates(account,position,id,name,name_key,'
+        'to_text,cc_text,bcc_text,subject,body,sender_identity) '
+        'VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+        [
+          saved.account.value,
+          index,
+          item.id,
+          item.name,
+          item.nameKey,
+          item.to,
+          item.cc,
+          item.bcc,
+          item.subject,
+          item.body,
+          item.senderIdentityId,
         ],
       );
     }
