@@ -2,7 +2,7 @@
 
 Use Linux x64, the full official Dart **3.13.7** SDK (the Dart version associated
 with this repository's Flutter **3.47.8** pin), Python with PyYAML, and a clean
-checkout of source commit `1bd81015ecd261708b2b8254d8f9a9ef57b94c37`
+checkout of source commit `46645673bc944d1bb518703108234ba6836afc91`
 (or a descendant with identical qualified source fingerprints). The recipe does not edit that checkout.
 It links genuine runtime source into a separate minimal workspace and copies only
 selected tests. No Flutter implementation or runtime dependency is stubbed.
@@ -74,7 +74,9 @@ SHA-256 values are recorded in `test-transforms.json`.
 The analysis overlay copies production bytes exactly, including the complete
 relative import closure. This avoids analyzer context switching through source
 symlinks into the original Flutter workspace. The selected test logic is analyzed
-with the same documented test API adaptation.
+with the same documented test API adaptation. The current generator also includes
+the exact XML reader source and its unchanged test file, qualifying the final
+main-branch namespace-scope update.
 
 This establishes pure-Dart model, conversion, MIME, Outbox and real SQLite
 behavior. It does not execute Flutter widget tests, path_provider, installed-app

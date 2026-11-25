@@ -1,0 +1,40 @@
+{
+  "head": "46645673bc944d1bb518703108234ba6836afc91",
+  "fresh_xml_analysis": {
+    "exit_code": 0,
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "analysis_latest_xml"
+    ],
+    "production_files": 1,
+    "test_files": 1,
+    "diagnostics": "No issues found!",
+    "log": {
+      "path": "logs/latest_main_xml_analysis.log",
+      "sha256": "a8c67b6355f51e4f02b3e1a1366e7d44ea62312f17ab84e10b83aec60ffd411c"
+    },
+    "exact_copies": [
+      {
+        "source": "packages/quds_office_engine/lib/src/xml/xml_reader.dart",
+        "copy": "analysis_latest_xml/lib/xml_reader.dart",
+        "sha256": "a0ca2460f64893be257a187095bd8ff5616cffb2054bb58cd56ae714278a9c2f"
+      },
+      {
+        "source": "packages/quds_office_engine/test/xml_reader_test.dart",
+        "copy": "analysis_latest_xml/test/xml_reader_test.dart",
+        "sha256": "df75c3dd3628f9b934f833db49c4e01f3cf02b36ff2080fb6c979d8fa9274aa6"
+      }
+    ]
+  },
+  "prior_pure_analysis": {
+    "receipt": "merged_analysis_verification.json",
+    "head": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+    "production_files": 20,
+    "test_files": 7,
+    "all_input_hashes_verified_unchanged_at_current_head": true,
+    "diagnostics": "No issues found!",
+    "freshly_rerun": false
+  }
+}

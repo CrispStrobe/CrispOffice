@@ -7,7 +7,10 @@ on PR #396 (`codex/mail-capabilities-20261125`). It preserves that increment's
 sender identities, templates and connected provider search. During the work,
 PR #396 and further integration changes reached main. The continuation merged
 main `20c36e5ac1f21add8d3d75420ab43f8fc527eefe` in
-`8f4d02e91b739a8cb3a8a4bcd2ebd3c0597d4f15` before final qualification.
+`8f4d02e91b739a8cb3a8a4bcd2ebd3c0597d4f15`. The final source also incorporates
+main `c37614eaca5778b22fcd15755b7a6dd20a20ca92` (the later XML namespace
+refinement) through merge `46645673bc944d1bb518703108234ba6836afc91`; the
+selected runtime suite was rerun on that exact source.
 
 That incoming integration includes Word paragraph-mark/Enter behavior, XML
 scanner changes, native Sent-copy filing results and connected Inbox polling.

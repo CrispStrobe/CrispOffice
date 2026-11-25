@@ -33,7 +33,7 @@ interrupted work.
 
 ## Latest continuation: durable rich composition
 
-This continuation includes main `20c36e5a`, including the merged identity/search
+This continuation includes main through `c37614ea`, including the merged identity/search
 work, Word Enter changes, native Sent-copy reporting and connected Inbox polling.
 Its [validation record](../../validation/mail-rich-compose-20261125/README.md)
 keeps inherited work separate from the rich-composition qualification.

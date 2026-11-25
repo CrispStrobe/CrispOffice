@@ -1,10 +1,15 @@
 {
-  "source_commit": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+  "source_commit": "46645673bc944d1bb518703108234ba6836afc91",
   "files": [
     {
       "path": "HARNESS_RECIPE.md",
-      "bytes": 4081,
-      "sha256": "945e63b25c3e729c266f39a161b216c4f4cd0f5038b44f9f275901bbf7cdde24"
+      "bytes": 4231,
+      "sha256": "9cbac3c5a7a09cb007fd35529f1bf3b1df4f0a2ad268cf3050846042c44dfd6a"
+    },
+    {
+      "path": "LATEST_MAIN_VALIDATION.md",
+      "bytes": 5439,
+      "sha256": "abe901f0d562a9e17290f6ac499a0ed53f091cae853cb31a021059c4fd4c7c41"
     },
     {
       "path": "MERGED_VALIDATION.md",
@@ -13,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10277,
-      "sha256": "cf0d871d3bfeecc4c3feffb39037252408ab1aaa2e910c9b909bb3661ba682cb"
+      "bytes": 11630,
+      "sha256": "758c675e261cfb44e217df107ffa837dd3cc8a33d75d9d51d710de7f87d52fd1"
     },
     {
       "path": "analysis_root/source_manifest.json",
@@ -28,8 +33,8 @@
     },
     {
       "path": "create_validation_harness.py",
-      "bytes": 6671,
-      "sha256": "7b80351a40c20fdec7fe5331df0f13b65e28c75c12dc4ec269fb6b3d458417b2"
+      "bytes": 6897,
+      "sha256": "bc959af49c331099b3c321dfe6135b41ab37fbc80a9a3eaf3401b17ee47ffdbd"
     },
     {
       "path": "flutter_analysis_result.json",
@@ -40,6 +45,51 @@
       "path": "flutter_source_analysis.json",
       "bytes": 11361,
       "sha256": "16632410bef702a946335e8f888c3ab452afa57c45502b0e0aa35291974102d8"
+    },
+    {
+      "path": "latest_main_analysis_verification.json",
+      "bytes": 1282,
+      "sha256": "12d88f81f826d5514264691c7c618e2ddd2ba4e24c27385e9047d3faeb67eb35"
+    },
+    {
+      "path": "latest_main_environment.json",
+      "bytes": 8659,
+      "sha256": "f77786984d210532c13ddb2222ee33b0791ab21b85355b18cd026d6d1f9b13c4"
+    },
+    {
+      "path": "latest_main_source_manifest.json",
+      "bytes": 115491,
+      "sha256": "7decfaba1f842e8f6c4d8f44fcce967da9bfb33f0c424dd17396f102e58f3650"
+    },
+    {
+      "path": "latest_main_test_copies.json",
+      "bytes": 4455,
+      "sha256": "3390b82e56691fcc5edf0d568ed8322c8f4dfcfa5cca5bc1a70f2124e9765016"
+    },
+    {
+      "path": "latest_main_ui_source_check.json",
+      "bytes": 2432,
+      "sha256": "2b3f1e136300d37eb3a010dfa1b6c8874b0d779009fd7fafc859f882cde84a9a"
+    },
+    {
+      "path": "latest_main_verification.json",
+      "bytes": 3862,
+      "sha256": "d49cb5c9871d610b68ba1724201c562561ae0675e6a3809547184cdaa067a2dc"
+    },
+    {
+      "path": "logs/latest_main_events.jsonl",
+      "bytes": 113705,
+      "sha256": "1891b3c4bae2cb36da70115aa47517983df697f7d9598be47be86df31437e167"
+    },
+    {
+      "path": "logs/latest_main_pure_validation.log",
+      "bytes": 45864,
+      "sha256": "e796b084766946eb2ee830dd97a329464a61cd13c6409cd64240e0f4d42de413"
+    },
+    {
+      "path": "logs/latest_main_xml_analysis.log",
+      "bytes": 50,
+      "sha256": "a8c67b6355f51e4f02b3e1a1366e7d44ea62312f17ab84e10b83aec60ffd411c"
     },
     {
       "path": "logs/merged_final_events.jsonl",

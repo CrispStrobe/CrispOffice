@@ -127,9 +127,12 @@ while pending:
             pending.append(str(Path(name).parent / relative))
 shutil.copyfile(repo / 'packages/quds_mail_core/lib/src/model/compose_body.dart',
                 analysis / 'lib/compose_body.dart')
+shutil.copyfile(repo / 'packages/quds_office_engine/lib/src/xml/xml_reader.dart',
+                analysis / 'lib/xml_reader.dart')
 (analysis / 'test').mkdir()
 for _, name in focused_tests:
     shutil.copyfile(output / 'test' / name, analysis / 'test' / name)
+shutil.copyfile(output / 'test/xml_reader_test.dart', analysis / 'test/xml_reader_test.dart')
 (output / 'sqlite_smoke.dart').write_text('''import 'package:sqlite3/sqlite3.dart';
 void main() {
   print(sqlite3.version);

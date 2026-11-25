@@ -2,11 +2,12 @@
 
 Recorded **25 November 2026**. This record qualifies the rich-composition
 continuation at source commit
-[`1bd81015ecd261708b2b8254d8f9a9ef57b94c37`](https://github.com/CrispStrobe/quds_office_suite/commit/1bd81015ecd261708b2b8254d8f9a9ef57b94c37).
+[`46645673bc944d1bb518703108234ba6836afc91`](https://github.com/CrispStrobe/quds_office_suite/commit/46645673bc944d1bb518703108234ba6836afc91).
 Later changes in this evidence checkpoint are documentation and receipts only.
 
-**Result: 238 pure-Dart tests passed, with no failures or skips.** Strict
-pure-Dart analysis passed on 20 production/dependency files and 7 test files.
+**Result: 239 pure-Dart tests passed, with no failures or skips.** Strict
+pure-Dart analysis passed on 20 production/dependency files and 7 test files,
+whose inputs remained unchanged, plus the updated XML source and its test.
 Separate genuine Flutter source analysis passed on 9 targets with zero errors,
 warnings, infos or analyzer-server errors. Flutter widget assertions were
 analyzed as source but were not executed.
@@ -41,6 +42,10 @@ Work began on the existing identity/template/provider-search increment at
 `938832e6dc337a880c15c609aeed95b643379da7` (PR #396). During this continuation,
 that work and further integration reached main. Main
 `20c36e5ac1f21add8d3d75420ab43f8fc527eefe` was merged before final qualification.
+A final remote check found the later namespace-scanner refinement at main
+`c37614eaca5778b22fcd15755b7a6dd20a20ca92`. That two-file XML change was merged
+in `46645673bc944d1bb518703108234ba6836afc91`, and the complete selected suite
+was rerun with its added namespace regression.
 The incoming Word Enter, XML, Sent-copy reporting, Inbox polling and other
 integration changes remain inherited source, rather than additional features
 claimed by this continuation.
@@ -52,12 +57,14 @@ claimed by this continuation.
 | `9ec34d783642b184219fa7130c559c333d474103` | Durable drafts, recovery, MIME and frozen Outbox |
 | `57ebf9c8c54453a9306436e6deaf46521a6d8fd6` | Composer controls, inert review and regression source |
 | `8f4d02e91b739a8cb3a8a4bcd2ebd3c0597d4f15` | Merge main `20c36e5a` without replacing concurrent work |
-| `1bd81015ecd261708b2b8254d8f9a9ef57b94c37` | Paragraph-mark/Enter integration and final tested source |
+| `1bd81015ecd261708b2b8254d8f9a9ef57b94c37` | Paragraph-mark/Enter integration and 238-test source |
+| `13f3427c92d7decb3878f1c4eca535060c7c7b89` | Initial merged-source qualification and evidence |
+| `46645673bc944d1bb518703108234ba6836afc91` | Latest main XML integration and final 239-test source |
 
-All six checkpoints were confirmed on remote branch
+All eight checkpoints were confirmed on remote branch
 [`codex/mail-rich-compose-20261125`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/mail-rich-compose-20261125).
 This documentation/evidence checkpoint follows them. The final gate supersedes
-the earlier 146-test pre-integration run; those totals are not added together.
+the earlier 146-test and 238-test runs; those totals are not added together.
 
 ## Executed pure-Dart tests
 
@@ -71,18 +78,18 @@ the earlier 146-test pre-integration run; those totals are not added together.
 | Existing Studio submission compatibility | 19 |
 | Existing Studio Outbox content/privacy compatibility | 28 |
 | Incoming Word paragraph-mark formatting | 6 |
-| Incoming XML reader | 8 |
+| Incoming XML reader | 9 |
 | Incoming core Outbox | 16 |
 | Incoming store codec | 39 |
 | Incoming cache cleanup | 11 |
-| **Total** | **238** |
+| **Total** | **239** |
 
 The total comprises **111 new rich-composition tests**, **47 existing Studio
-compatibility tests** and **80 incoming-main compatibility tests**. The final
+compatibility tests** and **81 incoming-main compatibility tests**. The final
 run completed with exit code 0, no failed/skipped test events and no disk abort.
 All **557** captured production, test and fixture fingerprints were unchanged
 throughout execution. The exact command, group counts and log hashes are in
-[merged_final_verification.json](merged_final_verification.json).
+[latest_main_verification.json](latest_main_verification.json).
 
 Real SQLite tests close and reopen the database. They cover formatting-only
 revisions, corrupt HTML/plain mismatch, legacy unfinished plain drafts,
@@ -101,7 +108,7 @@ real and unchanged; no Flutter API or runtime dependency was stubbed.
 Selected Studio tests use the real `package:test` API in an isolated harness:
 `flutter_test` imports are replaced, the real `package:test/fake.dart` helper is
 imported where required, and equivalent synchronous assertions use `expect`.
-[merged_test_copies.json](merged_test_copies.json) records original/adapted
+[latest_main_test_copies.json](latest_main_test_copies.json) records original/adapted
 hashes. The five incoming compatibility files and original font fixture were
 copied unchanged.
 
@@ -111,10 +118,10 @@ isolates preload the actual SQLite **3.54.1** binary produced by sqlite3
 The binary SHA-256 is
 `0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b`.
 SDK, dependency and fixture provenance is in
-[merged_environment.json](merged_environment.json).
+[latest_main_environment.json](latest_main_environment.json).
 
 The executor had a constrained disk budget. Temporary SDK/framework/cache
-files were managed in phases; the final runtime retained at least 24,379,392
+files were managed in phases; the final runtime retained at least 21,475,328
 free bytes and did not trigger its disk guard. SDK binaries and caches are not
 included in this change.
 
@@ -125,7 +132,11 @@ The overlay holds exact-byte copies of 20 relevant production/dependency files
 and the 7 selected tests with the documented test API adaptation. The
 [analysis receipt](merged_analysis_verification.json) and
 [production-copy manifest](analysis_root/source_manifest.json) define the
-scope; this is not a claim that every repository package was analyzed.
+scope. These 27 input files were verified byte-identical at the final source.
+The late XML reader and its test received a fresh strict analysis, also clean;
+[latest_main_analysis_verification.json](latest_main_analysis_verification.json)
+records both boundaries. This is not a claim that every repository package
+was analyzed.
 
 **Flutter source:** the official Dart AOT analyzer used actual upstream
 Flutter **3.47.8**, commit `737ba8f885dc774b53b442759999a312c9461e4e`, matching
@@ -141,6 +152,12 @@ aggregate digest before and after the pass. Exact targets, source/package
 hashes, analyzer protocol and completion gates are in
 [flutter_source_analysis.json](flutter_source_analysis.json); the raw result is
 [flutter_analysis_result.json](flutter_analysis_result.json).
+
+That Flutter pass ran at `1bd81015`, before the late XML-only update. All nine
+explicit target files remain byte-identical at the final source, verified in
+[latest_main_ui_source_check.json](latest_main_ui_source_check.json). The
+changed XML dependency has its separate strict check and complete pure-Dart
+rerun; no additional Flutter pass or widget execution is claimed.
 
 ## Reproduction and evidence
 
@@ -164,11 +181,13 @@ preferred next qualification route.
 
 Additional evidence:
 
-- [Full executed test log](logs/merged_final_pure_validation.log) and
-  [original JSON test events](logs/merged_final_events.jsonl).
-- [Strict pure-analysis log](logs/merged_final_pure_analysis.log).
-- [557 source/test/fixture fingerprints](merged_final_source_manifest.json).
-- [Detailed runtime receipt](MERGED_VALIDATION.md).
+- [Full executed test log](logs/latest_main_pure_validation.log) and
+  [original JSON test events](logs/latest_main_events.jsonl).
+- [Retained strict pure-analysis log](logs/merged_final_pure_analysis.log) and
+  [fresh XML analysis log](logs/latest_main_xml_analysis.log).
+- [557 source/test/fixture fingerprints](latest_main_source_manifest.json).
+- [Final runtime receipt](LATEST_MAIN_VALIDATION.md); the earlier
+  [238-test receipt](MERGED_VALIDATION.md) is preserved as history.
 - [Checksums for this evidence bundle](evidence_manifest.json).
 
 ## Remaining acceptance gates
