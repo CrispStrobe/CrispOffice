@@ -1,0 +1,12 @@
+name: quds_tasks_core
+description: Portable task models, sparse edits and conflict-aware reconciliation.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0

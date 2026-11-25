@@ -49,3 +49,19 @@ callback ownership and cancellation regressions ran alongside them.
 This validates source behavior and local HTTP fixtures. It does not certify
 Microsoft tenant consent, live task interoperability, OS credential storage,
 desktop Tasks UI, or background synchronization.
+
+## Portable task core checkpoint
+
+From `packages/quds_tasks_core`, strict `dart analyze` and formatting passed.
+The direct installed runner (same invocation pattern, no explicit test paths)
+executed **25 passing tests**. `dart compile js` of
+`test/compile/portable_import.dart`, followed by Node execution, passed and
+exercised real reconciliation through the public package import.
+
+Coverage includes immutable/scoped identities and pages, valid civil dates,
+wall-time equality, sparse null clearing, disjoint and competing changes,
+local-revision fencing, remote deletion against local edits, and conservative
+local deletion when remote versions or unknown payloads differ. Coupled-field
+regressions cover reopening against a remote completion timestamp and reversed
+start/due dates, without guessed conversions between date kinds or zones. These
+tests validate an in-memory reconciliation plan, not durable synchronization.

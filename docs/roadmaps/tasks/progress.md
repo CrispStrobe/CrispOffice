@@ -38,6 +38,26 @@ Remote plan commit: `77be5cf8c37b2fbc83bf5cc2a3fed716b1109eff`.
 - Runtime and commands are recorded in
   [the validation record](../../validation/tasks-20261125/README.md).
 
+Remote consent commit: `12dacab624cc655ac7b8734be9dfb0c83797fde2`.
+
+## Checkpoint 2 — portable task core
+
+- Added `quds_tasks_core`: scoped identities, typed fields/dates, explicit
+  unchanged/set/clear patches, retained provider payloads, change pages,
+  capabilities and failures.
+- Implemented pure three-way reconciliation with sparse pending changes,
+  independent-field merging, explicit field/deletion conflicts, account/list
+  isolation and local-revision fencing.
+- Local deletion conflicts when the remote version or retained unknown content
+  changed. Missing evidence never silently authorizes deleting newer work.
+- Coupled-field conflicts prevent a reopen/completion merge or independent
+  start/due edits from producing an invalid pending write. Date comparisons do
+  not invent conversions between different date kinds or timezone identifiers.
+- Validation: **25 tests passed**, strict analysis clean, formatter clean,
+  portable JavaScript compilation and Node reconciliation smoke passed.
+- This is a complete portable planning library. It performs no network or
+  database IO; durable transactions/outbox and host integration remain T4/T5.
+
 ## Validation and remote checkpoints
 
 Each following entry records the completed scope, actual checks, remaining
