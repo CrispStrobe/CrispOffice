@@ -87,6 +87,8 @@ Future<MailSubmissionResult> submitStudioMailNativeOutbox(
   mail.MailClient client,
   MailPreparedMessage prepared, {
   required String attemptId,
+  mail.Mailbox? sentMailbox,
+  bool providerFilesSent = false,
 }) async {
   final mail.MimeMessage message;
   try {
@@ -103,7 +105,8 @@ Future<MailSubmissionResult> submitStudioMailNativeOutbox(
     await client.sendMessage(
       message,
       from: mail.MailAddress('', prepared.envelope.sender),
-      appendToSent: false,
+      appendToSent: sentMailbox != null,
+      sentMailbox: sentMailbox,
       recipients: [
         for (final address in prepared.envelope.recipients)
           mail.MailAddress('', address),
@@ -112,13 +115,18 @@ Future<MailSubmissionResult> submitStudioMailNativeOutbox(
     return MailSubmissionResult(
       attemptId: attemptId,
       outcome: MailSubmissionOutcome.accepted,
+      sentCopySaved: providerFilesSent ? null : sentMailbox != null,
     );
   } on mail.MailSendPostSubmissionException catch (error) {
+    final accepted = identical(error.mailClient, client);
     return MailSubmissionResult(
       attemptId: attemptId,
-      outcome: identical(error.mailClient, client)
+      outcome: accepted
           ? MailSubmissionOutcome.accepted
           : MailSubmissionOutcome.uncertain,
+      sentCopySaved: !accepted || providerFilesSent
+          ? null
+          : sentMailbox != null && error.sentCopyError == null,
     );
   } on Object {
     // The aggregate native API cannot prove whether DATA was accepted after

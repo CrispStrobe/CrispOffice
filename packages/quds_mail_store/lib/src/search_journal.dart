@@ -440,6 +440,30 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     return ids.length;
   }
 
+  /// Expires disposable folder snapshots for one account.
+  Future<MailResult<int>> expireMailboxViews(
+    MailAccountId account, {
+    required DateTime capturedBefore,
+    int limit = 100,
+  }) => _write(() async {
+    await _account(account);
+    if (limit < 1 || limit > limits.maxPageSize || !capturedBefore.isUtc) {
+      SqliteMailRepository._fail(MailProblemCode.invalidInput);
+    }
+    await _db.customStatement(
+      'DELETE FROM mailbox_views WHERE account=? AND mailbox IN '
+      '(SELECT mailbox FROM mailbox_views WHERE account=? AND captured_at < ? '
+      'ORDER BY captured_at, mailbox LIMIT ?)',
+      [
+        account.value,
+        account.value,
+        capturedBefore.millisecondsSinceEpoch,
+        limit,
+      ],
+    );
+    return (await _rows('SELECT changes() AS n')).single.read<int>('n');
+  });
+
   /// Explicit local recovery for an account whose automatic browse cache has
   /// filled its quota. Each category removes at most [limit] rows, in one
   /// transaction. No new quota admission is required to free existing space.

@@ -656,6 +656,7 @@ Object? _nullableResult(MailSubmissionResult? result) => result == null
     : <String, Object?>{
         'attemptId': result.attemptId,
         'outcome': result.outcome.name,
+        if (result.sentCopySaved != null) 'sentCopySaved': result.sentCopySaved,
         'recipients': <_JsonObject>[
           for (final recipient in result.recipients)
             {
@@ -674,11 +675,13 @@ Object? _nullableResult(MailSubmissionResult? result) => result == null
       };
 
 MailSubmissionResult _resultFromJson(Object? value) {
-  final object = _object(value, const [
+  final object = _object(value, [
     'attemptId',
     'outcome',
     'recipients',
     'problem',
+    if (value is _JsonObject && value.containsKey('sentCopySaved'))
+      'sentCopySaved',
   ]);
   final recipients = <MailRecipientResponse>[];
   for (final value in _list(object['recipients'])) {
@@ -720,6 +723,9 @@ MailSubmissionResult _resultFromJson(Object? value) {
     outcome: _enum(object['outcome'], MailSubmissionOutcome.values),
     recipients: recipients,
     problem: problem,
+    sentCopySaved: object.containsKey('sentCopySaved')
+        ? _boolean(object['sentCopySaved'])
+        : null,
   );
 }
 

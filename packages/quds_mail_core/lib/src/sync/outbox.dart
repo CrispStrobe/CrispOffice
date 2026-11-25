@@ -138,9 +138,13 @@ final class MailSubmissionResult {
     required this.outcome,
     List<MailRecipientResponse> recipients = const [],
     this.problem,
+    this.sentCopySaved,
   }) : recipients = List.unmodifiable(recipients) {
     if (attemptId.isEmpty) {
       throw ArgumentError('An attempt identity is required.');
+    }
+    if (sentCopySaved != null && outcome != MailSubmissionOutcome.accepted) {
+      throw ArgumentError('Sent filing requires an accepted submission.');
     }
     final addresses = <String>{};
     for (final response in recipients) {
@@ -175,6 +179,9 @@ final class MailSubmissionResult {
   }
   final String attemptId;
   final MailSubmissionOutcome outcome;
+
+  /// Whether the client confirmed filing in Sent. Null means unreported.
+  final bool? sentCopySaved;
   final List<MailRecipientResponse> recipients;
   final MailProblem? problem;
 

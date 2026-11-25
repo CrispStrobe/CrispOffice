@@ -626,6 +626,8 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
                                       Text(
                                         strings.mailOutboxState(entry.state),
                                       ),
+                                    if (entry.result?.sentCopySaved == false)
+                                      Text(strings.sentCopyWarning),
                                     if (entry.sendNotBefore != null)
                                       _scheduleStatus(entry),
                                     Text(

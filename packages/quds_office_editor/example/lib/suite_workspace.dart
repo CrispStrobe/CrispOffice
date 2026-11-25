@@ -2056,9 +2056,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 content: SizedBox(
                   width: 460,
                   child: SingleChildScrollView(
+                    padding: const EdgeInsetsDirectional.only(end: 16),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
+                        _settingsHeading(_t('General', 'Allgemein', 'عام')),
                         ListTile(
                           leading: const Icon(Icons.download_outlined),
                           title: Text(
@@ -2081,8 +2083,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               'اختصارات لوحة المفاتيح…',
                             ),
                           ),
-                          subtitle: const Text(
-                            'Word and Writer keys; click a shortcut to record a new one.',
+                          trailing: _settingInfo(
+                            _t(
+                              'Keyboard shortcuts',
+                              'Tastenkürzel',
+                              'اختصارات لوحة المفاتيح',
+                            ),
+                            _t(
+                              'Choose a shortcut to record a different key combination.',
+                              'Wählen Sie ein Tastenkürzel aus, um eine andere Kombination aufzuzeichnen.',
+                              'اختر اختصارًا لتسجيل مجموعة مفاتيح مختلفة.',
+                            ),
                           ),
                           onTap: () {
                             Navigator.pop(dialogContext);
@@ -2210,7 +2221,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               'اكتشاف اللغة تلقائياً',
                             ),
                           ),
-                          subtitle: Text(
+                          secondary: _settingInfo(
+                            _t(
+                              'Language detection',
+                              'Spracherkennung',
+                              'اكتشاف اللغة',
+                            ),
                             _t(
                               'Check each paragraph with the spelling and grammar '
                                   'tools for its detected language. The document '
@@ -2244,7 +2260,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               'القواعد العربية: قراءة الكلمات في سياقها',
                             ),
                           ),
-                          subtitle: Text(
+                          secondary: _settingInfo(
+                            _t(
+                              'Arabic grammar',
+                              'Arabische Grammatik',
+                              'القواعد العربية',
+                            ),
                             _t(
                               'With the Arabic context model installed, grammar '
                                   'rules rely on the clearly most likely reading '
@@ -2270,6 +2291,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 : ArabicGrammarReading.allAnalyses,
                           ),
                         ),
+                        _settingsHeading(_t('Ribbon', 'Menüband', 'الشريط')),
                         SwitchListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(_strings.showRibbonLabels),

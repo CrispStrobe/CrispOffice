@@ -180,6 +180,32 @@ extension _ProofingScheduleSettings on _SuiteWorkspaceState {
     return _t('$text s', '${text.replaceAll('.', ',')} s', '$text ث');
   }
 
+  Widget _settingInfo(String title, String details) => IconButton(
+    icon: const Icon(Icons.info_outline, size: 18),
+    tooltip: details,
+    onPressed: () => showDialog<void>(
+      context: _themedContext,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(details),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(_strings.close),
+          ),
+        ],
+      ),
+    ),
+  );
+
+  Widget _settingsHeading(String label) => Padding(
+    padding: const EdgeInsetsDirectional.only(top: 16, bottom: 10),
+    child: Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: Text(label, style: Theme.of(_themedContext).textTheme.titleSmall),
+    ),
+  );
+
   List<Widget> _proofingScheduleSettings(void Function(VoidCallback) changed) {
     final proofing = _word.proofing;
     final schedule = proofing.schedule;
@@ -203,6 +229,30 @@ extension _ProofingScheduleSettings on _SuiteWorkspaceState {
         initialValue: mode,
         decoration: InputDecoration(
           labelText: _t('Checking mode', 'Prüfmodus', 'وضع التدقيق'),
+          suffixIcon: _settingInfo(
+            _t('Checking mode', 'Prüfmodus', 'وضع التدقيق'),
+            switch (mode) {
+              WordProofingMode.whileTyping => _t(
+                'Spelling is checked when you finish a word, grammar when you '
+                    'finish a sentence or pause.',
+                'Die Rechtschreibung wird nach jedem fertigen Wort geprüft, die '
+                    'Grammatik nach jedem fertigen Satz oder in einer Pause.',
+                'يُدقَّق الإملاء عند إكمال الكلمة، والقواعد عند إكمال الجملة أو '
+                    'التوقف عن الكتابة.',
+              ),
+              WordProofingMode.onPause => _t(
+                'Spelling and grammar are checked when you stop typing.',
+                'Rechtschreibung und Grammatik werden geprüft, sobald Sie aufhören '
+                    'zu tippen.',
+                'يُدقَّق الإملاء والقواعد عندما تتوقف عن الكتابة.',
+              ),
+              WordProofingMode.manual => _t(
+                'Nothing is checked automatically.',
+                'Es wird nichts automatisch geprüft.',
+                'لا يُدقَّق شيء تلقائياً.',
+              ),
+            },
+          ),
         ),
         items: <DropdownMenuItem<WordProofingMode>>[
           DropdownMenuItem(
@@ -243,30 +293,6 @@ extension _ProofingScheduleSettings on _SuiteWorkspaceState {
             if (value != WordProofingMode.manual) proofing.enabled = true;
           });
         },
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 4),
-        child: Text(switch (mode) {
-          WordProofingMode.whileTyping => _t(
-            'Spelling is checked when you finish a word, grammar when you '
-                'finish a sentence or pause.',
-            'Die Rechtschreibung wird nach jedem fertigen Wort geprüft, die '
-                'Grammatik nach jedem fertigen Satz oder in einer Pause.',
-            'يُدقَّق الإملاء عند إكمال الكلمة، والقواعد عند إكمال الجملة أو '
-                'التوقف عن الكتابة.',
-          ),
-          WordProofingMode.onPause => _t(
-            'Spelling and grammar are checked when you stop typing.',
-            'Rechtschreibung und Grammatik werden geprüft, sobald Sie aufhören '
-                'zu tippen.',
-            'يُدقَّق الإملاء والقواعد عندما تتوقف عن الكتابة.',
-          ),
-          WordProofingMode.manual => _t(
-            'Nothing is checked automatically.',
-            'Es wird nichts automatisch geprüft.',
-            'لا يُدقَّق شيء تلقائياً.',
-          ),
-        }, style: Theme.of(_themedContext).textTheme.bodySmall),
       ),
       SwitchListTile(
         key: const ValueKey<String>('studio-setting-check-spelling'),
@@ -342,11 +368,12 @@ extension _ProofingScheduleSettings on _SuiteWorkspaceState {
             'تدقيق المستند كاملاً في الخلفية',
           ),
         ),
-        subtitle: Text(
+        secondary: _settingInfo(
+          _t('Background checking', 'Hintergrundprüfung', 'التدقيق في الخلفية'),
           _t(
-            'Only while you are not typing, visible pages first.',
-            'Nur während Sie nicht tippen, sichtbare Seiten zuerst.',
-            'فقط عندما لا تكتب، والصفحات الظاهرة أولاً.',
+            'While you pause, visible pages are checked first.',
+            'In Schreibpausen werden zuerst die sichtbaren Seiten geprüft.',
+            'أثناء توقفك عن الكتابة تُدقَّق الصفحات الظاهرة أولاً.',
           ),
         ),
         value: schedule.backgroundCheck,
