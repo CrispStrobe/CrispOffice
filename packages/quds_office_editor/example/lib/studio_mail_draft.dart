@@ -58,6 +58,7 @@ final class StudioMailDraft {
     required this.to,
     required this.subject,
     required this.body,
+    this.richBody,
     this.cc = '',
     this.bcc = '',
     this.sender,
@@ -70,6 +71,10 @@ final class StudioMailDraft {
   final String bcc;
   final String subject;
   final String body;
+
+  /// Optional authored formatting. Both alternatives must describe exactly the
+  /// same text; a stale rich snapshot must never be submitted or saved.
+  final MailComposeBody? richBody;
   final StudioMailSender? sender;
   final StudioMailThread thread;
   final StudioMailAttachments attachments;
@@ -83,6 +88,17 @@ final class StudioMailDraft {
       StudioMailRecipients.tryParse(to: to, cc: cc, bcc: bcc) ??
       (throw const FormatException('Invalid Studio Mail recipients.'));
 
+  /// Existing unfinished plain drafts keep the repository's save/recovery
+  /// limits, which are independent of the stricter submission limit below.
+  bool get hasConsistentBody => richBody == null || richBody!.plainText == body;
+
+  /// Submission validation is independent of recipients.
+  bool get hasValidBody =>
+      body.length <= maxBodyBytes &&
+      !body.contains('\u0000') &&
+      utf8.encode(body).length <= maxBodyBytes &&
+      hasConsistentBody;
+
   StudioMailDraftProblem? get problem {
     if (sender != null && !sender!.isValid) {
       return StudioMailDraftProblem.sender;
@@ -93,9 +109,7 @@ final class StudioMailDraft {
     if (subject.length > 512 || subject.contains(RegExp(r'[\x00-\x1f\x7f]'))) {
       return StudioMailDraftProblem.subject;
     }
-    if (body.length > maxBodyBytes ||
-        body.contains('\u0000') ||
-        utf8.encode(body).length > maxBodyBytes) {
+    if (!hasValidBody) {
       return StudioMailDraftProblem.body;
     }
     return null;
