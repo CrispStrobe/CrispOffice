@@ -1,0 +1,141 @@
+# Task providers: evidence and qualification
+
+Reviewed 2026-11-25. These links document available APIs and constraints; they
+do not certify an implementation or a particular user account. Current source
+progress and executed checks are recorded in [progress](progress.md).
+
+## Microsoft To Do / Graph
+
+Use stable v1.0 task resources with delegated `Tasks.ReadWrite`. Personal accounts
+and eligible Microsoft 365 work/school accounts are supported; an on-premises
+Exchange mailbox alone is not a To Do account. List/task delta APIs are present.
+The current overview includes application permissions, while create-task docs
+still mark application access unsupported: validate endpoint-level parity.
+
+Sources:
+
+- [To Do API overview](https://learn.microsoft.com/en-us/graph/api/resources/todo-overview?view=graph-rest-1.0)
+- [Task schema](https://learn.microsoft.com/en-us/graph/api/resources/todotask?view=graph-rest-1.0)
+- [Checklist schema](https://learn.microsoft.com/en-us/graph/api/resources/checklistitem?view=graph-rest-1.0)
+- [Create task and permissions](https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0)
+- [Task delta](https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0)
+- [List delta](https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0)
+- [Update task](https://learn.microsoft.com/en-us/graph/api/todotask-update?view=graph-rest-1.0)
+- [Permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference#tasksreadwrite)
+- [Account requirements](https://support.microsoft.com/en-us/outlook/which-accounts-can-i-use-microsoft-to-do-with)
+- [Graph standard API licensing](https://learn.microsoft.com/en-us/graph/metered-api-overview)
+- [Current metered APIs](https://learn.microsoft.com/en-us/graph/metered-api-list)
+- [Task change notifications](https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0)
+- [Planner-assigned tasks](https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0)
+
+Live gates: intended personal and work/school account types; incremental consent;
+create/edit/complete/reopen/delete; dates and HTML notes; shared-list permissions;
+delta deletions and invalid cursors; stale ETag behavior; uncertain-create marker
+recovery; token persistence/revocation. My Day UI parity is not established.
+
+## CalDAV / Nextcloud
+
+Build against VTODO-capable collections and conditional resource operations.
+Nextcloud Tasks documents CalDAV interoperability, task properties and subtasks.
+Login Flow v2 provides browser-based per-client credential provisioning.
+
+Sources:
+
+- [Nextcloud Tasks](https://github.com/nextcloud/tasks)
+- [Nextcloud Login Flow v2](https://docs.nextcloud.com/server/stable/developer_manual/client_apis/LoginFlow/index.html)
+- [CalDAV client discovery, VTODO queries, ETags and synchronization](https://sabre.io/dav/building-a-caldav-client/)
+- [Nextcloud calendar synchronization maintenance](https://docs.nextcloud.com/server/stable/admin_manual/groupware/calendar.html)
+- [iCalendar specification](https://www.rfc-editor.org/rfc/rfc5545)
+- [WebDAV collection synchronization](https://www.rfc-editor.org/rfc/rfc6578)
+
+Live gates: discovery with installation prefixes; app-password revocation;
+VTODO filtering; ETag/412 behavior; resource deletion; sync-token expiry and
+fallback; preserved properties; all-day/floating/TZID dates; recurring/subtask
+round trips; permissions on shared collections.
+
+## mailbox.org / Open-Xchange
+
+mailbox.org explicitly documents bidirectional task synchronization over CalDAV.
+Use `https://dav.mailbox.org/` or the exact task-list Properties URL. Recommend a
+dedicated DAV app password; this is required when 2FA is enabled.
+
+Sources:
+
+- [mailbox calendar and task setup](https://kb.mailbox.org/en/private/addressbook-and-calendar/caldav-korganizer/)
+- [mailbox exact calendar/task-list URL](https://kb.mailbox.org/en/private/addressbook-and-calendar/caldav-in-thunderbird/)
+- [mailbox application passwords](https://kb.mailbox.org/en/private/security-and-privacy/application-passwords-for-external-programs/)
+- [mailbox synchronization overview](https://kb.mailbox.org/en/business/account/data-synchronisation-overview/)
+- [OX CalDAV client limitations, marked deprecated](https://documentation.open-xchange.com/8/middleware/miscellaneous/caldav_carddav/caldav_clients.html)
+- [Current OX task lists and delegation](https://documentation.open-xchange.com/ui/8.55.2/features/tasks/lists-and-delegation.html)
+- [OX HTTP Tasks API](https://documentation.open-xchange.com/components/middleware/http/develop/index.html)
+- [OX OAuth client guide](https://documentation.open-xchange.com/7.10.5/middleware/login_and_sessions/oauth_2.0_provider/02_client_developer_guide.html)
+
+Conservative initial matrix:
+
+| Feature | mailbox.org CalDAV | Native OX HTTP |
+| --- | --- | --- |
+| Personal basic task CRUD | Documented | Documented API; host access required |
+| Title, notes, start/due, priority, status | Documented mapping | Documented fields |
+| Progress/categories/reminders | Round-trip before enabling editing | Documented fields; qualify deployment |
+| Recurrence/participants/shared task lists | Disabled until deployed-server evidence | API support still requires auth/ACL and behavior checks |
+| Subtasks/attachments/URLs | Do not infer support from calendar objects | Task-specific workflow needs verification |
+| Incremental updates | Advertised DAV sync tokens, otherwise ETags | Timestamp updates, include deletions with `ignore=false` |
+| Authentication | DAV app credential | Host-supported session or OAuth registration |
+
+The older OX CalDAV document describes simple personal tasks and discarded
+unsupported properties. Current deployments may differ. Preserve local data,
+refetch writes, and detect losses; do not equate raw preservation with guaranteed
+server fidelity. Generic OX HTTP documentation does not prove that mailbox.org
+supports arbitrary third-party native API clients or accepts DAV app credentials
+for that API.
+
+Live gates: all generic DAV checks, mailbox task-list discovery, dedicated app
+password and revocation, Europe/Berlin DST cases, progress/category/reminder
+normalization, then separate recurrence/shared/participant experiments. Keep the
+native OX adapter gated on an explicitly supported host and authentication mode.
+
+## ownCloud and lightweight DAV servers
+
+The ownCloud announcement on 19 November 2026 describes `ocis-groupware` as work
+in progress and reverses the former plan not to add CalDAV/CardDAV to Infinite
+Scale. Classic 11 exists; Classic 10 support ends on 31 December 2026. Therefore
+detect and qualify the actual deployed edition rather than hard-code an
+ownCloud-wide support claim.
+
+- [ownCloud current migration and groupware status](https://owncloud.com/blogs/oc-classic-10-reaches-end-of-support-on-31-december-2026-your-two-paths-forward/)
+- [ownCloud Infinite Scale groupware](https://github.com/owncloud/ocis-groupware)
+- [Radicale](https://radicale.org/v3.html)
+- [Baikal](https://sabre.io/baikal/)
+
+Qualification is per server/version and requires advertised VTODO, basic CRUD,
+auth, dates, conflicts and sync recovery. Do not promise a specific ownCloud
+Tasks web app works with an untested release.
+
+## Exchange Server / EWS
+
+- [Exchange Online EWS retirement timeline and on-premises distinction](https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361)
+- [EWS task folders/items](https://learn.microsoft.com/en-us/exchange/client-developer/exchange-web-services/folders-and-items-in-ews-in-exchange)
+- [Existing CrispOffice on-premises EWS implementation](../mail/exchange-ews.md)
+
+The cloud retirement is not an instruction to remove the on-premises provider.
+Add explicit task folder/property mapping, ChangeKey conflict tests, move-ID
+handling and appropriate host authentication. Require real Exchange acceptance;
+existing mail fixtures do not qualify task synchronization.
+
+## Vikunja and optional bridges
+
+- [Vikunja REST v2](https://vikunja.io/docs/api-v2/)
+- [Vikunja CalDAV limitations](https://vikunja.io/help/caldav/)
+
+Use REST v2 for a native integration. A Microsoft-to-CalDAV bridge is an
+additional feature implemented above both providers, with explicit list pairing,
+loop prevention, mapping storage and deletion/conflict policy. Merely connecting
+two accounts does not enable copying between them.
+
+## Deployment record template
+
+For each actual acceptance run record: date, source commit, app/runtime version,
+server product/version, account type (without personal identity), enabled scopes,
+capabilities exercised, disposable-list authorization, redacted commands/tests,
+pass/fail/blocked results, and remaining limitations. Never commit credentials
+or personal task contents. Retire capability claims when a deployment changes.

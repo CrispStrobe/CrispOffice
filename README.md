@@ -128,6 +128,7 @@ Detailed records:
 - [Proofing roadmap](docs/PROOFING.md)
 - [Zotero support](docs/zotero-support.md)
 - [Mail roadmap](docs/roadmaps/mail/README.md)
+- [Tasks and multi-provider sync roadmap](docs/roadmaps/tasks/README.md)
 - [VBA parity](docs/VBA_PARITY_ROADMAP.md)
 - [Typing/autocorrect performance roadmap](docs/roadmaps/typing-autocorrect-performance.md)
 
