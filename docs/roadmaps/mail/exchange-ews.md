@@ -106,9 +106,13 @@ Retaining those returned bytes does **not** establish byte-identical preservatio
 of the original SMTP message or cryptographic signed-mail fidelity.
 
 NTLM requires the endpoint to allow HEAD authentication and persistent connection
-authentication. Explicit `Persistent-Auth: false` is refused before SOAP. A server
-or load balancer that closes the authenticated connection causes a typed failure;
-the adapter does not repeat a potentially accepted request. Generic HTTP proxies,
+authentication. A same-origin HTTP 302 from the final authentication HEAD can
+establish the session when the server confirms `Persistent-Auth: true` and
+supplies no new authentication challenge. SOAP goes to the configured EWS
+endpoint on the same TLS connection. Explicit `Persistent-Auth: false` is
+refused before SOAP. A server or load balancer that closes the authenticated
+connection causes a typed failure. The adapter skips retry if the server
+might have accepted the request. Generic HTTP proxies,
 Kerberos/Negotiate and client-certificate authentication are outside this version.
 
 Extended Protection should remain enabled. The NTLM client includes TLS channel
@@ -120,9 +124,9 @@ reverse-proxy topology, operating-system trust store or Exchange CU combination.
 
 The focused [validation record](../../validation/mail-ews-20261119/README.md)
 records actual source-bound native, JavaScript, storage, protocol and Studio
-checks. No real Exchange credentials or endpoint were supplied for this change.
-Live Exchange interoperability and installed-platform acceptance therefore remain
-unverified. The probe above makes that check available without sending mail.
+checks. A later live check with the configured Exchange endpoint verified
+native NTLM access to the Tasks folder, mail folder discovery, and a bounded
+read-only page of message headers. Installed-platform acceptance remains pending.
 
 Automatic Autodiscover, OAuth acquisition, Kerberos, folder-hierarchy delta sync,
 push subscriptions, server drafts, archive/public folders, full delegation,

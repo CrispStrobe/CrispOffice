@@ -196,6 +196,19 @@ Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
   `permissionDenied` on its probe. This qualifies account access for future
   EWS Tasks work. Graph OAuth remains a separate live qualification.
 
+## Checkpoint 11 — native EWS transport and personal Microsoft accounts
+
+- The configured Exchange endpoint returned a same-origin 302 after its final
+  NTLM authentication HEAD. The transport accepts this only when persistent
+  authentication is explicit and there is no fresh authentication challenge.
+  SOAP remains on the authenticated TLS connection at the configured endpoint.
+- Live read-only native checks passed for the Tasks folder, Mail folder discovery
+  and a bounded header sync.
+- Azure CLI sign-in to the tenant associated with the mailbox.org domain failed
+  with `AADSTS50020` for personal Microsoft accounts. The Graph test app belongs
+  in an Entra directory the project controls, with personal accounts enabled in
+  its sign-in audience. To Do live qualification is pending that registration.
+
 ## Next execution sequence
 
 1. Qualify Microsoft To Do with a delegated OAuth grant and designated list.

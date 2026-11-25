@@ -37,12 +37,14 @@ typedef _Handler =
 final class _Request {
   const _Request(
     this.method,
+    this.path,
     this.authorization,
     this.action,
     this.body,
     this.port,
   );
   final String method;
+  final String path;
   final String? authorization;
   final String? action;
   final String body;
@@ -86,6 +88,7 @@ final class _Fixture {
           .join();
       final observed = _Request(
         request.method,
+        request.uri.path,
         request.headers.value(HttpHeaders.authorizationHeader),
         request.headers.value('SOAPAction'),
         body,
@@ -146,7 +149,11 @@ Future<void> _reply(
   await request.response.close();
 }
 
-Future<bool> _ntlmHandshake(HttpRequest request, _Request observed) async {
+Future<bool> _ntlmHandshake(
+  HttpRequest request,
+  _Request observed, {
+  void Function(HttpResponse)? authenticated,
+}) async {
   if (observed.method != 'HEAD') return false;
   final auth = observed.authorization!;
   final token = base64.decode(auth.substring(5));
@@ -161,6 +168,7 @@ Future<bool> _ntlmHandshake(HttpRequest request, _Request observed) async {
   } else {
     expect(type, 3);
     request.response.statusCode = HttpStatus.methodNotAllowed;
+    authenticated?.call(request.response);
   }
   await request.response.close();
   return true;
@@ -229,6 +237,122 @@ void main() {
         hasLength(1),
       );
       expect(client.mutationStarted, isFalse);
+    },
+  );
+
+  test('authenticated HEAD 302 never redirects the EWS SOAP call', () async {
+    final fixture = await _Fixture.bind((request, observed) async {
+      final handled = await _ntlmHandshake(
+        request,
+        observed,
+        authenticated: (response) {
+          response
+            ..statusCode = HttpStatus.found
+            ..headers.set(HttpHeaders.locationHeader, '/EWS/authenticated-help')
+            ..headers.set('Persistent-Auth', 'true');
+        },
+      );
+      if (!handled) await _reply(request, _result);
+    });
+    addTearDown(fixture.close);
+    final client = fixture.client(authentication: MailEwsAuthentication.ntlm);
+    addTearDown(client.abort);
+    expect(await client.post('GetFolder', _envelope), _result);
+    expect(fixture.requests.map((request) => request.method), [
+      'HEAD',
+      'HEAD',
+      'POST',
+    ]);
+    expect(fixture.requests.map((request) => request.path).toSet(), {
+      '/EWS/Exchange.asmx',
+    });
+    expect(
+      fixture.requests.map((request) => request.port).toSet(),
+      hasLength(1),
+    );
+    expect(fixture.requests.last.authorization, isNull);
+  });
+
+  final rejectedHeadRedirects = [
+    (
+      name: 'foreign redirect',
+      location: 'https://other.example/ews',
+      persistent: true,
+      challenge: false,
+    ),
+    (
+      name: 'missing persistent auth',
+      location: '/EWS/authenticated-help',
+      persistent: false,
+      challenge: false,
+    ),
+    (
+      name: 'new auth challenge',
+      location: '/EWS/authenticated-help',
+      persistent: true,
+      challenge: true,
+    ),
+  ];
+  for (final variant in rejectedHeadRedirects) {
+    test('authenticated HEAD rejects ${variant.name} before SOAP', () async {
+      final fixture = await _Fixture.bind((request, observed) async {
+        final handled = await _ntlmHandshake(
+          request,
+          observed,
+          authenticated: (response) {
+            response
+              ..statusCode = HttpStatus.found
+              ..headers.set(HttpHeaders.locationHeader, variant.location);
+            if (variant.persistent) {
+              response.headers.set('Persistent-Auth', 'true');
+            }
+            if (variant.challenge) {
+              response.headers.set(HttpHeaders.wwwAuthenticateHeader, 'NTLM');
+            }
+          },
+        );
+        if (!handled) await _reply(request, _result);
+      });
+      addTearDown(fixture.close);
+      final client = fixture.client(authentication: MailEwsAuthentication.ntlm);
+      addTearDown(client.abort);
+      await expectLater(
+        client.post('UpdateItem', _envelope, mutation: true),
+        _failure(MailProblemCode.permissionDenied),
+      );
+      expect(fixture.requests.map((request) => request.method), [
+        'HEAD',
+        'HEAD',
+      ]);
+      expect(client.mutationStarted, isFalse);
+    });
+  }
+
+  test(
+    'a same-origin SOAP redirect still fails after NTLM authentication',
+    () async {
+      final fixture = await _Fixture.bind((request, observed) async {
+        if (await _ntlmHandshake(request, observed)) return;
+        request.response
+          ..statusCode = HttpStatus.found
+          ..headers.set(HttpHeaders.locationHeader, '/EWS/other')
+          ..headers.set('Persistent-Auth', 'true');
+        await request.response.close();
+      });
+      addTearDown(fixture.close);
+      final client = fixture.client(authentication: MailEwsAuthentication.ntlm);
+      addTearDown(client.abort);
+      await expectLater(
+        client.post('UpdateItem', _envelope, mutation: true),
+        _failure(MailProblemCode.permissionDenied),
+      );
+      expect(fixture.requests.map((request) => request.method), [
+        'HEAD',
+        'HEAD',
+        'POST',
+      ]);
+      expect(fixture.requests.last.path, '/EWS/Exchange.asmx');
+      expect(client.mutationStarted, isTrue);
     },
   );
 

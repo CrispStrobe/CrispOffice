@@ -337,7 +337,7 @@ final class NativeEwsHttpClient implements EwsHttpClient {
     final response = await last.close();
     _request = null;
     _check();
-    _validateResponse(response);
+    _validateResponse(response, allowAuthenticatedHeadRedirect: true);
     _httpError(response);
     final persistentAuth = response.headers['persistent-auth'];
     if (persistentAuth != null &&
@@ -354,6 +354,7 @@ final class NativeEwsHttpClient implements EwsHttpClient {
     // ASMX can reject HEAD after successful IIS authentication. No SOAP or
     // mailbox operation was submitted. These responses still establish auth.
     if ((response.statusCode < 200 || response.statusCode >= 300) &&
+        response.statusCode != HttpStatus.found &&
         response.statusCode != HttpStatus.badRequest &&
         response.statusCode != HttpStatus.methodNotAllowed &&
         response.statusCode != HttpStatus.internalServerError) {
@@ -396,7 +397,10 @@ final class NativeEwsHttpClient implements EwsHttpClient {
     }
   }
 
-  void _validateResponse(HttpClientResponse response) {
+  void _validateResponse(
+    HttpClientResponse response, {
+    bool allowAuthenticatedHeadRedirect = false,
+  }) {
     _check();
     if (response.certificate == null) {
       throw const EwsException(MailProblemCode.permissionDenied);
@@ -411,9 +415,35 @@ final class NativeEwsHttpClient implements EwsHttpClient {
       throw const EwsException(MailProblemCode.quotaExceeded);
     }
     _consume(headerBytes);
-    if (response.statusCode >= 300 && response.statusCode < 400) {
+    if (response.statusCode >= 300 &&
+        response.statusCode < 400 &&
+        !(allowAuthenticatedHeadRedirect &&
+            _isAuthenticatedHeadRedirect(response))) {
       throw const EwsException(MailProblemCode.permissionDenied);
     }
+  }
+
+  bool _isAuthenticatedHeadRedirect(HttpClientResponse response) {
+    // Exchange can redirect the authenticated, body-free HEAD to its
+    // same-origin service page. Verify persistent authentication and send SOAP
+    // only to the original endpoint on the same connection.
+    if (response.statusCode != HttpStatus.found ||
+        response.headers['persistent-auth']?.singleOrNull
+                ?.trim()
+                .toLowerCase() !=
+            'true' ||
+        response.headers[HttpHeaders.wwwAuthenticateHeader] != null) {
+      return false;
+    }
+    final location = response.headers[HttpHeaders.locationHeader]?.singleOrNull;
+    if (location == null || location.isEmpty) return false;
+    final reference = Uri.tryParse(location);
+    if (reference == null) return false;
+    final destination = configuration.endpoint.resolveUri(reference);
+    return destination.scheme == configuration.endpoint.scheme &&
+        destination.host == configuration.endpoint.host &&
+        destination.port == configuration.endpoint.port &&
+        destination.userInfo.isEmpty;
   }
 
   void _httpError(HttpClientResponse response) {

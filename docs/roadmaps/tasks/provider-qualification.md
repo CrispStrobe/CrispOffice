@@ -33,6 +33,15 @@ create/edit/complete/reopen/delete; dates and HTML notes; shared-list permission
 delta deletions and invalid cursors; stale ETag behavior; uncertain-create marker
 recovery; token persistence/revocation. My Day UI parity is not established.
 
+A Microsoft personal account can use a mailbox.org email address as its sign-in
+name. Register the desktop app in an Entra directory the project controls and
+select an audience that includes personal Microsoft accounts. Both accounts can
+consent separately to the same public-client app via the `common` authority.
+The registration needs the `http://localhost` desktop redirect and delegated
+`Tasks.ReadWrite`. Account owners handle MFA in Microsoft's sign-in page.
+Microsoft documents [personal-account tenant setup](https://learn.microsoft.com/en-us/troubleshoot/entra/entra-id/app-integration/error-code-AADSTS50020-user-account-identity-provider-does-not-exist)
+and [app registration audiences](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
+
 ## CalDAV / Nextcloud
 
 Build against VTODO-capable collections and conditional resource operations.
@@ -135,11 +144,13 @@ were removed afterward. See the [official ownCloud server image](https://hub.doc
 ## Exchange Server / EWS
 
 The configured Exchange host accepted the supplied credentials over NTLM.
-A read-only `GetFolder` for the distinguished `tasks` folder returned HTTP
-200 and `NoError` through curl. The same probe through CrispOffice's native
-EWS transport returned `permissionDenied`. No task was changed. A Studio
-EWS Tasks adapter and native interoperability remain to be implemented and
-qualified. Microsoft To Do uses its own Graph OAuth grant.
+A read-only `GetFolder` for the distinguished `tasks` folder returned
+`NoError` through CrispOffice's native EWS transport after fixing its
+authenticated HEAD handling. The endpoint confirms persistent authentication
+and returns a same-origin HTTP 302 for the final HEAD. The transport sends SOAP
+to the configured service endpoint on the established TLS connection.
+Studio EWS Tasks support remains a separate milestone. Microsoft To Do uses
+its own Graph OAuth grant.
 
 
 - [Exchange Online EWS retirement timeline and on-premises distinction](https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361)
