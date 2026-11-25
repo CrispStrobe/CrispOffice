@@ -193,6 +193,39 @@ void main() {
     },
   );
 
+  for (final sentCopySaved in const <bool?>[true, false, null]) {
+    test(
+      'rich accepted Sent receipt ($sentCopySaved) survives close and reopen',
+      () async {
+        final draft = _draft();
+        final queued = await store.enqueueOutbox(draft, _sender);
+        final attempt = await store.beginOutboxAttempt(queued);
+        final accepted = await store.completeOutboxAttempt(
+          attempt,
+          MailSubmissionResult(
+            attemptId: attempt.attemptId!,
+            outcome: MailSubmissionOutcome.accepted,
+            sentCopySaved: sentCopySaved,
+          ),
+        );
+        expect(accepted.state, MailOutboxState.submitted);
+        expect(accepted.result!.sentCopySaved, sentCopySaved);
+        await store.close();
+        await open(createAccount: false);
+        final restored = (await store.loadOutbox()).single;
+        expect(restored.state, MailOutboxState.submitted);
+        expect(restored.result!.outcome, MailSubmissionOutcome.accepted);
+        expect(restored.result!.sentCopySaved, sentCopySaved);
+        expect(restored.canBeginAttempt, isFalse);
+        expect(restored.prepared.wireHash, queued.prepared.wireHash);
+        expect(restored.prepared.wire.bytes, queued.prepared.wire.bytes);
+        final projection = StudioMailOutboxContent.fromEntry(restored);
+        expect(projection.draft.richBody!.html, draft.richBody!.html);
+        expect(projection.draft.bcc, draft.bcc);
+      },
+    );
+  }
+
   test(
     'invalid recipients leave rich work durable when queue admission fails',
     () async {

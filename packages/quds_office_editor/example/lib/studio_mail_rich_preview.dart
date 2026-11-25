@@ -37,9 +37,9 @@ class StudioMailRichPreview extends StatelessWidget {
                       fontStyle: run.italic
                           ? FontStyle.italic
                           : FontStyle.normal,
-                      color: run.link == null
-                          ? null
-                          : theme.colorScheme.primary,
+                      color: run.linkBlue
+                          ? const Color(0xff000000 | MailComposeRun.linkBlueRgb)
+                          : null,
                       decoration: TextDecoration.combine([
                         if (run.underline) TextDecoration.underline,
                         if (run.strike) TextDecoration.lineThrough,

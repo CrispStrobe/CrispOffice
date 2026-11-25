@@ -90,7 +90,7 @@ void main() {
   });
 
   test('all style combinations and paragraph directions round-trip', () {
-    for (var flags = 0; flags < 16; flags++) {
+    for (var flags = 0; flags < 32; flags++) {
       for (final alignment in MailComposeAlignment.values) {
         for (final rtl in <bool?>[null, true, false]) {
           final body = MailComposeBody(
@@ -105,6 +105,7 @@ void main() {
                     italic: flags & 2 != 0,
                     underline: flags & 4 != 0,
                     strike: flags & 8 != 0,
+                    linkBlue: flags & 16 != 0,
                     link: 'https://example.test/path?a=1&b=%22quoted%22',
                   ),
                 ],
@@ -138,7 +139,7 @@ void main() {
           body.html,
           contains(
             '<a href="https://example.test" '
-            'style="text-decoration:inherit">Link</a>',
+            'style="color:inherit;text-decoration:inherit">Link</a>',
           ),
         );
         final restored = MailComposeBody.fromHtml(body.html);
@@ -146,7 +147,10 @@ void main() {
         expect(restored.paragraphs.single.runs.single.strike, strike);
         expect(
           () => MailComposeBody.fromHtml(
-            body.html.replaceAll(' style="text-decoration:inherit"', ''),
+            body.html.replaceAll(
+              ' style="color:inherit;text-decoration:inherit"',
+              '',
+            ),
           ),
           throwsFormatException,
         );
@@ -160,6 +164,53 @@ void main() {
           throwsFormatException,
         );
       }
+    }
+  });
+
+  test('fixed link blue survives inherited text without creating a link', () {
+    final body = MailComposeBody(
+      paragraphs: [
+        MailComposeParagraph(
+          runs: [
+            MailComposeRun(text: 'Plain'),
+            MailComposeRun(text: 'Inherited', linkBlue: true),
+            MailComposeRun(text: 'Link', link: 'https://example.test'),
+            MailComposeRun(
+              text: 'Black link',
+              link: 'https://example.test',
+              linkBlue: false,
+            ),
+          ],
+        ),
+      ],
+    );
+    final runs = MailComposeBody.fromHtml(body.html).paragraphs.single.runs;
+    expect(runs.map((run) => run.linkBlue), [false, true, true, false]);
+    expect(runs[1].link, isNull);
+    expect(runs[1].hasFormatting, isTrue);
+    expect(body.html, contains('<span style="color:#0563C1">Inherited</span>'));
+    expect(
+      body.html,
+      contains(
+        '<span><a href="https://example.test" '
+        'style="color:inherit;text-decoration:inherit">Black link</a></span>',
+      ),
+    );
+  });
+
+  test('fixed inherited blue does not admit arbitrary CSS color values', () {
+    final body = MailComposeBody(
+      paragraphs: [
+        MailComposeParagraph(
+          runs: [MailComposeRun(text: 'Blue', linkBlue: true)],
+        ),
+      ],
+    );
+    for (final color in ['#FF0000', 'red', 'rgb(5,99,193)', 'var(--private)']) {
+      expect(
+        () => MailComposeBody.fromHtml(body.html.replaceAll('#0563C1', color)),
+        throwsFormatException,
+      );
     }
   });
 

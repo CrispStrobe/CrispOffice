@@ -41,6 +41,7 @@ void main() {
       expect(preview.paragraphs.first.alignment, MailComposeAlignment.right);
       expect(preview.paragraphs.first.rightToLeft, isTrue);
       expect(preview.paragraphs.first.runs.single.bold, isTrue);
+      expect(preview.paragraphs.first.runs.single.linkBlue, isTrue);
       expect(
         preview.paragraphs.first.runs.single.link,
         'https://example.test/',
@@ -114,6 +115,33 @@ void main() {
       StudioMailRichPreviewData.maxTextBytes,
     );
   });
+
+  test(
+    'clipping retains fixed blue and explicitly black link presentation',
+    () {
+      for (final link in <String?>[null, 'https://example.test']) {
+        for (final blue in [false, true]) {
+          final body = MailComposeBody(
+            paragraphs: [
+              MailComposeParagraph(
+                runs: [
+                  MailComposeRun(
+                    text: 'x' * (StudioMailRichPreviewData.maxTextBytes + 1),
+                    link: link,
+                    linkBlue: blue,
+                  ),
+                ],
+              ),
+            ],
+          );
+          final preview = StudioMailRichPreviewData(body);
+          expect(preview.truncated, isTrue);
+          expect(preview.paragraphs.single.runs.single.linkBlue, blue);
+          expect(preview.paragraphs.single.runs.single.link, link);
+        }
+      }
+    },
+  );
 
   test('paragraph limit clips even when the text budget remains', () {
     final body = MailComposeBody(

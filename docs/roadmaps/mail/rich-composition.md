@@ -2,11 +2,18 @@
 
 ## Intake and scope — 25 November 2026
 
-This continuation starts from `938832e6dc337a880c15c609aeed95b643379da7`
+This continuation started from `938832e6dc337a880c15c609aeed95b643379da7`
 on PR #396 (`codex/mail-capabilities-20261125`). It preserves that increment's
-sender identities, templates and connected provider search. Main was inspected
-at `7839eb004f33adc84d4db018e54f032959bb6a03`; its two subsequent commits affect
-the Office XML scanner, outside this mail change.
+sender identities, templates and connected provider search. During the work,
+PR #396 and further integration changes reached main. The continuation merged
+main `20c36e5ac1f21add8d3d75420ab43f8fc527eefe` in
+`8f4d02e91b739a8cb3a8a4bcd2ebd3c0597d4f15` before final qualification.
+
+That incoming integration includes Word paragraph-mark/Enter behavior, XML
+scanner changes, native Sent-copy filing results and connected Inbox polling.
+They are inherited changes, not new claims for this continuation. The rich
+converter and toolbar also preserve the supported empty-paragraph typing marks
+created by the new Word behavior, including its fixed hyperlink-blue color.
 
 Before this continuation, the composer used the Word editing surface but kept
 only paragraph text in its snapshot. Draft storage consequently saved only
@@ -34,7 +41,9 @@ separate provider and lifecycle contracts.
 The implementation introduces a bounded, immutable compose-body model with
 plain text and deterministic inert HTML derived from the same paragraphs/runs.
 It supports bold, italic, underline, strikethrough, explicit safe links,
-paragraph alignment and text direction. Its versioned canonical HTML is the
+paragraph alignment and text direction. The fixed standard hyperlink-blue
+color is also preserved when Word carries it into later text; arbitrary text
+colors are not admitted. Its versioned canonical HTML is the
 durable representation. Arbitrary received or pasted HTML is not a trusted
 editable representation.
 
@@ -61,8 +70,8 @@ feedback and link dialogs are localized in English, German and Arabic.
 
 HTTP/HTTPS links and simple mailto addresses are explicit authored links.
 Relative/local/executable URLs, credentials, control characters and mailto
-query parameters are refused. A delayed link dialog is fenced by the original
-compose owner, selection and edit revision. Reopening a draft never fetches
+query parameters are refused. A delayed link dialog and asynchronous clipboard reads are fenced by the
+original compose owner, selection and edit revision. Reopening a draft never fetches
 the target.
 
 Unsupported Word blocks, lists, fields, hidden stories, imported packages and
@@ -89,6 +98,9 @@ plain drafts retain the repository's persistence budget independently of the
 stricter 1 MiB submission budget. Inferred Arabic direction does not silently
 opt a legacy plain draft into rich limits; explicit direction/formatting does.
 Unicode, CRLF split across runs, soft breaks and empty paragraphs round-trip.
+Supported empty-paragraph typing styles survive save/reopen, and formatting
+an empty paragraph is undoable. Undoing a Word list restores saving even when
+the editor retains its known dormant numbering package.
 
 ### Outbox review and edit-copy
 
@@ -106,7 +118,9 @@ reported explicitly. It cannot change exact EML or private-envelope exports.
 ## Remaining work
 
 Lists, tables, inline images, arbitrary HTML import, background delivery and
-provider Drafts/Sent synchronization remain outside this increment. No
+provider Drafts synchronization and exact-message Sent reconciliation remain
+outside this increment. Inherited native Sent-copy filing is retained; it is
+not a recipient-delivery receipt or resolution of an uncertain send. No
 placeholder capability is advertised for them.
 
 After installed/widget acceptance, useful next increments are rich-template

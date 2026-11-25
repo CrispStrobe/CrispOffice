@@ -11,10 +11,19 @@ final class MailComposeRun {
     bool underline = false,
     bool strike = false,
     String? link,
+    bool? linkBlue,
   }) {
     _textBytes(text, limit: MailComposeBody.maxPlainTextBytes);
     if (link != null && !isSupportedLink(link)) _invalid();
-    return MailComposeRun._(text, bold, italic, underline, strike, link);
+    return MailComposeRun._(
+      text,
+      bold,
+      italic,
+      underline,
+      strike,
+      link,
+      linkBlue ?? (link != null),
+    );
   }
 
   const MailComposeRun._(
@@ -24,6 +33,7 @@ final class MailComposeRun {
     this.underline,
     this.strike,
     this.link,
+    this.linkBlue,
   );
 
   final String text;
@@ -32,6 +42,13 @@ final class MailComposeRun {
   final bool underline;
   final bool strike;
   final String? link;
+
+  /// The editor's one fixed hyperlink blue, including inherited unlinked text
+  /// after Enter. This is not an arbitrary color or style admission surface.
+  /// Links default to blue; an explicit false retains authored ordinary color.
+  final bool linkBlue;
+
+  static const linkBlueRgb = 0x0563c1;
 
   static const maxLinkBytes = 2048;
 
@@ -83,17 +100,18 @@ final class MailComposeRun {
   }
 
   bool get hasFormatting =>
-      bold || italic || underline || strike || link != null;
+      bold || italic || underline || strike || link != null || linkBlue;
 
   bool _sameFormat(MailComposeRun other) =>
       bold == other.bold &&
       italic == other.italic &&
       underline == other.underline &&
       strike == other.strike &&
-      link == other.link;
+      link == other.link &&
+      linkBlue == other.linkBlue;
 
   MailComposeRun _withText(String value) =>
-      MailComposeRun._(value, bold, italic, underline, strike, link);
+      MailComposeRun._(value, bold, italic, underline, strike, link, linkBlue);
 
   @override
   String toString() => 'MailComposeRun(redacted)';
@@ -254,6 +272,7 @@ const _root = '<div data-crispoffice-mail="1">';
 const _paragraphStart = '<p style="margin:0;white-space:pre-wrap;text-align:';
 
 String _style(MailComposeRun run) => <String>[
+  if (run.linkBlue) 'color:#0563C1',
   if (run.bold) 'font-weight:bold',
   if (run.italic) 'font-style:italic',
   if (run.underline || run.strike)
@@ -274,9 +293,9 @@ String _writeHtml(List<MailComposeParagraph> paragraphs) {
       if (run.link case final link?) {
         output.write('<a href="');
         output.escaped(link);
-        // Override user-agent link underlining so the authored run controls
-        // decoration consistently in the editor, preview and transmitted HTML.
-        output.write('" style="text-decoration:inherit">');
+        // Override user-agent link defaults so the authored run controls color
+        // and decoration in the editor, preview and transmitted HTML.
+        output.write('" style="color:inherit;text-decoration:inherit">');
       }
       output.escaped(run.text);
       if (run.link != null) output.write('</a>');
@@ -387,7 +406,7 @@ final class _ComposeHtmlReader {
         expect('<span');
         var style = '';
         if (take(' style="')) {
-          style = until('"', maxLength: 90);
+          style = until('"', maxLength: 112);
           expect('"');
         }
         expect('>');
@@ -396,7 +415,7 @@ final class _ComposeHtmlReader {
           link = _decode(
             until('"', maxLength: MailComposeRun.maxLinkBytes * 6),
           );
-          expect('" style="text-decoration:inherit">');
+          expect('" style="color:inherit;text-decoration:inherit">');
         }
         final text = StringBuffer();
         final close = link == null ? '</span>' : '</a>';
@@ -423,6 +442,7 @@ final class _ComposeHtmlReader {
           underline: style.contains('underline'),
           strike: style.contains('line-through'),
           link: link,
+          linkBlue: style.contains('color:#0563C1'),
         );
         if (_style(run) != style) _invalid();
         runs.add(run);

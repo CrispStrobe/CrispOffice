@@ -12,6 +12,9 @@ All notable changes to `quds_office_editor` are documented here.
   inconsistent snapshots fail explicitly. Legacy plain drafts keep their
   independent save and submission limits. Signature insertion retains existing
   formatting; saving a rich message as a plain template requires confirmation.
+  Preserve supported empty-paragraph typing styles and fixed link-blue color
+  across the integrated Word Enter behavior; stale link/paste results cannot
+  mutate a newer selection or compose owner.
 - Show a bounded, inert formatted body in Outbox review with selectable text,
   paragraph direction/alignment and explicit clipping. Links have no activation
   handlers and exact MIME/private-envelope exports remain unchanged. See the

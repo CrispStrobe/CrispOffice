@@ -16,17 +16,15 @@ MailComposeBody studioMailRichBodyFromDocument(WmlDocument document) {
     for (final inline in paragraph.inlines) {
       if (++runCount > MailComposeBody.maxRuns) _unsupported();
       final run = _checkedRun(inline);
-      final format = run.properties;
-      runs.add(
-        MailComposeRun(
-          text: run.text,
-          bold: format.bold,
-          italic: format.italic,
-          underline: format.underline == WmlUnderline.single,
-          strike: format.strike,
-          link: run.hyperlink?.url,
-        ),
-      );
+      runs.add(_composeRun(run.text, run.properties, link: run.hyperlink?.url));
+    }
+    if (paragraph.text.isEmpty && props.importedParagraphMark != null) {
+      // Enter stores the next typing format on its paragraph mark. Retain it
+      // as the final empty run; Word reads that run when the Mail body reopens.
+      // It supersedes empty run placeholders; zero-width links retain their
+      // metadata. Every original run was still checked before this projection.
+      runs.removeWhere((run) => run.link == null);
+      runs.add(_composeRun('', props.importedParagraphMark!));
     }
     paragraphs.add(
       MailComposeParagraph(
@@ -66,19 +64,37 @@ MailComposeBody? studioMailOptionalRichBodyFromDocument(WmlDocument document) {
         !inferredRtl &&
         (props.justification != WmlJustification.left ||
             props.rightToLeft != null);
+    final emptyTypingMark =
+        paragraph.text.isEmpty && props.importedParagraphMark != null;
     for (final inline in paragraph.inlines) {
       final run = _checkedRun(inline);
       final format = run.properties;
       formatted |=
-          format.bold ||
-          format.italic ||
-          format.underline != WmlUnderline.none ||
-          format.strike ||
-          run.hyperlink != null;
+          run.hyperlink != null ||
+          (!emptyTypingMark &&
+              (format.bold ||
+                  format.italic ||
+                  format.underline != WmlUnderline.none ||
+                  format.strike ||
+                  format.color.toUpperCase() == WordLink.color));
+    }
+    if (emptyTypingMark) {
+      formatted |= _composeRun('', props.importedParagraphMark!).hasFormatting;
     }
   }
   return formatted ? studioMailRichBodyFromDocument(document) : null;
 }
+
+MailComposeRun _composeRun(String text, WmlRunProps format, {String? link}) =>
+    MailComposeRun(
+      text: text,
+      bold: format.bold,
+      italic: format.italic,
+      underline: format.underline == WmlUnderline.single,
+      strike: format.strike,
+      link: link,
+      linkBlue: format.color.toUpperCase() == WordLink.color,
+    );
 
 List<WmlBlock> _checkedBlocks(WmlDocument document) {
   if (document.sections.length != 1 ||
@@ -254,7 +270,7 @@ WmlRun _checkedRun(WmlInline inline) {
           !MailComposeRun.isSupportedLink(link.url!))) {
     _unsupported();
   }
-  _checkRun(inline.properties, linked: link != null);
+  _checkRun(inline.properties);
   return inline;
 }
 
@@ -288,7 +304,7 @@ WmlDocument studioMailDocumentFromRichBody(MailComposeBody body) => WmlDocument(
                         ? WmlUnderline.single
                         : WmlUnderline.none,
                     strike: run.strike,
-                    color: run.link == null ? '000000' : WordLink.color,
+                    color: run.linkBlue ? WordLink.color : '000000',
                   ),
                   hyperlink: run.link == null
                       ? null
@@ -304,7 +320,6 @@ WmlDocument studioMailDocumentFromRichBody(MailComposeBody body) => WmlDocument(
 void _checkParagraph(WmlParagraphProps props) {
   if (props.sourcePropertiesXml != null ||
       props.importedValues != null ||
-      props.importedParagraphMark != null ||
       props.lineSpacing != 1.15 ||
       props.lineSpacingRule != WmlLineSpacingRule.auto ||
       props.spacingBefore != 0 ||
@@ -342,9 +357,10 @@ void _checkParagraph(WmlParagraphProps props) {
     _unsupported();
   }
   if (props.justification == WmlJustification.distributed) _unsupported();
+  if (props.importedParagraphMark case final mark?) _checkRun(mark);
 }
 
-void _checkRun(WmlRunProps props, {required bool linked}) {
+void _checkRun(WmlRunProps props) {
   if (props.sourcePropertiesXml != null ||
       props.importedValues != null ||
       props.hasEmptyFormattingRevision ||
@@ -352,7 +368,7 @@ void _checkRun(WmlRunProps props, {required bool linked}) {
       props.allCaps ||
       props.smallCaps ||
       (props.color.toUpperCase() != '000000' &&
-          !(linked && props.color.toUpperCase() == WordLink.color)) ||
+          props.color.toUpperCase() != WordLink.color) ||
       props.highlight != null ||
       props.fontSizeHalfPoints != 22 ||
       props.kerningHalfPoints != 1 ||

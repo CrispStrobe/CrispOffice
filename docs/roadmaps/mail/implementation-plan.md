@@ -477,8 +477,9 @@ local drafts and offline entry for remembered explicit-server/preset IMAP
 accounts. The [verified-account continuation](offline-accounts.md) extends local
 draft entry to autodiscovered IMAP, EWS, Gmail and Microsoft 365 after successful
 connection. [Cached mailbox views](cached-mailboxes.md) now retain visited
-folder windows and explicitly opened content. Richer bodies, full offline
-synchronization, server draft synchronization,
+folder windows and explicitly opened content. Bounded rich composition now
+continues through local draft recovery and frozen Outbox editing; lists/inline
+objects, full offline synchronization, server draft synchronization,
 Sent reconciliation and live-provider gates remain open; this does not complete
 M07 or the document-snapshot work in M08.
 
@@ -487,7 +488,7 @@ M07 or the document-snapshot work in M08.
 - [x] Typed draft model, identity/To/Cc/Bcc, subject, attachments and reply/reply-all/forward, with independently retained local drafts per native account. Preserve incomplete recipient text separately from validated transport addresses.
 - [x] Debounce saves, flush close/send, expose pending/saved/failure states, compare revisions, retain immutable attachment blobs and restore after reconnect. Explicit confirmed unsaved exit remains available during storage failure.
 - [x] Persist a possible-submission marker before provider invocation. Recover interrupted sends with explicit delivery-check acknowledgement; clear accepted/discarded drafts durably. Only a matching definite rejection can retire the current attempt's marker, preserving any earlier uncertainty.
-- [x] Reuse the Word custom RenderBox surface for the plain-text body, including IME, selection, undo, bidi and accessibility. Rich mail formatting remains below.
+- [x] Reuse the Word custom RenderBox surface for the mail body, including IME, selection, undo, bidi and accessibility. The rich continuation retains this surface; its widget/installed acceptance is recorded separately.
 - [x] Add a bounded local draft list with independent IDs/revisions, new/resume/delete actions, per-draft uncertainty and exact Outbox handoff. Preserve the legacy draft and reject stale selection callbacks. See [multiple-drafts.md](multiple-drafts.md).
 - [x] Add save-only offline draft entry for remembered IMAP accounts with explicit servers or a provider preset, without constructing a provider or discovering settings.
 - [x] Persist bounded non-secret verified connection identities for autodiscovered IMAP, EWS, Gmail and Microsoft 365; reopen their original local draft catalogs without credentials, discovery or provider construction. Preserve exact account fingerprints and compare shortcut removal revisions. See [offline-accounts.md](offline-accounts.md).
@@ -503,7 +504,8 @@ M07 or the document-snapshot work in M08.
   from the original executor failure.
 - [ ] Add multiple sender identities/alias routing and full-message templates;
   saved writing tools do not change transport identities or recipient fields.
-- [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
+- [x] Add a bounded canonical body for paragraphs, line breaks, emphasis, safe links, alignment and direction; preserve matching plain/HTML alternatives through local storage, MIME and Outbox edit-copy. See [rich-composition.md](rich-composition.md) for executed checks and open Flutter runtime gates.
+- [ ] Extend the canonical body with lists, tables and inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.
 - [ ] Keep Bcc recipients in the SMTP envelope and out of transmitted headers, including folded/case-varied header cases.

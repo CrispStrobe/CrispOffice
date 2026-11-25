@@ -34,6 +34,7 @@ final class StudioMailRichPreviewData {
                   underline: run.underline,
                   strike: run.strike,
                   link: run.link,
+                  linkBlue: run.linkBlue,
                 )
               : run,
         );

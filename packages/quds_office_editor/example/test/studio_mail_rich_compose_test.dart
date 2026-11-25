@@ -9,6 +9,7 @@ import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_compose_tools.dart';
 import 'package:quds_office_studio/studio_mail_rich_strings.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
+import 'package:quds_office_studio/studio_mail_threading.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
@@ -184,6 +185,119 @@ void main() {
   );
 
   testWidgets(
+    'ordinary Enter keeps an unfinished draft plain and autosavable',
+    (tester) async {
+      final saved = <StudioMailDraft>[];
+      await _open(tester, save: (draft) async => saved.add(draft));
+      final controller = _body(tester);
+      controller.caret.logicalIndex = _plain.body.length;
+      controller.caret.collapseSelection();
+      controller.insertText('\nNext paragraph');
+      await _pump(tester);
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(saved.last.body, '${_plain.body}\nNext paragraph');
+      expect(saved.last.richBody, isNull);
+      expect(find.text(_strings.mailRichUnsupported), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'empty paragraph formatting supports Undo, Enter, reopen and continued typing',
+    (tester) async {
+      final saved = <StudioMailDraft>[];
+      await _open(
+        tester,
+        initial: StudioMailDraft(
+          to: _plain.to,
+          subject: _plain.subject,
+          body: '',
+        ),
+        save: (draft) async => saved.add(draft),
+      );
+      await _tap(tester, _key('bold'));
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(_body(tester).activeRunProps.bold, isTrue);
+      expect(saved.last.body, isEmpty);
+      expect(saved.last.richBody?.paragraphs.single.runs.single.bold, isTrue);
+      await _tap(tester, _key('undo'));
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(_body(tester).activeRunProps.bold, isFalse);
+      expect(saved.last.richBody, isNull);
+      await _tap(tester, _key('bold'));
+      _body(tester).insertText('First\n');
+      await _pump(tester);
+      await tester.pump(const Duration(milliseconds: 600));
+      final reopened = saved.last;
+      expect(reopened.body, 'First\n');
+      expect(reopened.richBody!.paragraphs.last.runs.single.text, isEmpty);
+      expect(reopened.richBody!.paragraphs.last.runs.single.bold, isTrue);
+      await tester.pumpWidget(const SizedBox.shrink());
+
+      StudioMailDraft? sent;
+      await _open(tester, initial: reopened, finish: (draft) => sent = draft);
+      final controller = _body(tester);
+      controller.caret.paragraphIndex = 1;
+      controller.caret.logicalIndex = 0;
+      controller.caret.collapseSelection();
+      controller.insertText('Second');
+      await _pump(tester);
+      await _tap(tester, find.widgetWithText(FilledButton, _strings.send));
+      expect(sent?.body, 'First\nSecond');
+      expect(
+        sent!.richBody!.paragraphs.every(
+          (paragraph) => paragraph.runs.every((run) => run.bold),
+        ),
+        isTrue,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'multiline typing after a link retains inherited appearance without linking the new paragraph',
+    (tester) async {
+      final rich = _rich();
+      final saved = <StudioMailDraft>[];
+      await _open(
+        tester,
+        initial: StudioMailDraft(
+          to: _plain.to,
+          subject: _plain.subject,
+          body: rich.plainText,
+          richBody: rich,
+        ),
+        save: (draft) async => saved.add(draft),
+      );
+      final controller = _body(tester);
+      controller.caret.logicalIndex = rich.plainText.length;
+      controller.caret.collapseSelection();
+      controller.insertText('\nContinuation');
+      await _pump(tester);
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(saved.last.body, '${rich.plainText}\nContinuation');
+      final continuation = saved.last.richBody!.paragraphs.last.runs.single;
+      expect(continuation.text, 'Continuation');
+      expect(continuation.link, isNull);
+      expect(continuation.linkBlue, isTrue);
+      expect(continuation.italic, isTrue);
+      expect(find.text(_strings.mailRichUnsupported), findsNothing);
+      final reopened = saved.last;
+      await tester.pumpWidget(const SizedBox.shrink());
+      await _open(tester, initial: reopened);
+      final run = _body(tester).document.paragraphs.last.inlines
+          .whereType<WmlRun>()
+          .single;
+      expect(run.hyperlink, isNull);
+      expect(run.properties.color, WordLink.color);
+      expect(run.properties.italic, isTrue);
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
     'a format edit during a pending save gets its own immutable revision',
     (tester) async {
       final firstWrite = Completer<void>();
@@ -306,7 +420,8 @@ void main() {
     tester,
   ) async {
     final read = Completer<List<Object?>>();
-    final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
     const channel = MethodChannel('crispoffice/mail_pasteboard');
     messenger.setMockMethodCallHandler(channel, (_) => read.future);
     var textReads = 0;
@@ -318,7 +433,9 @@ void main() {
       return null;
     });
     addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
-    addTearDown(() => messenger.setMockMethodCallHandler(SystemChannels.platform, null));
+    addTearDown(
+      () => messenger.setMockMethodCallHandler(SystemChannels.platform, null),
+    );
     await _open(tester);
     final editor = tester.widget<QudsWordEditor>(_key('compose-body'));
     final paste = editor.onPasteOverride!(keepTextOnly: true);
@@ -329,13 +446,16 @@ void main() {
     await paste;
     await tester.pump();
     expect(textReads, 0);
-    expect(editor.controller.document.paragraphs.single.text, '${_plain.body} changed');
+    expect(
+      editor.controller.document.paragraphs.single.text,
+      '${_plain.body} changed',
+    );
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
   testWidgets(
-    'unsupported list blocks save and send until Undo restores the body',
+    'unsupported list blocks save, close and send until Undo restores the body',
     (tester) async {
       final saved = <StudioMailDraft>[];
       StudioMailDraft? sent;
@@ -349,6 +469,12 @@ void main() {
       _body(tester).toggleList(numbered: true);
       await tester.pump(const Duration(milliseconds: 600));
       expect(_key('rich-unsupported'), findsOneWidget);
+      expect(saved.length, savedBeforeList);
+      await _tap(
+        tester,
+        find.widgetWithText(TextButton, _strings.mailDraftSaveClose),
+      );
+      expect(find.byType(StudioMailComposeDialog), findsOneWidget);
       expect(saved.length, savedBeforeList);
       await _tap(tester, find.widgetWithText(FilledButton, _strings.send));
       expect(sent, isNull);
@@ -364,18 +490,32 @@ void main() {
   );
 
   testWidgets(
-    'saving a rich template requires explicit plain-text confirmation',
+    'saving a rich template confirms plain text while preserving the live reply and attachment',
     (tester) async {
       final rich = _rich();
       final tools = _Tools();
+      final thread = StudioMailThread.replyTo(
+        MailEnvelope(messageId: '<parent@example.test>'),
+      );
+      final attachments = StudioMailAttachments.from([
+        StudioMailAttachment(
+          name: 'retained.txt',
+          bytes: Uint8List.fromList([65, 66]),
+        ),
+      ]);
+      StudioMailDraft? sent;
       await _open(
         tester,
         tools: tools,
+        finish: (draft) => sent = draft,
         initial: StudioMailDraft(
           to: _plain.to,
+          bcc: 'private@example.test',
           subject: _plain.subject,
           body: rich.plainText,
           richBody: rich,
+          thread: thread,
+          attachments: attachments,
         ),
       );
       await _tap(tester, _key('save-template'));
@@ -394,7 +534,11 @@ void main() {
             .bold,
         isTrue,
       );
-      await tester.pumpWidget(const SizedBox.shrink());
+      await _tap(tester, find.widgetWithText(FilledButton, _strings.send));
+      expect(sent!.richBody!.html, rich.html);
+      expect(sent!.thread, same(thread));
+      expect(sent!.attachments, same(attachments));
+      expect(sent!.bcc, 'private@example.test');
       expect(tester.takeException(), isNull);
     },
   );

@@ -30,6 +30,12 @@ MailComposeBody _rich() => MailComposeBody(
         MailComposeRun(text: 'Italic', italic: true),
         MailComposeRun(text: 'Both', underline: true, strike: true),
         MailComposeRun(text: 'Inert link', link: 'https://example.test/'),
+        MailComposeRun(text: 'Inherited blue', linkBlue: true),
+        MailComposeRun(
+          text: 'Black link',
+          link: 'https://example.test/',
+          linkBlue: false,
+        ),
       ],
     ),
     MailComposeParagraph(
@@ -83,6 +89,10 @@ void main() {
         ]),
       );
       expect(spans.every((span) => span.recognizer == null), isTrue);
+      const blue = Color(0xff000000 | MailComposeRun.linkBlueRgb);
+      expect(spans[3].style!.color, blue);
+      expect(spans[4].style!.color, blue);
+      expect(spans[5].style!.color, isNull);
       final second = tester.widget<SelectableText>(
         find.byKey(const ValueKey('studio-mail-rich-preview-paragraph-1')),
       );

@@ -142,6 +142,152 @@ void main() {
     expect(studioMailRichBodyFromDocument(restored), snapshot);
   });
 
+  test('ordinary Enter marks retain the unformatted legacy path', () {
+    final document = WmlDocument.empty(text: 'First');
+    final next = WmlParagraph(
+      properties: WmlParagraphProps()..importedParagraphMark = WmlRunProps(),
+      inlines: [WmlRun()],
+    );
+    document.sections.single.blocks.add(next);
+    expect(studioMailOptionalRichBodyFromDocument(document), isNull);
+    WmlRunEdit.replaceRange(next, 0, 0, 'Second');
+    expect(studioMailOptionalRichBodyFromDocument(document), isNull);
+    expect(studioMailRichBodyFromDocument(document).plainText, 'First\nSecond');
+  });
+
+  test('empty paragraph marks preserve supported typing styles on reopen', () {
+    final mark = WmlRunProps(
+      bold: true,
+      italic: true,
+      underline: WmlUnderline.single,
+      strike: true,
+      color: WordLink.color,
+    );
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              properties: WmlParagraphProps()..importedParagraphMark = mark,
+              inlines: [WmlRun()],
+            ),
+          ],
+        ),
+      ],
+    );
+    final body = studioMailOptionalRichBodyFromDocument(document)!;
+    expect(body.plainText, isEmpty);
+    final typing = body.paragraphs.single.runs.last;
+    expect(
+      typing.bold && typing.italic && typing.underline && typing.strike,
+      isTrue,
+    );
+    expect(typing.linkBlue, isTrue);
+    expect(typing.link, isNull);
+    final reopened = studioMailDocumentFromRichBody(body);
+    expect(studioMailRichBodyFromDocument(reopened), body);
+    final paragraph = reopened.paragraphs.single;
+    expect(WmlRunEdit.propsAt(paragraph, 0).color, WordLink.color);
+    WmlRunEdit.replaceRange(paragraph, 0, 0, 'Typed\nsoft break');
+    final saved = studioMailRichBodyFromDocument(reopened);
+    final text = saved.paragraphs.single.runs.single;
+    expect(text.text, 'Typed\nsoft break');
+    expect(text.bold && text.italic && text.underline && text.strike, isTrue);
+    expect(text.linkBlue, isTrue);
+    expect(text.link, isNull);
+  });
+
+  test(
+    'linked paragraph continuation retains blue without inventing a link',
+    () {
+      final linked = WordLink.linkedRun(
+        'Link',
+        const WmlHyperlink(url: 'https://example.test'),
+      )..properties.italic = true;
+      final first = WmlParagraph(inlines: [linked]);
+      final next = WmlParagraph(
+        properties: WmlParagraphProps()
+          ..importedParagraphMark = linked.properties.copy(),
+        inlines: [WmlRun()],
+      );
+      final document = WmlDocument(
+        sections: [
+          WmlSection(blocks: [first, next]),
+        ],
+      );
+      WmlRunEdit.replaceRange(next, 0, 0, 'Continuation\nmore');
+      final body = studioMailRichBodyFromDocument(document);
+      expect(body.plainText, 'Link\nContinuation\nmore');
+      final continuation = body.paragraphs.last.runs.single;
+      expect(continuation.linkBlue && continuation.italic, isTrue);
+      expect(continuation.link, isNull);
+      final reopened = studioMailDocumentFromRichBody(body);
+      expect(studioMailRichBodyFromDocument(reopened), body);
+      expect(
+        (reopened.paragraphs.last.inlines.single as WmlRun).properties.color,
+        WordLink.color,
+      );
+    },
+  );
+
+  test(
+    'empty typing mark supersedes inactive placeholders without losing links',
+    () {
+      final document = WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [
+              WmlParagraph(
+                properties: WmlParagraphProps()
+                  ..importedParagraphMark = WmlRunProps(),
+                inlines: [WmlRun(properties: WmlRunProps(bold: true))],
+              ),
+            ],
+          ),
+        ],
+      );
+      expect(studioMailOptionalRichBodyFromDocument(document), isNull);
+      final paragraph = document.paragraphs.single;
+      paragraph.inlines.add(
+        WordLink.linkedRun('', const WmlHyperlink(url: 'https://example.test')),
+      );
+      final body = studioMailRichBodyFromDocument(document);
+      expect(body.paragraphs.single.runs.first.link, 'https://example.test');
+      expect(body.paragraphs.single.runs.last.hasFormatting, isFalse);
+      final reopened = studioMailDocumentFromRichBody(body);
+      expect(studioMailRichBodyFromDocument(reopened), body);
+      expect(WmlRunEdit.propsAt(reopened.paragraphs.single, 0).bold, isFalse);
+    },
+  );
+
+  test('paragraph marks cannot conceal unsupported imported styling', () {
+    for (final mark in [
+      WmlRunProps(color: 'FF0000'),
+      WmlRunProps(fontSizeHalfPoints: 48),
+      WmlRunProps(styleId: 'Imported'),
+      WmlRunProps(underline: WmlUnderline.wavy),
+    ]) {
+      for (final text in ['', 'Visible']) {
+        final document = WmlDocument(
+          sections: [
+            WmlSection(
+              blocks: [
+                WmlParagraph(
+                  properties: WmlParagraphProps()..importedParagraphMark = mark,
+                  inlines: [WmlRun(text: text)],
+                ),
+              ],
+            ),
+          ],
+        );
+        expect(
+          () => studioMailOptionalRichBodyFromDocument(document),
+          throwsFormatException,
+        );
+      }
+    }
+  });
+
   test('Undo of a list can retain dormant editor numbering definitions', () {
     for (final kinds in const [
       [true],

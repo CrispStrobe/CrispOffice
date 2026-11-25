@@ -904,6 +904,24 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _bodyFocus.requestFocus();
   }
 
+  void _formatRun(void Function(WmlRunProps props) update) {
+    final paragraph = _body.document.paragraphs.elementAt(
+      _body.caret.paragraphIndex,
+    );
+    if (_body.caret.isCollapsed && paragraph.text.isEmpty) {
+      // An empty paragraph takes future typing from its paragraph mark. Use
+      // the existing paragraph command so the intent also survives Undo,
+      // autosave and reopening before any visible character is entered.
+      final mark = _body.activeRunProps.copy();
+      update(mark);
+      _body.applyParagraphFormat(
+        (props) => props.importedParagraphMark = mark.copy(),
+      );
+      return;
+    }
+    _body.applyRunFormat(update);
+  }
+
   Future<void> _addLink() async {
     if (!_canFormatBody) return;
     _body.commitPendingEdits();
@@ -1031,21 +1049,21 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
               'studio-mail-bold',
               strings.mailRichBold,
               Icons.format_bold,
-              () => _body.applyRunFormat((props) => props.bold = !run.bold),
+              () => _formatRun((props) => props.bold = !run.bold),
               selected: run.bold,
             ),
             button(
               'studio-mail-italic',
               strings.mailRichItalic,
               Icons.format_italic,
-              () => _body.applyRunFormat((props) => props.italic = !run.italic),
+              () => _formatRun((props) => props.italic = !run.italic),
               selected: run.italic,
             ),
             button(
               'studio-mail-underline',
               strings.mailRichUnderline,
               Icons.format_underline,
-              () => _body.applyRunFormat(
+              () => _formatRun(
                 (props) => props.underline = run.underline == WmlUnderline.none
                     ? WmlUnderline.single
                     : WmlUnderline.none,
@@ -1056,7 +1074,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
               'studio-mail-strike',
               strings.mailRichStrike,
               Icons.format_strikethrough,
-              () => _body.applyRunFormat((props) => props.strike = !run.strike),
+              () => _formatRun((props) => props.strike = !run.strike),
               selected: run.strike,
             ),
             PopupMenuButton<WmlJustification>(
