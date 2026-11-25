@@ -1,0 +1,19 @@
+{
+  "head": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+  "exit_code": 0,
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "analysis_root"
+  ],
+  "production_files": 20,
+  "test_files": 7,
+  "diagnostics": "No issues found!",
+  "log": {
+    "path": "logs/merged_final_pure_analysis.log",
+    "sha256": "ae1326a2a0c21a3be8b22caa4669b725c08896555f1d0f896162a1f9ef5b88d6"
+  },
+  "production_copy_manifest": "analysis_root/source_manifest.json",
+  "test_copy_manifest": "merged_test_copies.json"
+}

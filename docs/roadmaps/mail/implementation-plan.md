@@ -478,7 +478,7 @@ accounts. The [verified-account continuation](offline-accounts.md) extends local
 draft entry to autodiscovered IMAP, EWS, Gmail and Microsoft 365 after successful
 connection. [Cached mailbox views](cached-mailboxes.md) now retain visited
 folder windows and explicitly opened content. Bounded rich composition now
-continues through local draft recovery and frozen Outbox editing; lists/inline
+continues through local draft recovery and frozen Outbox edit-copy; lists/inline
 objects, full offline synchronization, server draft synchronization,
 Sent reconciliation and live-provider gates remain open; this does not complete
 M07 or the document-snapshot work in M08.

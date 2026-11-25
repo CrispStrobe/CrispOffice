@@ -1,0 +1,90 @@
+{
+  "source_commit": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+  "files": [
+    {
+      "path": "HARNESS_RECIPE.md",
+      "bytes": 4081,
+      "sha256": "945e63b25c3e729c266f39a161b216c4f4cd0f5038b44f9f275901bbf7cdde24"
+    },
+    {
+      "path": "MERGED_VALIDATION.md",
+      "bytes": 4408,
+      "sha256": "6297c0231adbca04dd077a468031cd6cbe161c342f71c20f261419abcfb7533a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10277,
+      "sha256": "cf0d871d3bfeecc4c3feffb39037252408ab1aaa2e910c9b909bb3661ba682cb"
+    },
+    {
+      "path": "analysis_root/source_manifest.json",
+      "bytes": 4773,
+      "sha256": "183f4a2416ce6d4d94f330c0e655459cbde1c38bf49a173d20d78f9ad4f9a67a"
+    },
+    {
+      "path": "analyze_flutter_sources.py",
+      "bytes": 6299,
+      "sha256": "c45f97b1ffd6b80c51aafcb1d3c92955aa6904ab164c310fc6972c4ba60f2374"
+    },
+    {
+      "path": "create_validation_harness.py",
+      "bytes": 6671,
+      "sha256": "7b80351a40c20fdec7fe5331df0f13b65e28c75c12dc4ec269fb6b3d458417b2"
+    },
+    {
+      "path": "flutter_analysis_result.json",
+      "bytes": 7840,
+      "sha256": "708f42df5a43c102a93c1bed1f652ae8a081cabd54264b743294af5cc251ac1c"
+    },
+    {
+      "path": "flutter_source_analysis.json",
+      "bytes": 11361,
+      "sha256": "16632410bef702a946335e8f888c3ab452afa57c45502b0e0aa35291974102d8"
+    },
+    {
+      "path": "logs/merged_final_events.jsonl",
+      "bytes": 113280,
+      "sha256": "ed96535c226d0e02c8cbed8042f0bd9d2541c5e1d42e484abbd1f9008d0af8e4"
+    },
+    {
+      "path": "logs/merged_final_pure_analysis.log",
+      "bytes": 44,
+      "sha256": "ae1326a2a0c21a3be8b22caa4669b725c08896555f1d0f896162a1f9ef5b88d6"
+    },
+    {
+      "path": "logs/merged_final_pure_validation.log",
+      "bytes": 45685,
+      "sha256": "33d4d4ee395a1284c76be2e6d44133faf442d3a41eff75d4684d89b7bb7a7087"
+    },
+    {
+      "path": "merged_analysis_verification.json",
+      "bytes": 512,
+      "sha256": "df88d8572b544f307314237a9dc96c6eeb31ba1e62b3a93a3e4bd4a9f325f901"
+    },
+    {
+      "path": "merged_environment.json",
+      "bytes": 8593,
+      "sha256": "27405c6992ea4c0a8129916342f870a614b91abaa80f2813a76914570a508cd2"
+    },
+    {
+      "path": "merged_final_source_manifest.json",
+      "bytes": 115352,
+      "sha256": "f8b9efefe974829f443841d95a19a4680de9bbbadba7bf263656633b24cf29aa"
+    },
+    {
+      "path": "merged_final_verification.json",
+      "bytes": 3644,
+      "sha256": "61fa342aa6486745c1c1b123b7ad296d09b2d4942d91cbf61f9a6b6e723bee0a"
+    },
+    {
+      "path": "merged_test_copies.json",
+      "bytes": 4455,
+      "sha256": "a74e508644648f6159db06c8c11cb15f35bdac8079e226b079bc1da5151a4793"
+    },
+    {
+      "path": "prepare_flutter_analysis.py",
+      "bytes": 5717,
+      "sha256": "79f43ab1ad6d75758bc6c27102a8dccd1b959bbbe8a9099032a193042da0eee2"
+    }
+  ]
+}

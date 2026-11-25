@@ -1,0 +1,102 @@
+[
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+    "copy": "analysis_root/lib/studio_mail_flag_journal.dart",
+    "sha256": "268c8100679f21d57cbea06a28e5a6756d43a22639d8f12cbb83fe676209eab6"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+    "copy": "analysis_root/lib/studio_mail_submission.dart",
+    "sha256": "6c7600e7c2398f4bc3855fc038b8240785f8bdef8c9c198e0a4a5ffb43df0bca"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_archive_settings_store.dart",
+    "copy": "analysis_root/lib/studio_mail_archive_settings_store.dart",
+    "sha256": "c9207a18a4bac408abf372de66d0337659f5d1218d8623a938374b327bf33c34"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_outbox.dart",
+    "copy": "analysis_root/lib/studio_mail_outbox.dart",
+    "sha256": "e945844b04a8849fdb30448d4181e3f1af9dd4c26006850aaaae394924882b9d"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_rich_preview_data.dart",
+    "copy": "analysis_root/lib/studio_mail_rich_preview_data.dart",
+    "sha256": "c291cd90942c5329cba6599d0c03fa62544dc12fe4cf69c4b574682fa38045d2"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_outbox_content.dart",
+    "copy": "analysis_root/lib/studio_mail_outbox_content.dart",
+    "sha256": "3ccae0afbcee38f74e76d7f5b0e1a000e6cf43648e9ad99370ee5c096bd03878"
+  },
+  {
+    "source": "packages/quds_mail_core/lib/src/model/compose_body.dart",
+    "copy": "analysis_root/lib/compose_body.dart",
+    "sha256": "36bb9b59e99a1da6a75807ea8e746ff4a9d3703bc10433c41eef452659f5b6b7"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_rich_body.dart",
+    "copy": "analysis_root/lib/studio_mail_rich_body.dart",
+    "sha256": "6fc7621016a6aa95a20a22bac3274aa54d7e42de3114322ac99775e96a92aee6"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+    "copy": "analysis_root/lib/studio_mail_draft.dart",
+    "sha256": "7a7c2cdd342b31f81c7823f1bba0a0cffb592952506b1a394d4b7c83e2cf8cc3"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_membership_reconciliation.dart",
+    "copy": "analysis_root/lib/studio_mail_membership_reconciliation.dart",
+    "sha256": "656a572a03cff6ab8ec8e79e1095ec5e93d37e7aa06164b6155fc43d03116a07"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_attachment.dart",
+    "copy": "analysis_root/lib/studio_mail_attachment.dart",
+    "sha256": "ad540676128328892f9ca25989c76e8a52c98fa62fcbff43b78c89c78aaf70fa"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+    "copy": "analysis_root/lib/studio_mail_draft_store.dart",
+    "sha256": "dd49e21098a5f44259112f2561f13cfd56e891ea6c796f8d86fbc1595847cda8"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "copy": "analysis_root/lib/studio_strings.dart",
+    "sha256": "06f1839256db64a929e718125da58c35c965f8c4adea3133eb2c93701155b8a5"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+    "copy": "analysis_root/lib/studio_mail_mailbox_store.dart",
+    "sha256": "ac19bd13cfbe06418efe4f68999a797fc2b477f9b7dc91897568bbc09468267d"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_flag_reconciliation.dart",
+    "copy": "analysis_root/lib/studio_mail_flag_reconciliation.dart",
+    "sha256": "53e9fb1645bfbd8283f9e9960fe0f2de3a79b6feaf4304e6a5ca7bbf29cb2590"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+    "copy": "analysis_root/lib/studio_mail_outbox_strings.dart",
+    "sha256": "927078ed7e84658b5cdd4403bbe5e07c23acdab70dbaee2637fe42602ef241fb"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+    "copy": "analysis_root/lib/studio_mail_threading.dart",
+    "sha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+    "copy": "analysis_root/lib/studio_de_strings.dart",
+    "sha256": "aefd886709551df5336cc41ea7b4e12cecc08356de6d63359e0d57df207227e7"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_compose_tools.dart",
+    "copy": "analysis_root/lib/studio_mail_compose_tools.dart",
+    "sha256": "9aecf8c187be5cb5b2e2b89bb0d62e01b8697dd852bc38575b3273b4d0c6358e"
+  },
+  {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+    "copy": "analysis_root/lib/studio_mail_recipients.dart",
+    "sha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8"
+  }
+]

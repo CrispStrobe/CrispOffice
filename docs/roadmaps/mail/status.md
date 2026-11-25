@@ -41,7 +41,7 @@ keeps inherited work separate from the rich-composition qualification.
 The [rich-composition guide](rich-composition.md) specifies the supported
 formatting and explicit refusal boundaries. Bold, italic, underline,
 strikethrough, safe links, alignment and text direction survive autosave,
-database close/reopen, MIME and Outbox editing. Legacy plain drafts retain
+database close/reopen, MIME and Outbox edit-copy. Legacy plain drafts retain
 their separate persistence and send limits. Rich Outbox review is bounded
 selectable text with no active links or resource loading.
 
