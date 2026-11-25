@@ -20,6 +20,27 @@ String _identityId() {
   ).join();
 }
 
+bool _samePendingSettings(MailComposeSettings first, MailComposeSettings next) =>
+    first.account == next.account &&
+    first.revision == next.revision &&
+    first.signature == next.signature &&
+    first.signatureForNewMessages == next.signatureForNewMessages &&
+    first.signatureForReplies == next.signatureForReplies &&
+    first.defaultSenderIdentityId == next.defaultSenderIdentityId &&
+    _sameSettingsEntries(first.quickTexts, next.quickTexts) &&
+    _sameSettingsEntries(first.senderIdentities, next.senderIdentities) &&
+    _sameSettingsEntries(first.templates, next.templates);
+
+// The parent may rebuild an equivalent settings wrapper. Its immutable entry
+// objects stay stable until a pending edit replaces or reorders one of them.
+bool _sameSettingsEntries<T>(List<T> first, List<T> next) {
+  if (first.length != next.length) return false;
+  for (var index = 0; index < first.length; index++) {
+    if (!identical(first[index], next[index])) return false;
+  }
+  return true;
+}
+
 /// Edits the identity/template portion of a pending account-settings revision.
 /// The parent owns the one atomic save; these controls never access a provider.
 class StudioMailIdentityTemplates extends StatefulWidget {
@@ -125,10 +146,10 @@ class _StudioMailIdentityTemplatesState
       settings: settings,
       initial: template,
       isCurrent: () =>
-          _canEdit && identical(settings, widget.settings),
+          _canEdit && _samePendingSettings(settings, widget.settings),
     );
     if (!_canEdit ||
-        !identical(settings, widget.settings) ||
+        !_samePendingSettings(settings, widget.settings) ||
         result == null) {
       return;
     }

@@ -330,7 +330,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('a newer pending settings object retires an open template editor', (
+  testWidgets('changed pending settings retire an open template editor', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(1200, 1000));
@@ -372,6 +372,77 @@ void main() {
     await _tap(tester, find.widgetWithText(TextButton, _strings.cancel));
     expect(changes, isEmpty);
     expect(pending.value.signature, 'New pending signature');
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('equivalent pending settings wrappers keep an open editor current', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 1000));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rich = _rich();
+    final initial = MailComposeSettings(
+      account: _account,
+      revision: 7,
+      signature: 'Retained signature',
+      signatureForNewMessages: true,
+      signatureForReplies: true,
+      defaultSenderIdentityId: 'work',
+      quickTexts: const [
+        MailQuickText(id: 'thanks', name: 'Thanks', text: 'Thank you'),
+      ],
+      senderIdentities: const [
+        MailSenderIdentity(
+          id: 'work',
+          name: 'Work',
+          address: 'writer@example.test',
+        ),
+      ],
+      templates: [_template(rich)],
+    );
+    final pending = ValueNotifier(initial);
+    addTearDown(pending.dispose);
+    final changes = <MailComposeSettings>[];
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ValueListenableBuilder<MailComposeSettings>(
+            valueListenable: pending,
+            builder: (context, settings, child) => StudioMailIdentityTemplates(
+              strings: _strings,
+              settings: settings,
+              isCurrent: () => true,
+              onChanged: changes.add,
+            ),
+          ),
+        ),
+      ),
+    );
+    await _tap(tester, _key('message-templates'));
+    await _tap(tester, _key('template-edit-saved-rich-template'));
+    await tester.ensureVisible(_key('template-subject'));
+    await tester.enterText(_key('template-subject'), 'Edited after rebuild');
+    pending.value = initial.copyWith();
+    await _pump(tester);
+    expect(identical(pending.value, initial), isFalse);
+    expect(pending.value.templates.single, same(initial.templates.single));
+    await _tap(tester, _key('template-apply'));
+    expect(changes, hasLength(1));
+    final changed = changes.single;
+    expect(changed.revision, initial.revision);
+    expect(changed.signature, initial.signature);
+    expect(changed.signatureForNewMessages, isTrue);
+    expect(changed.signatureForReplies, isTrue);
+    expect(changed.defaultSenderIdentityId, 'work');
+    expect(changed.quickTexts.single, same(initial.quickTexts.single));
+    expect(
+      changed.senderIdentities.single,
+      same(initial.senderIdentities.single),
+    );
+    expect(changed.templates.single.subject, 'Edited after rebuild');
+    expect(changed.templates.single.richBody!.html, rich.html);
+    expect(_key('template-body'), findsNothing);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
