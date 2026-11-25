@@ -51,6 +51,36 @@ void main() {
     },
   );
 
+  test(
+    'update recovery matches only the changed fields and known normalizations',
+    () {
+      final patch = TaskPatch(
+        notes: const TaskFieldPatch.set(TaskText('A & B\nNext')),
+        due: TaskFieldPatch.set(TaskDate(2030, 2, 3)),
+      );
+      final confirmed = RemoteTask(
+        id: task,
+        fields: TaskFields(
+          title: 'Independent server title',
+          notes: const TaskText(
+            '<div>A &amp; B<br>Next</div>',
+            format: TaskTextFormat.html,
+          ),
+          due: TaskDateTime('2030-02-03T00:00:00.000', timeZone: 'UTC'),
+        ),
+      );
+      expect(provider.matchesUpdate(confirmed, patch), isTrue);
+      expect(
+        provider.matchesUpdate(
+          confirmed,
+          TaskPatch(due: TaskFieldPatch.set(TaskDate(2030, 2, 4))),
+        ),
+        isFalse,
+      );
+      expect(provider.matchesUpdate(confirmed, const TaskPatch()), isFalse);
+    },
+  );
+
   test('list delta distinguishes ID-only tombstones and checkpoint', () async {
     transport.replies.add(
       _json({

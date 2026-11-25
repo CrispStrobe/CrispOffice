@@ -146,6 +146,46 @@ final class GraphTaskProvider {
     return parsed;
   });
 
+  /// Compares a read-back to the exact values sent in an update, including
+  /// known Graph representations for civil dates and escaped plain notes.
+  /// Unrecognized server transformations remain unresolved.
+  bool matchesUpdate(RemoteTask observed, TaskPatch expected) {
+    if (observed.id.account != account || expected.isEmpty) return false;
+    bool matches<T extends Object>(TaskFieldPatch<T> field, T? actual) =>
+        !field.isChanged || field.value == actual;
+
+    bool date(TaskFieldPatch<TaskDateValue> field, TaskDateValue? actual) {
+      if (matches(field, actual)) return true;
+      final value = field.value;
+      if (value is! TaskDate || actual is! TaskDateTime) return false;
+      final serialized = _date(value);
+      return actual ==
+          TaskDateTime(
+            serialized['dateTime'] as String,
+            timeZone: dateOnlyTimeZone,
+          );
+    }
+
+    bool notes(TaskText? actual) {
+      if (matches(expected.notes, actual)) return true;
+      if (expected.notes.isClear) return actual?.value.isEmpty ?? true;
+      final value = expected.notes.value;
+      return value != null &&
+          actual?.format == TaskTextFormat.html &&
+          actual?.value == _notes(value)['content'];
+    }
+
+    final fields = observed.fields;
+    return matches(expected.title, fields.title) &&
+        notes(fields.notes) &&
+        matches(expected.status, fields.status) &&
+        matches(expected.priority, fields.priority) &&
+        date(expected.start, fields.start) &&
+        date(expected.due, fields.due) &&
+        date(expected.reminder, fields.reminder) &&
+        date(expected.completedAt, fields.completedAt);
+  }
+
   /// Call only after the host durably records this unique [operationId] as an
   /// attempted operation. The marker is embedded in the SAME create POST.
   /// A failure with mutationMayHaveOccurred=true requires read-only recovery.

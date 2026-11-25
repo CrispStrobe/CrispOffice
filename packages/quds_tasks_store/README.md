@@ -1,41 +1,32 @@
 # quds_tasks_store
 
-SQLite storage and a resumable pull worker for CrispOffice Tasks. Store the
-database in the host application's private data directory. Cached rows can
-include full task descriptions and provider payloads. The host owns the database
-connection and should use a storage isolate for large collections.
+SQLite storage and a resumable pull and push worker for CrispOffice Tasks. Open
+a dedicated database in the host application's private data directory. Cached
+rows can include full task descriptions and provider payloads.
 
-Open a dedicated database and call `TaskPullStore.connect(account)` when
-activating a task account. The returned lease identifies that account's active
-generation. Pass it to `TaskPullWorker.refresh()` with the selected list and a
-provider callback.
+Call `TaskPullStore.connect(account)` to acquire an account-generation lease.
+`saveEdit()` persists a working copy before any network operation. Read cached
+server tasks through `tasks(listId)` and use `edits(listId)` for pending
+working copies and deletion intents.
 
 ```dart
-// CalDAV, where list is the discovered CalDavTaskList.
-await worker.refresh(lease, list.id, (position) => caldav.pull(
-  list,
-  cursor: position.cursor,
-  knownRevisions: position.knownRevisions,
-));
-
-// Microsoft To Do, where listId is the discovered TaskListId.
-await worker.refresh(lease, listId, (position) => graph.pullTaskChanges(
-  listId,
-  cursor: position.cursor,
-));
+final worker = TaskSyncWorker(store);
+await syncCalDavTasks(worker, lease, caldav, caldavList);
+await syncGraphTasks(worker, lease, graph, graphList, enableWrites: allowWrites);
 ```
 
-The worker returns a typed error, a completed round, or an unfinished round at
-the page limit. The host can schedule another call with the same lease. Each
-successful page commits its remote rows and cursor in one transaction. The
-worker retains cached rows while a replacement baseline is incomplete. Only a
-complete baseline can remove unseen cached tasks. Explicit remote tombstones
-apply with their page.
+Pull pages and their cursors commit together. After a complete pull, the worker
+reconciles offline edits with the current server snapshot. Conflicting edits
+remain available through `edits()`. Resolve a definite conflict with
+`resolveEdit()` after the user chooses the working copy or server state.
 
-Read stored snapshots with `store.tasks(listId)`. When disconnecting, call
-`store.disconnect(lease)` and close the provider's client. The persisted
-generation prevents a late response from applying through another handle after
-disconnect. The same account can resume its cached state when reconnected.
+A write's operation ID and exact local revision are committed before dispatch.
+After a restart or an ambiguous response, the worker uses provider reads to
+recover the outcome. Acknowledgment records the canonical server task and
+preserves edits made during the request. A persisted retry deadline controls
+temporary failures and provider backoff across restarts.
 
-This package currently covers inbound synchronization. Local edits, conflict
-resolution, outbox and durable retry scheduling are planned.
+Graph writes require the host's explicit opt-in because Graph's atomic
+conditional behavior is unqualified. CalDAV uses strong ETags on updates and
+deletes. On disconnect, fence outstanding work with `store.disconnect(lease)`
+and close the provider transport.

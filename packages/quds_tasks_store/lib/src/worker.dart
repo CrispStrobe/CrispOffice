@@ -60,3 +60,80 @@ final class TaskPullWorker {
     return const TaskSuccess(false);
   }
 }
+
+/// A recovery implementation must return a failure when it cannot positively
+/// establish the outcome. Only an acknowledged delete returns a successful null.
+typedef ApplyTaskWrite =
+    Future<TaskResult<RemoteTask?>> Function(TaskWriteIntent intent);
+
+/// Pulls before pushing so pending edits reconcile with current remote state.
+final class TaskSyncWorker {
+  const TaskSyncWorker(this.store);
+
+  final TaskPullStore store;
+
+  Future<TaskResult<bool>> synchronize(
+    TaskAccountLease lease,
+    TaskListId list, {
+    required FetchTaskPage pull,
+    required ApplyTaskWrite write,
+    required ApplyTaskWrite recover,
+    int maxWrites = 20,
+  }) async {
+    if (maxWrites < 1) {
+      return const TaskFailure(TaskProblem(TaskProblemCode.invalidInput));
+    }
+    final retry = store.retryDelay(lease, list);
+    if (retry case TaskFailure(:final problem)) return TaskFailure(problem);
+    if ((retry as TaskSuccess<Duration?>).value case final delay?) {
+      return TaskFailure(
+        TaskProblem(TaskProblemCode.throttled, retryAfter: delay),
+      );
+    }
+    final received = await TaskPullWorker(store).refresh(lease, list, pull);
+    if (received case TaskFailure(:final problem)) {
+      return _defer(lease, list, problem);
+    }
+    if (!(received as TaskSuccess<bool>).value) return received;
+    final deferred = <String>{};
+    TaskProblem? unresolved;
+    for (var i = 0; i < maxWrites; i++) {
+      final position = store.nextWrite(lease, list, excluding: deferred);
+      if (position case TaskFailure(:final problem)) {
+        return TaskFailure(problem);
+      }
+      final intent = (position as TaskSuccess<TaskWriteIntent?>).value;
+      if (intent == null) {
+        return unresolved == null
+            ? const TaskSuccess(true)
+            : TaskFailure(unresolved);
+      }
+      final receipt = await (intent.recovery ? recover : write)(intent);
+      if (store.finishWrite(lease, intent, receipt) case TaskFailure(
+        :final problem,
+      )) {
+        return TaskFailure(problem);
+      }
+      if (receipt case TaskFailure(:final problem)) {
+        if (problem.code == TaskProblemCode.conflict) {
+          deferred.add(intent.localId);
+          unresolved ??= problem;
+        } else {
+          return _defer(lease, list, problem);
+        }
+      }
+    }
+    return unresolved == null
+        ? const TaskSuccess(false)
+        : TaskFailure(unresolved);
+  }
+
+  TaskResult<bool> _defer(
+    TaskAccountLease lease,
+    TaskListId list,
+    TaskProblem problem,
+  ) => switch (store.deferSync(lease, list, problem)) {
+    TaskSuccess() => TaskFailure(problem),
+    TaskFailure(problem: final storageProblem) => TaskFailure(storageProblem),
+  };
+}

@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:sqlite3/common.dart';
 
 import 'codec.dart';
+
+part 'outbox.dart';
 
 /// The current generation of one connected account. A disconnect invalidates
 /// every lease already held by workers, including workers using another handle.
@@ -53,9 +57,14 @@ final class TaskPullStore {
         for (final statement in _schema) {
           _db.execute(statement);
         }
-        _db.userVersion = 1;
-      } else if (version != 1) {
+      } else if (version != 1 && version != 2) {
         throw const FormatException('Unsupported Tasks database schema.');
+      }
+      if (version < 2) {
+        _db.execute(_outboxSchema);
+        _db.execute(_bindingSchema);
+        _db.execute('ALTER TABLE task_lists ADD COLUMN retry_at INTEGER');
+        _db.userVersion = 2;
       }
       return _db.select('SELECT id FROM task_database_identity').single['id']
           as String;
@@ -161,23 +170,7 @@ final class TaskPullStore {
           if (!touched.add(task.id)) {
             throw const _StoreFailure(TaskProblemCode.invalidResponse);
           }
-          _db.execute(
-            '''INSERT INTO task_remote
-           (provider, account, list, remote_id, etag, fields, raw_format, raw, epoch)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-           ON CONFLICT(provider, account, list, remote_id) DO UPDATE SET
-             etag = excluded.etag, fields = excluded.fields, raw_format = excluded.raw_format,
-             raw = excluded.raw, epoch = excluded.epoch''',
-            [
-              ...key,
-              task.id.value,
-              task.revision,
-              encodeFields(task.fields),
-              task.providerData?.format,
-              task.providerData?.raw,
-              position._epoch,
-            ],
-          );
+          _putRemote(task, position._epoch);
         }
         for (final id in page.tombstones) {
           if (!touched.add(id)) {
@@ -231,6 +224,24 @@ final class TaskPullStore {
       ),
     );
   });
+
+  void _putRemote(RemoteTask task, int epoch) => _db.execute(
+    '''INSERT INTO task_remote
+       (provider, account, list, remote_id, etag, fields, raw_format, raw, epoch)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT(provider, account, list, remote_id) DO UPDATE SET
+         etag = excluded.etag, fields = excluded.fields, raw_format = excluded.raw_format,
+         raw = excluded.raw, epoch = excluded.epoch''',
+    [
+      ..._listKey(task.id.list),
+      task.id.value,
+      task.revision,
+      encodeFields(task.fields),
+      task.providerData?.format,
+      task.providerData?.raw,
+      epoch,
+    ],
+  );
 
   void _advance(
     TaskPullPosition position, {
