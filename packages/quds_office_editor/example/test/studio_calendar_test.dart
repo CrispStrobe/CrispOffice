@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_calendar.dart';
+import 'package:quds_office_studio/studio_calendar_grid.dart';
 import 'package:quds_office_studio/studio_credential_storage.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_productivity_accounts.dart';
@@ -80,6 +81,7 @@ void main() {
       MaterialApp(
         home: StudioCalendarPage(
           title: 'Calendar',
+          initialDate: DateTime(2026, 11, 25),
           chromeBuilder: (_) => const Text('Shared window chrome'),
           openConnections: () {},
           credentialStorage: storage,
@@ -134,7 +136,9 @@ void main() {
 
     await tester.tap(find.byTooltip('Next week'));
     await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip('Month agenda'));
+    await tester.tap(find.byTooltip('Range: Week'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Month'));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Next month'));
     await tester.pumpAndSettle();
@@ -147,6 +151,15 @@ void main() {
       '/home/events/',
     ]);
     expect(reports.toSet(), hasLength(4));
+
+    await tester.tap(find.byTooltip('Show grid'));
+    await tester.pumpAndSettle();
+    expect(find.byType(StudioCalendarGrid), findsOneWidget);
+    expect(reports, hasLength(4));
+    await tester.tap(find.byTooltip('Show agenda'));
+    await tester.pumpAndSettle();
+    expect(find.byType(StudioCalendarGrid), findsNothing);
+    expect(reports, hasLength(4));
     await tester.pumpWidget(const SizedBox.shrink());
   });
 }

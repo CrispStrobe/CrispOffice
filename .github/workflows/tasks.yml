@@ -18,6 +18,8 @@ name: Tasks
       - 'packages/quds_office_editor/example/lib/studio_tasks*.dart'
       - 'packages/quds_office_editor/example/lib/suite_workspace.dart'
       - 'packages/quds_office_editor/example/test/studio_tasks_test.dart'
+      - 'packages/quds_office_editor/example/lib/studio_calendar*.dart'
+      - 'packages/quds_office_editor/example/test/studio_calendar*_test.dart'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - 'analysis_options.yaml'
@@ -39,6 +41,8 @@ name: Tasks
       - 'packages/quds_office_editor/example/lib/studio_tasks*.dart'
       - 'packages/quds_office_editor/example/lib/suite_workspace.dart'
       - 'packages/quds_office_editor/example/test/studio_tasks_test.dart'
+      - 'packages/quds_office_editor/example/lib/studio_calendar*.dart'
+      - 'packages/quds_office_editor/example/test/studio_calendar*_test.dart'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - 'analysis_options.yaml'
@@ -121,3 +125,8 @@ jobs:
       - name: Test Studio Tasks
         working-directory: packages/quds_office_editor/example
         run: flutter test --no-pub test/studio_tasks_test.dart
+      - name: Test Studio Calendar in a daylight-saving timezone
+        working-directory: packages/quds_office_editor/example
+        env:
+          TZ: Europe/Berlin
+        run: flutter test --no-pub test/studio_calendar_test.dart test/studio_calendar_grid_test.dart

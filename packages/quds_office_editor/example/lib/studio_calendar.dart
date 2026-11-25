@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
+import 'studio_calendar_grid.dart';
 import 'studio_chrome.dart';
 import 'studio_credential_storage.dart';
 import 'studio_device_tasks.dart';
@@ -37,6 +38,7 @@ final class StudioCalendarPage extends StatefulWidget {
     this.showGroupLabels = true,
     this.credentialStorage,
     this.openDavClient,
+    this.initialDate,
   });
 
   final String title;
@@ -47,6 +49,7 @@ final class StudioCalendarPage extends StatefulWidget {
   final bool showGroupLabels;
   final StudioCredentialStorage? credentialStorage;
   final http.Client Function()? openDavClient;
+  final DateTime? initialDate;
 
   @override
   State<StudioCalendarPage> createState() => _StudioCalendarPageState();
@@ -65,13 +68,12 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   List<CalDavCalendar> _calendars = [];
   Uri? _calendar;
   CalDavAgenda? _agenda;
-  DateTime _anchor = _day(DateTime.now());
-  bool _month = false;
+  late DateTime _anchor = _day(widget.initialDate ?? DateTime.now());
+  StudioCalendarPeriod _period = StudioCalendarPeriod.week;
+  bool _grid = false;
 
-  DateTime get _start =>
-      _month ? DateTime(_anchor.year, _anchor.month) : _anchor;
-  DateTime get _end =>
-      _month ? DateTime(_anchor.year, _anchor.month + 1) : _day(_anchor, 7);
+  DateTime get _start => _period.start(_anchor);
+  DateTime get _end => _period.advance(_start, 1);
 
   @override
   void initState() {
@@ -189,11 +191,16 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   }
 
   void _navigate([int? direction]) {
-    _anchor = switch (direction) {
-      null => _day(DateTime.now()),
-      _ when _month => DateTime(_anchor.year, _anchor.month + direction),
-      _ => _day(_anchor, direction * 7),
-    };
+    _anchor = direction == null
+        ? _day(DateTime.now())
+        : _period.advance(_anchor, direction);
+    unawaited(_reload(rediscover: false));
+  }
+
+  void _showDay(DateTime day) {
+    if (_busy) return;
+    _period = StudioCalendarPeriod.day;
+    _anchor = _day(day);
     unawaited(_reload(rediscover: false));
   }
 
@@ -219,17 +226,17 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         content: SingleChildScrollView(
           child: ListBody(
             children: [
-              Text(_format(event.start, locale)),
+              Text(_format(event.start, locale, showLocalZone: true)),
               if (event.end case final end?
                   when end.kind != CalDavDateKind.date)
-                Text('Ends ${_format(end, locale)}'),
+                Text('Ends ${_format(end, locale, showLocalZone: true)}'),
               if (event.end?.toTaskDate() case TaskDate(
                 :final year,
                 :final month,
                 :final day,
               ))
-                if (_day(DateTime(year, month, day), -1) case final last
-                    when _eventDay(event.start).isBefore(last))
+                if (DateTime.utc(year, month, day - 1) case final last
+                    when studioCalendarDisplayTime(event.start).isBefore(last))
                   Text('Through ${locale.formatMediumDate(last)}'),
               if (event.location case final location? when location.isNotEmpty)
                 Padding(
@@ -253,29 +260,13 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       ),
     );
     if (!mounted || followUp != true) return;
-    final day = _eventDay(event.start);
+    final day = studioCalendarDisplayTime(event.start);
     await createStudioFollowUpTask(
       context,
       title: title,
       due: TaskDate(day.year, day.month, day.day),
       notes: event.location,
     );
-  }
-
-  DateTime _eventDay(CalDavDateValue value) => switch (value.toTaskDate()) {
-    TaskDate(:final year, :final month, :final day) => DateTime(
-      year,
-      month,
-      day,
-    ),
-    final TaskDateTime time => _eventTime(value, time),
-  };
-
-  DateTime _eventTime(CalDavDateValue value, TaskDateTime time) {
-    final wall = DateTime.parse('${time.localDateTime}Z');
-    // Keep a zoned or floating event's wall-clock fields intact even when the
-    // corresponding local clock time falls inside a daylight-saving gap.
-    return value.kind == CalDavDateKind.utc ? wall.toLocal() : wall;
   }
 
   String _problem(TaskProblemCode code) => switch (code) {
@@ -291,14 +282,20 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final colors = Theme.of(context).colorScheme;
     final date = MaterialLocalizations.of(context);
     final events = _agenda?.events ?? const <CalDavEvent>[];
-    Widget command(IconData icon, String label, VoidCallback? action) =>
-        StudioCmd(
-          icon: icon,
-          label: label,
-          accent: colors.primary,
-          foreground: colors.onSurface,
-          onPressed: action,
-        );
+    final period = _period.label.toLowerCase();
+    StudioCmd command(
+      IconData icon,
+      String label,
+      VoidCallback? action, {
+      bool selected = false,
+    }) => StudioCmd(
+      icon: icon,
+      label: label,
+      accent: colors.primary,
+      foreground: colors.onSurface,
+      onPressed: action,
+      selected: selected,
+    );
     return Scaffold(
       backgroundColor: colors.surface,
       body: Column(
@@ -319,12 +316,12 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               child: StudioRibbonStrip(
                 groups: [
                   StudioRibbonGroup(
-                    id: 'calendar-week',
-                    title: 'Agenda',
+                    id: 'calendar-navigation',
+                    title: 'Calendar',
                     children: [
                       command(
                         Icons.chevron_left,
-                        _month ? 'Previous month' : 'Previous week',
+                        'Previous $period',
                         _busy ? null : () => _navigate(-1),
                       ),
                       command(
@@ -334,7 +331,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                       ),
                       command(
                         Icons.chevron_right,
-                        _month ? 'Next month' : 'Next week',
+                        'Next $period',
                         _busy ? null : () => _navigate(1),
                       ),
                       command(
@@ -342,17 +339,32 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         'Go to date',
                         _busy ? null : _pickDate,
                       ),
+                      StudioCommandMenu(
+                        icon: _period.icon,
+                        label: 'Range',
+                        currentValue: _period.label,
+                        accent: colors.primary,
+                        foreground: colors.onSurface,
+                        commands: [
+                          for (final option in StudioCalendarPeriod.values)
+                            command(
+                              option.icon,
+                              option.label,
+                              _busy
+                                  ? null
+                                  : () {
+                                      if (_period == option) return;
+                                      _period = option;
+                                      unawaited(_reload(rediscover: false));
+                                    },
+                              selected: option == _period,
+                            ),
+                        ],
+                      ),
                       command(
-                        _month
-                            ? Icons.view_week_outlined
-                            : Icons.calendar_view_month,
-                        _month ? 'Week agenda' : 'Month agenda',
-                        _busy
-                            ? null
-                            : () {
-                                _month = !_month;
-                                unawaited(_reload(rediscover: false));
-                              },
+                        _grid ? Icons.view_agenda_outlined : _period.icon,
+                        _grid ? 'Show agenda' : 'Show grid',
+                        _busy ? null : () => setState(() => _grid = !_grid),
                       ),
                     ],
                   ),
@@ -386,7 +398,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(
-                  '${date.formatMediumDate(_start)} – ${date.formatMediumDate(_day(_end, -1))}',
+                  _period == StudioCalendarPeriod.day
+                      ? date.formatFullDate(_start)
+                      : '${date.formatMediumDate(_start)} – ${date.formatMediumDate(_day(_end, -1))}',
                 ),
                 if (_accounts.isNotEmpty)
                   DropdownButton<TaskAccountId>(
@@ -438,16 +452,24 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               ),
             ),
           Expanded(
-            child: !_busy && _error == null && events.isEmpty
+            child: _grid && _agenda != null
+                ? StudioCalendarGrid(
+                    key: ValueKey((_period, _start)),
+                    period: _period,
+                    start: _start,
+                    end: _end,
+                    events: events,
+                    openEvent: _showEvent,
+                    openDay: _showDay,
+                  )
+                : !_busy && _error == null && events.isEmpty
                 ? Center(
                     child: Text(
                       _accounts.isEmpty
                           ? 'Connect a CalDAV account in Tasks to see its calendars here.'
                           : _calendars.isEmpty
                           ? 'This account has no event calendars.'
-                          : _month
-                          ? 'No events this month.'
-                          : 'No events this week.',
+                          : 'No events this $period.',
                     ),
                   )
                 : ListView.builder(
@@ -482,15 +504,23 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     );
   }
 
-  String _format(CalDavDateValue value, MaterialLocalizations locale) {
+  String _format(
+    CalDavDateValue value,
+    MaterialLocalizations locale, {
+    bool showLocalZone = false,
+  }) {
     final wall = value.toTaskDate();
     if (wall case TaskDate(:final year, :final month, :final day)) {
       return '${locale.formatMediumDate(DateTime(year, month, day))} · All day';
     }
-    final time = wall as TaskDateTime;
-    final shown = _eventTime(value, time);
+    final shown = studioCalendarDisplayTime(value);
     final date = locale.formatMediumDate(shown);
     final clock = locale.formatTimeOfDay(TimeOfDay.fromDateTime(shown));
-    return '$date · $clock${value.kind == CalDavDateKind.zoned ? ' ${value.timeZone}' : ''}';
+    final zone = switch (value.kind) {
+      CalDavDateKind.zoned => value.timeZone,
+      CalDavDateKind.utc when showLocalZone => shown.timeZoneName,
+      _ => null,
+    };
+    return '$date · $clock${zone == null || zone.isEmpty ? '' : ' $zone'}';
   }
 }

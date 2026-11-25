@@ -73,22 +73,27 @@ transfer credentials between protocols or grant additional OAuth scopes.
 
 The native **Calendar** workspace reuses a saved Tasks CalDAV connection and
 discovers its event calendars. An exact task-list URL affects Tasks only. Use
-the Calendar account and calendar pickers to choose a calendar. Switch between
-week and month agendas or jump to a date. Date navigation reuses discovery
-results for the selected account. Refresh runs discovery again.
+the Calendar account and calendar pickers to choose a calendar. Select Day,
+Week, or Month in **Range**. **Show grid** opens the experimental calendar
+layout for the same date range. Select a date number to open that day. Weeks
+start on Monday. Date navigation reuses discovery results for the selected
+account. Refresh runs discovery again.
 
 Open an event to see its time and location. **Create follow-up task** starts an
 editable task with the event's title and start date. Mail offers the same
 command with the message subject and sender. The task is saved to **On this
 device** only after confirmation. The source message or event stays unchanged.
 
-Next Calendar milestones are desktop time-grid views, a persistent event
-cache, conditional CalDAV create/edit/delete with conflict handling, and then
-recurrence editing, invitations and RSVP. Google and Exchange calendar adapters
-need their own qualification. A Flutter widget can render the grids from a
-CrispOffice-owned event model. An evaluation should cover all-day and overlapping
-events, keyboard navigation, screen readers, and dark mode before adoption. See
-[calendar_view](https://pub.dev/packages/calendar_view) for a grid candidate.
+The grid uses [calendar_view 2.0.0](https://pub.dev/packages/calendar_view) to
+render the events fetched by CrispOffice. UTC times display in the device's
+timezone, floating times retain their wall clock, and all-day end dates are
+exclusive. The grid lists events with unresolved named timezones and intervals
+it cannot place in **Events without a grid position**. The agenda remains
+available for the same date range.
+
+Calendar milestones include a persistent event cache, conditional CalDAV
+create/edit/delete with conflict handling, recurrence editing, invitations,
+and RSVP. Google and Exchange calendar adapters need their own qualification.
 
 ## Backend choices
 

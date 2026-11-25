@@ -19,7 +19,7 @@ clients are references, not compatibility claims.
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
 | Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS, bounded one-folder IMAP/EWS/Gmail/Graph provider search with supported fields and explicit count precision | Richer provider grammar, missing participant/body fields, multi-folder scope, indexed discovery, live adapter qualification |
 | Attachments | Bounded read-only open; attach files | Attach current document/PDF, edit received attachment copy, Office workflow |
-| Calendar/People | Read-only CalDAV week and month agendas, event details, local follow-up tasks from Mail and Calendar | Calendar time grids, edits and sync, invitations, contacts, address completion, persistent links back to the source message or event |
+| Calendar/People | Read-only CalDAV day, week and month agendas and experimental grids, event details, local follow-up tasks from Mail and Calendar | Calendar edits and sync, invitations, contacts, address completion, persistent links back to the source message or event |
 | Offline | Cached headers/bodies, durable drafts/Outbox | Complete account/folder offline sessions and bounded background refresh |
 | Security | TLS, host-key verification, explicit remote images, safe HTML sanitizer | S/MIME/PGP, OAuth token vaults, shared-mailbox policies |
 | Platforms | macOS/iOS tested in Studio; browser store path unqualified | Windows/Linux installed acceptance, browser quota/Web Locks |
