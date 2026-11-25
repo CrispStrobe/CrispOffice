@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,17 @@ import 'studio_credential_storage.dart';
 
 Widget buildStudioTasks(String title, VoidCallback close) =>
     StudioTasksPage(title: title, onClose: close);
+
+const _davProfiles = [
+  CalDavServerProfile.generic,
+  CalDavServerProfile.mailboxOrg,
+  CalDavServerProfile.openXchange,
+  CalDavServerProfile.nextcloud,
+  CalDavServerProfile.owncloud,
+];
+
+bool _isTaskCloud(String provider) =>
+    provider == 'graph' || provider == 'google';
 
 typedef _Selection = ({
   TaskList list,
@@ -184,15 +196,15 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     TaskAccountId account,
   ) async {
     _closeConnection?.call();
-    if (account.provider == 'graph') {
+    if (_isTaskCloud(account.provider)) {
       final token = await vault.read(_refreshKey(account));
       if (!mounted) return;
       if (token == null) {
-        throw const _TasksDisplayException(
-          'Reconnect the Microsoft Tasks account.',
-        );
+        throw const _TasksDisplayException('Reconnect the task account.');
       }
-      await _connectGraph(record, vault, account, refreshToken: token);
+      await _connectTaskCloud(record, vault, account, refreshToken: token);
+    } else if (account.provider == 'ews') {
+      await _connectEws(record, vault, account);
     } else {
       await _connectDav(record, vault, account);
     }
@@ -243,9 +255,13 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final provider = CalDavTaskProvider(
       account: account,
       settings: CalDavConnectionSettings(
-        profile: url.origin == 'https://dav.mailbox.org'
-            ? CalDavServerProfile.mailboxOrg
-            : CalDavServerProfile.generic,
+        profile:
+            _davProfiles
+                .where((profile) => profile.id == record['davProfile'])
+                .firstOrNull ??
+            (url.origin == 'https://dav.mailbox.org'
+                ? CalDavServerProfile.mailboxOrg
+                : CalDavServerProfile.generic),
         username: record['login'] as String,
         discoveryUrl: url,
         collectionUrl: exact == null ? null : Uri.parse(exact),
@@ -268,10 +284,60 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     ]);
   }
 
+  Future<void> _connectEws(
+    Map<String, Object?> record,
+    SecureStorage vault,
+    TaskAccountId account,
+  ) async {
+    final mail = MailAccountId(
+      account.value,
+      profile: MailProfileId('tasks', hostId: 'crispoffice'),
+    );
+    final session = MailAccountSession(mail);
+    _closeConnection = session.dispose;
+    final reference = MailCredentialReference(account: mail, key: 'ews-tasks');
+    final reader = createEwsTaskReader(
+      account: account,
+      configuration: MailEwsConfiguration(
+        account: mail,
+        endpoint: Uri.parse(record['url'] as String),
+        username: record['login'] as String,
+        domain: record['domain'] as String,
+        credential: reference,
+        mailboxAddress: record['mailbox'] as String?,
+      ),
+      credentialStore: _EwsTaskCredentials(reference, () {
+        if (session.isDisposed ||
+            _vaultRevision != _credentialStorage.revision) {
+          return null;
+        }
+        return record['secret'] as String;
+      }),
+    );
+    final lists = _require(await reader.taskLists(session.begin()));
+    if (!mounted || session.isDisposed) return;
+    final lease = _require(_store!.connect(account));
+    await _attach(record, vault, lease, [
+      for (final list in lists)
+        (
+          list: list,
+          sync: () => TaskPullWorker(_store!).refresh(
+            lease,
+            list.id,
+            (position) => reader.pullTasks(
+              list.id,
+              cursor: position.cursor,
+              lease: session.begin(),
+            ),
+          ),
+        ),
+    ]);
+  }
+
   static String _refreshKey(TaskAccountId account) =>
       'crispoffice.tasks.refresh.${account.value}';
 
-  Future<void> _connectGraph(
+  Future<void> _connectTaskCloud(
     Map<String, Object?> record,
     SecureStorage vault,
     TaskAccountId account, {
@@ -282,16 +348,20 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       profile: MailProfileId('tasks', hostId: 'crispoffice'),
     );
     final session = MailAccountSession(mail);
-    final transport = NativeGraphTaskHttpTransport();
+    final microsoft = account.provider == 'graph';
     MailCloudTokenSource? tokens;
+    VoidCallback? closeProvider;
     _closeConnection = () {
       session.dispose();
       tokens?.dispose();
-      transport.close();
+      closeProvider?.call();
     };
     final configuration = MailOAuthConfiguration(
-      service: MailCloudService.microsoft365,
+      service: microsoft
+          ? MailCloudService.microsoft365
+          : MailCloudService.gmail,
       clientId: record['client'] as String,
+      clientSecret: record['googleDesktopSecret'] as String?,
       tasksOnly: true,
     );
     final vaultRevision = _credentialStorage.revision;
@@ -329,34 +399,67 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       source.dispose();
       return;
     }
-    final provider = GraphTaskProvider(
-      account: account,
-      transport: transport,
-      tokens: _StudioGraphTokens(session, source),
-    );
+    final Future<TaskResult<TaskListPage>> Function(String?) fetchLists;
+    final Future<TaskResult<bool>> Function(TaskAccountLease, TaskList) sync;
+    final enableWrites = microsoft && record['writes'] == true;
+    if (microsoft) {
+      final transport = NativeGraphTaskHttpTransport();
+      closeProvider = transport.close;
+      final provider = GraphTaskProvider(
+        account: account,
+        transport: transport,
+        tokens: _StudioGraphTokens(session, source),
+      );
+      fetchLists = (cursor) => provider.listTaskLists(cursor: cursor);
+      sync = (lease, list) => syncGraphTasks(
+        TaskSyncWorker(_store!),
+        lease,
+        provider,
+        list,
+        enableWrites: enableWrites,
+      );
+    } else {
+      final provider = createGoogleTaskReader(
+        account: account,
+        mailAccount: mail,
+        tokens: source,
+      );
+      closeProvider = provider.close;
+      fetchLists = (cursor) => provider.lists(session.begin(), cursor: cursor);
+      sync = (lease, list) => TaskPullWorker(_store!).refresh(
+        lease,
+        list.id,
+        (position) => provider.pull(
+          list.id,
+          cursor: position.cursor,
+          lease: session.begin(),
+        ),
+      );
+    }
     final lists = <TaskListId, TaskList>{};
     String? cursor;
     for (var page = 0; page < 32; page++) {
-      final found = _require(await provider.listTaskLists(cursor: cursor));
+      final found = _require(await fetchLists(cursor));
       for (final list in found.lists) {
         lists[list.id] = list;
       }
       if (found.nextCursor == null) break;
       if (found.nextCursor == cursor || page == 31) {
-        throw StateError('Incomplete To Do list discovery.');
+        throw StateError('Incomplete task list discovery.');
       }
       cursor = found.nextCursor;
     }
     if (!mounted) return;
     if (issuedToken == null) {
-      throw StateError('Microsoft did not return offline Tasks access.');
+      throw const _TasksDisplayException(
+        'The service did not grant offline Tasks access.',
+      );
     }
     if (!activeGrant) {
       await vault.write(_refreshKey(account), issuedToken!);
       activeGrant = true;
     }
     final lease = _require(_store!.connect(account));
-    final enableWrites = record['writes'] == true;
     await _attach(record, vault, lease, [
       for (final list in lists.values)
         (
@@ -365,13 +468,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
             name: list.name,
             readOnly: list.readOnly || !enableWrites,
           ),
-          sync: () => syncGraphTasks(
-            TaskSyncWorker(_store!),
-            lease,
-            provider,
-            list,
-            enableWrites: enableWrites,
-          ),
+          sync: () => sync(lease, list),
         ),
     ]);
   }
@@ -449,25 +546,36 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       _vaultRevision = _credentialStorage.revision;
       if (!mounted) return;
       final provider = proposed['provider'] as String;
-      final id = provider == 'graph'
+      final id = _isTaskCloud(provider)
           ? _randomId()
           : sha256
                 .convert(
-                  utf8.encode(jsonEncode([proposed['url'], proposed['login']])),
+                  utf8.encode(
+                    jsonEncode([
+                      proposed['url'],
+                      proposed['login'],
+                      if (provider == 'ews') ...[
+                        proposed['domain'],
+                        proposed['mailbox'],
+                      ],
+                    ]),
+                  ),
                 )
                 .toString();
       final account = TaskAccountId(id, provider: provider);
       final record = {...proposed, 'id': id};
       try {
-        if (provider == 'graph') {
-          await _connectGraph(record, vault, account);
+        if (_isTaskCloud(provider)) {
+          await _connectTaskCloud(record, vault, account);
+        } else if (provider == 'ews') {
+          await _connectEws(record, vault, account);
         } else {
           await _connectDav(record, vault, account);
         }
         await _syncSelected();
       } on Object {
         _closeConnection?.call();
-        if (provider == 'graph' && _record?['id'] != id) {
+        if (_isTaskCloud(provider) && _record?['id'] != id) {
           await vault.delete(_refreshKey(account));
         }
         rethrow;
@@ -480,7 +588,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     if (lease != null) {
       _require(_store!.disconnect(lease));
       _closeConnection?.call();
-      if (lease.account.provider == 'graph') {
+      if (_isTaskCloud(lease.account.provider)) {
         await _vault!.delete(_refreshKey(lease.account));
       }
     }
@@ -729,6 +837,44 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   }
 }
 
+final class _EwsTaskCredentials implements MailCredentialStore {
+  const _EwsTaskCredentials(this.reference, this.readPassword);
+
+  final MailCredentialReference reference;
+  final String? Function() readPassword;
+
+  @override
+  Future<MailResult<MailCredentialRecord?>> load(
+    MailCredentialReference request,
+  ) async {
+    final secret =
+        request.account == reference.account && request.key == reference.key
+        ? readPassword()
+        : null;
+    return MailSuccess(
+      secret == null
+          ? null
+          : MailCredentialRecord(
+              reference: reference,
+              opaqueData: MailBytes(Uint8List.fromList(utf8.encode(secret))),
+            ),
+    );
+  }
+
+  @override
+  Future<MailResult<MailUnit>> store(MailCredentialRecord record) async =>
+      const MailFailure(MailProblem(MailProblemCode.unsupported));
+
+  @override
+  Future<MailResult<MailUnit>> delete(
+    MailCredentialReference reference,
+  ) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
+
+  @override
+  Future<MailResult<MailUnit>> deleteAccount(MailAccountId account) async =>
+      const MailFailure(MailProblem(MailProblemCode.unsupported));
+}
+
 final class _StudioGraphTokens implements GraphTaskTokenSource {
   const _StudioGraphTokens(this.session, this.tokens);
   final MailAccountSession session;
@@ -761,7 +907,7 @@ T _require<T>(TaskResult<T> result) => switch (result) {
 T _requireMail<T>(MailResult<T> result) => switch (result) {
   MailSuccess(:final value) => value,
   MailFailure() => throw const _TasksDisplayException(
-    'Microsoft Tasks authorization failed.',
+    'Task account authorization failed.',
   ),
 };
 String _problemText(TaskProblemCode code) => switch (code) {
@@ -787,16 +933,38 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
   final _password = TextEditingController();
   final _url = TextEditingController(text: 'https://dav.mailbox.org/');
   final _collection = TextEditingController();
+  final _ewsUrl = TextEditingController();
+  final _domain = TextEditingController();
+  final _mailbox = TextEditingController();
   final _client = TextEditingController(
     text: const String.fromEnvironment('CRISPOFFICE_MICROSOFT_CLIENT_ID'),
   );
+  final _googleClient = TextEditingController(
+    text: const String.fromEnvironment('CRISPOFFICE_GOOGLE_CLIENT_ID'),
+  );
+  final _googleSecret = TextEditingController();
   final _form = GlobalKey<FormState>();
-  bool _graph = false;
+  String _provider = 'caldav';
+  CalDavServerProfile _davProfile = CalDavServerProfile.mailboxOrg;
+  bool get _graph => _provider == 'graph';
+  bool get _google => _provider == 'google';
+  bool get _ews => _provider == 'ews';
   bool _graphWrites = false;
 
   @override
   void dispose() {
-    for (final field in [_login, _password, _url, _collection, _client]) {
+    for (final field in [
+      _login,
+      _password,
+      _url,
+      _collection,
+      _ewsUrl,
+      _domain,
+      _mailbox,
+      _client,
+      _googleClient,
+      _googleSecret,
+    ]) {
       field.dispose();
     }
     super.dispose();
@@ -816,12 +984,23 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              DropdownButton<bool>(
-                value: _graph,
-                onChanged: (value) => setState(() => _graph = value!),
+              DropdownButton<String>(
+                value: _provider,
+                onChanged: (value) => setState(() => _provider = value!),
                 items: const [
-                  DropdownMenuItem(value: false, child: Text('CalDAV')),
-                  DropdownMenuItem(value: true, child: Text('Microsoft To Do')),
+                  DropdownMenuItem(value: 'caldav', child: Text('CalDAV')),
+                  DropdownMenuItem(
+                    value: 'graph',
+                    child: Text('Microsoft To Do'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'google',
+                    child: Text('Google Tasks (read-only)'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'ews',
+                    child: Text('Exchange EWS (read-only)'),
+                  ),
                 ],
               ),
               if (_graph) ...[
@@ -840,20 +1019,79 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                     'Microsoft writes can race with edits made in another app.',
                   ),
                 ),
-              ] else ...[
+              ] else if (_google) ...[
                 TextFormField(
-                  controller: _url,
+                  controller: _googleClient,
                   validator: _required,
-                  keyboardType: TextInputType.url,
-                  decoration: const InputDecoration(labelText: 'DAV URL'),
-                ),
-                TextFormField(
-                  controller: _collection,
-                  keyboardType: TextInputType.url,
                   decoration: const InputDecoration(
-                    labelText: 'Exact task-list URL (optional)',
+                    labelText: 'Google desktop client ID',
                   ),
                 ),
+                TextFormField(
+                  controller: _googleSecret,
+                  obscureText: true,
+                  autocorrect: false,
+                  enableSuggestions: false,
+                  decoration: const InputDecoration(
+                    labelText: 'Google desktop client secret (if issued)',
+                  ),
+                ),
+              ] else ...[
+                if (_ews) ...[
+                  TextFormField(
+                    controller: _ewsUrl,
+                    validator: _required,
+                    keyboardType: TextInputType.url,
+                    decoration: const InputDecoration(
+                      labelText: 'EWS endpoint',
+                      hintText: 'https://mail.example.com/EWS/Exchange.asmx',
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _domain,
+                    decoration: const InputDecoration(
+                      labelText: 'Windows domain (optional)',
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _mailbox,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      labelText: 'Mailbox address (optional)',
+                    ),
+                  ),
+                ] else ...[
+                  DropdownButton<CalDavServerProfile>(
+                    value: _davProfile,
+                    onChanged: (value) => setState(() {
+                      if (_url.text.isEmpty ||
+                          _url.text == _davProfile.defaultDiscoveryUrl) {
+                        _url.text = value!.defaultDiscoveryUrl ?? '';
+                      }
+                      _davProfile = value!;
+                    }),
+                    items: [
+                      for (final profile in _davProfiles)
+                        DropdownMenuItem(
+                          value: profile,
+                          child: Text(profile.label),
+                        ),
+                    ],
+                  ),
+                  TextFormField(
+                    controller: _url,
+                    validator: _required,
+                    keyboardType: TextInputType.url,
+                    decoration: const InputDecoration(labelText: 'DAV URL'),
+                  ),
+                  TextFormField(
+                    controller: _collection,
+                    keyboardType: TextInputType.url,
+                    decoration: const InputDecoration(
+                      labelText: 'Exact task-list URL (optional)',
+                    ),
+                  ),
+                ],
                 TextFormField(
                   controller: _login,
                   validator: _required,
@@ -865,7 +1103,9 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                   obscureText: true,
                   autocorrect: false,
                   enableSuggestions: false,
-                  decoration: const InputDecoration(labelText: 'App password'),
+                  decoration: InputDecoration(
+                    labelText: _ews ? 'Password' : 'App password',
+                  ),
                 ),
               ],
             ],
@@ -889,13 +1129,27 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                     'client': _client.text.trim(),
                     'writes': _graphWrites,
                   }
+                : _google
+                ? {
+                    'provider': 'google',
+                    'client': _googleClient.text.trim(),
+                    if (_googleSecret.text.trim().isNotEmpty)
+                      'googleDesktopSecret': _googleSecret.text.trim(),
+                  }
                 : {
-                    'provider': 'caldav',
-                    'url': _url.text.trim(),
+                    'provider': _provider,
+                    'url': (_ews ? _ewsUrl : _url).text.trim(),
                     'login': _login.text.trim(),
                     'secret': _password.text,
-                    if (_collection.text.trim().isNotEmpty)
-                      'collection': _collection.text.trim(),
+                    if (_ews) ...{
+                      'domain': _domain.text.trim(),
+                      if (_mailbox.text.trim().isNotEmpty)
+                        'mailbox': _mailbox.text.trim(),
+                    } else ...{
+                      'davProfile': _davProfile.id,
+                      if (_collection.text.trim().isNotEmpty)
+                        'collection': _collection.text.trim(),
+                    },
                   },
           );
         },

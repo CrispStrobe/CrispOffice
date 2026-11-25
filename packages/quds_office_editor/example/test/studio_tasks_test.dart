@@ -83,6 +83,42 @@ void main() {
     expect(closed, isTrue);
     await tester.pumpWidget(const SizedBox.shrink());
   });
+  testWidgets('task setup exposes separate Exchange and Google credentials', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudioTasksPage(
+          title: 'Tasks',
+          openDatabase: () async => sqlite3.openInMemory(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Connect account'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(DropdownButton<String>, 'CalDAV'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Exchange EWS (read-only)').last);
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(TextFormField, 'EWS endpoint'), findsOneWidget);
+    expect(find.widgetWithText(TextFormField, 'Password'), findsOneWidget);
+    await tester.tap(
+      find.widgetWithText(DropdownButton<String>, 'Exchange EWS (read-only)'),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Google Tasks (read-only)').last);
+    await tester.pumpAndSettle();
+    expect(
+      find.widgetWithText(TextFormField, 'Google desktop client ID'),
+      findsOneWidget,
+    );
+    expect(find.widgetWithText(TextFormField, 'Password'), findsNothing);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('CalDAV connect and disconnect use the selected credential vault', (
     tester,
   ) async {
@@ -147,6 +183,7 @@ void main() {
     expect(requests, ['PROPFIND', 'REPORT']);
     final saved = jsonDecode((await vault.read(key))!) as Map<String, Object?>;
     expect(saved['secret'], password);
+    expect(saved['davProfile'], 'mailbox.org');
     expect(
       database.select('SELECT account FROM task_accounts').toString(),
       isNot(contains(password)),

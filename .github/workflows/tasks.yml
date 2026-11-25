@@ -8,8 +8,13 @@ name: Tasks
       - 'packages/quds_tasks_graph/**'
       - 'packages/quds_tasks_caldav/**'
       - 'packages/quds_tasks_store/**'
+      - 'packages/quds_mail_transport/lib/quds_mail_transport.dart'
       - 'packages/quds_mail_transport/lib/src/cloud/**'
+      - 'packages/quds_mail_transport/lib/src/ews/**'
       - 'packages/quds_mail_transport/test/cloud_oauth*_test.dart'
+      - 'packages/quds_mail_transport/test/ews*_test.dart'
+      - 'packages/quds_mail_transport/test/google_task_reader_test.dart'
+      - 'packages/quds_mail_transport/pubspec.yaml'
       - 'packages/quds_office_editor/example/lib/studio_tasks*.dart'
       - 'packages/quds_office_editor/example/lib/suite_workspace.dart'
       - 'packages/quds_office_editor/example/test/studio_tasks_test.dart'
@@ -24,8 +29,13 @@ name: Tasks
       - 'packages/quds_tasks_graph/**'
       - 'packages/quds_tasks_caldav/**'
       - 'packages/quds_tasks_store/**'
+      - 'packages/quds_mail_transport/lib/quds_mail_transport.dart'
       - 'packages/quds_mail_transport/lib/src/cloud/**'
+      - 'packages/quds_mail_transport/lib/src/ews/**'
       - 'packages/quds_mail_transport/test/cloud_oauth*_test.dart'
+      - 'packages/quds_mail_transport/test/ews*_test.dart'
+      - 'packages/quds_mail_transport/test/google_task_reader_test.dart'
+      - 'packages/quds_mail_transport/pubspec.yaml'
       - 'packages/quds_office_editor/example/lib/studio_tasks*.dart'
       - 'packages/quds_office_editor/example/lib/suite_workspace.dart'
       - 'packages/quds_office_editor/example/test/studio_tasks_test.dart'
@@ -88,7 +98,7 @@ jobs:
 
 
   studio-tasks:
-    name: Studio Tasks and OAuth
+    name: Studio Tasks, provider readers and OAuth
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -103,6 +113,11 @@ jobs:
       - name: Test Tasks-only authorization and loopback
         working-directory: packages/quds_mail_transport
         run: dart test test/cloud_oauth_test.dart test/cloud_oauth_loopback_test.dart
+      - name: Test task readers and Exchange SOAP transport
+        working-directory: packages/quds_mail_transport
+        run: >-
+          dart test test/google_task_reader_test.dart test/ews_provider_test.dart
+          test/ews_soap_test.dart test/ews_http_test.dart
       - name: Test Studio Tasks
         working-directory: packages/quds_office_editor/example
         run: flutter test --no-pub test/studio_tasks_test.dart

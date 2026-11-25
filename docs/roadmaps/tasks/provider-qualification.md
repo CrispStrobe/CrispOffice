@@ -42,6 +42,19 @@ The registration needs the `http://localhost` desktop redirect and delegated
 Microsoft documents [personal-account tenant setup](https://learn.microsoft.com/en-us/troubleshoot/entra/entra-id/app-integration/error-code-AADSTS50020-user-account-identity-provider-does-not-exist)
 and [app registration audiences](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
 
+## Gmail / Google Tasks
+
+Studio requests `https://www.googleapis.com/auth/tasks.readonly` for Google
+Tasks through a desktop OAuth client. Enable the Google Tasks API for the
+client's Google Cloud project and add the account under test users if the
+project uses an external testing audience. Gmail mail keeps its existing
+scope. The Tasks API supplies list and task page tokens. Each complete
+Studio snapshot reconciles removals in the local cache.
+
+- [Google Tasks scopes](https://developers.google.com/workspace/tasks/auth)
+- [Google desktop client setup](https://developers.google.com/identity/protocols/oauth2/native-app)
+- [Google task listing and visibility](https://developers.google.com/workspace/tasks/reference/rest/v1/tasks/list)
+
 ## CalDAV / Nextcloud
 
 Build against VTODO-capable collections and conditional resource operations.
@@ -149,8 +162,16 @@ A read-only `GetFolder` for the distinguished `tasks` folder returned
 authenticated HEAD handling. The endpoint confirms persistent authentication
 and returns a same-origin HTTP 302 for the final HEAD. The transport sends SOAP
 to the configured service endpoint on the established TLS connection.
-Studio EWS Tasks support remains a separate milestone. Microsoft To Do uses
-its own Graph OAuth grant.
+Studio offers read-only task folder discovery and synchronization over this
+transport. The live probe fetched one task on the default-folder baseline and
+resumed from the saved checkpoint with no new changes. Writes and advanced
+task properties remain to be qualified. Microsoft To Do uses a
+separate Graph OAuth grant.
+
+Run the read-only probe from `packages/quds_mail_transport` with
+`dart run example/ews_tasks_probe.dart [credential-file]`. It reads
+`EWS_SERVER`, `EWS_ACCOUNT` and `EWS_PW` from the file or environment and
+reports counts only.
 
 
 - [Exchange Online EWS retirement timeline and on-premises distinction](https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361)

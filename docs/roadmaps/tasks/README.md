@@ -53,7 +53,8 @@ checks. Live Microsoft To Do qualification remains pending.
 | mailbox.org / Open-Xchange | CalDAV preset, `https://dav.mailbox.org/` | Personal task lists first; dedicated DAV app password; advanced capabilities require deployed-server evidence. |
 | ownCloud Classic / Infinite Scale | Generic CalDAV when VTODO is advertised | Validate the exact edition, installed groupware, and version. Infinite Scale groupware was explicitly work in progress in November 2026. |
 | Radicale / Baikal | Generic CalDAV | Smaller self-hosted interoperability targets; test rather than assuming protocol identity guarantees behavior. |
-| Exchange Server on premises | Separate EWS Tasks provider | Reuse suitable native EWS infrastructure; task folders and properties are separate from Mail. |
+| Exchange Server on premises | Native EWS Tasks reader | Read-only task-folder discovery and sync with a durable cursor. |
+| Gmail / Google Tasks | Google Tasks REST API | Read-only lists and task snapshots through a dedicated desktop OAuth grant. |
 | Native Open-Xchange HTTP API | Optional deployment-specific JSON adapter | For hosts that support external API authentication; mailbox.org native API availability is not established by generic OX documentation. |
 | Vikunja | Dedicated REST v2 adapter | Richer task backend; implement against its public API after the common model and synchronization boundaries stabilize. |
 | Microsoft Planner | Separate Graph Planner adapter | Assigned team work is distinct from the To Do resource model. |

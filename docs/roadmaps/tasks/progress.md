@@ -209,11 +209,30 @@ Remote CalDAV commit: `2195bd379747e5afc1e4e4a6e9263c34fae3dad8`.
   in an Entra directory the project controls, with personal accounts enabled in
   its sign-in audience. To Do live qualification is pending that registration.
 
+## Checkpoint 12 — Exchange and Google task readers
+
+- Studio can connect an on-premises Exchange account over the existing native
+  EWS NTLM transport. It discovers the default and additional task folders
+  and persists each `SyncFolderItems` cursor. Bounded `GetItem` requests read
+  changed tasks.
+- The read-only EWS probe synced one task and then used the returned checkpoint
+  for a second read that reported no changes. See the
+  [EWS qualification notes](provider-qualification.md#exchange-server--ews).
+- Studio now offers explicit CalDAV profiles for mailbox.org, Open-Xchange,
+  Nextcloud and ownCloud. The mailbox.org probe passed another isolated list
+  cycle including create, update, stale ETag rejection and deletion.
+- Google Tasks connects independently of Gmail through a desktop OAuth grant
+  scoped to read-only Tasks. It discovers lists and caches paginated snapshots,
+  including completed, hidden and assigned tasks visible to the account.
+  Fixture coverage is in place. Live consent needs a Google desktop OAuth client
+  with the Tasks API enabled.
+
 ## Next execution sequence
 
-1. Qualify Microsoft To Do with a delegated OAuth grant and designated list.
-   Extend the CalDAV acceptance cases to permission changes, normalization and
-   revocation.
+1. Qualify Google Tasks and Microsoft To Do with desktop OAuth grants. Extend
+   CalDAV acceptance to permission changes, normalization and revocation.
+   Qualify live EWS changes and write behavior on a designated Exchange test
+   folder.
 2. Extend the Studio workflow to multiple simultaneously connected accounts.
 3. Continue T7-T9 with extended fields, additional providers and optional bridging.
 
