@@ -5,6 +5,8 @@ import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'codec_limits.dart';
 import 'date_value.dart';
 
+part 'calendar_event.dart';
+
 /// Features that this first codec can preserve and read, but cannot safely edit.
 enum CalDavTodoMutationBlocker {
   recurrence,
@@ -593,9 +595,8 @@ final class _Property {
     for (final parameter in parts.skip(1)) {
       final equals = parameter.indexOf('=');
       if (equals < 1 ||
-          !RegExp(
-            r'^[A-Za-z0-9-]+$',
-          ).hasMatch(parameter.substring(0, equals))) {
+          !RegExp(r'^[A-Za-z0-9-]+$')
+              .hasMatch(parameter.substring(0, equals))) {
         throw const FormatException('Invalid iCalendar parameter.');
       }
     }

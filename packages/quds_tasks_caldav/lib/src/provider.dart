@@ -10,6 +10,8 @@ import 'dav_xml.dart';
 import 'server_profile.dart';
 import 'todo_document.dart';
 
+part 'calendar_provider.dart';
+
 /// Discovered list and operation-specific privileges for one account.
 final class CalDavTaskList {
   CalDavTaskList._(
@@ -56,14 +58,24 @@ final class CalDavTaskProvider {
   /// Discovers the current principal, calendar homes and VTODO collections,
   /// or validates the exact collection configured by the host.
   Future<TaskResult<List<CalDavTaskList>>> discoverLists() => _run(() async {
-    final exact = settings.collectionUrl;
-    if (exact != null) {
-      final row = await _properties(exact, _listProperties);
-      final list = _taskList(row.row, row.uri);
-      if (list == null) throw const DavFailure(TaskProblemCode.unsupported);
-      return [list];
+    final collections = await _discoverCollectionRows(
+      exact: settings.collectionUrl,
+    );
+    final lists = [
+      for (final entry in collections.entries)
+        ?_taskList(entry.value, entry.key),
+    ];
+    if (settings.collectionUrl != null && lists.isEmpty) {
+      throw const DavFailure(TaskProblemCode.unsupported);
     }
+    return List.unmodifiable(lists);
+  });
 
+  Future<Map<Uri, DavRow>> _discoverCollectionRows({Uri? exact}) async {
+    if (exact != null) {
+      final value = await _properties(exact, _listProperties);
+      return {value.uri: value.row};
+    }
     final start = settings.discoveryUrl;
     final entry = await _properties(
       start,
@@ -99,7 +111,7 @@ final class CalDavTaskProvider {
     if (homeUris.isEmpty || homeUris.length > 16) {
       throw const FormatException('Invalid DAV calendar homes.');
     }
-    final lists = <TaskListId, CalDavTaskList>{};
+    final collections = <Uri, DavRow>{};
     for (final home in homeUris) {
       final data = await _multi(
         'PROPFIND',
@@ -120,29 +132,15 @@ final class CalDavTaskProvider {
             'DAV collection outside its calendar home.',
           );
         }
-        final list = _taskList(row, uri);
-        if (list != null) lists[list.id] = list;
+        if (row.status case final status?) davStatusCode(status);
+        collections[uri] = row;
       }
     }
-    return List<CalDavTaskList>.unmodifiable(lists.values);
-  });
+    return Map.unmodifiable(collections);
+  }
 
   CalDavTaskList? _taskList(DavRow row, Uri uri) {
-    if (row.status case final status?) davStatusCode(status);
-    final resourceType = row.property(dav, 'resourcetype');
-    final components = row.property(cal, 'supported-calendar-component-set');
-    final supportsTasks = components == null
-        ? row.propertyStatus(cal, 'supported-calendar-component-set') == 404
-        : components.childElements.any(
-            (element) =>
-                named(element, cal, 'comp') &&
-                element.getAttribute('name')?.toUpperCase() == 'VTODO',
-          );
-    if (resourceType == null ||
-        child(resourceType, cal, 'calendar') == null ||
-        !supportsTasks) {
-      return null;
-    }
+    if (!_supportsComponent(row, 'VTODO')) return null;
     final privileges = row.property(dav, 'current-user-privilege-set');
     final names =
         privileges?.childElements
@@ -168,13 +166,10 @@ final class CalDavTaskProvider {
               ),
         ) ??
         false;
-    final displayName = xmlValue(row.property(dav, 'displayname'))?.trim();
     return CalDavTaskList._(
       TaskList(
         id: TaskListId(uri.toString(), account: account),
-        name: displayName == null || displayName.isEmpty
-            ? withoutTrailingSlash(uri).pathSegments.lastOrNull ?? uri.host
-            : displayName,
+        name: _collectionName(row, uri),
         readOnly: !canCreate && !canUpdate && !canDelete,
       ),
       canCreate: canCreate,
@@ -796,6 +791,29 @@ String _requiredText(DavRow row, String namespace, String name) {
     davStatusCode(status);
   }
   throw const FormatException('Missing required CalDAV property.');
+}
+
+bool _supportsComponent(DavRow row, String type) {
+  if (row.status case final status?) davStatusCode(status);
+  final resourceType = row.property(dav, 'resourcetype');
+  if (resourceType == null || child(resourceType, cal, 'calendar') == null) {
+    return false;
+  }
+  final components = row.property(cal, 'supported-calendar-component-set');
+  return components == null
+      ? row.propertyStatus(cal, 'supported-calendar-component-set') == 404
+      : components.childElements.any(
+          (element) =>
+              named(element, cal, 'comp') &&
+              element.getAttribute('name')?.toUpperCase() == type,
+        );
+}
+
+String _collectionName(DavRow row, Uri uri) {
+  final label = xmlValue(row.property(dav, 'displayname'))?.trim();
+  return label == null || label.isEmpty
+      ? withoutTrailingSlash(uri).pathSegments.lastOrNull ?? uri.host
+      : label;
 }
 
 String _propfind(String properties) =>
