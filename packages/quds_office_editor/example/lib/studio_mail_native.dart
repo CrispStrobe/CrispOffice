@@ -2069,7 +2069,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   ) => (message, {required attemptId}) async {
     if (!_currentSession(client, generation) ||
         message.account != store.account ||
-        message.envelope.sender != account.email) {
+        !StudioMailDraft.isSupportedAddress(message.envelope.sender)) {
       return MailSubmissionResult(
         attemptId: attemptId,
         outcome: MailSubmissionOutcome.rejected,
@@ -2318,6 +2318,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         builder: (context) => StudioMailComposeDialog(
           strings: widget.strings,
           from: account.email,
+          allowSenderAliases: true,
           maxAttachmentBytes:
               account.email.toLowerCase().endsWith('@mailbox.org')
               ? StudioMailAttachments.hardMaxTotalBytes
@@ -2401,6 +2402,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       attempted = true;
       await client.sendMessage(
         message,
+        from: mail.MailAddress(
+          draft.sender?.displayName ?? '',
+          draft.sender?.address ?? account.email,
+        ),
         appendToSent: sentMailbox != null,
         sentMailbox: sentMailbox,
         recipients: [

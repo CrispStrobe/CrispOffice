@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Add bounded server-side folder search for Gmail, Microsoft Graph and EWS
+  through the optional core search port. Gmail exposes Subject/From/To and
+  estimated counts; Graph exposes Body/Subject/From/To with UTC day ranges and
+  unknown total counts; EWS exposes Body/Subject with structural date filters.
+  Preserve literal phrase boundaries, folder/account ownership, cancellation,
+  byte/page/request limits and membership checks. Unsupported fields, ambiguous
+  cloud literal delimiters and Graph sub-day bounds fail explicitly. Fixture
+  qualification does not substitute for disposable-account interoperability.
+
 - Add explicit Microsoft `MailOAuthConfiguration.includeTasks` consent opt-in.
   Default mail scopes remain unchanged; opted-in authorization and refresh also
   require delegated `Tasks.ReadWrite`. Reject the option for non-Microsoft

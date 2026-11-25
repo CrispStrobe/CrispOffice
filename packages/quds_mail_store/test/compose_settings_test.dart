@@ -10,6 +10,8 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_store/src/codec.dart';
 import 'package:quds_mail_store/src/schema/database.dart';
 import 'package:quds_mail_store/src/schema/flag_journal_schema.dart';
+import 'package:quds_mail_store/src/schema/membership_observation_schema.dart';
+import 'package:quds_mail_store/src/schema/move_identity_schema.dart';
 import 'package:sqlite3/sqlite3.dart' as sqlite;
 import 'package:test/test.dart';
 
@@ -42,6 +44,38 @@ MailComposeSettings _settings({
         ),
       ],
 );
+
+MailComposeSettings _extendedSettings({MailAccountId? account}) =>
+    _settings(account: account).copyWith(
+      senderIdentities: const [
+        MailSenderIdentity(
+          id: 'work',
+          name: 'Work',
+          address: 'sender@example.test',
+          displayName: 'مرحبا 📨',
+          replyTo: 'reply@example.test',
+        ),
+        MailSenderIdentity(
+          id: 'alternate',
+          name: 'Alternate',
+          address: 'alias@example.test',
+        ),
+      ],
+      defaultSenderIdentityId: 'work',
+      templates: const [
+        MailMessageTemplate(
+          id: 'follow-up',
+          name: 'Follow-up',
+          to: 'to@example.test',
+          cc: 'copy@example.test',
+          bcc: 'private@example.test',
+          subject: 'Meeting 📨',
+          body: '<b>literal</b>\r\n\$name\tمرحبا',
+          senderIdentityId: 'work',
+        ),
+        MailMessageTemplate(id: 'blank', name: 'Blank', to: 'unfinished@'),
+      ],
+    );
 
 T _value<T>(MailResult<T> result) {
   expect(result, isA<MailSuccess<T>>());
@@ -142,6 +176,60 @@ Future<void> _expectLocalWork(
     'hidden@example.test',
   ]);
   expect(queued.state, MailOutboxState.queued);
+}
+
+sqlite.Database _legacyComposeDatabase(int version) {
+  final legacy = sqlite.sqlite3.openInMemory();
+  final schemas = <int, List<String>>{
+    1: schemaV1,
+    2: schemaV2,
+    3: schemaV3,
+    4: schemaV4,
+    5: schemaV5,
+    6: schemaV6,
+    7: schemaV7,
+    8: schemaV8,
+    9: schemaV9,
+    10: schemaV10,
+    11: schemaV11,
+    12: schemaV12,
+    13: schemaV13,
+    14: schemaV14,
+    15: schemaV15,
+    17: schemaV17,
+    18: schemaV18,
+    19: schemaV19,
+    20: schemaV20,
+  };
+  for (final entry in schemas.entries) {
+    if (entry.key > version) break;
+    for (final sql in entry.value) {
+      legacy.execute(sql);
+    }
+  }
+  legacy.execute(
+    'INSERT INTO store_profile(singleton,host_id,profile_id) VALUES(1,?,?)',
+    [_profile.hostId, _profile.value],
+  );
+  legacy.execute(
+    'INSERT INTO accounts(id,provider,display_name,state) VALUES(?,?,?,?)',
+    [_account.value, 'imap', 'Legacy', 'loggedOut'],
+  );
+  legacy.execute(
+    'INSERT INTO account_compose_settings(account,revision,signature,signature_new,signature_replies) VALUES(?,7,?,1,0)',
+    [_account.value, 'Legacy 📨\r\nsignature'],
+  );
+  legacy.execute(
+    'INSERT INTO account_quick_texts(account,position,id,name,name_key,text) VALUES(?,0,?,?,?,?)',
+    [_account.value, 'text', 'Text', 'text', 'Unchanged'],
+  );
+  final encoded = MailStoreCodec.encodeDraft(_draft(_account));
+  legacy.execute(
+    'INSERT INTO drafts(account,id,revision,data) VALUES(?,?,?,?)',
+    [_account.value, 'draft', 1, encoded.data],
+  );
+  legacy.userVersion = version;
+  return legacy;
 }
 
 void main() {
@@ -710,6 +798,547 @@ void main() {
     },
   );
 
+  group('sender identity and template storage', () {
+    test(
+      'round-trips complete literal snapshots and independent revisions after reopen',
+      () async {
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        await store.close();
+        store = await _open(database);
+        final restored = _value(await store.loadComposeSettings(_account));
+        expect(restored.revision, saved.revision);
+        expect(restored.defaultSenderIdentityId, 'work');
+        expect(restored.senderIdentities.map((item) => item.id), [
+          'work',
+          'alternate',
+        ]);
+        expect(restored.senderIdentities.first.displayName, 'مرحبا 📨');
+        expect(restored.senderIdentities.first.replyTo, 'reply@example.test');
+        expect(restored.templates.first.bcc, 'private@example.test');
+        expect(restored.templates.first.body, saved.templates.first.body);
+        expect(restored.templates.first.senderIdentityId, 'work');
+        expect(restored.templates.last.to, 'unfinished@');
+        expect(restored.templates.last.senderIdentityId, isNull);
+        expect(() => restored.senderIdentities.clear(), throwsUnsupportedError);
+        expect(() => restored.templates.clear(), throwsUnsupportedError);
+        final updated = _value(
+          await store.saveComposeSettings(
+            restored.copyWith(
+              senderIdentities: restored.senderIdentities.reversed.toList(),
+              templates: restored.templates.reversed.toList(),
+              defaultSenderIdentityId: 'alternate',
+            ),
+            expectedRevision: restored.revision,
+          ),
+        );
+        expect(updated.revision, 2);
+        expect(
+          _value(await store.loadComposeSettings(_account)).templates.first.id,
+          'blank',
+        );
+        _problem(
+          await store.saveComposeSettings(
+            saved,
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.conflict,
+        );
+      },
+    );
+
+    test(
+      'deleting referenced senders requires atomic explicit reference clearing',
+      () async {
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        _problem(
+          await store.saveComposeSettings(
+            saved.copyWith(senderIdentities: []),
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.invalidInput,
+        );
+        final cleared = _value(
+          await store.saveComposeSettings(
+            saved.copyWith(
+              senderIdentities: [],
+              clearDefaultSenderIdentity: true,
+              templates: saved.templates
+                  .map((item) => item.copyWith(clearSenderIdentity: true))
+                  .toList(),
+            ),
+            expectedRevision: saved.revision,
+          ),
+        );
+        expect(cleared.revision, 2);
+        final restored = _value(await store.loadComposeSettings(_account));
+        expect(restored.defaultSenderIdentityId, isNull);
+        expect(restored.senderIdentities, isEmpty);
+        expect(
+          restored.templates.map((item) => item.senderIdentityId),
+          everyElement(isNull),
+        );
+        expect(database.select('PRAGMA foreign_key_check'), isEmpty);
+      },
+    );
+
+    test(
+      'failure rolls back senders, references, templates and the shared revision',
+      () async {
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        failCommit = true;
+        _problem(
+          await store.saveComposeSettings(
+            saved.copyWith(
+              senderIdentities: [],
+              templates: [],
+              clearDefaultSenderIdentity: true,
+              signature: 'Changed',
+              quickTexts: [],
+            ),
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.storageFailure,
+        );
+        final restored = _value(await store.loadComposeSettings(_account));
+        expect(restored.revision, saved.revision);
+        expect(restored.signature, saved.signature);
+        expect(restored.quickTexts.length, saved.quickTexts.length);
+        expect(
+          restored.senderIdentities.first.address,
+          saved.senderIdentities.first.address,
+        );
+        expect(restored.defaultSenderIdentityId, saved.defaultSenderIdentityId);
+        expect(restored.templates.first.body, saved.templates.first.body);
+      },
+    );
+
+    test(
+      'logout keeps templates; account and profile removal erase only owned data',
+      () async {
+        await _register(store, _other);
+        await _seedLocalWork(store, _other);
+        _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        _value(
+          await store.saveComposeSettings(
+            _extendedSettings(account: _other),
+            expectedRevision: 0,
+          ),
+        );
+        _value(await store.logout(MailAccountSession(_account)));
+        expect(
+          _value(await store.loadComposeSettings(_account)).templates.length,
+          2,
+        );
+        _value(await store.removeAccount(_account));
+        for (final table in [
+          'account_sender_identities',
+          'account_message_templates',
+        ]) {
+          expect(
+            database
+                .select('SELECT DISTINCT account FROM $table')
+                .single['account'],
+            _other.value,
+          );
+        }
+        _problem(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+          MailProblemCode.unavailable,
+        );
+        await _expectLocalWork(store, _other);
+        _value(await store.removeProfile());
+        for (final table in [
+          'account_sender_identities',
+          'account_message_templates',
+        ]) {
+          expect(database.select('SELECT * FROM $table'), isEmpty);
+        }
+      },
+    );
+
+    test(
+      'reset and alias changes do not mutate drafts or frozen Outbox payloads',
+      () async {
+        await _seedLocalWork(store, _account);
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        _value(
+          await store.saveComposeSettings(
+            saved.copyWith(
+              senderIdentities: [
+                saved.senderIdentities.first.copyWith(
+                  address: 'changed@example.test',
+                ),
+                saved.senderIdentities.last,
+              ],
+            ),
+            expectedRevision: saved.revision,
+          ),
+        );
+        await _expectLocalWork(store, _account);
+        _value(
+          await store.saveComposeSettings(
+            MailComposeSettings(account: _account, revision: 2),
+            expectedRevision: 2,
+          ),
+        );
+        await _expectLocalWork(store, _account);
+      },
+    );
+
+    test('a template cannot reference another account sender', () async {
+      await _register(store, _other);
+      _value(
+        await store.saveComposeSettings(
+          _extendedSettings(account: _other),
+          expectedRevision: 0,
+        ),
+      );
+      _problem(
+        await store.saveComposeSettings(
+          MailComposeSettings(
+            account: _account,
+            templates: _extendedSettings().templates,
+          ),
+          expectedRevision: 0,
+        ),
+        MailProblemCode.invalidInput,
+      );
+      _value(await store.saveComposeSettings(_settings(), expectedRevision: 0));
+      expect(
+        () => database.execute(
+          'INSERT INTO account_message_templates(account,position,id,name,name_key,to_text,cc_text,bcc_text,subject,body,sender_identity) '
+          'VALUES(?,0,?,?,?,?,?,?,?,?,?)',
+          [_account.value, 't', 'T', 't', '', '', '', '', '', 'work'],
+        ),
+        throwsA(isA<sqlite.SqliteException>()),
+      );
+    });
+
+    test(
+      'new content contributes to host metadata and account-byte quotas',
+      () async {
+        await store.close();
+        store = await _open(
+          database,
+          limits: const MailStoreLimits(maxMetadataCodeUnits: 500),
+        );
+        final saved = _value(
+          await store.saveComposeSettings(
+            MailComposeSettings(account: _account),
+            expectedRevision: 0,
+          ),
+        );
+        _problem(
+          await store.saveComposeSettings(
+            saved.copyWith(
+              templates: [
+                const MailMessageTemplate(
+                  id: 't',
+                  name: 'Template',
+                  body: 'text',
+                ).copyWith(body: 'x' * 1000),
+              ],
+            ),
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.quotaExceeded,
+        );
+        expect(_value(await store.loadComposeSettings(_account)).revision, 1);
+        await store.close();
+        store = await _open(
+          database,
+          limits: const MailStoreLimits(maxAccountBytes: 900),
+        );
+        _problem(
+          await store.saveComposeSettings(
+            _extendedSettings().copyWith(revision: 1),
+            expectedRevision: 1,
+          ),
+          MailProblemCode.quotaExceeded,
+        );
+        expect(
+          _value(await store.loadComposeSettings(_account)).templates,
+          isEmpty,
+        );
+      },
+    );
+
+    for (final (label, sql, args) in <(String, String, List<Object?>)>[
+      (
+        'missing default identity',
+        "UPDATE account_compose_settings SET default_sender_identity='missing'",
+        [],
+      ),
+      (
+        'default malformed UTF-8',
+        "UPDATE account_compose_settings SET default_sender_identity=CAST(X'EDA080' AS TEXT)",
+        [],
+      ),
+      (
+        'identity malformed UTF-8',
+        "UPDATE account_sender_identities SET display_name=CAST(X'EDA080' AS TEXT) WHERE position=0",
+        [],
+      ),
+      (
+        'identity header injection',
+        'UPDATE account_sender_identities SET address=? WHERE position=0',
+        ['a@example.test\r\nBcc: b@example.test'],
+      ),
+      (
+        'identity ordering gap',
+        'UPDATE account_sender_identities SET position=9 WHERE position=0',
+        [],
+      ),
+      (
+        'identity name key mismatch',
+        "UPDATE account_sender_identities SET name_key='wrong' WHERE position=0",
+        [],
+      ),
+      (
+        'identity binary display name',
+        "UPDATE account_sender_identities SET display_name=X'010203' WHERE position=0",
+        [],
+      ),
+      (
+        'template malformed UTF-8',
+        "UPDATE account_message_templates SET body=CAST(X'EDA080' AS TEXT) WHERE position=0",
+        [],
+      ),
+      (
+        'template subject control',
+        'UPDATE account_message_templates SET subject=? WHERE position=0',
+        ['a\nBcc: b'],
+      ),
+      (
+        'template recipient control',
+        'UPDATE account_message_templates SET bcc_text=? WHERE position=0',
+        ['a\nb'],
+      ),
+      (
+        'template UTF-16 overflow',
+        'UPDATE account_message_templates SET body=? WHERE position=0',
+        ['📨' * 8193],
+      ),
+      (
+        'template combined recipient overflow',
+        'UPDATE account_message_templates SET to_text=?,cc_text=? WHERE position=0',
+        ['x' * 20000, 'x' * 6000],
+      ),
+      (
+        'template ordering gap',
+        'UPDATE account_message_templates SET position=9 WHERE position=0',
+        [],
+      ),
+      (
+        'template name key mismatch',
+        "UPDATE account_message_templates SET name_key='wrong' WHERE position=0",
+        [],
+      ),
+      (
+        'template binary body',
+        "UPDATE account_message_templates SET body=X'010203' WHERE position=0",
+        [],
+      ),
+    ]) {
+      test('rejects corrupt $label and prevents overwrite', () async {
+        final saved = _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        database.execute('PRAGMA ignore_check_constraints=ON');
+        database.execute(sql, args);
+        _problem(
+          await store.loadComposeSettings(_account),
+          MailProblemCode.storageFailure,
+        );
+        _problem(
+          await store.saveComposeSettings(
+            saved,
+            expectedRevision: saved.revision,
+          ),
+          MailProblemCode.storageFailure,
+        );
+      });
+    }
+
+    test(
+      'preflights oversized template bytes before transferring text',
+      () async {
+        _value(
+          await store.saveComposeSettings(
+            _extendedSettings(),
+            expectedRevision: 0,
+          ),
+        );
+        await store.close();
+        database.execute(
+          'UPDATE account_message_templates SET body=? WHERE position=0',
+          ['x' * 70000],
+        );
+        final probe = _TransferProbe();
+        store = await _open(database, interceptor: probe);
+        _problem(
+          await store.loadComposeSettings(_account),
+          MailProblemCode.storageFailure,
+        );
+        expect(probe.largeTextTransferred, isFalse);
+      },
+    );
+
+    test(
+      'preflights excessive template count before transferring text',
+      () async {
+        _value(
+          await store.saveComposeSettings(_settings(), expectedRevision: 0),
+        );
+        await store.close();
+        database.execute('PRAGMA ignore_check_constraints=ON');
+        for (var i = 0; i < 33; i++) {
+          database.execute(
+            'INSERT INTO account_message_templates(account,position,id,name,name_key,to_text,cc_text,bcc_text,subject,body) '
+            'VALUES(?,?,?,?,?,?,?,?,?,?)',
+            [_account.value, i, '$i', '$i', '$i', '', '', '', '', 'x' * 20000],
+          );
+        }
+        final probe = _TransferProbe();
+        store = await _open(database, interceptor: probe);
+        _problem(
+          await store.loadComposeSettings(_account),
+          MailProblemCode.storageFailure,
+        );
+        expect(probe.largeTextTransferred, isFalse);
+      },
+    );
+  });
+
+  test(
+    'schema 20 migration failure rolls back all new compose structures',
+    () async {
+      final legacy = _legacyComposeDatabase(20);
+      try {
+        final failed = await SqliteMailRepository.open(
+          executor: NativeDatabase.opened(
+            legacy,
+            closeUnderlyingOnClose: false,
+          ),
+          profile: _profile,
+          faultInjector: (point) {
+            if (point == MailStoreCheckpoint.migrationCreated) {
+              throw const MailStoreStorageException(
+                MailProblemCode.storageFailure,
+              );
+            }
+          },
+        );
+        _problem(failed, MailProblemCode.storageFailure);
+        expect(legacy.userVersion, 20);
+        expect(
+          legacy
+              .select('PRAGMA table_info(account_compose_settings)')
+              .map((row) => row['name']),
+          isNot(contains('default_sender_identity')),
+        );
+        expect(
+          legacy.select(
+            "SELECT name FROM sqlite_master WHERE name IN ('account_sender_identities','account_message_templates')",
+          ),
+          isEmpty,
+        );
+        expect(
+          legacy
+              .select('SELECT signature FROM account_compose_settings')
+              .single['signature'],
+          'Legacy 📨\r\nsignature',
+        );
+        final retried = await _open(legacy);
+        try {
+          expect(legacy.userVersion, 21);
+          final retained = _value(await retried.loadComposeSettings(_account));
+          expect(retained.revision, 7);
+          expect(retained.quickTexts.single.text, 'Unchanged');
+          expect(retained.senderIdentities, isEmpty);
+        } finally {
+          await retried.close();
+        }
+      } finally {
+        legacy.close();
+      }
+    },
+  );
+
+  for (var version = 10; version <= 20; version++) {
+    test(
+      'schema $version retains existing compose settings when adding identities and templates',
+      () async {
+        final legacy = _legacyComposeDatabase(version);
+        final encoded = MailStoreCodec.encodeDraft(_draft(_account));
+        final migrated = await _open(legacy);
+        try {
+          expect(legacy.userVersion, 21);
+          expect(legacy.select('PRAGMA foreign_key_check'), isEmpty);
+          final old = _value(await migrated.loadComposeSettings(_account));
+          expect(old.revision, 7);
+          expect(old.signature, 'Legacy 📨\r\nsignature');
+          expect(old.quickTexts.single.text, 'Unchanged');
+          expect(old.senderIdentities, isEmpty);
+          expect(old.templates, isEmpty);
+          expect(old.defaultSenderIdentityId, isNull);
+          final added = _value(
+            await migrated.saveComposeSettings(
+              old.copyWith(
+                senderIdentities: _extendedSettings().senderIdentities,
+                templates: _extendedSettings().templates,
+                defaultSenderIdentityId: 'work',
+              ),
+              expectedRevision: old.revision,
+            ),
+          );
+          expect(added.revision, 8);
+          expect(added.signature, old.signature);
+          expect(
+            MailStoreCodec.encodeDraft(
+              _value(await migrated.loadDraft(_account, 'draft'))!,
+            ).data,
+            encoded.data,
+          );
+        } finally {
+          await migrated.close();
+          legacy.close();
+        }
+      },
+    );
+  }
+
   for (var version = 1; version <= 9; version++) {
     test('schema $version upgrades additively and preserves authored work', () async {
       final legacy = sqlite.sqlite3.openInMemory();
@@ -757,7 +1386,7 @@ void main() {
       legacy.userVersion = version;
       final migrated = await _open(legacy);
       try {
-        expect(legacy.userVersion, 20);
+        expect(legacy.userVersion, 21);
         expect(legacy.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           _value(await migrated.loadComposeSettings(_account)).revision,

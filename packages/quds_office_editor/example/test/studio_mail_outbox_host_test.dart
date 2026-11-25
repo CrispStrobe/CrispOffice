@@ -446,6 +446,80 @@ Future<(MailOutboxEntry, StudioMailDraft, StudioMailDraft)> _seedManagedOutbox(
 void main() {
   for (final ews in [false, true]) {
     testWidgets(
+      '${ews ? 'EWS rejects' : 'native SMTP submits'} a frozen alias without changing its payload',
+      (tester) async {
+        const alias = StudioMailSender(
+          address: 'alias@example.test',
+          displayName: 'Writer, Grüße',
+          replyTo: 'replies@example.test',
+        );
+        const draft = StudioMailDraft(
+          to: 'to@example.test',
+          cc: 'copy@example.test',
+          bcc: 'hidden@example.test',
+          subject: 'Frozen alias message',
+          body: 'This exact payload must survive submission.',
+          sender: alias,
+        );
+        final fixture = await _fixture(tester, ews: ews);
+        final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+        final frozen = await awaitOutboxOperation(
+          tester,
+          seed.enqueueOutbox(draft, _sender),
+        );
+        await awaitOutboxOperation(tester, seed.close());
+        final originalWire = frozen.prepared.wire.copyBytes();
+        expect(frozen.prepared.envelope.sender, alias.address);
+        final client = _Client();
+        final provider = ews ? await _ews(tester, fixture) : null;
+        if (!ews) await _native(tester, fixture, client);
+        final store = fixture.adapters.last;
+        expect(client.sent, isEmpty);
+        expect(provider?.submissions ?? <MailPreparedMessage>[], isEmpty);
+        await _press(tester, _openOutbox);
+        await _press(tester, _action('send', frozen));
+        await _pump(tester);
+
+        final persisted = (await awaitOutboxOperation(
+          tester,
+          store.loadOutbox(),
+        )).single;
+        expect(persisted.prepared.wire.bytes, originalWire);
+        expect(persisted.prepared.wireHash, frozen.prepared.wireHash);
+        expect(persisted.prepared.envelope.sender, alias.address);
+        expect(persisted.prepared.envelope.recipients, [
+          'to@example.test',
+          'copy@example.test',
+          'hidden@example.test',
+        ]);
+        expect(persisted.attemptNumber, 1);
+        if (ews) {
+          expect(provider!.submissions, isEmpty);
+          expect(provider.attempts, isEmpty);
+          expect(persisted.state, MailOutboxState.permanentFailure);
+          expect(persisted.result!.outcome, MailSubmissionOutcome.rejected);
+        } else {
+          expect(persisted.state, MailOutboxState.submitted);
+          expect(client.senders, [alias.address]);
+          expect(client.appendRequests, [false]);
+          expect(client.recipientLists.single,
+            persisted.prepared.envelope.recipients);
+          final wire = client.sent.single.renderMessage();
+          expect(ascii.encode(wire), originalWire);
+          expect(wire, isNot(contains('hidden@example.test')));
+          final parsed = const QudsMimeCodec().parse(originalWire).message!;
+          expect(parsed.envelope.from.single.address, alias.address);
+          expect(parsed.envelope.from.single.displayName, alias.displayName);
+          expect(parsed.envelope.replyTo.single.address, alias.replyTo);
+          expect(parsed.envelope.bcc, isEmpty);
+        }
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  for (final ews in [false, true]) {
+    testWidgets(
       '${ews ? 'EWS' : 'IMAP'} edits queued copy into the correct draft and explicitly requeues new MIME',
       (tester) async {
         final fixture = await _fixture(tester, ews: ews);

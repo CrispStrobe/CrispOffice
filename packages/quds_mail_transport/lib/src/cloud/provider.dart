@@ -10,6 +10,8 @@ import 'configuration.dart';
 import 'cursor.dart';
 import 'http.dart';
 
+part 'provider_search.dart';
+
 typedef _Json = Map<String, Object?>;
 
 Never _fail(MailProblemCode code) =>
@@ -73,7 +75,8 @@ final class ApiMailCloudProvider
         MailCloudProvider,
         MailFlagObserver,
         MailMembershipObserver,
-        MailArchiveDestinationResolver {
+        MailArchiveDestinationResolver,
+        MailProviderSearch {
   ApiMailCloudProvider({
     required this.configuration,
     required this.tokenSource,
@@ -101,6 +104,26 @@ final class ApiMailCloudProvider
 
   @override
   MailAccountId get account => configuration.account;
+
+  @override
+  Set<MailProviderSearchField> get searchFields => _gmail
+      ? const {
+          MailProviderSearchField.subject,
+          MailProviderSearchField.from,
+          MailProviderSearchField.to,
+        }
+      : const {
+          MailProviderSearchField.body,
+          MailProviderSearchField.subject,
+          MailProviderSearchField.from,
+          MailProviderSearchField.to,
+        };
+
+  @override
+  Future<MailResult<MailProviderSearchResult>> search(
+    MailProviderSearchRequest request, {
+    required MailOperationLease lease,
+  }) => _search(request, lease: lease);
 
   @override
   void dispose() {
@@ -196,10 +219,8 @@ final class ApiMailCloudProvider
         operation.check();
         return action(operation);
       }();
-      final result = await Future.any([
-        work,
-        cancelled.future,
-      ]).timeout(limits.operationTimeout);
+      final result = await Future.any([work, cancelled.future])
+          .timeout(limits.operationTimeout);
       operation.check();
       _event(
         operation,
@@ -1041,9 +1062,9 @@ final class ApiMailCloudProvider
       if (_gmail) {
         // An explicit empty label list is valid. An omitted or malformed list
         // cannot certify that an uncertain read/flag command currently matches.
-        final labels = _array(
-          data['labelIds'],
-        ).map((value) => _text(value)).toSet();
+        final labels = _array(data['labelIds'])
+            .map((value) => _text(value))
+            .toSet();
         flags = MailMessageFlags(
           isRead: !labels.contains('UNREAD'),
           isFlagged: labels.contains('STARRED'),
@@ -1111,9 +1132,9 @@ final class ApiMailCloudProvider
         _fail(MailProblemCode.providerFailure);
       }
       if (_gmail) {
-        final labels = _array(
-          data['labelIds'],
-        ).map((value) => _text(value)).toList();
+        final labels = _array(data['labelIds'])
+            .map((value) => _text(value))
+            .toList();
         if (labels.length >
             math.min(
               limits.maxMailboxes,

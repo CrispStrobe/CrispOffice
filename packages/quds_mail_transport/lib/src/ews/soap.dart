@@ -71,10 +71,12 @@ final class EwsItemIdPage {
     required List<EwsItemId> items,
     required this.lastPage,
     required this.nextOffset,
+    this.totalCount,
   }) : items = List.unmodifiable(items);
   final List<EwsItemId> items;
   final bool lastPage;
   final int? nextOffset;
+  final int? totalCount;
 }
 
 enum EwsChangeKind { create, update, delete, readFlagChange }
@@ -253,6 +255,7 @@ final class EwsSoap {
     String folderId, {
     required int offset,
     required int limit,
+    MailProviderSearchRequest? search,
   }) => _request('FindItem', (builder) {
     builder.element(
       'm:ItemShape',
@@ -268,6 +271,65 @@ final class EwsSoap {
         'BasePoint': 'Beginning',
       },
     );
+    if (search != null) {
+      if (!search.isValid || search.mailbox.value != folderId) {
+        throw const EwsException(MailProblemCode.invalidInput);
+      }
+      final field = switch (search.field) {
+        MailProviderSearchField.body => 'item:Body',
+        MailProviderSearchField.subject => 'item:Subject',
+        _ => throw const EwsException(MailProblemCode.unsupported),
+      };
+      void conditions() {
+        builder.element(
+          't:Contains',
+          attributes: const {
+            'ContainmentMode': 'Substring',
+            'ContainmentComparison': 'IgnoreCase',
+          },
+          nest: () {
+            builder.element('t:FieldURI', attributes: {'FieldURI': field});
+            builder.element('t:Constant', attributes: {'Value': search.query});
+          },
+        );
+        void dateCondition(String comparison, DateTime value) {
+          builder.element(
+            't:$comparison',
+            nest: () {
+              builder.element(
+                't:FieldURI',
+                attributes: const {'FieldURI': 'item:DateTimeReceived'},
+              );
+              builder.element(
+                't:FieldURIOrConstant',
+                nest: () => builder.element(
+                  't:Constant',
+                  attributes: {'Value': value.toIso8601String()},
+                ),
+              );
+            },
+          );
+        }
+
+        if (search.receivedAfter case final date?) {
+          dateCondition('IsGreaterThanOrEqualTo', date);
+        }
+        if (search.receivedBefore case final date?) {
+          dateCondition('IsLessThan', date);
+        }
+      }
+
+      builder.element(
+        'm:Restriction',
+        nest: () {
+          if (search.receivedAfter != null || search.receivedBefore != null) {
+            builder.element('t:And', nest: conditions);
+          } else {
+            conditions();
+          }
+        },
+      );
+    }
     builder.element(
       'm:SortOrder',
       nest: () {
@@ -318,6 +380,7 @@ final class EwsSoap {
     bool mime = false,
     bool flagsOnly = false,
     bool membershipOnly = false,
+    bool includeMembership = false,
   }) => _request('GetItem', (builder) {
     builder.element(
       'm:ItemShape',
@@ -328,7 +391,7 @@ final class EwsSoap {
           't:AdditionalProperties',
           nest: () {
             for (final field in [
-              if (membershipOnly) 'item:ParentFolderId',
+              if (membershipOnly || includeMembership) 'item:ParentFolderId',
               if (!flagsOnly && !membershipOnly) ...const [
                 'item:Subject',
                 'item:DateTimeSent',
@@ -591,7 +654,21 @@ final class EwsSoap {
       if (result.length > limits.maxPageSize) _quota();
     }
     final page = _page(root);
-    return EwsItemIdPage(items: result, lastPage: page.$1, nextOffset: page.$2);
+    final rawCount = root.getAttribute('TotalItemsInView');
+    final totalCount = rawCount == null ? null : int.tryParse(rawCount);
+    if (rawCount != null &&
+        (totalCount == null ||
+            !RegExp(r'^\d+$').hasMatch(rawCount) ||
+            totalCount < result.length ||
+            totalCount > 0x1fffffffffffff)) {
+      _invalid();
+    }
+    return EwsItemIdPage(
+      items: result,
+      lastPage: page.$1,
+      nextOffset: page.$2,
+      totalCount: totalCount,
+    );
   });
 
   EwsSyncChanges sync(String xml, {bool tasks = false}) => _guard(() {

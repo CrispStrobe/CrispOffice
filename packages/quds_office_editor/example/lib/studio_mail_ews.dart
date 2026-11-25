@@ -39,6 +39,9 @@ import 'studio_mail_local_accounts_dialog.dart';
 import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_mutation_strings.dart';
 import 'studio_mail_operation.dart';
+import 'studio_mail_provider_search.dart';
+import 'studio_mail_server_search_dialog.dart';
+import 'studio_mail_server_search_strings.dart';
 import 'studio_mail_organization_dialog.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
@@ -2766,6 +2769,60 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  Future<void> _openServerSearch() async {
+    final provider = _provider;
+    final session = _session;
+    final mailbox = _mailbox;
+    if (_blocked ||
+        provider == null ||
+        provider is! MailProviderSearch ||
+        session == null ||
+        mailbox == null) {
+      return;
+    }
+    final searchProvider = provider as MailProviderSearch;
+    if (searchProvider.searchFields.isEmpty) return;
+    final lease = session.begin();
+    final generation = _mailboxGeneration;
+    bool current() =>
+        _current(provider, lease) &&
+        identical(session, _session) &&
+        identical(mailbox, _mailbox) &&
+        generation == _mailboxGeneration;
+    MailHeaderRecord? chosen;
+    setState(() => _dialogOpen = true);
+    try {
+      chosen = await showStudioMailProviderSearchDialog(
+        context,
+        strings: widget.strings,
+        mailboxName: mailbox.displayName,
+        fields: searchProvider.searchFields,
+        search: (field, range, query, cancellation) async {
+          if (!current()) {
+            throw const MailCancelled(MailCancellationReason.accountChanged);
+          }
+          final result = await runStudioMailProviderSearch(
+            provider: searchProvider,
+            request: studioMailProviderSearchRequest(
+              mailbox: mailbox.id,
+              field: field,
+              range: range,
+              query: query,
+            ),
+            lease: session.begin(cancellation: cancellation),
+          );
+          if (!current()) {
+            throw const MailCancelled(MailCancellationReason.accountChanged);
+          }
+          return result;
+        },
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+    if (chosen != null && current()) await _openMessage(chosen);
+  }
+
   Future<void> _openSynchronization() async {
     final provider = _provider;
     final session = _session;
@@ -3212,6 +3269,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     : _forCurrentConnection(_navigateAccount),
               ),
             if (_connected) ...[
+              if (_provider case final MailProviderSearch searchProvider
+                  when searchProvider.searchFields.isNotEmpty)
+                IconButton(
+                  key: const ValueKey('studio-mail-open-server-search'),
+                  tooltip: widget.strings.mailServerSearch,
+                  icon: const Icon(Icons.manage_search),
+                  onPressed: _blocked || _mailbox == null
+                      ? null
+                      : _forCurrentConnection(_openServerSearch),
+                ),
               if (_draftStore is StudioMailMailboxStoreOwner)
                 IconButton(
                   key: const ValueKey('studio-mail-open-sync'),

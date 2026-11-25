@@ -326,14 +326,15 @@ void main() {
     },
   );
 
-  test('sender mismatch and unrepresentable display names are refused', () {
+  test('sender names are retained while mismatches and named recipients are refused', () {
     _refused(_entry(_draft, sender: 'other@example.test'));
-    _refused(
+    final named = StudioMailOutboxContent.fromEntry(
       _entry(
         _draft,
         mutate: (wire) => wire.replaceFirst(_sender, 'Named Writer <$_sender>'),
       ),
     );
+    expect(named.draft.sender?.displayName, 'Named Writer');
     _refused(
       _entry(
         _draft,
@@ -378,7 +379,7 @@ void main() {
     'unsupported and duplicate root headers do not disappear in an editable copy',
     () {
       for (final header in [
-        'Reply-To: alternate@example.test',
+        'Reply-To: first@example.test, second@example.test',
         'Sender: $_sender',
         'Subject: another subject',
         'To: hidden@example.test',

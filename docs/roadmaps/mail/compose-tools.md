@@ -91,10 +91,12 @@ write. Only a same-account acknowledgement at the next revision is accepted.
 
 ## Remaining parity work
 
-This is one part of M07 authoring. It does not supply multiple SMTP identities
-or aliases, full-message templates, HTML alternatives/inline images, provider
-Drafts synchronization, rules, encryption or full desktop
-mail parity.
+This original signature/Quick Text increment is one part of M07 authoring.
+The later [sender identity and template increment](sender-identities-templates.md)
+adds native SMTP sender selection and literal full-message templates. Rich HTML
+composition, inline images, provider Drafts synchronization, encryption and
+complete desktop mail parity remain open. Ordered local tag rules are covered
+separately in [local rules](local-rules.md).
 The later [scheduled-send increment](scheduled-send.md) supplies foreground
 Send later and Undo through the same durable Outbox.
 
@@ -104,7 +106,7 @@ The next sequence remains:
    move/delete operations.
 2. Extend foreground scheduling with background execution and provider-specific
    Sent reconciliation, preserving uncertain-submission handling.
-3. Add identity routing, ordered rules and richer authoring/Office attachments.
+3. Extend cloud/EWS alias routing and richer authoring/Office attachments.
 4. Extend provider/productivity features and qualify installed platforms.
 
 Comparison references:

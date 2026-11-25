@@ -14,6 +14,7 @@ import 'package:quds_mail_transport/src/ews/native/http_client.dart';
 import 'package:quds_mail_transport/src/ews/native/provider.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:test/test.dart';
+import 'package:xml/xml.dart';
 
 final _account = MailAccountId(
   'exchange',
@@ -224,6 +225,218 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  group('provider-side search', () {
+    String found(
+      List<String> ids, {
+      int total = 2,
+      bool last = true,
+      int? next,
+    }) => _response(
+      'FindItem',
+      _success(
+        'FindItem',
+        '<m:RootFolder IncludesLastItemInRange="$last" TotalItemsInView="$total"${next == null ? '' : ' IndexedPagingOffset="$next"'}><t:Items>${ids.map((id) => '<t:Message><t:ItemId Id="$id" ChangeKey="search-key"/></t:Message>').join()}</t:Items></m:RootFolder>',
+      ),
+    );
+
+    test(
+      'EWS structural body search escapes literal text and reports bounded exact count',
+      () async {
+        final f = _Fixture();
+        f.scripts.add([
+          ('FindItem', (_) => found(['a', 'b'])),
+          ('GetItem', (_) => _response('GetItem', '${_item('a')}${_item('b')}')),
+        ]);
+        final provider = f.provider();
+        final result = _value(
+          await provider.search(
+            MailProviderSearchRequest(
+              mailbox: _mailbox,
+              query: 'a "quoted" & <term>',
+              receivedAfter: DateTime.utc(2026, 11, 25),
+              receivedBefore: DateTime.utc(2026, 11, 26),
+              maxResults: 1,
+            ),
+            lease: f.session.begin(),
+          ),
+        );
+        expect(result.messages, hasLength(1));
+        expect(result.hasMore, isTrue);
+        expect(result.totalCount, 2);
+        expect(result.countPrecision, MailSearchCountPrecision.exact);
+        final xml = f.clients.single.requests.first.$2;
+        expect(xml, contains('FieldURI="item:Body"'));
+        expect(xml, contains('ContainmentMode="Substring"'));
+        final constants = XmlDocument.parse(xml)
+            .findAllElements('Constant', namespaceUri: 'http://schemas.microsoft.com/exchange/services/2006/types')
+            .map((element) => element.getAttribute('Value'))
+            .toList();
+        expect(constants.first, 'a "quoted" & <term>');
+        expect(xml, contains('&lt;'));
+        expect(xml, contains('IsGreaterThanOrEqualTo'));
+        expect(xml, contains('IsLessThan'));
+        expect(xml, contains('2026-11-25T00:00:00.000Z'));
+        expect(xml, contains('MaxEntriesReturned="2"'));
+        expect(f.clients.single.requests.last.$2, contains('item:ParentFolderId'));
+        expect(f.clients.single.requests.last.$2, contains('item:Subject'));
+        expect(
+          f.clients.single.requests.every((request) => !request.$3),
+          isTrue,
+        );
+      },
+    );
+
+    test(
+      'EWS search pages are bounded and stale membership lowers count certainty',
+      () async {
+        final f = _Fixture();
+        f.scripts.add([
+          ('FindItem', (_) => found(['moved'], total: 2, last: false, next: 1)),
+          (
+            'GetItem',
+            (_) => _response('GetItem', _item('moved', parent: 'other-folder')),
+          ),
+          (
+            'FindItem',
+            (xml) {
+              expect(xml, contains('Offset="1"'));
+              return found(['kept'], total: 2);
+            },
+          ),
+          ('GetItem', (_) => _response('GetItem', _item('kept'))),
+        ]);
+        final result = _value(
+          await f
+              .provider(limits: const MailEwsLimits(maxPageSize: 1))
+              .search(
+                MailProviderSearchRequest(
+                  mailbox: _mailbox,
+                  query: 'hello',
+                  field: MailProviderSearchField.subject,
+                ),
+                lease: f.session.begin(),
+              ),
+        );
+        expect(
+          result.messages.map((m) => (m.remote as MailOpaqueIdentity).value),
+          ['kept'],
+        );
+        expect(result.hasMore, isFalse);
+        expect(result.countPrecision, MailSearchCountPrecision.estimate);
+      },
+    );
+
+    test(
+      'EWS exhausted pages with a larger reported count remain estimates',
+      () async {
+        for (final ids in [<String>[], ['a']]) {
+          final f = _Fixture();
+          f.scripts.add([
+            ('FindItem', (_) => found(ids, total: 5)),
+            if (ids.isNotEmpty)
+              ('GetItem', (_) => _response('GetItem', _item('a'))),
+          ]);
+          final result = _value(
+            await f.provider().search(
+              MailProviderSearchRequest(mailbox: _mailbox, query: 'hello'),
+              lease: f.session.begin(),
+            ),
+          );
+          expect(result.messages, hasLength(ids.length));
+          expect(result.hasMore, isFalse);
+          expect(result.totalCount, 5);
+          expect(result.countPrecision, MailSearchCountPrecision.estimate);
+        }
+      },
+    );
+
+    test(
+      'EWS malformed counts and stalled cursors fail before header IO',
+      () async {
+        for (final response in [
+          found(['a'], total: -1),
+          found(['a'], total: 0),
+          found([], total: 2, last: false, next: 0),
+        ]) {
+          final f = _Fixture();
+          f.scripts.add([('FindItem', (_) => response)]);
+          final result = await f.provider().search(
+            MailProviderSearchRequest(mailbox: _mailbox, query: 'hello'),
+            lease: f.session.begin(),
+          );
+          expect(result, isA<MailFailure<MailProviderSearchResult>>());
+          expect(f.clients.single.requests, hasLength(1));
+        }
+      },
+    );
+
+    test(
+      'EWS search rejects foreign owners and unsupported participant fields before vault IO',
+      () async {
+        final f = _Fixture();
+        final provider = f.provider();
+        for (final field in [
+          MailProviderSearchField.from,
+          MailProviderSearchField.to,
+        ]) {
+          _problem(
+            await provider.search(
+              MailProviderSearchRequest(
+                mailbox: _mailbox,
+                query: 'hello',
+                field: field,
+              ),
+              lease: f.session.begin(),
+            ),
+            MailProblemCode.unsupported,
+          );
+        }
+        final foreign = MailAccountId('foreign', profile: _account.profile);
+        _problem(
+          await provider.search(
+            MailProviderSearchRequest(
+              mailbox: MailMailboxId('inbox-id', account: foreign),
+              query: 'hello',
+            ),
+            lease: f.session.begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        expect(f.vault.loads, 0);
+        expect(f.clients, isEmpty);
+      },
+    );
+
+    test(
+      'EWS search cancellation closes the client and drops delayed results',
+      () async {
+        final f = _Fixture();
+        final started = Completer<void>();
+        final finish = Completer<String>();
+        f.scripts.add([
+          (
+            'FindItem',
+            (_) {
+              started.complete();
+              return finish.future;
+            },
+          ),
+        ]);
+        final cancel = MailCancellationSource();
+        final pending = f.provider().search(
+          MailProviderSearchRequest(mailbox: _mailbox, query: 'hello'),
+          lease: f.session.begin(cancellation: cancel.token),
+        );
+        await started.future;
+        cancel.cancel();
+        finish.complete(found([], total: 0));
+        _problem(await pending, MailProblemCode.cancelled);
+        expect(f.clients.single.aborted, isTrue);
+        expect(f.clients.single.requests, hasLength(1));
+      },
+    );
+  });
+
   group('Exchange Tasks', () {
     final account = TaskAccountId('tasks', provider: 'ews');
 

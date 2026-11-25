@@ -91,7 +91,13 @@ void main() {
       'account_quick_texts',
     ])
       table: [
-        for (final row in database.select('SELECT * FROM $table'))
+        // Compare the published columns; new compose defaults are covered by
+        // the schema-21 migration tests and do not alter these authored values.
+        for (final row in database.select(
+          table == 'account_compose_settings'
+              ? 'SELECT account,revision,signature,signature_new,signature_replies FROM $table'
+              : 'SELECT * FROM $table',
+        ))
           Map<String, Object?>.from(row),
       ],
     'saved_header_searches': [
@@ -108,7 +114,7 @@ void main() {
       final before = preservedRows();
       final store = _value(await open());
       try {
-        expect(database.userVersion, 20);
+        expect(database.userVersion, 21);
         expect(preservedRows(), before);
         final saved = _value(await store.listSavedHeaderSearches()).single;
         expect(saved.folders, isNull);
@@ -169,7 +175,7 @@ void main() {
       );
       final store = _value(await open());
       try {
-        expect(database.userVersion, 20);
+        expect(database.userVersion, 21);
         expect(
           _value(await store.listSavedHeaderSearches()).single.folders,
           isNull,
@@ -231,7 +237,7 @@ void main() {
       final originalFolders = publishedFolders();
       final store = _value(await open());
       try {
-        expect(database.userVersion, 20);
+        expect(database.userVersion, 21);
         expect(preservedRows(), original);
         expect(publishedFolders(), originalFolders);
         final saved = _value(await store.listSavedHeaderSearches());
@@ -311,7 +317,7 @@ void main() {
       );
       final store = _value(await open());
       try {
-        expect(database.userVersion, 20);
+        expect(database.userVersion, 21);
         final saved = _value(await store.listSavedHeaderSearches());
         expect(
           saved.singleWhere((item) => item.id == 'existing').folders,

@@ -244,7 +244,9 @@ final class SqliteMailRepository
     }
     if (account.credentialReference case final reference?) _id(reference);
     final marker = (await _rows('SELECT removed FROM store_profile')).single;
-    if (marker.read<int>('removed') != 0) _fail(MailProblemCode.unavailable);
+    if (marker.read<int>('removed') != 0) {
+      _fail(MailProblemCode.unavailable);
+    }
     await _db.customStatement(
       'INSERT INTO accounts(id,provider,display_name,credential_ref,state) VALUES(?,?,?,?,?)',
       [
@@ -844,9 +846,42 @@ final class SqliteMailRepository
       ('drafts', ['id', 'data']),
       (
         'account_compose_settings',
-        ['revision', 'signature', 'signature_new', 'signature_replies'],
+        [
+          'revision',
+          'signature',
+          'signature_new',
+          'signature_replies',
+          'default_sender_identity',
+        ],
       ),
       ('account_quick_texts', ['position', 'id', 'name', 'name_key', 'text']),
+      (
+        'account_sender_identities',
+        [
+          'position',
+          'id',
+          'name',
+          'name_key',
+          'address',
+          'display_name',
+          'reply_to',
+        ],
+      ),
+      (
+        'account_message_templates',
+        [
+          'position',
+          'id',
+          'name',
+          'name_key',
+          'to_text',
+          'cc_text',
+          'bcc_text',
+          'subject',
+          'body',
+          'sender_identity',
+        ],
+      ),
       ('account_archive_settings', ['revision', 'destination']),
       ('outbox', ['id', 'state', 'attempt_id', 'data']),
       ('outbox_attempts', ['outbox', 'attempt_id']),

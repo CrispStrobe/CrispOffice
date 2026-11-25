@@ -14,14 +14,14 @@ import '../tasks.dart';
 import 'http_client.dart';
 
 part 'task_reader.dart';
+part 'provider_search.dart';
 
 /// Internal transport seam; the public factory exposes no HTTP client/secret.
-typedef EwsHttpClientFactory =
-    EwsHttpClient Function({
-      required MailEwsConfiguration configuration,
-      required String secret,
-      required MailEwsLimits limits,
-    });
+typedef EwsHttpClientFactory = EwsHttpClient Function({
+  required MailEwsConfiguration configuration,
+  required String secret,
+  required MailEwsLimits limits,
+});
 
 EwsHttpClient _client({
   required MailEwsConfiguration configuration,
@@ -63,7 +63,8 @@ final class NativeMailEwsProvider
         MailEwsProvider,
         MailFlagObserver,
         MailMembershipObserver,
-        MailMutationReceiptProvider {
+        MailMutationReceiptProvider,
+        MailProviderSearch {
   NativeMailEwsProvider({
     required this.configuration,
     required this.credentialStore,
@@ -85,6 +86,18 @@ final class NativeMailEwsProvider
 
   @override
   MailAccountId get account => configuration.account;
+
+  @override
+  Set<MailProviderSearchField> get searchFields => const {
+    MailProviderSearchField.body,
+    MailProviderSearchField.subject,
+  };
+
+  @override
+  Future<MailResult<MailProviderSearchResult>> search(
+    MailProviderSearchRequest request, {
+    required MailOperationLease lease,
+  }) => _search(request, lease: lease);
 
   MailFailure<T> _failure<T>(
     MailProblemCode code, {
@@ -190,10 +203,8 @@ final class NativeMailEwsProvider
         operation.check();
         return value;
       }();
-      final result = await Future.any(<Future<T>>[
-        work,
-        cancelled.future,
-      ]).timeout(limits.operationTimeout);
+      final result = await Future.any(<Future<T>>[work, cancelled.future])
+          .timeout(limits.operationTimeout);
       operation.check();
       return MailSuccess(result);
     } on MailCancelled catch (error) {
@@ -329,6 +340,7 @@ final class NativeMailEwsProvider
     bool allowMissing = false,
     bool requireFlags = false,
     bool requireMembership = false,
+    bool includeMembership = false,
   }) async {
     if (ids.isEmpty) return const [];
     final xml = await operation.post(
@@ -339,6 +351,7 @@ final class NativeMailEwsProvider
         mime: mime,
         flagsOnly: requireFlags,
         membershipOnly: requireMembership,
+        includeMembership: includeMembership,
       ),
     );
     final result = _soap.items(
@@ -347,7 +360,7 @@ final class NativeMailEwsProvider
       maxMimeBytes: maxMimeBytes,
       allowMissing: allowMissing,
       requireFlags: requireFlags,
-      requireMembership: requireMembership,
+      requireMembership: requireMembership || includeMembership,
     );
     if (result.length != ids.length) {
       throw const EwsException(MailProblemCode.providerFailure);

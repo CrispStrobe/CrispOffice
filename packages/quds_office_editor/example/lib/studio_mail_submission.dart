@@ -17,6 +17,7 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
     throw const FormatException('Invalid Studio Mail submission.');
   }
   final recipients = draft.recipients;
+  final authored = draft.sender;
   final escaped = draft.body
       .replaceAll('&', '&amp;')
       .replaceAll('<', '&lt;')
@@ -43,10 +44,18 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
       transferEncoding: mail.TransferEncoding.quotedPrintable,
     );
   builder
-    ..from = <mail.MailAddress>[mail.MailAddress('', sender)]
+    ..from = <mail.MailAddress>[
+      mail.MailAddress(
+        authored?.displayName ?? '',
+        authored?.address ?? sender,
+      ),
+    ]
     ..to = [for (final address in recipients.to) mail.MailAddress('', address)]
     ..cc = [for (final address in recipients.cc) mail.MailAddress('', address)]
     ..subject = draft.subject;
+  if (authored != null && authored.replyTo.isNotEmpty) {
+    builder.setHeader('Reply-To', authored.replyTo);
+  }
   for (final attachment in draft.attachments.items) {
     final filename = _rfc2231Filename(attachment.name);
     final disposition = mail.ContentDispositionHeader.attachment(

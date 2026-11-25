@@ -69,7 +69,8 @@ final class _GatedDraftCleanup implements StudioMailDraftStore {
   }
 }
 
-final class _Provider extends Fake implements MailEwsProvider {
+final class _Provider extends Fake
+    implements MailEwsProvider, MailProviderSearch {
   _Provider(this.configuration, this.credentials);
   final MailEwsConfiguration configuration;
   final MailCredentialStore credentials;
@@ -103,6 +104,22 @@ final class _Provider extends Fake implements MailEwsProvider {
   final List<MailPreparedMessage> submissions = [];
   final List<String> attempts = [];
   MailOperationLease? lastLease;
+
+  @override
+  Set<MailProviderSearchField> searchFields = const {};
+  Future<MailResult<MailProviderSearchResult>> Function(
+    MailProviderSearchRequest,
+    MailOperationLease,
+  )?
+  searchHandler;
+
+  @override
+  Future<MailResult<MailProviderSearchResult>> search(
+    MailProviderSearchRequest request, {
+    required MailOperationLease lease,
+  }) async =>
+      searchHandler?.call(request, lease) ??
+      const MailFailure(MailProblem(MailProblemCode.unsupported));
 
   @override
   MailAccountId get account => configuration.account;
@@ -467,6 +484,57 @@ void _expectCounts(WidgetTester tester, int shown, int loaded) {
 }
 
 void main() {
+  testWidgets(
+    'provider search opens a result outside the loaded mailbox page',
+    (tester) async {
+      late _Provider provider;
+      MailProviderSearchRequest? observed;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials)
+          ..searchFields = const {
+            MailProviderSearchField.body,
+            MailProviderSearchField.subject,
+          };
+        provider.searchHandler = (request, lease) async {
+          observed = request;
+          lease.checkCurrent();
+          provider.firstMessageId = 'search-only';
+          return MailSuccess(
+            MailProviderSearchResult(
+              mailbox: request.mailbox,
+              messages: [provider.header('search-only', 'Search-only result')],
+              hasMore: false,
+              totalCount: 1,
+              countPrecision: MailSearchCountPrecision.exact,
+            ),
+          );
+        };
+        return provider;
+      });
+      await _connect(tester);
+      expect(find.text('Search-only result'), findsNothing);
+      await tester.tap(_field('studio-mail-open-server-search'));
+      await _pump(tester);
+      await tester.enterText(_field('studio-mail-server-query'), 'invoice');
+      await tester.tap(_field('studio-mail-server-run'));
+      await _pump(tester);
+      expect(observed?.mailbox, provider.box('inbox'));
+      expect(observed?.maxResults, 50);
+      expect(observed?.field, MailProviderSearchField.body);
+      expect(provider.reads, 0);
+      expect(provider.commands, isEmpty);
+      expect(find.text('Search-only result'), findsOneWidget);
+      await tester.tap(_field('studio-mail-server-result-search-only'));
+      await _pump(tester);
+      expect(provider.reads, 1);
+      expect(provider.commands, isEmpty);
+      expect(find.byType(MailMessageView), findsOneWidget);
+      expect(find.byType(AlertDialog), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await _pump(tester);
+    },
+  );
+
   testWidgets(
     'EWS bulk assigns each explicit value to checked targets without opening mail',
     (tester) async {

@@ -819,6 +819,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'outbox_attempts',
       'outbox',
       'drafts',
+      'account_message_templates',
+      'account_sender_identities',
       'account_quick_texts',
       'account_compose_settings',
       'account_archive_settings',
@@ -848,6 +850,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   Future<MailResult<MailUnit>> removeProfile() => _write(() async {
     await _db.customStatement('DELETE FROM local_accounts');
     await _db.customStatement('DELETE FROM saved_header_searches');
+    await _db.customStatement('DELETE FROM account_message_templates');
+    await _db.customStatement('DELETE FROM account_sender_identities');
     await _db.customStatement('DELETE FROM account_quick_texts');
     await _db.customStatement('DELETE FROM account_compose_settings');
     await _db.customStatement('DELETE FROM account_archive_settings');

@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-25",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/mail-capabilities-20261125",
+  "baseline_commit": "ef120d1ce3fb3e0a4753b33876b6a3c9722e9b61",
+  "sdk": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "platform": "Linux x86_64",
+  "source_sha256": {
+    "packages/quds_mail_core/lib/quds_mail_core.dart": "804fcbd71a9f6d8cb9f9a6196b403ca97be8cbe6cb03ea629dd89ecde9e5e869",
+    "packages/quds_mail_core/lib/src/model/compose_settings.dart": "94b43a81a1277c12180b31dd77a27ad0dbadd02e298120ddb0d7bc2ee4136522",
+    "packages/quds_mail_core/lib/src/ports/provider_search.dart": "48dd248d2619006dae4062ff98e8ecee18060b64f8a24e2622766775ba5dfeff",
+    "packages/quds_mail_store/lib/src/compose_settings.dart": "25745044b1dba7de4453562d00879327064df4995c5cb043ae68bcbf33df2eba",
+    "packages/quds_mail_store/lib/src/repository.dart": "f5d0604fbfa37705115420bb73f14bef61b61510d5faf66e9777c700d9d3b580",
+    "packages/quds_mail_store/lib/src/schema/database.dart": "10457944df8973edc01dd097c1b311030458165bf8bd9c8ed4283ec643185a0b",
+    "packages/quds_mail_store/lib/src/search_journal.dart": "9ea0beb4080d4f691339b5a055e3add1f587e7d2d89edaaf164390467f1c7810",
+    "packages/quds_mail_transport/lib/src/cloud/configuration.dart": "216c2a0c34df39804481eff3c39d0bb2da6d222c01adac636bf843cd9317de76",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart": "624a680869d9ee25d568859ee701802eadce8a4240ca4e3b04fa67df145fe7f1",
+    "packages/quds_mail_transport/lib/src/cloud/provider_search.dart": "01564f6006c3b23b648fb914b95145b48988fc0044864614f02b8ddedb88b612",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart": "6278d1a1d246673ef836ffa10a08741ff9629ff38ca235c042a407866853529c",
+    "packages/quds_mail_transport/lib/src/ews/native/provider_search.dart": "26f75fab028921aee7e3899dcdc9a23565bf82991dae5712cb90d61dcb07fc33",
+    "packages/quds_mail_transport/lib/src/ews/soap.dart": "6c828d732065376a0ef22e733174766e9e7388dfa0e45821bf5ab65d48dbad25",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "9dbd03c9088375bfaddd27107a4be6fd7a13f2a70a0527c482d8c1feabf1342e",
+    "packages/quds_office_editor/example/lib/studio_mail_compose_tools.dart": "58b93cc4fc84c7507d2d26bb2693d495e155acb66c766b5617a6f76c9ef27453",
+    "packages/quds_office_editor/example/lib/studio_mail_compose_tools_dialog.dart": "5df3701d452046f91b2da5658005efb9796fc0197e1a64e37db63130af35916f",
+    "packages/quds_office_editor/example/lib/studio_mail_draft.dart": "72b043a4a7e4b3d131d5492c20351b4eadb05441a2132df9bd13c3d70dd2558b",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": "4cd1bc0ba341ddfea59ea2c6543ab5f74469e805fdb295409a4264e44a9d2f4a",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "dc283c33e20e89b8772b355148dcd4839c740011286660a511d89ed5e4e8b89b",
+    "packages/quds_office_editor/example/lib/studio_mail_identity_strings.dart": "98daab9fbc05822027350fe7f835797ae006a7185cf58e6e2aee36b93bca8d6e",
+    "packages/quds_office_editor/example/lib/studio_mail_identity_templates.dart": "aa8b42fc86ebca678ddda36555dcfc7b969da002111729222eaec1260c304d80",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "ca8ffc2197e4e80a979fa510a13b5d716fcd59004318d6879f2314efd7a2a6e9",
+    "packages/quds_office_editor/example/lib/studio_mail_outbox_content.dart": "e73e2bb8f3816ca11dd98fe14b7786750571d1a53e0e02bf28adce70a99de668",
+    "packages/quds_office_editor/example/lib/studio_mail_provider_search.dart": "b3e9648629e2a6f0a71b952efe56ad21c809d097e082bf2eb77938ee75019767",
+    "packages/quds_office_editor/example/lib/studio_mail_server_search_dialog.dart": "0d56478b5beded14ce909a21f1467f7f4389309444d45571e2bef2ea78c22fcd",
+    "packages/quds_office_editor/example/lib/studio_mail_server_search_strings.dart": "d3877245f9dd837b93f54485d68e22b287cf32cd965851931b08545355b3359f",
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart": "cc408ae4e447644914a4abce196b75780b51745c292b31894fb5075933e6f279"
+  },
+  "runs": [
+    {
+      "name": "Mail core",
+      "passed": 698,
+      "exit_code": 0,
+      "working_directory": "packages/quds_mail_core",
+      "command": "dart test --concurrency=4 --reporter expanded",
+      "log_sha256": "c950ec83e5a1aa5136a071caa7a35f4c6b36c92364c65cf744ac4ce82c26a852",
+      "result_line": "00:02 +698: All tests passed!"
+    },
+    {
+      "name": "Mail SQLite store",
+      "passed": 1238,
+      "exit_code": 0,
+      "working_directory": "packages/quds_mail_store",
+      "command": "dart test --concurrency=4 --reporter expanded",
+      "log_sha256": "e1d4a0a5f7d335f906f297ef056c16ea831e288a1dab02f9160f599889c58f68",
+      "result_line": "02:22 +1238: All tests passed!"
+    },
+    {
+      "name": "Mail transport, native",
+      "passed": 649,
+      "exit_code": 0,
+      "working_directory": "packages/quds_mail_transport",
+      "command": "dart test --reporter expanded",
+      "log_sha256": "f7a3c9304fedc65dd716af356ef4d23358bceae4d93385b8c2413e9b72c5125d",
+      "result_line": "00:07 +649: All tests passed!"
+    },
+    {
+      "name": "Mail transport, browser boundary",
+      "passed": 13,
+      "exit_code": 0,
+      "working_directory": "packages/quds_mail_transport",
+      "command": "dart test --platform node test/ews_unsupported_test.dart test/ews_configuration_test.dart test/unsupported_test.dart test/cloud_unsupported_test.dart --reporter expanded",
+      "log_sha256": "343b0cd82b592a02f77beb8cd435c8a4c8aca26102a1775c60c6b909511b9d7b",
+      "result_line": "00:00 +13: All tests passed!"
+    },
+    {
+      "name": "Studio composition and recovery",
+      "passed": 483,
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": "flutter test --no-pub test/studio_mail_compose*_test.dart test/studio_mail_draft*_test.dart test/studio_mail_outbox*_test.dart test/studio_mail_attachment*_test.dart test/studio_mail_recipients_test.dart test/studio_mail_reply_test.dart test/studio_mail_forward_test.dart test/studio_mail_threading_test.dart test/studio_mail_sender_templates_test.dart test/studio_mail_identity_templates_ui_test.dart --reporter expanded",
+      "log_sha256": "7a654ef86360ac818d826f72e5710f71172aa90797e8c78af727112f9f41daad",
+      "result_line": "00:55 +483: All tests passed!"
+    },
+    {
+      "name": "Studio search and Exchange",
+      "passed": 91,
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": "flutter test --no-pub --reporter expanded test/studio_mail_provider_search_test.dart test/studio_mail_provider_search_dialog_test.dart test/studio_mail_server_search_dialog_test.dart test/studio_mail_ews_test.dart",
+      "log_sha256": "89e31152b1944f9e975202c32354dd5c8ba6ebcb1f388e5d1fee598b4d82bfe9",
+      "result_line": "00:44 +91: All tests passed!"
+    },
+    {
+      "name": "Studio native and Outbox alias hosts",
+      "passed": 99,
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": "flutter test --no-pub --reporter expanded test/studio_mail_test.dart test/studio_mail_outbox_host_test.dart",
+      "log_sha256": "6b19e2f497094ab72ab69334a3dac8bbf048707fba2cd7975d175c7a483e52a0",
+      "result_line": "00:39 +99: All tests passed!"
+    },
+    {
+      "name": "Studio Gmail and Microsoft 365",
+      "passed": 59,
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": "flutter test --no-pub --reporter expanded test/studio_mail_cloud_test.dart",
+      "log_sha256": "a1ac044e39db710c01458a49e22c82d6a082280fa521c93900d912996ff6e914",
+      "result_line": "00:22 +59: All tests passed!"
+    },
+    {
+      "name": "Studio final template/RTL UI",
+      "passed": 8,
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": "flutter test --no-pub --reporter expanded test/studio_mail_identity_templates_ui_test.dart",
+      "log_sha256": "4e271a8eba66f3af0d0af69795f3ee12d46531e7e31292605b06280d1254f603",
+      "result_line": "00:05 +8: All tests passed!"
+    },
+    {
+      "name": "Studio final search feedback",
+      "passed": 3,
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": "flutter test --no-pub --reporter expanded test/studio_mail_provider_search_dialog_test.dart",
+      "log_sha256": "0894d1a8575d7aab7ffb7e80790f2ac6d87c22c5984a4557e5a4b93535b53c3b",
+      "result_line": "00:01 +3: All tests passed!"
+    }
+  ],
+  "counts_are_not_additive": true,
+  "notes": [
+    "The broader Studio run predates the additional RTL and alias-host cases; later focused full-file runs cover those additions.",
+    "Native transport was rerun after the independent EWS count review; the final core and transport logs supersede their earlier passing totals.",
+    "No live mail credentials or production mailboxes were used."
+  ]
+}

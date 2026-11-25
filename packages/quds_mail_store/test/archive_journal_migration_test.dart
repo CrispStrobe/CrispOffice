@@ -21,7 +21,8 @@ import 'package:quds_mail_store/src/schema/database.dart'
         schemaV9,
         schemaV10,
         schemaV11,
-        schemaV12;
+        schemaV12,
+        schemaV21;
 import 'package:quds_mail_store/src/schema/flag_journal_schema.dart'
     show schemaV6, schemaV7, schemaV13;
 import 'package:quds_mail_store/src/schema/membership_observation_schema.dart'
@@ -223,6 +224,13 @@ List<Map<String, Object?>> _schema(sqlite.Database db) => [
             RegExp(r', conversation TEXT'),
             '',
           ),
+        if (row['name'] == 'account_compose_settings')
+          // Strip only the precise new nullable column, preserving the complete
+          // published schema definition and its existing constraints.
+          'sql': (row['sql'] as String?)?.replaceFirst(
+            ', ${schemaV21.first.split(' ADD COLUMN ').last}',
+            '',
+          ),
       },
 ];
 
@@ -323,13 +331,15 @@ void main() {
         }
         final after = sqlite.sqlite3.open(file.path);
         try {
-          expect(after.userVersion, 20);
+          expect(after.userVersion, 21);
           expect(
             _schema(after).where(
               (row) =>
                   row['tbl_name'] != 'account_archive_settings' &&
                   row['tbl_name'] != 'message_tags' &&
-                  row['tbl_name'] != 'mail_rules',
+                  row['tbl_name'] != 'mail_rules' &&
+                  row['tbl_name'] != 'account_sender_identities' &&
+                  row['tbl_name'] != 'account_message_templates',
             ),
             beforeSchema,
           );
@@ -337,7 +347,9 @@ void main() {
             _snapshot(after)
               ..remove('account_archive_settings')
               ..remove('message_tags')
-              ..remove('mail_rules'),
+              ..remove('mail_rules')
+              ..remove('account_sender_identities')
+              ..remove('account_message_templates'),
             before,
           );
           expect(
@@ -411,12 +423,14 @@ void main() {
           }
           final migrated = sqlite.sqlite3.open(file.path);
           try {
-            expect(migrated.userVersion, 20);
+            expect(migrated.userVersion, 21);
             expect(
               _snapshot(migrated)
                 ..remove('account_archive_settings')
                 ..remove('message_tags')
-                ..remove('mail_rules'),
+                ..remove('mail_rules')
+                ..remove('account_sender_identities')
+                ..remove('account_message_templates'),
               before,
             );
             expect(
@@ -424,7 +438,9 @@ void main() {
                 (row) =>
                     row['tbl_name'] != 'account_archive_settings' &&
                     row['tbl_name'] != 'message_tags' &&
-                    row['tbl_name'] != 'mail_rules',
+                    row['tbl_name'] != 'mail_rules' &&
+                    row['tbl_name'] != 'account_sender_identities' &&
+                    row['tbl_name'] != 'account_message_templates',
               ),
               schema,
             );

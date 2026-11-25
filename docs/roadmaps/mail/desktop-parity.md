@@ -15,9 +15,9 @@ clients are references, not compatibility claims.
 | Accounts | IMAP/SMTP, EWS, Gmail, Microsoft 365; remembered chooser; one live account at a time | Multiple simultaneous sessions, system-browser OAuth/PKCE, account discovery |
 | Mailbox | Browse, cached views, resumable sync, persistent cross-folder conversation keys, search | Complete shared workspace, unified inbox, provider thread discovery |
 | Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search and row metadata, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
-| Compose | Plain-text Word surface, signatures, Quick Text, attachments, drafts | Rich HTML composition, inline images, full-message templates, sender identities |
+| Compose | Plain-text Word surface, signatures, Quick Text, attachments, durable sender snapshots, account-owned identities and full-message templates | Rich HTML composition, inline images, cloud/EWS alias authorization, per-identity signatures |
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
-| Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS, IMAP one-folder provider search | EWS/Gmail/Graph provider search, Boolean/date provider grammar, multi-folder scope, indexed discovery |
+| Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS, bounded one-folder IMAP/EWS/Gmail/Graph provider search with supported fields and explicit count precision | Richer provider grammar, missing participant/body fields, multi-folder scope, indexed discovery, live adapter qualification |
 | Attachments | Bounded read-only open; attach files | Attach current document/PDF, edit received attachment copy, Office workflow |
 | Calendar/People | Read-only CalDAV Calendar agenda | Calendar edits and sync, invitations, contacts, address completion, mail-to-task |
 | Offline | Cached headers/bodies, durable drafts/Outbox | Complete account/folder offline sessions and bounded background refresh |
@@ -92,8 +92,11 @@ Use these as comparison targets, not pixel-copy targets:
 1. ~~Local tags/categories with `tag:` search and assignment UI.~~ Implemented.
 2. ~~Ordered rules with preview and explicit local-rules-only scope.~~ Implemented.
 3. ~~Persistent cross-folder conversation index.~~ Implemented.
-4. ~~IMAP provider-side body search with explicit one-folder coverage and cooperative cancellation.~~ EWS/Graph/Gmail search remains open.
-5. Multiple sender identities and full-message templates.
+4. ~~IMAP provider-side body search with explicit one-folder coverage and cooperative cancellation.~~ [EWS/Graph/Gmail adapters](provider-search-adapters.md) and the shared Studio search dialog now extend this with provider-specific fields, dates and count certainty; live qualification remains open.
+5. ~~Multiple sender identities and full-message templates.~~ [Implemented](sender-identities-templates.md) with durable snapshots, native SMTP alias routing, explicit template replacement and primary-only EWS/cloud submission.
+
+The [25 November extension record](extension-20261125.md) separates source and
+local test evidence from live-provider, installed-platform and release gates.
 
 ## Acceptance rules
 

@@ -274,6 +274,391 @@ final class _Harness {
 }
 
 void main() {
+  group('provider-side search', () {
+    test(
+      'Gmail uses literal field query, label scope and approximate count',
+      () async {
+        final h = _Harness(MailCloudService.gmail);
+        h.transport.handler = (request) {
+          if (request.uri.path.endsWith('/messages')) {
+            expect(
+              request.uri.queryParameters['q'],
+              'subject:"meeting OR from:other"',
+            );
+            expect(request.uri.queryParameters['labelIds'], 'INBOX');
+            expect(request.uri.queryParameters['maxResults'], '3');
+            return _json({
+              'messages': [
+                {'id': 'a'},
+                {'id': 'b'},
+                {'id': 'c'},
+              ],
+              'resultSizeEstimate': 125,
+            });
+          }
+          return _json(_gmailItem(request.uri.pathSegments.last));
+        };
+        final result = _value(
+          await h.provider.search(
+            MailProviderSearchRequest(
+              mailbox: _mailbox,
+              query: 'meeting OR from:other',
+              field: MailProviderSearchField.subject,
+              maxResults: 2,
+            ),
+            lease: h.lease,
+          ),
+        );
+        expect(result.messages, hasLength(2));
+        expect(result.hasMore, isTrue);
+        expect(result.totalCount, 125);
+        expect(result.countPrecision, MailSearchCountPrecision.estimate);
+        expect(
+          h.transport.mailRequests.every((request) => request.method == 'GET'),
+          isTrue,
+        );
+      },
+    );
+
+    test(
+      'Gmail follows bounded search pages and rechecks label membership',
+      () async {
+        final h = _Harness(
+          MailCloudService.gmail,
+          limits: const MailCloudLimits(maxPageSize: 1),
+        );
+        h.transport.handler = (request) {
+          if (request.uri.path.endsWith('/messages')) {
+            final next = request.uri.queryParameters['pageToken'];
+            return _json(
+              next == null
+                  ? {
+                      'messages': [
+                        {'id': 'moved'},
+                      ],
+                      'nextPageToken': 'page2',
+                    }
+                  : {
+                      'messages': [
+                        {'id': 'kept'},
+                      ],
+                    },
+            );
+          }
+          final id = request.uri.pathSegments.last;
+          return _json(
+            _gmailItem(id, labels: id == 'moved' ? ['OTHER'] : ['INBOX']),
+          );
+        };
+        final result = _value(
+          await h.provider.search(
+            MailProviderSearchRequest(
+              mailbox: _mailbox,
+              query: 'owner@example.test',
+              field: MailProviderSearchField.from,
+            ),
+            lease: h.lease,
+          ),
+        );
+        expect(
+          result.messages.map((m) => (m.remote as MailOpaqueIdentity).value),
+          ['kept'],
+        );
+        expect(result.hasMore, isFalse);
+        expect(result.countPrecision, MailSearchCountPrecision.unknown);
+      },
+    );
+
+    test('Gmail received bounds use UTC epochs and inclusive post-filter', () async {
+      final h = _Harness(MailCloudService.gmail);
+      final start = DateTime.utc(2026, 11, 25);
+      final end = DateTime.utc(2026, 11, 26);
+      h.transport.handler = (request) {
+        if (request.uri.path.endsWith('/messages')) {
+          expect(
+            request.uri.queryParameters['q'],
+            'subject:"invoice" after:${start.millisecondsSinceEpoch ~/ 1000 - 1} before:${end.millisecondsSinceEpoch ~/ 1000}',
+          );
+          return _json({
+            'messages': [
+              {'id': 'before'},
+              {'id': 'start'},
+              {'id': 'end'},
+            ],
+          });
+        }
+        final id = request.uri.pathSegments.last;
+        final time = id == 'before'
+            ? start.subtract(const Duration(milliseconds: 1))
+            : id == 'end'
+            ? end
+            : start;
+        return _json({
+          ..._gmailItem(id),
+          'internalDate': '${time.millisecondsSinceEpoch}',
+        });
+      };
+      final result = _value(
+        await h.provider.search(
+          MailProviderSearchRequest(
+            mailbox: _mailbox,
+            query: 'invoice',
+            field: MailProviderSearchField.subject,
+            receivedAfter: start,
+            receivedBefore: end,
+          ),
+          lease: h.lease,
+        ),
+      );
+      expect(
+        result.messages.map((m) => (m.remote as MailOpaqueIdentity).value),
+        ['start'],
+      );
+    });
+
+    test(
+      'Graph uses quoted KQL, exact folder scope and received-date bounds',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        h.transport.handler = (request) {
+          expect(request.uri.path, '/v1.0/me/mailFolders/INBOX/messages');
+          expect(
+            jsonDecode(request.uri.queryParameters[r'$search']!),
+            'body:"hello OR from:other" AND received>=2026-11-25 AND received<2026-11-26',
+          );
+          expect(
+            request.uri.queryParameters[r'$select'],
+            contains('receivedDateTime'),
+          );
+          return _json({
+            'value': [
+              {..._graphItem('a'), 'receivedDateTime': '2026-11-25T10:00:00Z'},
+            ],
+          });
+        };
+        final result = _value(
+          await h.provider.search(
+            MailProviderSearchRequest(
+              mailbox: _mailbox,
+              query: 'hello OR from:other',
+              receivedAfter: DateTime.utc(2026, 11, 25),
+              receivedBefore: DateTime.utc(2026, 11, 26),
+            ),
+            lease: h.lease,
+          ),
+        );
+        expect(result.messages, hasLength(1));
+        expect(result.hasMore, isFalse);
+        expect(result.totalCount, isNull);
+        expect(result.countPrecision, MailSearchCountPrecision.unknown);
+      },
+    );
+
+    test('Graph bounded continuation preserves account and folder', () async {
+      final h = _Harness(
+        MailCloudService.microsoft365,
+        limits: const MailCloudLimits(maxPageSize: 1),
+      );
+      h.transport.handler = (request) => _json(
+        request.uri.queryParameters.containsKey(r'$skiptoken')
+            ? {
+                'value': [_graphItem('b')],
+              }
+            : {
+                'value': [_graphItem('a')],
+                '@odata.nextLink': _next(),
+              },
+      );
+      final result = _value(
+        await h.provider.search(
+          MailProviderSearchRequest(
+            mailbox: _mailbox,
+            query: 'hello',
+            maxResults: 1,
+          ),
+          lease: h.lease,
+        ),
+      );
+      expect(result.messages, hasLength(1));
+      expect(result.hasMore, isTrue);
+      expect(h.transport.mailRequests, hasLength(2));
+    });
+
+    for (final service in MailCloudService.values) {
+      test(
+        '${service.name} rejects foreign owners and query delimiters before IO',
+        () async {
+          final h = _Harness(service);
+          for (final query in ['bad" OR from:x', r'bad\', 'wild*']) {
+            _problem(
+              await h.provider.search(
+                MailProviderSearchRequest(
+                  mailbox: _mailbox,
+                  query: query,
+                  field: MailProviderSearchField.subject,
+                ),
+                lease: h.lease,
+              ),
+              MailProblemCode.unsupported,
+            );
+          }
+          _problem(
+            await h.provider.search(
+              MailProviderSearchRequest(
+                mailbox: MailMailboxId('INBOX', account: _other),
+                query: 'x',
+              ),
+              lease: h.lease,
+            ),
+            MailProblemCode.invalidInput,
+          );
+          expect(h.transport.requests, isEmpty);
+        },
+      );
+
+      test(
+        '${service.name} stale search never publishes delayed results',
+        () async {
+          final h = _Harness(service);
+          final entered = Completer<void>();
+          final released = Completer<MailCloudHttpResponse>();
+          h.transport.handler = (_) {
+            entered.complete();
+            return released.future;
+          };
+          final pending = h.provider.search(
+            MailProviderSearchRequest(
+              mailbox: _mailbox,
+              query: 'hello',
+              field: MailProviderSearchField.subject,
+            ),
+            lease: h.lease,
+          );
+          await entered.future;
+          h.session.invalidate();
+          released.complete(
+            _json(
+              service == MailCloudService.gmail
+                  ? {'messages': <Object?>[]}
+                  : {'value': <Object?>[]},
+            ),
+          );
+          _problem(await pending, MailProblemCode.staleOperation);
+        },
+      );
+    }
+
+    test('unsupported fields and Graph sub-day ranges are explicit', () async {
+      final gmail = _Harness(MailCloudService.gmail);
+      _problem(
+        await gmail.provider.search(
+          MailProviderSearchRequest(mailbox: _mailbox, query: 'hello'),
+          lease: gmail.lease,
+        ),
+        MailProblemCode.unsupported,
+      );
+      expect(
+        gmail.provider.searchFields,
+        isNot(contains(MailProviderSearchField.body)),
+      );
+      final graph = _Harness(MailCloudService.microsoft365);
+      _problem(
+        await graph.provider.search(
+          MailProviderSearchRequest(
+            mailbox: _mailbox,
+            query: 'hello',
+            receivedAfter: DateTime.utc(2026, 11, 25, 12),
+          ),
+          lease: graph.lease,
+        ),
+        MailProblemCode.unsupported,
+      );
+      expect(gmail.transport.requests, isEmpty);
+      expect(graph.transport.requests, isEmpty);
+    });
+
+    test(
+      'Graph rejects continuation redirection and foreign result membership',
+      () async {
+        for (final payload in [
+          {'value': <Object?>[], '@odata.nextLink': _next(folder: 'OTHER')},
+          {
+            'value': [_graphItem('a', parent: 'OTHER')],
+          },
+          {
+            'value': [_graphItem('a')],
+            '@odata.nextLink': _next(host: 'attacker.example.test'),
+          },
+        ]) {
+          final h = _Harness(MailCloudService.microsoft365);
+          h.transport.handler = (_) => _json(payload);
+          final result = await h.provider.search(
+            MailProviderSearchRequest(mailbox: _mailbox, query: 'hello'),
+            lease: h.lease,
+          );
+          expect(result, isA<MailFailure<MailProviderSearchResult>>());
+          expect(h.transport.mailRequests, hasLength(1));
+        }
+      },
+    );
+
+    test('Gmail rejects malformed estimates, missing membership and repeated tokens', () async {
+      for (final malformed in [-1, 1.5, '12']) {
+        final h = _Harness(MailCloudService.gmail);
+        h.transport.handler = (_) => _json({'resultSizeEstimate': malformed});
+        _problem(
+          await h.provider.search(
+            MailProviderSearchRequest(
+              mailbox: _mailbox,
+              query: 'hello',
+              field: MailProviderSearchField.subject,
+            ),
+            lease: h.lease,
+          ),
+          MailProblemCode.providerFailure,
+        );
+      }
+      final h = _Harness(MailCloudService.gmail);
+      h.transport.handler = (_) => _json({'nextPageToken': 'same'});
+      _problem(
+        await h.provider.search(
+          MailProviderSearchRequest(
+            mailbox: _mailbox,
+            query: 'hello',
+            field: MailProviderSearchField.subject,
+          ),
+          lease: h.lease,
+        ),
+        MailProblemCode.providerFailure,
+      );
+      expect(h.transport.mailRequests, hasLength(2));
+      final missing = _Harness(MailCloudService.gmail);
+      missing.transport.handler = (request) =>
+          request.uri.path.endsWith('/messages')
+          ? _json({
+              'messages': [
+                {'id': 'a'},
+              ],
+            })
+          : _json({
+              'id': 'a',
+              'payload': {'headers': <Object?>[]},
+            });
+      _problem(
+        await missing.provider.search(
+          MailProviderSearchRequest(
+            mailbox: _mailbox,
+            query: 'hello',
+            field: MailProviderSearchField.subject,
+          ),
+          lease: missing.lease,
+        ),
+        MailProblemCode.providerFailure,
+      );
+    });
+  });
+
+
   group('provider Archive', () {
     test(
       'Gmail removes only INBOX and preserves all other label intent',

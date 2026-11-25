@@ -11,6 +11,14 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [25 November extension](extension-20261125.md) adds durable
+[sender identities and full-message templates](sender-identities-templates.md),
+including a native composer workflow and immutable draft/Outbox sender snapshots.
+The [provider-search adapters](provider-search-adapters.md) extend selected-folder
+server search to EWS, Gmail and Microsoft 365 with per-provider fields, bounded
+results, cancellation and exact/estimated/unknown totals. Source and local tests
+are recorded separately from live-provider and installed-app qualification.
+
 The [correspondence-search increment](participant-search.md) adds `recipient:`
 (To/Cc) and `participant:` (From/To/Cc) to the shared loaded, cached and saved
 header query engine, with EN/DE/AR help and explicit Bcc/body exclusion.
@@ -18,7 +26,7 @@ Its source and focused regressions are saved remotely; runtime qualification is
 pending a workspace process-startup failure, as recorded in the
 [work record](../../validation/mail-discovery-shortcuts-20261122/README.md).
 It introduces no storage migration. Local tags, ordered local tag rules and persistent cross-folder conversations
-are implemented; provider keyword mapping and provider body search remain open.
+are implemented; provider keyword mapping and richer multi-folder/indexed search remain open.
 
 The connected-account and Archive work is reconciled with complete compose
 and Outbox storage ownership. Manual sends, acknowledged retries and foreground

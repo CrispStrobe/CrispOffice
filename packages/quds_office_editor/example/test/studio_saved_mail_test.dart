@@ -522,6 +522,8 @@ void main() {
       'Presentations',
       'PDF',
       'Mail',
+      'Tasks',
+      'Calendar',
     ]);
     await tester.tap(find.byTooltip('Language'));
     await _pump(tester);
@@ -531,6 +533,8 @@ void main() {
       'Präsentationen',
       'PDF',
       'E-Mail',
+      'Aufgaben',
+      'Kalender',
     ]);
     await tester.tap(find.byTooltip('Tabellen'));
     await _pump(tester);
@@ -571,6 +575,8 @@ void main() {
       'العروض التقديمية',
       'PDF',
       'البريد',
+      'المهام',
+      'التقويم',
     ]);
     await tester.tap(find.byTooltip('اللغة'));
     await _pump(tester);
@@ -580,6 +586,8 @@ void main() {
       'Presentations',
       'PDF',
       'Mail',
+      'Tasks',
+      'Calendar',
     ]);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
