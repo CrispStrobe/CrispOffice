@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add bounded immutable rich composition with bold, italic, underline, strike,
+  validated links, paragraph alignment and direction. Generate matching plain
+  text and inert canonical HTML; accept only the exact emitted HTML grammar on
+  recovery, with strict Unicode, text/HTML and structural limits.
+
 - Add optional typed, read-only provider folder search with bounded literal
   queries, explicit supported fields, UTC received-date bounds and immutable
   account-scoped results. Distinguish exact, estimated and unknown cardinality;
