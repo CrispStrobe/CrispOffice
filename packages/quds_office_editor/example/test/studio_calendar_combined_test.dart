@@ -364,6 +364,19 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Choose file'), findsNothing);
 
+      final live = find.byTooltip('Live MCP access');
+      await tester.ensureVisible(live);
+      await tester.tap(live);
+      await tester.pumpAndSettle();
+      expect(find.text('Grant live read access'), findsOneWidget);
+      expect(
+        find.textContaining('displayed calendars and date range'),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(find.text('Grant read access'), findsNothing);
+
       await tester.tap(find.text('Team appointment'));
       await tester.pumpAndSettle();
       expect(find.text('Meeting room'), findsOneWidget);

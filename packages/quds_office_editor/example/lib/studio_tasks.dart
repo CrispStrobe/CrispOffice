@@ -15,6 +15,7 @@ import 'package:sqlite3/sqlite3.dart' show Database;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'credentials/secure_storage_service.dart';
+import 'studio_live_productivity.dart';
 import 'studio_productivity_export.dart';
 import 'studio_credential_storage.dart';
 import 'studio_chrome.dart';
@@ -832,15 +833,21 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
           mounted &&
           _selected == list &&
           _credentialStorage.revision == revision,
-      rows: tasks.map(
+      rows: _taskDisplayRows(tasks),
+    );
+  }
+
+  Iterable<Map<String, Object>> _taskDisplayRows(Iterable<TaskFields> tasks) =>
+      tasks.map(
         (fields) => {
           'title': fields.title,
           'status': fields.status.name,
           if (fields.due case final due?) 'due': studioTaskDueDate(due),
         },
-      ),
-    );
-  }
+      );
+
+  Object _liveScope() =>
+      (_selected, _syncLease, _credentialStorage.revision, _query, _view);
 
   @override
   Widget build(BuildContext context) {
@@ -870,6 +877,15 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final export = busy || exportable.isEmpty
         ? null
         : () => _exportTasks(exportable);
+    final liveScope = _liveScope();
+    final live = StudioLiveProductivityButton(
+      kind: ProductivityKind.tasks,
+      scope: '${_selection.list.name} and its current filter',
+      scopeKey: liveScope,
+      scopeIsCurrent: () => mounted && liveScope == _liveScope(),
+      readRows: () => _taskDisplayRows(exportable),
+      enabled: ready && !busy,
+    );
     return Scaffold(
       backgroundColor: colors.surface,
       appBar: widget.chromeBuilder != null
@@ -882,6 +898,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                   ? null
                   : BackButton(onPressed: widget.onClose),
               actions: [
+                live,
                 IconButton(
                   tooltip: studioProductivityExportLabel,
                   onPressed: export,
@@ -920,6 +937,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               connected: connected,
               busy: busy,
               export: export,
+              live: live,
             ),
           ],
           if (busy) const LinearProgressIndicator(),
@@ -1056,6 +1074,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     required bool connected,
     required bool busy,
     required VoidCallback? export,
+    required Widget live,
   }) {
     final scheme = Theme.of(context).colorScheme;
     Widget command(IconData icon, String label, VoidCallback? action) =>
@@ -1101,6 +1120,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                         studioProductivityExportLabel,
                         export,
                       ),
+                      live,
                     ],
                   ),
                   StudioRibbonGroup(

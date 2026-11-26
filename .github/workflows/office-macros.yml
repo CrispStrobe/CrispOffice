@@ -106,6 +106,8 @@ jobs:
           test/word_position_test.dart
           test/office_macro_expansion_test.dart
           test/office_macro_mcp_test.dart
+          test/productivity_mcp_test.dart
+          test/productivity_grant_test.dart
           test/office_macro_cli_test.dart
           test/office_steps_test.dart
           test/word_step_atomicity_test.dart

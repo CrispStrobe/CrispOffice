@@ -20,6 +20,8 @@ name: Tasks
       - 'packages/quds_office_editor/example/test/studio_tasks_test.dart'
       - 'packages/quds_office_editor/example/lib/studio_calendar*.dart'
       - 'packages/quds_office_editor/example/test/studio_calendar*_test.dart'
+      - 'packages/quds_office_editor/example/lib/studio_live_productivity.dart'
+      - 'packages/quds_office_editor/example/test/studio_live_productivity_test.dart'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - 'analysis_options.yaml'
@@ -43,6 +45,8 @@ name: Tasks
       - 'packages/quds_office_editor/example/test/studio_tasks_test.dart'
       - 'packages/quds_office_editor/example/lib/studio_calendar*.dart'
       - 'packages/quds_office_editor/example/test/studio_calendar*_test.dart'
+      - 'packages/quds_office_editor/example/lib/studio_live_productivity.dart'
+      - 'packages/quds_office_editor/example/test/studio_live_productivity_test.dart'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - 'analysis_options.yaml'
@@ -132,3 +136,4 @@ jobs:
         run: >-
           flutter test --no-pub test/studio_calendar_test.dart
           test/studio_calendar_grid_test.dart test/studio_calendar_combined_test.dart
+          test/studio_live_productivity_test.dart

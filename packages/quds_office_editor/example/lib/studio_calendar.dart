@@ -9,6 +9,7 @@ import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
 import 'credentials/utils/async_lock.dart';
+import 'studio_live_productivity.dart';
 import 'studio_productivity_export.dart';
 import 'studio_calendar_editor.dart';
 import 'studio_calendar_grid.dart';
@@ -969,7 +970,12 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       kind: ProductivityKind.calendar,
       scope: 'the currently displayed calendars and date range',
       isCurrent: () => mounted && generation == _generation,
-      rows: events.map(
+      rows: _eventDisplayRows(events),
+    );
+  }
+
+  Iterable<Map<String, Object>> _eventDisplayRows(List<CalDavEvent> events) =>
+      events.map(
         (event) => {
           'title': event.title,
           'start': event.start.value,
@@ -977,9 +983,11 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           'end': ?event.end?.value,
           'endTimeZone': ?event.end?.timeZone,
         },
-      ),
-    );
-  }
+      );
+
+  Object? _liveScope() => _selection?.isNotEmpty == true
+      ? (_selection, _start, _end, _search.text, _storage.revision)
+      : null;
 
   @override
   Widget build(BuildContext context) {
@@ -1003,6 +1011,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         !_busy &&
         visible.any((source) => source.dav?.calendar.canCreate == true);
     final period = _period.label.toLowerCase();
+    final liveScope = _liveScope();
     StudioCmd command(
       IconData icon,
       String label,
@@ -1050,6 +1059,20 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         _busy || events.isEmpty
                             ? null
                             : () => _exportEvents(events),
+                      ),
+                      StudioLiveProductivityButton(
+                        kind: ProductivityKind.calendar,
+                        scope: 'the displayed calendars and date range',
+                        scopeKey: liveScope,
+                        scopeIsCurrent: () =>
+                            mounted && liveScope == _liveScope(),
+                        readRows: () {
+                          if (_busy || _agenda == null) {
+                            throw StateError('Calendar is unavailable');
+                          }
+                          return _eventDisplayRows(events);
+                        },
+                        enabled: !_busy && _agenda != null,
                       ),
                     ],
                   ),

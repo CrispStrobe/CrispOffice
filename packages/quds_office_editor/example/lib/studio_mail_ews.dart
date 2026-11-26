@@ -9,6 +9,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'studio_live_productivity.dart';
 import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
 import 'studio_mail_account_navigation.dart';
@@ -3262,14 +3263,42 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           !_routeRetired &&
           generation == _mailboxGeneration &&
           identical(_session, session),
-      rows: _headers.map(
-        (header) => {
-          'subject': header.envelope.subject,
-          if (header.envelope.sentAt case final date?)
-            'date': date.toUtc().toIso8601String(),
-          if (_isRead(header) case final read?) 'unread': !read,
-        },
-      ),
+      rows: _mailDisplayRows(),
+    );
+  }
+
+  Iterable<Map<String, Object>> _mailDisplayRows() => _headers.map(
+    (header) => {
+      'subject': header.envelope.subject,
+      if (header.envelope.sentAt case final date?)
+        'date': date.toUtc().toIso8601String(),
+      if (_isRead(header) case final read?) 'unread': !read,
+    },
+  );
+
+  Object? _liveScope() => _mailbox == null || _session == null || _routeRetired
+      ? null
+      : (_session, _mailbox!.id);
+
+  Widget _liveButton() {
+    final scope = _liveScope();
+    final session = _session;
+    final lease = session == null || session.isDisposed
+        ? null
+        : session.begin();
+    return StudioLiveProductivityButton(
+      kind: ProductivityKind.mail,
+      scope:
+          'loaded headers in ${_mailbox?.displayName ?? 'the current mailbox'}',
+      scopeKey: scope,
+      scopeIsCurrent: () =>
+          mounted && lease?.isCurrent == true && scope == _liveScope(),
+      readRows: () {
+        if (_blocked) throw StateError('Mailbox is unavailable');
+        return _mailDisplayRows();
+      },
+      openedMail: () => _reader?.result.message,
+      enabled: !_blocked,
     );
   }
 
@@ -3294,6 +3323,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     : _forCurrentConnection(_navigateAccount),
               ),
             if (_connected) ...[
+              _liveButton(),
               IconButton(
                 tooltip: studioProductivityExportLabel,
                 icon: const Icon(Icons.file_download_outlined),

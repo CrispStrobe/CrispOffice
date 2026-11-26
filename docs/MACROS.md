@@ -526,6 +526,52 @@ provider, account-selection or mutation arguments. The file is a point-in-time
 copy. Its contents remain readable to anyone who receives a copy after the app
 disconnects.
 
+### Live local access
+
+In Mail, Tasks or Calendar, open the view you want to share and choose
+**Live MCP access**. Review the scope, choose **Grant read access**, and copy
+the grant. Put it in the environment of the local stdio client process. For
+example, from a client that uses `mcpServers` configuration:
+
+```json
+{
+  "mcpServers": {
+    "crispoffice-live": {
+      "command": "dart",
+      "args": [
+        "/absolute/path/quds_office_suite/packages/quds_office_engine/tool/macros/productivity_live_mcp.dart"
+      ],
+      "env": {
+        "CRISPOFFICE_MCP_GRANT": "<copied grant>"
+      }
+    }
+  }
+}
+```
+
+The grant expires after ten minutes. **Live MCP access** shows its successful
+read count and offers **Revoke access**. Closing the view, switching the scope
+or losing the authorized connection also withdraws the grant. Start a new
+client session with each new grant. Keep the grant out of logs and shared
+configuration.
+
+The client reads the latest rows that Studio has loaded for the authorized
+mailbox, task list and filter, or calendar selection and date range. It can
+see changes as Studio refreshes that view. The grant does not trigger a
+provider sync or authorize another folder, list, calendar or date range.
+Mail includes a separate opt-in for the bounded plain text of the single
+message open at grant time. It does not share the text of a different
+message opened later. Attachments, raw MIME, HTML and provider credentials
+are excluded. All tools are read-only.
+
+Both the grant transport and stdio executable run in native Dart. Studio
+supplies the selected data, consent and revocation. The app binds one private
+relay to an ephemeral IPv4 loopback port. The relay requires a random,
+short-lived bearer ticket and rejects browser Origin and wrong Host headers.
+It accepts one request at a time with request, response, deadline and rate
+limits. This endpoint is for the local stdio executable only. It is not an
+MCP Streamable HTTP endpoint.
+
 The Dart domain and transport layers already handle most of the underlying work.
 
 | Area | Dart without Flutter | Flutter host work |
@@ -535,31 +581,29 @@ The Dart domain and transport layers already handle most of the underlying work.
 | Calendar | CalDAV discovery, ranged reads and conditional writes, event codecs and recurrence expansion, and read-only EWS discovery and ranged reads. | Calendar grid and agenda, event editor, account authorization and visible-range refresh. |
 
 As with the OOXML engine, a Dart host can supply credentials, HTTP clients,
-database paths and operation leases directly. The snapshot bridge deliberately
-uses an offline file grant. Live delegated reads would need a host-side grant
-for each client and scope. Sending mail, deleting items and issuing invitations
-would need a separate confirmed host command.
+database paths and operation leases directly. Snapshot access uses an offline
+file, and live access uses a host-side grant for one view. Sending mail,
+deleting items and issuing invitations still need separate confirmed host
+commands.
 
 ## MCP security and headless hosting
 
-CrispOffice uses local stdio for both bridges. The trusted launcher chooses the
-input, and the tools have access only to that document or productivity snapshot.
-Neither bridge needs an MCP access token, an Exchange password or a provider
-OAuth token. The document worker isolate limits request duration. OS filesystem,
+The document and snapshot bridges use local stdio with launch-selected inputs.
+The live productivity bridge also presents stdio to the client. Its private
+relay uses a short-lived local grant ticket. The bridges have no provider
+passwords or OAuth tokens. The document worker isolate limits request duration. OS filesystem,
 environment and network permissions still belong to the launching process.
 A restricted launcher could verify the executable, supply an allowlisted
 environment, and limit filesystem access and network egress. The exported
 productivity JSON is an ordinary file and cannot be revoked after another
 process has read or copied it.
 
-Live automation needs a grant enforced by the Dart host on every request.
-A grant identifies the client, account, permitted folders, lists or calendars,
-operations and expiry. Start with short-lived, revocable read grants. Keep
-provider secrets in the host's credential store. Sensitive writes need approval
-bound to the exact operation and destination, with repeat submissions checked
-against the existing outbox or revision. Use redacted audits, bounded requests,
-and per-client concurrency and rate limits. Treat provider content and tool
-annotations as untrusted data.
+Live automation checks the local grant on each request. The ticket authorizes
+one client session to read one selected view. The host retains provider
+secrets. A future write grant needs approval bound to the exact operation,
+content or revision, and destination. Check repeat submissions against the
+existing outbox or revision and record redacted audit events. Treat provider
+content and tool annotations as untrusted data.
 
 A remote deployment would use authenticated Streamable HTTP over TLS with
 origin validation and an OAuth 2.1 resource server. Validate issuer, audience,

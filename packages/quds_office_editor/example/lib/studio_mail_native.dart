@@ -9,6 +9,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_live_productivity.dart';
 import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
 import 'studio_chrome.dart';
@@ -5219,9 +5220,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<void> _exportLoadedMail() {
     final generation = _mailboxGeneration;
     final session = _sessionGeneration;
-    final messages = _unreadOnly
-        ? _messages.where((message) => _observedRead(message) == false)
-        : _messages;
     return exportStudioProductivityView(
       context,
       kind: ProductivityKind.mail,
@@ -5230,18 +5228,35 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           mounted &&
           generation == _mailboxGeneration &&
           session == _sessionGeneration,
-      rows: messages.map(
-        (message) => {
-          'subject': message.decodeSubject() ?? '',
-          if (message.decodeDate() case final date?)
-            'date': date.toUtc().toIso8601String(),
-          if (_observedRead(message) case final read?) 'unread': !read,
-        },
-      ),
+      rows: _mailDisplayRows(),
     );
   }
 
+  Iterable<Map<String, Object>> _mailDisplayRows() {
+    final messages = _unreadOnly
+        ? _messages.where((message) => _observedRead(message) == false)
+        : _messages;
+    return messages.map(
+      (message) => {
+        'subject': message.decodeSubject() ?? '',
+        if (message.decodeDate() case final date?)
+          'date': date.toUtc().toIso8601String(),
+        if (_observedRead(message) case final read?) 'unread': !read,
+      },
+    );
+  }
+
+  Object? _liveScope() => _mailbox == null || _client == null
+      ? null
+      : (
+          _sessionGeneration,
+          _mailbox!.path,
+          _unreadOnly,
+          StudioCredentialStorage.instance.revision,
+        );
+
   Widget _mailChrome(BuildContext context) {
+    final liveScope = _liveScope();
     final theme = Theme.of(context);
     final Color foreground = theme.colorScheme.onSurface;
     Widget command({
@@ -5332,6 +5347,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 _busy || _dialogOpen || _mailbox == null || _messages.isEmpty
                 ? null
                 : _exportLoadedMail,
+          ),
+          StudioLiveProductivityButton(
+            kind: ProductivityKind.mail,
+            scope:
+                'loaded headers in ${_mailbox?.path ?? 'the current mailbox'}',
+            scopeKey: liveScope,
+            scopeIsCurrent: () => mounted && liveScope == _liveScope(),
+            readRows: () {
+              if (_busy) throw StateError('Mailbox is unavailable');
+              return _mailDisplayRows();
+            },
+            openedMail: () => _reader?.result.message,
+            enabled: !_busy && !_dialogOpen,
           ),
           _folderArchiveButton(),
           if (_pollInboxMailbox != null)

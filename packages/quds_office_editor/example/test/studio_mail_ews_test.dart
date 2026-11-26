@@ -538,6 +538,17 @@ void main() {
       expect(provider.reads, 1);
       expect(provider.commands, isEmpty);
       expect(find.byType(MailMessageView), findsOneWidget);
+      await tester.tap(find.byTooltip('Live MCP access'));
+      await _pump(tester);
+      expect(find.text('Grant live read access'), findsOneWidget);
+      final textOption = find.widgetWithText(
+        CheckboxListTile,
+        'Include plain text from this open email',
+      );
+      expect(textOption, findsOneWidget);
+      expect(tester.widget<CheckboxListTile>(textOption).value, isFalse);
+      await tester.tap(find.text('Cancel'));
+      await _pump(tester);
       expect(find.byType(AlertDialog), findsNothing);
       await tester.pumpWidget(const SizedBox.shrink());
       await _pump(tester);
