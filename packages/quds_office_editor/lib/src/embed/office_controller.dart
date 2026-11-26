@@ -3704,7 +3704,7 @@ class WordEditorController extends OfficeController {
       return;
     }
     if (mode == OfficePasteMode.keepSource && payload.hasWordBlocks) {
-      _pasteWordBlocks(payload.wordBlocks);
+      _pasteWordBlocks(payload.wordBlocks, sections: payload.wordSections);
       return;
     }
     if (mode == OfficePasteMode.keepSource && payload.hasRichText) {
@@ -4021,7 +4021,7 @@ class WordEditorController extends OfficeController {
     notifyListeners();
   }
 
-  void _pasteWordBlocks(List<WmlBlock> blocks) {
+  void _pasteWordBlocks(List<WmlBlock> blocks, {List<WmlSection>? sections}) {
     if (blocks.isEmpty) {
       return;
     }
@@ -4085,7 +4085,11 @@ class WordEditorController extends OfficeController {
         }
       }
     } else if (_wordBodyIsBlank()) {
-      _replaceBodyWith(clones);
+      if (sections != null && _canReplaceBlankPageLayout()) {
+        _replaceClipboardSections(sections, clones);
+      } else {
+        _replaceBodyWith(clones);
+      }
     } else {
       _insertWordBlocksAtCaret(clones);
     }
@@ -4112,6 +4116,52 @@ class WordEditorController extends OfficeController {
       }
     }
     return true;
+  }
+
+  bool _canReplaceBlankPageLayout() {
+    if (document.sections.length != 1) return false;
+    final current = document.sections.single;
+    return current.header.isEmpty &&
+        current.footer.isEmpty &&
+        current.firstHeader.isEmpty &&
+        current.firstFooter.isEmpty &&
+        current.evenHeader.isEmpty &&
+        current.evenFooter.isEmpty &&
+        current.headerVisuals.isEmpty &&
+        current.footerVisuals.isEmpty &&
+        current.firstHeaderVisuals.isEmpty &&
+        current.firstFooterVisuals.isEmpty &&
+        current.evenHeaderVisuals.isEmpty &&
+        current.evenFooterVisuals.isEmpty &&
+        current.preservedStories.isEmpty;
+  }
+
+  void _replaceClipboardSections(
+    List<WmlSection> sections,
+    List<WmlBlock> blocks,
+  ) {
+    final before = document.sections;
+    var blockOffset = 0;
+    final replacement = <WmlSection>[];
+    for (final section in sections) {
+      final end = blockOffset + section.blocks.length;
+      replacement.add(
+        WmlClone.section(section)..blocks = blocks.sublist(blockOffset, end),
+      );
+      blockOffset = end;
+    }
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () {
+          document.sections = replacement;
+          selectedTable = null;
+          selectedVisual = null;
+          selectedEquation = null;
+        },
+        undoFn: () => document.sections = before,
+      ),
+    );
+    _placeCaretAtEndOf(blocks);
   }
 
   void _replaceBodyWith(List<WmlBlock> blocks) {

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 
+import 'word_docx_clipboard.dart';
 import 'word_html_clipboard.dart';
 import 'word_image_import.dart';
 import 'word_rtf_clipboard.dart';
@@ -70,6 +71,7 @@ class OfficeClipboardPayload {
     List<List<OfficeClipboardSpan>>? paragraphs,
     List<List<OfficeClipboardCell>>? cells,
     List<WmlBlock>? wordBlocks,
+    this.wordSections,
     this.shape,
     this.visual,
     this.slide,
@@ -113,6 +115,14 @@ class OfficeClipboardPayload {
     if (!_hasClipboardText(blocks)) {
       return OfficeClipboardPayload.fromPlain(plain ?? '');
     }
+    return OfficeClipboardPayload._fromWordBlocks(blocks, plain);
+  }
+
+  factory OfficeClipboardPayload._fromWordBlocks(
+    List<WmlBlock> blocks,
+    String? plain, {
+    List<WmlSection>? sections,
+  }) {
     final projected = [
       for (final block in blocks)
         for (final paragraph in WmlClone.paragraphsOf(block))
@@ -128,6 +138,7 @@ class OfficeClipboardPayload {
       kind: OfficeClipboardKind.richText,
       plain: plain == null || plain.isEmpty ? projected : plain,
       wordBlocks: blocks,
+      wordSections: sections,
     );
   }
 
@@ -153,6 +164,9 @@ class OfficeClipboardPayload {
 
   /// wordBlocks API.
   final List<WmlBlock> wordBlocks;
+
+  /// Optional native page layout carried by the copied sections.
+  final List<WmlSection>? wordSections;
 
   /// shape API.
   final PmlShape? shape;
@@ -292,6 +306,17 @@ class OfficeClipboard {
     bool includeImages = false,
   }) async {
     final plain = await _readFormat(reader, Formats.plainText);
+    final native = await _readFormat(reader, _nativeWord);
+    if (native != null) {
+      final fragment = await readWordClipboardDocx(native);
+      if (fragment != null && fragment.blocks.isNotEmpty) {
+        return OfficeClipboardPayload._fromWordBlocks(
+          fragment.blocks,
+          plain,
+          sections: fragment.sections,
+        );
+      }
+    }
     final html =
         await _readFormat(reader, _windowsHtml) ??
         await _readFormat(reader, Formats.htmlText);
@@ -339,9 +364,9 @@ class OfficeClipboard {
           );
   }
 
-  static Future<String?> _readFormat(
+  static Future<T?> _readFormat<T extends Object>(
     ClipboardDataReader reader,
-    ValueFormat<String> format,
+    ValueFormat<T> format,
   ) async {
     try {
       return reader.canProvide(format) ? await reader.readValue(format) : null;
@@ -398,6 +423,38 @@ Future<String?> _decodeWindowsHtml(
   return '${decode(startHtml, startFragment)}<!--StartFragment-->'
       '${decode(startFragment, endFragment)}<!--EndFragment-->'
       '${decode(endFragment, endHtml)}';
+}
+
+const _nativeWord = SimpleValueFormat<Uint8List>(
+  macos: SimplePlatformCodec(
+    formats: [
+      'com.microsoft.Embed-Source',
+      'org.openxmlformats.wordprocessingml.document',
+    ],
+    onDecode: _wordNativeBytes,
+  ),
+  windows: SimplePlatformCodec(
+    formats: [
+      'Embed Source',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ],
+    onDecode: _wordNativeBytes,
+  ),
+  fallback: SimplePlatformCodec(
+    formats: [
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ],
+    onDecode: _wordNativeBytes,
+  ),
+);
+
+Future<Uint8List?> _wordNativeBytes(
+  PlatformDataProvider data,
+  String format,
+) async {
+  final raw = await data.getData(format);
+  if (raw is! List<int> || raw.length > wordNativeClipboardLimit) return null;
+  return raw is Uint8List ? raw : Uint8List.fromList(raw);
 }
 
 const _rtf = SimpleValueFormat<String>(
