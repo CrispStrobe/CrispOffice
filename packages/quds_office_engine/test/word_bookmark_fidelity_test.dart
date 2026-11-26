@@ -94,6 +94,25 @@ WmlParagraph _pair(String id, String name, {String text = 'marked'}) =>
     );
 
 void main() {
+  test('canonical bookmark IDs preserve arbitrary decimal precision', () {
+    const large = '12345678901234567890123456789012345678901234567890';
+    for (final (source, expected) in [
+      ('0', '0'),
+      ('+000', '0'),
+      ('-000', '0'),
+      ('42', '42'),
+      ('+0042', '42'),
+      ('-0042', '-42'),
+      ('+000$large', large),
+      ('-000$large', '-$large'),
+    ]) {
+      expect(WordBookmarks.canonicalId(source), expected);
+    }
+    for (final malformed in ['', '+', '-', ' 123', '12\n', '0x2A', '١٢']) {
+      expect(() => WordBookmarks.canonicalId(malformed), throwsStateError);
+    }
+  });
+
   test(
     'authored textbox endpoints and surrounding body REF retain separate story ownership',
     () async {
@@ -328,6 +347,28 @@ void main() {
       },
     );
   }
+
+  test('ordinary empty bookmark markers still require decimal IDs', () {
+    final package = OpcPackage.create(OpcPackageKind.word);
+    package
+        .getPart('/word/document.xml')!
+        .writeText(
+          '<w:document xmlns:w="${OfficeNamespaces.w}"><w:body><w:p>'
+          '<w:bookmarkStart w:id="bad" w:name="Target"/>'
+          '<w:r><w:t>Text</w:t></w:r>'
+          '<w:bookmarkEnd w:id="bad"/></w:p></w:body></w:document>',
+        );
+    expect(
+      () => WordDeserializer().read(package),
+      throwsA(
+        isA<StateError>().having(
+          (error) => error.message,
+          'message',
+          contains('Bookmark id is not a native decimal number'),
+        ),
+      ),
+    );
+  });
 
   test('source metadata mismatch fails before package mutation', () {
     final doc = _document();
