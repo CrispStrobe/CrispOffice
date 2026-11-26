@@ -5,6 +5,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 
 import 'word_html_clipboard.dart';
+import 'word_image_import.dart';
 import 'word_rtf_clipboard.dart';
 
 /// How pasted content is applied, matching Office paste options.
@@ -234,11 +235,15 @@ class OfficeClipboard {
   Future<OfficeClipboardPayload> read({
     bool wordFormatting = false,
     bool preferPlain = false,
+    bool includeImages = false,
   }) async {
     var system = '';
     if (useSystem && wordFormatting && !preferPlain) {
-      final external = await _readWordClipboard();
-      if (external?.hasWordBlocks == true) return external!;
+      final external = await _readWordClipboard(includeImages: includeImages);
+      if (external != null &&
+          (external.hasWordBlocks || external.visual != null)) {
+        return external;
+      }
       system = external?.plain ?? '';
     }
     if (useSystem && system.isEmpty) {
@@ -266,11 +271,16 @@ class OfficeClipboard {
     return local ?? OfficeClipboardPayload.empty();
   }
 
-  Future<OfficeClipboardPayload?> _readWordClipboard() async {
+  Future<OfficeClipboardPayload?> _readWordClipboard({
+    bool includeImages = false,
+  }) async {
     try {
       final reader = await SystemClipboard.instance?.read();
       if (reader == null) return null;
-      return await readWordRepresentations(reader);
+      return await readWordRepresentations(
+        reader,
+        includeImages: includeImages,
+      );
     } on Object {
       return null;
     }
@@ -278,8 +288,9 @@ class OfficeClipboard {
 
   /// Reads application-supplied text and rich formats from a clipboard snapshot.
   static Future<OfficeClipboardPayload?> readWordRepresentations(
-    ClipboardDataReader reader,
-  ) async {
+    ClipboardDataReader reader, {
+    bool includeImages = false,
+  }) async {
     final plain = await _readFormat(reader, Formats.plainText);
     final html =
         await _readFormat(reader, _windowsHtml) ??
@@ -288,14 +299,44 @@ class OfficeClipboard {
       plain: plain,
       html: html,
     );
+    final plainUri = Uri.tryParse(plain?.trim() ?? '');
+    final imageOnly =
+        plain == null ||
+        plain.trim().isEmpty ||
+        plainUri != null &&
+            const {'http', 'https', 'file'}.contains(plainUri.scheme);
+    if (includeImages && imageOnly) {
+      final picture = await _readWordPicture(reader, plain);
+      if (picture != null) return picture;
+    }
     if (htmlPayload.hasWordBlocks) return htmlPayload;
     final rtf = await _readFormat(reader, _rtf);
-    if (rtf == null) return htmlPayload.isEmpty ? null : htmlPayload;
-    final rtfPayload = OfficeClipboardPayload.fromWordClipboard(
-      plain: plain,
-      rtf: rtf,
-    );
-    return rtfPayload.isEmpty ? null : rtfPayload;
+    final text = rtf == null
+        ? htmlPayload
+        : OfficeClipboardPayload.fromWordClipboard(plain: plain, rtf: rtf);
+    if (text.hasWordBlocks) return text;
+    if (includeImages && !imageOnly) {
+      final picture = await _readWordPicture(reader, plain);
+      if (picture != null) return picture;
+    }
+    return text.isEmpty ? null : text;
+  }
+
+  static Future<OfficeClipboardPayload?> _readWordPicture(
+    DataReader reader,
+    String? plain,
+  ) async {
+    final bytes = await WordImageImport.readBytes(reader, localFiles: true);
+    final picture = bytes == null
+        ? null
+        : await WordImageImport.normalize(bytes);
+    return picture == null
+        ? null
+        : OfficeClipboardPayload(
+            kind: OfficeClipboardKind.visual,
+            plain: plain ?? '',
+            visual: picture,
+          );
   }
 
   static Future<String?> _readFormat(

@@ -150,6 +150,16 @@ void main() {
     },
   );
 
+  test('deep HTML is rejected with plain-text fallback', () {
+    final nested = ['<span>' * 100, 'hidden', '</span>' * 100].join();
+    final payload = OfficeClipboardPayload.fromWordClipboard(
+      plain: 'Plain fallback',
+      html: nested,
+    );
+    expect(payload.hasWordBlocks, isFalse);
+    expect(payload.plain, 'Plain fallback');
+  });
+
   testWidgets(
     'normal paste retains source styles and Shift+Paste strips them',
     (tester) async {

@@ -137,6 +137,8 @@ class _RtfClipboard {
   String? _defaultFont;
   var _fallback = 0;
   var _index = 0;
+  var _groups = 0;
+  var _runs = 0;
 
   String? _destination(String name) {
     final begin = source.indexOf('{\\$name');
@@ -168,6 +170,9 @@ class _RtfClipboard {
 
   void _flushText() {
     if (_text.isEmpty) return;
+    if (++_runs > 20000) {
+      throw const FormatException('Clipboard RTF exceeds structural limits');
+    }
     _paragraph.inlines.add(
       WmlRun(text: _text.toString(), properties: _state.run.copy()),
     );
@@ -199,7 +204,7 @@ class _RtfClipboard {
       final code = source.codeUnitAt(_index++);
       switch (code) {
         case 123:
-          if (_stack.length >= 128) return [];
+          if (_stack.length >= 128 || ++_groups > 20000) return [];
           _flushText();
           _stack.add(_state);
           _state = _state.copy();

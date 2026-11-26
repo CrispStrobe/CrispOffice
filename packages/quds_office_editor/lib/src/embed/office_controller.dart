@@ -3655,6 +3655,8 @@ class WordEditorController extends OfficeController {
     deleteSelectionOr(backward: true);
   }
 
+  var _readingWordClipboard = false;
+
   @override
   /// pasteFromClipboard API.
   /// [isCurrent] can bind a contextual action to its original edit target while
@@ -3663,13 +3665,35 @@ class WordEditorController extends OfficeController {
     OfficePasteMode mode = OfficePasteMode.keepSource,
     bool Function()? isCurrent,
   }) async {
-    if (!canPaste || !(isCurrent?.call() ?? true)) {
+    if (_readingWordClipboard || !canPaste || !(isCurrent?.call() ?? true)) {
       return;
     }
-    final OfficeClipboardPayload payload = await OfficeClipboard.instance.read(
-      wordFormatting: mode == OfficePasteMode.keepSource,
-    );
+    final revision = contentRevision;
+    final destination = _activeParagraph;
+    final OfficeClipboardPayload payload;
+    _readingWordClipboard = true;
+    try {
+      payload = await OfficeClipboard.instance.read(
+        wordFormatting: true,
+        preferPlain: mode != OfficePasteMode.keepSource,
+        includeImages: mode == OfficePasteMode.keepSource && canImportPictures,
+      );
+    } finally {
+      _readingWordClipboard = false;
+    }
     if (!(isCurrent?.call() ?? true) || payload.isEmpty) {
+      return;
+    }
+    final picture = payload.visual;
+    if (mode == OfficePasteMode.keepSource &&
+        canImportPictures &&
+        picture != null &&
+        picture.isPicture &&
+        picture.imageBytes != null) {
+      if (revision == contentRevision &&
+          identical(destination, _activeParagraph)) {
+        insertImportedPictures([picture], after: destination);
+      }
       return;
     }
     if (mode != OfficePasteMode.keepTextOnly &&
@@ -4346,6 +4370,48 @@ class WordEditorController extends OfficeController {
     for (final MapEntry<WmlParagraph, int> entry in restarts.entries) {
       entry.key.properties.listRestart = entry.value;
     }
+  }
+
+  /// Picture transfers are scoped to an editable document body.
+  bool get canImportPictures =>
+      canPaste && !isEditingComment && !isEditingHeaderFooter && !editingFrame;
+
+  /// Places one or more imported images after the target paragraph in one
+  /// undoable edit. The host may retain a paragraph across an async drop.
+  bool insertImportedPictures(
+    List<OfficeVisual> pictures, {
+    WmlParagraph? after,
+  }) {
+    if (!canImportPictures ||
+        pictures.isEmpty ||
+        pictures.any(
+          (picture) => !picture.isPicture || picture.imageBytes == null,
+        )) {
+      return false;
+    }
+    final paragraph = after ?? _activeParagraph;
+    if (!document.paragraphs.contains(paragraph)) return false;
+    final slot = WordTree.flowHost(document, paragraph);
+    if (slot == null) return false;
+    final blocks = [for (final picture in pictures) WmlVisual(visual: picture)];
+    final previous = selectedVisual;
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () {
+          slot.parent.insertAll(slot.index + 1, blocks);
+          selectedVisual = blocks.first;
+        },
+        undoFn: () {
+          for (final block in blocks) {
+            slot.parent.remove(block);
+          }
+          if (blocks.contains(selectedVisual)) selectedVisual = previous;
+        },
+      ),
+    );
+    relayout();
+    notifyListeners();
+    return true;
   }
 
   void _pasteWordVisual(OfficeVisual visual) {

@@ -11389,6 +11389,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     controller: _word,
                     focusNode: _wordFocus,
                     showReviewStatus: false,
+                    enableImageDrop:
+                        !_opening &&
+                        (kIsWeb ||
+                            !Platform.environment.containsKey('FLUTTER_TEST')),
+                    onImageDropRejected: () => _toast(
+                      _t(
+                        'Some images could not be imported. Use a supported image up to 12 MB.',
+                        'Einige Bilder konnten nicht importiert werden. Verwenden Sie ein unterstütztes Bild bis 12 MB.',
+                        'تعذر استيراد بعض الصور. استخدم صورة مدعومة لا يتجاوز حجمها 12 ميغابايت.',
+                      ),
+                    ),
                     onCommentContextMenuRequested: _showCommentCaretContext,
                     config: _printPreview
                         ? _config.copyWith(mode: OfficeInteractionMode.viewing)

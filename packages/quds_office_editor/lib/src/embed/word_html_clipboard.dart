@@ -30,6 +30,7 @@ class _HtmlClipboard {
         final declarations = _declarations(match[2]!);
         for (final raw in match[1]!.split(',').take(12)) {
           final selector = raw.trim();
+          if (styles.length == 128) return;
           if (_simpleSelector.hasMatch(selector)) {
             styles.add((selector, declarations));
           }
@@ -95,6 +96,7 @@ class _HtmlClipboard {
   var _pendingSpace = false;
   var _lineStart = true;
   bool _insideFragment;
+  var _nodes = 0;
 
   void flush({bool empty = false}) {
     final paragraph = _paragraph;
@@ -128,7 +130,9 @@ class _HtmlClipboard {
   }
 
   void walk(dom.Node node, _Style parent, int depth) {
-    if (depth > 80) return;
+    if (depth > 80 || ++_nodes > 20000) {
+      throw const FormatException('Clipboard HTML exceeds structural limits');
+    }
     if (node is dom.Comment) {
       if (node.data == 'StartFragment') _insideFragment = true;
       if (node.data == 'EndFragment') _insideFragment = false;

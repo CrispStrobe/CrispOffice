@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart' show kDoubleTapTimeout;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 import '../editor_sheet/render_sheet_grid.dart';
 import '../editor_slide/render_slide_stage.dart';
@@ -17,6 +18,7 @@ import 'office_context_menu.dart';
 import 'office_controller.dart';
 import 'office_direction_keys.dart';
 import 'office_theme.dart';
+import 'word_image_import.dart';
 import 'word_notes_pane.dart';
 import 'word_proofing_dialog.dart';
 import 'word_review_dialog.dart';
@@ -212,6 +214,8 @@ class QudsWordEditor extends StatefulWidget {
     this.findBarBuilder,
     this.navigationBuilder,
     this.notesPaneBuilder,
+    this.enableImageDrop = false,
+    this.onImageDropRejected,
     this.onSelectionChanged,
     this.onCommentContextMenuRequested,
     this.enableLiveProofing = true,
@@ -259,6 +263,12 @@ class QudsWordEditor extends StatefulWidget {
   /// files/images. This lets Mail turn Cmd/Ctrl+V into attachments without
   /// changing text paste for other editors.
   final Future<void> Function({required bool keepTextOnly})? onPasteOverride;
+
+  /// Allows importing images dragged onto the editable document canvas.
+  final bool enableImageDrop;
+
+  /// Called when a drop contains an image the editor cannot embed.
+  final VoidCallback? onImageDropRejected;
 
   /// onSelectionChanged API.
   final VoidCallback? onSelectionChanged;
@@ -310,6 +320,96 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   /// controller API.
   WordEditorController get _c => widget.controller;
+
+  var _readingImageDrop = false;
+
+  Widget _withImageDrop(Widget canvas) {
+    if (!widget.enableImageDrop || !_c.config.allowsMutation) return canvas;
+    return DropRegion(
+      formats: const [Formats.fileUri, ...WordImageImport.formats],
+      onDropOver: (event) {
+        final items = event.session.items;
+        return !_readingImageDrop &&
+                (_inputRoute?.isCurrent ?? true) &&
+                _c.canImportPictures &&
+                event.session.allowedOperations.contains(DropOperation.copy) &&
+                items.length <= WordImageImport.maxDropItems &&
+                items.any(
+                  (item) =>
+                      item.canProvide(Formats.fileUri) ||
+                      WordImageImport.formats.any(item.canProvide),
+                )
+            ? DropOperation.copy
+            : DropOperation.none;
+      },
+      onPerformDrop: (event) async {
+        // Request the items during the callback, then let the native drag
+        // finish while their bytes and pixels are processed asynchronously.
+        unawaited(_receiveImageDrop(event));
+      },
+      child: canvas,
+    );
+  }
+
+  Future<void> _receiveImageDrop(PerformDropEvent event) async {
+    if (_readingImageDrop ||
+        !_c.canImportPictures ||
+        event.acceptedOperation != DropOperation.copy ||
+        event.session.items.length > WordImageImport.maxDropItems) {
+      return;
+    }
+    final items = List<DropItem>.of(event.session.items);
+    final controller = _c;
+    final revision = controller.contentRevision;
+    final render = _canvasKey.currentContext?.findRenderObject();
+    final paragraph = render is RenderWordCanvas
+        ? render.bodyParagraphAt(event.position.global)
+        : null;
+    if (paragraph == null) return;
+    bool current() =>
+        mounted &&
+        identical(controller, _c) &&
+        (_inputRoute?.isCurrent ?? true) &&
+        controller.canImportPictures &&
+        controller.contentRevision == revision;
+    _readingImageDrop = true;
+    try {
+      final batches = await Future.wait([
+        for (final item in items)
+          if (item.dataReader case final reader?)
+            WordImageImport.readBytes(reader, localFiles: true),
+      ]);
+      if (!current()) return;
+      final pictures = <OfficeVisual>[];
+      var size = 0;
+      var embedded = 0;
+      for (final bytes in batches) {
+        if (bytes == null ||
+            bytes.length > WordImageImport.maxBatchBytes - size) {
+          continue;
+        }
+        size += bytes.length;
+        final picture = await WordImageImport.normalize(bytes);
+        if (!current()) return;
+        if (picture == null) continue;
+        final outputSize = picture.imageBytes!.length;
+        if (outputSize > WordImageImport.maxBatchBytes - embedded) continue;
+        embedded += outputSize;
+        pictures.add(picture);
+      }
+      if (pictures.isEmpty ||
+          !controller.insertImportedPictures(pictures, after: paragraph)) {
+        widget.onImageDropRejected?.call();
+        return;
+      }
+      _focus.requestFocus();
+      if (pictures.length != items.length) {
+        widget.onImageDropRejected?.call();
+      }
+    } finally {
+      _readingImageDrop = false;
+    }
+  }
 
   WordReviewStatusBar? _statusBar;
 
@@ -1373,107 +1473,112 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                               value: _c.semanticsValue,
                               readOnly: !config.allowsMutation,
                               textField: config.allowsMutation,
-                              child: WordCanvas(
-                                key: _canvasKey,
-                                document: _c.document,
-                                proofingLookup: _c.proofing.paintFindingsLookup,
-                                laidOut: _c.documentLaidOut,
-                                bodyLayoutIsCurrent: _c.canUseBodyLineIndex(
-                                  _c.documentLaidOut,
+                              child: _withImageDrop(
+                                WordCanvas(
+                                  key: _canvasKey,
+                                  document: _c.document,
+                                  proofingLookup:
+                                      _c.proofing.paintFindingsLookup,
+                                  laidOut: _c.documentLaidOut,
+                                  bodyLayoutIsCurrent: _c.canUseBodyLineIndex(
+                                    _c.documentLaidOut,
+                                  ),
+                                  caret: _c.caret,
+                                  findHits: _c.findSession.hits,
+                                  activeFindIndex: _c.findSession.index,
+                                  zoteroFieldRanges:
+                                      _c.zoteroFieldContext?.sourceRanges ??
+                                      const <WordZoteroFieldSelectionRange>[],
+                                  viewport: _c.viewport,
+                                  config: config,
+                                  hasFocus:
+                                      !_c.isEditingComment &&
+                                      (_focus.hasFocus || _c.input.isAttached),
+                                  semanticsLabel: _c.semanticsLabel,
+                                  semanticsValue: _c.semanticsValue,
+                                  selectedVisual: _c.selectedVisual,
+                                  selectedFrame: _c.selectedFrame,
+                                  editingFrame: _c.editingFrame,
+                                  selectedEquation: _c.selectedEquation,
+                                  equationSlot: _c.equationSlot,
+                                  equationCaret: _c.equationCaret,
+                                  pictureCropMode: _c.pictureCropMode,
+                                  onBeginVisualTransform:
+                                      _c.beginVisualTransform,
+                                  onPreviewVisualMove: _c.previewVisualMove,
+                                  onPreviewVisualResize: _c.previewVisualResize,
+                                  onPreviewVisualCrop: _c.previewVisualCrop,
+                                  onPreviewVisualRotate: _c.previewVisualRotate,
+                                  onCommitVisualTransform:
+                                      _c.commitVisualTransform,
+                                  isVisualInSelection: _c.isVisualInSelection,
+                                  onExtendThroughVisual:
+                                      _c.extendSelectionThroughVisual,
+                                  onSelectVisual: _c.selectVisualFromOffice,
+                                  onSelectFrame: (WmlFrame? frame) =>
+                                      _c.selectFrame(frame),
+                                  onEditFrame: (WmlFrame frame) =>
+                                      _c.selectFrame(frame, editing: true),
+                                  onBeginFrameTransform: _c.beginFrameTransform,
+                                  onPreviewFrameMove: _c.previewFrameMove,
+                                  onPreviewFrameResize: _c.previewFrameResize,
+                                  onCommitFrameTransform:
+                                      _c.commitFrameTransform,
+                                  onSelectEquation:
+                                      (
+                                        WmlEquation? equation,
+                                        int? slot,
+                                        int? caret,
+                                      ) {
+                                        _c.selectEquation(
+                                          equation,
+                                          slot: slot,
+                                          caret: caret,
+                                        );
+                                      },
+                                  onActivateVisual: (OfficeVisual visual) {
+                                    _c.selectVisualFromOffice(visual);
+                                    _c.cycleSelectedVisualKind();
+                                  },
+                                  onJumpParagraph: _c.jumpToParagraph,
+                                  onFollowLink: _c.followLink,
+                                  selectedCommentId: _c.selectedCommentId,
+                                  onSelectComment: _c.selectComment,
+                                  onContextMenu: _showWordContext,
+                                  onReviewTap: _showInlineReview,
+                                  onInsertTableRowAt: _c.insertTableRowAt,
+                                  onInsertTableColumnAt: _c.insertTableColumnAt,
+                                  onBeginTableResize: _c.beginTableResize,
+                                  onPreviewTableColumnWidth:
+                                      _c.previewTableColumnWidth,
+                                  onPreviewTableRowHeight:
+                                      _c.previewTableRowHeight,
+                                  onCommitTableResize: _c.commitTableResize,
+                                  selectedTable: _c.selectedTable,
+                                  onSelectTable: _c.selectTable,
+                                  selectedTableBand: _c.selectedTableBand,
+                                  onSelectTableBand: _c.selectTableBand,
+                                  storyParagraphs: _c.isEditingHeaderFooter
+                                      ? _c.headerFooterParagraphs
+                                      : null,
+                                  editingHeader: _c.isEditingHeader,
+                                  editingFooter: _c.isEditingFooter,
+                                  onBeginHeaderFooterEdit:
+                                      _c.beginHeaderFooterEdit,
+                                  onEndHeaderFooterEdit: _c.endHeaderFooterEdit,
+                                  onBeginRulerEdit: _c.beginRulerEdit,
+                                  onPreviewRulerEdit: _c.previewRulerEdit,
+                                  onCommitRulerEdit: _c.commitRulerEdit,
+                                  onViewportChanged: _c.refreshView,
+                                  onChanged: () {
+                                    _c.clearNoteEditingTarget();
+                                    _focus.requestFocus();
+                                    if (config.allowsMutation) {
+                                      _c.attachInput();
+                                    }
+                                    _c.refreshView();
+                                  },
                                 ),
-                                caret: _c.caret,
-                                findHits: _c.findSession.hits,
-                                activeFindIndex: _c.findSession.index,
-                                zoteroFieldRanges:
-                                    _c.zoteroFieldContext?.sourceRanges ??
-                                    const <WordZoteroFieldSelectionRange>[],
-                                viewport: _c.viewport,
-                                config: config,
-                                hasFocus:
-                                    !_c.isEditingComment &&
-                                    (_focus.hasFocus || _c.input.isAttached),
-                                semanticsLabel: _c.semanticsLabel,
-                                semanticsValue: _c.semanticsValue,
-                                selectedVisual: _c.selectedVisual,
-                                selectedFrame: _c.selectedFrame,
-                                editingFrame: _c.editingFrame,
-                                selectedEquation: _c.selectedEquation,
-                                equationSlot: _c.equationSlot,
-                                equationCaret: _c.equationCaret,
-                                pictureCropMode: _c.pictureCropMode,
-                                onBeginVisualTransform: _c.beginVisualTransform,
-                                onPreviewVisualMove: _c.previewVisualMove,
-                                onPreviewVisualResize: _c.previewVisualResize,
-                                onPreviewVisualCrop: _c.previewVisualCrop,
-                                onPreviewVisualRotate: _c.previewVisualRotate,
-                                onCommitVisualTransform:
-                                    _c.commitVisualTransform,
-                                isVisualInSelection: _c.isVisualInSelection,
-                                onExtendThroughVisual:
-                                    _c.extendSelectionThroughVisual,
-                                onSelectVisual: _c.selectVisualFromOffice,
-                                onSelectFrame: (WmlFrame? frame) =>
-                                    _c.selectFrame(frame),
-                                onEditFrame: (WmlFrame frame) =>
-                                    _c.selectFrame(frame, editing: true),
-                                onBeginFrameTransform: _c.beginFrameTransform,
-                                onPreviewFrameMove: _c.previewFrameMove,
-                                onPreviewFrameResize: _c.previewFrameResize,
-                                onCommitFrameTransform: _c.commitFrameTransform,
-                                onSelectEquation:
-                                    (
-                                      WmlEquation? equation,
-                                      int? slot,
-                                      int? caret,
-                                    ) {
-                                      _c.selectEquation(
-                                        equation,
-                                        slot: slot,
-                                        caret: caret,
-                                      );
-                                    },
-                                onActivateVisual: (OfficeVisual visual) {
-                                  _c.selectVisualFromOffice(visual);
-                                  _c.cycleSelectedVisualKind();
-                                },
-                                onJumpParagraph: _c.jumpToParagraph,
-                                onFollowLink: _c.followLink,
-                                selectedCommentId: _c.selectedCommentId,
-                                onSelectComment: _c.selectComment,
-                                onContextMenu: _showWordContext,
-                                onReviewTap: _showInlineReview,
-                                onInsertTableRowAt: _c.insertTableRowAt,
-                                onInsertTableColumnAt: _c.insertTableColumnAt,
-                                onBeginTableResize: _c.beginTableResize,
-                                onPreviewTableColumnWidth:
-                                    _c.previewTableColumnWidth,
-                                onPreviewTableRowHeight:
-                                    _c.previewTableRowHeight,
-                                onCommitTableResize: _c.commitTableResize,
-                                selectedTable: _c.selectedTable,
-                                onSelectTable: _c.selectTable,
-                                selectedTableBand: _c.selectedTableBand,
-                                onSelectTableBand: _c.selectTableBand,
-                                storyParagraphs: _c.isEditingHeaderFooter
-                                    ? _c.headerFooterParagraphs
-                                    : null,
-                                editingHeader: _c.isEditingHeader,
-                                editingFooter: _c.isEditingFooter,
-                                onBeginHeaderFooterEdit:
-                                    _c.beginHeaderFooterEdit,
-                                onEndHeaderFooterEdit: _c.endHeaderFooterEdit,
-                                onBeginRulerEdit: _c.beginRulerEdit,
-                                onPreviewRulerEdit: _c.previewRulerEdit,
-                                onCommitRulerEdit: _c.commitRulerEdit,
-                                onViewportChanged: _c.refreshView,
-                                onChanged: () {
-                                  _c.clearNoteEditingTarget();
-                                  _focus.requestFocus();
-                                  if (config.allowsMutation) {
-                                    _c.attachInput();
-                                  }
-                                  _c.refreshView();
-                                },
                               ),
                             ),
                           ),
