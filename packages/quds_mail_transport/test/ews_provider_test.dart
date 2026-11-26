@@ -2557,6 +2557,19 @@ void main() {
     final fixture = _Fixture();
     fixture.scripts.add([
       (
+        'GetFolder',
+        (body) {
+          expect(body, contains('DistinguishedFolderId Id="inbox"'));
+          return _response(
+            'GetFolder',
+            _success(
+              'GetFolder',
+              '<m:Folders>${_folder('renamed-inbox')}</m:Folders>',
+            ),
+          );
+        },
+      ),
+      (
         'FindFolder',
         (_) => _response(
           'FindFolder',
@@ -2583,7 +2596,15 @@ void main() {
     final folders = _value(
       await fixture.provider().listMailboxes(fixture.session.begin()),
     );
-    expect(folders.map((folder) => folder.id.value), ['inbox', 'archive']);
+    expect(folders.map((folder) => folder.id.value), [
+      'renamed-inbox',
+      'inbox',
+      'archive',
+    ]);
+    expect(
+      folders.where((folder) => folder.isInbox).single.id.value,
+      'renamed-inbox',
+    );
   });
 
   test(
@@ -2591,6 +2612,19 @@ void main() {
     () async {
       final fixture = _Fixture();
       fixture.scripts.add([
+        (
+          'GetFolder',
+          (body) {
+            expect(body, contains('DistinguishedFolderId Id="inbox"'));
+            return _response(
+              'GetFolder',
+              _success(
+                'GetFolder',
+                '<m:Folders>${_folder('renamed-inbox')}</m:Folders>',
+              ),
+            );
+          },
+        ),
         (
           'FindFolder',
           (_) => _response(

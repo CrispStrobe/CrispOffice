@@ -34,10 +34,13 @@ final class _ProbeCredentials implements MailCredentialStore {
 
 Future<void> main(List<String> args) async {
   final calendar = args.contains('--calendar');
-  final files = args.where((arg) => arg != '--calendar').toList();
-  if (files.length > 1) {
+  final inbox = args.contains('--mail');
+  final files = args
+      .where((arg) => arg != '--calendar' && arg != '--mail')
+      .toList();
+  if (files.length > 1 || calendar && inbox) {
     stderr.writeln(
-      'Usage: dart run example/ews_tasks_probe.dart [--calendar] [credential file]',
+      'Usage: dart run example/ews_tasks_probe.dart [--calendar | --mail] [credential file]',
     );
     exitCode = 2;
     return;
@@ -84,9 +87,55 @@ Future<void> main(List<String> args) async {
         : endpoint.replace(path: '/EWS/Exchange.asmx'),
     username: parts.last,
     domain: parts.length == 2 ? parts.first : '',
+    mailboxAddress: values['EWS_MAILBOX'] ?? values['EWS_MAIL'],
     credential: MailCredentialReference(account: mail, key: 'test'),
   );
   final credentials = _ProbeCredentials(password);
+  if (inbox) {
+    final provider = createMailEwsProvider(
+      configuration: configuration,
+      credentialStore: credentials,
+    );
+    final lease = session.begin();
+    final folders = await provider.listMailboxes(lease);
+    if (folders case MailFailure(:final problem)) {
+      stderr.writeln('EWS Mail folder discovery failed: ${problem.code.name}');
+      exitCode = 1;
+      return;
+    }
+    final mailboxes = (folders as MailSuccess<List<MailMailbox>>).value;
+    final primary = mailboxes.where((folder) => folder.isInbox).single;
+    final page = await provider.fetchHeaders(
+      primary.id,
+      limit: 10,
+      lease: lease,
+    );
+    if (page case MailFailure(:final problem)) {
+      stderr.writeln('EWS Inbox fetch failed: ${problem.code.name}');
+      exitCode = 1;
+      return;
+    }
+    final headers = (page as MailSuccess<MailHeaderPage>).value.messages;
+    if (headers.isEmpty) {
+      stderr.writeln('EWS Inbox has no headers to verify.');
+      exitCode = 1;
+      return;
+    }
+    final message = await provider.fetchMessage(
+      headers.first.remote,
+      budget: const MailReadBudget(),
+      lease: lease,
+    );
+    if (message case MailFailure(:final problem)) {
+      stderr.writeln('EWS Inbox message fetch failed: ${problem.code.name}');
+      exitCode = 1;
+      return;
+    }
+    stdout.writeln(
+      'EWS Mail folders: ${mailboxes.length}, distinguished Inbox headers: ${headers.length}, messages opened: 1.',
+    );
+    return;
+  }
   if (calendar) {
     await _probeCalendar(account, configuration, credentials, session);
     return;

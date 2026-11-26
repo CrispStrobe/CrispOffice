@@ -259,17 +259,28 @@ final class NativeMailEwsProvider
     }
   }
 
+  EwsFolder? _inbox;
+
+  Future<EwsFolder> _distinguishedInbox(
+    EwsHttpClient client,
+    _Operation operation,
+  ) async {
+    final xml = await operation.post(
+      client,
+      'GetFolder',
+      _soap.getFolder('inbox', distinguished: true),
+    );
+    final inbox = _soap.folders(xml, 'GetFolder').folders.singleOrNull;
+    if (inbox == null || !inbox.isMailFolder) {
+      throw const EwsException(MailProblemCode.providerFailure);
+    }
+    return inbox;
+  }
+
   @override
   Future<MailResult<MailCapabilities>> capabilities(MailOperationLease lease) =>
       _run(lease, (client, operation) async {
-        final xml = await operation.post(
-          client,
-          'GetFolder',
-          _soap.getFolder('inbox', distinguished: true),
-        );
-        if (_soap.folders(xml, 'GetFolder').folders.length != 1) {
-          throw const EwsException(MailProblemCode.providerFailure);
-        }
+        _inbox = await _distinguishedInbox(client, operation);
         return MailCapabilities(const [
           MailCapability.mail,
           MailCapability.folders,
@@ -282,17 +293,27 @@ final class NativeMailEwsProvider
   @override
   Future<MailResult<List<MailMailbox>>> listMailboxes(
     MailOperationLease lease,
-  ) => _run(
-    lease,
-    (client, operation) async => List.unmodifiable([
-      for (final folder in await _findFolders(client, operation))
-        if (folder.isMailFolder)
+  ) => _run(lease, (client, operation) async {
+    final inbox = _inbox ?? await _distinguishedInbox(client, operation);
+    final folders = await _findFolders(client, operation);
+    final mailboxes = [
+      MailMailbox(
+        id: MailMailboxId(inbox.id, account: account),
+        displayName: inbox.displayName,
+        isInbox: true,
+      ),
+      for (final folder in folders)
+        if (folder.isMailFolder && folder.id != inbox.id)
           MailMailbox(
             id: MailMailboxId(folder.id, account: account),
             displayName: folder.displayName,
           ),
-    ]),
-  );
+    ];
+    if (mailboxes.length > limits.maxMailboxes) {
+      throw const EwsException(MailProblemCode.quotaExceeded);
+    }
+    return List.unmodifiable(mailboxes);
+  });
 
   Future<List<EwsFolder>> _findFolders(
     EwsHttpClient client,

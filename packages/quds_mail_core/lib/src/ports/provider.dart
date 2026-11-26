@@ -11,10 +11,14 @@ final class MailMailbox {
     required this.id,
     required this.displayName,
     this.isLabel = false,
+    this.isInbox = false,
   });
   final MailMailboxId id;
   final String displayName;
   final bool isLabel;
+
+  /// Set when the provider identifies this folder as the account's Inbox.
+  final bool isInbox;
 }
 
 /// Opaque cursors are scoped to a mailbox and cannot be reused across accounts.
