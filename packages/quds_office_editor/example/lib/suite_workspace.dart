@@ -583,7 +583,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       mode: _mode,
       theme: _officeTheme,
       showRulers: _app == SuiteApp.word && _wordRulers,
-      showFormulaBar: false,
+      showFormulaBar: true,
       showGridHeaders: _sheetHeaders,
       showGridlines: _sheetGridlines,
       showSlideHandles: _slideHandles,
@@ -10610,7 +10610,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               SuiteApp.excel => Column(
                 children: <Widget>[
-                  _excelFormulaBar(dark),
                   Expanded(
                     child: QudsSheetEditor(
                       controller: _sheet,
@@ -10840,74 +10839,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _excelFormulaBar(bool dark) {
-    return Material(
-      color: dark ? const Color(0xFF2A2A2A) : const Color(0xFFF7F7F7),
-      child: SizedBox(
-        height: 32,
-        child: Row(
-          children: <Widget>[
-            SizedBox(
-              width: 72,
-              child: Center(
-                child: Text(
-                  _sheet.selectionAddress,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: _officeTheme.chromeText,
-                  ),
-                ),
-              ),
-            ),
-            VerticalDivider(
-              width: 1,
-              color: dark ? const Color(0xFF444444) : const Color(0xFFD0D0D0),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                'fx',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: _accent,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            Expanded(
-              child: InkWell(
-                onTap: _canMutate ? _sheet.beginCellEdit : null,
-                child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text.rich(
-                    _sheet.cellEditor.editing
-                        ? FormulaRefStyle.textSpan(
-                            _sheet.formulaBarText,
-                            baseColor: _officeTheme.chromeText,
-                            fontSize: 14,
-                          )
-                        : TextSpan(
-                            text: _sheet.formulaBarText,
-                            style: TextStyle(color: _officeTheme.chromeText),
-                          ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-            ),
-            if (_sheet.cellEditor.editing)
-              IconButton(
-                visualDensity: VisualDensity.compact,
-                onPressed: _sheet.commitCellEdit,
-                icon: Icon(Icons.check, size: 16, color: _accent),
-              ),
-          ],
         ),
       ),
     );
