@@ -383,6 +383,9 @@ class StudioCombo<T> extends StatelessWidget {
     this.enabled = true,
     this.tooltip,
     this.previewFamily,
+    this.searchHint,
+    this.noMatchesLabel,
+    this.searchAction,
   });
 
   final T value;
@@ -393,67 +396,145 @@ class StudioCombo<T> extends StatelessWidget {
   final bool enabled;
   final String? tooltip;
   final String? Function(T value)? previewFamily;
+  final String? searchHint;
+  final String? noMatchesLabel;
+  final WidgetBuilder? searchAction;
+
+  Future<void> _showSearch(BuildContext context, String hint) async {
+    var matches = items;
+    final selected = await showDialog<T>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          actions: [if (searchAction case final action?) action(dialogContext)],
+          content: SizedBox(
+            width: 340,
+            height: 360,
+            child: Column(
+              children: [
+                TextField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    labelText: hint,
+                    prefixIcon: const Icon(Icons.search),
+                  ),
+                  onChanged: (query) {
+                    final filter = query.trim().toLowerCase();
+                    setState(() {
+                      matches = items.where((item) {
+                        return labelOf(item).toLowerCase().contains(filter);
+                      }).toList();
+                    });
+                  },
+                  onSubmitted: (_) {
+                    if (matches.length == 1) {
+                      Navigator.of(dialogContext).pop(matches.single);
+                    }
+                  },
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  child: matches.isEmpty
+                      ? Center(child: Text(noMatchesLabel ?? ''))
+                      : ListView.builder(
+                          keyboardDismissBehavior:
+                              ScrollViewKeyboardDismissBehavior.onDrag,
+                          itemCount: matches.length,
+                          itemBuilder: (context, index) {
+                            final item = matches[index];
+                            return ListTile(
+                              dense: true,
+                              selected: item == value,
+                              title: Text(
+                                labelOf(item),
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: previewFamily?.call(item),
+                                ),
+                              ),
+                              onTap: () =>
+                                  Navigator.of(dialogContext).pop(item),
+                            );
+                          },
+                        ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    if (context.mounted && selected != null) onSelected?.call(selected);
+  }
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    return Tooltip(
-      message: tooltip ?? labelOf(value),
-      child: PopupMenuButton<T>(
-        enabled: enabled && onSelected != null,
-        tooltip: '',
-        padding: EdgeInsets.zero,
-        onSelected: onSelected,
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<T>>[
-          for (final T item in items)
-            PopupMenuItem<T>(
-              value: item,
-              child: Text(
-                labelOf(item),
-                style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: previewFamily?.call(item),
-                ),
+    final field = Container(
+      width: width,
+      height: (studioChromeLineHeight(context, 11) + 8)
+          .clamp(28.0, double.infinity)
+          .toDouble(),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      decoration: BoxDecoration(
+        border: Border.all(color: scheme.outlineVariant),
+        borderRadius: BorderRadius.circular(3),
+        color: enabled ? scheme.surface : scheme.surfaceContainerHighest,
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              labelOf(value),
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 11,
+                color: enabled
+                    ? scheme.onSurface
+                    : scheme.onSurface.withValues(alpha: 0.45),
+                fontFamily: previewFamily?.call(value),
               ),
             ),
+          ),
+          Icon(
+            Icons.arrow_drop_down,
+            size: 16,
+            color: enabled
+                ? scheme.onSurfaceVariant
+                : scheme.onSurface.withValues(alpha: 0.45),
+          ),
         ],
-        child: Container(
-          width: width,
-          height: (studioChromeLineHeight(context, 11) + 8)
-              .clamp(28.0, double.infinity)
-              .toDouble(),
-          padding: const EdgeInsets.symmetric(horizontal: 6),
-          decoration: BoxDecoration(
-            border: Border.all(color: scheme.outlineVariant),
-            borderRadius: BorderRadius.circular(3),
-            color: enabled ? scheme.surface : scheme.surfaceContainerHighest,
-          ),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Text(
-                  labelOf(value),
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: enabled
-                        ? scheme.onSurface
-                        : scheme.onSurface.withValues(alpha: 0.45),
-                    fontFamily: previewFamily?.call(value),
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.arrow_drop_down,
-                size: 16,
-                color: enabled
-                    ? scheme.onSurfaceVariant
-                    : scheme.onSurface.withValues(alpha: 0.45),
-              ),
-            ],
-          ),
-        ),
       ),
+    );
+    final interactive = enabled && onSelected != null;
+    final hint = searchHint;
+    return Tooltip(
+      message: tooltip ?? labelOf(value),
+      child: hint != null
+          ? InkWell(
+              onTap: interactive ? () => _showSearch(context, hint) : null,
+              child: field,
+            )
+          : PopupMenuButton<T>(
+              enabled: interactive,
+              tooltip: '',
+              padding: EdgeInsets.zero,
+              onSelected: onSelected,
+              itemBuilder: (context) => <PopupMenuEntry<T>>[
+                for (final item in items)
+                  PopupMenuItem<T>(
+                    value: item,
+                    child: Text(
+                      labelOf(item),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontFamily: previewFamily?.call(item),
+                      ),
+                    ),
+                  ),
+              ],
+              child: field,
+            ),
     );
   }
 }

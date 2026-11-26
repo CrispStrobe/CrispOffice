@@ -98,6 +98,7 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
 void main() {
   group('the font ribbon', () {
     const extraFamily = 'A Demo Typeface';
+    const nativeFamily = 'American Typewriter';
 
     setUpAll(() async {
       final font = await rootBundle.load(
@@ -108,6 +109,7 @@ void main() {
         faces: [font],
         aliases: ['Demo Typeface Alias'],
       );
+      OfficeHostFonts.addPlatformFamilies([nativeFamily]);
     });
 
     testWidgets('offers registered faces in Documents and Spreadsheets', (
@@ -120,21 +122,35 @@ void main() {
             widget.items.contains('Liberation Mono'),
       );
       final sheetFonts = tester.widget<StudioCombo<String>>(combo);
-      expect(sheetFonts.items, contains(extraFamily));
+      expect(sheetFonts.items, containsAll([extraFamily, nativeFamily]));
       expect(sheetFonts.items, isNot(contains('Demo Typeface Alias')));
       await tester.tap(combo);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 350));
-      await tester.tap(find.text(extraFamily));
+      final search = find.widgetWithText(TextField, 'Search fonts');
+      await tester.enterText(search, 'unavailable typeface');
+      await tester.pump();
+      expect(find.text('No matching fonts'), findsOneWidget);
+      await tester.enterText(search, 'typewriter');
+      await tester.pump();
+      expect(find.text(extraFamily), findsNothing);
+      await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 350));
-      expect(sheet.sheet.cell(sheet.activeCell).fontFamily, extraFamily);
+      expect(sheet.sheet.cell(sheet.activeCell).fontFamily, nativeFamily);
+      expect(
+        PaintRunText.familyFor(text: 'Example', runFamily: nativeFamily),
+        nativeFamily,
+      );
 
       await tester.tap(find.byTooltip('Documents').first);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 350));
       final wordFonts = tester.widget<StudioCombo<String>>(combo);
-      expect(wordFonts.items, containsAll(['Aptos', extraFamily]));
+      expect(
+        wordFonts.items,
+        containsAll(['Aptos', extraFamily, nativeFamily]),
+      );
       await tester.tap(combo);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 350));

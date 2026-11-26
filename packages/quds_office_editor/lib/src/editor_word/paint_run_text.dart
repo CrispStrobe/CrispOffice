@@ -55,7 +55,8 @@ abstract final class PaintRunText {
     // Unloaded names otherwise select different system fonts on each OS (or
     // Ahem in tests). Keep the document's requested face in its model, but
     // paint an explicit bundled fallback until the host registers real bytes.
-    if (OfficeHostFonts.registeredFamily(requested) != null) {
+    if (OfficeHostFonts.registeredFamily(requested) != null ||
+        OfficeHostFonts.hasPlatformFamily(requested)) {
       return OfficeHostFonts.paintFamily(requested);
     }
     return looksRtl(text)

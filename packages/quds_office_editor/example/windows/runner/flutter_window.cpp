@@ -1,8 +1,58 @@
 #include "flutter_window.h"
 
+#include <dwrite.h>
+#include <flutter/method_channel.h>
+#include <flutter/standard_method_codec.h>
+#include <wrl/client.h>
+
 #include <optional>
+#include <vector>
 
 #include "flutter/generated_plugin_registrant.h"
+
+#include "utils.h"
+
+namespace {
+
+flutter::EncodableList AvailableFontFamilies() {
+  using Microsoft::WRL::ComPtr;
+  flutter::EncodableList names;
+  ComPtr<IDWriteFactory> factory;
+  ComPtr<IDWriteFontCollection> collection;
+  if (FAILED(DWriteCreateFactory(
+          DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory),
+          reinterpret_cast<IUnknown **>(factory.GetAddressOf()))) ||
+      FAILED(factory->GetSystemFontCollection(&collection, TRUE))) {
+    return names;
+  }
+
+  for (UINT32 i = 0; i < collection->GetFontFamilyCount(); ++i) {
+    ComPtr<IDWriteFontFamily> family;
+    ComPtr<IDWriteLocalizedStrings> strings;
+    if (FAILED(collection->GetFontFamily(i, &family)) ||
+        FAILED(family->GetFamilyNames(&strings))) {
+      continue;
+    }
+    // Use the English family name when available so Office documents retain
+    // names that can be resolved across different display languages.
+    UINT32 index = 0;
+    BOOL found = FALSE;
+    if (FAILED(strings->FindLocaleName(L"en-us", &index, &found)) || !found) {
+      index = 0;
+    }
+    UINT32 length = 0;
+    if (FAILED(strings->GetStringLength(index, &length))) {
+      continue;
+    }
+    std::vector<wchar_t> name(length + 1);
+    if (SUCCEEDED(strings->GetString(index, name.data(), length + 1))) {
+      names.emplace_back(Utf8FromUtf16(name.data()));
+    }
+  }
+  return names;
+}
+
+}  // namespace
 
 FlutterWindow::FlutterWindow(const flutter::DartProject& project)
     : project_(project) {}
@@ -25,6 +75,16 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
   RegisterPlugins(flutter_controller_->engine());
+  flutter::MethodChannel<flutter::EncodableValue> catalog(
+      flutter_controller_->engine()->messenger(), "crispoffice/font-catalog",
+      &flutter::StandardMethodCodec::GetInstance());
+  catalog.SetMethodCallHandler([](const auto &call, auto result) {
+    if (call.method_name() == "availableFamilies") {
+      result->Success(flutter::EncodableValue(AvailableFontFamilies()));
+    } else {
+      result->NotImplemented();
+    }
+  });
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {

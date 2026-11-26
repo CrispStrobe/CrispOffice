@@ -6,6 +6,23 @@ import Security
 class AppDelegate: FlutterAppDelegate {
   private var terminationPending = false
 
+  private var fontCatalogChannel: FlutterMethodChannel?
+
+  func registerFontCatalogChannel(binaryMessenger: FlutterBinaryMessenger) {
+    guard fontCatalogChannel == nil else { return }
+    let channel = FlutterMethodChannel(
+      name: "crispoffice/font-catalog", binaryMessenger: binaryMessenger)
+    channel.setMethodCallHandler { call, result in
+      switch call.method {
+      case "availableFamilies":
+        result(NSFontManager.shared.availableFontFamilies)
+      default:
+        result(FlutterMethodNotImplemented)
+      }
+    }
+    fontCatalogChannel = channel
+  }
+
   private var recentFilesChannel: FlutterMethodChannel?
   private var recentScopes: [String: (url: URL, started: Bool)] = [:]
 

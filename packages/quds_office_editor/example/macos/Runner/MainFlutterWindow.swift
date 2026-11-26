@@ -30,6 +30,9 @@ class MainFlutterWindow: NSWindow {
     (NSApplication.shared.delegate as? AppDelegate)?.registerMailPasteboardChannel(
       binaryMessenger: flutterViewController.engine.binaryMessenger)
 
+    (NSApplication.shared.delegate as? AppDelegate)?.registerFontCatalogChannel(
+      binaryMessenger: flutterViewController.engine.binaryMessenger)
+
     super.awakeFromNib()
   }
 }

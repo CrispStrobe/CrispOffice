@@ -19,6 +19,7 @@ abstract final class OfficeHostFonts {
   static final Map<String, String> _extensionOwners = {};
   static int _revision = 0;
   static final Map<String, String> _additionalFamilies = {};
+  static final Map<String, String> _platformFamilies = {};
   static final Map<String, List<OfficeFontFace>> _metricFaces = {};
   static final _paintMetrics =
       <(String, double, int, int, bool), FontMetrics?>{};
@@ -97,9 +98,28 @@ abstract final class OfficeHostFonts {
   /// fallback before an asynchronous registration completed.
   static int get registrationRevision => _revision;
 
-  /// Canonical names of successfully loaded host extensions and local fonts.
+  /// Canonical names from the platform catalog and loaded host extensions.
   /// Registration aliases and internal paint names are excluded.
-  static Iterable<String> get additionalFamilies => _additionalFamilies.values;
+  static Iterable<String> get additionalFamilies sync* {
+    yield* _platformFamilies.values;
+    yield* _additionalFamilies.values;
+  }
+
+  /// Adds names supplied by the native font manager. Flutter resolves these
+  /// faces by name and the host needs no font-file access or eager loading.
+  static void addPlatformFamilies(Iterable<String> families) {
+    final previousCount = _platformFamilies.length;
+    for (final family in families) {
+      final canonical = family.trim();
+      if (canonical.isNotEmpty && canonical.length <= 256) {
+        _platformFamilies.putIfAbsent(canonical.toLowerCase(), () => canonical);
+      }
+    }
+    if (_platformFamilies.length != previousCount) _revision++;
+  }
+
+  static bool hasPlatformFamily(String family) =>
+      _platformFamilies.containsKey(family.trim().toLowerCase());
 
   /// The loaded paint family behind a successfully registered name or alias.
   /// Installed replacements use an internal name so old aliases cannot win.
@@ -118,7 +138,7 @@ abstract final class OfficeHostFonts {
     final key = family.trim().toLowerCase();
     return _installedFaces.containsKey(key)
         ? _registeredFaces[key]!.$1
-        : family;
+        : _platformFamilies[key] ?? family;
   }
 
   /// Registers bundled faces and common Office/PDF aliases.

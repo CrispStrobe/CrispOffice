@@ -19,6 +19,26 @@ static void first_frame_cb(MyApplication* self, FlView* view) {
   gtk_widget_show(gtk_widget_get_toplevel(GTK_WIDGET(view)));
 }
 
+static void font_catalog_call(FlMethodChannel*, FlMethodCall* call,
+                              gpointer user_data) {
+  if (g_strcmp0(fl_method_call_get_name(call), "availableFamilies") != 0) {
+    fl_method_call_respond_not_implemented(call, nullptr);
+    return;
+  }
+  auto* view = GTK_WIDGET(user_data);
+  PangoContext* context = gtk_widget_get_pango_context(view);
+  PangoFontFamily** families = nullptr;
+  int count = 0;
+  pango_context_list_families(context, &families, &count);
+  g_autoptr(FlValue) names = fl_value_new_list();
+  for (int i = 0; i < count; ++i) {
+    fl_value_append_take(
+        names, fl_value_new_string(pango_font_family_get_name(families[i])));
+  }
+  g_free(families);
+  fl_method_call_respond_success(call, names, nullptr);
+}
+
 // Implements GApplication::activate.
 static void my_application_activate(GApplication* application) {
   MyApplication* self = MY_APPLICATION(application);
@@ -51,6 +71,14 @@ static void my_application_activate(GApplication* application) {
   gtk_widget_realize(GTK_WIDGET(view));
 
   fl_register_plugins(FL_PLUGIN_REGISTRY(view));
+  g_autoptr(FlStandardMethodCodec) codec = fl_standard_method_codec_new();
+  FlMethodChannel* catalog = fl_method_channel_new(
+      fl_engine_get_binary_messenger(fl_view_get_engine(view)),
+      "crispoffice/font-catalog", FL_METHOD_CODEC(codec));
+  fl_method_channel_set_method_call_handler(catalog, font_catalog_call, view,
+                                            nullptr);
+  g_object_set_data_full(G_OBJECT(view), "font-catalog", catalog,
+                         g_object_unref);
 
   gtk_widget_grab_focus(GTK_WIDGET(view));
 }

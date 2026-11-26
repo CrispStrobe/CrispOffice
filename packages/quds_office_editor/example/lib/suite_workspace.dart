@@ -26,6 +26,7 @@ import 'studio_settings.dart';
 import 'studio_shortcuts.dart';
 import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
+import 'studio_fonts.dart';
 import 'studio_recent_files.dart';
 import 'studio_find_pane.dart';
 import 'studio_iso_image.dart';
@@ -3928,6 +3929,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             items: _fontFamilies(_activeFontFamily),
             labelOf: (String name) => name,
             previewFamily: _fontPreviewFamily,
+            searchHint: _searchFontsLabel,
+            noMatchesLabel: _noMatchingFontsLabel,
+            searchAction: kIsWeb ? _importFontAction : null,
             width: 148,
             enabled: _wordFullFormat,
             tooltip: _t('Font', StudioStrings.de('Font'), 'الخط'),
@@ -5687,6 +5691,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             items: _fontFamilies(_sheet.selectionFontFamily),
             labelOf: (String family) => family,
             previewFamily: _fontPreviewFamily,
+            searchHint: _searchFontsLabel,
+            noMatchesLabel: _noMatchingFontsLabel,
+            searchAction: kIsWeb ? _importFontAction : null,
             width: 132,
             enabled: _canMutate,
             tooltip: _t(
@@ -8660,6 +8667,50 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
     return families.containsKey(key) ? sorted : <String>[current, ...sorted];
   }
+
+  String get _searchFontsLabel =>
+      _t('Search fonts', 'Schriftarten suchen', 'البحث عن الخطوط');
+
+  String get _noMatchingFontsLabel => _t(
+    'No matching fonts',
+    'Keine passenden Schriftarten',
+    'لا توجد خطوط مطابقة',
+  );
+
+  Widget _importFontAction(BuildContext dialogContext) => TextButton.icon(
+    icon: const Icon(Icons.upload_file_outlined),
+    label: Text(_t('Open font file', 'Schriftdatei öffnen', 'فتح ملف خط')),
+    onPressed: () async {
+      try {
+        final family = await StudioFonts.importFont();
+        if (family != null &&
+            dialogContext.mounted &&
+            ModalRoute.of(dialogContext)?.isCurrent == true) {
+          Navigator.of(dialogContext).pop(family);
+        }
+      } on Exception {
+        if (!dialogContext.mounted) return;
+        await showDialog<void>(
+          context: dialogContext,
+          builder: (context) => AlertDialog(
+            content: Text(
+              _t(
+                'Choose a valid TTF or OTF font under 16 MiB.',
+                'Wählen Sie eine gültige TTF- oder OTF-Schrift unter 16 MiB.',
+                'اختر ملف خط TTF أو OTF صالحًا بحجم أقل من 16 ميبيبايت.',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(_t('OK', 'OK', 'موافق')),
+              ),
+            ],
+          ),
+        );
+      }
+    },
+  );
 
   String? _fontPreviewFamily(String family) {
     // Wingdings maps Latin letters to symbols, making its label unreadable.
