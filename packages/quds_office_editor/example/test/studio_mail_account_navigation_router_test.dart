@@ -440,7 +440,8 @@ void main() {
     (tester) async {
       final fixture = _RouterFixture();
       fixture.directory.records.remove(_identity('ews').account.value);
-      final storage = await _sharedExchange(InMemorySecureStorage());
+      final vault = InMemorySecureStorage();
+      final storage = await _sharedExchange(vault);
       final credentials = _DelayedAccountCatalog();
       credentials.result.complete(
         StudioMailAccountCatalogResult.success(
@@ -487,6 +488,15 @@ void main() {
       );
       expect(fixture.clientCreations, 0);
       expect(fixture.storeOpens, 0);
+      final shared = fixture.routes.last.target!;
+      await _press(tester, _key('fixture-close-provider'));
+      await saveStudioAccountServices(vault, shared.sharedExchangeId!, {
+        StudioProductivityService.tasks,
+      });
+      await _pump(tester);
+      await _press(tester, _key('studio-mail-saved-account'));
+      expect(find.textContaining('AKRS'), findsNothing);
+      expect(tester.takeException(), isNull);
     },
   );
 
