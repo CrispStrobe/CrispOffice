@@ -952,6 +952,46 @@ void _browsingTests() {
       },
     );
 
+    test('MCP has its own cursor and exact-UID body read', () async {
+      final harness = _Harness()
+        ..headersAnswer = (mailbox, cursor, _, _) async => MailSuccess(
+          MailHeaderPage(
+            messages: [_record(mailbox, uid: cursor == null ? 9 : 8)],
+            next: cursor == null
+                ? MailCursor(mailbox: mailbox, value: 'next')
+                : null,
+          ),
+        );
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final mailbox = _mailbox();
+      final foreground = await loader.fetchHeaders(mailbox);
+      final mcp = await loader.browseMcpFolder(mailbox, after: null, limit: 50);
+      final older = await loader.browseMcpFolder(
+        mailbox,
+        after: mcp.next!.value,
+        limit: 50,
+      );
+      final identity = older.messages.single.remote as MailImapIdentity;
+      expect(identity.uid, 8);
+      final message = await loader.fetchMcpMessage(mailbox, identity);
+      expect(message.remoteIdentity, identity);
+      expect(harness.requests.single.budget.maxRawBytes, 2 * 1024 * 1024);
+      expect(
+        (await loader.fetchHeaders(
+          mailbox,
+          cursor: foreground.next,
+        )).messages.single.uid,
+        8,
+      );
+      expect(harness.mutations, isEmpty);
+      await expectLater(
+        loader.fetchMcpMessage(_mailbox(uidValidity: 2), identity),
+        throwsA(_problem(MailProblemCode.conflict)),
+      );
+      expect(harness.requests, hasLength(1));
+    });
+
     test(
       'refresh starts a new snapshot and permits newly arrived UIDs',
       () async {
