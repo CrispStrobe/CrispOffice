@@ -47,6 +47,15 @@ class PdfSheetPrintOptions {
     this.showHeadings = true,
     this.fitToPage = false,
     this.useWorksheetPageSetup = false,
+    this.paperOverride,
+    this.landscapeOverride,
+    this.marginOverride,
+    this.gridlinesOverride,
+    this.headingsOverride,
+    this.scalePercentOverride,
+    this.fitOverride,
+    this.fitWidthOnly = false,
+    this.pageBorder = false,
   });
 
   /// a4Portrait API.
@@ -80,6 +89,17 @@ class PdfSheetPrintOptions {
 
   /// Respect the paper, margins and scaling of worksheets that define them.
   final bool useWorksheetPageSetup;
+
+  /// Optional overrides that retain unrelated worksheet print settings.
+  final ({double width, double height})? paperOverride;
+  final bool? landscapeOverride;
+  final double? marginOverride;
+  final bool? gridlinesOverride;
+  final bool? headingsOverride;
+  final int? scalePercentOverride;
+  final bool? fitOverride;
+  final bool fitWidthOnly;
+  final bool pageBorder;
 }
 
 /// How a deck is paginated — matching PowerPoint's print what.
@@ -267,12 +287,23 @@ abstract final class OfficePdfExport {
       }
     }
     if (printed == 0) {
+      final (width, height) = _sheetPaper(options, null);
+      final canvas = PdfCanvas(width, height);
+      if (options.pageBorder) {
+        final margin = (options.marginOverride ?? options.margin).clamp(
+          6.0,
+          math.min(width, height) / 2 - 1,
+        );
+        canvas.strokeRect(
+          margin,
+          margin,
+          width - 2 * margin,
+          height - 2 * margin,
+          '000000',
+        );
+      }
       pdf.addPage(
-        PdfPage(
-          width: options.pageWidth,
-          height: options.pageHeight,
-          content: PdfCanvas(options.pageWidth, options.pageHeight).toStream(),
-        ),
+        PdfPage(width: width, height: height, content: canvas.toStream()),
       );
     }
     return pdf.save(faces: pack.faces, options: saveOptions);
@@ -1185,6 +1216,37 @@ abstract final class OfficePdfExport {
     return pixels > 0 ? pixels : null;
   }
 
+  static (double, double) _sheetPaper(
+    PdfSheetPrintOptions options,
+    SmlPageSetup? setup,
+  ) {
+    if (options.paperOverride == null && options.landscapeOverride == null) {
+      if (setup == null) return (options.pageWidth, options.pageHeight);
+      return setup.orientation == SmlPageOrientation.landscape
+          ? (setup.paperHeightIn * 72, setup.paperWidthIn * 72)
+          : (setup.paperWidthIn * 72, setup.paperHeightIn * 72);
+    }
+    final paper = options.paperOverride;
+    final baseWidth =
+        paper?.width ??
+        (setup == null ? options.pageWidth : setup.paperWidthIn * 72);
+    final baseHeight =
+        paper?.height ??
+        (setup == null ? options.pageHeight : setup.paperHeightIn * 72);
+    final landscape =
+        options.landscapeOverride ??
+        (setup == null
+            ? options.pageWidth > options.pageHeight
+            : setup.orientation == SmlPageOrientation.landscape);
+    final pageW = landscape
+        ? math.max(baseWidth, baseHeight)
+        : math.min(baseWidth, baseHeight);
+    final pageH = landscape
+        ? math.min(baseWidth, baseHeight)
+        : math.max(baseWidth, baseHeight);
+    return (pageW, pageH);
+  }
+
   static int _printSheet(
     PdfDocument pdf,
     SmlWorkbook book,
@@ -1199,26 +1261,30 @@ abstract final class OfficePdfExport {
       workbook: book,
     );
     final setup = options.useWorksheetPageSetup ? sheet.pageSetup : null;
-    final landscape = setup?.orientation == SmlPageOrientation.landscape;
-    final pageW = setup == null
-        ? options.pageWidth
-        : (landscape ? setup.paperHeightIn : setup.paperWidthIn) * 72;
-    final pageH = setup == null
-        ? options.pageHeight
-        : (landscape ? setup.paperWidthIn : setup.paperHeightIn) * 72;
-    double margin(double? inches, double extent) =>
-        inches != null &&
-            inches.isFinite &&
-            inches >= 0 &&
-            inches * 72 < extent / 2
-        ? inches * 72
-        : options.margin;
+    final (pageW, pageH) = _sheetPaper(options, setup);
+    double margin(double? inches, double extent) {
+      final override = options.marginOverride;
+      if (override != null) return override.clamp(0, extent / 2 - 20);
+      return inches != null &&
+              inches.isFinite &&
+              inches >= 0 &&
+              inches * 72 < extent / 2
+          ? inches * 72
+          : options.margin;
+    }
+
     final left = margin(setup?.marginLeftIn, pageW);
     final right = margin(setup?.marginRightIn, pageW);
     final top = margin(setup?.marginTopIn, pageH);
     final bottom = margin(setup?.marginBottomIn, pageH);
-    final showHeadings = setup?.printHeadings ?? options.showHeadings;
-    final showGridlines = setup?.printGridlines ?? options.showGridlines;
+    final showHeadings =
+        options.headingsOverride ??
+        setup?.printHeadings ??
+        options.showHeadings;
+    final showGridlines =
+        options.gridlinesOverride ??
+        setup?.printGridlines ??
+        options.showGridlines;
     final gutter = showHeadings ? 28.0 : 0.0;
     final band = setup == null ? 18.0 : 0.0;
     final headingH = showHeadings ? 14.0 : 0.0;
@@ -1300,20 +1366,31 @@ abstract final class OfficePdfExport {
     final double usableW = pageW - left - right - gutter;
     final double usableH =
         pageH - top - bottom - band - (setup == null ? 16 : 0);
-    var scale = (setup?.scale ?? 100).clamp(10, 400) / 100;
-    if (setup?.fitToPage == true || setup == null && options.fitToPage) {
+    var scale =
+        (options.scalePercentOverride ?? setup?.scale ?? 100).clamp(10, 400) /
+        100;
+    if (options.fitOverride ?? setup?.fitToPage ?? options.fitToPage) {
       final needW = colPts.fold<double>(0, (a, b) => a + b);
       final needH = rowPts.fold<double>(0, (a, b) => a + b);
-      final fitWidth = setup?.fitToWidth ?? 1;
-      final fitHeight = setup?.fitToHeight ?? 1;
+      final fitWidth = options.fitOverride == true ? 1 : setup?.fitToWidth ?? 1;
+      final fitHeight = options.fitWidthOnly
+          ? 0
+          : options.fitOverride == true
+          ? 1
+          : setup?.fitToHeight ?? 1;
       scale = 1;
       if (fitWidth > 0 && needW > 0) {
-        scale = math.min(scale, usableW * fitWidth / needW);
+        final width = options.fitOverride == true ? usableW - 0.01 : usableW;
+        scale = math.min(scale, width * fitWidth / needW);
       }
       if (fitHeight > 0 && needH > 0) {
-        scale = math.min(scale, (usableH - headingH) * fitHeight / needH);
+        final height = options.fitOverride == true ? usableH - 0.01 : usableH;
+        scale = math.min(scale, (height - headingH) * fitHeight / needH);
+        if (options.fitOverride == true && showHeadings) {
+          scale = math.min(scale, height / (needH + rowPts.first));
+        }
       }
-      scale = math.max(0.01, scale);
+      scale = math.max(options.fitOverride == true ? 1e-9 : 0.01, scale);
     }
     for (int i = 0; i < colPts.length; i++) {
       colPts[i] *= scale;
@@ -1714,6 +1791,17 @@ abstract final class OfficePdfExport {
             sink.images,
             drawText: sink.drawText,
             nextImageName: sink.nextImageName,
+          );
+        }
+        if (options.pageBorder) {
+          final x = math.max(6.0, left);
+          final y = math.max(6.0, top);
+          sink.canvas.strokeRect(
+            x,
+            y,
+            math.max(1, pageW - x - math.max(6.0, right)),
+            math.max(1, pageH - y - math.max(6.0, bottom)),
+            '000000',
           );
         }
         sink.finish(pdf);

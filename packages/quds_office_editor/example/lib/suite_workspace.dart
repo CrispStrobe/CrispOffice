@@ -54,6 +54,7 @@ import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
 import 'studio_zotero.dart';
 import 'studio_plural.dart';
+import 'studio_print_dialog.dart';
 
 part 'suite_workspace_settings.dart';
 
@@ -8411,96 +8412,115 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
-  Future<void> _exportPdf() async {
-    if (!_fileActionsAvailable) return;
+  Future<void> _exportPdf() => _showPrintOutput(printing: false);
+
+  Future<void> _printFile() => _showPrintOutput(printing: true);
+
+  bool _printOutputOpen = false;
+
+  Future<void> _showPrintOutput({required bool printing}) async {
+    if (_printOutputOpen || !_fileActionsAvailable || !_hasActiveFile) return;
+    _printOutputOpen = true;
     try {
-      if (_app == SuiteApp.pdf) {
-        await StudioFiles.save(bytes: _pdf.saveBytes(), fileName: _pdfName);
+      final app = _app;
+      final title = _activeName;
+      final pdf = app == SuiteApp.pdf ? _pdf.file : null;
+      if (printing && pdf?.permissions?.canPrint == false) {
+        _toast(
+          _t(
+            'This PDF does not allow printing.',
+            'Diese PDF-Datei erlaubt keinen Druck.',
+            'ملف PDF هذا لا يسمح بالطباعة.',
+          ),
+        );
         return;
       }
-      final String stem = switch (_app) {
-        SuiteApp.word => 'document',
-        SuiteApp.excel => 'workbook',
-        SuiteApp.powerpoint => 'presentation',
-        SuiteApp.pdf => 'document',
+      if (app != SuiteApp.pdf) _active.commitPendingEdits();
+      final Object document = switch (app) {
+        SuiteApp.word => _word.document,
+        SuiteApp.excel => _sheet.workbook,
+        SuiteApp.powerpoint => _slides.presentation,
+        SuiteApp.pdf => await _pdf.saveBytesAsync(),
       };
-      final bytes = _renderActivePdf(stem);
-      await StudioFiles.save(bytes: bytes, fileName: '$stem.pdf');
-    } catch (error) {
-      _toast(
-        _t(
-          'Could not export PDF.',
-          StudioStrings.de('Could not export PDF.'),
-          'تعذر تصدير PDF.',
-        ),
+      if (!mounted) return;
+      final source = StudioPrintSource(
+        document: document,
+        fonts: _printFonts(),
+        title: title,
+        activeSheet: _sheet.activeSheetIndex + 1,
+        openPdf: pdf?.encrypted == true ? pdf : null,
       );
-    }
-  }
-
-  Uint8List _renderActivePdf(String title) {
-    if (_app == SuiteApp.pdf) return _pdf.saveBytes();
-    _active.commitPendingEdits();
-    final OfficeFontSet fonts = switch (_app) {
-      SuiteApp.word => StudioFiles.exportFontSetForWord(
-        _word.document,
-        themeFamily: _officeTheme.fontFamily,
-      ),
-      SuiteApp.excel => StudioFiles.exportFontSetCovering(<String>[
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-        for (final SmlWorksheet sheet in _sheet.workbook.sheets) ...<String>[
-          sheet.name,
-          for (final SmlCell cell in sheet.allCells) cell.asString,
-          for (final SmlDrawing drawing in sheet.drawings) ...<String>[
-            drawing.visual.title,
-            for (final ChartPoint point in drawing.visual.points) point.label,
-          ],
-        ],
-      ]),
-      SuiteApp.powerpoint => StudioFiles.exportFontSetCovering(<String>[
-        for (final PmlSlide slide in _slides.presentation.slides) ...<String>[
-          slide.notes,
-          for (final PmlShape shape in slide.shapes) ...<String>[
-            _slides.presentation.resolveText(shape, slide),
-            if (shape.visual != null) shape.visual!.title,
-            if (shape.visual != null)
-              for (final ChartPoint point in shape.visual!.points) point.label,
-          ],
-        ],
-      ]),
-      SuiteApp.pdf => const OfficeFontSet(),
-    };
-    return _active.exportPdf(
-      settings: OfficePrintSettings(title: title),
-      font: fonts.primary,
-      fonts: fonts.isEmpty ? null : fonts,
-    );
-  }
-
-  bool _printing = false;
-
-  Future<void> _printFile() async {
-    if (_printing || !_fileActionsAvailable || !_hasActiveFile) return;
-    _printing = true;
-    try {
-      final title = _activeName;
-      final bytes = _renderActivePdf(title);
-      final page = PdfFile.open(bytes).pageAt(0);
-      await Printing.layoutPdf(
-        onLayout: (_) => bytes,
-        name: title,
-        format: print_pdf.PdfPageFormat(page.width, page.height),
-        dynamicLayout: false,
+      final output = await showDialog<StudioPrintResult>(
+        context: context,
+        builder: (context) =>
+            StudioPrintDialog(source: source, printing: printing, t: _t),
       );
-    } on Object {
-      if (mounted) {
-        _toast(
-          _t('Could not print.', 'Drucken fehlgeschlagen.', 'تعذرت الطباعة.'),
+      if (output == null || !mounted) return;
+      if (printing) {
+        await Printing.layoutPdf(
+          onLayout: (_) => output.bytes,
+          name: title,
+          format: print_pdf.PdfPageFormat(output.width, output.height),
+          dynamicLayout: false,
+        );
+      } else {
+        final dot = title.lastIndexOf('.');
+        final stem = dot > 0 ? title.substring(0, dot) : title;
+        await StudioFiles.save(
+          bytes: output.bytes,
+          fileName: '$stem.pdf',
+          ensureExtension: true,
         );
       }
+    } on Object {
+      if (!mounted) return;
+      _toast(
+        printing
+            ? _t(
+                'Could not print.',
+                'Drucken fehlgeschlagen.',
+                'تعذرت الطباعة.',
+              )
+            : _t(
+                'Could not export PDF.',
+                'PDF konnte nicht exportiert werden.',
+                'تعذر تصدير PDF.',
+              ),
+      );
     } finally {
-      _printing = false;
+      _printOutputOpen = false;
     }
   }
+
+  OfficeFontSet _printFonts() => switch (_app) {
+    SuiteApp.word => StudioFiles.exportFontSetForWord(
+      _word.document,
+      themeFamily: _officeTheme.fontFamily,
+    ),
+    SuiteApp.excel => StudioFiles.exportFontSetCovering(<String>[
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+      for (final SmlWorksheet sheet in _sheet.workbook.sheets) ...<String>[
+        sheet.name,
+        for (final SmlCell cell in sheet.allCells) cell.asString,
+        for (final SmlDrawing drawing in sheet.drawings) ...<String>[
+          drawing.visual.title,
+          for (final ChartPoint point in drawing.visual.points) point.label,
+        ],
+      ],
+    ]),
+    SuiteApp.powerpoint => StudioFiles.exportFontSetCovering(<String>[
+      for (final PmlSlide slide in _slides.presentation.slides) ...<String>[
+        slide.notes,
+        for (final PmlShape shape in slide.shapes) ...<String>[
+          _slides.presentation.resolveText(shape, slide),
+          if (shape.visual != null) shape.visual!.title,
+          if (shape.visual != null)
+            for (final ChartPoint point in shape.visual!.points) point.label,
+        ],
+      ],
+    ]),
+    SuiteApp.pdf => const OfficeFontSet(),
+  };
 
   void _bindHostActions(OfficeController controller) {
     controller.onPrintRequested = _printFile;
@@ -8550,9 +8570,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _findOpen = true;
         _findReplace = true;
       });
-    };
-    controller.onPrintRequested = () {
-      _exportPdf();
     };
     controller.onSpellCheckRequested = _showSpelling;
   }

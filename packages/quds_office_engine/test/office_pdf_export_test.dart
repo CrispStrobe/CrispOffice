@@ -7,6 +7,96 @@ import 'package:test/test.dart';
 void main() {
   final SfntFont? font = _tryFont();
 
+  test('printing places a vector PDF on landscape paper with margins', () {
+    final canvas = PdfCanvas(200, 300)..fillRect(0, 0, 200, 300, 'FFFFFF');
+    final source = PdfFile.open(
+      (PdfDocument()..addPage(
+            PdfPage(
+              width: 200,
+              height: 300,
+              content: canvas.toStream(),
+              links: const [
+                PdfLinkAnnot(
+                  x: 0,
+                  y: 0,
+                  width: 20,
+                  height: 20,
+                  uri: 'https://example.com',
+                ),
+              ],
+            ),
+          ))
+          .save(),
+    );
+    final output = PdfFile.open(
+      source.placePagesOnPaper(
+        [0],
+        const PdfPaperPlacement(
+          paper: (width: 300, height: 500),
+          landscape: true,
+          margin: 50,
+          border: true,
+        ),
+      ),
+    );
+    final page = output.pageAt(0);
+    expect((page.width, page.height), (500, 300));
+    expect(output.displayList(0).error, isNull);
+    final link = output.annotsOn(0).single;
+    expect(link.uri, 'https://example.com');
+    expect(link.rect.x, closeTo(183.3333, 0.001));
+    expect(link.rect.y, closeTo(50, 0.001));
+    expect(link.rect.width, closeTo(13.3333, 0.001));
+    expect(source.pageAt(0).width, 200);
+    final content = output.store.asArray(output.pageDict(0)['Contents'])!;
+    final border = output.store.streamBytes(content.items.last)!;
+    expect(
+      String.fromCharCodes(border),
+      contains('400.000000 200.000000 re S'),
+    );
+  });
+
+  test(
+    'sheet overrides repaginate while retaining the worksheet print area',
+    () {
+      final sheet =
+          SmlWorksheet(
+              name: 'Wide',
+              sheetId: 1,
+              pageSetup: SmlPageSetup(orientation: SmlPageOrientation.portrait),
+            )
+            ..printArea = const SmlRange(SmlCellRef(0, 0), SmlCellRef(8, 0))
+            ..cellA1('A1').value = 'First'
+            ..cellA1('I1').value = 'Last'
+            ..cellA1('J1').value = 'Excluded';
+      for (var col = 0; col < 10; col++) {
+        sheet.setColumnWidth(col, 300);
+      }
+      final book = SmlWorkbook(sheets: [sheet]);
+      final pdf = PdfFile.open(
+        OfficePdfExport.workbook(
+          book,
+          options: const PdfSheetPrintOptions(
+            useWorksheetPageSetup: true,
+            paperOverride: (width: 612, height: 792),
+            landscapeOverride: true,
+            marginOverride: 18,
+            fitOverride: true,
+            fitWidthOnly: true,
+            pageBorder: true,
+          ),
+        ),
+      );
+      expect(pdf.pageCount, 1);
+      expect((pdf.pageAt(0).width, pdf.pageAt(0).height), (792, 612));
+      final text = pdf.displayList(0).runs.map((run) => run.text).join(' ');
+      expect(text, contains('First'));
+      expect(text, contains('Last'));
+      expect(text, isNot(contains('Excluded')));
+      expect(sheet.pageSetup!.orientation, SmlPageOrientation.portrait);
+    },
+  );
+
   for (final bool cropped in <bool>[false, true]) {
     test('PPT PDF draws the authored picture border after crop=$cropped', () {
       final OfficeVisual picture = OfficeVisual(

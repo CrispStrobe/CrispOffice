@@ -5,6 +5,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_find_pane.dart';
+import 'package:quds_office_studio/studio_print_dialog.dart';
 
 const _error = 'Correct the current cell before continuing.';
 
@@ -278,11 +279,12 @@ void main() {
   );
 
   testWidgets(
-    'Cmd+P opens platform printing and Cmd+Shift+P stays a separate command',
+    'print and export shortcuts show preview before sending the selected layout',
     (tester) async {
       const channel = MethodChannel('net.nfet.printing');
       const codec = StandardMethodCodec();
       var requests = 0;
+      PdfFile? printed;
       final messenger = tester.binding.defaultBinaryMessenger;
       messenger.setMockMethodCallHandler(channel, (call) async {
         if (call.method != 'printPdf') return null;
@@ -293,7 +295,7 @@ void main() {
           codec.encodeMethodCall(MethodCall('onLayout', args)),
           (reply) {
             final pdf = codec.decodeEnvelope(reply!) as Uint8List;
-            expect(String.fromCharCodes(pdf.take(5)), '%PDF-');
+            printed = PdfFile.open(pdf);
           },
         );
         await messenger.handlePlatformMessage(
@@ -324,10 +326,64 @@ void main() {
         (export.shortcut as SingleActivator).trigger,
         LogicalKeyboardKey.keyP,
       );
+      Future<void> waitForPreview(bool Function() ready) async {
+        await tester.runAsync(() async {
+          final deadline = DateTime.now().add(const Duration(seconds: 60));
+          while (!ready() && DateTime.now().isBefore(deadline)) {
+            await Future<void>.delayed(const Duration(milliseconds: 25));
+            await tester.pump();
+          }
+          expect(ready(), isTrue);
+        });
+      }
+
       await tester.sendKeyDownEvent(LogicalKeyboardKey.metaLeft);
       await tester.sendKeyEvent(LogicalKeyboardKey.keyP);
       await tester.sendKeyUpEvent(LogicalKeyboardKey.metaLeft);
       await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.byType(StudioPrintDialog), findsOneWidget);
+      expect(requests, 0);
+      final orientation = find.descendant(
+        of: find.ancestor(
+          of: find.text('Orientation'),
+          matching: find.byType(InputDecorator),
+        ),
+        matching: find.byWidgetPredicate(
+          (widget) => widget is DropdownButton<(bool?,)>,
+        ),
+      );
+      await tester.tap(orientation);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      await tester.tap(find.text('Landscape').last);
+      await tester.pump();
+      final preview = find.byType(PdfPageThumb);
+      await waitForPreview(() {
+        final widget = tester.widgetList<PdfPageThumb>(preview).firstOrNull;
+        return widget != null &&
+            widget.list.page.width > widget.list.page.height;
+      });
+      final expected = tester.widget<PdfPageThumb>(preview).list.page;
+      expect(requests, 0);
+      await tester.tap(find.widgetWithText(FilledButton, 'Print'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(requests, 1);
+      expect(printed!.pageAt(0).width, expected.width);
+      expect(printed!.pageAt(0).height, expected.height);
+
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.metaLeft);
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.shiftLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.keyP);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.shiftLeft);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.metaLeft);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.widgetWithText(FilledButton, 'Export PDF'), findsOneWidget);
+      await tester.tap(find.widgetWithText(TextButton, 'Cancel'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
       expect(requests, 1);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
