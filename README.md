@@ -1,160 +1,85 @@
 # CrispOffice
 
-CrispOffice brings documents, spreadsheets, presentations, PDF, mail, tasks, and
-calendar into one desktop workspace. Its pure-Dart engine also powers Flutter
-editor surfaces and band reports and is used by
-[CrispCloud](https://github.com/CrispStrobe/CrispCloud).
+CrispOffice is an office workspace for documents, spreadsheets, presentations,
+PDF, mail, tasks, and calendars. Its pure-Dart document engine also powers the
+Flutter editing surfaces and report designer.
 
 CrispOffice began as a fork of
 [Quds Office Suite](https://github.com/MohammedAsaadAsaad/quds_office_suite) by
-Mohammed Asaad. The `quds_office_engine` and `quds_office_editor` package
-names identify the engine and editor libraries.
+Mohammed Asaad Asaad. The engine is also used by
+[CrispCloud](https://github.com/CrispStrobe/CrispCloud).
 
-<p align="center">
-  <a href="https://pub.dev/packages/quds_office_engine"><img alt="engine" src="https://img.shields.io/pub/v/quds_office_engine.svg?label=quds_office_engine&color=2B579A"/></a>
-  <a href="https://pub.dev/packages/quds_office_editor"><img alt="editor" src="https://img.shields.io/pub/v/quds_office_editor.svg?label=quds_office_editor&color=217346"/></a>
-  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-0B1F3A"/></a>
-</p>
+## Workspace
 
-## What it does
-
-| Area | Capabilities |
+| Area | What you can do |
 | --- | --- |
-| **Documents** | DOCX/DOCM/DOTX editing, paginated layout, rich paste from Word and websites, image paste and drop, BiDi/RTL, comments, tracked changes, styles, tables, fields, Zotero and proofing |
-| **Spreadsheets** | XLSX/XLSM editing, formula engine, charts, conditional formats, validation, frozen panes, multiline cells, XLS import and ODS import/export |
-| **Presentations** | PPTX editing, slide/shape layout, rich text, animations and Morph |
-| **PDF** | Viewer/editor, annotations, forms, page organisation and export |
-| **Reports** | `.qrep` band reports rendered by the engine to PDF, XLSX and DOCX |
-| **Mail** | IMAP, Exchange EWS, Gmail and Microsoft 365; durable plain/rich drafts, Outbox, cached mail, provider search, sender identities and flag journal in the native Studio |
-| **Tasks and Calendar** | Task lists, calendar views, and connected accounts with provider-specific sync capabilities |
-| **Automation** | Native macros/MCP bridge and bounded Excel/Word/PowerPoint VBA subsets |
+| **Documents** | Edit DOCX, use comments and tracked changes, work with tables and fields, and manage citations with Zotero. Paste formatted text and images, or drop images onto the page. |
+| **Spreadsheets** | Edit XLSX, calculate formulas, make charts, and use conditional formatting and validation. Import legacy XLS and exchange ODS files. |
+| **Presentations** | Edit PPTX slides, shapes, and text, with animations, transitions, and a presenter view. |
+| **PDF** | Read, annotate, fill forms, and organise pages. |
+| **Mail, Tasks, and Calendar** | Connect accounts and work in dedicated views. Read, write, and sync capabilities depend on the provider. |
+| **Reports and automation** | Design band reports for PDF, XLSX, or DOCX export. Use the documented MCP bridge and supported macro subsets. |
 
 ## Screenshots
 
+Captured from CrispOffice using sample documents.
+
 <table>
   <tr>
-    <td width="50%"><img src="packages/quds_office_editor/example/screenshots/word.png" alt="Word editor"/><br/><b>Writer</b></td>
-    <td width="50%"><img src="packages/quds_office_editor/example/screenshots/excel.png" alt="Sheet editor"/><br/><b>Spreadsheet</b></td>
+    <td width="50%"><img src="docs/screenshots/crispoffice/documents.png" alt="CrispOffice Documents editing a sample brief"/><br/><b>Documents</b></td>
+    <td width="50%"><img src="docs/screenshots/crispoffice/spreadsheets.png" alt="CrispOffice Spreadsheets with a budget and chart"/><br/><b>Spreadsheets</b></td>
   </tr>
   <tr>
-    <td><img src="packages/quds_office_editor/example/screenshots/powerpoint.png" alt="Presentation editor"/><br/><b>Presentation</b></td>
-    <td><img src="packages/quds_office_editor/example/screenshots/pdf.png" alt="PDF editor"/><br/><b>PDF</b></td>
+    <td><img src="docs/screenshots/crispoffice/presentations.png" alt="CrispOffice Presentations editing a sample slide"/><br/><b>Presentations</b></td>
+    <td><img src="docs/screenshots/crispoffice/pdf.png" alt="CrispOffice PDF with a page preview sidebar"/><br/><b>PDF</b></td>
   </tr>
 </table>
 
-## Packages
+## Desktop shortcuts
 
-| Package | Runtime | Purpose |
+| Action | macOS | Windows and Linux |
 | --- | --- | --- |
-| [`quds_office_engine`](packages/quds_office_engine) | Pure Dart | OOXML, OPC/ZIP, OLE, formulas, layout, BiDi, PDF, reports |
-| [`quds_office_editor`](packages/quds_office_editor) | Flutter | Word, sheet, slide, PDF and report-design surfaces |
-| [`quds_reports`](packages/quds_reports) | Pure Dart | `.qrep` templates and PDF/XLSX/DOCX export |
-| [`quds_report_studio`](apps/quds_report_studio) | Flutter desktop | Standalone report designer |
-| [`quds_mail_*`](packages) | Dart/Flutter | Mail core, MIME, store, transport and reader UI |
+| Paste with source formatting | Cmd+V | Ctrl+V |
+| Paste as plain text | Cmd+Shift+V | Ctrl+Shift+V |
+| Insert a line break inside a cell | Option+Enter | Alt+Enter |
+| Print with preview | Cmd+P | Ctrl+P |
+| Export to PDF with preview | Cmd+Shift+P | Ctrl+Shift+P |
 
-## Quick start
+Print and PDF export share controls for paper size, orientation, margins,
+scaling, borders, and page range.
+
+## Run from source
+
+Use the Flutter SDK version in [.fvmrc](.fvmrc).
 
 ```bash
 git clone https://github.com/CrispStrobe/CrispOffice.git
 cd CrispOffice
 flutter pub get
-
-# CrispOffice Studio
 cd packages/quds_office_editor/example
-flutter run -d macos        # or linux / windows
-
-# Engine gallery: DOCX, XLSX, PPTX and PDF output
-cd ../../quds_office_engine
-dart run example/rich_export_gallery.dart
+flutter run -d macos
 ```
 
-Engine-only consumers need `quds_office_engine`. Editor consumers should depend
-on `quds_office_editor`, which brings the engine and report packages with it.
-Publishing instructions are in [docs/PUBLISHING.md](docs/PUBLISHING.md).
+On Windows or Linux, select the corresponding desktop device.
 
-## Architecture
+## Engine and packages
 
-```text
-Host app / ribbon / dialogs
-          │
-   quds_office_editor      Flutter RenderBox, IME, hit-testing
-          │
-   quds_office_engine      models, OOXML, layout, formulas, PDF
-          │
-   OPC / ZIP / OLE / XML   portable package and file IO
-```
+- [quds_office_engine](packages/quds_office_engine) provides document models,
+  file I/O, formulas, layout, and PDF export in pure Dart.
+- [quds_office_editor](packages/quds_office_editor) provides Flutter editing
+  surfaces for documents, spreadsheets, presentations, and PDF.
+- [quds_reports](packages/quds_reports) and
+  [Report Studio](apps/quds_report_studio) provide report templates, editing,
+  and export.
+- The [Mail](docs/roadmaps/mail/README.md) and
+  [Tasks](docs/roadmaps/tasks/README.md) roadmaps track provider capabilities
+  and sync coverage.
 
-Rules:
-
-- The engine never imports Flutter or `dart:ui`.
-- Document surfaces use custom `RenderBox`/`LeafRenderObjectWidget` canvases,
-  not `TextField`, `ListView` or `InteractiveViewer`.
-- Host chrome may use Material.
-
-## Notable capabilities
-
-- **Clipboard** uses Word’s native fragment when it is available and supports
-  HTML and RTF from other applications. Choose **Edit → Paste as Plain Text**
-  or press **Cmd+Shift+V** on Mac (**Ctrl+Shift+V** on Windows and Linux) to
-  paste text alone.
-- **Print and PDF export** share a page preview with paper size, orientation,
-  margins, borders, scaling, and page-range controls.
-- **Proofing** supports German, English and Arabic paths, with Hunspell, Harper,
-  spaCy and deterministic rule engines. Adaptive scheduling keeps provider work
-  out of active typing.
-- **Zotero** supports local/online libraries, native desktop hand-off, citation
-  fields, bibliographies and undoable edits.
-- **Legacy and ODF** paths include structured DOC conversion, XLS import and
-  bounded ODS/ODT reading and export. Original files are not silently rewritten.
-- **Fonts** can come from the host, installed Office fonts or reviewed open-font
-  packs. Missing faces use explicit fallbacks rather than invented metrics.
-- **Macros** are inert and preserved unless explicitly executed through the
-  documented native/MCP or VBA pathways.
-
-## Verification
-
-Use the repository checks after shared-source changes:
-
-```bash
-dart pub get
-cd packages/quds_office_engine && dart test
-cd ../quds_office_editor && flutter test
-cd ../../packages/quds_office_editor/example && flutter test
-cd ../.. && flutter analyze
-```
-
-The typing benchmark lives in
-`packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart`
-and runs with `QUDS_TYPING_BENCHMARK=1`.
-
-Detailed records:
-
-- [Office capability record](docs/office-capabilities-20261114.md)
-- [Remaining format gaps](docs/office-remaining-gaps.md)
-- [Document review](docs/document-review.md)
-- [Proofing roadmap](docs/PROOFING.md)
-- [Zotero support](docs/zotero-support.md)
-- [Mail roadmap](docs/roadmaps/mail/README.md)
-- [Rich Mail composition and qualification](docs/roadmaps/mail/rich-composition.md)
-- [Tasks and multi-provider sync roadmap](docs/roadmaps/tasks/README.md)
-- [VBA parity](docs/VBA_PARITY_ROADMAP.md)
-- [Typing/autocorrect performance roadmap](docs/roadmaps/typing-autocorrect-performance.md)
-
-## Known limits
-
-- Rendering is high-fidelity but not pixel-identical to Microsoft Office or
-  LibreOffice for every document.
-- Unsupported OOXML/ODF constructs are preserved where the package model allows,
-  or rejected explicitly; they are not silently rewritten.
-- Macro execution is bounded to the documented subsets. Signed packages are
-  refused rather than modified.
-- Live provider interoperability, native mounts and some mobile/browser paths
-  remain platform-specific or unqualified.
+Layout can vary between applications, especially for complex documents.
+See the [format fidelity record](docs/office-capabilities-20261114.md) and
+[remaining gaps](docs/office-remaining-gaps.md) for details.
 
 ## Contributing and licence
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Keep engine and editor changes
-separable, add tests beside changed behaviour, and update package changelogs for
-public behaviour changes.
-
-[MIT](LICENSE) © Mohammed Asaad Asaad. Fork changes © CrispStrobe, same licence.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development and verification.
+CrispOffice is distributed under the [MIT licence](LICENSE).
