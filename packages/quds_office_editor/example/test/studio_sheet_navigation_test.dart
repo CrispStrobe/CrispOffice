@@ -95,6 +95,30 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('the spreadsheet fx bar edits the active cell as a text field', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    final bar = find.byKey(const ValueKey<String>('sheet-formula-input'));
+    expect(bar, findsOneWidget);
+    expect(find.text('fx'), findsOneWidget);
+    final cell = controller.activeCell;
+
+    await tester.tap(bar);
+    await tester.pump();
+    final field = tester.widget<EditableText>(bar);
+    expect(field.focusNode.hasPrimaryFocus, isTrue);
+    tester.testTextInput.enterText('42');
+    await tester.pump();
+    expect(controller.formulaBarText, '42');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+
+    expect(controller.sheet.cell(cell).asString, '42');
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets(
     'find pane retains a rejected first search and shows correction',
     (tester) async {
