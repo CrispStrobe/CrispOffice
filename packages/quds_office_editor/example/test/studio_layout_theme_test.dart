@@ -527,6 +527,9 @@ void main() {
       );
       expect(selected.selected, isTrue);
       final mailDialog = find.byType(StudioMailDialog);
+      final mailPrimary = Theme.of(
+        tester.element(mailDialog),
+      ).colorScheme.primary;
       final trafficLightSpace = find.descendant(
         of: mailDialog,
         matching: find.byKey(const ValueKey('native-traffic-light-space')),
@@ -558,6 +561,18 @@ void main() {
       await _frames(tester);
       await tester.pump(const Duration(milliseconds: 600));
       expect(find.byType(QudsWordEditor), findsOneWidget);
+      final presentations = find.byWidgetPredicate(
+        (w) => w is StudioAppSwitcher && w.icon == Icons.slideshow_outlined,
+      );
+      await tester.tap(presentations);
+      await _frames(tester);
+      expect(tester.widget<StudioAppSwitcher>(presentations).selected, isTrue);
+      await tester.tap(mail);
+      await _frames(tester);
+      expect(
+        Theme.of(tester.element(mailDialog)).colorScheme.primary,
+        mailPrimary,
+      );
       expect(tester.takeException(), isNull);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.macOS),

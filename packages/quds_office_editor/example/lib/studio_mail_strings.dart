@@ -24,6 +24,21 @@ extension StudioMailFeedback on StudioStrings {
 
   String get mailSavedAccounts =>
       _mailText('Saved accounts', 'Gespeicherte Konten', 'الحسابات المحفوظة');
+  String get mailBackToPreviousAccount => _mailText(
+    'Back to the previous mailbox',
+    'Zurück zum vorherigen Postfach',
+    'العودة إلى صندوق البريد السابق',
+  );
+  String get ewsUseSavedPassword => _mailText(
+    'Use saved password',
+    'Gespeichertes Passwort verwenden',
+    'استخدام كلمة المرور المحفوظة',
+  );
+  String get ewsSharedSessionNotice => _mailText(
+    'A replacement password is used for this connection only.',
+    'Ein anderes Passwort wird nur für diese Verbindung verwendet.',
+    'تُستخدم كلمة المرور البديلة لهذا الاتصال فقط.',
+  );
   String get mailChooseAccount =>
       _mailText('Choose an account', 'Konto auswählen', 'اختر حسابًا');
   String get mailNewAccount =>

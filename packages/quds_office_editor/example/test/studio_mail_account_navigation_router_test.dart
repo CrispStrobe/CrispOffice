@@ -174,10 +174,12 @@ final class _NativeLoader extends Fake implements StudioMailMessageLoader {
 }
 
 final class _EwsProvider extends Fake implements MailEwsProvider {
-  _EwsProvider(this.account);
+  _EwsProvider(this.account, {this.localizedInbox = false});
   @override
   final MailAccountId account;
   MailOperationLease? lastLease;
+  MailMailboxId? loadedMailbox;
+  final bool localizedInbox;
   int calls = 0;
 
   @override
@@ -198,9 +200,15 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
     lastLease = lease;
     calls++;
     return MailSuccess([
+      if (localizedInbox)
+        MailMailbox(
+          id: MailMailboxId('archive', account: account),
+          displayName: 'Archive',
+        ),
       MailMailbox(
         id: MailMailboxId('inbox', account: account),
-        displayName: 'Inbox',
+        displayName: localizedInbox ? 'Arbeitskorb' : 'Inbox',
+        isInbox: localizedInbox,
       ),
     ]);
   }
@@ -214,7 +222,23 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
   }) async {
     lastLease = lease;
     calls++;
-    return MailSuccess(MailHeaderPage(messages: const []));
+    loadedMailbox = mailbox;
+    return MailSuccess(
+      MailHeaderPage(
+        messages: [
+          if (localizedInbox && mailbox.value == 'inbox')
+            MailHeaderRecord(
+              id: MailMessageId('ews-inbox-message'),
+              remote: MailOpaqueIdentity(
+                account: account,
+                provider: MailProviderKind.ews,
+                value: 'ews-inbox-message',
+              ),
+              envelope: MailEnvelope(subject: 'Message in the Exchange Inbox'),
+            ),
+        ],
+      ),
+    );
   }
 }
 
@@ -535,46 +559,64 @@ void main() {
     },
   );
 
-  testWidgets('selected Exchange uses the stored password only after Connect', (
-    tester,
-  ) async {
-    final storage = await _sharedExchange(InMemorySecureStorage());
-    final target = (await StudioMailAccountNavigationTarget.savedExchange(
-      storage,
-    )).single;
-    final directory = MemoryMailLocalAccounts();
-    final drafts = MemoryStudioMailDrafts();
-    MailEwsConfiguration? configuration;
-    MailCredentialStore? credentials;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: StudioMailEwsDialog(
-          strings: _strings,
-          initialAccount: target,
-          sharedCredentialStorage: storage,
-          localAccountStore: directory,
-          draftStoreFactory: drafts.open,
-          providerFactory: (selected, store) {
-            configuration = selected;
-            credentials = store;
-            return _EwsProvider(selected.account);
-          },
-        ),
-      ),
+  for (final alternative in [false, true]) {
+    testWidgets(
+      alternative
+          ? 'selected Exchange accepts a session-only password without altering the vault'
+          : 'selected Exchange uses the stored password only after Connect',
+      (tester) async {
+        final storage = await _sharedExchange(InMemorySecureStorage());
+        final target = (await StudioMailAccountNavigationTarget.savedExchange(
+          storage,
+        )).single;
+        final directory = MemoryMailLocalAccounts();
+        final drafts = MemoryStudioMailDrafts();
+        MailEwsConfiguration? configuration;
+        MailCredentialStore? credentials;
+        await tester.pumpWidget(
+          MaterialApp(
+            home: StudioMailEwsDialog(
+              strings: _strings,
+              initialAccount: target,
+              sharedCredentialStorage: storage,
+              localAccountStore: directory,
+              draftStoreFactory: drafts.open,
+              providerFactory: (selected, store) {
+                configuration = selected;
+                credentials = store;
+                return _EwsProvider(selected.account);
+              },
+            ),
+          ),
+        );
+        expect(configuration, isNull);
+        expect(find.byKey(const ValueKey('ews-password')), findsNothing);
+        if (alternative) {
+          await _press(tester, _key('ews-use-saved-password'));
+          final field = _key('ews-password');
+          expect(tester.widget<TextField>(field).obscureText, isTrue);
+          await tester.enterText(field, 'replacement-secret');
+        }
+        await _press(tester, _key('ews-connect'));
+        expect(configuration?.authentication, MailEwsAuthentication.ntlm);
+        expect(configuration?.account, target.identity.account);
+        final result = await credentials!.load(configuration!.credential);
+        expect(
+          utf8.decode(
+            (result as MailSuccess<MailCredentialRecord?>)
+                .value!
+                .opaqueData
+                .bytes,
+          ),
+          alternative ? 'replacement-secret' : 'fixture-exchange-secret',
+        );
+        expect(
+          await target.loadSharedExchangePassword(),
+          'fixture-exchange-secret',
+        );
+      },
     );
-    expect(configuration, isNull);
-    expect(find.byKey(const ValueKey('ews-password')), findsNothing);
-    await _press(tester, _key('ews-connect'));
-    expect(configuration?.authentication, MailEwsAuthentication.ntlm);
-    expect(configuration?.account, target.identity.account);
-    final result = await credentials!.load(configuration!.credential);
-    expect(
-      utf8.decode(
-        (result as MailSuccess<MailCredentialRecord?>).value!.opaqueData.bytes,
-      ),
-      'fixture-exchange-secret',
-    );
-  });
+  }
 
   for (final (button, provider) in [
     ('studio-mail-open-gmail', MailProviderKind.gmail),
@@ -625,6 +667,86 @@ void main() {
       },
     );
   }
+
+  testWidgets(
+    'shell Exchange uses stored credentials, opens the authoritative inbox and returns to IMAP',
+    (tester) async {
+      final fixture = _ConnectedFixture();
+      final storage = await _sharedExchange(InMemorySecureStorage());
+      await (fixture.credentials as StudioMailAccountCatalogStore).saveAccount(
+        _imapCredentials,
+      );
+      await tester.binding.setSurfaceSize(const Size(1280, 1000));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final theme = ThemeData.light().copyWith(
+        scaffoldBackgroundColor: Colors.grey,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: theme,
+          home: StudioMailDialog(
+            strings: _strings,
+            chromeBuilder: (_) => const Text('CrispOffice Mail shell'),
+            credentialStore: fixture.credentials,
+            sharedCredentialStorage: storage,
+            localAccountStore: fixture.directory,
+            autoConnectSavedAccount: false,
+            draftStoreFactory: fixture.open,
+            clientFactory: (account) {
+              final client = _NativeClient(account);
+              fixture.nativeClients.add(client);
+              return client;
+            },
+            messageLoaderFactory: (_) => _NativeLoader(),
+            ewsProviderFactory: (configuration, _) {
+              final provider = _EwsProvider(
+                configuration.account,
+                localizedInbox: true,
+              );
+              fixture.ewsProviders.add(provider);
+              return provider;
+            },
+          ),
+        ),
+      );
+      await _pump(tester);
+      await _press(tester, find.widgetWithText(FilledButton, _strings.connect));
+      expect(fixture.activeOwner, 'imap');
+
+      await _press(tester, _key('studio-mail-navigate-account'));
+      await _press(tester, find.textContaining('AKRS'));
+      await _press(tester, _key('studio-mail-account-navigation-continue'));
+      await tester.pumpAndSettle();
+      expect(find.text('CrispOffice Mail shell'), findsOneWidget);
+      expect(find.byType(AppBar), findsNothing);
+      expect(find.byType(Dialog), findsNothing);
+      expect(
+        tester.widget<Scaffold>(find.byType(Scaffold)).backgroundColor,
+        theme.colorScheme.surface,
+      );
+      expect(fixture.ewsProviders.single.loadedMailbox?.value, 'inbox');
+      expect(find.text('Message in the Exchange Inbox'), findsOneWidget);
+      expect(fixture.activeOwner, 'ews');
+
+      await _press(tester, _key('studio-mail-provider-back'));
+      await tester.pumpAndSettle();
+      expect(fixture.ewsProviders.single.lastLease!.isCurrent, isFalse);
+      expect(fixture.nativeClients, hasLength(2));
+      expect(fixture.nativeClients.last.connections, 1);
+      expect(fixture.activeOwner, 'imap');
+      expect(
+        fixture.storeEvents,
+        containsAllInOrder([
+          'close:imap',
+          'open:ews',
+          'close:ews',
+          'open:imap',
+        ]),
+      );
+      expect(find.byType(StudioMailEwsDialog), findsNothing);
+      expect(find.widgetWithText(FilledButton, _strings.connect), findsNothing);
+    },
+  );
 
   testWidgets('connected IMAP to EWS to IMAP retains each draft and owner', (
     tester,

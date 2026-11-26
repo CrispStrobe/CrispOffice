@@ -510,6 +510,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   ThemeData? _materialThemeBase;
   Object? _materialThemeKey;
 
+  static const _mailAccent = Color(0xFF285A93);
+
   /// Rebuilt only when its inputs change. A fresh ThemeData per workspace
   /// build (every keystroke) made every Theme-dependent widget rebuild and
   /// recomputed the seeded color scheme.
@@ -2498,12 +2500,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     unawaited(StudioWindow.setTitle('$_chromeTitle — CrispOffice'));
   }
 
+  ThemeData? _mailThemeCache;
+  (ThemeData, SuiteLook)? _mailThemeKey;
+
+  ThemeData get _mailTheme {
+    final base = Theme.of(context);
+    final key = (base, _look);
+    if (_mailThemeKey == key) return _mailThemeCache!;
+    _mailThemeKey = key;
+    return _mailThemeCache = studioMaterialTheme(
+      base,
+      office: _officeTheme,
+      accent: _mailAccent,
+      dark: _look != SuiteLook.light,
+      highContrast: _look == SuiteLook.highContrast,
+    );
+  }
+
   Widget _mailPane() => Builder(
     builder: (mailContext) {
       Widget chrome() =>
           _titleBar(mailContext: mailContext, onCloseMail: _closeMail);
       return Theme(
-        data: _materialTheme,
+        data: _mailTheme,
         child:
             widget.mailBuilder?.call(_strings, (_) => chrome()) ??
             StudioMailDialog(

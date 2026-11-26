@@ -151,6 +151,7 @@ class StudioMailDialog extends StatefulWidget {
     this.remoteImageLoaderFactory,
     this.initialAccount,
     this.accountDestinationBuilder,
+    this.ewsProviderFactory,
   });
 
   final StudioStrings strings;
@@ -184,6 +185,7 @@ class StudioMailDialog extends StatefulWidget {
     ValueChanged<StudioMailAccountNavigationTarget> onNavigate,
   )?
   accountDestinationBuilder;
+  final StudioEwsProviderFactory? ewsProviderFactory;
   final StudioMailRemoteImageLoader Function()? remoteImageLoaderFactory;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
@@ -231,6 +233,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _sharedExchangeAccounts = accounts;
     });
   }
+
+  Widget? _embeddedExchange;
+  Completer<StudioMailAccountNavigationTarget?>? _embeddedExchangeResult;
 
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -836,6 +841,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   @override
   void dispose() {
+    final exchange = _embeddedExchangeResult;
+    if (exchange != null && !exchange.isCompleted) exchange.complete();
+    _embeddedExchangeResult = null;
     _cancelMailPolling();
     _mailPollActivity.dispose();
     studioProductivityAccountChanges.removeListener(
@@ -4073,7 +4081,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     StudioMailCredentials credentials,
     StudioMailAccountNavigationTarget target,
   ) {
-    if (target.provider != MailProviderKind.imap) return false;
+    return target.provider == MailProviderKind.imap &&
+        _credentialMatchesImap(credentials, target.identity);
+  }
+
+  bool _credentialMatchesImap(
+    StudioMailCredentials credentials,
+    StudioMailDraftAccount expected,
+  ) {
     final route = credentials.connectionIdentity;
     try {
       final identity = StudioMailDraftAccount(
@@ -4086,7 +4101,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         login: route.imapLogin,
         sender: route.sender,
       );
-      return identity.account == target.identity.account;
+      return identity.account == expected.account;
     } on Object {
       return false;
     }
@@ -4192,6 +4207,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _credentialPending) {
       return;
     }
+    final previous = _account == null ? null : _imapLocalIdentity(_account!);
+    final previousSavedId =
+        _lastCredentialSnapshot?.accountId ?? _selectedSavedAccountId;
+    var reconnectPrevious = false;
     final generation = _sessionGeneration;
     final credentialRevision = _credentialStoreRevision;
     bool current() =>
@@ -4208,7 +4227,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         strings: widget.strings,
         store: directory,
         sharedCredentialStorage: _sharedStorage,
-        currentAccount: _account == null ? null : _imapLocalIdentity(_account!),
+        currentAccount: previous,
         isCurrent: current,
       );
       if (!current() || target == null) return;
@@ -4265,7 +4284,25 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         await _loadNavigationTarget(target);
       } else {
         _navigationTarget = null;
-        await _routeProviderAccounts(target.provider, target: target);
+        final returnGeneration = _sessionGeneration;
+        final back = await _routeProviderAccounts(
+          target.provider,
+          target: target,
+        );
+        if (back &&
+            previous != null &&
+            previousSavedId != null &&
+            widget.chromeBuilder != null &&
+            target.provider == MailProviderKind.ews &&
+            _currentAttempt(returnGeneration) &&
+            credentialRevision == _credentialStoreRevision) {
+          reconnectPrevious = await _restorePreviousImap(
+            previous,
+            previousSavedId,
+            returnGeneration,
+            credentialRevision,
+          );
+        }
       }
     } on Object {
       if (mounted) {
@@ -4284,6 +4321,44 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         });
       }
     }
+    if (reconnectPrevious &&
+        mounted &&
+        credentialRevision == _credentialStoreRevision) {
+      await _connect();
+    }
+  }
+
+  Future<bool> _restorePreviousImap(
+    StudioMailDraftAccount identity,
+    String savedId,
+    int generation,
+    int credentialRevision,
+  ) async {
+    final store = _accountCatalogStore;
+    if (store == null) return false;
+    final result = await store.loadAccounts();
+    if (!_currentAttempt(generation) ||
+        credentialRevision != _credentialStoreRevision) {
+      return false;
+    }
+    final saved = result.catalog?.accounts
+        .where(
+          (row) =>
+              row.id == savedId &&
+              _credentialMatchesImap(row.credentials, identity),
+        )
+        .firstOrNull;
+    if (saved == null) {
+      setState(
+        () => _notice = widget.strings.mailAccountNavigationRouteUnavailable,
+      );
+      return false;
+    }
+    setState(() {
+      _accountCatalog = result.catalog;
+      _applySavedAccount(saved);
+    });
+    return true;
   }
 
   Future<void> _openProviderSetup(
@@ -4733,7 +4808,45 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
-  Future<void> _routeProviderAccounts(
+  Future<StudioMailAccountNavigationTarget?> _showEmbeddedExchange(
+    StudioMailAccountNavigationTarget? target,
+  ) async {
+    final result = Completer<StudioMailAccountNavigationTarget?>();
+    _embeddedExchangeResult = result;
+    void complete([StudioMailAccountNavigationTarget? next]) {
+      if (!identical(_embeddedExchangeResult, result) || result.isCompleted) {
+        return;
+      }
+      result.complete(next);
+    }
+
+    setState(
+      () => _embeddedExchange = StudioMailEwsDialog(
+        strings: widget.strings,
+        initialAccount: target,
+        autoConnectShared: target?.sharedExchangeId != null,
+        onClose: () => complete(),
+        onAccountNavigation: complete,
+        sharedCredentialStorage: _sharedStorage,
+        openConnections: widget.openConnections,
+        draftStoreFactory: widget.draftStoreFactory,
+        localAccountStore: _localAccounts,
+        providerFactory: widget.ewsProviderFactory,
+      ),
+    );
+    try {
+      return await result.future;
+    } finally {
+      if (mounted && identical(_embeddedExchangeResult, result)) {
+        setState(() {
+          _embeddedExchangeResult = null;
+          _embeddedExchange = null;
+        });
+      }
+    }
+  }
+
+  Future<bool> _routeProviderAccounts(
     MailProviderKind provider, {
     StudioMailAccountNavigationTarget? target,
   }) async {
@@ -4743,68 +4856,76 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       final chosenProvider = nextProvider;
       final chosenTarget = nextTarget;
       var routeRetired = false;
-      final returned = await showDialog<StudioMailAccountNavigationTarget>(
-        context: context,
-        barrierDismissible: false,
-        builder: (dialogContext) {
-          void navigate(StudioMailAccountNavigationTarget value) {
-            if (routeRetired ||
-                !dialogContext.mounted ||
-                ModalRoute.of(dialogContext)?.isCurrent != true) {
-              return;
-            }
-            routeRetired = true;
-            Navigator.of(dialogContext).pop(value);
-          }
+      final embedded =
+          chosenProvider == MailProviderKind.ews &&
+          widget.chromeBuilder != null &&
+          widget.accountDestinationBuilder == null;
+      final returned = embedded
+          ? await _showEmbeddedExchange(chosenTarget)
+          : await showDialog<StudioMailAccountNavigationTarget>(
+              context: context,
+              barrierDismissible: false,
+              builder: (dialogContext) {
+                void navigate(StudioMailAccountNavigationTarget value) {
+                  if (routeRetired ||
+                      !dialogContext.mounted ||
+                      ModalRoute.of(dialogContext)?.isCurrent != true) {
+                    return;
+                  }
+                  routeRetired = true;
+                  Navigator.of(dialogContext).pop(value);
+                }
 
-          final builder = widget.accountDestinationBuilder;
-          if (builder != null) {
-            return builder(
-              dialogContext,
-              chosenProvider,
-              chosenTarget,
-              navigate,
-            );
-          }
-          if (chosenProvider == MailProviderKind.ews) {
-            return StudioMailEwsDialog(
-              strings: widget.strings,
-              initialAccount: chosenTarget,
-              sharedCredentialStorage: _sharedStorage,
-              openConnections: widget.openConnections,
-              onAccountNavigation: navigate,
-              draftStoreFactory: widget.draftStoreFactory,
-              localAccountStore: _localAccounts,
-            );
-          }
-          return StudioMailCloudDialog(
-            strings: widget.strings,
-            service: chosenProvider == MailProviderKind.gmail
-                ? MailCloudService.gmail
-                : MailCloudService.microsoft365,
-            initialAccount: chosenTarget,
-            sharedCredentialStorage: _sharedStorage,
-            openConnections: widget.openConnections,
-            onAccountNavigation: navigate,
-            draftStoreFactory: widget.draftStoreFactory,
-            localAccountStore: _localAccounts,
-          );
-        },
-      ).whenComplete(() => routeRetired = true);
-      if (!mounted || returned == null) return;
+                final builder = widget.accountDestinationBuilder;
+                if (builder != null) {
+                  return builder(
+                    dialogContext,
+                    chosenProvider,
+                    chosenTarget,
+                    navigate,
+                  );
+                }
+                if (chosenProvider == MailProviderKind.ews) {
+                  return StudioMailEwsDialog(
+                    strings: widget.strings,
+                    initialAccount: chosenTarget,
+                    sharedCredentialStorage: _sharedStorage,
+                    openConnections: widget.openConnections,
+                    onAccountNavigation: navigate,
+                    draftStoreFactory: widget.draftStoreFactory,
+                    localAccountStore: _localAccounts,
+                  );
+                }
+                return StudioMailCloudDialog(
+                  strings: widget.strings,
+                  service: chosenProvider == MailProviderKind.gmail
+                      ? MailCloudService.gmail
+                      : MailCloudService.microsoft365,
+                  initialAccount: chosenTarget,
+                  sharedCredentialStorage: _sharedStorage,
+                  openConnections: widget.openConnections,
+                  onAccountNavigation: navigate,
+                  draftStoreFactory: widget.draftStoreFactory,
+                  localAccountStore: _localAccounts,
+                );
+              },
+            ).whenComplete(() => routeRetired = true);
+      if (!mounted) return false;
+      if (returned == null) return embedded;
       final directory = _localAccounts;
       if (directory == null) {
         throw const StudioMailDraftStoreException(MailProblemCode.unavailable);
       }
       await returned.validateCurrent(directory);
-      if (!mounted) return;
+      if (!mounted) return false;
       if (returned.provider == MailProviderKind.imap) {
         await _loadNavigationTarget(returned);
-        return;
+        return false;
       }
       nextProvider = returned.provider;
       nextTarget = returned;
     }
+    return false;
   }
 
   Future<void> _switchAccount() async {
@@ -5074,70 +5195,85 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   }
 
   @override
-  Widget build(BuildContext context) => AbsorbPointer(
-    absorbing: _accountNavigationPending,
-    child: ExcludeFocus(
-      excluding: _accountNavigationPending,
-      child: Scaffold(
+  Widget build(BuildContext context) {
+    if (_embeddedExchange case final exchange?) {
+      return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [
-            if (widget.chromeBuilder != null)
-              widget.chromeBuilder!(context)
-            else if (Theme.of(context).platform == TargetPlatform.macOS)
-              const SizedBox(height: 32),
-            _mailChrome(context),
-            if (_navigationReleaseRequired)
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                child: Column(
-                  children: [
-                    Text(widget.strings.mailAccountNavigationReleaseHelp),
-                    OutlinedButton.icon(
-                      key: const ValueKey('studio-mail-navigation-release'),
-                      onPressed:
-                          _accountNavigationPending || _draftOwnershipPending
-                          ? null
-                          : _retryNavigationRelease,
-                      icon: const Icon(Icons.refresh),
-                      label: Text(widget.strings.mailAccountNavigationRelease),
-                    ),
-                  ],
-                ),
-              ),
-            if (_accountNavigationPending) const LinearProgressIndicator(),
-            Expanded(
-              child: RepaintBoundary(
-                child: LayoutBuilder(
-                  builder: (context, constraints) => IndexedStack(
-                    index: _showSavedMessages ? 1 : 0,
-                    children: <Widget>[
-                      _accountView(
-                        context,
-                        compact: constraints.maxWidth < 800,
+            widget.chromeBuilder!(context),
+            Expanded(child: exchange),
+          ],
+        ),
+      );
+    }
+    return AbsorbPointer(
+      absorbing: _accountNavigationPending,
+      child: ExcludeFocus(
+        excluding: _accountNavigationPending,
+        child: Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          body: Column(
+            children: [
+              if (widget.chromeBuilder != null)
+                widget.chromeBuilder!(context)
+              else if (Theme.of(context).platform == TargetPlatform.macOS)
+                const SizedBox(height: 32),
+              _mailChrome(context),
+              if (_navigationReleaseRequired)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(widget.strings.mailAccountNavigationReleaseHelp),
+                      OutlinedButton.icon(
+                        key: const ValueKey('studio-mail-navigation-release'),
+                        onPressed:
+                            _accountNavigationPending || _draftOwnershipPending
+                            ? null
+                            : _retryNavigationRelease,
+                        icon: const Icon(Icons.refresh),
+                        label: Text(
+                          widget.strings.mailAccountNavigationRelease,
+                        ),
                       ),
-                      if (_savedMessagesVisited)
-                        StudioSavedMailView(
-                          strings: widget.strings,
-                          onClose: _closeMail,
-                          onAccounts: () =>
-                              setState(() => _showSavedMessages = false),
-                        )
-                      else
-                        const SizedBox.shrink(),
                     ],
                   ),
                 ),
+              if (_accountNavigationPending) const LinearProgressIndicator(),
+              Expanded(
+                child: RepaintBoundary(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) => IndexedStack(
+                      index: _showSavedMessages ? 1 : 0,
+                      children: <Widget>[
+                        _accountView(
+                          context,
+                          compact: constraints.maxWidth < 800,
+                        ),
+                        if (_savedMessagesVisited)
+                          StudioSavedMailView(
+                            strings: widget.strings,
+                            onClose: _closeMail,
+                            onAccounts: () =>
+                                setState(() => _showSavedMessages = false),
+                          )
+                        else
+                          const SizedBox.shrink(),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 
   bool get _hasCredentialSettings =>
       widget.credentialStore == null || widget.credentialSettingsOpener != null;

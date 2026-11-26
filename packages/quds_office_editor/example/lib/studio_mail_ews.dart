@@ -22,6 +22,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_live_productivity.dart';
 import 'studio_credential_storage.dart';
+import 'studio_chrome.dart';
 import 'studio_productivity_accounts.dart';
 import 'studio_mcp_mail_actions.dart';
 import 'studio_mcp_mail_folder.dart';
@@ -106,6 +107,8 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.localAccountStore,
     this.initialAccount,
     this.openConnections,
+    this.onClose,
+    this.autoConnectShared = false,
     this.sharedCredentialStorage,
     this.onAccountNavigation,
   }) : cloudService = null,
@@ -128,9 +131,11 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.localAccountStore,
     this.initialAccount,
     this.openConnections,
+    this.onClose,
     this.sharedCredentialStorage,
     this.onAccountNavigation,
-  }) : cloudService = service,
+  }) : autoConnectShared = false,
+       cloudService = service,
        providerFactory = null;
 
   final StudioStrings strings;
@@ -148,6 +153,8 @@ class StudioMailEwsDialog extends StatefulWidget {
   final StudioMailLocalAccountStore? localAccountStore;
   final StudioMailAccountNavigationTarget? initialAccount;
   final VoidCallback? openConnections;
+  final VoidCallback? onClose;
+  final bool autoConnectShared;
   final StudioCredentialStorage? sharedCredentialStorage;
   final ValueChanged<StudioMailAccountNavigationTarget>? onAccountNavigation;
 
@@ -169,6 +176,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   final _login = TextEditingController();
   final _domain = TextEditingController();
   final _password = TextEditingController();
+  bool _useSavedPassword = true;
   final _messageListKey = GlobalKey(debugLabel: 'mail-provider-list');
   final _usedHeaderCursors = <String>{};
   // A confirmed mutation observes only its target flag. Keep that observation
@@ -270,6 +278,15 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         storage,
       );
     }
+    if (widget.autoConnectShared &&
+        _expectedAccount?.sharedExchangeId != null) {
+      final selected = _expectedAccount;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && identical(_expectedAccount, selected)) {
+          unawaited(_connect());
+        }
+      });
+    }
   }
 
   void _sharedAccountsChanged() {
@@ -329,6 +346,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final target = saved ?? widget.initialAccount;
     _initialAccountSource = widget.initialAccount;
     _expectedAccount = target;
+    _useSavedPassword = true;
+    _password.clear();
     _email.clear();
     _endpoint.clear();
     _domain.clear();
@@ -607,7 +626,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       return;
     }
     final target = _expectedAccount;
-    final sharedAccount = target?.sharedExchangeId;
+    final sharedAccount = _useSavedPassword ? target?.sharedExchangeId : null;
     final sharedStorage = _sharedStorage;
     final sharedRevision = sharedStorage?.revision;
     final sender = _email.text.trim();
@@ -635,7 +654,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         username: _login.text.trim().isEmpty ? sender : _login.text.trim(),
         domain: _domain.text.trim(),
         mailboxAddress: sender,
-        authentication: sharedAccount == null
+        authentication: target?.sharedExchangeId == null
             ? _authentication
             : MailEwsAuthentication.ntlm,
         credential: MailCredentialReference(
@@ -662,8 +681,6 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             MailProblemCode.staleOperation,
           );
         }
-        _usingSharedAccount = sharedAccount;
-        _sharedVaultRevision = sharedRevision;
       } on Object {
         if (current()) {
           setState(() {
@@ -674,6 +691,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         return;
       }
     }
+    _usingSharedAccount = target?.sharedExchangeId;
+    _sharedVaultRevision = sharedRevision;
     final credentials = _SessionCredentials(
       MailCredentialRecord(
         reference: configuration.credential,
@@ -739,6 +758,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         throw const _EwsUiFailure(MailProblem(MailProblemCode.unavailable));
       }
       final inbox =
+          boxes.where((box) => box.isInbox).firstOrNull ??
           boxes
               .where(
                 (box) => const {
@@ -3263,8 +3283,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       await _requireReleasedDraftStores();
       _checkDraftStoresReleased();
       if (!mounted || !current()) return;
-      setState(() => _allowPop = true);
-      Navigator.pop(context);
+      if (widget.onClose case final close?) {
+        close();
+      } else {
+        setState(() => _allowPop = true);
+        Navigator.pop(context);
+      }
     } on Object catch (error) {
       if (current()) {
         setState(() {
@@ -3673,151 +3697,197 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   @override
-  Widget build(BuildContext context) => PopScope<Object?>(
-    canPop: _allowPop || _routeRetired,
-    onPopInvokedWithResult: (didPop, _) {
-      if (!didPop) unawaited(_requestClose());
-    },
-    child: Dialog.fullscreen(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(_title, overflow: TextOverflow.ellipsis),
-          actions: [
-            if (widget.openConnections != null)
-              IconButton(
-                key: const ValueKey('studio-mail-provider-connections'),
-                tooltip: widget.strings.productivity('Connections'),
-                onPressed: _blocked ? null : widget.openConnections,
-                icon: const Icon(Icons.settings_outlined),
-              ),
-            if (widget.onAccountNavigation != null && _localAccounts != null)
-              IconButton(
-                key: const ValueKey('studio-mail-switch-account'),
-                tooltip: widget.strings.mailAccountNavigationTitle,
-                icon: const Icon(Icons.switch_account_outlined),
-                onPressed: _blocked
-                    ? null
-                    : _forCurrentConnection(_navigateAccount),
-              ),
-            if (_connected) ...[
-              _liveButton(),
-              IconButton(
-                tooltip: studioProductivityExportLabel,
-                icon: const Icon(Icons.file_download_outlined),
-                onPressed: _blocked || _mailbox == null || _headers.isEmpty
-                    ? null
-                    : _forCurrentConnection(_exportLoadedMail),
-              ),
-              if (_provider case final MailProviderSearch searchProvider
-                  when searchProvider.searchFields.isNotEmpty)
-                IconButton(
-                  key: const ValueKey('studio-mail-open-server-search'),
-                  tooltip: widget.strings.mailServerSearch,
-                  icon: const Icon(Icons.manage_search),
-                  onPressed: _blocked || _mailbox == null
-                      ? null
-                      : _forCurrentConnection(_openServerSearch),
-                ),
-              if (_draftStore is StudioMailMailboxStoreOwner)
-                IconButton(
-                  key: const ValueKey('studio-mail-open-sync'),
-                  tooltip: widget.strings.mailSync,
-                  icon: const Icon(Icons.sync),
-                  onPressed: _blocked || _mailbox == null
-                      ? null
-                      : _forCurrentConnection(_openSynchronization),
-                ),
-              IconButton(
-                tooltip: widget.strings.compose,
-                icon: const Icon(Icons.edit_outlined),
-                onPressed: _blocked
-                    ? null
-                    : _forCurrentConnection(() => _compose()),
-              ),
-              IconButton(
-                key: const ValueKey('studio-mail-open-drafts'),
-                tooltip: widget.strings.mailDrafts,
-                icon: const Icon(Icons.drafts_outlined),
-                onPressed: _blocked ? null : _forCurrentConnection(_openDrafts),
-              ),
-              IconButton(
-                key: const ValueKey('studio-mail-open-outbox'),
-                tooltip: widget.strings.mailOutbox,
-                icon: const Icon(Icons.outbox_outlined),
-                onPressed: _blocked || !_canSend
-                    ? null
-                    : _forCurrentConnection(_openOutbox),
-              ),
-              if (widget.cloudService != MailCloudService.gmail &&
-                  _draftStore is StudioMailArchiveSettingsStore &&
-                  _capabilities.supports(MailCapability.move))
-                IconButton(
-                  key: const ValueKey('studio-mail-archive-settings'),
-                  icon: const Icon(Icons.archive_outlined),
-                  tooltip: widget.strings.mailArchiveSettingsTitle,
-                  onPressed: _blocked
-                      ? null
-                      : _forCurrentConnection(_openArchiveDestination),
-                ),
-              if (_draftStore is StudioMailFlagJournalOwner)
-                IconButton(
-                  key: const ValueKey('studio-mail-open-activity'),
-                  icon: const Icon(Icons.history),
-                  tooltip: widget.strings.mailActivity,
-                  onPressed: _blocked
-                      ? null
-                      : _forCurrentConnection(_openFlagHistory),
-                ),
-              IconButton(
-                tooltip: widget.strings.refresh,
-                icon: const Icon(Icons.refresh),
-                onPressed: _blocked ? null : _loadCurrentHeadersAction(),
-              ),
-              if (_draft != null)
-                IconButton(
-                  tooltip: widget.strings.mailDiscardDraft,
-                  icon: const Icon(Icons.delete_outline),
-                  onPressed: _blocked
-                      ? null
-                      : _forCurrentConnection(_discardDraft),
-                ),
-            ],
-            if (_session != null)
-              IconButton(
-                tooltip: widget.strings.disconnect,
-                icon: const Icon(Icons.logout),
-                onPressed:
-                    _dialogOpen ||
-                        _navigating ||
-                        _routeRetired ||
-                        _mailboxViewReleaseFailed ||
-                        _retiredDraftStore != null
-                    ? null
-                    : _forCurrentConnection(_disconnectFromUi),
-              ),
-            IconButton(
-              tooltip: widget.strings.close,
-              icon: const Icon(Icons.close),
-              onPressed: _dialogOpen || _navigating || _routeRetired
-                  ? null
-                  : _requestClose,
-            ),
-          ],
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final actions = <Widget>[
+      if (widget.openConnections != null)
+        IconButton(
+          key: const ValueKey('studio-mail-provider-connections'),
+          tooltip: widget.strings.productivity('Connections'),
+          onPressed: _blocked ? null : widget.openConnections,
+          icon: const Icon(Icons.settings_outlined),
         ),
-        body: _connected
-            ? _inbox()
-            : _cloud
-            ? _cloudSetup()
-            : _setup(),
+      if (widget.onAccountNavigation != null && _localAccounts != null)
+        IconButton(
+          key: const ValueKey('studio-mail-switch-account'),
+          tooltip: widget.strings.mailAccountNavigationTitle,
+          icon: const Icon(Icons.switch_account_outlined),
+          onPressed: _blocked ? null : _forCurrentConnection(_navigateAccount),
+        ),
+      if (_connected) ...[
+        _liveButton(),
+        IconButton(
+          tooltip: studioProductivityExportLabel,
+          icon: const Icon(Icons.file_download_outlined),
+          onPressed: _blocked || _mailbox == null || _headers.isEmpty
+              ? null
+              : _forCurrentConnection(_exportLoadedMail),
+        ),
+        if (_provider case final MailProviderSearch searchProvider
+            when searchProvider.searchFields.isNotEmpty)
+          IconButton(
+            key: const ValueKey('studio-mail-open-server-search'),
+            tooltip: widget.strings.mailServerSearch,
+            icon: const Icon(Icons.manage_search),
+            onPressed: _blocked || _mailbox == null
+                ? null
+                : _forCurrentConnection(_openServerSearch),
+          ),
+        if (_draftStore is StudioMailMailboxStoreOwner)
+          IconButton(
+            key: const ValueKey('studio-mail-open-sync'),
+            tooltip: widget.strings.mailSync,
+            icon: const Icon(Icons.sync),
+            onPressed: _blocked || _mailbox == null
+                ? null
+                : _forCurrentConnection(_openSynchronization),
+          ),
+        IconButton(
+          tooltip: widget.strings.compose,
+          icon: const Icon(Icons.edit_outlined),
+          onPressed: _blocked ? null : _forCurrentConnection(() => _compose()),
+        ),
+        IconButton(
+          key: const ValueKey('studio-mail-open-drafts'),
+          tooltip: widget.strings.mailDrafts,
+          icon: const Icon(Icons.drafts_outlined),
+          onPressed: _blocked ? null : _forCurrentConnection(_openDrafts),
+        ),
+        IconButton(
+          key: const ValueKey('studio-mail-open-outbox'),
+          tooltip: widget.strings.mailOutbox,
+          icon: const Icon(Icons.outbox_outlined),
+          onPressed: _blocked || !_canSend
+              ? null
+              : _forCurrentConnection(_openOutbox),
+        ),
+        if (widget.cloudService != MailCloudService.gmail &&
+            _draftStore is StudioMailArchiveSettingsStore &&
+            _capabilities.supports(MailCapability.move))
+          IconButton(
+            key: const ValueKey('studio-mail-archive-settings'),
+            icon: const Icon(Icons.archive_outlined),
+            tooltip: widget.strings.mailArchiveSettingsTitle,
+            onPressed: _blocked
+                ? null
+                : _forCurrentConnection(_openArchiveDestination),
+          ),
+        if (_draftStore is StudioMailFlagJournalOwner)
+          IconButton(
+            key: const ValueKey('studio-mail-open-activity'),
+            icon: const Icon(Icons.history),
+            tooltip: widget.strings.mailActivity,
+            onPressed: _blocked
+                ? null
+                : _forCurrentConnection(_openFlagHistory),
+          ),
+        IconButton(
+          tooltip: widget.strings.refresh,
+          icon: const Icon(Icons.refresh),
+          onPressed: _blocked ? null : _loadCurrentHeadersAction(),
+        ),
+        if (_draft != null)
+          IconButton(
+            tooltip: widget.strings.mailDiscardDraft,
+            icon: const Icon(Icons.delete_outline),
+            onPressed: _blocked ? null : _forCurrentConnection(_discardDraft),
+          ),
+      ],
+      if (_session != null)
+        IconButton(
+          tooltip: widget.strings.disconnect,
+          icon: const Icon(Icons.logout),
+          onPressed:
+              _dialogOpen ||
+                  _navigating ||
+                  _routeRetired ||
+                  _mailboxViewReleaseFailed ||
+                  _retiredDraftStore != null
+              ? null
+              : _forCurrentConnection(_disconnectFromUi),
+        ),
+      if (widget.onClose == null)
+        IconButton(
+          tooltip: widget.strings.close,
+          icon: const Icon(Icons.close),
+          onPressed: _dialogOpen || _navigating || _routeRetired
+              ? null
+              : _requestClose,
+        ),
+    ];
+    final content = _connected
+        ? _inbox()
+        : _cloud
+        ? _cloudSetup()
+        : _setup();
+    if (widget.onClose != null) {
+      return Column(
+        children: [
+          StudioRibbonStyle(
+            compact: false,
+            showCommandLabels: false,
+            showGroupLabels: true,
+            child: SizedBox(
+              height: StudioRibbonStrip.preferredHeight(
+                context,
+                compact: false,
+                showCommandLabels: false,
+                showGroupLabels: true,
+              ),
+              child: StudioRibbonStrip(
+                groups: [
+                  StudioRibbonGroup(
+                    id: 'provider-navigation',
+                    title: widget.strings.productivity('Accounts'),
+                    children: [
+                      IconButton(
+                        key: const ValueKey('studio-mail-provider-back'),
+                        tooltip: widget.strings.mailBackToPreviousAccount,
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: _dialogOpen || _navigating || _routeRetired
+                            ? null
+                            : _requestClose,
+                      ),
+                    ],
+                  ),
+                  StudioRibbonGroup(
+                    id: 'provider-actions',
+                    title: widget.strings.mail,
+                    children: actions,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(child: content),
+        ],
+      );
+    }
+    return PopScope<Object?>(
+      canPop: _allowPop || _routeRetired,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) unawaited(_requestClose());
+      },
+      child: Dialog.fullscreen(
+        backgroundColor: theme.colorScheme.surface,
+        child: Scaffold(
+          backgroundColor: theme.colorScheme.surface,
+          appBar: AppBar(
+            title: Text(_title, overflow: TextOverflow.ellipsis),
+            actions: actions,
+          ),
+          body: content,
+        ),
       ),
-    ),
-  );
+    );
+  }
 
   Widget _field(
     TextEditingController controller,
     String key,
     String label, {
     String? hint,
+    bool readOnly = false,
     bool secret = false,
   }) => Padding(
     padding: const EdgeInsets.only(top: 12),
@@ -3825,6 +3895,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       key: ValueKey(key),
       controller: controller,
       enabled: !_blocked,
+      readOnly: readOnly,
       obscureText: secret,
       enableSuggestions: !secret,
       enableIMEPersonalizedLearning: !secret,
@@ -3972,27 +4043,50 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               'ews-endpoint',
               widget.strings.ewsEndpoint,
               hint: 'https://mail.example.com/EWS/Exchange.asmx',
+              readOnly: _expectedAccount?.sharedExchangeId != null,
             ),
             _field(
               _email,
               'ews-mailbox',
               widget.strings.emailAddress,
               hint: 'user@example.com',
+              readOnly: _expectedAccount?.sharedExchangeId != null,
             ),
             _field(
               _login,
               'ews-login',
               widget.strings.ewsLogin,
               hint: r'DOMAIN\user or user@example.com',
+              readOnly: _expectedAccount?.sharedExchangeId != null,
             ),
-            _field(_domain, 'ews-domain', widget.strings.ewsDomain),
-            if (_expectedAccount?.sharedExchangeId == null) ...[
+            _field(
+              _domain,
+              'ews-domain',
+              widget.strings.ewsDomain,
+              readOnly: _expectedAccount?.sharedExchangeId != null,
+            ),
+            if (_expectedAccount?.sharedExchangeId != null)
+              CheckboxListTile(
+                key: const ValueKey('ews-use-saved-password'),
+                contentPadding: EdgeInsets.zero,
+                title: Text(widget.strings.ewsUseSavedPassword),
+                value: _useSavedPassword,
+                onChanged: _blocked
+                    ? null
+                    : (value) => setState(() {
+                        _useSavedPassword = value == true;
+                        if (_useSavedPassword) _password.clear();
+                      }),
+              ),
+            if (_expectedAccount?.sharedExchangeId == null ||
+                !_useSavedPassword)
               _field(
                 _password,
                 'ews-password',
                 widget.strings.password,
                 secret: true,
               ),
+            if (_expectedAccount?.sharedExchangeId == null) ...[
               const SizedBox(height: 12),
               DropdownButtonFormField<MailEwsAuthentication>(
                 initialValue: _authentication,
@@ -4042,7 +4136,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             ),
             const SizedBox(height: 12),
             Text(
-              widget.strings.ewsSessionNotice,
+              _expectedAccount?.sharedExchangeId != null
+                  ? widget.strings.ewsSharedSessionNotice
+                  : widget.strings.ewsSessionNotice,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
