@@ -48,8 +48,10 @@ EwsCalendarReader createEwsCalendarReader({
   required MailEwsConfiguration configuration,
   required MailCredentialStore credentialStore,
   MailEwsLimits limits = const MailEwsLimits(maxPageSize: 512),
+  bool enableDeletes = false,
 }) => NativeEwsCalendarReader(
   account: account,
+  canDeleteAppointments: enableDeletes,
   connection: NativeMailEwsProvider(
     configuration: configuration,
     credentialStore: credentialStore,

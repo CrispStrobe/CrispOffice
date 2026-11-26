@@ -26,6 +26,7 @@ import 'studio_productivity_export.dart';
 import 'studio_credential_storage.dart';
 import 'studio_chrome.dart';
 import 'studio_task_editor.dart';
+import 'studio_strings.dart';
 import 'studio_device_tasks.dart';
 import 'studio_ews_credentials.dart';
 import 'studio_productivity_accounts.dart';
@@ -37,6 +38,7 @@ Widget buildStudioTasks(
   bool compactRibbon = true,
   bool showCommandLabels = true,
   bool showGroupLabels = false,
+  StudioLanguage language = StudioLanguage.en,
 }) => StudioTasksPage(
   title: title,
   onClose: close,
@@ -44,6 +46,7 @@ Widget buildStudioTasks(
   compactRibbon: compactRibbon,
   showCommandLabels: showCommandLabels,
   showGroupLabels: showGroupLabels,
+  language: language,
 );
 
 bool _isTaskCloud(String provider) =>
@@ -95,6 +98,7 @@ final class StudioTasksPage extends StatefulWidget {
     this.compactRibbon = true,
     this.showCommandLabels = true,
     this.showGroupLabels = false,
+    this.language = StudioLanguage.en,
   });
   final String title;
   final VoidCallback? onClose;
@@ -102,6 +106,7 @@ final class StudioTasksPage extends StatefulWidget {
   final bool compactRibbon;
   final bool showCommandLabels;
   final bool showGroupLabels;
+  final StudioLanguage language;
   final Future<Database> Function()? openDatabase;
   final StudioCredentialStorage? credentialStorage;
   final http.Client Function()? openDavClient;
@@ -126,6 +131,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   TaskAccountLease? _deviceLease;
   TaskAccountLease? _syncLease;
   SecureStorage? _vault;
+  final _taskAccounts = <TaskAccountId>{};
   Map<String, Object?>? _record;
   List<_Selection> _lists = [];
   TaskListId _selected = studioDeviceTaskList.id;
@@ -139,11 +145,15 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   String _query = '';
   _TaskView _view = _TaskView.all;
 
+  String _label(String text) =>
+      StudioStrings(widget.language).productivity(text);
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _credentialStorage.addListener(_credentialsChanged);
+    studioProductivityAccountChanges.addListener(_accountServicesChanged);
     studioDeviceTaskChanges.addListener(_deviceTasksChanged);
     _run(_initialize);
     _timer = Timer.periodic(
@@ -161,6 +171,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _credentialStorage.removeListener(_credentialsChanged);
+    studioProductivityAccountChanges.removeListener(_accountServicesChanged);
     studioDeviceTaskChanges.removeListener(_deviceTasksChanged);
     _timer?.cancel();
     _closeConnection?.call();
@@ -214,11 +225,64 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final catalog = await StudioTaskAccountCatalog.load(vault);
     if (!mounted || _vaultRevision != _credentialStorage.revision) return;
     _records.addAll(catalog.records);
+    await _readAccountServices(vault);
     if (catalog.fromLegacy) {
       await _saveCatalog(vault, _records, catalog.active);
       await vault.delete(studioTasksLegacyKey);
     }
-    if (catalog.active case final account?) await _openSaved(account, vault);
+    final active = catalog.active;
+    final selected = _taskAccounts.contains(active)
+        ? active
+        : _taskAccounts.firstOrNull;
+    if (selected != null) await _openSaved(selected, vault);
+  }
+
+  Future<void> _readAccountServices(SecureStorage vault) async {
+    final revision = _credentialStorage.revision;
+    final accounts = _records.entries.toList();
+    final enabled = <TaskAccountId>{};
+    for (final MapEntry(:key, :value) in accounts) {
+      final services = await studioAccountServices(vault, key, value);
+      if (services.contains(StudioProductivityService.tasks)) enabled.add(key);
+    }
+    if (mounted &&
+        revision == _credentialStorage.revision &&
+        identical(vault, _vault)) {
+      _taskAccounts
+        ..clear()
+        ..addAll(enabled);
+    }
+  }
+
+  void _accountServicesChanged() {
+    if (!mounted) return;
+    final active = _running;
+    if (active != null) {
+      unawaited(active.whenComplete(_accountServicesChanged));
+      return;
+    }
+    _run(() async {
+      final vault = _vault;
+      if (vault == null) return;
+      final catalog = await StudioTaskAccountCatalog.load(vault);
+      if (!mounted || !identical(_vault, vault)) return;
+      _records
+        ..clear()
+        ..addAll(catalog.records);
+      await _readAccountServices(vault);
+      if (!mounted || !identical(_vault, vault)) return;
+      final lease = _syncLease;
+      if (_taskAccounts.contains(lease?.account)) return;
+      _closeConnection?.call();
+      _closeConnection = null;
+      if (lease != null) _store?.disconnect(lease);
+      _record = null;
+      _syncLease = null;
+      _lists = [];
+      _selected = studioDeviceTaskList.id;
+      if (_taskAccounts.firstOrNull case final account?)
+        await _openSaved(account, vault);
+    });
   }
 
   Future<void> _saveCatalog(
@@ -268,7 +332,10 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
 
   void _switchSaved(TaskAccountId? account) => _run(() async {
     final vault = _vault;
-    if (account == null || account == _syncLease?.account || vault == null) {
+    if (account == null ||
+        !_taskAccounts.contains(account) ||
+        account == _syncLease?.account ||
+        vault == null) {
       return;
     }
     await _saveCatalog(vault, _records, account);
@@ -612,6 +679,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     if (lease != null) _store?.disconnect(lease);
     _record = null;
     _records.clear();
+    _taskAccounts.clear();
     _vault = null;
     _vaultRevision = null;
     _syncLease = null;
@@ -665,6 +733,22 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 .toString();
       final account = TaskAccountId(id, provider: provider);
       final record = {...?_records[account], ...proposed, 'id': id};
+      final previouslySaved = _records.containsKey(account);
+      final requested = studioDefaultServices(account, record);
+      if (requested.isEmpty) {
+        throw const _TasksDisplayException(
+          'Choose at least one service and provide its required settings.',
+        );
+      }
+      if (!requested.contains(StudioProductivityService.tasks)) {
+        await _saveCatalog(vault, {
+          ..._records,
+          account: record,
+        }, _syncLease?.account);
+        await resetStudioAccountServices(vault, account);
+        studioProductivityAccountChanges.value++;
+        return;
+      }
       final previous = _syncLease;
       final priorClose = _closeConnection;
       _closeConnection = null;
@@ -693,6 +777,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       if (previous != null && previous.account != account) {
         _require(_store!.disconnect(previous));
       }
+      _taskAccounts.add(account);
+      if (!previouslySaved || proposed.containsKey('services')) {
+        await resetStudioAccountServices(vault, account);
+      }
+      studioProductivityAccountChanges.value++;
       await _syncSelected();
     });
   }
@@ -702,10 +791,15 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final vault = _vault;
     if (lease == null || vault == null) return;
     final updated = {..._records}..remove(lease.account);
-    final next = updated.keys.firstOrNull;
+    final next = _taskAccounts
+        .where((account) => account != lease.account)
+        .firstOrNull;
     await _saveCatalog(vault, updated, next);
     if (!mounted || _vaultRevision != _credentialStorage.revision) return;
     _records.remove(lease.account);
+    _taskAccounts.remove(lease.account);
+    await resetStudioAccountServices(vault, lease.account);
+    studioProductivityAccountChanges.value++;
     _require(_store!.disconnect(lease));
     _closeConnection?.call();
     _closeConnection = null;
@@ -772,7 +866,8 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final list = _selected;
     final value = await showDialog<TaskFields>(
       context: context,
-      builder: (_) => StudioTaskFieldsDialog(fields: existing),
+      builder: (_) =>
+          StudioTaskFieldsDialog(fields: existing, language: widget.language),
     );
     if (mounted &&
         value != null &&
@@ -1088,21 +1183,23 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
               actions: [
                 live,
                 IconButton(
-                  tooltip: studioProductivityExportLabel,
+                  tooltip: _label(studioProductivityExportLabel),
                   onPressed: export,
                   icon: const Icon(Icons.file_download_outlined),
                 ),
                 if (connected)
                   TextButton(
                     onPressed: busy ? null : _disconnect,
-                    child: const Text('Disconnect'),
+                    child: Text(_label('Disconnect')),
                   ),
                 TextButton(
                   onPressed: !ready || busy ? null : _connect,
-                  child: Text(connected ? 'Add account' : 'Connect account'),
+                  child: Text(
+                    _label(connected ? 'Add account' : 'Connect account'),
+                  ),
                 ),
                 IconButton(
-                  tooltip: 'Sync now',
+                  tooltip: _label('Sync now'),
                   onPressed: busy || !connected ? null : () => _refresh(),
                   icon: const Icon(Icons.sync),
                 ),
@@ -1112,7 +1209,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
           widget.chromeBuilder != null || !ready || _selection.list.readOnly
           ? null
           : FloatingActionButton(
-              tooltip: 'Add task',
+              tooltip: _label('Add task'),
               onPressed: () => _edit(null),
               child: const Icon(Icons.add),
             ),
@@ -1141,14 +1238,14 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 spacing: 12,
                 children: [
                   _listSelector(busy),
-                  if (_records.length > 1) _accountSelector(busy),
+                  if (_taskAccounts.length > 1) _accountSelector(busy),
                 ],
               ),
             ),
           if (_selection.list.readOnly)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: Text('Read-only list'),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(_label('Read-only list')),
             ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -1161,9 +1258,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                     ),
                     onChanged: (value) =>
                         setState(() => _query = value.trim().toLowerCase()),
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'Search tasks',
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      hintText: _label('Search tasks'),
                     ),
                   ),
                 ),
@@ -1175,7 +1272,10 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                   },
                   items: [
                     for (final view in _TaskView.values)
-                      DropdownMenuItem(value: view, child: Text(view.label)),
+                      DropdownMenuItem(
+                        value: view,
+                        child: Text(_label(view.label)),
+                      ),
                   ],
                 ),
               ],
@@ -1185,9 +1285,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
             child: rows.isEmpty && !busy
                 ? Center(
                     child: Text(
-                      _query.isEmpty && _view == _TaskView.all
-                          ? 'No tasks in this list.'
-                          : 'No tasks match this view.',
+                      _label(
+                        _query.isEmpty && _view == _TaskView.all
+                            ? 'No tasks in this list.'
+                            : 'No tasks match this view.',
+                      ),
                     ),
                   )
                 : ListView.builder(
@@ -1211,7 +1313,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   Widget _listSelector(bool busy) => SizedBox(
     width: 174,
     child: Tooltip(
-      message: 'Task list',
+      message: _label('Task list'),
       child: DropdownButton<TaskListId>(
         key: const ValueKey('studio-task-list-selector'),
         isExpanded: true,
@@ -1221,7 +1323,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
           DropdownMenuItem(
             value: studioDeviceTaskList.id,
             child: Text(
-              studioDeviceTaskList.name,
+              _label(studioDeviceTaskList.name),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -1238,20 +1340,21 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
   Widget _accountSelector(bool busy) => SizedBox(
     width: 174,
     child: Tooltip(
-      message: 'Task account',
+      message: _label('Task account'),
       child: DropdownButton<TaskAccountId>(
         isExpanded: true,
         value: _syncLease?.account,
         onChanged: busy ? null : _switchSaved,
         items: [
           for (final entry in _records.entries)
-            DropdownMenuItem(
-              value: entry.key,
-              child: Text(
-                studioTaskAccountLabel(entry.key, entry.value),
-                overflow: TextOverflow.ellipsis,
+            if (_taskAccounts.contains(entry.key))
+              DropdownMenuItem(
+                value: entry.key,
+                child: Text(
+                  studioTaskAccountLabel(entry.key, entry.value),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
         ],
       ),
     ),
@@ -1268,7 +1371,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     Widget command(IconData icon, String label, VoidCallback? action) =>
         StudioCmd(
           icon: icon,
-          label: label,
+          label: _label(label),
           accent: scheme.primary,
           foreground: scheme.onSurface,
           onPressed: action,
@@ -1293,7 +1396,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 groups: [
                   StudioRibbonGroup(
                     id: 'task-actions',
-                    title: 'Tasks',
+                    title: _label('Tasks'),
                     children: [
                       _listSelector(busy),
                       command(
@@ -1313,9 +1416,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                   ),
                   StudioRibbonGroup(
                     id: 'task-connection',
-                    title: 'Accounts',
+                    title: _label('Accounts'),
                     children: [
-                      if (_records.length > 1) _accountSelector(busy),
+                      if (_taskAccounts.length > 1) _accountSelector(busy),
                       if (connected)
                         command(
                           Icons.link_off,
@@ -1590,6 +1693,10 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
   bool _graphWrites = false;
   bool _googleWrites = false;
   bool _ewsDeletes = false;
+  bool _ewsCalendarDeletes = false;
+  bool _useTasks = true;
+  bool _useCalendar = true;
+  bool _useMail = false;
 
   @override
   void dispose() {
@@ -1641,6 +1748,27 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                   DropdownMenuItem(value: 'ews', child: Text('Exchange EWS')),
                 ],
               ),
+              if (!_graph && !_google) ...[
+                CheckboxListTile(
+                  title: const Text('Tasks'),
+                  value: _useTasks,
+                  onChanged: (value) => setState(() => _useTasks = value!),
+                ),
+                CheckboxListTile(
+                  title: const Text('Calendar'),
+                  value: _useCalendar,
+                  onChanged: (value) => setState(() => _useCalendar = value!),
+                ),
+                if (_ews)
+                  CheckboxListTile(
+                    title: const Text('Mail'),
+                    subtitle: const Text(
+                      'Use this Exchange login in Mail. Provide a mailbox email address or email login.',
+                    ),
+                    value: _useMail,
+                    onChanged: (value) => setState(() => _useMail = value!),
+                  ),
+              ],
               TextFormField(
                 controller: _label,
                 decoration: const InputDecoration(
@@ -1718,6 +1846,15 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                       'Moves tasks to Deleted Items. Concurrent edits can race with deletion.',
                     ),
                   ),
+                  CheckboxListTile(
+                    value: _ewsCalendarDeletes,
+                    onChanged: (value) =>
+                        setState(() => _ewsCalendarDeletes = value!),
+                    title: const Text('Allow deleting Exchange appointments'),
+                    subtitle: const Text(
+                      'Moves appointments to Deleted Items. Concurrent edits can race with deletion.',
+                    ),
+                  ),
                 ] else ...[
                   DropdownButton<CalDavServerProfile>(
                     value: _davProfile,
@@ -1779,6 +1916,28 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
       FilledButton(
         onPressed: () {
           if (!_form.currentState!.validate()) return;
+          if (!_graph &&
+              !_google &&
+              !_useTasks &&
+              !_useCalendar &&
+              !(_ews && _useMail))
+            return;
+          if (_ews &&
+              _useMail &&
+              studioExchangeMailbox({
+                    'mailbox': _mailbox.text.trim().isEmpty
+                        ? null
+                        : _mailbox.text.trim(),
+                    'login': _login.text.trim(),
+                  }) ==
+                  null) {
+            ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+              const SnackBar(
+                content: Text('Enter a mailbox email address to enable Mail.'),
+              ),
+            );
+            return;
+          }
           Navigator.pop<Map<String, Object?>>(
             context,
             _graph
@@ -1801,6 +1960,11 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                   }
                 : {
                     'provider': _provider,
+                    'services': [
+                      if (_useTasks) 'tasks',
+                      if (_useCalendar) 'calendar',
+                      if (_ews && _useMail) 'mail',
+                    ],
                     if (_label.text.trim().isNotEmpty)
                       'label': _label.text.trim(),
                     'url': (_ews ? _ewsUrl : _url).text.trim(),
@@ -1809,6 +1973,7 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
                     if (_ews) ...{
                       'domain': _domain.text.trim(),
                       'ewsDeletes': _ewsDeletes,
+                      'ewsCalendarDeletes': _ewsCalendarDeletes,
                       if (_mailbox.text.trim().isNotEmpty)
                         'mailbox': _mailbox.text.trim(),
                     } else ...{

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
+
+import 'studio_strings.dart';
 
 String studioTaskDueDate(TaskDateValue date) => switch (date) {
   TaskDate(:final year, :final month, :final day) =>
@@ -8,9 +11,15 @@ String studioTaskDueDate(TaskDateValue date) => switch (date) {
 };
 
 class StudioTaskFieldsDialog extends StatefulWidget {
-  const StudioTaskFieldsDialog({super.key, this.fields, this.draft});
+  const StudioTaskFieldsDialog({
+    super.key,
+    this.fields,
+    this.draft,
+    this.language = StudioLanguage.en,
+  });
   final TaskFields? fields;
   final TaskFields? draft;
+  final StudioLanguage language;
   @override
   State<StudioTaskFieldsDialog> createState() => _StudioTaskFieldsDialogState();
 }
@@ -30,31 +39,62 @@ class _StudioTaskFieldsDialogState extends State<StudioTaskFieldsDialog> {
     super.dispose();
   }
 
+  void _submit() {
+    final due = _dueChanged ? _due : _initial?.due;
+    final title = _title.text.trim();
+    if (title.isEmpty) return;
+    final fields = _initial ?? const TaskFields(title: '');
+    final notes = _notes.text;
+    final patch = TaskPatch(
+      title: TaskFieldPatch.set(title),
+      notes: notes == (fields.notes?.value ?? '')
+          ? const TaskFieldPatch.unchanged()
+          : notes.isEmpty
+          ? const TaskFieldPatch.clear()
+          : TaskFieldPatch.set(TaskText(notes)),
+      due: !_dueChanged
+          ? const TaskFieldPatch.unchanged()
+          : due == null
+          ? const TaskFieldPatch.clear()
+          : TaskFieldPatch.set(due),
+    );
+    Navigator.pop(context, patch.applyTo(fields));
+  }
+
   @override
   Widget build(BuildContext context) {
     final due = _dueChanged ? _due : _initial?.due;
+    final label = StudioStrings(widget.language).productivity;
     return AlertDialog(
       scrollable: true,
-      title: Text(widget.fields == null ? 'New task' : 'Edit task'),
+      title: Text(label(widget.fields == null ? 'New task' : 'Edit task')),
       content: SizedBox(
         width: 460,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (widget.draft != null)
-              const Align(
+              Align(
                 alignment: AlignmentDirectional.centerStart,
-                child: Text('On this device'),
+                child: Text(label('On this device')),
               ),
-            TextField(
-              controller: _title,
-              autofocus: true,
-              decoration: const InputDecoration(labelText: 'Title'),
+            CallbackShortcuts(
+              bindings: {
+                const SingleActivator(LogicalKeyboardKey.enter): _submit,
+                const SingleActivator(LogicalKeyboardKey.numpadEnter): _submit,
+              },
+              child: TextField(
+                controller: _title,
+                autofocus: true,
+                textInputAction: TextInputAction.done,
+                onSubmitted: (_) => _submit(),
+                decoration: InputDecoration(labelText: label('Title')),
+              ),
             ),
             TextField(
               controller: _notes,
               maxLines: 3,
-              decoration: const InputDecoration(labelText: 'Notes'),
+              decoration: InputDecoration(labelText: label('Notes')),
             ),
             Row(
               children: [
@@ -79,12 +119,14 @@ class _StudioTaskFieldsDialogState extends State<StudioTaskFieldsDialog> {
                     }
                   },
                   child: Text(
-                    due == null ? 'Set due date' : studioTaskDueDate(due),
+                    due == null
+                        ? label('Set due date')
+                        : studioTaskDueDate(due),
                   ),
                 ),
                 if (due != null)
                   IconButton(
-                    tooltip: 'Clear due date',
+                    tooltip: label('Clear due date'),
                     onPressed: () => setState(() {
                       _dueChanged = true;
                       _due = null;
@@ -99,31 +141,9 @@ class _StudioTaskFieldsDialogState extends State<StudioTaskFieldsDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(label('Cancel')),
         ),
-        FilledButton(
-          onPressed: () {
-            final title = _title.text.trim();
-            if (title.isEmpty) return;
-            final fields = _initial ?? const TaskFields(title: '');
-            final notes = _notes.text;
-            final patch = TaskPatch(
-              title: TaskFieldPatch.set(title),
-              notes: notes == (fields.notes?.value ?? '')
-                  ? const TaskFieldPatch.unchanged()
-                  : notes.isEmpty
-                  ? const TaskFieldPatch.clear()
-                  : TaskFieldPatch.set(TaskText(notes)),
-              due: !_dueChanged
-                  ? const TaskFieldPatch.unchanged()
-                  : due == null
-                  ? const TaskFieldPatch.clear()
-                  : TaskFieldPatch.set(due),
-            );
-            Navigator.pop(context, patch.applyTo(fields));
-          },
-          child: const Text('Save task'),
-        ),
+        FilledButton(onPressed: _submit, child: Text(label('Save task'))),
       ],
     );
   }

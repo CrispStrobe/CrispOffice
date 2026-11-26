@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
@@ -13,12 +14,14 @@ final class StudioCalendarEditor extends StatefulWidget {
     required this.calendarName,
     required this.save,
     this.event,
+    this.timedOnly = false,
   });
 
   final DateTime initial;
   final String calendarName;
   final Future<StudioCalendarSaveFailure?> Function(CalDavEventFields) save;
   final CalDavEvent? event;
+  final bool timedOnly;
 
   @override
   State<StudioCalendarEditor> createState() => _StudioCalendarEditorState();
@@ -174,6 +177,10 @@ final class _StudioCalendarEditorState extends State<StudioCalendarEditor> {
     );
   }
 
+  void _saveIfReady() {
+    if (!_saving && !_saveBlocked) _submit();
+  }
+
   Future<void> _submit() async {
     if (_title.text.trim().isEmpty) {
       setState(() => _error = 'Enter an event title.');
@@ -270,7 +277,7 @@ final class _StudioCalendarEditorState extends State<StudioCalendarEditor> {
               ),
             ),
           ),
-        if (!start)
+        if (!start && !widget.timedOnly)
           IconButton(
             tooltip: 'Remove end',
             icon: const Icon(Icons.clear),
@@ -295,30 +302,40 @@ final class _StudioCalendarEditorState extends State<StudioCalendarEditor> {
             Text(widget.calendarName),
             if (_saving) const LinearProgressIndicator(),
             const SizedBox(height: 12),
-            TextField(
-              autofocus: true,
-              controller: _title,
-              readOnly: _saving,
-              decoration: const InputDecoration(labelText: 'Title'),
+            CallbackShortcuts(
+              bindings: {
+                const SingleActivator(LogicalKeyboardKey.enter): _saveIfReady,
+                const SingleActivator(LogicalKeyboardKey.numpadEnter):
+                    _saveIfReady,
+              },
+              child: TextField(
+                autofocus: true,
+                textInputAction: TextInputAction.done,
+                onSubmitted: (_) => _saveIfReady(),
+                controller: _title,
+                readOnly: _saving,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('All day'),
-              value: _allDay,
-              onChanged: _saving
-                  ? null
-                  : (value) => setState(() {
-                      _allDay = value;
-                      if (!value &&
-                          _startTime.hour == 0 &&
-                          _startTime.minute == 0 &&
-                          _startTime == _endTime) {
-                        _startTime = const TimeOfDay(hour: 9, minute: 0);
-                        _endTime = const TimeOfDay(hour: 10, minute: 0);
-                      }
-                      if (!_saveBlocked) _error = null;
-                    }),
-            ),
+            if (!widget.timedOnly)
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('All day'),
+                value: _allDay,
+                onChanged: _saving
+                    ? null
+                    : (value) => setState(() {
+                        _allDay = value;
+                        if (!value &&
+                            _startTime.hour == 0 &&
+                            _startTime.minute == 0 &&
+                            _startTime == _endTime) {
+                          _startTime = const TimeOfDay(hour: 9, minute: 0);
+                          _endTime = const TimeOfDay(hour: 10, minute: 0);
+                        }
+                        if (!_saveBlocked) _error = null;
+                      }),
+              ),
             _dateRow(true),
             const SizedBox(height: 8),
             if (_hasEnd)

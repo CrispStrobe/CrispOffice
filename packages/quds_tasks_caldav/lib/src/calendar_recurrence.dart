@@ -19,7 +19,7 @@ List<CalDavEvent>? _expandCalendarSeries(
 ) {
   const maxInstances = 512;
   try {
-    final event = _readEvent(component.properties);
+    final event = _readEvent(component);
     final kind = event.start.kind;
     if (kind == CalDavDateKind.zoned ||
         event.recurrenceId != null ||
@@ -98,6 +98,7 @@ List<CalDavEvent>? _expandCalendarSeries(
               : _calendarDate(start.add(duration), kind),
           location: event.location,
           description: event.description,
+          categories: event.categories,
           recurrenceId: _calendarDate(start, kind),
         ),
     ];

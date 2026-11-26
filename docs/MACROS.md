@@ -581,8 +581,8 @@ while granting access. Open **Live MCP access** again and choose **Review
 suggestion** to inspect the content. Dismiss it, or open it in the normal app
 editor. Supported suggestions create an unsent Mail draft with an empty
 recipient field, a new task in a writable list, or an appointment in a
-writable CalDAV calendar within the visible date range. A writable task list
-and a single selected writable CalDAV calendar also offer direct approval in
+writable CalDAV or Exchange EWS calendar within the visible date range. A
+writable task list and a single selected writable calendar offer direct approval in
 the review dialog. The app shows the destination and exact proposed fields.
 The client can poll to distinguish reviewed, saved, queued and unconfirmed
 outcomes. A grant has space for one pending suggestion at a time.
@@ -592,8 +592,10 @@ with its exact fields through `productivity_propose_action`. Actions are
 pinned to the item captured when the grant started. CrispOffice shows the
 destination and action details in its review dialog. Actions include
 renaming, completing, reopening and deleting eligible tasks, plus renaming,
-rescheduling and deleting eligible CalDAV appointments. Studio rechecks task
-revisions and CalDAV event revisions before saving.
+rescheduling and deleting eligible CalDAV or Exchange EWS appointments.
+Exchange writes support standalone timed appointments. The Exchange connection
+requires a separate opt-in for deletion. Studio rechecks task and calendar
+revisions before saving.
 
 Mail can propose deletion of the selected open message. On IMAP this sets
 the Deleted flag. For a verified account with a durable Outbox and an empty
@@ -617,7 +619,7 @@ The Dart domain and transport layers already handle most of the underlying work.
 | --- | --- | --- |
 | Mail | MIME parsing, native IMAP/SMTP and EWS, Gmail and Graph API transports, synchronization runner, SQLite cache and outbox. | Credential store selection, account and folder UI, platform file access and lifecycle. |
 | Tasks | Models, patches, reconciliation, SQLite outbox and sync worker, and CalDAV, Graph, Google Tasks and EWS adapters. | Account and list selection, secure storage, OAuth browser launch and foreground scheduling. |
-| Calendar | CalDAV discovery, ranged reads and conditional writes, event codecs and recurrence expansion, and read-only EWS discovery and ranged reads. | Calendar grid and agenda, event editor, account authorization and visible-range refresh. |
+| Calendar | CalDAV and EWS discovery and ranged reads, CalDAV event codecs and conditional writes, recurrence expansion, and standalone timed EWS appointment writes. | Calendar grid and agenda, event editor, account authorization and visible-range refresh. |
 
 As with the OOXML engine, a Dart host can supply credentials, HTTP clients,
 database paths and operation leases directly. Snapshot access uses an offline

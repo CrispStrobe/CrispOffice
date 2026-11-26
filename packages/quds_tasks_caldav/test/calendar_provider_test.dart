@@ -67,6 +67,16 @@ void main() {
     },
   );
 
+  test('decodes and deduplicates categories across iCalendar properties', () {
+    final agenda = readCalDavAgenda(
+      _event.replaceFirst(
+        'UID:all-day',
+        'UID:all-day\nCATEGORIES:Work,Sales\\, EU\nCATEGORIES:Work,Personal',
+      ),
+    );
+    expect(agenda.events.first.categories, ['Work', 'Sales, EU', 'Personal']);
+  });
+
   test('rejects malformed or ambiguous event bounds', () {
     expect(
       () =>

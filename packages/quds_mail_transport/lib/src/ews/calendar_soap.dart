@@ -15,12 +15,14 @@ extension EwsCalendarSoap on EwsSoap {
           nest: () {
             for (final field in const [
               'item:Subject',
+              'item:Categories',
               'calendar:Start',
               'calendar:End',
               'calendar:IsAllDayEvent',
               'calendar:Location',
               'calendar:CalendarItemType',
               'calendar:IsCancelled',
+              'calendar:IsMeeting',
             ]) {
               builder.element('t:FieldURI', attributes: {'FieldURI': field});
             }
@@ -56,45 +58,238 @@ extension EwsCalendarSoap on EwsSoap {
         final events = <EwsCalendarEvent>[];
         final ids = <String>{};
         for (final item in items.childElements) {
-          if (item.name.local != 'CalendarItem' ||
-              item.namespaceUri != _types) {
-            EwsSoap._invalid();
-          }
-          final id = EwsSoap._id(EwsSoap._one(item, 'ItemId', _types)).id;
-          if (!ids.add(id)) EwsSoap._invalid();
+          final id = _calendarItemId(item);
+          if (!ids.add(id.id)) EwsSoap._invalid();
           if (ids.length > limits.maxPageSize) EwsSoap._quota();
-          final budget = _HeaderBudget(limits.maxHeaderBytes);
-          String? field(String name) =>
-              EwsSoap._optionalText(item, name, budget);
-          final cancelled = field('IsCancelled');
-          if (cancelled != null && EwsSoap._parseBoolean(cancelled)) continue;
-          final type = field('CalendarItemType');
-          if (!const {'Single', 'Occurrence', 'Exception'}.contains(type)) {
-            EwsSoap._invalid();
-          }
-          final allDay = EwsSoap._parseBoolean(field('IsAllDayEvent'));
-          final start = _calendarTime(field('Start'));
-          final end = _calendarTime(field('End'));
-          if (end.instant.isBefore(start.instant)) EwsSoap._invalid();
-          final dayStart = allDay ? start.date : null;
-          final dayEnd = allDay ? end.date : null;
-          if (dayEnd != null && !dayEnd.isAfter(dayStart!)) {
-            EwsSoap._invalid();
-          }
-          events.add(
-            EwsCalendarEvent(
-              id: id,
-              title: field('Subject') ?? '',
-              start: start.instant,
-              end: end.instant,
-              location: field('Location'),
-              allDayStart: dayStart,
-              allDayEnd: dayEnd,
-            ),
-          );
+          final event = _calendarEvent(item, id);
+          if (event != null) events.add(event);
         }
         return (complete: complete, events: events);
       });
+
+  String getCalendarAppointment(String id) => _request('GetItem', (builder) {
+    builder.element(
+      'm:ItemShape',
+      nest: () {
+        builder.element('t:BaseShape', nest: 'IdOnly');
+        builder.element('t:BodyType', nest: 'Text');
+        builder.element(
+          't:AdditionalProperties',
+          nest: () {
+            for (final field in const [
+              'item:Subject',
+              'item:Body',
+              'item:Categories',
+              'item:ParentFolderId',
+              'calendar:Start',
+              'calendar:End',
+              'calendar:IsAllDayEvent',
+              'calendar:Location',
+              'calendar:CalendarItemType',
+              'calendar:IsCancelled',
+              'calendar:IsMeeting',
+            ]) {
+              builder.element('t:FieldURI', attributes: {'FieldURI': field});
+            }
+          },
+        );
+      },
+    );
+    builder.element('m:ItemIds', nest: () => _itemId(builder, id));
+  });
+
+  EwsCalendarEvent calendarAppointment(
+    String xml, {
+    required String folder,
+    required String id,
+    required String revision,
+  }) => EwsSoap._guard(() {
+    final responses = _responses(xml, 'GetItem', allowMissing: true);
+    if (responses.length != 1) EwsSoap._invalid();
+    final response = responses.single;
+    if (response == null) throw const EwsException(MailProblemCode.conflict);
+    final items = EwsSoap._one(response, 'Items', _messages).childElements;
+    if (items.length != 1) EwsSoap._invalid();
+    final item = items.single;
+    final identity = _calendarItemId(item);
+    final parent = EwsSoap._one(item, 'ParentFolderId', _types);
+    if (identity.id != id ||
+        identity.changeKey != revision ||
+        parent.getAttribute('Id') != folder) {
+      throw const EwsException(MailProblemCode.conflict);
+    }
+    final event = _calendarEvent(item, identity);
+    if (event == null || event.appointmentRevision == null) {
+      throw const EwsException(MailProblemCode.unsupported);
+    }
+    return event;
+  });
+
+  String createCalendarAppointment(
+    String folder,
+    EwsAppointmentFields fields,
+  ) => _request(
+    'CreateItem',
+    (builder) {
+      builder.element(
+        'm:SavedItemFolderId',
+        nest: () => _folderId(builder, folder),
+      );
+      builder.element(
+        'm:Items',
+        nest: () {
+          builder.element(
+            't:CalendarItem',
+            nest: () {
+              for (final entry in _appointmentProperties(fields).entries) {
+                if (entry.value != null) {
+                  _writeProperty(builder, entry.key, entry.value!);
+                }
+              }
+            },
+          );
+        },
+      );
+    },
+    attributes: const {
+      'MessageDisposition': 'SaveOnly',
+      'SendMeetingInvitations': 'SendToNone',
+    },
+  );
+
+  String updateCalendarAppointment(
+    String id,
+    String revision,
+    Map<String, String?> changes,
+  ) => _request(
+    'UpdateItem',
+    (builder) {
+      builder.element(
+        'm:ItemChanges',
+        nest: () {
+          builder.element(
+            't:ItemChange',
+            nest: () {
+              _itemId(builder, id, revision);
+              builder.element(
+                't:Updates',
+                nest: () {
+                  for (final entry in changes.entries) {
+                    final value = entry.value;
+                    builder.element(
+                      value == null ? 't:DeleteItemField' : 't:SetItemField',
+                      nest: () {
+                        builder.element(
+                          't:FieldURI',
+                          attributes: {'FieldURI': entry.key},
+                        );
+                        if (value != null) {
+                          builder.element(
+                            't:CalendarItem',
+                            nest: () =>
+                                _writeProperty(builder, entry.key, value),
+                          );
+                        }
+                      },
+                    );
+                  }
+                },
+              );
+            },
+          );
+        },
+      );
+    },
+    attributes: const {
+      'MessageDisposition': 'SaveOnly',
+      'ConflictResolution': 'NeverOverwrite',
+      'SendMeetingInvitationsOrCancellations': 'SendToNone',
+    },
+  );
+
+  String deleteCalendarAppointment(String id, String revision) => _request(
+    'DeleteItem',
+    (builder) {
+      builder.element('m:ItemIds', nest: () => _itemId(builder, id, revision));
+    },
+    attributes: const {
+      'DeleteType': 'MoveToDeletedItems',
+      'SendMeetingCancellations': 'SendToNone',
+    },
+  );
+
+  EwsItemId? calendarMutation(String xml, String action) => EwsSoap._guard(() {
+    final responses = _responses(xml, action, taskMutation: true);
+    if (responses.length != 1) EwsSoap._invalid();
+    final response = responses.single!;
+    final conflicts = EwsSoap._optional(response, 'ConflictResults', _messages);
+    if (conflicts != null &&
+        EwsSoap._one(conflicts, 'Count', _types).innerText != '0') {
+      throw const EwsException(MailProblemCode.conflict);
+    }
+    final items =
+        EwsSoap._optional(
+          response,
+          'Items',
+          _messages,
+        )?.childElements.toList() ??
+        const <XmlElement>[];
+    if (action == 'DeleteItem' && items.isEmpty) return null;
+    if (action == 'DeleteItem' || items.length != 1) EwsSoap._invalid();
+    return _calendarItemId(items.single);
+  });
+
+  EwsItemId _calendarItemId(XmlElement item) {
+    if (item.name.local != 'CalendarItem' || item.namespaceUri != _types) {
+      EwsSoap._invalid();
+    }
+    return EwsSoap._id(EwsSoap._one(item, 'ItemId', _types));
+  }
+
+  EwsCalendarEvent? _calendarEvent(XmlElement item, EwsItemId id) {
+    final budget = _HeaderBudget(limits.maxHeaderBytes);
+    String? field(String name) => EwsSoap._optionalText(item, name, budget);
+    final cancelled = field('IsCancelled');
+    if (cancelled != null && EwsSoap._parseBoolean(cancelled)) return null;
+    final meeting = field('IsMeeting');
+    final isAppointment = meeting != null && !EwsSoap._parseBoolean(meeting);
+    final type = field('CalendarItemType');
+    if (!const {'Single', 'Occurrence', 'Exception'}.contains(type)) {
+      EwsSoap._invalid();
+    }
+    final allDay = EwsSoap._parseBoolean(field('IsAllDayEvent'));
+    final start = _calendarTime(field('Start'));
+    final end = _calendarTime(field('End'));
+    if (end.instant.isBefore(start.instant)) EwsSoap._invalid();
+    final dayStart = allDay ? start.date : null;
+    final dayEnd = allDay ? end.date : null;
+    if (dayEnd != null && !dayEnd.isAfter(dayStart!)) EwsSoap._invalid();
+    final categories = EwsSoap._optional(item, 'Categories', _types);
+    return EwsCalendarEvent(
+      id: id.id,
+      title: field('Subject') ?? '',
+      start: start.instant,
+      end: end.instant,
+      location: field('Location'),
+      description: field('Body'),
+      categories: categories == null
+          ? const []
+          : List.unmodifiable(
+              categories
+                  .findElements('String', namespaceUri: _types)
+                  .map((entry) => EwsSoap._text(entry, budget)),
+            ),
+      allDayStart: dayStart,
+      allDayEnd: dayEnd,
+      appointmentRevision:
+          type == 'Single' &&
+              isAppointment &&
+              !allDay &&
+              end.instant.isAfter(start.instant)
+          ? id.changeKey
+          : null,
+    );
+  }
 }
 
 final _calendarTimestamp = RegExp(
@@ -130,4 +325,21 @@ final _calendarTimestamp = RegExp(
     instant: instant,
     date: DateTime.utc(display.year, display.month, display.day),
   );
+}
+
+Map<String, String?> _appointmentProperties(EwsAppointmentFields fields) => {
+  'item:Subject': fields.title,
+  'item:Body': fields.description,
+  'calendar:Start': fields.start.toIso8601String(),
+  'calendar:End': fields.end.toIso8601String(),
+  'calendar:Location': fields.location,
+};
+
+Map<String, String?> ewsAppointmentChanges(
+  EwsAppointmentFields before,
+  EwsAppointmentFields after,
+) {
+  final previous = _appointmentProperties(before);
+  return _appointmentProperties(after)
+    ..removeWhere((key, value) => previous[key] == value);
 }

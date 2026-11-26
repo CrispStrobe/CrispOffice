@@ -10,6 +10,7 @@ final class CalDavEvent {
     this.location,
     this.description,
     this.recurrenceId,
+    this.categories = const [],
   });
 
   final String uid;
@@ -19,6 +20,7 @@ final class CalDavEvent {
   final String? location;
   final String? description;
   final CalDavDateValue? recurrenceId;
+  final List<String> categories;
 }
 
 final class CalDavAgenda {
@@ -48,6 +50,7 @@ CalDavAgenda readCalDavAgenda(
   final components = <_AgendaComponent>[];
   var properties = <String, _Property>{};
   var recurrence = <_Property>[];
+  var categories = <String>{};
   var roots = 0;
   var versions = 0;
   const fields = {
@@ -81,6 +84,7 @@ CalDavAgenda readCalDavAgenda(
           if (component == 'VEVENT') {
             properties = {};
             recurrence = [];
+            categories = {};
           }
           stack.add(component);
         } else {
@@ -88,7 +92,13 @@ CalDavAgenda readCalDavAgenda(
             throw const FormatException('Unbalanced calendar component.');
           }
           if (component == 'VEVENT') {
-            components.add(_AgendaComponent(properties, recurrence));
+            components.add(
+              _AgendaComponent(
+                properties,
+                recurrence,
+                List.unmodifiable(categories),
+              ),
+            );
           }
         }
       default:
@@ -108,6 +118,13 @@ CalDavAgenda readCalDavAgenda(
             'EXRULE',
           }.contains(property.name)) {
             recurrence.add(property);
+          } else if (property.name == 'CATEGORIES') {
+            for (final match in RegExp(
+              r'(?:\\.|[^,\\])+',
+            ).allMatches(property.value)) {
+              final category = _decodeText(match[0]!).trim();
+              if (category.isNotEmpty) categories.add(category);
+            }
           } else if (fields.contains(property.name)) {
             if (properties.containsKey(property.name)) {
               throw const FormatException('Duplicate VEVENT property.');
@@ -142,7 +159,7 @@ CalDavAgenda readCalDavAgenda(
     }
     if (component.cancelled) continue;
     if (component.recurrence.isEmpty) {
-      final event = _readEvent(component.properties);
+      final event = _readEvent(component);
       if (window == null ||
           event.recurrenceId == null ||
           !masters.containsKey(uid) ||
@@ -168,10 +185,11 @@ CalDavAgenda readCalDavAgenda(
 }
 
 final class _AgendaComponent {
-  const _AgendaComponent(this.properties, this.recurrence);
+  const _AgendaComponent(this.properties, this.recurrence, this.categories);
 
   final Map<String, _Property> properties;
   final List<_Property> recurrence;
+  final List<String> categories;
 
   String? get uid => _eventText(properties['UID']);
   _Property? get recurrenceId => properties['RECURRENCE-ID'];
@@ -191,7 +209,8 @@ CalDavDateValue? _eventDate(_Property? property, [String? value]) =>
         timeZone: property.parameter('TZID'),
       );
 
-CalDavEvent _readEvent(Map<String, _Property> properties) {
+CalDavEvent _readEvent(_AgendaComponent component) {
+  final properties = component.properties;
   String? text(String key) => _eventText(properties[key]);
   CalDavDateValue? date(String key) => _eventDate(properties[key]);
   final uid = text('UID');
@@ -215,5 +234,6 @@ CalDavEvent _readEvent(Map<String, _Property> properties) {
     location: text('LOCATION'),
     description: text('DESCRIPTION'),
     recurrenceId: date('RECURRENCE-ID'),
+    categories: component.categories,
   );
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
@@ -94,48 +95,132 @@ CalDavConnectionSettings studioDavSettings(
 
 enum StudioProductivityService { mail, tasks, calendar }
 
+final studioProductivityAccountChanges = ValueNotifier<int>(0);
+
+String _serviceKey(TaskAccountId account) =>
+    'crispoffice.account.services.${base64Url.encode(utf8.encode(jsonEncode([account.provider, account.value])))}';
+
+Set<StudioProductivityService> studioAvailableServices(
+  TaskAccountId id,
+  Map<String, Object?> record,
+) => {
+  StudioProductivityService.tasks,
+  if (id.provider == 'caldav' || id.provider == 'ews')
+    StudioProductivityService.calendar,
+  if (id.provider == 'ews' && studioExchangeMailbox(record) != null)
+    StudioProductivityService.mail,
+};
+
+String? studioExchangeMailbox(Map<String, Object?> record) {
+  final address = (record['mailbox'] as String? ?? record['login'] as String?)
+      ?.trim();
+  if (address == null || !RegExp(r'^[^@\s]+@[^@\s]+$').hasMatch(address)) {
+    return null;
+  }
+  return address;
+}
+
+Set<StudioProductivityService> studioDefaultServices(
+  TaskAccountId id,
+  Map<String, Object?> record,
+) {
+  final available = studioAvailableServices(id, record);
+  final values = record['services'] as List<Object?>?;
+  return {
+    for (final service in available)
+      if (values?.contains(service.name) ??
+          service != StudioProductivityService.mail)
+        service,
+  };
+}
+
+Future<Set<StudioProductivityService>> studioAccountServices(
+  SecureStorage vault,
+  TaskAccountId id,
+  Map<String, Object?> record,
+) async {
+  final saved = await vault.read(_serviceKey(id));
+  if (saved == null) return studioDefaultServices(id, record);
+  final requested = jsonDecode(saved) as List<Object?>;
+  return studioAvailableServices(
+    id,
+    record,
+  ).where((service) => requested.contains(service.name)).toSet();
+}
+
+Future<void> saveStudioAccountServices(
+  SecureStorage vault,
+  TaskAccountId id,
+  Set<StudioProductivityService> requested,
+) async {
+  final catalog = await StudioTaskAccountCatalog.load(vault);
+  final record = catalog.records[id];
+  if (record == null ||
+      requested.isEmpty ||
+      !studioAvailableServices(id, record).containsAll(requested)) {
+    throw StateError('The saved connection or its available services changed.');
+  }
+  await vault.write(
+    _serviceKey(id),
+    jsonEncode(requested.map((service) => service.name).toList()),
+  );
+  studioProductivityAccountChanges.value++;
+}
+
+Future<void> resetStudioAccountServices(
+  SecureStorage vault,
+  TaskAccountId id,
+) => vault.delete(_serviceKey(id));
+
 typedef StudioProductivityAccount = ({
   String label,
+  TaskAccountId? id,
   Set<StudioProductivityService> services,
+  Set<StudioProductivityService> available,
 });
 
-/// Catalog view only. Mail and DAV grants remain protocol specific. An exact
-/// email login can group entries for display, without selecting either account.
 Future<List<StudioProductivityAccount>> loadStudioProductivityAccounts(
-  SecureStorage vault,
-) async {
+  SecureStorage vault, {
+  bool groupByAddress = true,
+}) async {
   final mail = await StudioMailAccountsStore(
     storage: () async => vault,
   ).loadAccounts();
   if (!mail.isSuccess) throw StateError('Could not read saved mail accounts.');
   final tasks = await StudioTaskAccountCatalog.load(vault);
-  final entries = <String, StudioProductivityAccount>{};
-  void add(String key, String label, Set<StudioProductivityService> services) {
-    final previous = entries[key];
-    entries[key] = (
-      label: previous?.label ?? label,
-      services: Set.unmodifiable({...?previous?.services, ...services}),
+  final rows = [
+    for (final row in mail.catalog!.accounts)
+      (
+        label: row.credentials.email.trim(),
+        id: null,
+        services: const {StudioProductivityService.mail},
+        available: const <StudioProductivityService>{},
+      ),
+    for (final MapEntry(:key, :value) in tasks.records.entries)
+      (
+        label: studioTaskAccountLabel(key, value),
+        id: key,
+        services: await studioAccountServices(vault, key, value),
+        available: studioAvailableServices(key, value),
+      ),
+  ];
+  if (!groupByAddress) return List.unmodifiable(rows);
+  final grouped = <String, StudioProductivityAccount>{};
+  for (final row in rows) {
+    final id = row.id;
+    final login = id == null
+        ? row.label
+        : (tasks.records[id]?['login'] as String?)?.trim();
+    final key = login != null && login.contains('@')
+        ? 'email:$login'
+        : 'service:${id?.provider}:${id?.value}';
+    final previous = grouped[key];
+    grouped[key] = (
+      label: previous?.label ?? row.label,
+      id: row.id ?? previous?.id,
+      services: Set.unmodifiable({...?previous?.services, ...row.services}),
+      available: Set.unmodifiable({...?previous?.available, ...row.available}),
     );
   }
-
-  for (final row in mail.catalog!.accounts) {
-    final email = row.credentials.email.trim();
-    add('email:$email', email, {StudioProductivityService.mail});
-  }
-  for (final MapEntry(:key, :value) in tasks.records.entries) {
-    final login = value['login'] as String?;
-    final email = login?.trim();
-    add(
-      email != null && email.contains('@')
-          ? 'email:$email'
-          : 'task:${key.provider}:${key.value}',
-      studioTaskAccountLabel(key, value),
-      {
-        StudioProductivityService.tasks,
-        if (key.provider == 'caldav' || key.provider == 'ews')
-          StudioProductivityService.calendar,
-      },
-    );
-  }
-  return List.unmodifiable(entries.values);
+  return List.unmodifiable(grouped.values);
 }

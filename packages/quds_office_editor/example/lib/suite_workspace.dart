@@ -231,6 +231,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   bool _tasksOpen = false;
   bool _tasksEverOpened = false;
   bool _calendarOpen = false;
+  bool _calendarEverOpened = false;
 
   @override
   void initState() {
@@ -723,6 +724,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   buildStudioTasks(
                                     _t('Tasks', 'Aufgaben', 'المهام'),
                                     _closeTasks,
+                                    language: _language,
                                     chromeBuilder: (_) =>
                                         _titleBar(tasks: true),
                                     compactRibbon: _ribbonPreferences.compact,
@@ -733,11 +735,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   )
                                 else
                                   const SizedBox.shrink(),
-                                if (_calendarOpen)
+                                if (_calendarEverOpened)
                                   buildStudioCalendar(
                                     _t('Calendar', 'Kalender', 'التقويم'),
                                     (_) => _titleBar(calendar: true),
                                     _openConnections,
+                                    active: _calendarOpen,
                                     compactRibbon: _ribbonPreferences.compact,
                                     showCommandLabels:
                                         _ribbonPreferences.showCommandLabels,
@@ -1575,12 +1578,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
     // Mail is cached inline while switching apps. Quit is terminal, so dispose
     // it now and let its draft owner flush before approving the native close.
-    if (_mailEverOpened || _tasksEverOpened || _calendarOpen) {
+    if (_mailEverOpened || _tasksEverOpened || _calendarEverOpened) {
       setState(() {
         _mailOpen = false;
         _mailEverOpened = false;
         _tasksOpen = false;
         _tasksEverOpened = false;
+        _calendarEverOpened = false;
         _calendarOpen = false;
       });
       await WidgetsBinding.instance.endOfFrame;
@@ -2439,6 +2443,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _workspaceDirectionChord.reset();
     setState(() {
       _calendarOpen = true;
+      _calendarEverOpened = true;
     });
     unawaited(
       StudioWindow.setTitle(
@@ -2459,7 +2464,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     unawaited(StudioWindow.setTitle('$title — CrispOffice'));
   }
 
-  void _openConnections() => unawaited(showStudioConnections(_themedContext));
+  void _openConnections() =>
+      unawaited(showStudioConnections(_themedContext, language: _language));
 
   void _closeTasks() {
     if (!_tasksOpen) return;

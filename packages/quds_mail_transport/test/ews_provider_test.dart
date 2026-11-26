@@ -288,6 +288,226 @@ void main() {
       ),
     ];
 
+    String appointment({
+      String revision = 'event-key',
+      String folder = 'main',
+      bool meeting = false,
+    }) => event('appointment')
+        .replaceFirst('event-key', revision)
+        .replaceFirst(
+          '<t:Subject>',
+          '<t:ParentFolderId Id="$folder"/><t:Body BodyType="Text">Keep notes</t:Body><t:Subject>',
+        )
+        .replaceFirst(
+          '<t:IsCancelled>',
+          '<t:IsMeeting>$meeting</t:IsMeeting><t:IsCancelled>',
+        );
+
+    String itemResponse(String action, String item) =>
+        _response(action, _success(action, '<m:Items>$item</m:Items>'));
+
+    Future<TaskListId> calendarId(
+      NativeEwsCalendarReader reader,
+      _Fixture fixture,
+    ) async {
+      final result = await reader.calendars(fixture.session.begin());
+      return (result as TaskSuccess<List<EwsCalendar>>).value.first.id;
+    }
+
+    final observed = EwsCalendarEvent(
+      id: 'appointment',
+      title: 'Appointment & notes',
+      start: DateTime.utc(2026, 11, 25, 10),
+      end: DateTime.utc(2026, 11, 26, 12),
+      location: 'Meeting room',
+      appointmentRevision: 'event-key',
+    );
+    final updated = (
+      title: 'Changed <title>',
+      start: observed.start,
+      end: observed.end,
+      location: null,
+      description: 'Keep notes',
+    );
+
+    test('creates in the chosen folder and makes sparse conditional updates', () async {
+      final fixture = _Fixture();
+      final reader = NativeEwsCalendarReader(
+        account: account,
+        connection: fixture.provider(),
+      );
+      fixture.scripts.addAll([
+        discovery(),
+        [('FindItem', (_) => page(appointment()))],
+        [
+          (
+            'CreateItem',
+            (request) {
+              expect(request, contains('SendMeetingInvitations="SendToNone"'));
+              expect(request, contains('<t:FolderId Id="main"/>'));
+              expect(
+                XmlDocument.parse(request).descendants
+                    .whereType<XmlElement>()
+                    .singleWhere((element) => element.name.local == 'Subject')
+                    .innerText,
+                updated.title,
+              );
+              return itemResponse(
+                'CreateItem',
+                '<t:CalendarItem><t:ItemId Id="new" ChangeKey="created"/></t:CalendarItem>',
+              );
+            },
+          ),
+        ],
+        [
+          ('GetItem', (_) => itemResponse('GetItem', appointment())),
+          (
+            'UpdateItem',
+            (request) {
+              expect(request, contains('ConflictResolution="NeverOverwrite"'));
+              expect(
+                request,
+                contains('SendMeetingInvitationsOrCancellations="SendToNone"'),
+              );
+              expect(request, contains('ChangeKey="event-key"'));
+              expect(request, contains('FieldURI="item:Subject"'));
+              expect(
+                request,
+                contains(
+                  '<t:DeleteItemField><t:FieldURI FieldURI="calendar:Location"/>',
+                ),
+              );
+              expect(request, isNot(contains('FieldURI="item:Body"')));
+              expect(request, isNot(contains('FieldURI="calendar:Start"')));
+              return _response(
+                'UpdateItem',
+                _success(
+                  'UpdateItem',
+                  '<m:Items><t:CalendarItem><t:ItemId Id="appointment" ChangeKey="updated"/></t:CalendarItem></m:Items>'
+                      '<m:ConflictResults><t:Count>0</t:Count></m:ConflictResults>',
+                ),
+              );
+            },
+          ),
+        ],
+      ]);
+      final id = await calendarId(reader, fixture);
+      final result = await reader.agenda(
+        id,
+        start: start,
+        end: end,
+        lease: fixture.session.begin(),
+      );
+      final listed =
+          (result as TaskSuccess<List<EwsCalendarEvent>>).value.single;
+      expect(listed.appointmentRevision, 'event-key');
+      expect(
+        await reader.createAppointment(id, updated, fixture.session.begin()),
+        isA<TaskSuccess<TaskUnit>>(),
+      );
+      expect(
+        await reader.updateAppointment(
+          id,
+          listed,
+          updated,
+          fixture.session.begin(),
+        ),
+        isA<TaskSuccess<TaskUnit>>(),
+      );
+    });
+
+    test(
+      'rejects stale, moved, meeting and revoked writes before dispatch',
+      () async {
+        final fixture = _Fixture();
+        final reader = NativeEwsCalendarReader(
+          account: account,
+          connection: fixture.provider(),
+        );
+        fixture.scripts.add(discovery());
+        final id = await calendarId(reader, fixture);
+        for (final (item, code, allowed) in [
+          (appointment(revision: 'new-key'), TaskProblemCode.conflict, true),
+          (appointment(folder: 'team'), TaskProblemCode.conflict, true),
+          (appointment(meeting: true), TaskProblemCode.unsupported, true),
+          (appointment(), TaskProblemCode.staleOperation, false),
+        ]) {
+          fixture.scripts.add([
+            ('GetItem', (_) => itemResponse('GetItem', item)),
+          ]);
+          final result = await reader.updateAppointment(
+            id,
+            observed,
+            updated,
+            fixture.session.begin(),
+            canWrite: () => allowed,
+          );
+          final problem = (result as TaskFailure<TaskUnit>).problem;
+          expect(problem.code, code);
+          expect(problem.mutationMayHaveOccurred, isFalse);
+          expect(fixture.clients.last.mutationStarted, isFalse);
+        }
+        final result = await reader.deleteAppointment(
+          id,
+          observed,
+          fixture.session.begin(),
+        );
+        expect(
+          (result as TaskFailure<TaskUnit>).problem.code,
+          TaskProblemCode.unsupported,
+        );
+      },
+    );
+
+    test(
+      'moves opted-in deletions to Deleted Items and reports uncertain receipts',
+      () async {
+        final fixture = _Fixture();
+        final reader = NativeEwsCalendarReader(
+          account: account,
+          connection: fixture.provider(),
+          canDeleteAppointments: true,
+        );
+        fixture.scripts.addAll([
+          discovery(),
+          [
+            ('GetItem', (_) => itemResponse('GetItem', appointment())),
+            (
+              'DeleteItem',
+              (request) {
+                expect(request, contains('DeleteType="MoveToDeletedItems"'));
+                expect(
+                  request,
+                  contains('SendMeetingCancellations="SendToNone"'),
+                );
+                expect(
+                  request,
+                  contains('Id="appointment" ChangeKey="event-key"'),
+                );
+                return _response('DeleteItem', _success('DeleteItem', ''));
+              },
+            ),
+          ],
+          [('CreateItem', (_) => '<unconfirmed/>')],
+        ]);
+        final id = await calendarId(reader, fixture);
+        expect(
+          await reader.deleteAppointment(id, observed, fixture.session.begin()),
+          isA<TaskSuccess<TaskUnit>>(),
+        );
+        final result = await reader.createAppointment(
+          id,
+          updated,
+          fixture.session.begin(),
+        );
+        expect(
+          (result as TaskFailure<TaskUnit>).problem.mutationMayHaveOccurred,
+          isTrue,
+        );
+        expect(fixture.clients.last.requests, hasLength(1));
+      },
+    );
+
     test(
       'discovers folders and splits capped views without duplicates',
       () async {

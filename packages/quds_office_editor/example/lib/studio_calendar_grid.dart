@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav.dart';
@@ -75,6 +77,8 @@ final class StudioCalendarGrid extends StatefulWidget {
 final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
   final _controller = EventController<CalDavEvent>();
   final _unplaced = <CalDavEvent>{};
+  final _monthEvents = <DateTime, List<_GridEvent>>{};
+  final _expandedWeeks = <DateTime>{};
 
   @override
   void initState() {
@@ -104,6 +108,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
     final tiles = <_GridEvent>[];
     final counts = <DateTime, int>{};
     _unplaced.clear();
+    _monthEvents.clear();
     for (final event in widget.events) {
       final start = event.start;
       final end = event.end;
@@ -137,7 +142,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         // Bound the renderer's overlap arrangement and keep dense
         // schedules accessible through the agenda and overflow list.
         final count = counts[day] ?? 0;
-        if (count == 64) {
+        if (widget.period != StudioCalendarPeriod.month && count == 64) {
           _unplaced.add(event);
           continue;
         }
@@ -152,15 +157,18 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         final displayEnd = startMinute == 0 && endMinute == 1440
             ? 1439
             : endMinute.clamp(startMinute + 1, 1440);
-        tiles.add(
-          CalendarEventData(
-            title: _title(event),
-            date: day,
-            startTime: allDay ? null : day.add(Duration(minutes: startMinute)),
-            endTime: allDay ? null : day.add(Duration(minutes: displayEnd)),
-            event: event,
-          ),
+        final tile = CalendarEventData(
+          title: _title(event),
+          date: day,
+          startTime: allDay ? null : day.add(Duration(minutes: startMinute)),
+          endTime: allDay ? null : day.add(Duration(minutes: displayEnd)),
+          event: event,
         );
+        if (widget.period == StudioCalendarPeriod.month) {
+          _monthEvents.putIfAbsent(day, () => []).add(tile);
+        } else {
+          tiles.add(tile);
+        }
       }
     }
     _controller
@@ -304,42 +312,167 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
 
   Widget _monthCell(
     DateTime day,
+    DateTime today,
     List<_GridEvent> events,
-    bool today,
-    bool inMonth,
+    int slots,
+    VoidCallback toggleWeek,
+    bool expanded,
   ) {
-    if (!inMonth) return const SizedBox.shrink();
     final scheme = Theme.of(context).colorScheme;
-    return ColoredBox(
-      color: today ? scheme.surfaceContainerHighest : scheme.surface,
-      child: Padding(
-        padding: const EdgeInsets.all(3),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  minimumSize: const Size(28, 24),
-                  padding: EdgeInsets.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                onPressed: () => widget.openDay(day),
-                child: Text(
-                  MaterialLocalizations.of(context).formatDecimal(day.day),
-                  semanticsLabel: MaterialLocalizations.of(
-                    context,
-                  ).formatFullDate(day),
-                ),
-              ),
-            ),
-            _eventStrip(events, day),
-          ],
+    final locale = MaterialLocalizations.of(context);
+    final shown = !expanded && events.length > slots
+        ? math.max(0, slots - 1)
+        : events.length;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: day == today ? scheme.surfaceContainerHighest : scheme.surface,
+        border: BorderDirectional(
+          end: BorderSide(color: scheme.outlineVariant),
+          bottom: BorderSide(color: scheme.outlineVariant),
         ),
       ),
+      child: day.month != widget.start.month
+          ? const SizedBox.expand()
+          : Padding(
+              padding: const EdgeInsets.all(2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(28, 24),
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      onPressed: () => widget.openDay(day),
+                      child: Text(
+                        locale.formatDecimal(day.day),
+                        semanticsLabel: locale.formatFullDate(day),
+                      ),
+                    ),
+                  ),
+                  for (final event in events.take(shown))
+                    SizedBox(height: 22, child: _tile(event)),
+                  if (events.length > slots &&
+                      (shown < events.length || expanded))
+                    SizedBox(
+                      height: 22,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          visualDensity: VisualDensity.compact,
+                        ),
+                        onPressed: toggleWeek,
+                        child: Text(
+                          expanded
+                              ? '−'
+                              : '+${locale.formatDecimal(events.length - shown)}',
+                          semanticsLabel: expanded
+                              ? 'Collapse week'
+                              : 'Expand week',
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
     );
   }
+
+  Widget _monthGrid() => LayoutBuilder(
+    builder: (context, constraints) {
+      final scheme = Theme.of(context).colorScheme;
+      final locale = MaterialLocalizations.of(context);
+      final start = _civil(widget.start);
+      final end = _civil(widget.end);
+      final today = _civil(DateTime.now());
+      final firstWeekday = locale.firstDayOfWeekIndex;
+      final offset = (start.weekday % 7 - firstWeekday) % 7;
+      final weekCount = (offset + end.difference(start).inDays + 6) ~/ 7;
+      final first = start.subtract(Duration(days: offset));
+      final rowHeight = math.max(
+        51.0,
+        (constraints.maxHeight - 30) / weekCount,
+      );
+      final slots = math.max(1, (rowHeight - 29) ~/ 22);
+      return Column(
+        children: [
+          ColoredBox(
+            color: scheme.surfaceContainer,
+            child: SizedBox(
+              height: 30,
+              child: Row(
+                children: [
+                  for (var index = 0; index < 7; index++)
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          locale.narrowWeekdays[(firstWeekday + index) % 7],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              primary: false,
+              padding: EdgeInsets.zero,
+              itemCount: weekCount,
+              itemBuilder: (context, week) {
+                final weekStart = first.add(Duration(days: 7 * week));
+                final days = List.generate(
+                  7,
+                  (index) => weekStart.add(Duration(days: index)),
+                );
+                final events = days
+                    .map((day) => _monthEvents[day] ?? const <_GridEvent>[])
+                    .toList();
+                final expanded = _expandedWeeks.contains(weekStart);
+                final maxEvents = events
+                    .map((day) => day.length)
+                    .reduce(math.max);
+                final height = expanded
+                    ? math.max(rowHeight, 29 + 22.0 * (maxEvents + 1))
+                    : rowHeight;
+                return SizedBox(
+                  height: height,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (var index = 0; index < 7; index++)
+                        Expanded(
+                          child: _monthCell(
+                            days[index],
+                            today,
+                            events[index],
+                            slots,
+                            () {
+                              setState(() {
+                                if (expanded) {
+                                  _expandedWeeks.remove(weekStart);
+                                } else {
+                                  _expandedWeeks.add(weekStart);
+                                }
+                              });
+                            },
+                            expanded,
+                          ),
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      );
+    },
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -401,38 +534,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         onDateTap: widget.createEvent,
         fullDayEventBuilder: _eventStrip,
       ),
-      StudioCalendarPeriod.month => LayoutBuilder(
-        builder: (context, constraints) => MonthView<CalDavEvent>(
-          controller: _controller,
-          monthViewStyle: MonthViewStyle(
-            initialMonth: start,
-            minMonth: start,
-            maxMonth: end,
-            pageViewPhysics: paging,
-            hideDaysNotInMonth: true,
-            cellAspectRatio: constraints.maxWidth / (7 * 106),
-            borderColor: scheme.outlineVariant,
-          ),
-          // MonthView 2.0 stores its builder as a raw generic internally.
-          monthViewBuilders: MonthViewBuilders<Object?>(
-            headerBuilder: (_) => const SizedBox.shrink(),
-            weekDayBuilder: (index) => ColoredBox(
-              color: scheme.surfaceContainer,
-              child: SizedBox(
-                height: 40,
-                child: Center(
-                  child: Text(
-                    locale.narrowWeekdays[(index + 1) % 7],
-                    style: TextStyle(color: scheme.onSurface),
-                  ),
-                ),
-              ),
-            ),
-            cellBuilder: (day, events, today, inMonth, _) =>
-                _monthCell(day, events.cast<_GridEvent>(), today, inMonth),
-          ),
-        ),
-      ),
+      StudioCalendarPeriod.month => _monthGrid(),
     };
     return Column(
       children: [

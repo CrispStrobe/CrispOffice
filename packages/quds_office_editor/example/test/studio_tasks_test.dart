@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -42,7 +43,8 @@ void main() {
       find.widgetWithText(TextField, 'Notes'),
       'Follow up Monday',
     );
-    await tester.tap(find.text('Save task'));
+    await tester.tap(find.widgetWithText(TextField, 'Title'));
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
     await tester.pumpAndSettle();
     expect(find.text('Plan the fixture'), findsOneWidget);
     await tester.tap(find.byTooltip('Export automation snapshot'));

@@ -31,6 +31,7 @@ Widget buildStudioCalendar(
   String title,
   WidgetBuilder chromeBuilder,
   VoidCallback openConnections, {
+  bool active = true,
   required bool compactRibbon,
   required bool showCommandLabels,
   required bool showGroupLabels,
@@ -38,6 +39,7 @@ Widget buildStudioCalendar(
   title: title,
   chromeBuilder: chromeBuilder,
   openConnections: openConnections,
+  active: active,
   compactRibbon: compactRibbon,
   showCommandLabels: showCommandLabels,
   showGroupLabels: showGroupLabels,
@@ -49,6 +51,7 @@ final class StudioCalendarPage extends StatefulWidget {
     required this.title,
     required this.chromeBuilder,
     required this.openConnections,
+    this.active = true,
     this.compactRibbon = false,
     this.showCommandLabels = true,
     this.showGroupLabels = true,
@@ -61,6 +64,7 @@ final class StudioCalendarPage extends StatefulWidget {
   final String title;
   final WidgetBuilder chromeBuilder;
   final VoidCallback openConnections;
+  final bool active;
   final bool compactRibbon;
   final bool showCommandLabels;
   final bool showGroupLabels;
@@ -81,9 +85,26 @@ final class StudioCalendarPage extends StatefulWidget {
 enum _EventAction { followUp, edit, delete }
 
 typedef _CalendarKey = ({TaskAccountId account, String id});
-typedef _DavCalendar = ({
-  CalDavCalendarProvider provider,
-  CalDavCalendar calendar,
+typedef _CalendarWrite =
+    Future<TaskResult<TaskUnit>> Function(
+      CalDavEventFields fields,
+      bool Function()? current,
+    );
+typedef _CalendarDelete =
+    Future<TaskResult<TaskUnit>> Function(bool Function()? current);
+typedef _EditableAppointment = ({
+  CalDavEvent event,
+  _CalendarWrite update,
+  _CalendarDelete delete,
+});
+typedef _CalendarWrites = ({
+  _CalendarWrite create,
+  bool canCreate,
+  bool canUpdate,
+  bool canDelete,
+  bool timedOnly,
+  bool Function(CalDavEvent) hasRevision,
+  Future<TaskResult<_EditableAppointment>> Function(CalDavEvent) open,
 });
 typedef _CalendarSource = ({
   _CalendarKey key,
@@ -91,22 +112,29 @@ typedef _CalendarSource = ({
   String accountLabel,
   int colorSlot,
   Future<TaskResult<CalDavAgenda>> Function(DateTime, DateTime) load,
-  _DavCalendar? dav,
+  _CalendarWrites? writes,
 });
 
 _CalendarKey _calendarKey(CalDavCalendar calendar) =>
     (account: calendar.account, id: calendar.url.toString());
 
+typedef _CachedCalendarRange = ({
+  _CalendarKey source,
+  DateTime start,
+  DateTime end,
+});
 typedef _CalendarTarget = ({
-  CalDavCalendarProvider provider,
-  CalDavCalendar calendar,
+  _CalendarSource source,
+  _CalendarWrites writes,
   int generation,
 });
 
-final class _StudioCalendarPageState extends State<StudioCalendarPage> {
+final class _StudioCalendarPageState extends State<StudioCalendarPage>
+    with WidgetsBindingObserver {
   late final _storage =
       widget.credentialStorage ?? StudioCredentialStorage.instance;
   http.Client? _client;
+  Timer? _poll;
   final _ewsSessions = <MailAccountSession>[];
   int _generation = 0;
   bool _busy = true;
@@ -119,6 +147,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   List<String> _discoveryIssues = [];
   List<String> _issues = [];
   Map<CalDavEvent, _CalendarSource> _eventSources = {};
+  final _agendaCache = <_CachedCalendarRange, CalDavAgenda>{};
+  final _freshSources = <_CalendarKey>{};
+  int? _cacheRevision;
   final _colorSlots = <_CalendarKey, int>{};
   CalDavAgenda? _agenda;
   final _search = TextEditingController();
@@ -134,22 +165,19 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       .map((entry) => entry.value);
 
   _CalendarTarget? _targetFor(_CalendarSource source) {
-    final dav = source.dav;
-    return dav == null
+    final writes = source.writes;
+    return writes == null
         ? null
-        : (
-            provider: dav.provider,
-            calendar: dav.calendar,
-            generation: _generation,
-          );
+        : (source: source, writes: writes, generation: _generation);
   }
 
   bool _currentTarget(_CalendarTarget target) {
-    final key = _calendarKey(target.calendar);
+    final key = target.source.key;
     return mounted &&
         target.generation == _generation &&
         _selection?.contains(key) == true &&
-        identical(_sources[key]?.dav?.provider, target.provider);
+        _freshSources.contains(key) &&
+        identical(_sources[key]?.load, target.source.load);
   }
 
   Color _sourceColor(_CalendarSource source, ColorScheme colors) {
@@ -166,16 +194,61 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     return slot == 0 ? colors.primary : accents[slot - 1];
   }
 
+  ({String label, Color color})? _appearanceOf(
+    CalDavEvent event,
+    ColorScheme colors,
+  ) {
+    final categories = event.categories;
+    if (categories.isNotEmpty) {
+      final category = categories.first;
+      final hue = category.toLowerCase().codeUnits.fold(
+        0,
+        (hash, value) => (hash * 31 + value) % 360,
+      );
+      final color = HSLColor.fromAHSL(1, hue.toDouble(), 0.64, 0.46).toColor();
+      return (label: categories.join(', '), color: color);
+    }
+    final source = _eventSources[event];
+    return source == null || _visibleSources.length <= 1
+        ? null
+        : (label: _sourceName(source), color: _sourceColor(source, colors));
+  }
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _poll = Timer.periodic(const Duration(minutes: 2), (_) => _pollCalendar());
     _storage.addListener(_reload);
+    studioProductivityAccountChanges.addListener(_accountsChanged);
     unawaited(_reload());
+  }
+
+  void _accountsChanged() {
+    _agendaCache.clear();
+    unawaited(_reload());
+  }
+
+  void _pollCalendar() {
+    if (!_busy &&
+        _discovered &&
+        _visibleSources.isNotEmpty &&
+        (!widget.active || ModalRoute.of(context)?.isCurrent == true)) {
+      unawaited(_reload(rediscover: false));
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) _pollCalendar();
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _poll?.cancel();
     _storage.removeListener(_reload);
+    studioProductivityAccountChanges.removeListener(_accountsChanged);
     _search.dispose();
     _closeConnections();
     super.dispose();
@@ -193,6 +266,32 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   static DateTime _day(DateTime date, [int offset = 0]) =>
       DateTime(date.year, date.month, date.day + offset);
 
+  void _showCachedRange() {
+    final start = _start.toUtc();
+    final end = _end.toUtc();
+    final eventSources = <CalDavEvent, _CalendarSource>{};
+    var unexpanded = 0;
+    var hasAgenda = false;
+    for (final source in _visibleSources) {
+      final agenda = _agendaCache[(source: source.key, start: start, end: end)];
+      if (agenda == null) continue;
+      hasAgenda = true;
+      unexpanded += agenda.unexpandedSeries;
+      for (final event in agenda.events) {
+        eventSources[event] = source;
+      }
+    }
+    _eventSources = eventSources;
+    _agenda = hasAgenda
+        ? CalDavAgenda(
+            eventSources.keys.toList()..sort(
+              (a, b) => _wallOrder(a.start).compareTo(_wallOrder(b.start)),
+            ),
+            unexpandedSeries: unexpanded,
+          )
+        : null;
+  }
+
   Future<void> _reload({bool rediscover = true}) async {
     final generation = ++_generation;
     final revision = _storage.revision;
@@ -203,22 +302,32 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       _error = null;
       _notice = null;
       _issues = rediscover ? [] : _discoveryIssues;
-      _agenda = null;
-      _eventSources = {};
+      if (_cacheRevision != revision) {
+        _agendaCache.clear();
+        _cacheRevision = revision;
+      }
+      _freshSources.clear();
+      _showCachedRange();
     });
     try {
       if (rediscover || !_discovered) {
         _closeConnections();
         _discovered = false;
-        setState(() => _sources = {});
+
         final vault = await _storage.storage;
         final catalog = await StudioTaskAccountCatalog.load(vault);
         if (!current()) return;
-        final accounts = catalog.records.entries
-            .where(
-              (entry) => const {'caldav', 'ews'}.contains(entry.key.provider),
-            )
-            .toList(growable: false);
+        final accounts = [
+          for (final entry in catalog.records.entries)
+            if (const {'caldav', 'ews'}.contains(entry.key.provider) &&
+                (await studioAccountServices(
+                  vault,
+                  entry.key,
+                  entry.value,
+                )).contains(StudioProductivityService.calendar))
+              entry,
+        ];
+        if (!current()) return;
         _hasAccounts = accounts.isNotEmpty;
         final sources = <_CalendarKey, _CalendarSource>{};
         final issues = <String>[];
@@ -298,7 +407,14 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           _sources = sources;
           _discoveryIssues = issues;
           _issues = issues;
-          if (initial != null) _selection ??= {initial};
+          final selected = _selection;
+          if (initial != null &&
+              (selected == null ||
+                  (selected.isNotEmpty &&
+                      !selected.any(sources.containsKey)))) {
+            _selection = {initial};
+          }
+          _showCachedRange();
         });
       }
 
@@ -313,17 +429,17 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         current,
       );
       if (!current()) return;
-      final eventSources = <CalDavEvent, _CalendarSource>{};
       final issues = [..._discoveryIssues];
-      var unexpanded = 0;
-      var hasAgenda = false;
       for (final item in results) {
         switch (item.result) {
           case TaskSuccess(:final value):
-            hasAgenda = true;
-            unexpanded += value.unexpandedSeries;
-            for (final event in value.events) {
-              eventSources[event] = item.source;
+            _freshSources.add(item.source.key);
+            final key = (source: item.source.key, start: start, end: end);
+            _agendaCache.remove(key);
+            _agendaCache[key] = value;
+            final limit = visible.length + 24;
+            if (_agendaCache.length > limit) {
+              _agendaCache.remove(_agendaCache.keys.first);
             }
           case TaskFailure(:final problem):
             issues.add(
@@ -331,14 +447,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             );
         }
       }
-      final events = eventSources.keys.toList()
-        ..sort((a, b) => _wallOrder(a.start).compareTo(_wallOrder(b.start)));
       setState(() {
-        _eventSources = eventSources;
         _issues = issues;
-        if (hasAgenda) {
-          _agenda = CalDavAgenda(events, unexpandedSeries: unexpanded);
-        }
+        _showCachedRange();
       });
     } on Object {
       if (current()) setState(() => _error = 'Calendar could not load.');
@@ -370,10 +481,52 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             label: label,
             load: (start, end) =>
                 provider.agenda(calendar, start: start, end: end),
-            dav: (provider: provider, calendar: calendar),
+            writes: _davWrites(provider, calendar),
           ),
       ]),
     };
+  }
+
+  _CalendarWrites? _davWrites(
+    CalDavCalendarProvider provider,
+    CalDavCalendar calendar,
+  ) {
+    if (!calendar.canCreate && !calendar.canUpdate && !calendar.canDelete) {
+      return null;
+    }
+    return (
+      canCreate: calendar.canCreate,
+      canUpdate: calendar.canUpdate,
+      canDelete: calendar.canDelete,
+      timedOnly: false,
+      hasRevision: (event) => provider.hasEventRevision(calendar, event),
+      create: (fields, _) {
+        final random = Random.secure();
+        final id = List.generate(
+          16,
+          (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'),
+        ).join();
+        return provider.createEvent(
+          calendar,
+          operationId: id,
+          fields: fields,
+          timestamp: DateTime.now(),
+        );
+      },
+      open: (event) async =>
+          switch (await provider.openEvent(calendar, event)) {
+            TaskFailure(:final problem) => TaskFailure(problem),
+            TaskSuccess(:final value) => TaskSuccess((
+              event: value.event,
+              update: (fields, _) => provider.updateEvent(
+                value,
+                fields: fields,
+                timestamp: DateTime.now(),
+              ),
+              delete: (_) => provider.deleteEvent(value),
+            )),
+          },
+    );
   }
 
   Future<TaskResult<List<_CalendarSource>>> _discoverEws(
@@ -411,6 +564,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           account: account,
           configuration: configuration,
           credentialStore: credentials,
+          enableDeletes: record['ewsCalendarDeletes'] == true,
         );
     final calendars = await reader.calendars(session.begin());
     if (session.isDisposed) {
@@ -420,6 +574,13 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final entries = (calendars as TaskSuccess<List<EwsCalendar>>).value;
     // The native EWS connection runs one operation at a time per account.
     final queue = AsyncLock();
+    final observations = Expando<EwsCalendarEvent>();
+    CalDavEvent observe(EwsCalendarEvent original) {
+      final display = _ewsEvent(original);
+      observations[display] = original;
+      return display;
+    }
+
     return TaskSuccess([
       for (final calendar in entries)
         _source(
@@ -440,15 +601,123 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             )) {
               TaskFailure(:final problem) => TaskFailure(problem),
               TaskSuccess(:final value) => TaskSuccess(
-                CalDavAgenda(
-                  value.map(_ewsEvent).toList(),
-                  unexpandedSeries: 0,
-                ),
+                CalDavAgenda(value.map(observe).toList(), unexpandedSeries: 0),
               ),
             };
           }),
+          writes: reader is EwsCalendarWriter
+              ? _ewsWrites(reader, calendar, observations, session, queue)
+              : null,
         ),
     ]);
+  }
+
+  _CalendarWrites _ewsWrites(
+    EwsCalendarWriter writer,
+    EwsCalendar calendar,
+    Expando<EwsCalendarEvent> observations,
+    MailAccountSession session,
+    AsyncLock queue,
+  ) {
+    Future<TaskResult<T>> run<T>(
+      Future<TaskResult<T>> Function(MailOperationLease) action, [
+      bool Function()? current,
+    ]) => queue.synchronized(() async {
+      if (session.isDisposed || current?.call() == false) {
+        return const TaskFailure(
+          TaskProblem(
+            TaskProblemCode.staleOperation,
+            mutationMayHaveOccurred: false,
+          ),
+        );
+      }
+      return action(session.begin());
+    });
+
+    Future<TaskResult<TaskUnit>> save(
+      CalDavEventFields fields,
+      bool Function()? current, {
+      EwsCalendarEvent? observed,
+      CalDavEvent? original,
+    }) async {
+      final start = fields.start;
+      final end = fields.end;
+      if (start.kind != CalDavDateKind.utc || end?.kind != CalDavDateKind.utc) {
+        return const TaskFailure(
+          TaskProblem(
+            TaskProblemCode.invalidInput,
+            mutationMayHaveOccurred: false,
+          ),
+        );
+      }
+      // The display codec rounds to a second. Preserve untouched provider
+      // instants, including fractional seconds.
+      final values = (
+        title: fields.title,
+        start: start.value == original?.start.value
+            ? observed!.start
+            : studioCalendarDisplayTime(start).toUtc(),
+        end: end!.value == original?.end?.value
+            ? observed!.end
+            : studioCalendarDisplayTime(end).toUtc(),
+        location: fields.location,
+        description: fields.description,
+      );
+      return run(
+        (lease) => observed == null
+            ? writer.createAppointment(
+                calendar.id,
+                values,
+                lease,
+                canWrite: current,
+              )
+            : writer.updateAppointment(
+                calendar.id,
+                observed,
+                values,
+                lease,
+                canWrite: current,
+              ),
+        current,
+      );
+    }
+
+    return (
+      canCreate: true,
+      canUpdate: true,
+      canDelete: writer.canDeleteAppointments,
+      timedOnly: true,
+      hasRevision: (event) => observations[event]?.appointmentRevision != null,
+      create: (fields, current) => save(fields, current),
+      open: (event) async {
+        final snapshot = observations[event];
+        if (snapshot == null || snapshot.appointmentRevision == null) {
+          return const TaskFailure(TaskProblem(TaskProblemCode.staleOperation));
+        }
+        final result = await run(
+          (lease) => writer.openAppointment(calendar.id, snapshot, lease),
+        );
+        if (result case TaskFailure(:final problem)) {
+          return TaskFailure(problem);
+        }
+        final current = (result as TaskSuccess<EwsCalendarEvent>).value;
+        final display = _ewsEvent(current);
+        return TaskSuccess((
+          event: display,
+          update: (fields, allowed) =>
+              save(fields, allowed, observed: current, original: display),
+          delete: (allowed) => run(
+            (lease) => writer.deleteAppointment(
+              calendar.id,
+              current,
+              lease,
+              canWrite: allowed,
+            ),
+            allowed,
+          ),
+        ));
+      },
+    );
   }
 
   _CalendarSource _source({
@@ -456,14 +725,14 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     required String name,
     required String label,
     required Future<TaskResult<CalDavAgenda>> Function(DateTime, DateTime) load,
-    _DavCalendar? dav,
+    _CalendarWrites? writes,
   }) => (
     key: key,
     name: name,
     accountLabel: label,
     colorSlot: _colorSlots.putIfAbsent(key, () => _colorSlots.length),
     load: load,
-    dav: dav,
+    writes: writes,
   );
 
   static CalDavEvent _ewsEvent(EwsCalendarEvent event) {
@@ -482,6 +751,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       start: date(event.start, event.allDayStart),
       end: date(event.end, event.allDayEnd),
       location: event.location,
+      description: event.description,
+      categories: event.categories,
     );
   }
 
@@ -547,8 +818,10 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final source = _eventSources[event];
     final target = source == null ? null : _targetFor(source);
     final hasRevision =
+        !_busy &&
         target != null &&
-        target.provider.hasEventRevision(target.calendar, event);
+        _currentTarget(target) &&
+        target.writes.hasRevision(event);
     final action = await showDialog<_EventAction>(
       context: context,
       builder: (context) => AlertDialog(
@@ -589,12 +862,12 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             onPressed: () => Navigator.pop(context),
             child: const Text('Close'),
           ),
-          if (hasRevision && target.calendar.canDelete)
+          if (hasRevision && target.writes.canDelete)
             TextButton(
               onPressed: () => Navigator.pop(context, _EventAction.delete),
               child: const Text('Delete'),
             ),
-          if (hasRevision && target.calendar.canUpdate)
+          if (hasRevision && target.writes.canUpdate)
             TextButton(
               onPressed: () => Navigator.pop(context, _EventAction.edit),
               child: const Text('Edit'),
@@ -627,7 +900,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     );
   }
 
-  Future<CalDavEditableEvent?> _openEditable(
+  Future<_EditableAppointment?> _openEditable(
     _CalendarTarget target,
     CalDavEvent event,
   ) async {
@@ -636,7 +909,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       _notice = null;
     });
     try {
-      final result = await target.provider.openEvent(target.calendar, event);
+      final result = await target.writes.open(event);
       if (!_currentTarget(target)) return null;
       return switch (result) {
         TaskSuccess(:final value) => value,
@@ -647,7 +920,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     }
   }
 
-  CalDavEditableEvent? _reportUneditable(TaskProblem problem) {
+  _EditableAppointment? _reportUneditable(TaskProblem problem) {
     _notice = _writeProblem(problem);
     return null;
   }
@@ -668,9 +941,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         !_currentTarget(target) ||
         canSave?.call() == false ||
         _busy ||
-        (event == null
-            ? !target.calendar.canCreate
-            : !target.calendar.canUpdate)) {
+        (event == null ? !target.writes.canCreate : !target.writes.canUpdate)) {
       return;
     }
     final editable = event == null ? null : await _openEditable(target, event);
@@ -685,11 +956,10 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       builder: (_) => StudioCalendarEditor(
         initial:
             startsAt ?? DateTime(_anchor.year, _anchor.month, _anchor.day, 9),
-        calendarName:
-            _visibleSources.length > 1 &&
-                _sources[_calendarKey(target.calendar)] != null
-            ? _sourceName(_sources[_calendarKey(target.calendar)]!)
-            : target.calendar.name,
+        calendarName: _visibleSources.length > 1
+            ? _sourceName(target.source)
+            : target.source.name,
+        timedOnly: target.writes.timedOnly,
         event: editable?.event ?? draft,
         save: (fields) async {
           if (canSave?.call() == false) {
@@ -698,7 +968,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               retryable: false,
             );
           }
-          return _submitEvent(target, editable, fields);
+          return _submitEvent(target, editable, fields, current: canSave);
         },
       ),
     );
@@ -706,7 +976,11 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
 
   Future<_CalendarTarget?> _chooseCreationTarget() async {
     final writable = _visibleSources
-        .where((source) => source.dav?.calendar.canCreate == true)
+        .where(
+          (source) =>
+              source.writes?.canCreate == true &&
+              _freshSources.contains(source.key),
+        )
         .toList();
     if (writable.isEmpty) return null;
     if (writable.length == 1) return _targetFor(writable.single);
@@ -731,34 +1005,15 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
 
   Future<StudioCalendarSaveFailure?> _submitEvent(
     _CalendarTarget target,
-    CalDavEditableEvent? editable,
-    CalDavEventFields fields,
-  ) async {
-    final problem = await _saveEvent(
+    _EditableAppointment? editable,
+    CalDavEventFields fields, {
+    bool Function()? current,
+  }) async {
+    final problem = await _writeAppointment(
       target,
-      () {
-        final timestamp = DateTime.now();
-        if (editable != null) {
-          return target.provider.updateEvent(
-            editable,
-            fields: fields,
-            timestamp: timestamp,
-          );
-        }
-        final random = Random.secure();
-        final id = List.generate(
-          16,
-          (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'),
-        ).join();
-        return target.provider.createEvent(
-          target.calendar,
-          operationId: id,
-          fields: fields,
-          timestamp: timestamp,
-        );
-      },
-      success: editable == null ? 'Event created.' : 'Event saved.',
-      date: studioCalendarDisplayTime(fields.start),
+      editable,
+      fields,
+      current: current,
     );
     if (problem == null) return null;
     return (
@@ -770,8 +1025,31 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     );
   }
 
+  Future<TaskProblem?> _writeAppointment(
+    _CalendarTarget target,
+    _EditableAppointment? editable,
+    CalDavEventFields fields, {
+    bool Function()? current,
+  }) {
+    bool allowed() => _currentTarget(target) && current?.call() != false;
+    return _saveEvent(
+      target,
+      () => (editable?.update ?? target.writes.create)(fields, allowed),
+      success: editable == null ? 'Event created.' : 'Event saved.',
+      date: studioCalendarDisplayTime(fields.start),
+    );
+  }
+
+  ProductivityApprovalOutcome _approvalOutcome(TaskProblem? problem) =>
+      switch (problem) {
+        null => ProductivityApprovalOutcome.saved,
+        TaskProblem(mutationMayHaveOccurred: true) =>
+          ProductivityApprovalOutcome.unconfirmed,
+        _ => ProductivityApprovalOutcome.rejected,
+      };
+
   Future<void> _deleteEvent(_CalendarTarget target, CalDavEvent event) async {
-    if (_busy || !target.calendar.canDelete) return;
+    if (_busy || !target.writes.canDelete) return;
     final editable = await _openEditable(target, event);
     if (!mounted || !_currentTarget(target) || editable == null) return;
     final confirmed = await showDialog<bool>(
@@ -798,7 +1076,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     if (confirmed != true || !_currentTarget(target) || _busy) return;
     final problem = await _saveEvent(
       target,
-      () => target.provider.deleteEvent(editable),
+      () => editable.delete(() => _currentTarget(target)),
       success: 'Event deleted.',
     );
     if (_currentTarget(target) && problem != null) {
@@ -899,7 +1177,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         color: _sourceColor(source, colors),
                       ),
                       title: Text(source.name),
-                      subtitle: source.dav == null
+                      subtitle: source.writes == null
                           ? const Text('Read-only')
                           : null,
                       value: selected.contains(source.key),
@@ -1013,8 +1291,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         final source = _eventSources[event];
         if (source == null) continue;
         final target = _targetFor(source);
-        if (target == null ||
-            !target.provider.hasEventRevision(target.calendar, event)) {
+        if (target == null || !target.writes.hasRevision(event)) {
           continue;
         }
         final destination = _sourceName(source);
@@ -1032,27 +1309,23 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           if (patch == null) {
             final problem = await _saveEvent(
               target,
-              () => target.provider.deleteEvent(editable),
+              () => editable.delete(() => current() && _currentTarget(target)),
               success: 'Event deleted.',
             );
-            return problem == null
-                ? ProductivityApprovalOutcome.saved
-                : problem.mutationMayHaveOccurred == false
-                ? ProductivityApprovalOutcome.rejected
-                : ProductivityApprovalOutcome.unconfirmed;
+            return _approvalOutcome(problem);
           }
-          final failure = await _submitEvent(
-            target,
-            editable,
-            patch(editable.event),
+          return _approvalOutcome(
+            await _writeAppointment(
+              target,
+              editable,
+              patch(editable.event),
+              current: current,
+            ),
           );
-          return failure == null
-              ? ProductivityApprovalOutcome.saved
-              : ProductivityApprovalOutcome.unconfirmed;
         }
 
         final timing = 'Start: ${studioCalendarDisplayTime(event.start)}';
-        if (target.calendar.canUpdate) {
+        if (target.writes.canUpdate) {
           yield ProductivityAction(
             label: 'Rename appointment',
             destination: destination,
@@ -1083,8 +1356,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             },
           );
         }
-        if (target.calendar.canUpdate &&
-            event.start.kind == CalDavDateKind.utc) {
+        if (target.writes.canUpdate && event.start.kind == CalDavDateKind.utc) {
           yield ProductivityAction(
             label: 'Reschedule appointment',
             destination: destination,
@@ -1130,7 +1402,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             },
           );
         }
-        if (target.calendar.canDelete) {
+        if (target.writes.canDelete) {
           yield ProductivityAction(
             label: 'Delete appointment',
             destination: destination,
@@ -1168,7 +1440,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     );
   }
 
-  Object? _liveScope() => _selection?.isNotEmpty == true
+  Object? _liveScope() => widget.active && _selection?.isNotEmpty == true
       ? (_selection, _start, _end, _search.text, _storage.revision)
       : null;
 
@@ -1192,9 +1464,15 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final multiple = visible.length > 1;
     final canCreate =
         !_busy &&
-        visible.any((source) => source.dav?.calendar.canCreate == true);
+        visible.any(
+          (source) =>
+              source.writes?.canCreate == true &&
+              _freshSources.contains(source.key),
+        );
     final only = visible.singleOrNull;
-    final approvalTarget = canCreate && only != null ? _targetFor(only) : null;
+    final approvalTarget = canCreate && only?.writes?.canCreate == true
+        ? _targetFor(only!)
+        : null;
     final period = _period.label.toLowerCase();
     final liveScope = _liveScope();
     StudioCmd command(
@@ -1395,25 +1673,25 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                                 !_currentTarget(approvalTarget)) {
                               return ProductivityApprovalOutcome.rejected;
                             }
-                            final failure = await _submitEvent(
-                              approvalTarget,
-                              null,
-                              fields,
+                            return _approvalOutcome(
+                              await _writeAppointment(
+                                approvalTarget,
+                                null,
+                                fields,
+                                current: current,
+                              ),
                             );
-                            return failure == null
-                                ? ProductivityApprovalOutcome.saved
-                                : ProductivityApprovalOutcome.unconfirmed;
                           },
                         ),
                   captureActions:
                       visible.any(
                         (source) =>
-                            source.dav?.calendar.canUpdate == true ||
-                            source.dav?.calendar.canDelete == true,
+                            source.writes?.canUpdate == true ||
+                            source.writes?.canDelete == true,
                       )
                       ? () => _captureCalendarActions(events)
                       : null,
-                  enabled: !_busy && _agenda != null,
+                  enabled: widget.active && !_busy && _agenda != null,
                 ),
                 if (visible.isNotEmpty)
                   SizedBox(
@@ -1477,17 +1755,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                     createEvent: canCreate
                         ? (startsAt) => _editEvent(startsAt: startsAt)
                         : null,
-                    appearanceOf: multiple
-                        ? (event) {
-                            final source = _eventSources[event];
-                            return source == null
-                                ? null
-                                : (
-                                    label: _sourceName(source),
-                                    color: _sourceColor(source, colors),
-                                  );
-                          }
-                        : null,
+                    appearanceOf: (event) => _appearanceOf(event, colors),
                   )
                 : !_busy && _error == null && events.isEmpty
                 ? Center(
@@ -1506,9 +1774,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         textColor: colors.onSurface,
                         leading: Icon(
                           Icons.event_outlined,
-                          color: !multiple || source == null
-                              ? colors.onSurfaceVariant
-                              : _sourceColor(source, colors),
+                          color:
+                              _appearanceOf(event, colors)?.color ??
+                              colors.onSurfaceVariant,
                         ),
                         title: Text(
                           event.title.isEmpty ? 'Untitled event' : event.title,

@@ -18,6 +18,9 @@ final class EwsCalendarEvent {
     required this.location,
     this.allDayStart,
     this.allDayEnd,
+    this.appointmentRevision,
+    this.description,
+    this.categories = const [],
   });
 
   final String id;
@@ -25,6 +28,19 @@ final class EwsCalendarEvent {
   final DateTime start;
   final DateTime end;
   final String? location;
+  final String? description;
+  final List<String> categories;
+
+  /// Present only for a standalone timed appointment without invitations.
+  final String? appointmentRevision;
+
+  EwsAppointmentFields get appointmentFields => (
+    title: title,
+    start: start,
+    end: end,
+    location: location,
+    description: description,
+  );
 
   /// Civil dates represented at midnight UTC. The end date is exclusive.
   final DateTime? allDayStart;
@@ -39,5 +55,45 @@ abstract interface class EwsCalendarReader {
     required DateTime start,
     required DateTime end,
     required MailOperationLease lease,
+  });
+}
+
+typedef EwsAppointmentFields = ({
+  String title,
+  DateTime start,
+  DateTime end,
+  String? location,
+  String? description,
+});
+
+abstract interface class EwsCalendarWriter implements EwsCalendarReader {
+  bool get canDeleteAppointments;
+
+  Future<TaskResult<EwsCalendarEvent>> openAppointment(
+    TaskListId calendar,
+    EwsCalendarEvent observed,
+    MailOperationLease lease,
+  );
+
+  Future<TaskResult<TaskUnit>> createAppointment(
+    TaskListId calendar,
+    EwsAppointmentFields fields,
+    MailOperationLease lease, {
+    bool Function()? canWrite,
+  });
+
+  Future<TaskResult<TaskUnit>> updateAppointment(
+    TaskListId calendar,
+    EwsCalendarEvent observed,
+    EwsAppointmentFields fields,
+    MailOperationLease lease, {
+    bool Function()? canWrite,
+  });
+
+  Future<TaskResult<TaskUnit>> deleteAppointment(
+    TaskListId calendar,
+    EwsCalendarEvent observed,
+    MailOperationLease lease, {
+    bool Function()? canWrite,
   });
 }

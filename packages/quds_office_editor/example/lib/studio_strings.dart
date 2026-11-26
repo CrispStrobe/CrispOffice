@@ -16,6 +16,62 @@ final class StudioStrings {
     StudioLanguage.ar => ar,
   };
 
+  String productivity(String text) => switch (text) {
+    'Tasks' => _t(text, 'Aufgaben', 'المهام'),
+    'Accounts' => _t(text, 'Konten', 'الحسابات'),
+    'All tasks' => _t(text, 'Alle Aufgaben', 'كل المهام'),
+    'Search tasks' => _t(text, 'Aufgaben suchen', 'البحث في المهام'),
+    'Open' => _t(text, 'Offen', 'مفتوحة'),
+    'Due today' => _t(text, 'Heute fällig', 'مستحقة اليوم'),
+    'Overdue' => _t(text, 'Überfällig', 'متأخرة'),
+    'Completed' => _t(text, 'Erledigt', 'مكتملة'),
+    'Add task' => _t(text, 'Aufgabe hinzufügen', 'إضافة مهمة'),
+    'Task list' => _t(text, 'Aufgabenliste', 'قائمة المهام'),
+    'Task account' => _t(text, 'Aufgabenkonto', 'حساب المهام'),
+    'Sync now' => _t(text, 'Jetzt synchronisieren', 'المزامنة الآن'),
+    'Disconnect' => _t(text, 'Verbindung trennen', 'قطع الاتصال'),
+    'Add account' => _t(text, 'Konto hinzufügen', 'إضافة حساب'),
+    'Connect account' => _t(text, 'Konto verbinden', 'ربط حساب'),
+    'Read-only list' => _t(
+      text,
+      'Schreibgeschützte Liste',
+      'قائمة للقراءة فقط',
+    ),
+    'New task' => _t(text, 'Neue Aufgabe', 'مهمة جديدة'),
+    'Edit task' => _t(text, 'Aufgabe bearbeiten', 'تعديل المهمة'),
+    'On this device' => _t(text, 'Auf diesem Gerät', 'على هذا الجهاز'),
+    'Title' => _t(text, 'Titel', 'العنوان'),
+    'Notes' => _t(text, 'Notizen', 'ملاحظات'),
+    'Set due date' => _t(
+      text,
+      'Fälligkeitsdatum festlegen',
+      'تعيين تاريخ الاستحقاق',
+    ),
+    'Clear due date' => _t(
+      text,
+      'Fälligkeitsdatum entfernen',
+      'إزالة تاريخ الاستحقاق',
+    ),
+    'Cancel' => _t(text, 'Abbrechen', 'إلغاء'),
+    'Save task' => _t(text, 'Aufgabe speichern', 'حفظ المهمة'),
+    'No tasks in this list.' => _t(
+      text,
+      'Diese Liste enthält keine Aufgaben.',
+      'لا توجد مهام في هذه القائمة.',
+    ),
+    'No tasks match this view.' => _t(
+      text,
+      'Keine Aufgaben für diese Ansicht.',
+      'لا توجد مهام تطابق طريقة العرض هذه.',
+    ),
+    'Export automation snapshot' => _t(
+      text,
+      'Automatisierungsdaten exportieren',
+      'تصدير لقطة الأتمتة',
+    ),
+    _ => text,
+  };
+
   String get appTitle => 'CrispOffice';
   String get documents => _t('Documents', 'Dokumente', 'المستندات');
   String get spreadsheets => _t('Spreadsheets', 'Tabellen', 'جداول البيانات');

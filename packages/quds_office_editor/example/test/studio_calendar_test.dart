@@ -61,6 +61,42 @@ void main() {
     },
   );
 
+  test(
+    'enables EWS Mail explicitly and keeps legacy task and calendar defaults',
+    () async {
+      final vault = InMemorySecureStorage();
+      await vault.write(
+        studioTasksLegacyKey,
+        jsonEncode({
+          'id': 'exchange',
+          'provider': 'ews',
+          'url': 'https://exchange.example.test/EWS/Exchange.asmx',
+          'login': 'work-user',
+          'mailbox': 'work@example.test',
+          'secret': 'shared-secret',
+        }),
+      );
+      final defaults = (await loadStudioProductivityAccounts(vault)).single;
+      expect(defaults.services, {
+        StudioProductivityService.tasks,
+        StudioProductivityService.calendar,
+      });
+      expect(defaults.available, StudioProductivityService.values.toSet());
+      final id = defaults.id!;
+      await saveStudioAccountServices(vault, id, {
+        StudioProductivityService.mail,
+      });
+      final saved = (await loadStudioProductivityAccounts(vault)).single;
+      expect(saved.services, {StudioProductivityService.mail});
+      expect(saved.toString(), isNot(contains('shared-secret')));
+      await resetStudioAccountServices(vault, id);
+      expect(
+        (await loadStudioProductivityAccounts(vault)).single.services,
+        defaults.services,
+      );
+    },
+  );
+
   testWidgets('Calendar reads the saved Tasks DAV account and shows its events', (
     tester,
   ) async {

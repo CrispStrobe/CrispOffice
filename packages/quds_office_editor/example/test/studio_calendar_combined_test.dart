@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
+import 'package:quds_tasks_caldav/quds_tasks_caldav.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_calendar.dart';
@@ -51,6 +53,10 @@ final class _ExchangeReader implements EwsCalendarReader {
   final leases = <MailOperationLease>[];
   var activeReads = 0;
   var reads = 0;
+  Completer<void>? pauseAgenda;
+
+  String? get appointmentRevision => null;
+  String get appointmentTitle => 'Exchange appointment';
 
   @override
   Future<TaskResult<List<EwsCalendar>>> calendars(
@@ -84,20 +90,76 @@ final class _ExchangeReader implements EwsCalendarReader {
     expect(calendar.account, account);
     expect(++activeReads, 1);
     reads++;
-    await Future<void>.delayed(Duration.zero);
+    await (pauseAgenda?.future ?? Future<void>.delayed(Duration.zero));
     activeReads--;
     return TaskSuccess([
       EwsCalendarEvent(
         id: 'same-event-id',
-        title: calendar.value == 'main'
-            ? 'Exchange appointment'
-            : 'Team appointment',
+        title: calendar.value == 'main' ? appointmentTitle : 'Team appointment',
         start: DateTime.utc(2026, 11, 25, 12),
         end: DateTime.utc(2026, 11, 25, 13),
         location: 'Meeting room',
+        appointmentRevision: appointmentRevision,
       ),
     ]);
   }
+}
+
+final class _ExchangeWriter extends _ExchangeReader
+    implements EwsCalendarWriter {
+  _ExchangeWriter(super.account, super.configuration, super.credentials);
+
+  @override
+  String get appointmentRevision => 'key';
+
+  @override
+  String appointmentTitle = 'Exchange appointment';
+
+  @override
+  bool get canDeleteAppointments => false;
+
+  @override
+  Future<TaskResult<EwsCalendarEvent>> openAppointment(
+    TaskListId calendar,
+    EwsCalendarEvent observed,
+    MailOperationLease lease,
+  ) async {
+    expect(calendar.value, 'main');
+    expect(observed.appointmentRevision, 'key');
+    return TaskSuccess(observed);
+  }
+
+  @override
+  Future<TaskResult<TaskUnit>> createAppointment(
+    TaskListId calendar,
+    EwsAppointmentFields fields,
+    MailOperationLease lease, {
+    bool Function()? canWrite,
+  }) async => throw StateError('Unexpected creation');
+
+  @override
+  Future<TaskResult<TaskUnit>> updateAppointment(
+    TaskListId calendar,
+    EwsCalendarEvent observed,
+    EwsAppointmentFields fields,
+    MailOperationLease lease, {
+    bool Function()? canWrite,
+  }) async {
+    expect(calendar.value, 'main');
+    expect(canWrite?.call(), isTrue);
+    expect(fields.start, observed.start);
+    expect(fields.end, observed.end);
+    appointmentTitle = fields.title;
+    return const TaskSuccess(TaskUnit.value);
+  }
+
+  @override
+  Future<TaskResult<TaskUnit>> deleteAppointment(
+    TaskListId calendar,
+    EwsCalendarEvent observed,
+    MailOperationLease lease, {
+    bool Function()? canWrite,
+  }) async => throw StateError('Unexpected deletion');
 }
 
 void main() {
@@ -317,6 +379,7 @@ void main() {
       );
       addTearDown(storage.dispose);
       late _ExchangeReader exchange;
+      Completer<void>? pauseAgenda;
       await tester.pumpWidget(
         MaterialApp(
           home: StudioCalendarPage(
@@ -334,13 +397,23 @@ void main() {
                 account,
                 configuration,
                 credentials,
-              );
+              )..pauseAgenda = pauseAgenda;
             },
           ),
         ),
       );
       await tester.pumpAndSettle();
       expect(exchange.reads, 1);
+      expect(find.text('Exchange appointment'), findsOneWidget);
+
+      pauseAgenda = Completer<void>();
+      await tester.tap(find.byTooltip('Refresh'));
+      await tester.pump();
+      expect(find.text('Exchange appointment'), findsOneWidget);
+      pauseAgenda!.complete();
+      pauseAgenda = null;
+      exchange.pauseAgenda = null;
+      await tester.pumpAndSettle();
       expect(find.text('Exchange appointment'), findsOneWidget);
 
       await tester.tap(find.byKey(const ValueKey('studio-calendar-picker')));
@@ -386,4 +459,90 @@ void main() {
       expect(exchange.leases.every((lease) => !lease.isCurrent), isTrue);
     },
   );
+  testWidgets('edits the selected timed EWS appointment', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final vault = InMemorySecureStorage();
+    await vault.write(
+      studioTasksAccountsKey,
+      jsonEncode({
+        'active': ['ews', 'work'],
+        'accounts': [
+          {
+            'id': 'work',
+            'provider': 'ews',
+            'url': 'https://exchange.example.test/EWS/Exchange.asmx',
+            'login': 'work-login',
+            'domain': 'WORK',
+            'secret': 'exchange-secret',
+          },
+        ],
+      }),
+    );
+    final storage = StudioCredentialStorage(
+      systemStorageFactory: () async => vault,
+    );
+    addTearDown(storage.dispose);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudioCalendarPage(
+          title: 'Calendar',
+          chromeBuilder: (_) => const SizedBox.shrink(),
+          openConnections: () {},
+          initialDate: DateTime(2026, 11, 25),
+          credentialStorage: storage,
+          openEwsReader: _ExchangeWriter.new,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Exchange appointment'));
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(TextButton, 'Delete'), findsNothing);
+    await tester.tap(find.widgetWithText(TextButton, 'Edit'));
+    await tester.pumpAndSettle();
+    expect(find.text('All day'), findsNothing);
+    expect(find.byTooltip('Remove end'), findsNothing);
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Title'),
+      'Changed appointment',
+    );
+    await tester.tap(find.text('Save event'));
+    await tester.pumpAndSettle();
+    expect(find.text('Changed appointment'), findsOneWidget);
+  });
+  testWidgets('fits month rows and expands event overflow inside its week', (
+    tester,
+  ) async {
+    final date = CalDavDateValue.fromTaskDate(TaskDate(2026, 11, 25));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: StudioCalendarGrid(
+            period: StudioCalendarPeriod.month,
+            start: DateTime(2026, 11),
+            end: DateTime(2026, 12),
+            events: [
+              for (var index = 1; index <= 6; index++)
+                CalDavEvent(
+                  uid: '$index',
+                  title: 'Agenda item $index',
+                  start: date,
+                ),
+            ],
+            openEvent: (_) {},
+            openDay: (_) {},
+          ),
+        ),
+      ),
+    );
+    expect(find.text('30'), findsOneWidget);
+    expect(find.text('Agenda item 6'), findsNothing);
+    await tester.tap(find.textContaining(RegExp(r'^\+\d+$')));
+    await tester.pumpAndSettle();
+    expect(find.text('Agenda item 6'), findsOneWidget);
+    expect(find.byType(AlertDialog), findsNothing);
+    await tester.tap(find.text('−'));
+    await tester.pumpAndSettle();
+    expect(find.text('Agenda item 6'), findsNothing);
+  });
 }

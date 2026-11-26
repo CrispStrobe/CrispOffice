@@ -40,13 +40,24 @@ a mailbox for distinguished folders; omit it for the authenticated mailbox.
 
 ## Calendar in CrispOffice
 
-Save the Exchange EWS connection in Tasks, then open Calendar and use the
-calendar picker. Calendar uses the same saved endpoint and credential and
-discovers the default calendar and appointment folders. Exchange expands
+Save the Exchange EWS connection in Tasks and choose the services that should
+use it. To share the sign-in with Mail, enable Mail and provide the mailbox
+email address if the login is a Windows username. The saved account appears
+when you open Exchange EWS in Mail. Use Accounts to change the enabled services.
+Calendar uses the saved endpoint and credential and discovers the default
+calendar and appointment folders. Exchange expands
 recurring events for the visible date range. Refresh reloads the selected
 calendars, including when CalDAV calendars are selected alongside them.
 
-Exchange calendars are read-only. The view shows time, title and location.
+CrispOffice can create, edit and reschedule standalone timed appointments.
+It checks folder membership and the current Exchange ChangeKey before editing
+and requests conditional updates without meeting notifications. Enable
+**Allow deleting Exchange appointments** in the Exchange connection to offer
+deletion. It moves an appointment to Deleted Items. Check that your server
+enforces the ChangeKey on DeleteItem before enabling this option. A concurrent
+edit can otherwise race with the move. Ambiguous results require a refresh
+before retrying. Existing all-day events, recurring appointments and meetings
+can be viewed.
 For all-day events Exchange returns as UTC instants away from midnight, the
 adapter derives the dates in the device time zone. These dates can differ
 from the original event dates when viewed from a different zone.

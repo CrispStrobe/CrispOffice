@@ -163,6 +163,7 @@ EwsCalendarReader createEwsCalendarReader({
   required MailEwsConfiguration configuration,
   required MailCredentialStore credentialStore,
   MailEwsLimits limits = const MailEwsLimits(maxPageSize: 512),
+  bool enableDeletes = false,
 }) {
   limits.validate();
   return const _UnsupportedEwsCalendarReader();

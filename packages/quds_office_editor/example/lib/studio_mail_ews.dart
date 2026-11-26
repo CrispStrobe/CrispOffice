@@ -17,9 +17,12 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart' show TaskAccountId;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_live_productivity.dart';
+import 'studio_credential_storage.dart';
+import 'studio_productivity_accounts.dart';
 import 'studio_mcp_mail_actions.dart';
 import 'studio_mcp_mail_folder.dart';
 import 'studio_productivity_export.dart';
@@ -207,6 +210,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _routeRetired = false;
   bool _allowPop = false;
   int _accountEpoch = 0;
+  Future<List<StudioProductivityAccount>>? _savedExchangeAccounts;
+  TaskAccountId? _usingSharedAccount;
   StudioMailAccountNavigationTarget? _initialAccountSource;
   StudioMailAccountNavigationTarget? _expectedAccount;
   StudioMailAccountNavigationTarget? _connectionTarget;
@@ -245,6 +250,95 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     super.initState();
     _prefillAccount();
     _prefillClientId();
+    if (!_cloud && widget.providerFactory == null) {
+      studioProductivityAccountChanges.addListener(_sharedAccountsChanged);
+      StudioCredentialStorage.instance.addListener(_sharedAccountsChanged);
+      _savedExchangeAccounts = _readSavedExchangeAccounts();
+    }
+  }
+
+  Future<List<StudioProductivityAccount>> _readSavedExchangeAccounts() async {
+    final storage = StudioCredentialStorage.instance;
+    final revision = storage.revision;
+    try {
+      final vault = await storage.storage;
+      final catalog = await StudioTaskAccountCatalog.load(vault);
+      final rows = <StudioProductivityAccount>[];
+      for (final MapEntry(:key, :value) in catalog.records.entries) {
+        if (key.provider != 'ews') continue;
+        final services = await studioAccountServices(vault, key, value);
+        if (services.contains(StudioProductivityService.mail)) {
+          rows.add((
+            id: key,
+            label: studioTaskAccountLabel(key, value),
+            services: services,
+            available: studioAvailableServices(key, value),
+          ));
+        }
+      }
+      return storage.revision == revision ? rows : const [];
+    } on Object {
+      return const [];
+    }
+  }
+
+  void _sharedAccountsChanged() {
+    final active = _usingSharedAccount;
+    final storage = StudioCredentialStorage.instance;
+    final revision = storage.revision;
+    final accounts = _readSavedExchangeAccounts();
+    setState(() => _savedExchangeAccounts = accounts);
+    if (active == null) return;
+    unawaited(() async {
+      final available = await accounts;
+      if (!mounted ||
+          _usingSharedAccount != active ||
+          !identical(accounts, _savedExchangeAccounts)) {
+        return;
+      }
+      if (_sharedVaultRevision != revision ||
+          !available.any((row) => row.id == active)) {
+        _usingSharedAccount = null;
+        if (_session != null) await _disconnectFromUi();
+      }
+    }());
+  }
+
+  int? _sharedVaultRevision;
+
+  Future<void> _useSavedExchange(TaskAccountId id) async {
+    if (_blocked || _connected || widget.initialAccount != null) return;
+    final storage = StudioCredentialStorage.instance;
+    final revision = storage.revision;
+    try {
+      final vault = await storage.storage;
+      final catalog = await StudioTaskAccountCatalog.load(vault);
+      final row = catalog.records[id];
+      if (row == null || id.provider != 'ews') return;
+      final services = await studioAccountServices(vault, id, row);
+      if (!mounted ||
+          _blocked ||
+          _connected ||
+          revision != storage.revision ||
+          !services.contains(StudioProductivityService.mail)) {
+        return;
+      }
+      final mailbox = studioExchangeMailbox(row);
+      if (mailbox == null) return;
+      _email.text = mailbox;
+      _endpoint.text = row['url'] as String;
+      _domain.text = row['domain'] as String? ?? '';
+      _login.text = row['login'] as String;
+      _password.text = row['secret'] as String;
+      _usingSharedAccount = id;
+      _sharedVaultRevision = revision;
+      _authentication = MailEwsAuthentication.ntlm;
+      await _connect();
+    } on Object {
+      if (mounted) setState(() => _error = widget.strings.ewsInvalidSettings);
+    } finally {
+      if (mounted) _password.clear();
+    }
   }
 
   void _prefillClientId() {
@@ -483,6 +577,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   @override
   void dispose() {
+    if (!_cloud && widget.providerFactory == null) {
+      studioProductivityAccountChanges.removeListener(_sharedAccountsChanged);
+      StudioCredentialStorage.instance.removeListener(_sharedAccountsChanged);
+    }
     _accountEpoch++;
     _bulkCancellation?.cancel(MailCancellationReason.disposed);
     final admitting = _draftAdmission != null;
@@ -538,6 +636,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       await _connectCloud();
       return;
     }
+    final sharedAccount = _usingSharedAccount;
+    final sharedRevision = _sharedVaultRevision;
     final sender = _email.text.trim();
     final password = _password.text;
     late final StudioMailDraftAccount identity;
@@ -573,6 +673,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       return;
     }
     if (!await _prepareConnection(identity)) return;
+    if (sharedAccount != null &&
+        (_usingSharedAccount != sharedAccount ||
+            StudioCredentialStorage.instance.revision != sharedRevision)) {
+      if (mounted) setState(() => _busy = false);
+      return;
+    }
     final credentials = _SessionCredentials(
       MailCredentialRecord(
         reference: configuration.credential,
@@ -858,6 +964,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         (_navigating || _routeRetired || _retiredDraftStore != null)) {
       return;
     }
+    _usingSharedAccount = null;
+    _sharedVaultRevision = null;
     if (!forNavigation) _accountEpoch++;
     final deferRelease = deferLocalClose || _draftAdmission != null;
     _mailboxGeneration++;
@@ -3831,6 +3939,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (_localAccounts != null) _localAccountsButton(),
+            if (widget.initialAccount == null && _savedExchangeAccounts != null)
+              FutureBuilder<List<StudioProductivityAccount>>(
+                future: _savedExchangeAccounts,
+                builder: (context, snapshot) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (final row in snapshot.data ?? const [])
+                      OutlinedButton.icon(
+                        onPressed: _blocked
+                            ? null
+                            : () => _useSavedExchange(row.id!),
+                        icon: const Icon(Icons.account_circle_outlined),
+                        label: Text(row.label),
+                      ),
+                  ],
+                ),
+              ),
             const Icon(Icons.dns_outlined, size: 44),
             const SizedBox(height: 12),
             Text(widget.strings.ewsSetupHelp, textAlign: TextAlign.center),
