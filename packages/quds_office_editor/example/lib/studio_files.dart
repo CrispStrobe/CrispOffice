@@ -32,6 +32,7 @@ abstract final class StudioFiles {
     'dot',
     'odt',
     'xlsx',
+    'xls',
     'pptx',
     'docm',
     'xlsm',
@@ -678,11 +679,26 @@ abstract final class StudioFiles {
     () => convertLegacyWordToStructuredDocx(bytes, recover: true).bytes,
   );
 
+  static Future<Uint8List> convertLegacySheet(Uint8List bytes) =>
+      Isolate.run(() {
+        // Some applications attach .xls to an existing OOXML workbook.
+        if (bytes.length >= 4 &&
+            bytes[0] == 0x50 &&
+            bytes[1] == 0x4B &&
+            bytes[2] == 0x03 &&
+            bytes[3] == 0x04) {
+          return bytes;
+        }
+        return SheetSerializer().writeBytes(LegacySheetReader.readBytes(bytes));
+      });
+
   static OpcPackageKind kindOf(String name, Uint8List bytes) {
     // The package owns its format even when it has a misleading extension.
     if (OdtDocumentReader.isOdt(bytes)) return OpcPackageKind.word;
     final String lower = name.toLowerCase();
-    if (lower.endsWith('.xlsx') || lower.endsWith('.xlsm')) {
+    if (lower.endsWith('.xlsx') ||
+        lower.endsWith('.xlsm') ||
+        lower.endsWith('.xls')) {
       return OpcPackageKind.sheet;
     }
     if (lower.endsWith('.pptx') || lower.endsWith('.pptm')) {

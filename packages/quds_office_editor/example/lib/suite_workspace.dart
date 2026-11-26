@@ -26,6 +26,7 @@ import 'studio_settings.dart';
 import 'studio_shortcuts.dart';
 import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
+import 'studio_recent_files.dart';
 import 'studio_find_pane.dart';
 import 'studio_iso_image.dart';
 import 'studio_iso_image_dialog.dart';
@@ -81,6 +82,7 @@ class SuiteWorkspace extends StatefulWidget {
     this.zoteroTransportFactory,
     this.ribbonPreferences,
     this.settingsStore,
+    this.recentFiles,
     this.initialWord,
     this.initialWorkbook,
     this.initialPresentation,
@@ -97,6 +99,7 @@ class SuiteWorkspace extends StatefulWidget {
   /// Where the Studio settings persist; defaults to the platform store
   /// (in memory under `flutter test`).
   final StudioSettingsStore? settingsStore;
+  final StudioRecentFiles? recentFiles;
 
   /// Documents (and their window titles) opened instead of the built-in
   /// samples, e.g. for demos and store screenshots.
@@ -604,8 +607,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   bool get _canMutate => _mode == OfficeInteractionMode.editing && !_opening;
 
+  StudioRecentFiles get _recentFiles =>
+      widget.recentFiles ?? StudioRecentFiles.local;
+  final _recentAccess = <SuiteApp, StudioRecentAccess>{};
+
   @override
   void dispose() {
+    for (final access in _recentAccess.values) {
+      unawaited(access.close());
+    }
+    _recentAccess.clear();
     _wordFooterTimer?.cancel();
     _wordOpenPreview?.dispose();
     _ribbonPreferences.removeListener(_ribbonPreferencesChanged);
@@ -1340,6 +1351,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           shortcut: _fileShortcut(LogicalKeyboardKey.keyO),
           onSelected: enabled ? _openFile : null,
         ),
+        if (!kIsWeb)
+          StudioMenuAction(
+            id: 'recent-files',
+            label: _recentFilesLabel,
+            icon: Icons.history,
+            onSelected: enabled ? _openRecentFiles : null,
+          ),
       ],
       <StudioMenuAction>[
         StudioMenuAction(
@@ -3848,6 +3866,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _t('Open', StudioStrings.de('Open'), 'فتح'),
             _opening || _isSaving ? null : _openFile,
           ),
+          if (!kIsWeb)
+            _cmd(
+              Icons.history,
+              _recentFilesLabel,
+              _fileActionsAvailable ? _openRecentFiles : null,
+            ),
           _cmd(
             Icons.save_outlined,
             _strings.save,
@@ -7227,20 +7251,141 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _setZoom(1);
   }
 
-  Future<void> _openFile() async {
-    if (!_fileActionsAvailable) {
-      return;
+  String get _recentFilesLabel =>
+      _t('Recent files…', 'Zuletzt geöffnet…', 'الملفات الأخيرة…');
+
+  Future<void> _openRecentFiles() async {
+    if (!_fileActionsAvailable) return;
+    try {
+      final files = await _recentFiles.read();
+      if (!mounted || !_fileActionsAvailable) return;
+      final selected = await showDialog<StudioRecentFile>(
+        context: _themedContext,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(_recentFilesLabel.replaceFirst('…', '')),
+          content: SizedBox(
+            width: 520,
+            child: files.isEmpty
+                ? Text(
+                    _t(
+                      'No recently opened files.',
+                      'Keine kürzlich geöffneten Dateien.',
+                      'لا توجد ملفات مفتوحة مؤخرًا.',
+                    ),
+                  )
+                : SizedBox(
+                    height: math.min(files.length * 72.0, 390.0),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: files.length,
+                      itemBuilder: (_, index) {
+                        final file = files[index];
+                        return ListTile(
+                          leading: const Icon(Icons.insert_drive_file_outlined),
+                          title: Text(
+                            file.name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          subtitle: Text(
+                            file.path,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          onTap: () => Navigator.pop(dialogContext, file),
+                        );
+                      },
+                    ),
+                  ),
+          ),
+          actions: [
+            if (files.isNotEmpty)
+              TextButton(
+                onPressed: () {
+                  unawaited(_recentFiles.clear().catchError((Object _) {}));
+                  Navigator.pop(dialogContext);
+                },
+                child: Text(_t('Clear list', 'Liste leeren', 'مسح القائمة')),
+              ),
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: Text(_strings.close),
+            ),
+          ],
+        ),
+      );
+      if (selected == null || !mounted || !_fileActionsAvailable) return;
+      final access = await _recentFiles.begin(selected);
+      try {
+        if (!mounted || !_fileActionsAvailable) return;
+        final name = StudioFiles.nameOf(access.path);
+        final opened = await _openPickedFile(
+          PickedOfficeFile(
+            bytes: Uint8List(0),
+            name: name,
+            kind: StudioFiles.kindOf(name, Uint8List(0)),
+            path: access.path,
+          ),
+          recentAccess: access,
+          reportFailure: false,
+        );
+        if (!opened && mounted) _showRecentOpenFailure();
+      } finally {
+        if (!_recentAccess.containsValue(access)) await access.close();
+      }
+    } on Object {
+      if (mounted) _showRecentOpenFailure();
     }
+  }
+
+  void _showRecentOpenFailure() => _toast(
+    _t(
+      'Could not reopen the file. Choose it again with File › Open.',
+      'Datei konnte nicht erneut geöffnet werden. Wählen Sie sie über Datei › Öffnen erneut aus.',
+      'تعذّر إعادة فتح الملف. اختره مجددًا من ملف › فتح.',
+    ),
+  );
+
+  void _didOpenFile(
+    PickedOfficeFile picked,
+    SuiteApp app,
+    StudioRecentAccess? access,
+  ) {
+    final previous = _recentAccess.remove(app);
+    if (access != null) _recentAccess[app] = access;
+    final path = picked.path;
+    if (path != null && path.isNotEmpty && !kIsWeb) {
+      unawaited(
+        _recentFiles
+            .remember(path, _nameFromPicked(picked))
+            .catchError((Object _) {}),
+      );
+    }
+    if (previous != null) unawaited(previous.close());
+  }
+
+  Future<void> _openFile() async {
+    if (!_fileActionsAvailable) return;
     try {
       await StudioWindow.show();
-      final PickedOfficeFile? picked = await StudioFiles.open();
-      if (picked == null || !mounted) {
-        return;
-      }
+      final picked = await StudioFiles.open();
+      if (picked == null || !mounted) return;
+      await _openPickedFile(picked);
+    } on Object catch (error) {
+      if (mounted) _toast(_openFailureMessage(error));
+    }
+  }
+
+  Future<bool> _openPickedFile(
+    PickedOfficeFile picked, {
+    StudioRecentAccess? recentAccess,
+    bool reportFailure = true,
+  }) async {
+    try {
       final String lowerName = picked.name.toLowerCase();
       if (lowerName.endsWith('.iso') || lowerName.endsWith('.cdr')) {
         final Uint8List imageBytes = await StudioFiles.ensureBytes(picked);
-        if (!mounted) return;
+        if (!mounted) return false;
         if (!StudioIsoImage.isIso(imageBytes)) {
           _toast(
             _t(
@@ -7249,7 +7394,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               'صورة ISO هذه ليست صورة ISO 9660 مدعومة.',
             ),
           );
-          return;
+          return false;
         }
         await showStudioIsoImageDialog(
           _themedContext,
@@ -7271,7 +7416,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             }
           },
         );
-        return;
+        return true;
       }
       final SuiteApp? target = picked.name.toLowerCase().endsWith('.pdf')
           ? SuiteApp.pdf
@@ -7286,34 +7431,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _switchApp(target);
         if (!await _confirmSaveActiveFile() || !mounted) {
           if (mounted) _switchApp(previous);
-          return;
+          return true;
         }
       }
-      if (picked.name.toLowerCase().endsWith('.pdf')) {
+      if (lowerName.endsWith('.pdf')) {
         _switchApp(SuiteApp.pdf);
-        if (picked.path != null && picked.path!.isNotEmpty) {
-          await loadPdfFromFilePath(
-            _pdf,
-            picked.path!,
-            onError: (Object error) {
-              _toast(
-                _arabic ? 'فشل فتح PDF: $error' : 'PDF open failed: $error',
-              );
-            },
-          );
-        } else {
-          final Uint8List pdfBytes = await StudioFiles.ensureBytes(picked);
-          if (!mounted) {
-            return;
-          }
-          await _pdf.loadBytesAsync(pdfBytes);
-        }
-        if (!mounted) {
-          return;
-        }
-        _pdfPath = picked.path;
-        _pdfName = _nameFromPicked(picked);
-        return;
+        final pdfBytes = await StudioFiles.ensureBytes(picked);
+        if (!mounted) return false;
+        await _pdf.loadBytesAsync(pdfBytes);
+        if (!mounted) return false;
+        setState(() {
+          _pdfPath = picked.path;
+          _pdfName = _nameFromPicked(picked);
+        });
+        _didOpenFile(picked, SuiteApp.pdf, recentAccess);
+        return true;
       }
       if (picked.kind == OpcPackageKind.unknown) {
         _toast(
@@ -7323,7 +7455,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             'صيغة الملف غير معروفة.',
           ),
         );
-        return;
+        return false;
       }
       setState(() {
         _opening = true;
@@ -7337,7 +7469,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       await WidgetsBinding.instance.endOfFrame;
       Uint8List bytes = await StudioFiles.ensureBytes(picked);
       if (!mounted) {
-        return;
+        return false;
       }
       final bool legacyWord =
           picked.kind == OpcPackageKind.word &&
@@ -7345,7 +7477,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       if (legacyWord) {
         setState(() => _openStage = 'legacy-word');
         bytes = await StudioFiles.convertLegacyWordDoc(bytes);
-        if (!mounted) return;
+        if (!mounted) return false;
+      }
+      final legacySheet =
+          picked.kind == OpcPackageKind.sheet && lowerName.endsWith('.xls');
+      if (legacySheet) {
+        bytes = await StudioFiles.convertLegacySheet(bytes);
+        if (!mounted) return false;
       }
       setState(() {
         _openHeavy = OfficeIsolateOpen.isHeavyBytes(bytes);
@@ -7382,7 +7520,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               });
             },
           );
-          if (!mounted) return;
+          if (!mounted) return false;
           // The active representation is DOCX. Never write those bytes over
           // the source ODT path; the first save chooses a new DOCX location.
           _wordPath = importedOdt || legacyWord ? null : picked.path;
@@ -7410,21 +7548,28 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         case OpcPackageKind.sheet:
           _switchApp(SuiteApp.excel);
           await _sheet.loadBytesAsync(bytes, onProgress: onProgress);
-          _sheetPath = picked.path;
-          _sheetName = _nameFromPicked(picked);
+          if (!mounted) return false;
+          _sheetPath = legacySheet ? null : picked.path;
+          final name = _nameFromPicked(picked);
+          _sheetName = legacySheet
+              ? '${name.substring(0, name.length - 4)}.xlsx'
+              : name;
         case OpcPackageKind.slide:
           _switchApp(SuiteApp.powerpoint);
           await _slides.loadBytesAsync(bytes, onProgress: onProgress);
+          if (!mounted) return false;
           _slidePath = picked.path;
           _slideName = _nameFromPicked(picked);
         case OpcPackageKind.unknown:
           break;
       }
-      if (mounted) {
-        setState(() => _openProgress = 1);
-      }
+      if (!mounted || target == null) return false;
+      setState(() => _openProgress = 1);
+      _didOpenFile(picked, target, recentAccess);
+      return true;
     } catch (error) {
-      _toast(_openFailureMessage(error));
+      if (reportFailure && mounted) _toast(_openFailureMessage(error));
+      return false;
     } finally {
       _stopOpenTicker();
       if (mounted) {

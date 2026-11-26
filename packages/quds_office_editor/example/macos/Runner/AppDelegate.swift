@@ -6,6 +6,61 @@ import Security
 class AppDelegate: FlutterAppDelegate {
   private var terminationPending = false
 
+  private var recentFilesChannel: FlutterMethodChannel?
+  private var recentScopes: [String: (url: URL, started: Bool)] = [:]
+
+  func registerRecentFilesChannel(binaryMessenger: FlutterBinaryMessenger) {
+    guard recentFilesChannel == nil else { return }
+    let channel = FlutterMethodChannel(
+      name: "crispoffice/recent-files", binaryMessenger: binaryMessenger)
+    channel.setMethodCallHandler { [weak self] call, result in
+      guard let self else { result(FlutterMethodNotImplemented); return }
+      switch call.method {
+      case "bookmark":
+        guard let path = call.arguments as? String, path.hasPrefix("/") else {
+          result(nil)
+          return
+        }
+        let url = URL(fileURLWithPath: path)
+        let bookmark = try? url.bookmarkData(options: .withSecurityScope)
+        result(bookmark?.base64EncodedString())
+      case "begin":
+        guard let encoded = call.arguments as? String, encoded.count <= 65536,
+              let bookmark = Data(base64Encoded: encoded) else {
+          result(FlutterError(code: "recent_file_unavailable", message: nil, details: nil))
+          return
+        }
+        do {
+          var stale = false
+          let url = try URL(
+            resolvingBookmarkData: bookmark,
+            options: [.withSecurityScope, .withoutUI, .withoutMounting],
+            relativeTo: nil, bookmarkDataIsStale: &stale)
+          let started = url.startAccessingSecurityScopedResource()
+          guard url.isFileURL, FileManager.default.isReadableFile(atPath: url.path) else {
+            if started { url.stopAccessingSecurityScopedResource() }
+            result(FlutterError(code: "recent_file_unavailable", message: nil, details: nil))
+            return
+          }
+          let token = UUID().uuidString
+          self.recentScopes[token] = (url, started)
+          result(["path": url.path, "token": token])
+        } catch {
+          result(FlutterError(code: "recent_file_unavailable", message: nil, details: nil))
+        }
+      case "end":
+        if let token = call.arguments as? String,
+           let scope = self.recentScopes.removeValue(forKey: token), scope.started {
+          scope.url.stopAccessingSecurityScopedResource()
+        }
+        result(nil)
+      default:
+        result(FlutterMethodNotImplemented)
+      }
+    }
+    recentFilesChannel = channel
+  }
+
   override func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
     // The red traffic light closes the workspace window, not the application.
     return false

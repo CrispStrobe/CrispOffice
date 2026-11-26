@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,8 @@ import 'package:quds_office_studio/studio_about.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_desktop_menu.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
+import 'package:quds_office_studio/studio_recent_files.dart';
+import 'package:quds_office_studio/studio_settings.dart';
 import 'package:quds_office_studio/studio_window.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
@@ -57,7 +61,10 @@ Future<void> _frames(WidgetTester tester) async {
   await tester.pump();
 }
 
-Future<WordEditorController> _studio(WidgetTester tester) async {
+Future<WordEditorController> _studio(
+  WidgetTester tester, {
+  StudioRecentFiles? recentFiles,
+}) async {
   final preferences = StudioRibbonPreferences(persist: false);
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() async {
@@ -67,7 +74,12 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
     await tester.binding.setSurfaceSize(null);
   });
   await tester.pumpWidget(
-    MaterialApp(home: SuiteWorkspace(ribbonPreferences: preferences)),
+    MaterialApp(
+      home: SuiteWorkspace(
+        ribbonPreferences: preferences,
+        recentFiles: recentFiles,
+      ),
+    ),
   );
   await _frames(tester);
   final controller = tester
@@ -94,6 +106,110 @@ void main() {
     StudioWindow.supported = false;
     StudioWindow.fullscreen = false;
   });
+
+  test('recent files persist in order and de-duplicate opened paths', () async {
+    final backend = MemoryStudioSettingsBackend();
+    final history = StudioRecentFiles(backend);
+    await Future.wait([
+      history.remember('/Example/first.xlsx', 'first.xlsx'),
+      history.remember('/Example/second.pdf', 'second.pdf'),
+      history.remember('/Example/first.xlsx', 'first.xlsx'),
+    ]);
+    final reloaded = StudioRecentFiles(backend);
+    expect((await reloaded.read()).map((file) => file.name), [
+      'first.xlsx',
+      'second.pdf',
+    ]);
+    await reloaded.clear();
+    expect(await history.read(), isEmpty);
+  });
+
+  testWidgets('recent files persist and release macOS bookmark access', (
+    tester,
+  ) async {
+    final channel = StudioRecentFiles.channel;
+    final messenger = tester.binding.defaultBinaryMessenger;
+    final calls = <MethodCall>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return switch (call.method) {
+        'bookmark' => 'saved-bookmark',
+        'begin' => {'path': '/Example/moved.xlsx', 'token': 'scope-token'},
+        _ => null,
+      };
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    final backend = MemoryStudioSettingsBackend();
+    final history = StudioRecentFiles(backend);
+    await history.remember('/Example/original.xlsx', 'original.xlsx');
+    final reopened = StudioRecentFiles(backend);
+    final access = await reopened.begin((await reopened.read()).single);
+    expect(access.path, '/Example/moved.xlsx');
+    await access.close();
+    expect(calls.map((call) => (call.method, call.arguments)), [
+      ('bookmark', '/Example/original.xlsx'),
+      ('begin', 'saved-bookmark'),
+      ('end', 'scope-token'),
+    ]);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.macOS));
+
+  testWidgets('Open and Recent reopen a legacy workbook as an XLSX copy', (
+    tester,
+  ) async {
+    final dir = Directory.systemTemp.createTempSync('crisp-recent-xls');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final legacy = File('${dir.path}/legacy.xls');
+    final bytes = Uint8List.fromList(
+      utf8.encode(
+        '<html><table><tr><td>Legacy example</td><td>42</td></tr></table></html>',
+      ),
+    );
+    legacy.writeAsBytesSync(bytes);
+    final picker = _Picker()
+      ..picked = FilePickerResult([
+        PlatformFile(name: 'legacy.xls', path: legacy.path, size: bytes.length),
+      ]);
+    FilePicker.platform = picker;
+    final recent = StudioRecentFiles(MemoryStudioSettingsBackend());
+    await _studio(tester, recentFiles: recent);
+
+    SheetEditorController? sheet() {
+      final finder = find.byType(QudsSheetEditor);
+      if (finder.evaluate().isEmpty) return null;
+      return tester.widget<QudsSheetEditor>(finder).controller;
+    }
+
+    Future<void> waitForLegacy() async {
+      for (
+        var i = 0;
+        i < 160 && sheet()?.sheet.cellA1('A1').asString != 'Legacy example';
+        i++
+      ) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 40)),
+        );
+        await tester.pump(const Duration(milliseconds: 24));
+      }
+      expect(sheet()?.sheet.cellA1('A1').asString, 'Legacy example');
+      await _frames(tester);
+    }
+
+    await _fileAction(tester, 'open');
+    await waitForLegacy();
+    expect((await recent.read()).single.path, legacy.path);
+    expect(find.textContaining('legacy.xlsx'), findsWidgets);
+    await _fileAction(tester, 'save');
+    expect(picker.saves, 1);
+    expect(legacy.readAsBytesSync(), bytes);
+
+    await _fileAction(tester, 'new');
+    expect(sheet()?.sheet.cellA1('A1').asString, isNot('Legacy example'));
+    await _fileAction(tester, 'recent-files');
+    await tester.tap(find.widgetWithText(ListTile, 'legacy.xls'));
+    await _frames(tester);
+    await waitForLegacy();
+    expect(picker.opens, 1);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.windows));
 
   testWidgets('Save As cancellation keeps the document, dirty state and undo', (
     tester,
