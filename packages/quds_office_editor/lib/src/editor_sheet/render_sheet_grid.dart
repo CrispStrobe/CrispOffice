@@ -975,13 +975,21 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
             textCell,
             label,
             isEdit: isEdit,
-            align: data.horizontalAlign,
+            align:
+                !isEdit &&
+                    data.horizontalAlign == SmlHAlign.general &&
+                    data.value is num
+                ? SmlHAlign.right
+                : data.horizontalAlign,
             color: _rgbColor(conditional.fontRgb ?? data.fontRgb),
             background: background,
             dataBarRect: dataBarRect,
             dataBarBackground: dataBarBackground,
             bold: data.fontBold,
-            fontSize: data.fontSize,
+            fontSize: isEdit
+                ? data.fontSize
+                : data.fontSize * 4 / 3 * viewport.scale,
+            fontFamily: isEdit ? null : data.fontFamily,
           );
         }
         _paintCellChrome(canvas, cell, textCol, textRow);
@@ -1870,6 +1878,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     Color? color,
     bool bold = false,
     double fontSize = 11,
+    String? fontFamily,
   }) {
     final bool rtl = _rtl || PaintRunText.looksRtl(text);
     final TextAlign align = switch (horizontal) {
@@ -1906,7 +1915,9 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       text: text,
       fontSize: fontSize,
       color: ink,
-      themeFamily: _theme.fontFamily,
+      themeFamily: fontFamily?.isNotEmpty == true
+          ? fontFamily
+          : _theme.fontFamily,
       align: align,
       bold: bold,
     );
@@ -2111,6 +2122,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     Color? dataBarBackground,
     bool bold = false,
     double fontSize = 11,
+    String? fontFamily,
   }) {
     canvas.save();
     canvas.clipRect(cell);
@@ -2135,6 +2147,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       color: ink,
       bold: bold,
       fontSize: fontSize,
+      fontFamily: fontFamily,
     )..layout(maxWidth: maxW);
     final double textY = cell.top + (cell.height - painter.height) / 2;
     final double textX = switch (align) {
@@ -2184,6 +2197,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
         color: barInk,
         bold: bold,
         fontSize: fontSize,
+        fontFamily: fontFamily,
       )..layout(maxWidth: maxW);
       canvas.save();
       canvas.clipRect(dataBarRect);

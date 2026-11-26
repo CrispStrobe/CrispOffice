@@ -127,6 +127,32 @@ void main() {
     expect(_pixelsOf(pixels, 0x22AA55), greaterThan(10));
   });
 
+  testWidgets('general numbers align right while explicit left wins', (
+    tester,
+  ) async {
+    final sheet = _sheet(text: '', font: 'E03060');
+    final cell = sheet.cellA1('A1')..value = 123;
+    double meanInkX(Uint8List pixels) {
+      var sum = 0;
+      var count = 0;
+      for (var i = 0; i < pixels.length; i += 4) {
+        if (pixels[i] == 0xE0 &&
+            pixels[i + 1] == 0x30 &&
+            pixels[i + 2] == 0x60) {
+          sum += (i ~/ 4) % 256;
+          count++;
+        }
+      }
+      expect(count, greaterThan(0));
+      return sum / count;
+    }
+
+    final general = meanInkX(await _paint(tester, sheet));
+    cell.horizontalAlign = SmlHAlign.left;
+    final left = meanInkX(await _paint(tester, sheet));
+    expect(general, greaterThan(left + 8));
+  });
+
   testWidgets('icon sets visibly paint without mutating values or rules', (
     tester,
   ) async {
