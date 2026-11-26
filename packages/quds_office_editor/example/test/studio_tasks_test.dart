@@ -185,6 +185,7 @@ void main() {
   testWidgets(
     'Tasks uses the shell ribbon and theme surface, and supports both swipes',
     (tester) async {
+      var managerOpens = 0;
       final theme = ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         scaffoldBackgroundColor: Colors.grey,
@@ -195,6 +196,7 @@ void main() {
           home: StudioTasksPage(
             title: 'Tasks',
             chromeBuilder: (_) => const Text('Shared shell'),
+            openConnections: () => managerOpens++,
             openDatabase: () async => sqlite3.openInMemory(),
           ),
         ),
@@ -214,6 +216,11 @@ void main() {
         tester.widget<Scaffold>(find.byType(Scaffold)).backgroundColor,
         theme.colorScheme.surface,
       );
+      final connections = find.byTooltip('Connections');
+      await tester.ensureVisible(connections);
+      await tester.pumpAndSettle();
+      await tester.tap(connections);
+      expect(managerOpens, 1);
       await tester.tap(find.byTooltip('Add task'));
       await tester.pumpAndSettle();
       await tester.enterText(

@@ -7,6 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
+import 'package:quds_office_studio/credentials/secure_storage_service.dart';
+import 'package:quds_office_studio/studio_credential_storage.dart';
+import 'package:quds_office_studio/studio_productivity_accounts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
@@ -349,6 +353,8 @@ Future<void> _show(
   WidgetTester tester,
   _RouterFixture fixture, {
   StudioMailCredentialStore? credentials,
+  StudioCredentialStorage? sharedStorage,
+  VoidCallback? openConnections,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1280, 1600));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -357,6 +363,8 @@ Future<void> _show(
       home: StudioMailDialog(
         strings: _strings,
         credentialStore: credentials ?? SessionMailCredentials(),
+        sharedCredentialStorage: sharedStorage,
+        openConnections: openConnections,
         localAccountStore: fixture.directory,
         autoConnectSavedAccount: false,
         accountDestinationBuilder: fixture.destination,
@@ -403,7 +411,161 @@ Future<void> _showConnected(
   await _pump(tester);
 }
 
+Future<StudioCredentialStorage> _sharedExchange(SecureStorage vault) async {
+  SharedPreferences.setMockInitialValues({});
+  await vault.write(
+    studioTasksLegacyKey,
+    jsonEncode({
+      'id': 'shared-ews',
+      'provider': 'ews',
+      'label': 'AKRS',
+      'url': _identity('ews').endpoint,
+      'login': 'ExchangeLogin',
+      'domain': 'DOMAIN',
+      'mailbox': _identity('ews').sender,
+      'secret': 'fixture-exchange-secret',
+      'services': ['mail', 'tasks', 'calendar'],
+    }),
+  );
+  final storage = StudioCredentialStorage(
+    systemStorageFactory: () async => vault,
+  );
+  addTearDown(storage.dispose);
+  return storage;
+}
+
 void main() {
+  testWidgets(
+    'saved Exchange can be selected in either Mail chooser before its first Mail connection',
+    (tester) async {
+      final fixture = _RouterFixture();
+      fixture.directory.records.remove(_identity('ews').account.value);
+      final storage = await _sharedExchange(InMemorySecureStorage());
+      final credentials = _DelayedAccountCatalog();
+      credentials.result.complete(
+        StudioMailAccountCatalogResult.success(
+          StudioMailAccountCatalog(
+            accounts: [
+              StudioMailSavedAccount(
+                id: _imapCredentials.accountId,
+                credentials: _imapCredentials,
+              ),
+            ],
+            selectedAccountId: _imapCredentials.accountId,
+          ),
+        ),
+      );
+      var managerOpens = 0;
+      await _show(
+        tester,
+        fixture,
+        credentials: credentials,
+        sharedStorage: storage,
+        openConnections: () => managerOpens++,
+      );
+      await _press(tester, _key('studio-mail-connections'));
+      expect(managerOpens, 1);
+      await _press(tester, _key('studio-mail-saved-account'));
+      await _press(tester, find.textContaining('AKRS'));
+      expect(fixture.routes.single.provider, MailProviderKind.ews);
+      expect(fixture.routes.single.target?.choiceLabel, 'AKRS');
+      await _press(tester, _key('fixture-close-provider'));
+      expect(fixture.clientCreations, 0);
+      expect(fixture.storeOpens, 0);
+
+      await _press(tester, _key('studio-mail-navigate-account'));
+      final selectedAccount = _identity('ews').account.value;
+      await _press(
+        tester,
+        _key('studio-mail-navigation-account-$selectedAccount'),
+      );
+      await _press(tester, _key('studio-mail-account-navigation-continue'));
+      expect(fixture.routes, hasLength(2));
+      expect(
+        fixture.routes.last.target?.identity.account,
+        _identity('ews').account,
+      );
+      expect(fixture.clientCreations, 0);
+      expect(fixture.storeOpens, 0);
+    },
+  );
+
+  testWidgets(
+    'a shared Exchange selection rechecks Mail permission before provider sign-in',
+    (tester) async {
+      final vault = InMemorySecureStorage();
+      final storage = await _sharedExchange(vault);
+      final target = (await StudioMailAccountNavigationTarget.savedExchange(
+        storage,
+      )).single;
+      final directory = MemoryMailLocalAccounts();
+      var opened = 0;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StudioMailEwsDialog(
+            strings: _strings,
+            initialAccount: target,
+            sharedCredentialStorage: storage,
+            localAccountStore: directory,
+            providerFactory: (configuration, credentials) {
+              opened++;
+              return _EwsProvider(configuration.account);
+            },
+          ),
+        ),
+      );
+      expect(find.byKey(const ValueKey('ews-password')), findsNothing);
+      await saveStudioAccountServices(vault, target.sharedExchangeId!, {
+        StudioProductivityService.tasks,
+      });
+      await _pump(tester);
+      await _press(tester, _key('ews-connect'));
+      expect(opened, 0);
+      expect(directory.records, isEmpty);
+    },
+  );
+
+  testWidgets('selected Exchange uses the stored password only after Connect', (
+    tester,
+  ) async {
+    final storage = await _sharedExchange(InMemorySecureStorage());
+    final target = (await StudioMailAccountNavigationTarget.savedExchange(
+      storage,
+    )).single;
+    final directory = MemoryMailLocalAccounts();
+    final drafts = MemoryStudioMailDrafts();
+    MailEwsConfiguration? configuration;
+    MailCredentialStore? credentials;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudioMailEwsDialog(
+          strings: _strings,
+          initialAccount: target,
+          sharedCredentialStorage: storage,
+          localAccountStore: directory,
+          draftStoreFactory: drafts.open,
+          providerFactory: (selected, store) {
+            configuration = selected;
+            credentials = store;
+            return _EwsProvider(selected.account);
+          },
+        ),
+      ),
+    );
+    expect(configuration, isNull);
+    expect(find.byKey(const ValueKey('ews-password')), findsNothing);
+    await _press(tester, _key('ews-connect'));
+    expect(configuration?.authentication, MailEwsAuthentication.ntlm);
+    expect(configuration?.account, target.identity.account);
+    final result = await credentials!.load(configuration!.credential);
+    expect(
+      utf8.decode(
+        (result as MailSuccess<MailCredentialRecord?>).value!.opaqueData.bytes,
+      ),
+      'fixture-exchange-secret',
+    );
+  });
+
   for (final (button, provider) in [
     ('studio-mail-open-gmail', MailProviderKind.gmail),
     ('studio-mail-open-microsoft365', MailProviderKind.graph),

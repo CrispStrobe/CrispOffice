@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 
+import 'studio_credential_storage.dart';
 import 'studio_mail_account_navigation.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
@@ -25,6 +26,8 @@ class StudioMailCloudDialog extends StatelessWidget {
     this.draftStoreFactory,
     this.localAccountStore,
     this.initialAccount,
+    this.openConnections,
+    this.sharedCredentialStorage,
     this.onAccountNavigation,
   });
 
@@ -39,6 +42,8 @@ class StudioMailCloudDialog extends StatelessWidget {
   final StudioMailDraftStoreFactory? draftStoreFactory;
   final StudioMailLocalAccountStore? localAccountStore;
   final StudioMailAccountNavigationTarget? initialAccount;
+  final VoidCallback? openConnections;
+  final StudioCredentialStorage? sharedCredentialStorage;
   final ValueChanged<StudioMailAccountNavigationTarget>? onAccountNavigation;
 
   @override
@@ -54,6 +59,8 @@ class StudioMailCloudDialog extends StatelessWidget {
     draftStoreFactory: draftStoreFactory,
     localAccountStore: localAccountStore,
     initialAccount: initialAccount,
+    openConnections: openConnections,
+    sharedCredentialStorage: sharedCredentialStorage,
     onAccountNavigation: onAccountNavigation,
   );
 }

@@ -10,6 +10,7 @@ class StudioMailDialog extends StatelessWidget {
     required this.strings,
     this.chromeBuilder,
     this.onClose,
+    VoidCallback? openConnections,
   });
 
   final StudioStrings strings;

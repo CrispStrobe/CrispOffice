@@ -48,6 +48,7 @@ import 'studio_mail_cached_strings.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_compose_tools.dart';
 import 'studio_mail_credentials.dart';
+import 'studio_productivity_accounts.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_drafts_dialog.dart';
@@ -135,6 +136,8 @@ class StudioMailDialog extends StatefulWidget {
     required this.strings,
     this.chromeBuilder,
     this.onClose,
+    this.openConnections,
+    this.sharedCredentialStorage,
     this.clientFactory,
     this.messageLoaderFactory,
     this.autoConnectSavedAccount,
@@ -155,6 +158,8 @@ class StudioMailDialog extends StatefulWidget {
 
   /// Closes an embedded Mail pane. A pushed route falls back to Navigator.pop.
   final VoidCallback? onClose;
+  final VoidCallback? openConnections;
+  final StudioCredentialStorage? sharedCredentialStorage;
 
   /// Tests supply the keychain boundary without reading a platform credential.
   final StudioMailCredentialStore? credentialStore;
@@ -208,6 +213,22 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       (widget.draftStoreFactory == null
           ? NativeStudioMailLocalAccountStore.instance
           : null);
+
+  StudioCredentialStorage? get _sharedStorage =>
+      widget.sharedCredentialStorage ??
+      (widget.credentialStore == null
+          ? StudioCredentialStorage.instance
+          : null);
+
+  Future<List<StudioMailAccountNavigationTarget>>? _sharedExchangeAccounts;
+
+  void _reloadSharedExchangeAccounts() {
+    if (!mounted) return;
+    setState(
+      () => _sharedExchangeAccounts =
+          StudioMailAccountNavigationTarget.savedExchange(_sharedStorage),
+    );
+  }
 
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -350,6 +371,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final initialAccount = widget.initialAccount;
     if (initialAccount != null) {
       _prefillNavigationTarget(initialAccount);
+    }
+    if (_sharedStorage != null) {
+      studioProductivityAccountChanges.addListener(
+        _reloadSharedExchangeAccounts,
+      );
+      _sharedStorage?.addListener(_reloadSharedExchangeAccounts);
+      _sharedExchangeAccounts = StudioMailAccountNavigationTarget.savedExchange(
+        _sharedStorage,
+      );
     }
     unawaited(_loadCredentials());
   }
@@ -806,6 +836,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   void dispose() {
     _cancelMailPolling();
     _mailPollActivity.dispose();
+    studioProductivityAccountChanges.removeListener(
+      _reloadSharedExchangeAccounts,
+    );
+    _sharedStorage?.removeListener(_reloadSharedExchangeAccounts);
     WidgetsBinding.instance.removeObserver(this);
     if (widget.credentialStore == null) {
       StudioCredentialStorage.instance.removeListener(
@@ -4171,6 +4205,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         context: context,
         strings: widget.strings,
         store: directory,
+        sharedCredentialStorage: _sharedStorage,
         currentAccount: _account == null ? null : _imapLocalIdentity(_account!),
         isCurrent: current,
       );
@@ -4249,7 +4284,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
-  Future<void> _openProviderSetup(MailProviderKind provider) async {
+  Future<void> _openProviderSetup(
+    MailProviderKind provider, {
+    StudioMailAccountNavigationTarget? target,
+  }) async {
     if (_accountNavigationPending ||
         _navigationReleaseRequired ||
         _busy ||
@@ -4268,7 +4306,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       await _draftRestoreInFlight;
       await _requireReleasedDraftStores();
       await _transportClosing;
-      if (mounted) await _routeProviderAccounts(provider);
+      if (target != null) {
+        final directory = _localAccounts;
+        if (directory == null) {
+          throw const StudioMailDraftStoreException(
+            MailProblemCode.unavailable,
+          );
+        }
+        await target.validateCurrent(directory);
+      }
+      if (mounted) await _routeProviderAccounts(provider, target: target);
     } on Object {
       if (mounted) {
         setState(() => _error = widget.strings.mailAccountNavigationFailed);
@@ -4721,6 +4768,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             return StudioMailEwsDialog(
               strings: widget.strings,
               initialAccount: chosenTarget,
+              sharedCredentialStorage: _sharedStorage,
+              openConnections: widget.openConnections,
               onAccountNavigation: navigate,
               draftStoreFactory: widget.draftStoreFactory,
               localAccountStore: _localAccounts,
@@ -4732,6 +4781,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 ? MailCloudService.gmail
                 : MailCloudService.microsoft365,
             initialAccount: chosenTarget,
+            sharedCredentialStorage: _sharedStorage,
+            openConnections: widget.openConnections,
             onAccountNavigation: navigate,
             draftStoreFactory: widget.draftStoreFactory,
             localAccountStore: _localAccounts,
@@ -5550,6 +5601,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         id: 'mailbox',
         title: 'Mailbox',
         children: <Widget>[
+          if (widget.openConnections != null)
+            command(
+              key: const ValueKey('studio-mail-connections'),
+              icon: Icons.settings_outlined,
+              tooltip: widget.strings.productivity('Connections'),
+              onPressed: _dialogOpen || _accountNavigationPending
+                  ? null
+                  : widget.openConnections,
+            ),
           if (_localAccounts != null)
             command(
               key: const ValueKey('studio-mail-navigate-account'),
@@ -6266,7 +6326,26 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
-  Widget _rememberedAccounts(BuildContext context) {
+  Widget _rememberedAccounts(BuildContext context) =>
+      FutureBuilder<List<StudioMailAccountNavigationTarget>>(
+        future: _sharedExchangeAccounts,
+        builder: (context, snapshot) => _savedAccountPicker(
+          context,
+          _navigationTarget == null &&
+                  _localAccounts != null &&
+                  snapshot.connectionState == ConnectionState.done
+              ? snapshot.data ?? const []
+              : const [],
+        ),
+      );
+
+  Widget _savedAccountPicker(
+    BuildContext context,
+    List<StudioMailAccountNavigationTarget> shared,
+  ) {
+    final exchange = {
+      for (final target in shared) 'ews:${target.record.id}': target,
+    };
     final accounts =
         _accountCatalog?.accounts ?? const <StudioMailSavedAccount>[];
     return Column(
@@ -6305,11 +6384,37 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     ),
                   ),
                 ),
+              for (final entry in exchange.entries)
+                DropdownMenuItem(
+                  value: entry.key,
+                  child: Text(
+                    '${entry.value.choiceLabel} · ${widget.strings.ewsTitle}',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
             ],
-            onChanged: _connecting || _credentialPending || accounts.isEmpty
+            onChanged:
+                _connecting ||
+                    _credentialPending ||
+                    _dialogOpen ||
+                    (accounts.isEmpty && exchange.isEmpty)
                 ? null
                 : (value) {
-                    if (value != null) unawaited(_selectSavedAccount(value));
+                    if (value == null) return;
+                    final target = exchange[value];
+                    if (target != null) {
+                      // Keep the IMAP form's selection when the provider route
+                      // closes, and never apply Exchange values to that form.
+                      setState(() => _credentialGeneration++);
+                      unawaited(
+                        _openProviderSetup(
+                          MailProviderKind.ews,
+                          target: target,
+                        ),
+                      );
+                    } else {
+                      unawaited(_selectSavedAccount(value));
+                    }
                   },
           ),
         ),

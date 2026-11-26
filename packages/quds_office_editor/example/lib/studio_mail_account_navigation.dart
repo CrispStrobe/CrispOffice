@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart' show TaskAccountId;
 
+import 'studio_credential_storage.dart';
 import 'studio_mail_account_navigation_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_strings.dart';
+import 'studio_productivity_accounts.dart';
 import 'studio_strings.dart';
 
 /// A selected, non-secret account route. It grants no connection or provider
@@ -15,7 +18,12 @@ import 'studio_strings.dart';
 final class StudioMailAccountNavigationTarget {
   factory StudioMailAccountNavigationTarget.fromRecord(
     MailLocalAccountRecord record,
-  ) {
+  ) => _fromRecord(record);
+
+  static StudioMailAccountNavigationTarget _fromRecord(
+    MailLocalAccountRecord record, {
+    _SharedExchangeRoute? shared,
+  }) {
     final identity = studioMailLocalAccountIdentity(record);
     final endpoint = Uri.parse(identity.endpoint);
     if (!_usableEndpoint(endpoint)) _invalid();
@@ -63,6 +71,7 @@ final class StudioMailAccountNavigationTarget {
       domain,
       login,
       tenant,
+      shared,
     );
   }
 
@@ -72,6 +81,7 @@ final class StudioMailAccountNavigationTarget {
     this.ewsDomain,
     this.ewsLogin,
     this.graphTenant,
+    this._shared,
   );
 
   final MailLocalAccountRecord record;
@@ -79,6 +89,109 @@ final class StudioMailAccountNavigationTarget {
   final String? ewsDomain;
   final String? ewsLogin;
   final String? graphTenant;
+
+  final _SharedExchangeRoute? _shared;
+  TaskAccountId? get sharedExchangeId => _shared?.id;
+  String get choiceLabel => _shared?.label ?? identity.sender;
+
+  Future<String> loadSharedExchangePassword() async {
+    final shared = _shared;
+    if (shared == null) _invalid();
+    final vault = await shared.storage.storage;
+    final catalog = await StudioTaskAccountCatalog.load(vault);
+    final row = catalog.records[shared.id];
+    if (row == null ||
+        !(await studioAccountServices(
+          vault,
+          shared.id,
+          row,
+        )).contains(StudioProductivityService.mail) ||
+        shared.storage.revision != shared.revision) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    requireMatches(_exchangeIdentity(row));
+    final password = row['secret'];
+    if (password is! String || password.isEmpty) _invalid();
+    return password;
+  }
+
+  static Future<List<StudioMailAccountNavigationTarget>> savedExchange(
+    StudioCredentialStorage? storage,
+  ) async {
+    if (storage == null) return const [];
+    final revision = storage.revision;
+    try {
+      final vault = await storage.storage;
+      final catalog = await StudioTaskAccountCatalog.load(vault);
+      final result = <StudioMailAccountNavigationTarget>[];
+      for (final MapEntry(:key, :value) in catalog.records.entries) {
+        if (key.provider != 'ews' ||
+            !(await studioAccountServices(
+              vault,
+              key,
+              value,
+            )).contains(StudioProductivityService.mail)) {
+          continue;
+        }
+        try {
+          final identity = _exchangeIdentity(value);
+          // A route snapshot only. The vault owns it until Mail records a
+          // successful sign-in in the local directory.
+          result.add(
+            _fromRecord(
+              MailLocalAccountRecord(
+                id: identity.account.value,
+                provider: identity.provider,
+                endpoint: identity.endpoint,
+                login: identity.login,
+                sender: identity.sender,
+                lastConnectedAt: DateTime.fromMillisecondsSinceEpoch(
+                  0,
+                  isUtc: true,
+                ),
+              ),
+              shared: (
+                id: key,
+                label: studioTaskAccountLabel(key, value),
+                storage: storage,
+                revision: revision,
+              ),
+            ),
+          );
+        } on FormatException {
+          continue;
+        } on StudioMailDraftStoreException {
+          continue;
+        }
+      }
+      return revision == storage.revision
+          ? List.unmodifiable(result)
+          : const [];
+    } on Object {
+      // An unavailable vault must not hide usable directory rows.
+      return const [];
+    }
+  }
+
+  static StudioMailDraftAccount _exchangeIdentity(Map<String, Object?> row) {
+    final endpoint = row['url'];
+    final username = row['login'];
+    final domain = row['domain'] ?? '';
+    final mailbox = studioExchangeMailbox(row);
+    if (endpoint is! String ||
+        username is! String ||
+        domain is! String ||
+        mailbox == null ||
+        username.trim().isEmpty) {
+      _invalid();
+    }
+    return StudioMailDraftAccount(
+      provider: 'ews',
+      endpoint: endpoint,
+      login: jsonEncode([domain.trim(), username.trim()]),
+      sender: mailbox,
+    );
+  }
 
   MailProviderKind get provider => identity.provider;
 
@@ -122,6 +235,10 @@ final class StudioMailAccountNavigationTarget {
   /// Revalidates the whole bounded catalog before admitting this exact record.
   /// A removed/replaced record, duplicate, or malformed sibling fails closed.
   Future<void> validateCurrent(StudioMailLocalAccountStore store) async {
+    if (_shared != null) {
+      await loadSharedExchangePassword();
+      return;
+    }
     final targets = _targets(await store.load());
     final current = targets.where((target) => target.record.id == record.id);
     if (current.length != 1 ||
@@ -154,7 +271,9 @@ final class StudioMailAccountNavigationTarget {
     checkCurrent();
     await validateCurrent(store);
     checkCurrent();
-    if (store is StudioMailLocalAccountReconnectStore) {
+    if (_shared != null) {
+      await store.remember(actual);
+    } else if (store is StudioMailLocalAccountReconnectStore) {
       await (store as StudioMailLocalAccountReconnectStore).rememberSelected(
         actual,
         expectedRecord: record,
@@ -218,6 +337,13 @@ final class StudioMailAccountNavigationTarget {
   String toString() => 'StudioMailAccountNavigationTarget(redacted)';
 }
 
+typedef _SharedExchangeRoute = ({
+  TaskAccountId id,
+  String label,
+  StudioCredentialStorage storage,
+  int revision,
+});
+
 /// Choosing or refreshing an account only reads local metadata. The caller
 /// owns the subsequent draft-safe transition and explicit provider sign-in.
 Future<StudioMailAccountNavigationTarget?> showStudioMailAccountNavigation({
@@ -226,6 +352,7 @@ Future<StudioMailAccountNavigationTarget?> showStudioMailAccountNavigation({
   required StudioMailLocalAccountStore store,
   required bool Function() isCurrent,
   StudioMailDraftAccount? currentAccount,
+  StudioCredentialStorage? sharedCredentialStorage,
 }) async {
   if (!context.mounted || !isCurrent()) return null;
   final target = await showDialog<StudioMailAccountNavigationTarget>(
@@ -240,6 +367,7 @@ Future<StudioMailAccountNavigationTarget?> showStudioMailAccountNavigation({
         store: store,
         isCurrent: isCurrent,
         currentAccount: currentAccount,
+        sharedCredentialStorage: sharedCredentialStorage,
       ),
     ),
   );
@@ -252,12 +380,14 @@ class _StudioMailAccountNavigationDialog extends StatefulWidget {
     required this.store,
     required this.isCurrent,
     required this.currentAccount,
+    required this.sharedCredentialStorage,
   });
 
   final StudioStrings strings;
   final StudioMailLocalAccountStore store;
   final bool Function() isCurrent;
   final StudioMailDraftAccount? currentAccount;
+  final StudioCredentialStorage? sharedCredentialStorage;
 
   @override
   State<_StudioMailAccountNavigationDialog> createState() =>
@@ -291,9 +421,16 @@ class _StudioMailAccountNavigationDialogState
       _selected = null;
     });
     try {
-      final targets = StudioMailAccountNavigationTarget._targets(
+      final local = StudioMailAccountNavigationTarget._targets(
         await widget.store.load(),
       );
+      final shared = await StudioMailAccountNavigationTarget.savedExchange(
+        widget.sharedCredentialStorage,
+      );
+      final targets = {
+        for (final target in local) target.identity.account: target,
+        for (final target in shared) target.identity.account: target,
+      }.values.toList(growable: false);
       if (!_isCurrent(generation)) return;
       setState(() => _targets = targets);
     } on Object {
@@ -411,7 +548,7 @@ class _StudioMailAccountNavigationDialogState
               : Icons.radio_button_unchecked,
         ),
         title: Text(
-          '${target.providerLabel(widget.strings)} · ${target.identity.sender}',
+          '${target.providerLabel(widget.strings)} · ${target.choiceLabel}',
         ),
         subtitle: Text(
           [

@@ -105,6 +105,8 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.draftStoreFactory,
     this.localAccountStore,
     this.initialAccount,
+    this.openConnections,
+    this.sharedCredentialStorage,
     this.onAccountNavigation,
   }) : cloudService = null,
        cloudAuthorizer = null,
@@ -125,6 +127,8 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.draftStoreFactory,
     this.localAccountStore,
     this.initialAccount,
+    this.openConnections,
+    this.sharedCredentialStorage,
     this.onAccountNavigation,
   }) : cloudService = service,
        providerFactory = null;
@@ -143,6 +147,8 @@ class StudioMailEwsDialog extends StatefulWidget {
   final StudioMailDraftStoreFactory? draftStoreFactory;
   final StudioMailLocalAccountStore? localAccountStore;
   final StudioMailAccountNavigationTarget? initialAccount;
+  final VoidCallback? openConnections;
+  final StudioCredentialStorage? sharedCredentialStorage;
   final ValueChanged<StudioMailAccountNavigationTarget>? onAccountNavigation;
 
   @override
@@ -210,7 +216,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _routeRetired = false;
   bool _allowPop = false;
   int _accountEpoch = 0;
-  Future<List<StudioProductivityAccount>>? _savedExchangeAccounts;
+  StudioCredentialStorage? get _sharedStorage =>
+      widget.sharedCredentialStorage ??
+      (widget.providerFactory == null && widget.cloudProviderFactory == null
+          ? StudioCredentialStorage.instance
+          : null);
+
+  Future<List<StudioMailAccountNavigationTarget>>? _savedExchangeAccounts;
   TaskAccountId? _usingSharedAccount;
   StudioMailAccountNavigationTarget? _initialAccountSource;
   StudioMailAccountNavigationTarget? _expectedAccount;
@@ -250,43 +262,22 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     super.initState();
     _prefillAccount();
     _prefillClientId();
-    if (!_cloud && widget.providerFactory == null) {
+    final storage = _sharedStorage;
+    if (!_cloud && storage != null) {
       studioProductivityAccountChanges.addListener(_sharedAccountsChanged);
-      StudioCredentialStorage.instance.addListener(_sharedAccountsChanged);
-      _savedExchangeAccounts = _readSavedExchangeAccounts();
-    }
-  }
-
-  Future<List<StudioProductivityAccount>> _readSavedExchangeAccounts() async {
-    final storage = StudioCredentialStorage.instance;
-    final revision = storage.revision;
-    try {
-      final vault = await storage.storage;
-      final catalog = await StudioTaskAccountCatalog.load(vault);
-      final rows = <StudioProductivityAccount>[];
-      for (final MapEntry(:key, :value) in catalog.records.entries) {
-        if (key.provider != 'ews') continue;
-        final services = await studioAccountServices(vault, key, value);
-        if (services.contains(StudioProductivityService.mail)) {
-          rows.add((
-            id: key,
-            label: studioTaskAccountLabel(key, value),
-            services: services,
-            available: studioAvailableServices(key, value),
-          ));
-        }
-      }
-      return storage.revision == revision ? rows : const [];
-    } on Object {
-      return const [];
+      storage.addListener(_sharedAccountsChanged);
+      _savedExchangeAccounts = StudioMailAccountNavigationTarget.savedExchange(
+        storage,
+      );
     }
   }
 
   void _sharedAccountsChanged() {
     final active = _usingSharedAccount;
-    final storage = StudioCredentialStorage.instance;
+    final storage = _sharedStorage;
+    if (storage == null) return;
     final revision = storage.revision;
-    final accounts = _readSavedExchangeAccounts();
+    final accounts = StudioMailAccountNavigationTarget.savedExchange(storage);
     setState(() => _savedExchangeAccounts = accounts);
     if (active == null) return;
     unawaited(() async {
@@ -297,7 +288,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         return;
       }
       if (_sharedVaultRevision != revision ||
-          !available.any((row) => row.id == active)) {
+          !available.any(
+            (row) =>
+                row.sharedExchangeId == active &&
+                row.identity.account == _draftIdentity?.account,
+          )) {
         _usingSharedAccount = null;
         if (_session != null) await _disconnectFromUi();
       }
@@ -306,39 +301,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   int? _sharedVaultRevision;
 
-  Future<void> _useSavedExchange(TaskAccountId id) async {
+  Future<void> _useSavedExchange(
+    StudioMailAccountNavigationTarget target,
+  ) async {
     if (_blocked || _connected || widget.initialAccount != null) return;
-    final storage = StudioCredentialStorage.instance;
-    final revision = storage.revision;
-    try {
-      final vault = await storage.storage;
-      final catalog = await StudioTaskAccountCatalog.load(vault);
-      final row = catalog.records[id];
-      if (row == null || id.provider != 'ews') return;
-      final services = await studioAccountServices(vault, id, row);
-      if (!mounted ||
-          _blocked ||
-          _connected ||
-          revision != storage.revision ||
-          !services.contains(StudioProductivityService.mail)) {
-        return;
-      }
-      final mailbox = studioExchangeMailbox(row);
-      if (mailbox == null) return;
-      _email.text = mailbox;
-      _endpoint.text = row['url'] as String;
-      _domain.text = row['domain'] as String? ?? '';
-      _login.text = row['login'] as String;
-      _password.text = row['secret'] as String;
-      _usingSharedAccount = id;
-      _sharedVaultRevision = revision;
-      _authentication = MailEwsAuthentication.ntlm;
-      await _connect();
-    } on Object {
-      if (mounted) setState(() => _error = widget.strings.ewsInvalidSettings);
-    } finally {
-      if (mounted) _password.clear();
-    }
+    _prefillAccount(target);
+    await _connect();
   }
 
   void _prefillClientId() {
@@ -355,9 +323,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         };
   }
 
-  void _prefillAccount() {
-    final target = widget.initialAccount;
-    _initialAccountSource = target;
+  void _prefillAccount([StudioMailAccountNavigationTarget? saved]) {
+    final target = saved ?? widget.initialAccount;
+    _initialAccountSource = widget.initialAccount;
     _expectedAccount = target;
     _email.clear();
     _endpoint.clear();
@@ -577,9 +545,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   @override
   void dispose() {
-    if (!_cloud && widget.providerFactory == null) {
+    if (!_cloud) {
       studioProductivityAccountChanges.removeListener(_sharedAccountsChanged);
-      StudioCredentialStorage.instance.removeListener(_sharedAccountsChanged);
+      _sharedStorage?.removeListener(_sharedAccountsChanged);
     }
     _accountEpoch++;
     _bulkCancellation?.cancel(MailCancellationReason.disposed);
@@ -636,14 +604,17 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       await _connectCloud();
       return;
     }
-    final sharedAccount = _usingSharedAccount;
-    final sharedRevision = _sharedVaultRevision;
+    final target = _expectedAccount;
+    final sharedAccount = target?.sharedExchangeId;
+    final sharedStorage = _sharedStorage;
+    final sharedRevision = sharedStorage?.revision;
     final sender = _email.text.trim();
-    final password = _password.text;
+    var password = _password.text;
     late final StudioMailDraftAccount identity;
     MailEwsConfiguration configuration;
     try {
-      if (!StudioMailDraft.isSupportedAddress(sender) || password.isEmpty) {
+      if (!StudioMailDraft.isSupportedAddress(sender) ||
+          (sharedAccount == null && password.isEmpty)) {
         throw const FormatException();
       }
       identity = StudioMailDraftAccount(
@@ -662,7 +633,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         username: _login.text.trim().isEmpty ? sender : _login.text.trim(),
         domain: _domain.text.trim(),
         mailboxAddress: sender,
-        authentication: _authentication,
+        authentication: sharedAccount == null
+            ? _authentication
+            : MailEwsAuthentication.ntlm,
         credential: MailCredentialReference(
           account: account,
           key: 'session-password',
@@ -673,11 +646,31 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       return;
     }
     if (!await _prepareConnection(identity)) return;
-    if (sharedAccount != null &&
-        (_usingSharedAccount != sharedAccount ||
-            StudioCredentialStorage.instance.revision != sharedRevision)) {
-      if (mounted) setState(() => _busy = false);
-      return;
+    if (sharedAccount != null) {
+      final epoch = _accountEpoch;
+      bool current() =>
+          mounted &&
+          epoch == _accountEpoch &&
+          identical(_expectedAccount, target);
+      try {
+        password = await target!.loadSharedExchangePassword();
+        if (!current()) return;
+        if (sharedStorage?.revision != sharedRevision) {
+          throw const StudioMailDraftStoreException(
+            MailProblemCode.staleOperation,
+          );
+        }
+        _usingSharedAccount = sharedAccount;
+        _sharedVaultRevision = sharedRevision;
+      } on Object {
+        if (current()) {
+          setState(() {
+            _busy = false;
+            _error = widget.strings.mailAccountNavigationChanged;
+          });
+        }
+        return;
+      }
     }
     final credentials = _SessionCredentials(
       MailCredentialRecord(
@@ -3179,6 +3172,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         store: directory,
         isCurrent: current,
         currentAccount: _connected ? _draftIdentity : null,
+        sharedCredentialStorage: _sharedStorage,
       );
       if (target == null || !current()) return;
       await target.validateCurrent(directory);
@@ -3687,6 +3681,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         appBar: AppBar(
           title: Text(_title, overflow: TextOverflow.ellipsis),
           actions: [
+            if (widget.openConnections != null)
+              IconButton(
+                key: const ValueKey('studio-mail-provider-connections'),
+                tooltip: widget.strings.productivity('Connections'),
+                onPressed: _blocked ? null : widget.openConnections,
+                icon: const Icon(Icons.settings_outlined),
+              ),
             if (widget.onAccountNavigation != null && _localAccounts != null)
               IconButton(
                 key: const ValueKey('studio-mail-switch-account'),
@@ -3940,7 +3941,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           children: [
             if (_localAccounts != null) _localAccountsButton(),
             if (widget.initialAccount == null && _savedExchangeAccounts != null)
-              FutureBuilder<List<StudioProductivityAccount>>(
+              FutureBuilder<List<StudioMailAccountNavigationTarget>>(
                 future: _savedExchangeAccounts,
                 builder: (context, snapshot) => Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -3949,9 +3950,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                       OutlinedButton.icon(
                         onPressed: _blocked
                             ? null
-                            : () => _useSavedExchange(row.id!),
+                            : () => _useSavedExchange(row),
                         icon: const Icon(Icons.account_circle_outlined),
-                        label: Text(row.label),
+                        label: Text(row.choiceLabel),
                       ),
                   ],
                 ),
@@ -3983,37 +3984,39 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               hint: r'DOMAIN\user or user@example.com',
             ),
             _field(_domain, 'ews-domain', widget.strings.ewsDomain),
-            _field(
-              _password,
-              'ews-password',
-              widget.strings.password,
-              secret: true,
-            ),
-            const SizedBox(height: 12),
-            DropdownButtonFormField<MailEwsAuthentication>(
-              initialValue: _authentication,
-              decoration: InputDecoration(
-                labelText: widget.strings.ewsAuthentication,
-                border: const OutlineInputBorder(),
+            if (_expectedAccount?.sharedExchangeId == null) ...[
+              _field(
+                _password,
+                'ews-password',
+                widget.strings.password,
+                secret: true,
               ),
-              items: [
-                DropdownMenuItem(
-                  value: MailEwsAuthentication.ntlm,
-                  child: Text(widget.strings.ewsNtlm),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<MailEwsAuthentication>(
+                initialValue: _authentication,
+                decoration: InputDecoration(
+                  labelText: widget.strings.ewsAuthentication,
+                  border: const OutlineInputBorder(),
                 ),
-                DropdownMenuItem(
-                  value: MailEwsAuthentication.basic,
-                  child: Text(widget.strings.ewsBasic),
-                ),
-              ],
-              onChanged: _blocked
-                  ? null
-                  : (value) {
-                      if (value != null) {
-                        setState(() => _authentication = value);
-                      }
-                    },
-            ),
+                items: [
+                  DropdownMenuItem(
+                    value: MailEwsAuthentication.ntlm,
+                    child: Text(widget.strings.ewsNtlm),
+                  ),
+                  DropdownMenuItem(
+                    value: MailEwsAuthentication.basic,
+                    child: Text(widget.strings.ewsBasic),
+                  ),
+                ],
+                onChanged: _blocked
+                    ? null
+                    : (value) {
+                        if (value != null) {
+                          setState(() => _authentication = value);
+                        }
+                      },
+              ),
+            ],
             const SizedBox(height: 16),
             if (_error != null)
               Padding(

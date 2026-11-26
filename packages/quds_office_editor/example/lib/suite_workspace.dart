@@ -734,6 +734,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   buildStudioTasks(
                                     _t('Tasks', 'Aufgaben', 'المهام'),
                                     _closeTasks,
+                                    openConnections: _openConnections,
                                     language: _language,
                                     chromeBuilder: (_) =>
                                         _titleBar(tasks: true),
@@ -2508,6 +2509,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             StudioMailDialog(
               strings: _strings,
               onClose: _closeMail,
+              openConnections: _openConnections,
               chromeBuilder: (_) => chrome(),
             ),
       );

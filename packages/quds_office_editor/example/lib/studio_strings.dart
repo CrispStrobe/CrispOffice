@@ -19,6 +19,7 @@ final class StudioStrings {
   String productivity(String text) => switch (text) {
     'Tasks' => _t(text, 'Aufgaben', 'المهام'),
     'Accounts' => _t(text, 'Konten', 'الحسابات'),
+    'Connections' => _t(text, 'Verbindungen', 'الاتصالات'),
     'All tasks' => _t(text, 'Alle Aufgaben', 'كل المهام'),
     'Search tasks' => _t(text, 'Aufgaben suchen', 'البحث في المهام'),
     'Open' => _t(text, 'Offen', 'مفتوحة'),

@@ -6,6 +6,7 @@ Widget buildStudioTasks(
   String title,
   VoidCallback close, {
   WidgetBuilder? chromeBuilder,
+  VoidCallback? openConnections,
   bool compactRibbon = true,
   bool showCommandLabels = true,
   bool showGroupLabels = false,

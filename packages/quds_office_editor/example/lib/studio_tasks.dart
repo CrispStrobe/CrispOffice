@@ -35,6 +35,7 @@ Widget buildStudioTasks(
   String title,
   VoidCallback close, {
   WidgetBuilder? chromeBuilder,
+  VoidCallback? openConnections,
   bool compactRibbon = true,
   bool showCommandLabels = true,
   bool showGroupLabels = false,
@@ -43,6 +44,7 @@ Widget buildStudioTasks(
   title: title,
   onClose: close,
   chromeBuilder: chromeBuilder,
+  openConnections: openConnections,
   compactRibbon: compactRibbon,
   showCommandLabels: showCommandLabels,
   showGroupLabels: showGroupLabels,
@@ -95,6 +97,7 @@ final class StudioTasksPage extends StatefulWidget {
     this.openEwsProvider,
     this.onClose,
     this.chromeBuilder,
+    this.openConnections,
     this.compactRibbon = true,
     this.showCommandLabels = true,
     this.showGroupLabels = false,
@@ -103,6 +106,7 @@ final class StudioTasksPage extends StatefulWidget {
   final String title;
   final VoidCallback? onClose;
   final WidgetBuilder? chromeBuilder;
+  final VoidCallback? openConnections;
   final bool compactRibbon;
   final bool showCommandLabels;
   final bool showGroupLabels;
@@ -1419,6 +1423,12 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                     id: 'task-connection',
                     title: _label('Accounts'),
                     children: [
+                      if (widget.openConnections != null)
+                        command(
+                          Icons.settings_outlined,
+                          'Connections',
+                          widget.openConnections,
+                        ),
                       if (_taskAccounts.length > 1) _accountSelector(busy),
                       if (connected)
                         command(

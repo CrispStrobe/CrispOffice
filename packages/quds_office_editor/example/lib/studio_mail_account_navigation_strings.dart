@@ -10,9 +10,9 @@ extension StudioMailAccountNavigationStrings on StudioStrings {
   String get mailAccountNavigationTitle =>
       _text('Choose an account', 'Konto auswählen', 'اختيار حساب');
   String get mailAccountNavigationHelp => _text(
-    'Choose an account you have connected before. Review its sign-in settings before connecting.',
-    'Wählen Sie ein zuvor verbundenes Konto. Prüfen Sie vor dem Verbinden dessen Anmeldeeinstellungen.',
-    'اختر حسابًا اتصلت به سابقًا. راجع إعدادات تسجيل الدخول قبل الاتصال.',
+    'Choose a saved mail account. Review its sign-in settings before connecting.',
+    'Wählen Sie ein gespeichertes E-Mail-Konto. Prüfen Sie vor dem Verbinden dessen Anmeldeeinstellungen.',
+    'اختر حساب بريد محفوظًا. راجع إعدادات تسجيل الدخول قبل الاتصال.',
   );
   String get mailAccountNavigationCurrent =>
       _text('Current account', 'Aktuelles Konto', 'الحساب الحالي');

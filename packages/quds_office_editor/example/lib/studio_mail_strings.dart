@@ -22,11 +22,8 @@ extension StudioMailFeedback on StudioStrings {
   String get mailDismissNotice =>
       _mailText('Dismiss notice', 'Hinweis ausblenden', 'إخفاء الإشعار');
 
-  String get mailSavedAccounts => _mailText(
-    'Saved IMAP accounts',
-    'Gespeicherte IMAP-Konten',
-    'حسابات IMAP المحفوظة',
-  );
+  String get mailSavedAccounts =>
+      _mailText('Saved accounts', 'Gespeicherte Konten', 'الحسابات المحفوظة');
   String get mailChooseAccount =>
       _mailText('Choose an account', 'Konto auswählen', 'اختر حسابًا');
   String get mailNewAccount =>
@@ -48,9 +45,9 @@ extension StudioMailFeedback on StudioStrings {
     'اسم دخول SMTP: $login',
   );
   String get mailSavedAccountsHelp => _mailText(
-    'Choose a saved IMAP account, then Connect. New account keeps your other saved accounts. Forget removes only the selected sign-in; local drafts and saved messages stay on this device.',
-    'Ein gespeichertes IMAP-Konto auswählen und dann verbinden. „Neues Konto“ behält die anderen gespeicherten Konten. „Konto vergessen“ entfernt nur die ausgewählten Zugangsdaten; lokale Entwürfe und gespeicherte Nachrichten bleiben auf diesem Gerät.',
-    'اختر حساب IMAP محفوظًا ثم اتصل. يحتفظ الحساب الجديد بالحسابات المحفوظة الأخرى. يزيل نسيان الحساب بيانات الدخول المحددة فقط؛ وتبقى المسودات المحلية والرسائل المحفوظة على هذا الجهاز.',
+    'Choose a saved account, then Connect. New account keeps your other saved accounts. Forget removes only the selected sign-in; local drafts and saved messages stay on this device.',
+    'Ein gespeichertes Konto auswählen und dann verbinden. „Neues Konto“ behält die anderen gespeicherten Konten. „Konto vergessen“ entfernt nur die ausgewählten Zugangsdaten; lokale Entwürfe und gespeicherte Nachrichten bleiben auf diesem Gerät.',
+    'اختر حسابًا محفوظًا ثم اتصل. يحتفظ الحساب الجديد بالحسابات المحفوظة الأخرى. يزيل نسيان الحساب بيانات الدخول المحددة فقط؛ وتبقى المسودات المحلية والرسائل المحفوظة على هذا الجهاز.',
   );
   String get mailAccountsLoadFailed => _mailText(
     'Saved accounts could not be opened. You can enter account settings manually; existing saved accounts have not been replaced.',
