@@ -1313,14 +1313,29 @@ abstract final class OfficePdfExport {
       usableH - headingReserve - titleRowsHeight,
     );
 
+    double bandExtent(List<double> sizes, ({int start, int end}) range) {
+      var extent = 0.0;
+      for (var i = range.start; i <= range.end; i++) {
+        extent += sizes[i];
+      }
+      return extent;
+    }
+
     var pages = 0;
-    var pageNo = 1;
+    var pageNo = setup?.useFirstPageNumber == true
+        ? setup?.firstPageNumber ?? 1
+        : 1;
     final int totalGuess = math.max(1, colBands.length * rowBands.length);
     final bool rtl = sheet.rightToLeft;
     final SmlHeaderFooter? hf = sheet.headerFooter;
 
-    for (final ({int start, int end}) rb in rowBands) {
-      for (final ({int start, int end}) cb in colBands) {
+    final acrossThenDown = setup?.printAcrossThenDown ?? true;
+    final outerBands = acrossThenDown ? rowBands : colBands;
+    final innerBands = acrossThenDown ? colBands : rowBands;
+    for (final outer in outerBands) {
+      for (final inner in innerBands) {
+        final rb = acrossThenDown ? outer : inner;
+        final cb = acrossThenDown ? inner : outer;
         final _PageSink sink = _PageSink(pageW, pageH, pack, images);
         sink.canvas.fillRect(0, 0, pageW, pageH, 'FFFFFF');
         void paintHfBand(List<String> sections, double baseline, double size) {
@@ -1370,10 +1385,29 @@ abstract final class OfficePdfExport {
             8,
           );
         }
-        final double rowGutterX = rtl ? pageW - right - gutter : left;
-        final double gridLeft = rtl ? left : left + gutter;
-        final double gridRight = rtl ? pageW - right - gutter : pageW - right;
-        final double gridY = top + band;
+        final horizontalInset = setup?.centerHorizontally == true
+            ? math.max(0.0, (usableW - bandExtent(colPts, cb)) / 2)
+            : 0.0;
+        final verticalInset = setup?.centerVertically == true
+            ? math.max(
+                0.0,
+                (usableH -
+                        headingH -
+                        titleRowsHeight -
+                        bandExtent(
+                          dataRowPts.isEmpty ? rowPts : dataRowPts,
+                          rb,
+                        )) /
+                    2,
+              )
+            : 0.0;
+        final rowGutterX =
+            (rtl ? pageW - right - gutter : left) +
+            (rtl ? -horizontalInset : horizontalInset);
+        final gridLeft = (rtl ? left : left + gutter) + horizontalInset;
+        final gridRight =
+            (rtl ? pageW - right - gutter : pageW - right) - horizontalInset;
+        final gridY = top + band + verticalInset;
 
         double colOffset(int local) {
           var sum = 0.0;

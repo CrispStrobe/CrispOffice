@@ -564,6 +564,49 @@ void main() {
     expect(_inflated(pdf).join(), contains('End'));
   });
 
+  test('workbook print respects the authored order of page bands', () {
+    final setup = SmlPageSetup(paperWidthIn: 3, paperHeightIn: 3);
+    final sheet = SmlWorksheet(
+      name: 'Page order',
+      sheetId: 1,
+      pageSetup: setup,
+    );
+    sheet.columnWidths
+      ..[0] = 110
+      ..[1] = 110;
+    sheet.rowHeights
+      ..[0] = 110
+      ..[1] = 110;
+    sheet.cellA1('A1').value = 'TopLeft';
+    sheet.cellA1('B1').value = 'TopRight';
+    sheet.cellA1('A2').value = 'BottomLeft';
+    sheet.cellA1('B2').value = 'BottomRight';
+    final book = SmlWorkbook(sheets: [sheet]);
+
+    List<String> labelsInPageOrder() {
+      final bytes = OfficePrint.workbook(book);
+      expect(_pageCount(bytes), 4);
+      return RegExp(r'TopLeft|TopRight|BottomLeft|BottomRight')
+          .allMatches(_inflated(bytes).join())
+          .map((match) => match.group(0)!)
+          .toList();
+    }
+
+    expect(labelsInPageOrder(), [
+      'TopLeft',
+      'BottomLeft',
+      'TopRight',
+      'BottomRight',
+    ]);
+    setup.printAcrossThenDown = true;
+    expect(labelsInPageOrder(), [
+      'TopLeft',
+      'TopRight',
+      'BottomLeft',
+      'BottomRight',
+    ]);
+  });
+
   test('PowerPoint PDF emits one page per slide including rotation', () {
     final PmlPresentation deck = PmlPresentation(
       slides: <PmlSlide>[

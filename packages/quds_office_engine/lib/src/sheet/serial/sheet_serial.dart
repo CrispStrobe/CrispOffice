@@ -778,9 +778,10 @@ class SheetDeserializer {
         setup.orientation = reader.getAttribute('orientation') == 'landscape'
             ? SmlPageOrientation.landscape
             : SmlPageOrientation.portrait;
-        setup.paperSize =
-            int.tryParse(reader.getAttribute('paperSize') ?? '') ??
-            setup.paperSize;
+        final paperSize = int.tryParse(reader.getAttribute('paperSize') ?? '');
+        if (paperSize != null) setup.setExcelPaperSize(paperSize);
+        setup.printAcrossThenDown =
+            reader.getAttribute('pageOrder') == 'overThenDown';
         setup.scale =
             int.tryParse(reader.getAttribute('scale') ?? '') ?? setup.scale;
         setup.fitToWidth =
@@ -970,7 +971,6 @@ class SheetDeserializer {
       }
     }
     if (pageSetup != null) {
-      SheetSerializer._applyPaperSize(pageSetup!);
       sheet.pageSetup = pageSetup;
     }
     SheetDrawingIo.readSheet(sheet, package, sheetUri);
@@ -1896,9 +1896,16 @@ class SheetSerializer {
         )) {
       w.writeNamespace('r', OfficeNamespaces.r);
     }
-    if (sheet.tabColorRgb case final rgb?) {
+    final writeFitToPage = sheet.pageSetup?.fitToPage == true;
+    final tabColor = sheet.tabColorRgb;
+    if (tabColor != null || writeFitToPage) {
       w.writeStartElement('sheetPr');
-      w.writeEmptyElement('tabColor', attributes: {'rgb': 'FF$rgb'});
+      if (tabColor != null) {
+        w.writeEmptyElement('tabColor', attributes: {'rgb': 'FF$tabColor'});
+      }
+      if (writeFitToPage) {
+        w.writeEmptyElement('pageSetUpPr', attributes: {'fitToPage': '1'});
+      }
       w.writeEndElement();
     }
     _writeSheetViews(w, sheet);
@@ -2323,43 +2330,6 @@ class SheetSerializer {
     }, _worksheetOrder);
   }
 
-  static void _applyPaperSize(SmlPageSetup setup) {
-    switch (setup.paperSize) {
-      case 1:
-        setup
-          ..paperWidthIn = 8.5
-          ..paperHeightIn = 11;
-      case 3:
-        setup
-          ..paperWidthIn = 11
-          ..paperHeightIn = 17;
-      case 5:
-        setup
-          ..paperWidthIn = 8.5
-          ..paperHeightIn = 14;
-      case 8:
-        setup
-          ..paperWidthIn = 11.69
-          ..paperHeightIn = 16.54;
-      case 9:
-        setup
-          ..paperWidthIn = 8.2677
-          ..paperHeightIn = 11.6929;
-      case 11:
-        setup
-          ..paperWidthIn = 5.83
-          ..paperHeightIn = 8.27;
-      case 12:
-        setup
-          ..paperWidthIn = 9.84
-          ..paperHeightIn = 13.9;
-      case 13:
-        setup
-          ..paperWidthIn = 6.93
-          ..paperHeightIn = 9.84;
-    }
-  }
-
   static void _writePageSetup(XmlWriter w, SmlWorksheet sheet) {
     final setup = sheet.pageSetup;
     if (setup == null) return;
@@ -2396,6 +2366,7 @@ class SheetSerializer {
             ? 'landscape'
             : 'portrait',
         'scale': '${setup.scale}',
+        if (setup.printAcrossThenDown) 'pageOrder': 'overThenDown',
         'fitToWidth': '${setup.fitToWidth}',
         'fitToHeight': '${setup.fitToHeight}',
         if (setup.useFirstPageNumber && setup.firstPageNumber != null)

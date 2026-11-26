@@ -404,6 +404,7 @@ class SmlPageSetup {
     this.fitToHeight = 1,
     this.printGridlines = false,
     this.printHeadings = false,
+    this.printAcrossThenDown = false,
     this.centerHorizontally = false,
     this.centerVertically = false,
     this.firstPageNumber,
@@ -460,6 +461,9 @@ class SmlPageSetup {
   /// Whether row and column headings print.
   bool printHeadings;
 
+  /// Print horizontal page bands before advancing to the next row band.
+  bool printAcrossThenDown;
+
   /// Center the printed sheet horizontally.
   bool centerHorizontally;
 
@@ -477,6 +481,26 @@ class SmlPageSetup {
 
   /// Print in draft quality.
   bool draft;
+
+  /// Applies a known Excel paper code while retaining unfamiliar codes.
+  void setExcelPaperSize(int code) {
+    paperSize = code;
+    final dimensions = switch (code) {
+      1 => (8.5, 11.0),
+      3 => (11.0, 17.0),
+      5 => (8.5, 14.0),
+      8 => (11.69, 16.54),
+      9 => (8.2677, 11.6929),
+      11 => (5.83, 8.27),
+      12 => (9.84, 13.9),
+      13 => (6.93, 9.84),
+      _ => null,
+    };
+    if (dimensions != null) {
+      paperWidthIn = dimensions.$1;
+      paperHeightIn = dimensions.$2;
+    }
+  }
 }
 
 /// Reversible column state, retaining imported width precision and the metric
