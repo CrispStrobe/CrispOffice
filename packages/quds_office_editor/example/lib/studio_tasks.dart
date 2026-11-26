@@ -280,8 +280,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       _syncLease = null;
       _lists = [];
       _selected = studioDeviceTaskList.id;
-      if (_taskAccounts.firstOrNull case final account?)
+      if (_taskAccounts.firstOrNull case final account?) {
         await _openSaved(account, vault);
+      }
     });
   }
 
@@ -1920,8 +1921,9 @@ class _TaskConnectionDialogState extends State<_TaskConnectionDialog> {
               !_google &&
               !_useTasks &&
               !_useCalendar &&
-              !(_ews && _useMail))
+              !(_ews && _useMail)) {
             return;
+          }
           if (_ews &&
               _useMail &&
               studioExchangeMailbox({

@@ -158,9 +158,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   final ZoteroSession _zoteroSession = ZoteroSession();
   bool _zoteroOpen = false;
   int _zoteroHostGeneration = 0;
-  late final SheetEditorController _sheet;
-  late final SlideEditorController _slides;
-  late final PdfEditorController _pdf;
+  SheetEditorController? _sheetController;
+  SlideEditorController? _slidesController;
+  PdfEditorController? _pdfController;
+
+  SheetEditorController get _sheet => _sheetController ??= _createSheet();
+  SlideEditorController get _slides => _slidesController ??= _createSlides();
+  PdfEditorController get _pdf =>
+      _pdfController ??= (PdfEditorController.fromBytes(studioSamplePdf())
+        ..addListener(_rebuild));
   WmlDocument? _commentDraftDocument;
   final Map<int, _CommentReplyDraft> _commentReplyDrafts =
       <int, _CommentReplyDraft>{};
@@ -260,20 +266,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       document: widget.initialWord?.document ?? SampleLibrary.wordBriefing(),
     );
     _word.onFollowExternalLink = _openExternalLink;
-    _sheet = SheetEditorController(
-      workbook: widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
-    );
-    _slides = SlideEditorController(
-      presentation:
-          widget.initialPresentation?.presentation ?? SampleLibrary.slideDeck(),
-    );
     _wordName = widget.initialWord?.name ?? _wordName;
     _sheetName = widget.initialWorkbook?.name ?? _sheetName;
     _slideName = widget.initialPresentation?.name ?? _slideName;
-    _pdf = PdfEditorController.fromBytes(studioSamplePdf());
     _bindHostActions(_word);
-    _bindHostActions(_sheet);
-    _bindHostActions(_slides);
     studioSpacyHost.addListener(_syncSpacyGrammar);
     unawaited(studioSpacyHost.restoreGrammarOptIn().catchError((Object _) {}));
     // Re-verifies dictionaries the user installed earlier (no network).
@@ -288,22 +284,36 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     studioLanguageIdHost.addListener(_syncLanguageId);
     _syncLanguageId();
     unawaited(studioLanguageIdHost.load().catchError((Object _) {}));
-    _slides.onPlayMedia = (PmlShape shape) {
-      _toast(
-        _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
-      );
-    };
     _word.addListener(_rebuildWord);
     // Proofing results and settings reach panes and comment canvases built
     // here; they notify rarely, unlike edits (see _rebuildWord).
     _wordProofing = _word.proofing..addListener(_rebuild);
-    _sheet.addListener(_rebuild);
-    _slides.addListener(_rebuild);
-    _pdf.addListener(_rebuild);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       StudioWindow.setTitle('$_chromeTitle — CrispOffice');
     });
     unawaited(_restoreSettings());
+  }
+
+  SheetEditorController _createSheet() {
+    final controller = SheetEditorController(
+      workbook: widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
+    )..addListener(_rebuild);
+    _bindHostActions(controller);
+    return controller;
+  }
+
+  SlideEditorController _createSlides() {
+    final controller = SlideEditorController(
+      presentation:
+          widget.initialPresentation?.presentation ?? SampleLibrary.slideDeck(),
+    )..addListener(_rebuild);
+    _bindHostActions(controller);
+    controller.onPlayMedia = (PmlShape shape) {
+      _toast(
+        _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
+      );
+    };
+    return controller;
   }
 
   /// Word notifies on every keystroke and caret move. Most of the chrome
@@ -606,14 +616,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word
       ..removeListener(_rebuildWord)
       ..dispose();
-    _sheet
-      ..removeListener(_rebuild)
+    _sheetController
+      ?..removeListener(_rebuild)
       ..dispose();
-    _slides
-      ..removeListener(_rebuild)
+    _slidesController
+      ?..removeListener(_rebuild)
       ..dispose();
-    _pdf
-      ..removeListener(_rebuild)
+    _pdfController
+      ?..removeListener(_rebuild)
       ..dispose();
     _commentReviewTimer?.cancel();
     _commentReplyDrafts.clear();

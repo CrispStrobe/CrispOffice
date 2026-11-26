@@ -523,7 +523,9 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
   static const double _scrollBar = 12;
 
   /// VisualImageCache API.
-  final VisualImageCache _images = VisualImageCache();
+  final VisualImageCache _images = VisualImageCache(
+    decodedByteBudget: 32 * 1024 * 1024,
+  );
 
   @override
   void dispose() {
@@ -2661,6 +2663,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       );
     }
     canvas.restore();
+    _images.endFrame();
   }
 }
 

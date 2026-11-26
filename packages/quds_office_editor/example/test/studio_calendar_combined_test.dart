@@ -352,7 +352,7 @@ void main() {
       await tester.tap(find.text('One calendar source could not load'));
       await tester.pumpAndSettle();
       expect(
-        find.textContaining('Appointments (Work account)'),
+        find.text('Appointments (Work account) · Calendar could not load.'),
         findsOneWidget,
       );
     },
@@ -360,6 +360,8 @@ void main() {
   testWidgets(
     'uses saved EWS credentials and loads multiple read-only calendars',
     (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1200, 700));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
       SharedPreferences.setMockInitialValues({});
       final vault = InMemorySecureStorage();
       await vault.write(
@@ -421,7 +423,7 @@ void main() {
       await tester.pump();
       expect(find.text('Exchange appointment'), findsOneWidget);
       expect(exchange, isNot(same(originalExchange)));
-      pauseAgenda!.complete();
+      pauseAgenda.complete();
       pauseAgenda = null;
       exchange.pauseAgenda = null;
       await tester.pumpAndSettle();

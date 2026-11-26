@@ -33,8 +33,9 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
       vault,
       groupByAddress: false,
     );
-    if (_storage.revision != revision)
+    if (_storage.revision != revision) {
       throw StateError('Credential storage changed.');
+    }
     return accounts;
   }
 
@@ -102,13 +103,15 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
     });
     try {
       final vault = await _storage.storage;
-      if (revision != _storage.revision)
+      if (revision != _storage.revision) {
         throw StateError('Credential storage changed.');
+      }
       await saveStudioAccountServices(vault, id, request);
       if (mounted) setState(() => _accounts = _load());
     } on Object {
-      if (mounted)
+      if (mounted) {
         setState(() => _error = 'The service settings could not be saved.');
+      }
     } finally {
       if (mounted) setState(() => _saving = false);
     }

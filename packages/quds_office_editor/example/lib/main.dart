@@ -9,6 +9,9 @@ import 'suite_workspace.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  PaintingBinding.instance.imageCache
+    ..maximumSize = 160
+    ..maximumSizeBytes = 32 * 1024 * 1024;
   registerStudioLicenses();
   await initializeStudioDataRoot();
   await StudioWindow.bootstrap();

@@ -292,6 +292,31 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage>
         : null;
   }
 
+  void _trimCalendarCache(
+    DateTime start,
+    DateTime end,
+    Set<_CalendarKey> visible,
+  ) {
+    final historical = [
+      for (final entry in _agendaCache.entries)
+        if (entry.key.start != start ||
+            entry.key.end != end ||
+            !visible.contains(entry.key.source))
+          entry,
+    ];
+    var count = historical.length;
+    var events = historical.fold(
+      0,
+      (total, entry) => total + entry.value.events.length,
+    );
+    for (final entry in historical) {
+      if (count <= 8 && events <= 6000) break;
+      _agendaCache.remove(entry.key);
+      count--;
+      events -= entry.value.events.length;
+    }
+  }
+
   Future<void> _reload({bool rediscover = true}) async {
     final generation = ++_generation;
     final revision = _storage.revision;
@@ -437,16 +462,17 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage>
             final key = (source: item.source.key, start: start, end: end);
             _agendaCache.remove(key);
             _agendaCache[key] = value;
-            final limit = visible.length + 24;
-            if (_agendaCache.length > limit) {
-              _agendaCache.remove(_agendaCache.keys.first);
-            }
           case TaskFailure(:final problem):
             issues.add(
               '${_sourceName(item.source)} · ${_problem(problem.code)}',
             );
         }
       }
+      _trimCalendarCache(
+        start,
+        end,
+        visible.map((source) => source.key).toSet(),
+      );
       setState(() {
         _issues = issues;
         _showCachedRange();
