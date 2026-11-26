@@ -636,6 +636,17 @@ class SmlWorksheet {
   /// Excel `sheetView/@rightToLeft`: column A sits on the right.
   bool rightToLeft;
 
+  /// Native zoom and position saved in the primary Excel worksheet view.
+  int? viewZoomPercent;
+  SmlCellRef? viewTopLeft;
+  SmlCellRef? viewSelection;
+
+  /// Authored default row height in CSS pixels, before per-row overrides.
+  double? importedDefaultRowHeightPx;
+
+  double get effectiveDefaultRowHeightPx =>
+      importedDefaultRowHeightPx ?? defaultRowHeightPx;
+
   /// Frozen row count (`pane/@ySplit`): rows `[0, freezeRows)` stay pinned.
   int freezeRows;
 
@@ -1081,7 +1092,7 @@ class SmlWorksheet {
     if (autoFilter != null && autoFilter!.isRowHidden(this, row)) {
       return 0;
     }
-    return rowHeights[row] ?? defaultRowHeightPx;
+    return rowHeights[row] ?? effectiveDefaultRowHeightPx;
   }
 
   /// setColumnWidth API.
@@ -1105,7 +1116,7 @@ class SmlWorksheet {
       return;
     }
     final double v = px.clamp(minRowHeightPx, maxRowHeightPx);
-    if ((v - defaultRowHeightPx).abs() < 0.5) {
+    if ((v - effectiveDefaultRowHeightPx).abs() < 0.5) {
       rowHeights.remove(row);
     } else {
       rowHeights[row] = v;
@@ -1135,13 +1146,13 @@ class SmlWorksheet {
   /// [row] == [excelRowCount]), in unscaled pixels.
   double rowTop(int row) {
     final int r = row < 0 ? 0 : (row > excelRowCount ? excelRowCount : row);
-    var y = r * defaultRowHeightPx;
+    var y = r * effectiveDefaultRowHeightPx;
     if (rowHeights.isEmpty) {
       return y;
     }
     for (final MapEntry<int, double> e in rowHeights.entries) {
       if (e.key >= 0 && e.key < r) {
-        y += e.value - defaultRowHeightPx;
+        y += e.value - effectiveDefaultRowHeightPx;
       }
     }
     return y;
@@ -1369,9 +1380,15 @@ class SmlWorksheet {
       return 0;
     }
     if (rowHeights.isEmpty) {
-      return (y / defaultRowHeightPx).floor().clamp(0, excelRowCount - 1);
+      return (y / effectiveDefaultRowHeightPx).floor().clamp(
+        0,
+        excelRowCount - 1,
+      );
     }
-    var row = (y / defaultRowHeightPx).floor().clamp(0, excelRowCount - 1);
+    var row = (y / effectiveDefaultRowHeightPx).floor().clamp(
+      0,
+      excelRowCount - 1,
+    );
     var top = rowTop(row);
     var height = rowHeightAt(row);
     var guard = 0;

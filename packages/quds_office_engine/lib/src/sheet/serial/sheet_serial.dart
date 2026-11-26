@@ -436,11 +436,46 @@ class SheetDeserializer {
     SmlRange? conditionalRange;
     SmlConditionalRule? conditionalRule;
     var conditionalColorIndex = 0;
+    var readingView = false;
+    var foundView = false;
+    SmlCellRef? viewCell(String? address) {
+      if (address == null || address.length > 16) return null;
+      try {
+        final cell = SmlCellRef.parse(address);
+        return cell.col >= 0 &&
+                cell.col < SmlWorksheet.excelColumnCount &&
+                cell.row >= 0 &&
+                cell.row < SmlWorksheet.excelRowCount
+            ? cell
+            : null;
+      } on FormatException {
+        return null;
+      }
+    }
+
     while (reader.next()) {
-      if (reader.eventType == XmlEventType.startElement &&
+      if (readingView && reader.depth < 3) {
+        readingView = false;
+      }
+      if (!foundView &&
+          reader.eventType == XmlEventType.startElement &&
+          reader.depth == 3 &&
           reader.localName == 'sheetView') {
+        foundView = readingView = true;
         final String? rtl = reader.getAttribute('rightToLeft');
         sheet.rightToLeft = rtl == '1' || rtl?.toLowerCase() == 'true';
+        final zoom = int.tryParse(reader.getAttribute('zoomScale') ?? '');
+        if (zoom != null && zoom >= 10 && zoom <= 400) {
+          sheet.viewZoomPercent = zoom;
+        }
+        sheet.viewTopLeft = viewCell(reader.getAttribute('topLeftCell'));
+      }
+      if (readingView &&
+          reader.eventType == XmlEventType.startElement &&
+          reader.depth == 4 &&
+          reader.localName == 'selection' &&
+          reader.getAttribute('pane') == null) {
+        sheet.viewSelection ??= viewCell(reader.getAttribute('activeCell'));
       }
       if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'autoFilter') {
@@ -764,6 +799,17 @@ class SheetDeserializer {
       }
       if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'sheetFormatPr') {
+        final height = double.tryParse(
+          reader.getAttribute('defaultRowHeight') ?? '',
+        );
+        if (height != null &&
+            height.isFinite &&
+            height > 0 &&
+            height <= 409.5) {
+          sheet.importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(
+            height,
+          );
+        }
         final width = double.tryParse(
           reader.getAttribute('defaultColWidth') ?? '',
         );
@@ -2419,7 +2465,11 @@ class SheetSerializer {
   ) {
     final width = sheet.nativeDefaultColumnWidth;
     final base = sheet.nativeBaseColumnWidth;
-    if (width == null && base == null) return;
+    if (width == null &&
+        base == null &&
+        sheet.importedDefaultRowHeightPx == null) {
+      return;
+    }
     // Existing native XML can contain additional sheet defaults that are not
     // modeled here. Leave that complete element to _preserveSheetParts.
     if (sourceXml != null &&
@@ -2431,7 +2481,7 @@ class SheetSerializer {
     w.writeEmptyElement(
       'sheetFormatPr',
       attributes: <String, String>{
-        'defaultRowHeight': '${SmlWorksheet.defaultRowHeightPx * 72 / 96}',
+        'defaultRowHeight': '${sheet.effectiveDefaultRowHeightPx * 72 / 96}',
         if (width != null) 'defaultColWidth': '$width',
         if (base != null) 'baseColWidth': '$base',
       },
@@ -2439,12 +2489,23 @@ class SheetSerializer {
   }
 
   static void _writeSheetViews(XmlWriter w, SmlWorksheet sheet) {
-    if (!sheet.rightToLeft && sheet.freezeRows <= 0 && sheet.freezeCols <= 0) {
+    if (!sheet.rightToLeft &&
+        sheet.freezeRows <= 0 &&
+        sheet.freezeCols <= 0 &&
+        sheet.viewZoomPercent == null &&
+        sheet.viewTopLeft == null &&
+        sheet.viewSelection == null) {
       return;
     }
     w.writeStartElement('sheetViews');
     w.writeStartElement('sheetView');
     w.writeAttribute('workbookViewId', '0');
+    if (sheet.viewZoomPercent case final zoom?) {
+      w.writeAttribute('zoomScale', '$zoom');
+    }
+    if (sheet.viewTopLeft case final topLeft?) {
+      w.writeAttribute('topLeftCell', topLeft.a1);
+    }
     if (sheet.rightToLeft) {
       w.writeAttribute('rightToLeft', '1');
     }
@@ -2459,6 +2520,15 @@ class SheetSerializer {
       w.writeAttribute('activePane', 'bottomRight');
       w.writeAttribute('state', 'frozen');
       w.writeEndElement();
+    }
+    if (sheet.viewSelection case final selection?) {
+      w.writeEmptyElement(
+        'selection',
+        attributes: <String, String>{
+          'activeCell': selection.a1,
+          'sqref': selection.a1,
+        },
+      );
     }
     w.writeEndElement();
     w.writeEndElement();

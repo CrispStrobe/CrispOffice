@@ -12279,6 +12279,7 @@ class SheetEditorController extends OfficeController {
         if (firstVisible >= 0) _activeSheet = firstVisible;
       }
     }
+    if (this.workbook.sheets.isNotEmpty) _restoreSheetView();
     recalculateWorkbook();
   }
 
@@ -12543,13 +12544,29 @@ class SheetEditorController extends OfficeController {
     _activeSheet = workbook.sheets.indexWhere((sheet) => !sheet.hidden);
     if (_activeSheet < 0) _activeSheet = 0;
     selectedDrawingIndex = null;
-    selection.selectCell(const SmlCellRef(0, 0));
-    viewport.origin = Offset.zero;
+    _restoreSheetView();
     if (recalculate) {
       recalculateWorkbook();
     }
     _dirty = false;
     notifyListeners();
+  }
+
+  void _restoreSheetView() {
+    final current = sheet;
+    final scale = ((current.viewZoomPercent ?? 100) / 100).clamp(
+      viewport.clampMin,
+      viewport.clampMax,
+    );
+    viewport.scale = scale;
+    final start = current.viewTopLeft;
+    viewport.origin = start == null
+        ? Offset.zero
+        : Offset(current.columnLeft(start.col), current.rowTop(start.row)) *
+              scale;
+    selection.selectCell(
+      current.viewSelection ?? start ?? const SmlCellRef(0, 0),
+    );
   }
 
   @override
