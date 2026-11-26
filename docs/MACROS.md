@@ -639,10 +639,10 @@ process has read or copied it.
 
 Live automation checks the local grant on each request. The ticket authorizes
 one client session to read one selected view. The host retains provider
-secrets. A future write grant needs approval bound to the exact operation,
-content or revision, and destination. Check repeat submissions against the
-existing outbox or revision and record redacted audit events. Treat provider
-content and tool annotations as untrusted data.
+secrets. Direct actions require local approval bound to the exact operation,
+destination, and reviewed content or item revision. The host consumes each
+approval once and uses the existing outbox or revision checks for writes.
+Treat provider content and tool annotations as untrusted data.
 
 A remote deployment would use authenticated Streamable HTTP over TLS with
 origin validation and an OAuth 2.1 resource server. Validate issuer, audience,
