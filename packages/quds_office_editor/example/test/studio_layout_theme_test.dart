@@ -586,9 +586,9 @@ void main() {
       expect(
         find.descendant(
           of: mailDialog,
-          matching: find.widgetWithText(StudioTabChip, 'Home'),
+          matching: find.byType(StudioTabChip),
         ),
-        findsOneWidget,
+        findsNothing,
       );
       expect(
         tester.getTopLeft(ribbon).dy,
