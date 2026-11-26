@@ -406,10 +406,15 @@ void main() {
       expect(exchange.reads, 1);
       expect(find.text('Exchange appointment'), findsOneWidget);
 
+      final refresh = find.byTooltip('Refresh');
+      await tester.ensureVisible(refresh);
+      await tester.pumpAndSettle();
+      final originalExchange = exchange;
       pauseAgenda = Completer<void>();
-      await tester.tap(find.byTooltip('Refresh'));
+      await tester.tap(refresh);
       await tester.pump();
       expect(find.text('Exchange appointment'), findsOneWidget);
+      expect(exchange, isNot(same(originalExchange)));
       pauseAgenda!.complete();
       pauseAgenda = null;
       exchange.pauseAgenda = null;
