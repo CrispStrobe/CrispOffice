@@ -93,9 +93,13 @@ write. Only a same-account acknowledgement at the next revision is accepted.
 
 This original signature/Quick Text increment is one part of M07 authoring.
 The later [sender identity and template increment](sender-identities-templates.md)
-adds native SMTP sender selection and literal full-message templates. Rich HTML
-composition, inline images, provider Drafts synchronization, encryption and
-complete desktop mail parity remain open. Ordered local tag rules are covered
+adds native SMTP sender selection and literal full-message templates.
+[Durable rich composition](rich-composition.md) now preserves supported styles
+when signatures and Quick Text are inserted. [Rich templates](rich-templates.md)
+now retain that supported formatting through saving, editing and reuse, with
+an additive schema-22 migration that preserves legacy plain templates. Inline images,
+provider Drafts synchronization, encryption and complete desktop mail parity
+remain open. Ordered local tag rules are covered
 separately in [local rules](local-rules.md).
 The later [scheduled-send increment](scheduled-send.md) supplies foreground
 Send later and Undo through the same durable Outbox.

@@ -1,5 +1,16 @@
 ## Unreleased
 
+- Preserve optional canonical rich bodies in full-message templates, with
+  matching normalized plain alternatives, explicit clearing and immutable copies.
+  Bound template HTML to 65,536 UTF-16 code units and count it toward the existing
+  131,072-unit account-settings budget; legacy plain limits are unchanged.
+
+- Add bounded immutable rich composition with bold, italic, underline, strike,
+  validated links, their fixed inherited blue, paragraph alignment and direction.
+  Generate matching plain text and inert canonical HTML; accept only the exact
+  emitted HTML grammar on recovery, with strict Unicode, text/HTML and structural
+  limits.
+
 - Add optional typed, read-only provider folder search with bounded literal
   queries, explicit supported fields, UTC received-date bounds and immutable
   account-scoped results. Distinguish exact, estimated and unknown cardinality;

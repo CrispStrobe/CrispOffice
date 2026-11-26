@@ -167,8 +167,9 @@ final class StudioMailDraftStoreException implements Exception {
   String toString() => 'StudioMailDraftStoreException(${code.name})';
 }
 
-typedef StudioMailDraftStoreFactory =
-    Future<StudioMailDraftStore> Function(StudioMailDraftAccount account);
+typedef StudioMailDraftStoreFactory = Future<StudioMailDraftStore> Function(
+  StudioMailDraftAccount account,
+);
 
 /// One selected foreground draft per scoped account, never an automatic sender.
 /// Hosts may additionally expose [StudioMailDraftCatalog] when implemented.
@@ -412,7 +413,8 @@ final class SqliteStudioMailDraftStore
     required int revision,
     required bool uncertain,
   }) {
-    if (draft.sender != null && !draft.sender!.isValid) {
+    if (!draft.hasConsistentBody ||
+        draft.sender != null && !draft.sender!.isValid) {
       throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
     }
     return MailDraft(
@@ -432,7 +434,7 @@ final class SqliteStudioMailDraftStore
         inReplyTo: draft.thread.inReplyTo,
         references: draft.thread.references?.split(' ') ?? const [],
       ),
-      body: MailBody(plainText: draft.body),
+      body: MailBody(plainText: draft.body, html: draft.richBody?.html),
       attachments: [
         for (var index = 0; index < draft.attachments.items.length; index++)
           MailAttachment(
@@ -929,25 +931,31 @@ final class SqliteStudioMailDraftStore
           (thread.references ?? '') != envelope.references.join(' ')) {
         throw const FormatException();
       }
+      final richBody = stored.body.html == null
+          ? null
+          : MailComposeBody.fromHtml(stored.body.html!);
+      final draft = StudioMailDraft(
+        to: editor.to,
+        cc: editor.cc,
+        bcc: editor.bcc,
+        subject: envelope.subject,
+        body: stored.body.plainText ?? '',
+        richBody: richBody,
+        sender: sender,
+        thread: thread,
+        attachments: StudioMailAttachments.from([
+          for (final attachment in stored.attachments)
+            StudioMailAttachment(
+              name: attachment.displayName,
+              bytes: attachment.content.copyBytes(),
+              mediaType: attachment.mediaType,
+              maxBytes: StudioMailAttachments.hardMaxTotalBytes,
+            ),
+        ], maxTotalBytes: StudioMailAttachments.hardMaxTotalBytes),
+      );
+      if (!draft.hasConsistentBody) throw const FormatException();
       return StudioMailStoredDraft(
-        draft: StudioMailDraft(
-          to: editor.to,
-          cc: editor.cc,
-          bcc: editor.bcc,
-          subject: envelope.subject,
-          body: stored.body.plainText ?? '',
-          sender: sender,
-          thread: thread,
-          attachments: StudioMailAttachments.from([
-            for (final attachment in stored.attachments)
-              StudioMailAttachment(
-                name: attachment.displayName,
-                bytes: attachment.content.copyBytes(),
-                mediaType: attachment.mediaType,
-                maxBytes: StudioMailAttachments.hardMaxTotalBytes,
-              ),
-          ], maxTotalBytes: StudioMailAttachments.hardMaxTotalBytes),
-        ),
+        draft: draft,
         submissionUncertain: editor.submissionUncertain,
       );
     } on Object {

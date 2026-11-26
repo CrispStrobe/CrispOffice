@@ -17,7 +17,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 21;
+  int get schemaVersion => 22;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -86,11 +86,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV21) {
         await customStatement(statement);
       }
+      for (final statement in schemaV22) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 21');
+      await customStatement('PRAGMA user_version = 22');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 20 || to != 21) {
+      if (from < 1 || from > 21 || to != 22) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -195,8 +198,13 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
+        if (from < 22) {
+          for (final statement in schemaV22) {
+            await customStatement(statement);
+          }
+        }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 21');
+        await customStatement('PRAGMA user_version = 22');
       });
     },
     beforeOpen: (_) async {
@@ -622,4 +630,12 @@ const schemaV21 = <String>[
     FOREIGN KEY(account,sender_identity)
       REFERENCES account_sender_identities(account,id)
   )''',
+];
+
+/// Optional canonical rich content keeps the existing literal body intact.
+/// Legacy templates remain plain; neither their text nor revision is rewritten.
+const schemaV22 = <String>[
+  '''ALTER TABLE account_message_templates ADD COLUMN body_html TEXT
+    CHECK(body_html IS NULL OR (typeof(body_html) = 'text' AND
+      length(CAST(body_html AS BLOB)) <= 262144))''',
 ];

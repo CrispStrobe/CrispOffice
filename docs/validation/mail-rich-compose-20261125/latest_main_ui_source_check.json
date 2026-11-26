@@ -1,0 +1,56 @@
+{
+  "qualified_ui_commit": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+  "latest_source_commit": "46645673bc944d1bb518703108234ba6836afc91",
+  "targets": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "sha256": "ebab5ed6a65d82175509129ef7beac20bb6f70bec8b50c9f992b6abfed8726a8",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_strings.dart",
+      "sha256": "76221baa901d2a2f5749dcbc00f35e780e8d32aed83db146c64c29c8d4dde5f7",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_body.dart",
+      "sha256": "6fc7621016a6aa95a20a22bac3274aa54d7e42de3114322ac99775e96a92aee6",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_preview.dart",
+      "sha256": "74e29b18f162794d9114ed87a2dc883261efc1ac6875dfcc75cb7c550dc54485",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_preview_data.dart",
+      "sha256": "c291cd90942c5329cba6599d0c03fa62544dc12fe4cf69c4b574682fa38045d2",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_review.dart",
+      "sha256": "ada43150a49cd91e97e61b12359d951db74fc39c174d032c1be1ec93c5d50e31",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+      "sha256": "927078ed7e84658b5cdd4403bbe5e07c23acdab70dbaee2637fe42602ef241fb",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_rich_compose_test.dart",
+      "sha256": "582440e36902fa0417e51697df77d22bfec8b27f84fa5c4193e34dbfb791056b",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_rich_preview_test.dart",
+      "sha256": "b6db9f1188840f4029816253ffe5680082fa62a93579fbc980330ce579999294",
+      "unchanged": true
+    }
+  ],
+  "late_main_changes": [
+    "packages/quds_office_engine/lib/src/xml/xml_reader.dart",
+    "packages/quds_office_engine/test/xml_reader_test.dart"
+  ],
+  "scope": "All nine explicitly analyzed Flutter targets remain byte-identical. The late XML dependency change has separate strict analysis and the complete 239-test pure run. No new Flutter analysis or widget execution is claimed."
+}

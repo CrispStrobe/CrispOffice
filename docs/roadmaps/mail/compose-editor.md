@@ -1,10 +1,10 @@
 # Mail compose editor
 
-**Status:** corrected 22 November 2026.
+**Status:** rich composition continuation, 25 November 2026.
 
 The composer continues to use the shared Word editor so it keeps the existing
-draft, undo, IME, signature, Quick Text and recovery contracts. The mail host now
-treats it as a disposable plain-text body surface rather than a paper document:
+draft, undo, IME, signature, Quick Text and recovery contracts. The Mail host uses a flowing message surface with bounded rich formatting and
+matching plain/HTML alternatives. Its existing editing behavior is retained:
 
 - the body editor autofocuses when the composer opens;
 - the caret is placed at the end of the existing draft;
@@ -14,7 +14,7 @@ treats it as a disposable plain-text body surface rather than a paper document:
 - plain-text reading and quotation normalize CRLF and bare CR to LF while the
   original bytes remain available through Raw Source/export.
 
-## Verification
+## Earlier editor verification — 22 November 2026
 
 - `studio_mail_draft_autosave_test.dart` now checks autofocus, a visible caret,
   Enter creating a second paragraph and focus remaining on the body.
@@ -22,6 +22,17 @@ treats it as a disposable plain-text body surface rather than a paper document:
   paragraph breaks.
 - Full `quds_mail_ui` suite passes after the line-ending change.
 
-The editor is still a plain-text mail body. Formatted HTML composition remains
-a separate future increment; the safe reader renderer is described in
+## Rich composition continuation
+
+[Durable rich composition](rich-composition.md) adds bold, italic, underline,
+strikethrough, safe links, alignment and paragraph direction, with undo/redo
+and English/German/Arabic controls. Supported formatting survives autosave,
+database recovery, MIME and Outbox edit-copy. Empty-paragraph typing styles
+created by Word's integrated Enter behavior are retained.
+
+Unsupported structures produce a visible recovery state before they can be
+flattened by saving. The current [qualification record](../../validation/mail-rich-compose-20261125/README.md)
+separates executed pure-Dart/SQLite and static checks from authored Flutter
+widget tests and remaining installed-client acceptance. Received HTML still
+uses the distinct safe reader renderer described in
 [html-rendering.md](html-rendering.md).

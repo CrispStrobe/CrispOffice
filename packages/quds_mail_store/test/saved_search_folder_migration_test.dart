@@ -114,7 +114,7 @@ void main() {
       final before = preservedRows();
       final store = _value(await open());
       try {
-        expect(database.userVersion, 21);
+        expect(database.userVersion, 22);
         expect(preservedRows(), before);
         final saved = _value(await store.listSavedHeaderSearches()).single;
         expect(saved.folders, isNull);
@@ -175,7 +175,7 @@ void main() {
       );
       final store = _value(await open());
       try {
-        expect(database.userVersion, 21);
+        expect(database.userVersion, 22);
         expect(
           _value(await store.listSavedHeaderSearches()).single.folders,
           isNull,
@@ -237,7 +237,7 @@ void main() {
       final originalFolders = publishedFolders();
       final store = _value(await open());
       try {
-        expect(database.userVersion, 21);
+        expect(database.userVersion, 22);
         expect(preservedRows(), original);
         expect(publishedFolders(), originalFolders);
         final saved = _value(await store.listSavedHeaderSearches());
@@ -317,7 +317,7 @@ void main() {
       );
       final store = _value(await open());
       try {
-        expect(database.userVersion, 21);
+        expect(database.userVersion, 22);
         final saved = _value(await store.listSavedHeaderSearches());
         expect(
           saved.singleWhere((item) => item.id == 'existing').folders,

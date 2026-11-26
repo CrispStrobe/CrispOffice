@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-25T16:44:34.910240+00:00",
+  "validation": "Source-only Dart static analysis against genuine pinned Flutter and sky_engine sources",
+  "base_commit": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+  "source_state": "Working-tree fixes identified by exact target hashes and the stable aggregate digest below; changes may be committed subsequently without changing these bytes.",
+  "sdk": {
+    "dart": "3.13.7",
+    "platform": "linux_x64",
+    "analyzer": "Official analysis_server_aot.dart.snapshot",
+    "flutter": {
+      "version": "3.47.8",
+      "tag_commit": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "engine": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "source": "https://github.com/flutter/flutter/tree/3.47.8",
+      "sky_engine": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/sky_engine.zip"
+    }
+  },
+  "resolution": {
+    "package_config_generator": "source-only-pinned-flutter-analysis",
+    "package_roots": 125,
+    "visited_dart_files": 4120,
+    "missing_source_paths": [],
+    "hosted_dependencies": "Actual source archives, versions and SHA-256 verified against repository pubspec.lock; no generated API stubs",
+    "repository_lock_sha256": "87fcdf8bfc5b35f0506f549112de1a51343d439f5e7a7948348ce5f7c2b3e268",
+    "ui_hosted_sources": {
+      "vector_math": {
+        "version": "2.4.4",
+        "sha256": "fa49e1674cb84acb900141714e6c6e1f9ae099827c24d141430ff6819db4e1bc",
+        "source": "https://pub.dev/api/archives/vector_math-2.4.4.tar.gz"
+      },
+      "material_color_utilities": {
+        "version": "0.13.0",
+        "sha256": "9c337007e82b1889149c82ed242ed1cb24a66044e30979c44912381e9be4c48b",
+        "source": "https://pub.dev/api/archives/material_color_utilities-0.13.0.tar.gz"
+      },
+      "file_picker": {
+        "version": "10.3.10",
+        "sha256": "57d9a1dd5063f85fa3107fb42d1faffda52fdc948cefd5fe5ea85267a5fc7343",
+        "source": "https://pub.dev/api/archives/file_picker-10.3.10.tar.gz"
+      },
+      "path_provider": {
+        "version": "2.1.6",
+        "sha256": "a7f4874f987173da295a61c181b8ee71dab59b332a486b391babf26a1b884825",
+        "source": "https://pub.dev/api/archives/path_provider-2.1.6.tar.gz"
+      },
+      "path_provider_platform_interface": {
+        "version": "2.1.3",
+        "sha256": "484838772624c3a4b94f1e44a3e19897fee738f2d5c4ce448443b0417f7c9dda",
+        "source": "https://pub.dev/api/archives/path_provider_platform_interface-2.1.3.tar.gz"
+      },
+      "plugin_platform_interface": {
+        "version": "2.1.8",
+        "sha256": "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02",
+        "source": "https://pub.dev/api/archives/plugin_platform_interface-2.1.8.tar.gz"
+      },
+      "win32": {
+        "version": "5.15.0",
+        "sha256": "d7cb55e04cd34096cd3a79b3330245f54cb96a370a1c27adb3c84b917de8b08e",
+        "source": "https://pub.dev/api/archives/win32-5.15.0.tar.gz"
+      },
+      "dbus": {
+        "version": "0.7.15",
+        "sha256": "a48d5da28e89bd02196e80d81ed8d7954923d00a0f4a68cc20b575038f023383",
+        "source": "https://pub.dev/api/archives/dbus-0.7.15.tar.gz"
+      },
+      "cross_file": {
+        "version": "0.3.5+5",
+        "sha256": "f141ea4f277af142a0356955707f6556f37b03947d39d55585981a06ca437bd6",
+        "source": "https://pub.dev/api/archives/cross_file-0.3.5+5.tar.gz"
+      },
+      "leak_tracker_flutter_testing": {
+        "version": "3.0.10",
+        "sha256": "1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1",
+        "source": "https://pub.dev/api/archives/leak_tracker_flutter_testing-3.0.10.tar.gz"
+      },
+      "fake_async": {
+        "version": "1.3.3",
+        "sha256": "5368f224a74523e8d2e7399ea1638b37aecfca824a3cc4dfdf77bf1fa905ac44",
+        "source": "https://pub.dev/api/archives/fake_async-1.3.3.tar.gz"
+      },
+      "leak_tracker": {
+        "version": "11.0.2",
+        "sha256": "33e2e26bdd85a0112ec15400c8cbffea70d0f9c3407491f672a2fad47915e2de",
+        "source": "https://pub.dev/api/archives/leak_tracker-11.0.2.tar.gz"
+      },
+      "leak_tracker_testing": {
+        "version": "3.0.2",
+        "sha256": "8d5a2d49f4a66b49744b23b018848400d23e54caf9463f4eb20df3eb8acb2eb1",
+        "source": "https://pub.dev/api/archives/leak_tracker_testing-3.0.2.tar.gz"
+      },
+      "desktop_drop": {
+        "version": "0.7.1",
+        "sha256": "aa1e797255bfbc76f9eb5aa4f61e5b68dbf69962ab1be6495816d2f251bc0d1f",
+        "source": "https://pub.dev/api/archives/desktop_drop-0.7.1.tar.gz"
+      },
+      "flutter_svg": {
+        "version": "2.5.0",
+        "sha256": "4565a66f0a968f2e1ab4197854686990258aadab9572eb80a7655053a01dc302",
+        "source": "https://pub.dev/api/archives/flutter_svg-2.5.0.tar.gz"
+      },
+      "vector_graphics": {
+        "version": "1.3.1",
+        "sha256": "06081e4f2d8f17c306aa58989520694b463ad411bc7c7b93e76afa3e41ca17ac",
+        "source": "https://pub.dev/api/archives/vector_graphics-1.3.1.tar.gz"
+      },
+      "vector_graphics_compiler": {
+        "version": "1.3.7",
+        "sha256": "4a3f1ed88eb49c0ce9de15832256a3681eb4ce03350375ba588b5918ea3ed60a",
+        "source": "https://pub.dev/api/archives/vector_graphics_compiler-1.3.7.tar.gz"
+      },
+      "vector_graphics_codec": {
+        "version": "1.2.0",
+        "sha256": "023f3afd1b08d040406e7ccc324f5173c04762a59e374f29d04cef00a4940742",
+        "source": "https://pub.dev/api/archives/vector_graphics_codec-1.2.0.tar.gz"
+      },
+      "path_parsing": {
+        "version": "1.1.0",
+        "sha256": "883402936929eac138ee0a45da5b0f2c80f89913e6dc3bf77eb65b84b409c6ca",
+        "source": "https://pub.dev/api/archives/path_parsing-1.1.0.tar.gz"
+      },
+      "url_launcher": {
+        "version": "6.3.3",
+        "sha256": "e8cc955c97e06df9879140a1fe301f3d493f01b7c62dec7f46834be31d7e9fda",
+        "source": "https://pub.dev/api/archives/url_launcher-6.3.3.tar.gz"
+      },
+      "url_launcher_platform_interface": {
+        "version": "2.3.2",
+        "sha256": "552f8a1e663569be95a8190206a38187b531910283c3e982193e4f2733f01029",
+        "source": "https://pub.dev/api/archives/url_launcher_platform_interface-2.3.2.tar.gz"
+      },
+      "universal_platform": {
+        "version": "1.1.0",
+        "sha256": "64e16458a0ea9b99260ceb5467a214c1f298d647c659af1bff6d3bf82536b1ec",
+        "source": "https://pub.dev/api/archives/universal_platform-1.1.0.tar.gz"
+      },
+      "flutter_lints": {
+        "version": "6.0.0",
+        "sha256": "3105dc8492f6183fb076ccf1f351ac3d60564bff92e20bfc4af9cc1651f4e7e1",
+        "source": "https://pub.dev/api/archives/flutter_lints-6.0.0.tar.gz"
+      }
+    }
+  },
+  "analysis": {
+    "completed": true,
+    "sources_stable": true,
+    "target_count": 9,
+    "error_count": 0,
+    "warning_count": 0,
+    "info_count": 0,
+    "server_error_count": 0,
+    "widget_tests_executed": false,
+    "scope_limit": "This checks Dart syntax, types and configured lint diagnostics. Flutter engine rendering, gestures, focus, platform channels and widget lifecycle assertions were not executed."
+  },
+  "targets": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "sha256": "ebab5ed6a65d82175509129ef7beac20bb6f70bec8b50c9f992b6abfed8726a8",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_strings.dart",
+      "sha256": "76221baa901d2a2f5749dcbc00f35e780e8d32aed83db146c64c29c8d4dde5f7",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_body.dart",
+      "sha256": "6fc7621016a6aa95a20a22bac3274aa54d7e42de3114322ac99775e96a92aee6",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_preview.dart",
+      "sha256": "74e29b18f162794d9114ed87a2dc883261efc1ac6875dfcc75cb7c550dc54485",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_rich_preview_data.dart",
+      "sha256": "c291cd90942c5329cba6599d0c03fa62544dc12fe4cf69c4b574682fa38045d2",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_review.dart",
+      "sha256": "ada43150a49cd91e97e61b12359d951db74fc39c174d032c1be1ec93c5d50e31",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+      "sha256": "927078ed7e84658b5cdd4403bbe5e07c23acdab70dbaee2637fe42602ef241fb",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_rich_compose_test.dart",
+      "sha256": "582440e36902fa0417e51697df77d22bfec8b27f84fa5c4193e34dbfb791056b",
+      "diagnostics": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_rich_preview_test.dart",
+      "sha256": "b6db9f1188840f4029816253ffe5680082fa62a93579fbc980330ce579999294",
+      "diagnostics": []
+    }
+  ],
+  "repository_dart_sources_before": {
+    "count": 1957,
+    "sha256": "84237cc02e83fe3f7d810096f404ff84516d880e721d3c444df7543efe4d1684"
+  },
+  "repository_dart_sources_after": {
+    "count": 1957,
+    "sha256": "84237cc02e83fe3f7d810096f404ff84516d880e721d3c444df7543efe4d1684"
+  },
+  "actual_source_digests": {
+    "flutter": {
+      "files": 785,
+      "sha256": "b3601ef8859e8dd89e6e311488537a546290be1440551941791df936429268b0"
+    },
+    "sky_engine": {
+      "files": 289,
+      "sha256": "b485218bbb837514012a326d3de2f5a802eccacc27fc46c6d07fa2a01e39c37d"
+    },
+    "ui_hosted_packages": {
+      "files": 649,
+      "sha256": "5bc7dcdff580e2929d5788c94abc111b24fb6c0952b5f0f93700f4b13cb34122"
+    }
+  },
+  "actual_analyzer_command": [
+    "/workspace/scratch/5be74ff50514/toolchain/dart-sdk/bin/dartaotruntime",
+    "/workspace/scratch/5be74ff50514/toolchain/dart-sdk/bin/snapshots/analysis_server_aot.dart.snapshot",
+    "--dart-sdk=/workspace/scratch/5be74ff50514/toolchain/dart-sdk",
+    "--packages=/workspace/scratch/5be74ff50514/toolchain/ui-analysis/.dart_tool/package_config.json",
+    "--cache=/workspace/scratch/5be74ff50514/toolchain/ui-analysis/cache",
+    "--protocol=analyzer",
+    "--client-id=crispoffice-source-validation"
+  ],
+  "protocol_requests": [
+    {
+      "method": "server.setSubscriptions",
+      "params": {
+        "subscriptions": [
+          "STATUS"
+        ]
+      }
+    },
+    {
+      "method": "analysis.setAnalysisRoots",
+      "params": {
+        "included": "All exact target file paths listed above",
+        "excluded": []
+      }
+    },
+    {
+      "method": "server.shutdown"
+    }
+  ],
+  "completion_gate": "Analysis roots accepted, isAnalyzing changed from true to false, all 9 targets reported, no diagnostics or server errors, source hashes unchanged before/after.",
+  "disk_reserve": {
+    "minimum_free_bytes": 10485760,
+    "free_before": 30199808,
+    "free_after": 17973248
+  },
+  "runner_scripts": {
+    "prepare_flutter_analysis.py": "79f43ab1ad6d75758bc6c27102a8dccd1b959bbbe8a9099032a193042da0eee2",
+    "analyze_flutter_sources.py": "c45f97b1ffd6b80c51aafcb1d3c92955aa6904ab164c310fc6972c4ba60f2374"
+  },
+  "runtime_test_status": "Flutter widget test source was analyzed only. Pure Dart execution is reported independently by the separate runtime gate."
+}

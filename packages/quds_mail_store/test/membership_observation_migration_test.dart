@@ -211,7 +211,7 @@ void main() {
           await store.close();
         }
         final afterDb = sqlite.sqlite3.open(file.path);
-        expect(afterDb.userVersion, 21);
+        expect(afterDb.userVersion, 22);
         expect(_snapshot(afterDb), before);
         expect(afterDb.select('PRAGMA foreign_key_check'), isEmpty);
         expect(

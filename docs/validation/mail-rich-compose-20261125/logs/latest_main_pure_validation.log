@@ -1,0 +1,252 @@
+00:00 +0: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart
+00:00 +0: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: immutable canonical snapshots derive consistent plain and HTML
+00:00 +1: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: CRLF split across formatting spans and empty spans normalizes once
+00:00 +2: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: adjacent equivalent spans coalesce into one stable representation
+00:00 +3: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: all style combinations and paragraph directions round-trip
+00:00 +4: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: link decoration follows authored underline and strike flags
+00:00 +5: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: fixed link blue survives inherited text without creating a link
+00:00 +6: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: fixed inherited blue does not admit arbitrary CSS color values
+00:00 +7: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: admits an explicit safe link https://example.test/path?q=hello%20world#fragment
+00:00 +8: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: admits an explicit safe link http://example.test:8080/
+00:00 +9: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: admits an explicit safe link mailto:hello+mail@example.test
+00:00 +10: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link []
+00:00 +11: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]
+00:00 +12: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [47, 112, 97, 116, 104]
+00:00 +13: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [106, 97, 118, 97, 115, 99, 114, 105, 112, 116, 58, 97, 108, 101, 114, 116, 40, 49, 41]
+00:00 +14: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [100, 97, 116, 97, 58, 116, 101, 120, 116, 47, 104, 116, 109, 108, 44, 104, 101, 108, 108, 111]
+00:00 +15: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [102, 105, 108, 101, 58, 47, 47, 47, 112, 114, 105, 118, 97, 116, 101, 47, 109, 97, 105, 108]
+00:00 +16: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [99, 105, 100, 58, 105, 109, 97, 103, 101]
+00:00 +17: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 117, 115, 101, 114, 58, 112, 97, 115, 115, 119, 111, 114, 100, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47]
+00:00 +18: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 10, 115, 101, 99, 114, 101, 116]
+00:00 +19: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 37, 48, 100, 37, 48, 97, 88, 45, 70, 111, 111, 58, 98, 97, 114]
+00:00 +20: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 37, 48, 48]
+00:00 +21: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 37, 53, 99, 112, 114, 105, 118, 97, 116, 101]
+00:00 +22: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 37, 70, 70]
+00:00 +23: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 37, 120, 120]
+00:00 +24: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 47, 104, 97, 115, 32, 115, 112, 97, 99, 101]
+00:00 +25: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 58, 55, 48, 48, 48, 48, 47]
+00:00 +26: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [104, 116, 116, 112, 115, 58, 47, 47]
+00:00 +27: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [109, 97, 105, 108, 116, 111, 58, 97, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 63, 98, 99, 99, 61, 104, 105, 100, 100, 101, 110, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]
+00:00 +28: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [109, 97, 105, 108, 116, 111, 58, 97, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 35, 102, 114, 97, 103, 109, 101, 110, 116]
+00:00 +29: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [109, 97, 105, 108, 116, 111, 58, 46, 97, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]
+00:00 +30: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [109, 97, 105, 108, 116, 111, 58, 97, 46, 46, 98, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]
+00:00 +31: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [109, 97, 105, 108, 116, 111, 58, 97, 46, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]
+00:00 +32: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects unsafe or unsupported link [109, 97, 105, 108, 116, 111, 58, 97, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 44, 98, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]
+00:00 +33: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [0] without leaking it
+00:00 +34: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [11] without leaking it
+00:00 +35: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [27] without leaking it
+00:00 +36: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [127] without leaking it
+00:00 +37: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [133] without leaking it
+00:00 +38: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [55296] without leaking it
+00:00 +39: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [56320] without leaking it
+00:00 +40: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects invalid text [55296, 97] without leaking it
+00:00 +41: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: plain, escaped HTML and UTF-8 budgets are independent
+00:00 +42: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: empty first, middle and trailing paragraphs have a line-box placeholder
+00:00 +43: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: structure is bounded before iterables can grow without limit
+00:00 +44: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart: rejects hostile, noncanonical and hidden-content HTML completely
+00:00 +45: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart
+00:11 +45: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: Word runs, soft breaks, paragraphs, direction and links round-trip
+00:11 +46: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: plain 1MiB HTML expansion and many paragraphs keep legacy path
+00:11 +47: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: inferred Arabic direction stays plain; explicit RTL is preserved
+00:11 +48: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: all supported run formats and alignments survive restoration
+00:11 +49: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: empty paragraph/run stays editable with exact empty body
+00:11 +50: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: ordinary Enter marks retain the unformatted legacy path
+00:11 +51: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: empty paragraph marks preserve supported typing styles on reopen
+00:11 +52: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: linked paragraph continuation retains blue without inventing a link
+00:11 +53: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: empty typing mark supersedes inactive placeholders without losing links
+00:11 +54: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: paragraph marks cannot conceal unsupported imported styling
+00:11 +55: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: Undo of a list can retain dormant editor numbering definitions
+00:11 +56: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: numbering residue cannot admit imported or modified package state
+00:11 +57: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported field cannot silently enter plain or rich path
+00:11 +58: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported note cannot silently enter plain or rich path
+00:11 +59: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported comment cannot silently enter plain or rich path
+00:11 +60: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported local link cannot silently enter plain or rich path
+00:11 +61: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported script link cannot silently enter plain or rich path
+00:11 +62: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported anchor link cannot silently enter plain or rich path
+00:11 +63: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported highlight cannot silently enter plain or rich path
+00:11 +64: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported red cannot silently enter plain or rich path
+00:11 +65: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported font size cannot silently enter plain or rich path
+00:11 +66: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported caps cannot silently enter plain or rich path
+00:11 +67: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported super cannot silently enter plain or rich path
+00:11 +68: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported wavy underline cannot silently enter plain or rich path
+00:11 +69: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph list is refused
+00:11 +70: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph heading is refused
+00:11 +71: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph style is refused
+00:11 +72: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph indent is refused
+00:11 +73: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph distributed is refused
+00:11 +74: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph field is refused
+00:11 +75: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph page break is refused
+00:11 +76: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: unsupported paragraph shading is refused
+00:11 +77: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart: tables, package imports, hidden stories and revision state are refused
+00:11 +78: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart
+00:12 +78: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: small preview owns immutable formatting and retains the whole body
+00:13 +79: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: UTF-8 byte limit never splits a surrogate pair or alters frozen body
+00:13 +80: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: complete scalar at the limit is retained and does not imply clipping
+00:13 +81: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: budget is shared across spans and paragraph separators
+00:13 +82: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: clipping retains fixed blue and explicitly black link presentation
+00:13 +83: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: paragraph limit clips even when the text budget remains
+00:13 +84: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: run limit clips pathological formatting and preserves admitted styles
+00:13 +85: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: exact structural limits do not claim unavailable content
+00:13 +86: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart: legacy plain preview stays literal and scalar-safe
+00:13 +87: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart
+00:17 +87: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: rich MIME preserves both alternatives and keeps Bcc private
+00:17 +88: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: Outbox edit projection retains formatting, aliases and attachments
+00:17 +89: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: different plain and formatted text cannot be submitted
+00:17 +90: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: rich body validation is independent of unfinished recipients
+00:17 +91: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: Outbox refuses different-text without rewriting its original bytes
+00:17 +92: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: Outbox refuses active-html without rewriting its original bytes
+00:17 +93: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: Outbox refuses unknown-format without rewriting its original bytes
+00:17 +94: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: default signature preserves rich runs for reply=false
+00:17 +95: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: default signature preserves rich runs for reply=true
+00:17 +96: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart: identity-only default preserves the original rich snapshot
+00:17 +97: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart
+00:22 +97: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: rich draft survives real database close and reopen
+00:22 +98: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: formatting-only saves advance revision and keep uncertainty
+00:23 +99: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: divergent alternatives are refused without replacing saved work
+00:23 +100: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: rich queue and atomic edit copy preserve frozen MIME and private Bcc
+00:23 +101: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: rich accepted Sent receipt (true) survives close and reopen
+00:23 +102: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: rich accepted Sent receipt (false) survives close and reopen
+00:23 +103: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: rich accepted Sent receipt (null) survives close and reopen
+00:23 +104: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: invalid recipients leave rich work durable when queue admission fails
+00:23 +105: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: corrupt unknown-html recovery fails without silently flattening
+00:23 +106: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: corrupt different-text recovery fails without silently flattening
+00:24 +107: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: corrupt truncated-html recovery fails without silently flattening
+00:24 +108: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: legacy plain drafts retain exact text and do not acquire rich state
+00:24 +109: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: unfinished plain work above the send limit remains recoverable
+00:24 +110: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart: rich HTML counts toward storage quota without replacing saved work
+00:24 +111: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart
+00:28 +111: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: Sent filing failure leaves SMTP accepted and persists the warning
+00:28 +112: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: durable begin completes before the provider sees frozen bytes
+00:28 +113: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: status notification failure completes uncertainty without contacting provider
+00:28 +114: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: session check failure completes uncertainty without contacting provider
+00:28 +115: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: begin persistence failure never invokes the provider or records a result
+00:28 +116: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: a session invalidated while begin persists cannot reach the provider
+00:28 +117: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: stale-session rejection preserves uncertainty from an earlier attempt
+00:28 +118: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: foreign attempt response becomes uncertainty for the actual attempt
+00:28 +119: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: foreign recipient response becomes uncertainty for the actual attempt
+00:28 +120: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: asynchronous provider error is uncertain
+00:28 +121: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: synchronous provider error is uncertain
+00:28 +122: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: a late matching acceptance still completes the old durable attempt
+00:28 +123: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: completion failure propagates after acceptance without a fabricated retry
+00:28 +124: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: explicit native retry preserves exact MIME, Unicode content and Bcc envelope
+00:28 +125: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: matching native sent copy error preserves confirmed acceptance
+00:28 +126: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: matching native connection cleanup error preserves confirmed acceptance
+00:28 +127: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: post-submission error from another client cannot prove acceptance
+00:28 +128: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: raw non-ASCII is rejected before any native network callback
+00:28 +129: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart: normalization would change frozen bytes is rejected before any native network callback
+00:28 +130: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart
+00:32 +130: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: generated Unicode message retains complete content, threading and hidden recipients
+00:32 +131: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: Bcc-only message recovers every hidden transport recipient
+00:32 +132: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: canonical cross-group deduplication and case-sensitive local parts survive
+00:32 +133: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: legacy complete plain MIME remains editable without invented HTML or headers
+00:32 +134: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: empty and final-newline plain bodies retain their semantic text
+00:32 +135: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: maximum admitted composer body remains editable: plain
+00:33 +136: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: maximum admitted composer body remains editable: ampersands
+00:35 +137: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: maximum admitted composer body remains editable: quotes
+00:36 +138: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: maximum admitted composer body remains editable: line breaks
+00:57 +139: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: projected and original attachment bytes are independently immutable
+00:57 +140: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: custom HTML is refused rather than silently flattened or rendered
+00:57 +141: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: additional alternatives and reversed body order cannot be silently dropped
+00:57 +142: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: nonempty MIME preamble and epilogue are refused
+00:57 +143: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: wire Bcc headers are refused even when empty
+00:57 +144: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: address group labels and comments cannot be silently discarded
+00:57 +145: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: long supported attachment filenames retain their original spelling
+00:57 +146: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: sender names are retained while mismatches and named recipients are refused
+00:57 +147: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: visible recipients must exactly occupy the ordered envelope prefix
+00:57 +148: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: canonical duplicate envelope recipients cannot be hidden by deduplication
+00:57 +149: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: unsupported and duplicate root headers do not disappear in an editable copy
+00:57 +150: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: unsupported threading cannot be repaired by dropping references
+00:57 +151: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: inline attachment identity and unsupported attachment metadata are refused
+00:57 +152: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: reader filename sanitization cannot silently rename unsafe originals
+00:57 +153: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: partial, malformed and incomplete MIME are refused while original remains available
+00:57 +154: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: parse budgets reject rather than presenting a truncated success
+00:57 +155: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: oversized composer content is refused even under a loose read budget
+00:57 +156: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: private companion retains frozen envelope and risk without credentials or a send
+00:57 +157: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart: private companion remains available for unrepresentable custom MIME
+00:57 +158: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart
+01:06 +158: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart: WmlRunEdit.propsAt an empty paragraph reads its paragraph mark
+01:06 +159: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart: WmlRunEdit.propsAt typing in an empty paragraph continues the mark formatting
+01:06 +160: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart: WmlRunEdit.propsAt a non-empty paragraph reads the run at the offset
+01:06 +161: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart: paragraph mark layout a split mark advances the empty line at its own size
+01:06 +162: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart: paragraph mark round trip pPr/rPr keeps the continuation format across save and reopen
+01:06 +163: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart: paragraph mark round trip an empty paragraph keeps its mark after a fresh save
+01:06 +164: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart
+01:15 +164: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader parses namespaced Office-style documents
+01:15 +165: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader token matching checks the full name and attribute namespace
+01:15 +166: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader closing tags match the complete opening name at their depth
+01:15 +167: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader event names survive empty tags and follow namespace scope
+01:15 +168: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader closing nested tags restores only the scope declared there
+01:15 +169: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader attribute slots reset when the next tag has fewer attributes
+01:15 +170: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader handles empty elements, comments, and CDATA
+01:15 +171: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader round-trips through XmlDocument and XmlWriter
+01:15 +172: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart: XmlPullReader decodes numeric entities
+01:15 +173: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart
+01:17 +173: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+01:17 +174: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: mixed 250/550 RCPT responses abort every recipient before DATA
+01:17 +175: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: aggregate response does not fabricate recipient-level acceptance
+01:17 +176: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: missing recipient responses stay unknown on aggregate failure
+01:17 +177: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: connection loss after possible acceptance is uncertain and cannot retry
+01:17 +178: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: interrupted submitting state recovers as uncertain, never queued
+01:17 +179: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: definite non-acceptance retries with a fresh attempt identity only
+01:17 +180: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+01:17 +181: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: legacy draft uncertainty requires acknowledgement before queue send
+01:17 +182: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: acknowledged retry preserves older uncertainty after accepted
+01:17 +183: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: acknowledged retry preserves older uncertainty after rejected
+01:17 +184: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: acknowledged retry preserves older uncertainty after retryableFailure
+01:17 +185: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: acknowledged retry preserves older uncertainty after uncertain
+01:17 +186: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: acknowledgement cannot restart ordinary or accepted work
+01:17 +187: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: undo send only cancels work before submission
+01:17 +188: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart: unrelated/duplicate recipient results and control injection are rejected
+01:17 +189: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart
+01:18 +189: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: standard flag codec unknown flags remain distinct from an observed empty set
+01:18 +190: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: standard flag codec every durable flag survives alone and in a combined snapshot
+01:18 +191: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: standard flag codec reserved flag bits and negative masks fail with redacted errors
+01:18 +192: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope round trip preserves every header field and timestamp
+01:18 +193: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec nullable empty metadata and local absolute timestamps round trip
+01:18 +194: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects unknown field
+01:18 +195: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects missing nullable field
+01:18 +196: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects future version
+01:18 +197: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects wrong subject type
+01:18 +198: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects wrong reference type
+01:18 +199: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects wrong address shape
+01:18 +200: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects unknown address field
+01:18 +201: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects wrong nullable address type
+01:18 +202: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects normalized invalid date
+01:18 +203: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects offset date instead of canonical instant
+01:18 +204: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec envelope rejects wrong UTC type
+01:18 +205: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec duplicate literal and escaped keys are rejected before JSON collapse
+01:18 +206: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: metadata codec bounded parser rejects deep nesting and redacts malformed content
+01:18 +207: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately
+01:18 +208: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: provider identity codec graph identity preserves exact opaque value
+01:18 +209: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: provider identity codec gmail identity preserves exact opaque value
+01:18 +210: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: provider identity codec jmap identity preserves exact opaque value
+01:19 +211: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: provider identity codec remote codec rejects invalid provider, field set and IMAP range
+01:19 +212: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: draft payload body projection validates metadata without requiring payload bytes
+01:19 +213: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: draft payload metadata and deduplicated immutable blobs round trip separately
+01:19 +214: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: draft payload draft rejects missing, corrupted or mismatched-length attachment bytes
+01:19 +215: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: draft payload draft rejects wrong metadata types, unknown fields and malformed hash
+01:19 +216: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox payload every state round trips frozen bytes, recipients, result and attempt
+01:19 +217: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox payload restored in-flight entry becomes uncertain and never retryable
+01:19 +218: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox payload wire integrity and internal result/state consistency are enforced
+01:19 +219: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions version-one payloads recover with no invented earlier uncertainty
+01:19 +220: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions versioned uncertainty rejects missing, extra and nonboolean data
+01:19 +221: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions acknowledged retry and all outcomes retain a sticky durable guard
+01:19 +222: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions ordinary attempt cannot invent prior uncertainty and legacy queue keeps it
+01:19 +223: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions new entries must be initial queued and all legitimate transitions pass
+01:19 +224: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change
+01:19 +225: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory
+01:19 +226: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail
+01:19 +227: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart: outbox persistence transitions cancellation must retain the previous definite failure result
+01:19 +228: [VM, Source] loading /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart
+01:22 +228: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: snapshot expiry is account scoped and preserves cached bodies
+01:22 +229: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: explicit cleanup frees automatic-cache quota for an exact saved draft
+01:22 +230: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: cleanup works after reopening below the already stored account quota
+01:22 +231: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: cleanup admits no existing envelope under lower metadata and account quotas
+01:22 +232: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: bounded batches report remaining eligible work and finish idempotently
+01:22 +233: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: sync, active commands, editor pins, outgoing bytes and other accounts survive
+01:22 +234: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: remaining browse references protect headers until their own batch
+01:22 +235: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: failed cleanup rolls back view, bytes, search and references together
+01:22 +236: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: cleanup and restart cannot resurrect an old view CAS at the same timestamp
+01:22 +237: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: global revision exhaustion prevents new and cleared folder reuse
+01:23 +238: [VM, Source] /workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart: cleanup accepts logged-out accounts and rejects wrong scope and invalid bounds
+01:23 +239: All tests passed!

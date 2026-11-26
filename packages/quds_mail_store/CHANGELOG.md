@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add schema v22 with nullable canonical HTML for message templates. Preserve
+  legacy literal text, settings revisions and identity references. Validate
+  stored HTML types, encoding, bounds and canonical/plain agreement; include
+  formatting in metadata and account-byte quotas. Failed migrations and saves
+  retain the previous durable state, and corrupt rich rows cannot be overwritten.
+
 - Add schema v21 for account-owned sender identities and full-message templates,
   sharing the existing atomic compose-settings revision. Preserve older settings
   and authored mail, bound corrupt reads before text transfer, enforce quotas and

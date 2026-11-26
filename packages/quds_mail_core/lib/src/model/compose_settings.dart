@@ -1,3 +1,4 @@
+import 'compose_body.dart';
 import 'identity.dart';
 
 /// One named, literal plain-text fragment owned by a compose-settings snapshot.
@@ -115,10 +116,12 @@ final class MailSenderIdentity {
   String toString() => 'MailSenderIdentity(redacted)';
 }
 
-/// Literal full-message starting text owned by one compose-settings snapshot.
+/// Literal full-message starting content owned by one compose-settings snapshot.
 /// Recipients may be incomplete while authoring a template; the composer still
-/// validates them before sending. No variables, HTML, attachment references,
-/// thread identity or delivery instructions are evaluated or retained here.
+/// validates them before sending. Optional rich content uses the same canonical
+/// format as drafts, with a matching plain alternative. No variables, arbitrary
+/// HTML, attachment references, thread identity or delivery instructions are
+/// evaluated or retained here.
 final class MailMessageTemplate {
   const MailMessageTemplate({
     required this.id,
@@ -128,6 +131,7 @@ final class MailMessageTemplate {
     this.bcc = '',
     this.subject = '',
     this.body = '',
+    this.richBody,
     this.senderIdentityId,
   });
 
@@ -137,6 +141,10 @@ final class MailMessageTemplate {
   static const maxSubjectCodeUnits = 512;
   static const maxBodyCodeUnits = 16384;
 
+  /// Rich templates remain reusable settings, rather than a second draft store.
+  /// Both alternatives also count toward [MailComposeSettings.maxMetadataCodeUnits].
+  static const maxRichBodyCodeUnits = 65536;
+
   final String id;
   final String name;
   final String to;
@@ -144,6 +152,10 @@ final class MailMessageTemplate {
   final String bcc;
   final String subject;
   final String body;
+
+  /// Optional canonical alternative for [body]. Their text must agree after
+  /// CRLF/CR normalization. Null keeps a legacy template's literal plain text.
+  final MailComposeBody? richBody;
   final String? senderIdentityId;
 
   String get nameKey => name.trim().toLowerCase();
@@ -159,8 +171,14 @@ final class MailMessageTemplate {
       _validComposeText(subject, multiline: false) &&
       body.length <= maxBodyCodeUnits &&
       _validComposeText(body, multiline: true) &&
+      (richBody == null ||
+          (richBody!.html.length <= maxRichBodyCodeUnits &&
+              richBody!.plainText ==
+                  body.replaceAll('\r\n', '\n').replaceAll('\r', '\n'))) &&
       (senderIdentityId == null || _validComposeIdentity(senderIdentityId!));
 
+  /// Changing [body] retains the rich alternative until explicitly replaced or
+  /// cleared, so a stale text edit fails validation instead of losing formatting.
   MailMessageTemplate copyWith({
     String? name,
     String? to,
@@ -168,6 +186,8 @@ final class MailMessageTemplate {
     String? bcc,
     String? subject,
     String? body,
+    MailComposeBody? richBody,
+    bool clearRichBody = false,
     String? senderIdentityId,
     bool clearSenderIdentity = false,
   }) => MailMessageTemplate(
@@ -178,6 +198,7 @@ final class MailMessageTemplate {
     bcc: bcc ?? this.bcc,
     subject: subject ?? this.subject,
     body: body ?? this.body,
+    richBody: clearRichBody ? null : richBody ?? this.richBody,
     senderIdentityId: clearSenderIdentity
         ? null
         : senderIdentityId ?? this.senderIdentityId,
@@ -270,6 +291,7 @@ final class MailComposeSettings {
             item.bcc.length +
             item.subject.length +
             item.body.length +
+            (item.richBody?.html.length ?? 0) +
             (item.senderIdentityId?.length ?? 0),
       );
 

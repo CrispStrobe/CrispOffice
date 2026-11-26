@@ -18,14 +18,7 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
   }
   final recipients = draft.recipients;
   final authored = draft.sender;
-  final escaped = draft.body
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll('\r\n', '\n')
-      .replaceAll('\r', '\n')
-      .replaceAll('\n', '<br>');
+  final html = draft.richBody?.html ?? _plainHtml(draft.body);
   final builder = draft.attachments.isEmpty
       ? mail.MessageBuilder.prepareMultipartAlternativeMessage()
       : mail.MessageBuilder.prepareMultipartMixedMessage();
@@ -40,7 +33,7 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
       transferEncoding: mail.TransferEncoding.quotedPrintable,
     )
     ..addTextHtml(
-      '<p>$escaped</p>',
+      html,
       transferEncoding: mail.TransferEncoding.quotedPrintable,
     );
   builder
@@ -86,6 +79,9 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
   }
   return message;
 }
+
+String _plainHtml(String text) =>
+    '<p>${text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll('\r\n', '\n').replaceAll('\r', '\n').replaceAll('\n', '<br>')}</p>';
 
 String _rfc2231Filename(String name) =>
     "utf-8''${utf8.encode(name).map((byte) => '%${byte.toRadixString(16).padLeft(2, '0').toUpperCase()}').join()}";

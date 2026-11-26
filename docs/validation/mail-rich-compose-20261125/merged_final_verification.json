@@ -1,0 +1,66 @@
+{
+  "head": "1bd81015ecd261708b2b8254d8f9a9ef57b94c37",
+  "started_utc": "2026-11-25T16:46:06.491560+00:00",
+  "finished_utc": "2026-11-25T16:47:57.183607+00:00",
+  "exit_code": 0,
+  "test_count": 238,
+  "groups": {
+    "/workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart": 45,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart": 33,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart": 9,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart": 10,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart": 14,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart": 19,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart": 28,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart": 6,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart": 8,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart": 16,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart": 39,
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart": 11
+  },
+  "failed": [],
+  "low_disk_abort": false,
+  "minimum_free_bytes": 24379392,
+  "free_after_bytes": 24821760,
+  "source_fingerprints": 557,
+  "changed_during_run": [],
+  "command": [
+    "/workspace/scratch/5be74ff50514/mail-harness/run-tests.sh",
+    "--file-reporter=json:/workspace/scratch/5be74ff50514/mail-harness/logs/merged_final_events.jsonl",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/final/compose_body_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_body_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_preview_data_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_delivery_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_rich_store_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_submission_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/studio/studio_mail_outbox_content_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/word_paragraph_mark_formatting_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/xml_reader_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/core_outbox_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/store_codec_test.dart",
+    "/workspace/scratch/5be74ff50514/mail-harness/test/incoming/cache_cleanup_test.dart"
+  ],
+  "logs": [
+    {
+      "path": "logs/merged_final_pure_validation.log",
+      "sha256": "33d4d4ee395a1284c76be2e6d44133faf442d3a41eff75d4684d89b7bb7a7087"
+    },
+    {
+      "path": "logs/merged_final_events.jsonl",
+      "sha256": "ed96535c226d0e02c8cbed8042f0bd9d2541c5e1d42e484abbd1f9008d0af8e4"
+    }
+  ],
+  "skipped_test_events": [],
+  "analysis": {
+    "receipt": "merged_analysis_verification.json",
+    "exit_code": 0,
+    "production_files": 20,
+    "test_files": 7
+  },
+  "group_totals": {
+    "new_rich_composition_and_delivery": 111,
+    "existing_studio_compatibility": 47,
+    "incoming_main_compatibility": 80
+  },
+  "source_manifest_sha256": "f8b9efefe974829f443841d95a19a4680de9bbbadba7bf263656633b24cf29aa"
+}

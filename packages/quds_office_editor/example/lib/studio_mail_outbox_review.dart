@@ -4,11 +4,14 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'studio_mail_outbox_content.dart';
 import 'studio_mail_outbox_export.dart';
 import 'studio_mail_outbox_strings.dart';
+import 'studio_mail_rich_preview.dart';
+import 'studio_mail_rich_preview_data.dart';
 import 'studio_mail_strings.dart';
 import 'studio_strings.dart';
 
-/// Read-only local review. No links, HTML renderer, attachment opener or provider
-/// port is present. Exact export remains available when projection is refused.
+/// Read-only local review. Links are inert and no HTML renderer, attachment
+/// opener or provider port is present. Exact export remains available when
+/// projection is refused.
 class StudioMailOutboxReviewDialog extends StatefulWidget {
   const StudioMailOutboxReviewDialog({
     super.key,
@@ -136,7 +139,7 @@ class _StudioMailOutboxReviewDialogState
     final entry = widget.entry;
     final content = _content;
     final body = content?.draft.body ?? '';
-    const previewLimit = 64 * 1024;
+    final plainPreview = studioMailPlainPreviewText(body);
     return PopScope(
       canPop: !_busy,
       child: Dialog(
@@ -230,14 +233,34 @@ class _StudioMailOutboxReviewDialogState
                               date.toUtc().toIso8601String(),
                               address: true,
                             ),
-                          _field(
-                            strings.mailPlainTextBody,
-                            body.length > previewLimit
-                                ? body.substring(0, previewLimit)
-                                : body,
-                          ),
-                          if (body.length > previewLimit)
-                            Text(strings.mailOutboxBodyTruncated),
+                          if (content.draft.richBody case final rich?)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    strings.mailOutboxFormattedBody,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge,
+                                  ),
+                                  StudioMailRichPreview(
+                                    body: rich,
+                                    truncationNotice:
+                                        strings.mailOutboxBodyTruncated,
+                                  ),
+                                ],
+                              ),
+                            )
+                          else ...[
+                            _field(
+                              strings.mailPlainTextBody,
+                              plainPreview.text,
+                            ),
+                            if (plainPreview.truncated)
+                              Text(strings.mailOutboxBodyTruncated),
+                          ],
                           Text(
                             strings.mailAttachmentSummary(
                               content.draft.attachments.items.length,

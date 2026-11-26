@@ -154,6 +154,6 @@ void main() {
     store = await open();
     final header = _value(await store.loadMailboxView(_inbox))!.headers.single;
     expect(header.conversationId, '<root@example.test>');
-    expect(database.select('PRAGMA user_version').single.values.single, 21);
+    expect(database.select('PRAGMA user_version').single.values.single, 22);
   });
 }

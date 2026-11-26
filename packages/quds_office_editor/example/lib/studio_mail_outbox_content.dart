@@ -18,8 +18,8 @@ final class StudioMailOutboxContentException implements Exception {
   String toString() => 'This Outbox message cannot be opened as a draft.';
 }
 
-/// A complete, local projection of a frozen message into the plain-text
-/// composer. No HTML is rendered, no resource is loaded, and no send is begun.
+/// A complete, local projection of a frozen message into the composer. Only
+/// canonical authored formatting is admitted; no resource is loaded or send begun.
 /// This does not grant permission to copy or retry an uncertain submission.
 final class StudioMailOutboxContent {
   const StudioMailOutboxContent._(this.message, this.draft);
@@ -87,9 +87,12 @@ final class StudioMailOutboxContent {
       }
 
       final plain = source.body.plainText;
-      if (plain == null ||
-          source.body.html != null && source.body.html != _plainHtml(plain)) {
-        _unsupported();
+      if (plain == null) _unsupported();
+      final editorText = plain.replaceAll('\r\n', '\n');
+      MailComposeBody? richBody;
+      if (source.body.html case final html? when html != _plainHtml(plain)) {
+        richBody = MailComposeBody.fromHtml(html);
+        if (richBody.plainText != editorText) _unsupported();
       }
       final thread = envelope.inReplyTo == null
           ? const StudioMailThread.empty()
@@ -112,7 +115,8 @@ final class StudioMailOutboxContent {
         // a valid one-MiB draft does not exceed its original budget solely from
         // transport line breaks. The parsed message and exact EML stay intact;
         // literal standalone CR characters remain literal.
-        body: plain.replaceAll('\r\n', '\n'),
+        body: editorText,
+        richBody: richBody,
         sender: StudioMailSender(
           address: envelope.from.single.address,
           displayName: envelope.from.single.displayName ?? '',

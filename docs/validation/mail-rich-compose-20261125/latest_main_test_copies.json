@@ -1,0 +1,86 @@
+[
+  {
+    "source": "packages/quds_mail_core/test/compose_body_test.dart",
+    "copy": "test/final/compose_body_test.dart",
+    "source_sha256": "9c8fb52c2c7fa4ffa686d4e2fb1268d7cdcfc031a9b19c7be33a76b54e9faf0b",
+    "copy_sha256": "9c8fb52c2c7fa4ffa686d4e2fb1268d7cdcfc031a9b19c7be33a76b54e9faf0b",
+    "adaptations": "none"
+  },
+  {
+    "source": "packages/quds_office_editor/example/test/studio_mail_rich_body_test.dart",
+    "copy": "test/studio/studio_mail_rich_body_test.dart",
+    "source_sha256": "d85dbacb92489756e8eaf2d0065173b0e1232aaaa22d29bbe09cc26359c4e58e",
+    "copy_sha256": "d85dbacb92489756e8eaf2d0065173b0e1232aaaa22d29bbe09cc26359c4e58e",
+    "adaptations": "flutter_test import -> package:test"
+  },
+  {
+    "source": "packages/quds_office_editor/example/test/studio_mail_rich_preview_data_test.dart",
+    "copy": "test/studio/studio_mail_rich_preview_data_test.dart",
+    "source_sha256": "1545f6676c7587bcf49d46fad515e8505a5363dbd6a51950bef33dd5752ab7ba",
+    "copy_sha256": "1545f6676c7587bcf49d46fad515e8505a5363dbd6a51950bef33dd5752ab7ba",
+    "adaptations": "flutter_test import -> package:test"
+  },
+  {
+    "source": "packages/quds_office_editor/example/test/studio_mail_rich_delivery_test.dart",
+    "copy": "test/studio/studio_mail_rich_delivery_test.dart",
+    "source_sha256": "67b35f15d88c5375480e33e6ad2bb61d0c1ee962c0c1ce61f0c472b759596a63",
+    "copy_sha256": "384dc459cf212b383026d49cb024dd02f2c70590fe14256f75821b41726adbb6",
+    "adaptations": "flutter_test import -> package:test"
+  },
+  {
+    "source": "packages/quds_office_editor/example/test/studio_mail_rich_store_test.dart",
+    "copy": "test/studio/studio_mail_rich_store_test.dart",
+    "source_sha256": "f10232a84516144beb1a409acc9f26d2c558dc18a28af6e9fee1f924150815b5",
+    "copy_sha256": "8ba2ae145dc5477eea4f886b8d60b836f6145be077c95d3f6afebb559e1158f2",
+    "adaptations": "flutter_test import -> package:test"
+  },
+  {
+    "source": "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+    "copy": "test/studio/studio_mail_outbox_submission_test.dart",
+    "source_sha256": "1acdcb21a472f13869d9d221bddb4966561b3beda4f526b45aed125471b7ba91",
+    "copy_sha256": "d47674a55f1dd3cb436cd0018eaf0b3d818ea9ab842b512348cea7096fc4271c",
+    "adaptations": "flutter_test import -> package:test; real package:test/fake.dart import"
+  },
+  {
+    "source": "packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart",
+    "copy": "test/studio/studio_mail_outbox_content_test.dart",
+    "source_sha256": "9db9e21c2fda68e7cf4c248d74601ca22d6f1b9feeae4be7087ba3556772681d",
+    "copy_sha256": "c6a753021dc22f7c0c5ddd1d28f003ef64a01b934cf9a57ccbcb6a2d94f18786",
+    "adaptations": "flutter_test import -> package:test"
+  },
+  {
+    "source": "packages/quds_office_engine/test/word_paragraph_mark_formatting_test.dart",
+    "copy": "test/incoming/word_paragraph_mark_formatting_test.dart",
+    "source_sha256": "9bcb575528293cd7d92d00b564878712b5fcba41f19e89dc9c636ea0a09229e9",
+    "copy_sha256": "9bcb575528293cd7d92d00b564878712b5fcba41f19e89dc9c636ea0a09229e9",
+    "adaptations": "none"
+  },
+  {
+    "source": "packages/quds_office_engine/test/xml_reader_test.dart",
+    "copy": "test/incoming/xml_reader_test.dart",
+    "source_sha256": "df75c3dd3628f9b934f833db49c4e01f3cf02b36ff2080fb6c979d8fa9274aa6",
+    "copy_sha256": "df75c3dd3628f9b934f833db49c4e01f3cf02b36ff2080fb6c979d8fa9274aa6",
+    "adaptations": "none"
+  },
+  {
+    "source": "packages/quds_mail_core/test/outbox_test.dart",
+    "copy": "test/incoming/core_outbox_test.dart",
+    "source_sha256": "a056c40dbbf285bdc52e2a9ae79cb1d9bcf6e39cc12bffe45520d8f0bf12934f",
+    "copy_sha256": "a056c40dbbf285bdc52e2a9ae79cb1d9bcf6e39cc12bffe45520d8f0bf12934f",
+    "adaptations": "none"
+  },
+  {
+    "source": "packages/quds_mail_store/test/codec_test.dart",
+    "copy": "test/incoming/store_codec_test.dart",
+    "source_sha256": "d26f8c7bb65e96625e983cff624f610823e40c7632bbeae4157ddbbf6ea9c888",
+    "copy_sha256": "d26f8c7bb65e96625e983cff624f610823e40c7632bbeae4157ddbbf6ea9c888",
+    "adaptations": "none"
+  },
+  {
+    "source": "packages/quds_mail_store/test/cache_cleanup_test.dart",
+    "copy": "test/incoming/cache_cleanup_test.dart",
+    "source_sha256": "26522cdbc86becb7cc974413e698b863a99f4de42f3a5905e06f3103751ed176",
+    "copy_sha256": "26522cdbc86becb7cc974413e698b863a99f4de42f3a5905e06f3103751ed176",
+    "adaptations": "none"
+  }
+]

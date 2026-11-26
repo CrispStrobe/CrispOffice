@@ -94,9 +94,14 @@ extension StudioMailOutboxStrings on StudioStrings {
   String get mailOutboxPreview =>
       _outboxText('Review message', 'Nachricht prüfen', 'مراجعة الرسالة');
   String get mailOutboxPreviewExplanation => _outboxText(
-    'This is the saved message. The body is shown as text; attachments are listed without opening them.',
-    'Dies ist die gespeicherte Nachricht. Der Inhalt wird als Text angezeigt; Anhänge werden aufgelistet, ohne sie zu öffnen.',
-    'هذه هي الرسالة المحفوظة. يُعرض المحتوى كنص وتُدرج المرفقات دون فتحها.',
+    'This is the saved message. Text and supported formatting are shown with inactive links; attachments are listed without opening them.',
+    'Dies ist die gespeicherte Nachricht. Text und unterstützte Formatierungen werden mit inaktiven Links angezeigt; Anhänge werden aufgelistet, ohne sie zu öffnen.',
+    'هذه هي الرسالة المحفوظة. يُعرض النص والتنسيق المدعوم بروابط غير نشطة وتُدرج المرفقات دون فتحها.',
+  );
+  String get mailOutboxFormattedBody => _outboxText(
+    'Formatted body',
+    'Formatierter Nachrichtentext',
+    'نص الرسالة المنسق',
   );
   String get mailOutboxPreviewUnavailable => _outboxText(
     'This saved message cannot be safely shown or edited. You can still export its original EML and recipient record.',

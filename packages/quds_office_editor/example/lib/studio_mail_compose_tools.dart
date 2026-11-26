@@ -53,6 +53,7 @@ StudioMailDraft applyStudioMailDefaultSignature(
       bcc: draft.bcc,
       subject: draft.subject,
       body: draft.body,
+      richBody: draft.richBody,
       sender: sender,
       thread: draft.thread,
       attachments: draft.attachments,
@@ -61,13 +62,12 @@ StudioMailDraft applyStudioMailDefaultSignature(
   final signature = studioMailSignatureText(settings.signature);
   // Replies retain an editable blank paragraph and put the signature before
   // quoted content. New-message defaults follow any initial text.
-  final body = replyOrForward
+  final prefix = replyOrForward
       ? signature +
-            (draft.body.isEmpty || draft.body.startsWith('\n\n')
-                ? ''
-                : '\n\n') +
-            draft.body
-      : draft.body + signature;
+            (draft.body.isEmpty || draft.body.startsWith('\n\n') ? '' : '\n\n')
+      : '';
+  final suffix = replyOrForward ? '' : signature;
+  final body = prefix + draft.body + suffix;
   if (body.length > StudioMailDraft.maxBodyBytes ||
       utf8.encode(body).length > StudioMailDraft.maxBodyBytes) {
     throw const StudioMailComposeToolsException();
@@ -78,10 +78,58 @@ StudioMailDraft applyStudioMailDefaultSignature(
     bcc: draft.bcc,
     subject: draft.subject,
     body: body,
+    richBody: draft.richBody == null
+        ? null
+        : _signatureRichBody(draft.richBody!, prefix, suffix),
     sender: sender,
     thread: draft.thread,
     attachments: draft.attachments,
   );
+}
+
+MailComposeBody _signatureRichBody(
+  MailComposeBody original,
+  String prefix,
+  String suffix,
+) {
+  try {
+    final paragraphs = original.paragraphs.toList();
+    if (prefix.isNotEmpty) {
+      final parts = prefix.split('\n');
+      final first = paragraphs.first;
+      paragraphs[0] = MailComposeParagraph(
+        runs: [
+          MailComposeRun(text: parts.last),
+          ...first.runs,
+        ],
+        alignment: first.alignment,
+        rightToLeft: first.rightToLeft,
+      );
+      paragraphs.insertAll(0, [
+        for (final text in parts.take(parts.length - 1))
+          MailComposeParagraph(runs: [MailComposeRun(text: text)]),
+      ]);
+    }
+    if (suffix.isNotEmpty) {
+      final parts = suffix.split('\n');
+      final last = paragraphs.last;
+      paragraphs[paragraphs.length - 1] = MailComposeParagraph(
+        runs: [
+          ...last.runs,
+          MailComposeRun(text: parts.first),
+        ],
+        alignment: last.alignment,
+        rightToLeft: last.rightToLeft,
+      );
+      paragraphs.addAll([
+        for (final text in parts.skip(1))
+          MailComposeParagraph(runs: [MailComposeRun(text: text)]),
+      ]);
+    }
+    return MailComposeBody(paragraphs: paragraphs);
+  } on Object {
+    throw const StudioMailComposeToolsException();
+  }
 }
 
 /// Applies a complete, literal template as a new message. The host confirms
@@ -105,6 +153,7 @@ StudioMailDraft applyStudioMailTemplate(
     bcc: template.bcc,
     subject: template.subject,
     body: studioMailComposeText(template.body),
+    richBody: template.richBody,
     sender: identity == null ? null : StudioMailSender.fromIdentity(identity),
   );
 }
