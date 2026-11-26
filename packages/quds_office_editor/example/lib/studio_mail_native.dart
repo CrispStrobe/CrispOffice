@@ -134,6 +134,7 @@ class StudioMailDialog extends StatefulWidget {
   const StudioMailDialog({
     super.key,
     required this.strings,
+    this.registerNewItem,
     this.chromeBuilder,
     this.onClose,
     this.openConnections,
@@ -154,6 +155,7 @@ class StudioMailDialog extends StatefulWidget {
     this.ewsProviderFactory,
   });
 
+  final ValueChanged<VoidCallback?>? registerNewItem;
   final StudioStrings strings;
   final WidgetBuilder? chromeBuilder;
 
@@ -4823,6 +4825,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     setState(
       () => _embeddedExchange = StudioMailEwsDialog(
         strings: widget.strings,
+        registerNewItem: widget.registerNewItem,
         initialAccount: target,
         autoConnectShared: target?.sharedExchangeId != null,
         onClose: () => complete(),
@@ -5207,6 +5210,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         ),
       );
     }
+    widget.registerNewItem?.call(
+      _client != null && !_busy && !_accountNavigationPending ? _compose : null,
+    );
     return AbsorbPointer(
       absorbing: _accountNavigationPending,
       child: ExcludeFocus(

@@ -139,8 +139,15 @@ void main() {
     );
     for (final mac in [false, true]) {
       final bindings = StudioShortcutCatalog.resolve(const {}, mac: mac);
-      expect(subscript.defaultBinding(mac: mac), isNull);
-      expect(bindings.containsKey(subscript.id), isFalse);
+      final subscriptBinding = subscript.defaultBinding(mac: mac)!;
+      expect(subscriptBinding.keyId, LogicalKeyboardKey.minus.keyId);
+      expect(subscriptBinding.shift, isTrue);
+      expect(bindings['file.print']!.shift, isFalse);
+      expect(bindings['file.exportPdf']!.shift, isTrue);
+      expect(bindings['file.print']!.keyId, LogicalKeyboardKey.keyP.keyId);
+      expect(bindings['file.exportPdf']!.keyId, LogicalKeyboardKey.keyP.keyId);
+      expect(bindings['navigate.replace']!.control, isTrue);
+      expect(bindings['navigate.replace']!.meta, isFalse);
       final zoom = bindings['view.zoomIn']!;
       expect(zoom.keyId, LogicalKeyboardKey.equal.keyId);
       expect(zoom.meta, mac);
@@ -287,9 +294,7 @@ void main() {
     expect(calls, ['bold', 'print']);
   });
 
-  testWidgets('unassigned subscript keeps zoom and its keypad alias', (
-    tester,
-  ) async {
+  testWidgets('subscript keeps zoom and its keypad alias', (tester) async {
     final calls = <String>[];
     void zoom() => calls.add('zoom');
     await _mountBindings(
@@ -312,6 +317,8 @@ void main() {
     expect(calls, ['zoom']);
     await _press(tester, LogicalKeyboardKey.numpadAdd, control: true);
     expect(calls, ['zoom', 'zoom']);
+    await _press(tester, LogicalKeyboardKey.minus, control: true, shift: true);
+    expect(calls, ['zoom', 'zoom', 'subscript']);
   });
 
   testWidgets('colliding explicit overrides follow catalog order', (

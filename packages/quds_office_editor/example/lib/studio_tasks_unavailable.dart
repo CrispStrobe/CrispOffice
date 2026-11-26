@@ -11,4 +11,5 @@ Widget buildStudioTasks(
   bool showCommandLabels = true,
   bool showGroupLabels = false,
   StudioLanguage language = StudioLanguage.en,
+  ValueChanged<VoidCallback?>? registerNewItem,
 }) => const SizedBox.shrink();

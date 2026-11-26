@@ -40,6 +40,7 @@ Widget buildStudioTasks(
   bool showCommandLabels = true,
   bool showGroupLabels = false,
   StudioLanguage language = StudioLanguage.en,
+  ValueChanged<VoidCallback?>? registerNewItem,
 }) => StudioTasksPage(
   title: title,
   onClose: close,
@@ -49,6 +50,7 @@ Widget buildStudioTasks(
   showCommandLabels: showCommandLabels,
   showGroupLabels: showGroupLabels,
   language: language,
+  registerNewItem: registerNewItem,
 );
 
 bool _isTaskCloud(String provider) =>
@@ -90,6 +92,7 @@ typedef _Selection = ({
 final class StudioTasksPage extends StatefulWidget {
   const StudioTasksPage({
     super.key,
+    this.registerNewItem,
     required this.title,
     this.openDatabase,
     this.credentialStorage,
@@ -103,6 +106,7 @@ final class StudioTasksPage extends StatefulWidget {
     this.showGroupLabels = false,
     this.language = StudioLanguage.en,
   });
+  final ValueChanged<VoidCallback?>? registerNewItem;
   final String title;
   final VoidCallback? onClose;
   final WidgetBuilder? chromeBuilder;
@@ -1100,6 +1104,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     final colors = theme.colorScheme;
     final busy = _running != null;
     final ready = _store != null;
+    widget.registerNewItem?.call(
+      ready && !busy && !_selection.list.readOnly ? () => _edit(null) : null,
+    );
     final connected = _record != null;
     final overlays = {
       for (final edit in _edits)

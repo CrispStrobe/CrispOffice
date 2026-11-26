@@ -605,6 +605,12 @@ class FormulaEvaluator {
           : SmlCellType.formula;
       return;
     }
+    if (text.contains('\n')) {
+      cell.formula = null;
+      cell.type = SmlCellType.string;
+      cell.value = text;
+      return;
+    }
     if (trimmed.isEmpty) {
       cell.formula = null;
       cell.type = SmlCellType.string;

@@ -1609,9 +1609,10 @@ abstract final class OfficePdfExport {
                   shown.numeric ? _TextAlign.right : _TextAlign.auto,
               };
               final wrap =
-                  stored.wrapText ??
-                  book.styles?.wrapAt(stored.styleIndex) ??
-                  false;
+                  shown.text.contains('\n') ||
+                  (stored.wrapText ??
+                      book.styles?.wrapAt(stored.styleIndex) ??
+                      false);
               var textSpan = spanW;
               if (!rtl &&
                   merge == null &&
@@ -1640,6 +1641,7 @@ abstract final class OfficePdfExport {
                 conditional.fontRgb ?? shown.color,
                 maxWidth: textSpan - 6,
                 align: align,
+                lineAdvance: wrap ? size * 1.1 : null,
                 bold: stored.fontBold,
                 family: book.styles?.familyAt(stored.styleIndex),
                 italic: book.styles?.italicAt(stored.styleIndex) ?? false,

@@ -35,6 +35,7 @@ Widget buildStudioCalendar(
   required bool compactRibbon,
   required bool showCommandLabels,
   required bool showGroupLabels,
+  ValueChanged<VoidCallback?>? registerNewItem,
 }) => StudioCalendarPage(
   title: title,
   chromeBuilder: chromeBuilder,
@@ -43,11 +44,13 @@ Widget buildStudioCalendar(
   compactRibbon: compactRibbon,
   showCommandLabels: showCommandLabels,
   showGroupLabels: showGroupLabels,
+  registerNewItem: registerNewItem,
 );
 
 final class StudioCalendarPage extends StatefulWidget {
   const StudioCalendarPage({
     super.key,
+    this.registerNewItem,
     required this.title,
     required this.chromeBuilder,
     required this.openConnections,
@@ -61,6 +64,7 @@ final class StudioCalendarPage extends StatefulWidget {
     this.initialDate,
   });
 
+  final ValueChanged<VoidCallback?>? registerNewItem;
   final String title;
   final WidgetBuilder chromeBuilder;
   final VoidCallback openConnections;
@@ -1495,6 +1499,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage>
               source.writes?.canCreate == true &&
               _freshSources.contains(source.key),
         );
+    widget.registerNewItem?.call(
+      canCreate && widget.active ? _editEvent : null,
+    );
     final only = visible.singleOrNull;
     final approvalTarget = canCreate && only?.writes?.canCreate == true
         ? _targetFor(only!)

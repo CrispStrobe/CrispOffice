@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-/// A user-visible Word/Writer command and its optional default shortcut.
+/// A user-visible Studio command and its optional default shortcut.
 ///
 /// Settings store only the actions a user changed. Unknown action ids are
 /// retained in the settings document but ignored by this catalog, which keeps
@@ -14,6 +14,9 @@ final class StudioShortcutAction {
     this.shift = false,
     this.alt = false,
     this.primary = true,
+    this.macKey,
+    this.macShift,
+    this.macControl = false,
   });
 
   final String id;
@@ -22,15 +25,18 @@ final class StudioShortcutAction {
   final bool shift;
   final bool alt;
   final bool primary;
+  final LogicalKeyboardKey? macKey;
+  final bool? macShift;
+  final bool macControl;
 
   StudioShortcutBinding? defaultBinding({required bool mac}) {
-    final trigger = key;
+    final trigger = mac ? macKey ?? key : key;
     if (trigger == null) return null;
     return StudioShortcutBinding(
       keyId: trigger.keyId,
-      meta: primary && mac,
-      control: primary && !mac,
-      shift: shift,
+      meta: primary && mac && !macControl,
+      control: primary && (!mac || macControl),
+      shift: mac ? macShift ?? shift : shift,
       alt: alt,
     );
   }
@@ -138,7 +144,7 @@ final class StudioShortcutBinding {
   ];
 }
 
-/// Word and Writer shortcuts. The list is deliberately focused on commands the
+/// Configurable Studio shortcuts. The list is deliberately focused on commands the
 /// editor implements; a configured key never silently creates a new command.
 abstract final class StudioShortcutCatalog {
   static const List<StudioShortcutAction> actions = <StudioShortcutAction>[
@@ -164,6 +170,17 @@ abstract final class StudioShortcutCatalog {
       shift: true,
     ),
     StudioShortcutAction(
+      id: 'file.print',
+      label: 'Print…',
+      key: LogicalKeyboardKey.keyP,
+    ),
+    StudioShortcutAction(
+      id: 'file.exportPdf',
+      label: 'Export PDF…',
+      key: LogicalKeyboardKey.keyP,
+      shift: true,
+    ),
+    StudioShortcutAction(
       id: 'file.close',
       label: 'Close file',
       key: LogicalKeyboardKey.keyW,
@@ -176,8 +193,9 @@ abstract final class StudioShortcutCatalog {
     StudioShortcutAction(
       id: 'edit.redo',
       label: 'Redo',
-      key: LogicalKeyboardKey.keyZ,
-      shift: true,
+      key: LogicalKeyboardKey.keyY,
+      macKey: LogicalKeyboardKey.keyZ,
+      macShift: true,
     ),
     StudioShortcutAction(
       id: 'edit.cut',
@@ -220,7 +238,12 @@ abstract final class StudioShortcutCatalog {
       key: LogicalKeyboardKey.equal,
       shift: true,
     ),
-    StudioShortcutAction(id: 'format.subscript', label: 'Subscript'),
+    StudioShortcutAction(
+      id: 'format.subscript',
+      label: 'Subscript',
+      key: LogicalKeyboardKey.minus,
+      shift: true,
+    ),
     StudioShortcutAction(
       id: 'format.alignLeft',
       label: 'Align left',
@@ -248,11 +271,12 @@ abstract final class StudioShortcutCatalog {
       shift: true,
     ),
     StudioShortcutAction(
-      id: 'format.numbering',
-      label: 'Numbered list',
+      id: 'format.normalStyle',
+      label: 'Normal paragraph style',
       key: LogicalKeyboardKey.keyN,
       shift: true,
     ),
+    StudioShortcutAction(id: 'format.numbering', label: 'Numbered list'),
     StudioShortcutAction(
       id: 'format.indent',
       label: 'Increase indent',
@@ -298,6 +322,7 @@ abstract final class StudioShortcutCatalog {
       id: 'insert.comment',
       label: 'New comment',
       key: LogicalKeyboardKey.keyM,
+      macKey: LogicalKeyboardKey.keyA,
       alt: true,
     ),
     StudioShortcutAction(
@@ -328,6 +353,7 @@ abstract final class StudioShortcutCatalog {
       id: 'navigate.replace',
       label: 'Replace',
       key: LogicalKeyboardKey.keyH,
+      macControl: true,
     ),
     StudioShortcutAction(
       id: 'view.zoomIn',
@@ -359,6 +385,23 @@ abstract final class StudioShortcutCatalog {
       if (binding != null) result[action.id] = binding;
     }
     return result;
+  }
+
+  /// The same winners used by [mergeBindings], for native menu equivalents.
+  static Map<String, StudioShortcutBinding> menuBindings(
+    Map<String, String> overrides, {
+    required bool mac,
+  }) {
+    final settings = resolve(overrides, mac: mac);
+    final byKey = <String, String>{};
+    for (final explicit in [false, true]) {
+      for (final entry in settings.entries) {
+        final overridden =
+            StudioShortcutBinding.tryParse(overrides[entry.key] ?? '') != null;
+        if (overridden == explicit) byKey[entry.value.encode()] = entry.key;
+      }
+    }
+    return {for (final id in byKey.values) id: settings[id]!};
   }
 
   /// Replaces catalog defaults by key combination, not activator identity.

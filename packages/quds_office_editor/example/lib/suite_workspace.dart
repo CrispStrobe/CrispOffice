@@ -9,6 +9,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pdf/pdf.dart' as print_pdf show PdfPageFormat;
+import 'package:printing/printing.dart' show Printing;
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
@@ -120,6 +122,23 @@ class SuiteWorkspace extends StatefulWidget {
 
 class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   SuiteApp _app = SuiteApp.word;
+  VoidCallback? _newMailItem;
+  VoidCallback? _newTaskItem;
+  VoidCallback? _newCalendarItem;
+
+  bool get _productivityActive => _mailOpen || _tasksOpen || _calendarOpen;
+  VoidCallback? get _newProductivityItem => _calendarOpen
+      ? _newCalendarItem
+      : _tasksOpen
+      ? _newTaskItem
+      : _mailOpen
+      ? _newMailItem
+      : null;
+
+  void _createProductivityItem() {
+    if (ModalRoute.isCurrentOf(context) ?? true) _newProductivityItem?.call();
+  }
+
   final Set<SuiteApp> _closedFiles = <SuiteApp>{};
   bool _closingFile = false;
   bool get _hasActiveFile => !_closedFiles.contains(_app);
@@ -758,6 +777,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     _t('Tasks', 'Aufgaben', 'المهام'),
                                     _closeTasks,
                                     openConnections: _openConnections,
+                                    registerNewItem: (action) =>
+                                        _newTaskItem = action,
                                     language: _language,
                                     chromeBuilder: (_) =>
                                         _titleBar(tasks: true),
@@ -775,6 +796,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     (_) => _titleBar(calendar: true),
                                     _openConnections,
                                     active: _calendarOpen,
+                                    registerNewItem: (action) =>
+                                        _newCalendarItem = action,
                                     compactRibbon: _ribbonPreferences.compact,
                                     showCommandLabels:
                                         _ribbonPreferences.showCommandLabels,
@@ -834,10 +857,27 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _toggleBold() {
-    if (!_canMutate || _app != SuiteApp.word) {
-      return;
+    if (!_canMutate) return;
+    switch (_app) {
+      case SuiteApp.word:
+        _word.applyRunFormat((WmlRunProps p) => p.bold = !p.bold);
+      case SuiteApp.excel:
+        _navigateOffice(_sheet, () {
+          _sheet.commitPendingEdits();
+          _sheet.setSelectionFontBold(!_sheet.selectionFontBold);
+        });
+      case SuiteApp.powerpoint:
+        if (!_canEditSlideText) return;
+        final shape = _slides.selected!;
+        final bold =
+            shape.textBold ??
+            (shape.resolvedRichText.firstOrNull?.runs.firstOrNull?.bold ??
+                false);
+        _slides.commitPendingEdits();
+        _slides.updateSelected(bold: !bold);
+      case SuiteApp.pdf:
+        return;
     }
-    _word.applyRunFormat((WmlRunProps p) => p.bold = !p.bold);
   }
 
   void _toggleItalic() {
@@ -956,19 +996,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       shift: true,
     ): () =>
         _pasteMode(OfficePasteMode.keepTextOnly),
-    const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
-    const SingleActivator(LogicalKeyboardKey.f5, shift: true):
-        _slideShowFromCurrent,
     const SingleActivator(LogicalKeyboardKey.escape): _workspaceEscape,
     const SingleActivator(LogicalKeyboardKey.keyF, control: true): _openFind,
     const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openFind,
     const SingleActivator(LogicalKeyboardKey.keyH, control: true): _openReplace,
-    const SingleActivator(LogicalKeyboardKey.keyH, meta: true): _openReplace,
-    const SingleActivator(LogicalKeyboardKey.keyP, control: true): _exportPdf,
-    const SingleActivator(LogicalKeyboardKey.keyP, meta: true): _exportPdf,
     const SingleActivator(LogicalKeyboardKey.f3): _findNext,
-    const SingleActivator(LogicalKeyboardKey.f3, shift: true): _findPrevious,
-    const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
     const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
     const SingleActivator(LogicalKeyboardKey.f7, shift: true):
         _word.requestThesaurus,
@@ -1003,6 +1035,208 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _shortcutZoomReset,
   };
 
+  Map<SingleActivator, VoidCallback> _contextualShortcuts() {
+    if (!(ModalRoute.isCurrentOf(context) ?? true)) return {};
+    final help = {
+      const SingleActivator(LogicalKeyboardKey.f1): _openWorkspaceHelp,
+    };
+    if (!_hasActiveFile || !_fileActionsAvailable) return help;
+    final mac = StudioWindow.isMacOS;
+    return {
+      ...help,
+      if (!mac) const SingleActivator(LogicalKeyboardKey.f12): _saveFileAs,
+      if (mac) ...{
+        const SingleActivator(LogicalKeyboardKey.keyG, meta: true): _findNext,
+        const SingleActivator(LogicalKeyboardKey.keyG, meta: true, shift: true):
+            _findPrevious,
+      },
+      if (_app != SuiteApp.powerpoint) ...{
+        const SingleActivator(LogicalKeyboardKey.f5): _goTo,
+        if (!mac)
+          const SingleActivator(LogicalKeyboardKey.keyG, control: true): _goTo,
+      },
+      if (_app == SuiteApp.word && _wordFullFormat)
+        const SingleActivator(LogicalKeyboardKey.f3, shift: true):
+            _word.cycleTextCase,
+      if (_app == SuiteApp.excel && _canMutate)
+        const SingleActivator(LogicalKeyboardKey.f3, shift: true):
+            _openFunctionGuide,
+      if (_app == SuiteApp.excel && _canMutate)
+        const SingleActivator(LogicalKeyboardKey.f11, shift: true): _addSheet,
+      if (_app == SuiteApp.powerpoint) ...{
+        const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
+        const SingleActivator(LogicalKeyboardKey.f5, shift: true):
+            _slideShowFromCurrent,
+        if (mac) ...{
+          const SingleActivator(
+            LogicalKeyboardKey.enter,
+            meta: true,
+            shift: true,
+          ): _slideShowFromStart,
+          const SingleActivator(LogicalKeyboardKey.enter, meta: true):
+              _slideShowFromCurrent,
+        },
+        if (_canMutate) ...{
+          if (mac)
+            const SingleActivator(
+              LogicalKeyboardKey.keyN,
+              meta: true,
+              shift: true,
+            ): _addSlide
+          else
+            const SingleActivator(LogicalKeyboardKey.keyM, control: true):
+                _addSlide,
+          SingleActivator(
+            LogicalKeyboardKey.keyD,
+            control: !mac,
+            meta: mac,
+            shift: mac,
+          ): _duplicateSlide,
+        },
+      },
+    };
+  }
+
+  Future<void> _openWorkspaceHelp() async {
+    final mac = StudioWindow.isMacOS;
+    final command = mac ? '⌘' : 'Ctrl+';
+    await showDialog<void>(
+      context: _themedContext,
+      builder: (context) => AlertDialog(
+        title: Text(
+          _t('CrispOffice Help', 'CrispOffice-Hilfe', 'مساعدة CrispOffice'),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _t(
+                '${command}O opens a file. ${command}W closes the current file.',
+                '${command}O öffnet eine Datei. ${command}W schließt die aktuelle Datei.',
+                'يفتح ${command}O ملفًا، ويغلق ${command}W الملف الحالي.',
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              _t(
+                '${command}P prints. ${command}Shift+P exports PDF.',
+                '${command}P druckt. ${command}Shift+P exportiert als PDF.',
+                'يطبع ${command}P، ويصدر ${command}Shift+P إلى PDF.',
+              ),
+            ),
+            if (_app == SuiteApp.excel) ...[
+              const SizedBox(height: 8),
+              Text(
+                _t(
+                  'F2 edits a cell. ${mac ? 'Option' : 'Alt'}+Enter inserts a line break.',
+                  'F2 bearbeitet eine Zelle. ${mac ? 'Option' : 'Alt'}+Eingabe fügt einen Zeilenumbruch ein.',
+                  'يحرر F2 خلية، ويضيف ${mac ? 'Option' : 'Alt'}+Enter فاصل أسطر.',
+                ),
+              ),
+            ],
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              unawaited(_openShortcutSettings());
+            },
+            child: Text(
+              _t(
+                'Keyboard shortcuts…',
+                'Tastenkürzel…',
+                'اختصارات لوحة المفاتيح…',
+              ),
+            ),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(_strings.close),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _goTo() async {
+    final targetApp = _app;
+    final sheet = targetApp == SuiteApp.excel;
+    final label = sheet
+        ? _t('Cell reference', 'Zellbezug', 'مرجع الخلية')
+        : _t('Page number', 'Seitenzahl', 'رقم الصفحة');
+    var input = '';
+    final target = await showDialog<String>(
+      context: _themedContext,
+      builder: (context) => AlertDialog(
+        title: Text(_t('Go To…', 'Gehe zu…', 'انتقال إلى…')),
+        content: TextField(
+          autofocus: true,
+          decoration: InputDecoration(labelText: label),
+          onChanged: (value) => input = value,
+          onSubmitted: (value) => Navigator.pop(context, value),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(_t('Cancel', 'Abbrechen', 'إلغاء')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, input),
+            child: Text(_t('Go', 'Gehe zu', 'انتقال')),
+          ),
+        ],
+      ),
+    );
+    if (!mounted || target == null || targetApp != _app) return;
+    try {
+      if (sheet) {
+        final address = target.trim();
+        if (address.length > 16) throw const FormatException();
+        final ref =
+            _sheet.workbook
+                .namedRange(address, onSheet: _sheet.sheet)
+                ?.range
+                .start ??
+            SmlCellRef.parse(address);
+        if (ref.col < 0 ||
+            ref.col >= SmlWorksheet.excelColumnCount ||
+            ref.row < 0 ||
+            ref.row >= SmlWorksheet.excelRowCount) {
+          throw const FormatException();
+        }
+        _navigateOffice(_sheet, () {
+          _sheet.commitPendingEdits();
+          _sheet.moveSelectionTo(ref);
+        });
+        _sheetFocus.requestFocus();
+      } else {
+        final page = int.tryParse(target.trim()) ?? 0;
+        final count = _app == SuiteApp.word ? _word.pageCount : _pdf.pageCount;
+        if (page < 1 || page > count) throw const FormatException();
+        if (_app == SuiteApp.word) {
+          final first = _word.documentLaidOut.pages[page - 1].lines.firstOrNull;
+          if (first != null) _word.jumpToParagraph(first.paragraphIndex);
+          final viewport = _word.viewport;
+          viewport.origin = Offset(
+            viewport.origin.dx,
+            _word.documentLaidOut.pageStackTop(
+              page - 1,
+              viewport.scale * 96 / 72,
+            ),
+          );
+          _word.refresh();
+          _wordFocus.requestFocus();
+        } else {
+          _pdf.goToPage(page - 1);
+        }
+      }
+    } on FormatException {
+      _toast(_t('Invalid destination.', 'Ungültiges Ziel.', 'وجهة غير صالحة.'));
+    }
+  }
+
   static String _shortcutCode(SingleActivator key) => StudioShortcutBinding(
     keyId: key.trigger.keyId,
     control: key.control,
@@ -1013,8 +1247,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   static final Map<String, List<SingleActivator>> _shortcutAliases = {
     'edit.redo': [
-      const SingleActivator(LogicalKeyboardKey.keyY, control: true),
       const SingleActivator(LogicalKeyboardKey.keyY, meta: true),
+      const SingleActivator(
+        LogicalKeyboardKey.keyZ,
+        control: true,
+        shift: true,
+      ),
     ],
     'view.zoomIn': [
       const SingleActivator(LogicalKeyboardKey.numpadAdd, control: true),
@@ -1037,6 +1275,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         for (final alias in aliases) _shortcutCode(alias),
     };
     return {
+      for (final key in _contextualShortcuts().keys) _shortcutCode(key),
+      if (StudioWindow.isMacOS) ...[
+        _shortcutCode(
+          const SingleActivator(LogicalKeyboardKey.keyH, meta: true),
+        ),
+        _shortcutCode(
+          const SingleActivator(LogicalKeyboardKey.keyH, meta: true, alt: true),
+        ),
+        _shortcutCode(
+          const SingleActivator(LogicalKeyboardKey.keyM, meta: true),
+        ),
+        _shortcutCode(
+          const SingleActivator(LogicalKeyboardKey.keyM, meta: true, alt: true),
+        ),
+        _shortcutCode(
+          const SingleActivator(LogicalKeyboardKey.keyQ, meta: true),
+        ),
+      ],
       for (final key in base.keys.whereType<SingleActivator>())
         if (!configurable.contains(_shortcutCode(key))) _shortcutCode(key),
     };
@@ -1150,10 +1406,27 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     KeyEvent event, {
     OfficeController? document,
   }) {
-    if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
+    if (!mounted || (event is! KeyDownEvent && event is! KeyRepeatEvent)) {
       return KeyEventResult.ignored;
     }
     final keyboard = HardwareKeyboard.instance;
+    final key = event.logicalKey;
+    if (event is KeyDownEvent &&
+        (key.keyId >= LogicalKeyboardKey.f1.keyId &&
+                key.keyId <= LogicalKeyboardKey.f12.keyId ||
+            keyboard.isControlPressed ||
+            keyboard.isMetaPressed) &&
+        _focusedTextInput == null &&
+        (document == null ||
+            (_app != SuiteApp.pdf && identical(document, _active)))) {
+      for (final entry in _contextualShortcuts().entries) {
+        if (entry.key.accepts(event, keyboard)) {
+          _workspaceDirectionChord.reset();
+          entry.value();
+          return KeyEventResult.handled;
+        }
+      }
+    }
     final code = StudioShortcutBinding(
       keyId: event.logicalKey.keyId,
       control: keyboard.isControlPressed,
@@ -1220,6 +1493,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   KeyEventResult _onWorkspaceKey(FocusNode node, KeyEvent event) {
+    if (_productivityActive &&
+        event is KeyDownEvent &&
+        (_menuBinding('file.new')?.accepts(event, HardwareKeyboard.instance) ??
+            false)) {
+      _createProductivityItem();
+      return KeyEventResult.handled;
+    }
     final shortcut = _dispatchConfiguredShortcut(event);
     if (shortcut != KeyEventResult.ignored) return shortcut;
     if (_focusedTextInput != null) {
@@ -1247,6 +1527,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id == 'format.bold' ||
         id == 'format.italic' ||
         id == 'format.underline';
+    if (id == 'format.bold' && _app != SuiteApp.word) {
+      return _canMutate &&
+          !textInput &&
+          (_app == SuiteApp.excel ||
+              _app == SuiteApp.powerpoint && _canEditSlideText);
+    }
     if (id.startsWith('format.') ||
         id.startsWith('insert.') ||
         id == 'review.trackChanges') {
@@ -1267,6 +1553,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     'file.save': () => unawaited(_saveFile()),
     'file.saveAs': () => unawaited(_saveFileAs()),
     'file.close': () => unawaited(_closeActiveFile()),
+    'file.print': _printFile,
+    'file.exportPdf': _exportPdf,
     'edit.undo': () => _dispatchTextAction(
       const UndoTextIntent(SelectionChangedCause.keyboard),
       _undo,
@@ -1298,6 +1586,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     'format.alignRight': () => _setAlign(WmlJustification.right),
     'format.justify': () => _setAlign(WmlJustification.justify),
     'format.bullets': () => _word.toggleList(numbered: false),
+    'format.normalStyle': () => _word.applyStyle('Normal'),
     'format.numbering': () => _word.toggleList(numbered: true),
     'format.indent': () => _nudgeIndent(18),
     'format.outdent': () => _nudgeIndent(-18),
@@ -1327,8 +1616,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         shift: shift,
       );
 
+  SingleActivator? _menuBinding(String id) =>
+      StudioShortcutCatalog.menuBindings(
+        _acceptedShortcutOverrides(_baseShortcutBindings()),
+        mac: StudioWindow.isMacOS,
+      )[id]?.activator;
+
   bool get _fileActionsAvailable =>
-      !_opening && !_isSaving && (ModalRoute.isCurrentOf(context) ?? true);
+      !_opening &&
+      !_isSaving &&
+      !_mailOpen &&
+      !_tasksOpen &&
+      !_calendarOpen &&
+      (ModalRoute.isCurrentOf(context) ?? true);
 
   List<List<StudioMenuAction>> get _desktopViewGroups =>
       <List<StudioMenuAction>>[
@@ -1347,24 +1647,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<List<StudioMenuAction>> get _desktopFileGroups {
     final bool enabled = _fileActionsAvailable;
     final bool hasFile = enabled && _hasActiveFile;
-    final closeBinding = StudioShortcutCatalog.resolve(
-      _acceptedShortcutOverrides(_baseShortcutBindings()),
-      mac: StudioWindow.isMacOS,
-    )['file.close'];
     return <List<StudioMenuAction>>[
       <StudioMenuAction>[
         StudioMenuAction(
           id: 'new',
-          label: _t('New', 'Neu', 'جديد'),
+          label: _calendarOpen
+              ? _t('New Event', 'Neuer Termin', 'حدث جديد')
+              : _tasksOpen
+              ? _t('New Task', 'Neue Aufgabe', 'مهمة جديدة')
+              : _mailOpen
+              ? _t('New Message', 'Neue Nachricht', 'رسالة جديدة')
+              : _t('New', 'Neu', 'جديد'),
           icon: Icons.note_add_outlined,
-          shortcut: _fileShortcut(LogicalKeyboardKey.keyN),
-          onSelected: enabled ? _newActiveFile : null,
+          shortcut: _menuBinding('file.new'),
+          onSelected: _productivityActive
+              ? _createProductivityItem
+              : enabled
+              ? _newActiveFile
+              : null,
         ),
         StudioMenuAction(
           id: 'open',
           label: _t('Open…', 'Öffnen…', 'فتح…'),
           icon: Icons.folder_open,
-          shortcut: _fileShortcut(LogicalKeyboardKey.keyO),
+          shortcut: _menuBinding('file.open'),
           onSelected: enabled ? _openFile : null,
         ),
         if (!kIsWeb)
@@ -1380,21 +1686,28 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           id: 'save',
           label: _strings.save,
           icon: Icons.save_outlined,
-          shortcut: _fileShortcut(LogicalKeyboardKey.keyS),
+          shortcut: _menuBinding('file.save'),
           onSelected: hasFile ? _saveFile : null,
         ),
         StudioMenuAction(
           id: 'save-as',
           label: _t('Save As…', 'Speichern unter…', 'حفظ باسم…'),
           icon: Icons.save_as_outlined,
-          shortcut: _fileShortcut(LogicalKeyboardKey.keyS, shift: true),
+          shortcut: _menuBinding('file.saveAs'),
           onSelected: hasFile ? _saveFileAs : null,
+        ),
+        StudioMenuAction(
+          id: 'print',
+          label: _t('Print…', 'Drucken…', 'طباعة…'),
+          icon: Icons.print_outlined,
+          shortcut: _menuBinding('file.print'),
+          onSelected: hasFile ? _printFile : null,
         ),
         StudioMenuAction(
           id: 'export-pdf',
           label: _t('Export PDF…', 'PDF exportieren…', 'تصدير PDF…'),
           icon: Icons.picture_as_pdf_outlined,
-          shortcut: _fileShortcut(LogicalKeyboardKey.keyP),
+          shortcut: _menuBinding('file.exportPdf'),
           onSelected: hasFile ? _exportPdf : null,
         ),
         if (_app == SuiteApp.word)
@@ -1414,7 +1727,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           id: 'close',
           label: _t('Close File', 'Datei schließen', 'إغلاق الملف'),
           icon: Icons.close,
-          shortcut: closeBinding?.activator,
+          shortcut: _menuBinding('file.close'),
           onSelected: hasFile && !_mailOpen && !_tasksOpen && !_calendarOpen
               ? _closeActiveFile
               : null,
@@ -1448,7 +1761,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             id: 'undo',
             label: _strings.undo,
             icon: Icons.undo,
-            shortcut: _fileShortcut(LogicalKeyboardKey.keyZ),
+            shortcut: _menuBinding('edit.undo'),
             onSelected: () => _dispatchTextAction(
               const UndoTextIntent(SelectionChangedCause.keyboard),
               _undo,
@@ -1458,7 +1771,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             id: 'redo',
             label: _strings.redo,
             icon: Icons.redo,
-            shortcut: _fileShortcut(LogicalKeyboardKey.keyZ, shift: true),
+            shortcut: _menuBinding('edit.redo'),
             onSelected: () => _dispatchTextAction(
               const RedoTextIntent(SelectionChangedCause.keyboard),
               _redo,
@@ -1470,7 +1783,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             id: 'cut',
             label: _t('Cut', 'Ausschneiden', 'قص'),
             icon: Icons.content_cut,
-            shortcut: _fileShortcut(LogicalKeyboardKey.keyX),
+            shortcut: _menuBinding('edit.cut'),
             onSelected: () => _dispatchTextAction(
               const CopySelectionTextIntent.cut(SelectionChangedCause.keyboard),
               _cut,
@@ -1480,7 +1793,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             id: 'copy',
             label: _t('Copy', 'Kopieren', 'نسخ'),
             icon: Icons.content_copy,
-            shortcut: _fileShortcut(LogicalKeyboardKey.keyC),
+            shortcut: _menuBinding('edit.copy'),
             onSelected: () =>
                 _dispatchTextAction(CopySelectionTextIntent.copy, _copy),
           ),
@@ -1488,7 +1801,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             id: 'paste',
             label: _t('Paste', 'Einfügen', 'لصق'),
             icon: Icons.content_paste,
-            shortcut: _fileShortcut(LogicalKeyboardKey.keyV),
+            shortcut: _menuBinding('edit.paste'),
             onSelected: () => _dispatchTextAction(
               const PasteTextIntent(SelectionChangedCause.keyboard),
               _paste,
@@ -1498,7 +1811,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             id: 'select-all',
             label: _t('Select All', 'Alles auswählen', 'تحديد الكل'),
             icon: Icons.select_all,
-            shortcut: _fileShortcut(LogicalKeyboardKey.keyA),
+            shortcut: _menuBinding('edit.selectAll'),
             onSelected: () => _dispatchTextAction(
               const SelectAllTextIntent(SelectionChangedCause.keyboard),
               _selectAll,
@@ -2665,6 +2978,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               strings: _strings,
               onClose: _closeMail,
               openConnections: _openConnections,
+              registerNewItem: (action) => _newMailItem = action,
               chromeBuilder: (_) => chrome(),
             ),
       );
@@ -3997,6 +4311,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.save_outlined,
             _strings.save,
             _isSaving || _opening ? null : _saveFile,
+          ),
+          _cmd(
+            Icons.print_outlined,
+            _t('Print…', 'Drucken…', 'طباعة…'),
+            _fileActionsAvailable ? _printFile : null,
           ),
           _cmd(
             Icons.picture_as_pdf_outlined,
@@ -8105,41 +8424,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         SuiteApp.powerpoint => 'presentation',
         SuiteApp.pdf => 'document',
       };
-      final OfficeFontSet fonts = switch (_app) {
-        SuiteApp.word => StudioFiles.exportFontSetForWord(
-          _word.document,
-          themeFamily: _officeTheme.fontFamily,
-        ),
-        SuiteApp.excel => StudioFiles.exportFontSetCovering(<String>[
-          'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-          for (final SmlWorksheet sheet in _sheet.workbook.sheets) ...<String>[
-            sheet.name,
-            for (final SmlCell cell in sheet.allCells) cell.asString,
-            for (final SmlDrawing drawing in sheet.drawings) ...<String>[
-              drawing.visual.title,
-              for (final ChartPoint point in drawing.visual.points) point.label,
-            ],
-          ],
-        ]),
-        SuiteApp.powerpoint => StudioFiles.exportFontSetCovering(<String>[
-          for (final PmlSlide slide in _slides.presentation.slides) ...<String>[
-            slide.notes,
-            for (final PmlShape shape in slide.shapes) ...<String>[
-              _slides.presentation.resolveText(shape, slide),
-              if (shape.visual != null) shape.visual!.title,
-              if (shape.visual != null)
-                for (final ChartPoint point in shape.visual!.points)
-                  point.label,
-            ],
-          ],
-        ]),
-        SuiteApp.pdf => const OfficeFontSet(),
-      };
-      final Uint8List bytes = _active.exportPdf(
-        settings: OfficePrintSettings(title: stem),
-        font: fonts.primary,
-        fonts: fonts.isEmpty ? null : fonts,
-      );
+      final bytes = _renderActivePdf(stem);
       await StudioFiles.save(bytes: bytes, fileName: '$stem.pdf');
     } catch (error) {
       _toast(
@@ -8152,7 +8437,73 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
+  Uint8List _renderActivePdf(String title) {
+    if (_app == SuiteApp.pdf) return _pdf.saveBytes();
+    _active.commitPendingEdits();
+    final OfficeFontSet fonts = switch (_app) {
+      SuiteApp.word => StudioFiles.exportFontSetForWord(
+        _word.document,
+        themeFamily: _officeTheme.fontFamily,
+      ),
+      SuiteApp.excel => StudioFiles.exportFontSetCovering(<String>[
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+        for (final SmlWorksheet sheet in _sheet.workbook.sheets) ...<String>[
+          sheet.name,
+          for (final SmlCell cell in sheet.allCells) cell.asString,
+          for (final SmlDrawing drawing in sheet.drawings) ...<String>[
+            drawing.visual.title,
+            for (final ChartPoint point in drawing.visual.points) point.label,
+          ],
+        ],
+      ]),
+      SuiteApp.powerpoint => StudioFiles.exportFontSetCovering(<String>[
+        for (final PmlSlide slide in _slides.presentation.slides) ...<String>[
+          slide.notes,
+          for (final PmlShape shape in slide.shapes) ...<String>[
+            _slides.presentation.resolveText(shape, slide),
+            if (shape.visual != null) shape.visual!.title,
+            if (shape.visual != null)
+              for (final ChartPoint point in shape.visual!.points) point.label,
+          ],
+        ],
+      ]),
+      SuiteApp.pdf => const OfficeFontSet(),
+    };
+    return _active.exportPdf(
+      settings: OfficePrintSettings(title: title),
+      font: fonts.primary,
+      fonts: fonts.isEmpty ? null : fonts,
+    );
+  }
+
+  bool _printing = false;
+
+  Future<void> _printFile() async {
+    if (_printing || !_fileActionsAvailable || !_hasActiveFile) return;
+    _printing = true;
+    try {
+      final title = _activeName;
+      final bytes = _renderActivePdf(title);
+      final page = PdfFile.open(bytes).pageAt(0);
+      await Printing.layoutPdf(
+        onLayout: (_) => bytes,
+        name: title,
+        format: print_pdf.PdfPageFormat(page.width, page.height),
+        dynamicLayout: false,
+      );
+    } on Object {
+      if (mounted) {
+        _toast(
+          _t('Could not print.', 'Drucken fehlgeschlagen.', 'تعذرت الطباعة.'),
+        );
+      }
+    } finally {
+      _printing = false;
+    }
+  }
+
   void _bindHostActions(OfficeController controller) {
+    controller.onPrintRequested = _printFile;
     controller.onShortcutKeyEvent = (event) =>
         _dispatchConfiguredShortcut(event, document: controller) !=
         KeyEventResult.ignored;

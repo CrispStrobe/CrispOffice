@@ -8,11 +8,13 @@ class StudioMailDialog extends StatelessWidget {
   const StudioMailDialog({
     super.key,
     required this.strings,
+    this.registerNewItem,
     this.chromeBuilder,
     this.onClose,
     VoidCallback? openConnections,
   });
 
+  final ValueChanged<VoidCallback?>? registerNewItem;
   final StudioStrings strings;
   final WidgetBuilder? chromeBuilder;
   final VoidCallback? onClose;

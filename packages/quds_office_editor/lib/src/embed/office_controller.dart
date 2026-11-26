@@ -4432,6 +4432,79 @@ class WordEditorController extends OfficeController {
     notifyListeners();
   }
 
+  /// Cycles the selected text (or current word) through upper, lower and title case.
+  void cycleTextCase() {
+    if (!config.allowsMutation || document.trackRevisions) return;
+    final paras = _paragraphs;
+    if (paras.isEmpty) return;
+    final range = caret.normalizedRange;
+    final first = range.startPara;
+    final last = range.endPara;
+    if (first < 0 || last >= paras.length) return;
+    final word = caret.isCollapsed
+        ? CaretEngine.wordBounds(paras[first].text, range.startIdx)
+        : null;
+    final selected = <(WmlParagraph, int, int)>[];
+    final buffer = StringBuffer();
+    for (var p = first; p <= last; p++) {
+      final paragraph = paras[p];
+      final from = p == first ? word?.start ?? range.startIdx : 0;
+      final to = p == last ? word?.end ?? range.endIdx : paragraph.text.length;
+      final bounds = WmlRunEdit.normalizeRange(paragraph, from, to);
+      if (bounds.start == bounds.end) continue;
+      selected.add((paragraph, bounds.start, bounds.end));
+      buffer.writeln(paragraph.text.substring(bounds.start, bounds.end));
+    }
+    final text = buffer.toString();
+    if (text == text.toLowerCase() && text == text.toUpperCase()) return;
+    final title = text == text.toLowerCase();
+    final upper = !title && text != text.toUpperCase();
+    final before = [for (final (para, _, _) in selected) _cloneInlines(para)];
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () {
+          for (final (index, (para, from, to)) in selected.indexed) {
+            para.inlines
+              ..clear()
+              ..addAll(_cloneInlinesFrom(before[index]));
+            WmlRunEdit.splitAt(para, to);
+            WmlRunEdit.splitAt(para, from);
+            var offset = 0;
+            var atWordStart = true;
+            for (final inline in para.inlines.whereType<WmlRun>()) {
+              final end = offset + inline.text.length;
+              if (!inline.isAtomic && offset >= from && end <= to) {
+                final result = StringBuffer();
+                for (final rune in inline.text.runes) {
+                  final letter = String.fromCharCode(rune);
+                  final next = upper || title && atWordStart
+                      ? letter.toUpperCase()
+                      : letter.toLowerCase();
+                  // Preserve caret and annotation offsets for length-changing folds.
+                  result.write(next.length == letter.length ? next : letter);
+                  atWordStart = letter.trim().isEmpty;
+                }
+                inline.text = result.toString();
+              }
+              offset = end;
+            }
+            WmlRunEdit.coalesce(para);
+          }
+        },
+        undoFn: () {
+          for (final (index, (para, _, _)) in selected.indexed) {
+            para.inlines
+              ..clear()
+              ..addAll(_cloneInlinesFrom(before[index]));
+          }
+        },
+      ),
+    );
+    relayout();
+    _syncImeSelection();
+    notifyListeners();
+  }
+
   static ({int start, int end}) _runSpanAt(WmlParagraph para, int index) {
     final int length = para.text.length;
     if (length == 0) {
@@ -14354,14 +14427,18 @@ class SheetEditorController extends OfficeController {
     final Object? prevValue = cell.value;
     final String? prevFormula = cell.formula;
     final SmlCellType prevType = cell.type;
+    final previousWrap = cell.wrapText;
     commands.commit(
       _CallbackCommand(
-        executeFn: () =>
-            FormulaEvaluator.applyInput(workbook, target, cell, text),
+        executeFn: () {
+          FormulaEvaluator.applyInput(workbook, target, cell, text);
+          if (cell.formula == null && text.contains('\n')) cell.wrapText = true;
+        },
         undoFn: () {
           cell.value = prevValue;
           cell.formula = prevFormula;
           cell.type = prevType;
+          cell.wrapText = previousWrap;
         },
       ),
     );
@@ -16232,7 +16309,12 @@ class SlideEditorController extends OfficeController {
   }
 
   /// updateSelected API.
-  void updateSelected({String? text, String? fillColor, double? fontSizePt}) {
+  void updateSelected({
+    String? text,
+    String? fillColor,
+    double? fontSizePt,
+    bool? bold,
+  }) {
     final PmlShape? shape = selected;
     if (shape == null || !config.allowsMutation) {
       return;
@@ -16240,6 +16322,7 @@ class SlideEditorController extends OfficeController {
     final String prevText = shape.text;
     final String prevFill = shape.fillColor;
     final double prevSize = shape.fontSizePt;
+    final previousBold = shape.textBold;
     commands.commit(
       _CallbackCommand(
         executeFn: () {
@@ -16249,6 +16332,7 @@ class SlideEditorController extends OfficeController {
           if (fillColor != null) {
             shape.fillColor = fillColor;
           }
+          if (bold != null) shape.textBold = bold;
           if (fontSizePt != null) {
             shape.fontSizePt = fontSizePt;
           }
@@ -16257,6 +16341,7 @@ class SlideEditorController extends OfficeController {
           shape.text = prevText;
           shape.fillColor = prevFill;
           shape.fontSizePt = prevSize;
+          shape.textBold = previousBold;
         },
       ),
     );

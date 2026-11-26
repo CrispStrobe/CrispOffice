@@ -115,11 +115,13 @@ bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
     controller.requestFind();
     return true;
   }
-  if (ctrl && event.logicalKey == LogicalKeyboardKey.keyH) {
+  if (HardwareKeyboard.instance.isControlPressed &&
+      !HardwareKeyboard.instance.isMetaPressed &&
+      event.logicalKey == LogicalKeyboardKey.keyH) {
     controller.requestReplace();
     return true;
   }
-  if (ctrl && event.logicalKey == LogicalKeyboardKey.keyP) {
+  if (ctrl && !shift && event.logicalKey == LogicalKeyboardKey.keyP) {
     controller.requestPrint();
     return true;
   }
@@ -1794,12 +1796,38 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
         );
         return KeyEventResult.handled;
       }
-      if (event.logicalKey == LogicalKeyboardKey.tab) {
+      if (!ctrl &&
+          !HardwareKeyboard.instance.isAltPressed &&
+          event.logicalKey == LogicalKeyboardKey.tab) {
         _c.applyFunctionSuggestion();
         return KeyEventResult.handled;
       }
     }
     if (_handleSheetNav(event)) {
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.enter ||
+        event.logicalKey == LogicalKeyboardKey.numpadEnter) {
+      final keyboard = HardwareKeyboard.instance;
+      if (keyboard.isAltPressed) {
+        if (!_c.config.allowsMutation) return KeyEventResult.ignored;
+        if (!_c.cellEditor.editing) _c.beginCellEdit();
+        final editor = _c.cellEditor;
+        editor.replaceRange(editor.selectionStart, editor.selectionEnd, '\n');
+        return KeyEventResult.handled;
+      }
+      if (ctrl || !_c.config.allowsSelection) return KeyEventResult.ignored;
+      if (_c.cellEditor.editing && _c.functionSuggestions.isNotEmpty) {
+        _c.applyFunctionSuggestion();
+      } else {
+        _moveSheet(
+          0,
+          keyboard.isShiftPressed ? -1 : 1,
+          extend: false,
+          leaveEdit: true,
+          startRepeat: false,
+        );
+      }
       return KeyEventResult.handled;
     }
     if (!_c.config.allowsMutation) {
@@ -1854,20 +1882,6 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
       _c.cancelCellEdit();
       return KeyEventResult.handled;
     }
-    if (event.logicalKey == LogicalKeyboardKey.enter ||
-        event.logicalKey == LogicalKeyboardKey.numpadEnter) {
-      if (_c.cellEditor.editing) {
-        if (_c.functionSuggestions.isNotEmpty) {
-          _c.applyFunctionSuggestion();
-          return KeyEventResult.handled;
-        }
-        _c.commitCellEdit();
-        _c.moveSelection(0, 1);
-      } else {
-        _c.beginCellEdit();
-      }
-      return KeyEventResult.handled;
-    }
     if (_c.cellEditor.editing) {
       if (event.logicalKey == LogicalKeyboardKey.backspace) {
         _c.deleteEditBackward();
@@ -1915,8 +1929,37 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
     if (!_c.config.allowsSelection) {
       return false;
     }
-    final bool extend = HardwareKeyboard.instance.isShiftPressed;
-    if (event.logicalKey == LogicalKeyboardKey.tab) {
+    final keyboard = HardwareKeyboard.instance;
+    final extend = keyboard.isShiftPressed;
+    final key = event.logicalKey;
+    if (keyboard.isControlPressed &&
+        (key == LogicalKeyboardKey.pageUp ||
+            key == LogicalKeyboardKey.pageDown ||
+            key == LogicalKeyboardKey.tab)) {
+      final previous =
+          key == LogicalKeyboardKey.pageUp ||
+          key == LogicalKeyboardKey.tab && extend;
+      try {
+        _c.setActiveSheet(_c.activeSheetIndex + (previous ? -1 : 1));
+      } on StateError {
+        if (_c.lastValidationError == null) rethrow;
+      }
+      return true;
+    }
+    if (!_c.cellEditor.editing && key == LogicalKeyboardKey.space) {
+      if (extend && !keyboard.isControlPressed && !keyboard.isMetaPressed) {
+        _c.selection.selectRow(_c.selection.focus.row);
+        _c.refresh();
+        return true;
+      }
+      if (keyboard.isControlPressed && !extend) {
+        _c.selection.selectColumn(_c.selection.focus.col);
+        _c.refresh();
+        return true;
+      }
+    }
+    if (key == LogicalKeyboardKey.tab) {
+      if (keyboard.isMetaPressed || keyboard.isAltPressed) return false;
       _moveSheet(
         extend ? -1 : 1,
         0,
@@ -2016,7 +2059,12 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
         _c.moveEditCaret(dc, extend: extend);
         return;
       }
-      _c.commitCellEdit();
+      try {
+        _c.commitPendingEdits();
+      } on StateError {
+        if (_c.lastValidationError == null) rethrow;
+        return;
+      }
     }
     final int navDc = (!leaveEdit && _c.sheet.rightToLeft) ? -dc : dc;
     _c.moveSelection(navDc, dr, extend: extend);
@@ -2335,12 +2383,32 @@ class _SheetFormulaBarState extends State<_SheetFormulaBar> {
     c.cellEditor.updateDraft(_text.value);
   }
 
-  void _finish({required bool commit}) {
+  void _insertLineBreak() {
+    if (!_canEdit) return;
+    final value = _text.value;
+    final selection = value.selection.isValid
+        ? value.selection
+        : TextSelection.collapsed(offset: value.text.length);
+    final text = value.text.replaceRange(selection.start, selection.end, '\n');
+    _text.value = TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: selection.start + 1),
+    );
+    _change(text);
+  }
+
+  void _finish({required bool commit, int rowDelta = 1}) {
     _ownsDraft = false;
     final c = widget.controller;
     if (commit) {
-      c.commitCellEdit();
-      if (c.lastValidationError == null) c.moveSelection(0, 1);
+      try {
+        c.commitPendingEdits();
+      } on StateError {
+        if (c.lastValidationError == null) rethrow;
+        _ownsDraft = c.cellEditor.editing;
+        return;
+      }
+      c.moveSelection(0, rowDelta);
     } else {
       c.cancelCellEdit();
     }
@@ -2396,6 +2464,15 @@ class _SheetFormulaBarState extends State<_SheetFormulaBar> {
                   bindings: {
                     const SingleActivator(LogicalKeyboardKey.escape): () =>
                         _finish(commit: false),
+                    for (final key in [
+                      LogicalKeyboardKey.enter,
+                      LogicalKeyboardKey.numpadEnter,
+                    ]) ...{
+                      SingleActivator(key): () => _finish(commit: true),
+                      SingleActivator(key, shift: true): () =>
+                          _finish(commit: true, rowDelta: -1),
+                      SingleActivator(key, alt: true): _insertLineBreak,
+                    },
                   },
                   child: Semantics(
                     label: config.strings.formulaBar,
@@ -2414,6 +2491,8 @@ class _SheetFormulaBarState extends State<_SheetFormulaBar> {
                             style: style,
                             cursorColor: theme.chromeText,
                             backgroundCursorColor: theme.gridLine,
+                            maxLines: 3,
+                            minLines: 1,
                             textInputAction: TextInputAction.done,
                             autocorrect: false,
                             enableSuggestions: false,

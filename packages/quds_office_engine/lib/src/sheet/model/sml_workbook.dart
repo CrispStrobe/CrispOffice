@@ -1136,7 +1136,22 @@ class SmlWorksheet {
     if (autoFilter != null && autoFilter!.isRowHidden(this, row)) {
       return 0;
     }
-    return rowHeights[row] ?? effectiveDefaultRowHeightPx;
+    final authored = rowHeights[row];
+    if (authored != null) return authored;
+    var height = effectiveDefaultRowHeightPx;
+    final cells = rows[row]?.cells.values;
+    if (cells == null) return height;
+    for (final cell in cells) {
+      final value = cell.value;
+      if (value is! String || !value.contains('\n')) continue;
+      final lines = '\n'.allMatches(value).length + 1;
+      final needed = (lines * cell.fontSize * 4 / 3 + 4).clamp(
+        0.0,
+        maxRowHeightPx,
+      );
+      if (needed > height) height = needed;
+    }
+    return height;
   }
 
   /// setColumnWidth API.

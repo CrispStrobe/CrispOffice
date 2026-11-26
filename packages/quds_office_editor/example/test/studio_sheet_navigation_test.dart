@@ -212,6 +212,129 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   }, variant: const TargetPlatformVariant({TargetPlatform.macOS}));
 
+  testWidgets(
+    'Option+Enter inserts a literal cell break and Enter navigates without editing',
+    (tester) async {
+      final controller = await _studio(tester);
+      final cell = const SmlCellRef(1, 5);
+      controller.moveSelectionTo(cell);
+      await tester.pump();
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      expect(controller.activeCell.a1, 'B7');
+      expect(controller.cellEditor.editing, isFalse);
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.shiftLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.shiftLeft);
+      expect(controller.activeCell.a1, cell.a1);
+
+      controller.beginCellEdit(initial: 'First');
+      await tester.pump();
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.altLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.altLeft);
+      expect(controller.formulaBarText, 'First\n');
+      _type(controller, 'First\nSecond');
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.pump();
+      expect(controller.sheet.cell(cell).asString, 'First\nSecond');
+      expect(controller.activeCell.a1, 'B7');
+      final xlsx = SheetSerializer().writeBytes(controller.workbook);
+      final opened = SheetDeserializer().readBytes(xlsx);
+      expect(opened.firstSheet.cell(cell).asString, 'First\nSecond');
+      expect(
+        opened.styles!.wrapAt(opened.firstSheet.cell(cell).styleIndex),
+        isTrue,
+      );
+
+      final bar = find.byKey(const ValueKey<String>('sheet-formula-input'));
+      await tester.tap(bar);
+      await tester.pump();
+      tester.testTextInput.enterText('One');
+      await tester.pump();
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.altLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.altLeft);
+      expect(controller.formulaBarText, 'One\n');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pump();
+      expect(controller.sheet.cell(SmlCellRef(1, 6)).asString, 'One\n');
+
+      if (controller.workbook.sheets.length < 2) {
+        controller.workbook.sheets.add(
+          SmlWorksheet(name: 'Second', sheetId: 2),
+        );
+      }
+      controller.setActiveSheet(0);
+      await tester.pump();
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
+      await tester.pump();
+      expect(controller.activeSheetIndex, 1);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+    variant: const TargetPlatformVariant({TargetPlatform.macOS}),
+  );
+
+  testWidgets(
+    'Cmd+P opens platform printing and Cmd+Shift+P stays a separate command',
+    (tester) async {
+      const channel = MethodChannel('net.nfet.printing');
+      const codec = StandardMethodCodec();
+      var requests = 0;
+      final messenger = tester.binding.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(channel, (call) async {
+        if (call.method != 'printPdf') return null;
+        requests++;
+        final args = Map<Object?, Object?>.from(call.arguments as Map);
+        await messenger.handlePlatformMessage(
+          channel.name,
+          codec.encodeMethodCall(MethodCall('onLayout', args)),
+          (reply) {
+            final pdf = codec.decodeEnvelope(reply!) as Uint8List;
+            expect(String.fromCharCodes(pdf.take(5)), '%PDF-');
+          },
+        );
+        await messenger.handlePlatformMessage(
+          channel.name,
+          codec.encodeMethodCall(
+            MethodCall('onCompleted', {'job': args['job'], 'completed': false}),
+          ),
+          (_) {},
+        );
+        return 1;
+      });
+      addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+      await _studio(tester);
+      final menus = tester.widget<PlatformMenuBar>(
+        find.byType(PlatformMenuBar),
+      );
+      final file = menus.menus.whereType<PlatformMenu>().firstWhere(
+        (menu) => menu.label == 'File',
+      );
+      final items = file.menus.whereType<PlatformMenuItemGroup>().expand(
+        (group) => group.members.whereType<PlatformMenuItem>(),
+      );
+      final print = items.firstWhere((item) => item.label == 'Print…');
+      final export = items.firstWhere((item) => item.label == 'Export PDF…');
+      expect((print.shortcut as SingleActivator).shift, isFalse);
+      expect((export.shortcut as SingleActivator).shift, isTrue);
+      expect(
+        (export.shortcut as SingleActivator).trigger,
+        LogicalKeyboardKey.keyP,
+      );
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.metaLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.keyP);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.metaLeft);
+      await tester.pump();
+      expect(requests, 1);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+    variant: const TargetPlatformVariant({TargetPlatform.macOS}),
+  );
+
   testWidgets('the spreadsheet fx bar edits the active cell as a text field', (
     tester,
   ) async {

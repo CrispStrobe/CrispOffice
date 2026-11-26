@@ -870,7 +870,7 @@ abstract final class PaintRunText {
     required double fontSize,
     required Color color,
     String? themeFamily,
-    int maxLines = 1,
+    int? maxLines = 1,
     TextAlign? align,
     bool? rtl,
     bool bold = false,

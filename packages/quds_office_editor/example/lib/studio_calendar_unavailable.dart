@@ -8,4 +8,5 @@ Widget buildStudioCalendar(
   required bool compactRibbon,
   required bool showCommandLabels,
   required bool showGroupLabels,
+  ValueChanged<VoidCallback?>? registerNewItem,
 }) => const SizedBox.shrink();

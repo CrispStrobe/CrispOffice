@@ -100,6 +100,7 @@ class StudioMailEwsDialog extends StatefulWidget {
   const StudioMailEwsDialog({
     super.key,
     required this.strings,
+    this.registerNewItem,
     this.providerFactory,
     this.archiveWriter,
     this.archiveFolderWriter,
@@ -120,6 +121,7 @@ class StudioMailEwsDialog extends StatefulWidget {
   const StudioMailEwsDialog.cloud({
     super.key,
     required this.strings,
+    this.registerNewItem,
     required MailCloudService service,
     this.cloudAuthorizer,
     this.cloudProviderFactory,
@@ -138,6 +140,7 @@ class StudioMailEwsDialog extends StatefulWidget {
        cloudService = service,
        providerFactory = null;
 
+  final ValueChanged<VoidCallback?>? registerNewItem;
   final StudioStrings strings;
 
   /// Tests inject the provider boundary, not sockets or authenticated clients.
@@ -3698,6 +3701,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   @override
   Widget build(BuildContext context) {
+    widget.registerNewItem?.call(
+      _provider != null && !_blocked
+          ? _forCurrentConnection(() => _compose())
+          : null,
+    );
     final theme = Theme.of(context);
     final actions = <Widget>[
       if (widget.openConnections != null)

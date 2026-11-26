@@ -1123,6 +1123,40 @@ void main() {
     expect(opened.firstSheet.printTitleRows?.minRow, 0);
   });
 
+  test(
+    'XLSX line feeds survive round-trip and appear on separate PDF lines',
+    () {
+      final sheet = SmlWorksheet(name: 'Line feeds', sheetId: 1);
+      final book = SmlWorkbook(sheets: [sheet]);
+      FormulaEvaluator.applyInput(book, sheet, sheet.cellA1('A1'), '12\n');
+      expect(sheet.cellA1('A1').value, '12\n');
+      FormulaEvaluator.applyInput(
+        book,
+        sheet,
+        sheet.cellA1('A2'),
+        'First\nSecond',
+      );
+      final reopened = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(book),
+      );
+      expect(reopened.firstSheet.cellA1('A2').asString, 'First\nSecond');
+      expect(
+        reopened.firstSheet.rowHeightAt(1),
+        greaterThan(SmlWorksheet.defaultRowHeightPx),
+      );
+      final content = _inflated(OfficePrint.workbook(reopened)).join();
+      final starts = RegExp(
+        r'1 0 0 -1 ([\d.]+) ([\d.]+) Tm\n\(([FS])\) Tj',
+      ).allMatches(content).toList();
+      expect(starts.map((match) => match.group(3)), ['F', 'S']);
+      expect(starts.first.group(1), starts.last.group(1));
+      expect(
+        double.parse(starts.last.group(2)!),
+        greaterThan(double.parse(starts.first.group(2)!)),
+      );
+    },
+  );
+
   test('Excel PDF extends an unwrapped label through an empty cell', () {
     final book = SmlWorkbook();
     final sheet = book.firstSheet;

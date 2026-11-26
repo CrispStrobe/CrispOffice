@@ -321,7 +321,9 @@ void main() {
     (tester) async {
       final word = await _studio(
         tester,
-        overrides: {'format.bold': 'ctrl+${LogicalKeyboardKey.keyI.keyId}'},
+        overrides: {
+          'format.normalStyle': 'ctrl+alt+${LogicalKeyboardKey.digit1.keyId}',
+        },
       );
       await tester.tap(_switcher('Spreadsheets'));
       await _frames(tester);
@@ -330,7 +332,7 @@ void main() {
       );
       sheet.focusNode!.requestFocus();
       await _frames(tester);
-      await _press(tester, LogicalKeyboardKey.keyI, control: true);
+      await _press(tester, LogicalKeyboardKey.digit1, control: true, alt: true);
       expect(_formats(word), [(false, false)]);
       expect(word.canUndo, isFalse);
       expect(sheet.controller.canUndo, isFalse);
