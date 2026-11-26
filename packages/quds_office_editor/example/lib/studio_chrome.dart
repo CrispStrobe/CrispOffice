@@ -392,7 +392,7 @@ class StudioCombo<T> extends StatelessWidget {
   final double width;
   final bool enabled;
   final String? tooltip;
-  final String Function(T value)? previewFamily;
+  final String? Function(T value)? previewFamily;
 
   @override
   Widget build(BuildContext context) {

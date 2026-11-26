@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:quds_office_editor/quds_office_editor.dart'
+    show OfficeHostFonts;
 import 'package:quds_office_engine/quds_office_engine.dart';
 
 /// Bundled Cairo and Tajawal faces for studio PDF samples.
@@ -163,10 +165,11 @@ abstract final class StudioPdfFaces {
   }
 
   static Future<void> _loader(String family, List<SfntFont> faces) async {
-    final FontLoader loader = FontLoader(family);
-    for (final SfntFont face in faces) {
-      loader.addFont(Future<ByteData>.value(ByteData.sublistView(face.bytes)));
-    }
-    await loader.load();
+    await OfficeHostFonts.registerFamily(
+      family: family,
+      faces: <ByteData>[
+        for (final face in faces) ByteData.sublistView(face.bytes),
+      ],
+    );
   }
 }

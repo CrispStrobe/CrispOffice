@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_find_pane.dart';
 
 const _error = 'Correct the current cell before continuing.';
@@ -95,6 +96,58 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
 }
 
 void main() {
+  group('the font ribbon', () {
+    const extraFamily = 'A Demo Typeface';
+
+    setUpAll(() async {
+      final font = await rootBundle.load(
+        'packages/quds_office_editor/fonts/LiberationMono-Regular.ttf',
+      );
+      await OfficeHostFonts.registerFamily(
+        family: extraFamily,
+        faces: [font],
+        aliases: ['Demo Typeface Alias'],
+      );
+    });
+
+    testWidgets('offers registered faces in Documents and Spreadsheets', (
+      tester,
+    ) async {
+      final sheet = await _studio(tester);
+      final combo = find.byWidgetPredicate(
+        (widget) =>
+            widget is StudioCombo<String> &&
+            widget.items.contains('Liberation Mono'),
+      );
+      final sheetFonts = tester.widget<StudioCombo<String>>(combo);
+      expect(sheetFonts.items, contains(extraFamily));
+      expect(sheetFonts.items, isNot(contains('Demo Typeface Alias')));
+      await tester.tap(combo);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      await tester.tap(find.text(extraFamily));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      expect(sheet.sheet.cell(sheet.activeCell).fontFamily, extraFamily);
+
+      await tester.tap(find.byTooltip('Documents').first);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      final wordFonts = tester.widget<StudioCombo<String>>(combo);
+      expect(wordFonts.items, containsAll(['Aptos', extraFamily]));
+      await tester.tap(combo);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      await tester.tap(find.text(extraFamily));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      final word = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+      expect(word.controller.activeRunProps.asciiFont, extraFamily);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    });
+  });
+
   testWidgets('the spreadsheet fx bar edits the active cell as a text field', (
     tester,
   ) async {

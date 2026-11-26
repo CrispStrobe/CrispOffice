@@ -3925,9 +3925,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           StudioCombo<String>(
             value: _activeFontFamily,
-            items: _fontFamilies,
+            items: _fontFamilies(_activeFontFamily),
             labelOf: (String name) => name,
-            previewFamily: (String name) => name,
+            previewFamily: _fontPreviewFamily,
             width: 148,
             enabled: _wordFullFormat,
             tooltip: _t('Font', StudioStrings.de('Font'), 'الخط'),
@@ -5684,17 +5684,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           StudioCombo<String>(
             value: _sheet.selectionFontFamily,
-            items: const <String>[
-              'Calibri',
-              'Aptos',
-              'Arial',
-              'Times New Roman',
-              'Courier New',
-              'Liberation Sans',
-              'DejaVu Sans',
-            ],
+            items: _fontFamilies(_sheet.selectionFontFamily),
             labelOf: (String family) => family,
-            previewFamily: (String family) => family,
+            previewFamily: _fontPreviewFamily,
             width: 132,
             enabled: _canMutate,
             tooltip: _t(
@@ -8254,12 +8246,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _showLanguageDownloads({
     Set<String> languages = const <String>{},
   }) async {
+    final fontRevision = OfficeHostFonts.registrationRevision;
     await showStudioDownloadsManager(
       _themedContext,
       languages: languages,
       language: _language,
     );
     if (!mounted) return;
+    if (OfficeHostFonts.registrationRevision != fontRevision) setState(() {});
     switch (_app) {
       case SuiteApp.word:
         _wordFocus.requestFocus();
@@ -8647,12 +8641,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     });
   }
 
-  List<String> get _fontFamilies {
-    final String current = _activeFontFamily;
-    if (OfficeTypeface.families.contains(current)) {
-      return OfficeTypeface.families;
+  List<String> _fontFamilies(String current) {
+    final families = <String, String>{
+      for (final family in <String>[
+        ...OfficeTypeface.families,
+        'Aptos',
+        'DejaVu Sans',
+        'Liberation Mono',
+        ...OfficeHostFonts.additionalFamilies,
+      ])
+        family.toLowerCase(): family,
+    };
+    final key = current.toLowerCase();
+    if (families.containsKey(key)) {
+      families[key] = current;
     }
-    return <String>[current, ...OfficeTypeface.families];
+    final sorted = families.values.toList()
+      ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+    return families.containsKey(key) ? sorted : <String>[current, ...sorted];
+  }
+
+  String? _fontPreviewFamily(String family) {
+    // Wingdings maps Latin letters to symbols, making its label unreadable.
+    if (family.toLowerCase() == 'wingdings') return null;
+    return OfficeHostFonts.paintFamily(family);
   }
 
   String get _activeFontFamily {

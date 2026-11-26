@@ -18,6 +18,7 @@ abstract final class OfficeHostFonts {
   static final Map<String, Future<void>> _extensionLoads = {};
   static final Map<String, String> _extensionOwners = {};
   static int _revision = 0;
+  static final Map<String, String> _additionalFamilies = {};
   static final Map<String, List<OfficeFontFace>> _metricFaces = {};
   static final _paintMetrics =
       <(String, double, int, int, bool), FontMetrics?>{};
@@ -95,6 +96,10 @@ abstract final class OfficeHostFonts {
   /// Measurement caches can use this to discard widths obtained from a
   /// fallback before an asynchronous registration completed.
   static int get registrationRevision => _revision;
+
+  /// Canonical names of successfully loaded host extensions and local fonts.
+  /// Registration aliases and internal paint names are excluded.
+  static Iterable<String> get additionalFamilies => _additionalFamilies.values;
 
   /// The loaded paint family behind a successfully registered name or alias.
   /// Installed replacements use an internal name so old aliases cannot win.
@@ -187,6 +192,7 @@ abstract final class OfficeHostFonts {
         rethrow;
       }
     }
+    _additionalFamilies[key] = canonical;
   }
 
   /// Registers verified local TrueType bytes, replacing only a bundled Office
@@ -242,6 +248,7 @@ abstract final class OfficeHostFonts {
     _installedLoads[key] = load;
     try {
       await load;
+      _additionalFamilies[key] = canonical;
     } on Object {
       _installedNames.remove(key);
       rethrow;
