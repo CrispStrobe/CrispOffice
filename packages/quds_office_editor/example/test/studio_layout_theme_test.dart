@@ -485,6 +485,48 @@ void main() {
     },
     variant: TargetPlatformVariant.only(TargetPlatform.linux),
   );
+  testWidgets('German spreadsheet View commands explain freeze and direction', (
+    tester,
+  ) async {
+    await _studio(tester);
+    await configureStudioForTest(tester, language: StudioLanguage.de);
+    await tester.tap(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is StudioAppSwitcher &&
+            widget.icon == Icons.grid_on_outlined,
+      ),
+    );
+    await _frames(tester);
+    await _tab(tester, 'view');
+
+    final sheetsPane = _command('Tabellenblatt-Navigation');
+    final freeze = _command('Fenster fixieren');
+    await _exposeRibbon(tester, sheetsPane);
+    expect(sheetsPane, findsOneWidget);
+    expect(_command('Sheets pane'), findsNothing);
+
+    final editor = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
+    editor.controller.selection.selectCell(const SmlCellRef(1, 1));
+    await _exposeRibbon(tester, freeze);
+    await tester.tap(freeze);
+    await _frames(tester);
+    expect(editor.controller.hasFrozenPanes, isTrue);
+    expect(_command('Fixierung aufheben'), findsOneWidget);
+
+    for (final (tooltip, rightToLeft) in [
+      ('Von rechts nach links (RTL) – Spalte A steht rechts', true),
+      ('Von links nach rechts (LTR) – Spalte A steht links', false),
+    ]) {
+      final command = find.byTooltip(tooltip);
+      await _exposeRibbon(tester, command);
+      await tester.tap(command);
+      await _frames(tester);
+      expect(editor.controller.sheet.rightToLeft, rightToLeft);
+    }
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
     'Mail uses shared chrome without duplicate keys or traffic-light overlap',
     (tester) async {

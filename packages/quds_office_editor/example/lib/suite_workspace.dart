@@ -1310,11 +1310,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         <StudioMenuAction>[
           StudioMenuAction(
             id: 'sheet-navigation',
-            label: _t(
-              'Sheets pane',
-              StudioStrings.de('Sheets pane'),
-              'لوحة الأوراق',
-            ),
+            label: _sheetsPaneLabel,
             icon: Icons.view_sidebar_outlined,
             onSelected: _app == SuiteApp.excel
                 ? () => setState(() => _showSheetNav = !_showSheetNav)
@@ -4105,13 +4101,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _icon(
             Icons.format_textdirection_r_to_l,
-            _t('RTL', StudioStrings.de('RTL'), 'من اليمين'),
+            _t(
+              'Right to left (RTL)',
+              'Von rechts nach links (RTL)',
+              'من اليمين إلى اليسار (RTL)',
+            ),
             _wordFullFormat ? () => _setWordDirection(rtl: true) : null,
             selected: _activeParagraph.properties.rightToLeft == true,
           ),
           _icon(
             Icons.format_textdirection_l_to_r,
-            _t('LTR', StudioStrings.de('LTR'), 'من اليسار'),
+            _t(
+              'Left to right (LTR)',
+              'Von links nach rechts (LTR)',
+              'من اليسار إلى اليمين (LTR)',
+            ),
             _wordFullFormat ? () => _setWordDirection(rtl: false) : null,
             selected: _activeParagraph.properties.rightToLeft != true,
           ),
@@ -5212,12 +5216,28 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'interface',
         title: _t('Interface', StudioStrings.de('Interface'), 'واجهة'),
         children: <Widget>[
-          _cmd(Icons.format_textdirection_r_to_l, 'RTL', () {
-            setState(() => _arabic = true);
-          }, selected: _arabic),
-          _cmd(Icons.format_textdirection_l_to_r, 'LTR', () {
-            setState(() => _arabic = false);
-          }, selected: !_arabic),
+          _cmd(
+            Icons.format_textdirection_r_to_l,
+            'RTL',
+            () => setState(() => _arabic = true),
+            selected: _arabic,
+            tooltip: _t(
+              'Right-to-left interface (RTL)',
+              'Oberfläche von rechts nach links (RTL)',
+              'واجهة من اليمين إلى اليسار (RTL)',
+            ),
+          ),
+          _cmd(
+            Icons.format_textdirection_l_to_r,
+            'LTR',
+            () => setState(() => _arabic = false),
+            selected: !_arabic,
+            tooltip: _t(
+              'Left-to-right interface (LTR)',
+              'Oberfläche von links nach rechts (LTR)',
+              'واجهة من اليسار إلى اليمين (LTR)',
+            ),
+          ),
         ],
       ),
     ];
@@ -6094,6 +6114,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     ];
   }
 
+  String get _sheetsPaneLabel =>
+      _t('Sheets pane', 'Tabellenblatt-Navigation', 'لوحة أوراق العمل');
+
   List<StudioRibbonGroup> _sheetView() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
@@ -6102,7 +6125,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.view_sidebar_outlined,
-            _t('Sheets pane', StudioStrings.de('Sheets pane'), 'لوحة الأوراق'),
+            _sheetsPaneLabel,
             () => setState(() => _showSheetNav = !_showSheetNav),
             selected: _showSheetNav,
           ),
@@ -6120,11 +6143,26 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(
             Icons.ac_unit,
-            _arabic
-                ? (_sheet.hasFrozenPanes ? 'إلغاء التجميد' : 'تجميد')
-                : (_sheet.hasFrozenPanes ? 'Unfreeze' : 'Freeze'),
+            _sheet.hasFrozenPanes
+                ? _t(
+                    'Unfreeze panes',
+                    'Fixierung aufheben',
+                    'إلغاء تثبيت الأجزاء',
+                  )
+                : _t('Freeze panes', 'Fenster fixieren', 'تثبيت الأجزاء'),
             _sheet.toggleFreezePanes,
             selected: _sheet.hasFrozenPanes,
+            tooltip: _sheet.hasFrozenPanes
+                ? _t(
+                    'Allow fixed rows and columns to scroll again',
+                    'Fixierte Zeilen und Spalten wieder mitscrollen lassen',
+                    'السماح بتمرير الصفوف والأعمدة المثبتة مجددًا',
+                  )
+                : _t(
+                    'Keep rows above and columns before the active cell visible while scrolling',
+                    'Zeilen oberhalb und Spalten vor der aktiven Zelle beim Scrollen sichtbar halten',
+                    'إبقاء الصفوف فوق الخلية النشطة والأعمدة قبلها ظاهرة أثناء التمرير',
+                  ),
           ),
           _cmd(
             Icons.table_rows,
@@ -6160,12 +6198,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _t('RTL', StudioStrings.de('RTL'), 'من اليمين'),
             _canMutate ? () => _sheet.setSheetRightToLeft(true) : null,
             selected: _sheet.sheet.rightToLeft,
+            tooltip: _t(
+              'Right to left (RTL) — place column A on the right',
+              'Von rechts nach links (RTL) – Spalte A steht rechts',
+              'من اليمين إلى اليسار (RTL) – يبدأ العمود A على اليمين',
+            ),
           ),
           _cmd(
             Icons.format_textdirection_l_to_r,
             _t('LTR', StudioStrings.de('LTR'), 'من اليسار'),
             _canMutate ? () => _sheet.setSheetRightToLeft(false) : null,
             selected: !_sheet.sheet.rightToLeft,
+            tooltip: _t(
+              'Left to right (LTR) — place column A on the left',
+              'Von links nach rechts (LTR) – Spalte A steht links',
+              'من اليسار إلى اليمين (LTR) – يبدأ العمود A على اليسار',
+            ),
           ),
         ],
       ),
@@ -6359,7 +6407,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _icon(
             Icons.format_textdirection_r_to_l,
-            _t('RTL', StudioStrings.de('RTL'), 'من اليمين'),
+            _t(
+              'Right to left (RTL)',
+              'Von rechts nach links (RTL)',
+              'من اليمين إلى اليسار (RTL)',
+            ),
             _canEditSlideText
                 ? () => _slides.setSelectedTextDirection(rtl: true)
                 : null,
@@ -6367,7 +6419,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _icon(
             Icons.format_textdirection_l_to_r,
-            _t('LTR', StudioStrings.de('LTR'), 'من اليسار'),
+            _t(
+              'Left to right (LTR)',
+              'Von links nach rechts (LTR)',
+              'من اليسار إلى اليمين (LTR)',
+            ),
             _canEditSlideText
                 ? () => _slides.setSelectedTextDirection(rtl: false)
                 : null,
@@ -8292,6 +8348,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     String label,
     VoidCallback? onPressed, {
     bool selected = false,
+    String? tooltip,
   }) {
     return StudioCmd(
       icon: icon,
@@ -8300,6 +8357,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       foreground: _officeTheme.chromeText,
       onPressed: onPressed,
       selected: selected,
+      tooltip: tooltip,
     );
   }
 
