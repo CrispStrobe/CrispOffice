@@ -709,18 +709,16 @@ class SmlWorksheet {
 
   /// Native default widths use the same Normal-font metric as explicit columns.
   /// Files omitting both default/base width retain the historical 64px default.
-  double get effectiveDefaultColumnWidthPx {
+  double get effectiveDefaultColumnWidthPx =>
+      _defaultColumnWidthForMetric(maximumDigitWidthPx);
+
+  double _defaultColumnWidthForMetric(int metric) {
     final width = _nativeDefaultColumnWidth;
     if (width != null) {
-      return columnWidthFromExcel(
-        width,
-        maximumDigitWidth: maximumDigitWidthPx,
-      );
+      return columnWidthFromExcel(width, maximumDigitWidth: metric);
     }
     final base = _nativeBaseColumnWidth;
-    return base == null
-        ? defaultColumnWidthPx
-        : base * maximumDigitWidthPx + 5.0;
+    return base == null ? defaultColumnWidthPx : base * metric + 5.0;
   }
 
   /// Retains native sheetFormatPr values without converting their units.
@@ -1097,9 +1095,31 @@ class SmlWorksheet {
   /// rowHeightToExcel API.
   static double rowHeightToExcel(double px) => px * 72 / 96;
 
-  /// columnWidth API.
-  double columnWidth(int col) =>
-      columnWidths[col] ?? effectiveDefaultColumnWidthPx;
+  /// Resolved width at the current or supplied Normal font metric.
+  /// Explicit pixel edits retain their size in either projection.
+  double columnWidth(int col, {int? projectedDigitWidthPx}) {
+    final pixels = columnWidths[col];
+    if (projectedDigitWidthPx == null ||
+        projectedDigitWidthPx == maximumDigitWidthPx) {
+      return pixels ?? effectiveDefaultColumnWidthPx;
+    }
+    if (pixels == null) {
+      return _defaultColumnWidthForMetric(projectedDigitWidthPx);
+    }
+    final native = _importedColumnWidths[col];
+    if (native == null ||
+        pixels !=
+            columnWidthFromExcel(
+              native,
+              maximumDigitWidth: maximumDigitWidthPx,
+            )) {
+      return pixels;
+    }
+    return columnWidthFromExcel(
+      native,
+      maximumDigitWidth: projectedDigitWidthPx,
+    );
+  }
 
   /// Hidden row indices. Empty hidden rows remain part of the authored sheet.
   final Set<int> hiddenRows;

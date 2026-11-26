@@ -564,6 +564,42 @@ void main() {
     expect(_inflated(pdf).join(), contains('End'));
   });
 
+  test(
+    'workbook print projects native columns using the supplied Normal face',
+    () {
+      final book = SheetDeserializer().readBytes(
+        File(
+          'test/fixtures/fidelity/sheet-normal-font-native.xlsx',
+        ).readAsBytesSync(),
+      );
+      final sheet = book.firstSheet;
+      sheet
+        ..printArea = SmlRange.parse('A1:B1')
+        ..pageSetup = SmlPageSetup(
+          paperWidthIn: 2.5,
+          marginLeftIn: 0,
+          marginRightIn: 0,
+        );
+      sheet.importColumnWidth(0, 10);
+      sheet.importColumnWidth(1, 10);
+      final normal = SfntFont.parse(
+        File(
+          '../quds_office_editor/fonts/LiberationMono-Regular.ttf',
+        ).readAsBytesSync(),
+      );
+
+      expect(_pageCount(OfficePrint.workbook(book)), 1);
+      expect(_pageCount(OfficePrint.workbook(book, font: normal)), 2);
+      expect(book.columnMetrics, isNull);
+      expect(sheet.columnWidth(0), 70);
+      expect(sheet.exportColumnWidth(0), 10);
+
+      sheet.setColumnWidth(1, 40);
+      expect(_pageCount(OfficePrint.workbook(book, font: normal)), 1);
+      expect(sheet.columnWidth(1), 40);
+    },
+  );
+
   test('workbook print respects the authored order of page bands', () {
     final setup = SmlPageSetup(paperWidthIn: 3, paperHeightIn: 3);
     final sheet = SmlWorksheet(

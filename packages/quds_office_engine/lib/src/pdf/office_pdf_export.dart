@@ -231,6 +231,9 @@ abstract final class OfficePdfExport {
         cps.addAll(SmlCellRef(c, 0).a1.replaceAll(RegExp(r'\d+'), '').runes);
       }
     }
+    final digitWidth =
+        book.columnMetrics?.maximumDigitWidthPx ??
+        _normalDigitWidth(book.styles?.normalFont, set);
     final _FontPack pack = _FontPack.build(set, cps);
     final PdfDocument pdf = PdfDocument(title: title);
     final _PdfImageBank images = _PdfImageBank();
@@ -250,7 +253,15 @@ abstract final class OfficePdfExport {
         continue;
       }
       final int before = pdf.pages.length;
-      printed += _printSheet(pdf, book, sheet, pack, options, images);
+      printed += _printSheet(
+        pdf,
+        book,
+        sheet,
+        pack,
+        options,
+        images,
+        digitWidth,
+      );
       if (pdf.pages.length > before) {
         pdf.addOutline(PdfOutlineItem(title: sheet.name, pageIndex: before));
       }
@@ -1147,6 +1158,33 @@ abstract final class OfficePdfExport {
   /// Sheet CSS-pixel sizes → PDF points (96 CSS dpi).
   static double _sheetPxToPt(double px) => px * 72 / 96;
 
+  static int? _normalDigitWidth(SmlNormalFont? normal, OfficeFontSet fonts) {
+    if (normal == null) return null;
+    final face = fonts.resolve(
+      0x30,
+      family: normal.family,
+      weight: normal.bold ? 700 : 400,
+      italic: normal.italic,
+    );
+    if (face == null ||
+        (!face.matches(normal.family) &&
+            face.font.familyName.toLowerCase() !=
+                normal.family.toLowerCase())) {
+      return null;
+    }
+    final metrics = FontMetrics(
+      font: face.font,
+      fontSizePoints: normal.sizePoints,
+    );
+    var width = 0.0;
+    for (var digit = 0x30; digit <= 0x39; digit++) {
+      if (face.font.glyphIdFor(digit) == 0) return null;
+      width = math.max(width, metrics.characterWidth(digit));
+    }
+    final pixels = (width * 96 / 72).round();
+    return pixels > 0 ? pixels : null;
+  }
+
   static int _printSheet(
     PdfDocument pdf,
     SmlWorkbook book,
@@ -1154,6 +1192,7 @@ abstract final class OfficePdfExport {
     _FontPack pack,
     PdfSheetPrintOptions options,
     _PdfImageBank images,
+    int? digitWidth,
   ) {
     final conditionalFormats = SmlConditionalResolver(
       sheet: sheet,
@@ -1248,7 +1287,10 @@ abstract final class OfficePdfExport {
 
     final List<double> colPts = <double>[
       for (int c = minCol; c <= maxCol; c++)
-        math.max(4, _sheetPxToPt(sheet.columnWidth(c))),
+        math.max(
+          4,
+          _sheetPxToPt(sheet.columnWidth(c, projectedDigitWidthPx: digitWidth)),
+        ),
     ];
     final List<double> rowPts = <double>[
       for (int r = minRow; r <= maxRow; r++)
