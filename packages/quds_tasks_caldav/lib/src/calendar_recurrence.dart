@@ -89,7 +89,7 @@ List<CalDavEvent>? _expandCalendarSeries(
     if (ordered.any((start) => start.add(duration).year > 9999)) return null;
     return [
       for (final start in ordered)
-        CalDavEvent._(
+        CalDavEvent(
           uid: event.uid,
           title: event.title,
           start: _calendarDate(start, kind),

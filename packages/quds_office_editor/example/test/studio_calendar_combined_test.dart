@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_transport/quds_mail_transport.dart';
+import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_calendar.dart';
 import 'package:quds_office_studio/studio_calendar_grid.dart';
@@ -38,6 +41,64 @@ String _event(String subject, String description) =>
     'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\n'
     'UID:same-uid\r\nDTSTART:20261125T090000Z\r\nDTEND:20261125T100000Z\r\n'
     'SUMMARY:$subject\r\nDESCRIPTION:$description\r\nEND:VEVENT\r\nEND:VCALENDAR';
+
+final class _ExchangeReader implements EwsCalendarReader {
+  _ExchangeReader(this.account, this.configuration, this.credentials);
+
+  final TaskAccountId account;
+  final MailEwsConfiguration configuration;
+  final MailCredentialStore credentials;
+  final leases = <MailOperationLease>[];
+  var activeReads = 0;
+  var reads = 0;
+
+  @override
+  Future<TaskResult<List<EwsCalendar>>> calendars(
+    MailOperationLease lease,
+  ) async {
+    leases.add(lease);
+    final secret = await credentials.load(configuration.credential);
+    final record = (secret as MailSuccess<MailCredentialRecord?>).value;
+    expect(utf8.decode(record!.opaqueData.bytes), 'exchange-secret');
+    return TaskSuccess([
+      EwsCalendar(
+        id: TaskListId('main', account: account),
+        name: 'Calendar',
+      ),
+      EwsCalendar(
+        id: TaskListId('second', account: account),
+        name: 'Team',
+      ),
+    ]);
+  }
+
+  @override
+  Future<TaskResult<List<EwsCalendarEvent>>> agenda(
+    TaskListId calendar, {
+    required DateTime start,
+    required DateTime end,
+    required MailOperationLease lease,
+  }) async {
+    leases.add(lease);
+    expect(lease.account, configuration.account);
+    expect(calendar.account, account);
+    expect(++activeReads, 1);
+    reads++;
+    await Future<void>.delayed(Duration.zero);
+    activeReads--;
+    return TaskSuccess([
+      EwsCalendarEvent(
+        id: 'same-event-id',
+        title: calendar.value == 'main'
+            ? 'Exchange appointment'
+            : 'Team appointment',
+        start: DateTime.utc(2026, 11, 25, 12),
+        end: DateTime.utc(2026, 11, 25, 13),
+        location: 'Meeting room',
+      ),
+    ]);
+  }
+}
 
 void main() {
   testWidgets(
@@ -226,6 +287,77 @@ void main() {
         find.textContaining('Appointments (Work account)'),
         findsOneWidget,
       );
+    },
+  );
+  testWidgets(
+    'uses saved EWS credentials and loads multiple read-only calendars',
+    (tester) async {
+      SharedPreferences.setMockInitialValues({});
+      final vault = InMemorySecureStorage();
+      await vault.write(
+        studioTasksAccountsKey,
+        jsonEncode({
+          'active': ['ews', 'work'],
+          'accounts': [
+            {
+              'id': 'work',
+              'provider': 'ews',
+              'url': 'https://exchange.example.test/EWS/Exchange.asmx',
+              'login': 'work-login',
+              'domain': 'WORK',
+              'mailbox': 'work@example.test',
+              'label': 'Exchange account',
+              'secret': 'exchange-secret',
+            },
+          ],
+        }),
+      );
+      final storage = StudioCredentialStorage(
+        systemStorageFactory: () async => vault,
+      );
+      addTearDown(storage.dispose);
+      late _ExchangeReader exchange;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StudioCalendarPage(
+            title: 'Calendar',
+            chromeBuilder: (_) => const SizedBox.shrink(),
+            openConnections: () {},
+            initialDate: DateTime(2026, 11, 25),
+            credentialStorage: storage,
+            openDavClient: () =>
+                throw StateError('EWS needs no CalDAV client.'),
+            openEwsReader: (account, configuration, credentials) {
+              expect(configuration.domain, 'WORK');
+              expect(configuration.mailboxAddress, 'work@example.test');
+              return exchange = _ExchangeReader(
+                account,
+                configuration,
+                credentials,
+              );
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(exchange.reads, 1);
+      expect(find.text('Exchange appointment'), findsOneWidget);
+
+      await tester.tap(find.byKey(const ValueKey('studio-calendar-picker')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Show all'));
+      await tester.pumpAndSettle();
+      expect(exchange.reads, 3);
+      expect(find.text('Exchange appointment'), findsOneWidget);
+      expect(find.text('Team appointment'), findsOneWidget);
+
+      await tester.tap(find.text('Team appointment'));
+      await tester.pumpAndSettle();
+      expect(find.text('Meeting room'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Edit'), findsNothing);
+      expect(find.widgetWithText(TextButton, 'Delete'), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(exchange.leases.every((lease) => !lease.isCurrent), isTrue);
     },
   );
 }

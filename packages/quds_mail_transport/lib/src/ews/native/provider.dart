@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
+import '../calendar.dart';
 import '../configuration.dart';
 import '../cursor.dart';
 import '../errors.dart';
@@ -13,15 +14,17 @@ import '../tasks.dart';
 
 import 'http_client.dart';
 
+part 'calendar_reader.dart';
 part 'task_reader.dart';
 part 'provider_search.dart';
 
 /// Internal transport seam; the public factory exposes no HTTP client/secret.
-typedef EwsHttpClientFactory = EwsHttpClient Function({
-  required MailEwsConfiguration configuration,
-  required String secret,
-  required MailEwsLimits limits,
-});
+typedef EwsHttpClientFactory =
+    EwsHttpClient Function({
+      required MailEwsConfiguration configuration,
+      required String secret,
+      required MailEwsLimits limits,
+    });
 
 EwsHttpClient _client({
   required MailEwsConfiguration configuration,
@@ -203,8 +206,10 @@ final class NativeMailEwsProvider
         operation.check();
         return value;
       }();
-      final result = await Future.any(<Future<T>>[work, cancelled.future])
-          .timeout(limits.operationTimeout);
+      final result = await Future.any(<Future<T>>[
+        work,
+        cancelled.future,
+      ]).timeout(limits.operationTimeout);
       operation.check();
       return MailSuccess(result);
     } on MailCancelled catch (error) {
@@ -292,7 +297,7 @@ final class NativeMailEwsProvider
   Future<List<EwsFolder>> _findFolders(
     EwsHttpClient client,
     _Operation operation, {
-    bool taskFolders = false,
+    String? folderClass,
   }) async {
     final result = <EwsFolder>[];
     final seen = <String>{};
@@ -306,7 +311,7 @@ final class NativeMailEwsProvider
         _soap.findFolders(
           offset: offset,
           limit: count,
-          taskFolders: taskFolders,
+          folderClass: folderClass,
         ),
       );
       final page = _soap.folders(xml, 'FindFolder');

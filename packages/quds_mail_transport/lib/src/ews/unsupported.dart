@@ -2,6 +2,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
+import 'calendar.dart';
 import 'configuration.dart';
 import 'tasks.dart';
 
@@ -155,4 +156,31 @@ final class _UnsupportedEwsTaskReader implements EwsTaskProvider {
   }) async => const TaskFailure(
     TaskProblem(TaskProblemCode.unsupported, mutationMayHaveOccurred: false),
   );
+}
+
+EwsCalendarReader createEwsCalendarReader({
+  required TaskAccountId account,
+  required MailEwsConfiguration configuration,
+  required MailCredentialStore credentialStore,
+  MailEwsLimits limits = const MailEwsLimits(maxPageSize: 512),
+}) {
+  limits.validate();
+  return const _UnsupportedEwsCalendarReader();
+}
+
+final class _UnsupportedEwsCalendarReader implements EwsCalendarReader {
+  const _UnsupportedEwsCalendarReader();
+
+  @override
+  Future<TaskResult<List<EwsCalendar>>> calendars(
+    MailOperationLease lease,
+  ) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
+
+  @override
+  Future<TaskResult<List<EwsCalendarEvent>>> agenda(
+    TaskListId calendar, {
+    required DateTime start,
+    required DateTime end,
+    required MailOperationLease lease,
+  }) async => const TaskFailure(TaskProblem(TaskProblemCode.unsupported));
 }

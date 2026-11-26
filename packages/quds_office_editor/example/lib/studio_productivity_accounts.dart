@@ -132,7 +132,8 @@ Future<List<StudioProductivityAccount>> loadStudioProductivityAccounts(
       studioTaskAccountLabel(key, value),
       {
         StudioProductivityService.tasks,
-        if (key.provider == 'caldav') StudioProductivityService.calendar,
+        if (key.provider == 'caldav' || key.provider == 'ews')
+          StudioProductivityService.calendar,
       },
     );
   }

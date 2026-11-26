@@ -6,9 +6,11 @@ import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:xml/xml.dart';
 import 'package:xml/xml_events.dart';
 
+import 'calendar.dart';
 import 'configuration.dart';
 import 'errors.dart';
 
+part 'calendar_soap.dart';
 part 'task_soap.dart';
 
 const _soap = 'http://schemas.xmlsoap.org/soap/envelope/';
@@ -207,7 +209,7 @@ final class EwsSoap {
   String findFolders({
     required int offset,
     required int limit,
-    bool taskFolders = false,
+    String? folderClass,
   }) => _request('FindFolder', (builder) {
     _folderShape(builder);
     builder.element(
@@ -218,7 +220,7 @@ final class EwsSoap {
         'BasePoint': 'Beginning',
       },
     );
-    if (taskFolders) {
+    if (folderClass != null) {
       builder.element(
         'm:Restriction',
         nest: () {
@@ -234,7 +236,7 @@ final class EwsSoap {
                 nest: () {
                   builder.element(
                     't:Constant',
-                    attributes: {'Value': 'IPF.Task'},
+                    attributes: {'Value': folderClass},
                   );
                 },
               );

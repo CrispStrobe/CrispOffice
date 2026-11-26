@@ -1,8 +1,8 @@
 # Exchange Server EWS — on-premises priority
 
 The 19 November 2026 scope adds EWS to the existing Quds mail boundary. Exchange
-Server is the primary target. This implements native mail access, not Calendar,
-People or full Outlook parity. Microsoft cloud work continues to use Graph.
+Server is the primary target. CrispOffice now uses the transport for native
+Mail, Tasks, and read-only Calendar access. Microsoft cloud work uses Graph.
 
 ## Connect
 
@@ -37,6 +37,27 @@ lists mail folders, and reads at most ten header changes in one folder. It logs
 counts and fixed problem codes rather than credentials or message contents. It
 does not send, mark, move or delete messages. The optional third argument selects
 a mailbox for distinguished folders; omit it for the authenticated mailbox.
+
+## Calendar in CrispOffice
+
+Save the Exchange EWS connection in Tasks, then open Calendar and use the
+calendar picker. Calendar uses the same saved endpoint and credential and
+discovers the default calendar and appointment folders. Exchange expands
+recurring events for the visible date range. Refresh reloads the selected
+calendars, including when CalDAV calendars are selected alongside them.
+
+Exchange calendars are read-only. The view shows time, title and location.
+For all-day events Exchange returns as UTC instants away from midnight, the
+adapter derives the dates in the device time zone. These dates can differ
+from the original event dates when viewed from a different zone.
+
+The live read probe on 26 November 2026 discovered four calendars over HTTPS
+with NTLM and read a 30-day window in each. The default calendar returned 41
+events, including four all-day events. The other three returned empty views.
+A second probe selected the mailbox explicitly and recovered all 41 events
+with a ten-item request cap.
+
+[Microsoft EWS calendar views](https://learn.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-get-appointments-and-meetings-by-using-ews-in-exchange)
 
 ## Shared API
 

@@ -25,7 +25,7 @@ final class NativeEwsTaskReader implements EwsTaskProvider {
       final folders = await connection._findFolders(
         client,
         operation,
-        taskFolders: true,
+        folderClass: 'IPF.Task',
       );
       for (final folder in folders) {
         final list = _toList(folder);

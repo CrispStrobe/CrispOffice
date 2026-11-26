@@ -225,6 +225,216 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  group('EWS Calendar', () {
+    const calendarClass = 'IPF.Appointment';
+    final account = TaskAccountId('work', provider: 'ews');
+    final start = DateTime.utc(2026, 11, 25);
+    final end = start.add(const Duration(days: 2));
+
+    String event(
+      String id, {
+      String type = 'Single',
+      bool cancelled = false,
+      bool allDay = false,
+      String start = '2026-11-25T10:00:00Z',
+      String end = '2026-11-26T12:00:00Z',
+    }) =>
+        '<t:CalendarItem><t:ItemId Id="$id" ChangeKey="event-key"/>'
+        '<t:Subject>Appointment &amp; notes</t:Subject>'
+        '<t:CalendarItemType>$type</t:CalendarItemType>'
+        '<t:IsCancelled>$cancelled</t:IsCancelled>'
+        '<t:IsAllDayEvent>$allDay</t:IsAllDayEvent>'
+        '<t:Start>$start</t:Start><t:End>$end</t:End>'
+        '<t:Location>Meeting room</t:Location></t:CalendarItem>';
+
+    String page(String items, {bool complete = true}) => _response(
+      'FindItem',
+      _success(
+        'FindItem',
+        '<m:RootFolder IncludesLastItemInRange="$complete"><t:Items>$items'
+            '</t:Items></m:RootFolder>',
+      ),
+    );
+
+    List<_Step> discovery() => [
+      (
+        'GetFolder',
+        (request) {
+          expect(request, contains('DistinguishedFolderId Id="calendar"'));
+          return _response(
+            'GetFolder',
+            _success(
+              'GetFolder',
+              '<m:Folders>${_folder('main', kind: calendarClass)}</m:Folders>',
+            ),
+          );
+        },
+      ),
+      (
+        'FindFolder',
+        (request) {
+          expect(request, contains('Traversal="Deep"'));
+          expect(request, contains('Value="IPF.Appointment"'));
+          return _response(
+            'FindFolder',
+            _success(
+              'FindFolder',
+              '<m:RootFolder IncludesLastItemInRange="true"><t:Folders>'
+                  '${_folder('main', kind: calendarClass)}'
+                  '${_folder('team', kind: calendarClass)}</t:Folders></m:RootFolder>',
+            ),
+          );
+        },
+      ),
+    ];
+
+    test(
+      'discovers folders and splits capped views without duplicates',
+      () async {
+        final fixture = _Fixture();
+        final reader = NativeEwsCalendarReader(
+          account: account,
+          connection: fixture.provider(
+            limits: const MailEwsLimits(maxPageSize: 5),
+          ),
+        );
+        final spanning = event('spanning');
+        fixture.scripts.addAll([
+          discovery(),
+          [
+            (
+              'FindItem',
+              (request) {
+                expect(
+                  request,
+                  contains('CalendarView MaxEntriesReturned="5"'),
+                );
+                expect(
+                  request,
+                  contains('StartDate="2026-11-25T00:00:00.000Z"'),
+                );
+                expect(request, contains('EndDate="2026-11-27T00:00:00.000Z"'));
+                expect(request, contains('FolderId Id="main"'));
+                return page(spanning, complete: false);
+              },
+            ),
+            (
+              'FindItem',
+              (request) {
+                expect(request, contains('EndDate="2026-11-26T00:00:00.000Z"'));
+                return page(
+                  spanning +
+                      event(
+                        'all-day',
+                        allDay: true,
+                        start: '2026-11-25T00:00:00+01:00',
+                        end: '2026-11-26T00:00:00+01:00',
+                      ),
+                );
+              },
+            ),
+            (
+              'FindItem',
+              (request) {
+                expect(
+                  request,
+                  contains('StartDate="2026-11-26T00:00:00.000Z"'),
+                );
+                return page(
+                  spanning +
+                      event('cancelled', cancelled: true) +
+                      event(
+                        'exception',
+                        type: 'Exception',
+                        start: '2026-11-26T11:00:00Z',
+                      ),
+                );
+              },
+            ),
+          ],
+        ]);
+        final result = await reader.calendars(fixture.session.begin());
+        final calendars = (result as TaskSuccess<List<EwsCalendar>>).value;
+        expect(calendars.map((entry) => entry.name), ['main', 'team']);
+        final view = await reader.agenda(
+          calendars.first.id,
+          start: start,
+          end: end,
+          lease: fixture.session.begin(),
+        );
+        final entries = (view as TaskSuccess<List<EwsCalendarEvent>>).value;
+        expect(entries.map((entry) => entry.id), [
+          'all-day',
+          'spanning',
+          'exception',
+        ]);
+        expect(entries.first.allDayStart, DateTime.utc(2026, 11, 25));
+        expect(entries.first.allDayEnd, DateTime.utc(2026, 11, 26));
+        expect(entries.first.title, 'Appointment & notes');
+        expect(entries.last.location, 'Meeting room');
+        expect(
+          fixture.clients
+              .expand((client) => client.requests)
+              .every((request) => !request.$3),
+          isTrue,
+        );
+      },
+    );
+
+    test(
+      'fences account and lease before reading and rejects bad dates',
+      () async {
+        final fixture = _Fixture();
+        final reader = NativeEwsCalendarReader(
+          account: account,
+          connection: fixture.provider(),
+        );
+        fixture.scripts.addAll([
+          discovery(),
+          [
+            (
+              'FindItem',
+              (_) => page(event('bad', start: '2026-11-31T11:00:00Z')),
+            ),
+          ],
+        ]);
+        final result = await reader.calendars(fixture.session.begin());
+        final calendar = (result as TaskSuccess<List<EwsCalendar>>).value.first;
+        Future<TaskProblemCode> error(
+          TaskListId id,
+          MailOperationLease lease,
+        ) async {
+          final result = await reader.agenda(
+            id,
+            start: start,
+            end: end,
+            lease: lease,
+          );
+          return (result as TaskFailure<List<EwsCalendarEvent>>).problem.code;
+        }
+
+        expect(
+          await error(
+            TaskListId(
+              calendar.id.value,
+              account: TaskAccountId('other', provider: 'ews'),
+            ),
+            fixture.session.begin(),
+          ),
+          TaskProblemCode.invalidInput,
+        );
+        final stale = fixture.session.begin();
+        fixture.session.invalidate();
+        expect(await error(calendar.id, stale), TaskProblemCode.staleOperation);
+        expect(fixture.vault.loads, 1);
+        expect(
+          await error(calendar.id, fixture.session.begin()),
+          TaskProblemCode.providerFailure,
+        );
+      },
+    );
+  });
+
   group('provider-side search', () {
     String found(
       List<String> ids, {
@@ -245,7 +455,10 @@ void main() {
         final f = _Fixture();
         f.scripts.add([
           ('FindItem', (_) => found(['a', 'b'])),
-          ('GetItem', (_) => _response('GetItem', '${_item('a')}${_item('b')}')),
+          (
+            'GetItem',
+            (_) => _response('GetItem', '${_item('a')}${_item('b')}'),
+          ),
         ]);
         final provider = f.provider();
         final result = _value(
@@ -268,7 +481,11 @@ void main() {
         expect(xml, contains('FieldURI="item:Body"'));
         expect(xml, contains('ContainmentMode="Substring"'));
         final constants = XmlDocument.parse(xml)
-            .findAllElements('Constant', namespaceUri: 'http://schemas.microsoft.com/exchange/services/2006/types')
+            .findAllElements(
+              'Constant',
+              namespaceUri:
+                  'http://schemas.microsoft.com/exchange/services/2006/types',
+            )
             .map((element) => element.getAttribute('Value'))
             .toList();
         expect(constants.first, 'a "quoted" & <term>');
@@ -277,7 +494,10 @@ void main() {
         expect(xml, contains('IsLessThan'));
         expect(xml, contains('2026-11-25T00:00:00.000Z'));
         expect(xml, contains('MaxEntriesReturned="2"'));
-        expect(f.clients.single.requests.last.$2, contains('item:ParentFolderId'));
+        expect(
+          f.clients.single.requests.last.$2,
+          contains('item:ParentFolderId'),
+        );
         expect(f.clients.single.requests.last.$2, contains('item:Subject'));
         expect(
           f.clients.single.requests.every((request) => !request.$3),
@@ -329,7 +549,10 @@ void main() {
     test(
       'EWS exhausted pages with a larger reported count remain estimates',
       () async {
-        for (final ids in [<String>[], ['a']]) {
+        for (final ids in [
+          <String>[],
+          ['a'],
+        ]) {
           final f = _Fixture();
           f.scripts.add([
             ('FindItem', (_) => found(ids, total: 5)),

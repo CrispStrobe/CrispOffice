@@ -2,6 +2,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
+import '../calendar.dart';
 import '../configuration.dart';
 import '../tasks.dart';
 import 'provider.dart';
@@ -33,6 +34,22 @@ EwsTaskProvider createEwsTaskReader({
   account: account,
   enableWrites: enableWrites,
   enableDeletes: enableDeletes,
+  connection: NativeMailEwsProvider(
+    configuration: configuration,
+    credentialStore: credentialStore,
+    codec: const QudsMimeCodec(),
+    limits: limits,
+  ),
+);
+
+/// Uses the existing EWS transport and a host-owned account session.
+EwsCalendarReader createEwsCalendarReader({
+  required TaskAccountId account,
+  required MailEwsConfiguration configuration,
+  required MailCredentialStore credentialStore,
+  MailEwsLimits limits = const MailEwsLimits(maxPageSize: 512),
+}) => NativeEwsCalendarReader(
+  account: account,
   connection: NativeMailEwsProvider(
     configuration: configuration,
     credentialStore: credentialStore,

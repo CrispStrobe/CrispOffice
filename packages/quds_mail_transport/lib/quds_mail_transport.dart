@@ -12,6 +12,7 @@ export 'src/cloud/task_reader.dart'
         googleTaskMatchesUpdate;
 export 'src/cloud/unsupported.dart'
     if (dart.library.io) 'src/cloud/native/factory.dart';
+export 'src/ews/calendar.dart';
 export 'src/ews/configuration.dart' hide validEwsAddress;
 export 'src/ews/tasks.dart';
 export 'src/ews/unsupported.dart'

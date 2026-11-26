@@ -2,7 +2,7 @@ part of 'todo_document.dart';
 
 /// An event or an expanded recurrence instance. Dates retain their source zone.
 final class CalDavEvent {
-  const CalDavEvent._({
+  const CalDavEvent({
     required this.uid,
     required this.title,
     required this.start,
@@ -207,7 +207,7 @@ CalDavEvent _readEvent(Map<String, _Property> properties) {
       'VEVENT date and time bounds are incompatible.',
     );
   }
-  return CalDavEvent._(
+  return CalDavEvent(
     uid: uid,
     title: text('SUMMARY') ?? '',
     start: start,

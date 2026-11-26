@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +19,7 @@ import 'studio_credential_storage.dart';
 import 'studio_chrome.dart';
 import 'studio_task_editor.dart';
 import 'studio_device_tasks.dart';
+import 'studio_ews_credentials.dart';
 import 'studio_tasks_ews_sync.dart';
 import 'studio_tasks_google_sync.dart';
 import 'studio_productivity_accounts.dart';
@@ -372,7 +372,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       credential: reference,
       mailboxAddress: record['mailbox'] as String?,
     );
-    final credentials = _EwsTaskCredentials(reference, () {
+    final credentials = StudioEwsCredentials(reference, () {
       if (session.isDisposed || _vaultRevision != _credentialStorage.revision) {
         return null;
       }
@@ -1261,44 +1261,6 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         ),
       ) ??
       false;
-}
-
-final class _EwsTaskCredentials implements MailCredentialStore {
-  const _EwsTaskCredentials(this.reference, this.readPassword);
-
-  final MailCredentialReference reference;
-  final String? Function() readPassword;
-
-  @override
-  Future<MailResult<MailCredentialRecord?>> load(
-    MailCredentialReference request,
-  ) async {
-    final secret =
-        request.account == reference.account && request.key == reference.key
-        ? readPassword()
-        : null;
-    return MailSuccess(
-      secret == null
-          ? null
-          : MailCredentialRecord(
-              reference: reference,
-              opaqueData: MailBytes(Uint8List.fromList(utf8.encode(secret))),
-            ),
-    );
-  }
-
-  @override
-  Future<MailResult<MailUnit>> store(MailCredentialRecord record) async =>
-      const MailFailure(MailProblem(MailProblemCode.unsupported));
-
-  @override
-  Future<MailResult<MailUnit>> delete(
-    MailCredentialReference reference,
-  ) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
-
-  @override
-  Future<MailResult<MailUnit>> deleteAccount(MailAccountId account) async =>
-      const MailFailure(MailProblem(MailProblemCode.unsupported));
 }
 
 final class _StudioGraphTokens implements GraphTaskTokenSource {

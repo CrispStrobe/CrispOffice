@@ -3,14 +3,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
+import 'credentials/utils/async_lock.dart';
 import 'studio_calendar_editor.dart';
 import 'studio_calendar_grid.dart';
 import 'studio_chrome.dart';
 import 'studio_credential_storage.dart';
 import 'studio_device_tasks.dart';
+import 'studio_ews_credentials.dart';
 import 'studio_productivity_accounts.dart';
 
 Widget buildStudioCalendar(
@@ -40,6 +44,7 @@ final class StudioCalendarPage extends StatefulWidget {
     this.showGroupLabels = true,
     this.credentialStorage,
     this.openDavClient,
+    this.openEwsReader,
     this.initialDate,
   });
 
@@ -52,6 +57,12 @@ final class StudioCalendarPage extends StatefulWidget {
   final StudioCredentialStorage? credentialStorage;
   final http.Client Function()? openDavClient;
   final DateTime? initialDate;
+  final EwsCalendarReader Function(
+    TaskAccountId,
+    MailEwsConfiguration,
+    MailCredentialStore,
+  )?
+  openEwsReader;
 
   @override
   State<StudioCalendarPage> createState() => _StudioCalendarPageState();
@@ -59,16 +70,22 @@ final class StudioCalendarPage extends StatefulWidget {
 
 enum _EventAction { followUp, edit, delete }
 
-typedef _CalendarKey = ({TaskAccountId account, Uri url});
-typedef _CalendarSource = ({
+typedef _CalendarKey = ({TaskAccountId account, String id});
+typedef _DavCalendar = ({
   CalDavCalendarProvider provider,
   CalDavCalendar calendar,
+});
+typedef _CalendarSource = ({
+  _CalendarKey key,
+  String name,
   String accountLabel,
   int colorSlot,
+  Future<TaskResult<CalDavAgenda>> Function(DateTime, DateTime) load,
+  _DavCalendar? dav,
 });
 
 _CalendarKey _calendarKey(CalDavCalendar calendar) =>
-    (account: calendar.account, url: calendar.url);
+    (account: calendar.account, id: calendar.url.toString());
 
 typedef _CalendarTarget = ({
   CalDavCalendarProvider provider,
@@ -80,6 +97,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   late final _storage =
       widget.credentialStorage ?? StudioCredentialStorage.instance;
   http.Client? _client;
+  final _ewsSessions = <MailAccountSession>[];
   int _generation = 0;
   bool _busy = true;
   String? _error;
@@ -105,18 +123,23 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       .where((entry) => _selection?.contains(entry.key) == true)
       .map((entry) => entry.value);
 
-  _CalendarTarget _targetFor(_CalendarSource source) => (
-    provider: source.provider,
-    calendar: source.calendar,
-    generation: _generation,
-  );
+  _CalendarTarget? _targetFor(_CalendarSource source) {
+    final dav = source.dav;
+    return dav == null
+        ? null
+        : (
+            provider: dav.provider,
+            calendar: dav.calendar,
+            generation: _generation,
+          );
+  }
 
   bool _currentTarget(_CalendarTarget target) {
     final key = _calendarKey(target.calendar);
     return mounted &&
         target.generation == _generation &&
         _selection?.contains(key) == true &&
-        identical(_sources[key]?.provider, target.provider);
+        identical(_sources[key]?.dav?.provider, target.provider);
   }
 
   Color _sourceColor(_CalendarSource source, ColorScheme colors) {
@@ -144,8 +167,17 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   void dispose() {
     _storage.removeListener(_reload);
     _search.dispose();
-    _client?.close();
+    _closeConnections();
     super.dispose();
+  }
+
+  void _closeConnections() {
+    _client?.close();
+    _client = null;
+    for (final session in _ewsSessions) {
+      session.dispose();
+    }
+    _ewsSessions.clear();
   }
 
   static DateTime _day(DateTime date, [int offset = 0]) =>
@@ -166,22 +198,25 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     });
     try {
       if (rediscover || !_discovered) {
-        _client?.close();
-        _client = null;
+        _closeConnections();
         _discovered = false;
         setState(() => _sources = {});
         final vault = await _storage.storage;
         final catalog = await StudioTaskAccountCatalog.load(vault);
         if (!current()) return;
         final accounts = catalog.records.entries
-            .where((entry) => entry.key.provider == 'caldav')
+            .where(
+              (entry) => const {'caldav', 'ews'}.contains(entry.key.provider),
+            )
             .toList(growable: false);
         _hasAccounts = accounts.isNotEmpty;
         final sources = <_CalendarKey, _CalendarSource>{};
         final issues = <String>[];
         if (accounts.isNotEmpty) {
           final client = _client =
-              widget.openDavClient?.call() ?? createNativeCalDavClient();
+              accounts.any((entry) => entry.key.provider == 'caldav')
+              ? widget.openDavClient?.call() ?? createNativeCalDavClient()
+              : null;
           bool authorized() =>
               mounted &&
               identical(_client, client) &&
@@ -189,30 +224,42 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
 
           final discoveries = await _loadBatches(accounts, (entry) async {
             final account = entry.key;
-            var label = 'CalDAV account';
+            var label = 'Calendar account';
             try {
               label = studioTaskAccountLabel(account, entry.value);
-              final provider = CalDavCalendarProvider(
-                account: account,
-                settings: studioDavSettings(
-                  entry.value,
-                  useTaskCollection: false,
-                ),
-                client: client,
-                appPassword: () async {
-                  if (!authorized()) return null;
-                  final fresh = await StudioTaskAccountCatalog.load(vault);
-                  if (!authorized()) return null;
-                  return fresh.records[account]?['secret'] as String?;
-                },
-              );
-              final result = await provider.discoverCalendars();
-              return (label: label, provider: provider, result: result);
+              Future<String?> password() async {
+                if (!authorized()) return null;
+                final fresh = await StudioTaskAccountCatalog.load(vault);
+                if (!authorized()) return null;
+                final record = fresh.records[account];
+                const route = [
+                  'url',
+                  'login',
+                  'domain',
+                  'mailbox',
+                  'davProfile',
+                ];
+                if (record == null ||
+                    route.any((field) => record[field] != entry.value[field])) {
+                  return null;
+                }
+                return record['secret'] as String?;
+              }
+
+              final result = account.provider == 'ews'
+                  ? await _discoverEws(account, entry.value, label, password)
+                  : await _discoverDav(
+                      account,
+                      entry.value,
+                      label,
+                      client!,
+                      password,
+                    );
+              return (label: label, result: result);
             } on Object {
               return (
                 label: label,
-                provider: null,
-                result: const TaskFailure<List<CalDavCalendar>>(
+                result: const TaskFailure<List<_CalendarSource>>(
                   TaskProblem(TaskProblemCode.invalidInput),
                 ),
               );
@@ -222,18 +269,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           for (final discovery in discoveries) {
             switch (discovery.result) {
               case TaskSuccess(:final value):
-                for (final calendar in value) {
-                  final key = _calendarKey(calendar);
-                  sources[key] = (
-                    provider: discovery.provider!,
-                    calendar: calendar,
-                    accountLabel: discovery.label,
-                    colorSlot: _colorSlots.putIfAbsent(
-                      key,
-                      () => _colorSlots.length,
-                    ),
-                  );
-                }
+                sources.addEntries(
+                  value.map((source) => MapEntry(source.key, source)),
+                );
               case TaskFailure(:final problem):
                 issues.add('${discovery.label} · ${_problem(problem.code)}');
             }
@@ -260,14 +298,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       final end = _end.toUtc();
       final results = await _loadBatches(
         visible,
-        (source) async => (
-          source: source,
-          result: await source.provider.agenda(
-            source.calendar,
-            start: start,
-            end: end,
-          ),
-        ),
+        (source) async =>
+            (source: source, result: await source.load(start, end)),
         current,
       );
       if (!current()) return;
@@ -305,6 +337,144 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     }
   }
 
+  Future<TaskResult<List<_CalendarSource>>> _discoverDav(
+    TaskAccountId account,
+    Map<String, Object?> record,
+    String label,
+    http.Client client,
+    Future<String?> Function() password,
+  ) async {
+    final provider = CalDavCalendarProvider(
+      account: account,
+      settings: studioDavSettings(record, useTaskCollection: false),
+      client: client,
+      appPassword: password,
+    );
+    return switch (await provider.discoverCalendars()) {
+      TaskFailure(:final problem) => TaskFailure(problem),
+      TaskSuccess(:final value) => TaskSuccess([
+        for (final calendar in value)
+          _source(
+            key: _calendarKey(calendar),
+            name: calendar.name,
+            label: label,
+            load: (start, end) =>
+                provider.agenda(calendar, start: start, end: end),
+            dav: (provider: provider, calendar: calendar),
+          ),
+      ]),
+    };
+  }
+
+  Future<TaskResult<List<_CalendarSource>>> _discoverEws(
+    TaskAccountId account,
+    Map<String, Object?> record,
+    String label,
+    Future<String?> Function() password,
+  ) async {
+    final mail = MailAccountId(
+      account.value,
+      profile: MailProfileId('calendar', hostId: 'crispoffice'),
+    );
+    final reference = MailCredentialReference(
+      account: mail,
+      key: 'ews-calendar',
+    );
+    final configuration = MailEwsConfiguration(
+      account: mail,
+      endpoint: Uri.parse(record['url'] as String),
+      username: record['login'] as String,
+      domain: record['domain'] as String,
+      credential: reference,
+      mailboxAddress: record['mailbox'] as String?,
+    );
+    final session = MailAccountSession(mail);
+    _ewsSessions.add(session);
+    final credentials = StudioEwsCredentials(reference, () async {
+      if (session.isDisposed) return null;
+      final secret = await password();
+      return session.isDisposed ? null : secret;
+    });
+    final reader =
+        widget.openEwsReader?.call(account, configuration, credentials) ??
+        createEwsCalendarReader(
+          account: account,
+          configuration: configuration,
+          credentialStore: credentials,
+        );
+    final calendars = await reader.calendars(session.begin());
+    if (session.isDisposed) {
+      return const TaskFailure(TaskProblem(TaskProblemCode.staleOperation));
+    }
+    if (calendars case TaskFailure(:final problem)) return TaskFailure(problem);
+    final entries = (calendars as TaskSuccess<List<EwsCalendar>>).value;
+    // The native EWS connection runs one operation at a time per account.
+    final queue = AsyncLock();
+    return TaskSuccess([
+      for (final calendar in entries)
+        _source(
+          key: (account: account, id: calendar.id.value),
+          name: calendar.name,
+          label: label,
+          load: (start, end) => queue.synchronized(() async {
+            if (session.isDisposed) {
+              return const TaskFailure(
+                TaskProblem(TaskProblemCode.staleOperation),
+              );
+            }
+            return switch (await reader.agenda(
+              calendar.id,
+              start: start,
+              end: end,
+              lease: session.begin(),
+            )) {
+              TaskFailure(:final problem) => TaskFailure(problem),
+              TaskSuccess(:final value) => TaskSuccess(
+                CalDavAgenda(
+                  value.map(_ewsEvent).toList(),
+                  unexpandedSeries: 0,
+                ),
+              ),
+            };
+          }),
+        ),
+    ]);
+  }
+
+  _CalendarSource _source({
+    required _CalendarKey key,
+    required String name,
+    required String label,
+    required Future<TaskResult<CalDavAgenda>> Function(DateTime, DateTime) load,
+    _DavCalendar? dav,
+  }) => (
+    key: key,
+    name: name,
+    accountLabel: label,
+    colorSlot: _colorSlots.putIfAbsent(key, () => _colorSlots.length),
+    load: load,
+    dav: dav,
+  );
+
+  static CalDavEvent _ewsEvent(EwsCalendarEvent event) {
+    CalDavDateValue date(DateTime instant, DateTime? civil) =>
+        CalDavDateValue.fromTaskDate(
+          civil == null
+              ? TaskDateTime(
+                  instant.toIso8601String().substring(0, 19),
+                  timeZone: 'UTC',
+                )
+              : TaskDate(civil.year, civil.month, civil.day),
+        );
+    return CalDavEvent(
+      uid: event.id,
+      title: event.title,
+      start: date(event.start, event.allDayStart),
+      end: date(event.end, event.allDayEnd),
+      location: event.location,
+    );
+  }
+
   static Future<List<R>> _loadBatches<T, R>(
     List<T> items,
     Future<R> Function(T) fetch,
@@ -333,7 +503,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   }
 
   String _sourceName(_CalendarSource source) =>
-      '${source.calendar.name} (${source.accountLabel})';
+      '${source.name} (${source.accountLabel})';
 
   void _navigate([int? direction]) {
     _anchor = direction == null
@@ -512,7 +682,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
 
   Future<_CalendarTarget?> _chooseCreationTarget() async {
     final writable = _visibleSources
-        .where((source) => source.calendar.canCreate)
+        .where((source) => source.dav?.calendar.canCreate == true)
         .toList();
     if (writable.isEmpty) return null;
     if (writable.length == 1) return _targetFor(writable.single);
@@ -660,10 +830,14 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   }
 
   String _problem(TaskProblemCode code) => switch (code) {
-    TaskProblemCode.authenticationRequired => 'Reconnect the CalDAV account.',
+    TaskProblemCode.authenticationRequired => 'Reconnect the calendar account.',
     TaskProblemCode.permissionDenied =>
       'This account cannot read the calendar.',
     TaskProblemCode.throttled => 'The calendar server asked to retry later.',
+    TaskProblemCode.quotaExceeded =>
+      'Too many events. Try a shorter date range.',
+    TaskProblemCode.unsupported =>
+      'This calendar connection is unavailable on this platform.',
     _ => 'Calendar could not load.',
   };
 
@@ -674,7 +848,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final colors = Theme.of(context).colorScheme;
     final byAccount = <TaskAccountId, List<_CalendarSource>>{};
     for (final source in _sources.values) {
-      byAccount.putIfAbsent(source.calendar.account, () => []).add(source);
+      byAccount.putIfAbsent(source.key.account, () => []).add(source);
     }
     final result = await showDialog<Set<_CalendarKey>>(
       context: context,
@@ -700,10 +874,13 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         size: 11,
                         color: _sourceColor(source, colors),
                       ),
-                      title: Text(source.calendar.name),
-                      value: selected.contains(_calendarKey(source.calendar)),
+                      title: Text(source.name),
+                      subtitle: source.dav == null
+                          ? const Text('Read-only')
+                          : null,
+                      value: selected.contains(source.key),
                       onChanged: (checked) => refresh(() {
-                        final key = _calendarKey(source.calendar);
+                        final key = source.key;
                         if (checked == true) {
                           selected.add(key);
                         } else {
@@ -771,7 +948,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
 
   String _emptyMessage(bool filtering, int shownCalendars, String period) {
     if (!_hasAccounts) {
-      return 'Connect a CalDAV account in Tasks to see its calendars here.';
+      return 'Connect a CalDAV or Exchange EWS account in Tasks to see its calendars here.';
     }
     if (_sources.isEmpty) {
       return _issues.isEmpty
@@ -803,7 +980,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final visible = _visibleSources.toList(growable: false);
     final multiple = visible.length > 1;
     final canCreate =
-        !_busy && visible.any((source) => source.calendar.canCreate);
+        !_busy &&
+        visible.any((source) => source.dav?.calendar.canCreate == true);
     final period = _period.label.toLowerCase();
     StudioCmd command(
       IconData icon,
@@ -945,7 +1123,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                           ? 'Choose calendars'
                           : multiple
                           ? '${visible.length} calendars'
-                          : visible.single.calendar.name,
+                          : visible.single.name,
                     ),
                   ),
                 if (visible.isNotEmpty)
