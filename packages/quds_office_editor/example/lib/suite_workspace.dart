@@ -120,6 +120,9 @@ class SuiteWorkspace extends StatefulWidget {
 
 class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   SuiteApp _app = SuiteApp.word;
+  final Set<SuiteApp> _closedFiles = <SuiteApp>{};
+  bool _closingFile = false;
+  bool get _hasActiveFile => !_closedFiles.contains(_app);
   SuiteLook _look = SuiteLook.light;
   OfficeInteractionMode _mode = OfficeInteractionMode.editing;
   _RibbonTab _tab = _RibbonTab.home;
@@ -735,12 +738,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 Column(
                                   children: <Widget>[
                                     _titleBar(),
-                                    _tabStrip(dark),
-                                    _ribbon(dark),
-                                    if (_showPasteOptions)
-                                      _pasteOptionsBar(dark),
-                                    Expanded(child: _body(dark)),
-                                    _statusBar(),
+                                    if (_hasActiveFile || _opening) ...[
+                                      _tabStrip(dark),
+                                      _ribbon(dark),
+                                      if (_showPasteOptions)
+                                        _pasteOptionsBar(dark),
+                                      Expanded(child: _body(dark)),
+                                      _statusBar(),
+                                    ] else
+                                      Expanded(child: _closedFileView()),
                                   ],
                                 ),
                                 if (_mailEverOpened)
@@ -906,7 +912,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (StudioWindow.isDesktop) ...<ShortcutActivator, VoidCallback>{
       _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
       _fileShortcut(LogicalKeyboardKey.keyO): _openFile,
-      _fileShortcut(LogicalKeyboardKey.keyW): StudioWindow.close,
+      _fileShortcut(LogicalKeyboardKey.keyW): _closeActiveFile,
     },
     const SingleActivator(LogicalKeyboardKey.keyS, control: true, shift: true):
         _saveFileAs,
@@ -1104,7 +1110,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Map<ShortcutActivator, VoidCallback> _reservedShortcutBindings() {
-    if (_mailOpen || _tasksOpen || _calendarOpen) {
+    if (_mailOpen || _tasksOpen || _calendarOpen || !_hasActiveFile) {
       return const <ShortcutActivator, VoidCallback>{};
     }
     final base = _baseShortcutBindings();
@@ -1227,10 +1233,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (!mounted) return false;
     // Native text Actions remain valid in Mail or a dialog. Their fallback
     // separately refuses to reach a hidden document.
-    if (id.startsWith('edit.')) return true;
+    if (id.startsWith('edit.')) {
+      return _hasActiveFile || _focusedTextInput != null;
+    }
     if (_mailOpen || _tasksOpen || _calendarOpen || !_wordRouteIsCurrent) {
       return false;
     }
+    if (id == 'file.new' || id == 'file.open') return _fileActionsAvailable;
+    if (!_hasActiveFile) return false;
     if (id.startsWith('file.')) return _fileActionsAvailable;
     final textInput = _focusedTextInput != null;
     final commentFormatting =
@@ -1256,7 +1266,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     'file.open': () => unawaited(_openFile()),
     'file.save': () => unawaited(_saveFile()),
     'file.saveAs': () => unawaited(_saveFileAs()),
-    'file.close': StudioWindow.close,
+    'file.close': () => unawaited(_closeActiveFile()),
     'edit.undo': () => _dispatchTextAction(
       const UndoTextIntent(SelectionChangedCause.keyboard),
       _undo,
@@ -1336,6 +1346,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   List<List<StudioMenuAction>> get _desktopFileGroups {
     final bool enabled = _fileActionsAvailable;
+    final bool hasFile = enabled && _hasActiveFile;
+    final closeBinding = StudioShortcutCatalog.resolve(
+      _acceptedShortcutOverrides(_baseShortcutBindings()),
+      mac: StudioWindow.isMacOS,
+    )['file.close'];
     return <List<StudioMenuAction>>[
       <StudioMenuAction>[
         StudioMenuAction(
@@ -1366,21 +1381,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           label: _strings.save,
           icon: Icons.save_outlined,
           shortcut: _fileShortcut(LogicalKeyboardKey.keyS),
-          onSelected: enabled ? _saveFile : null,
+          onSelected: hasFile ? _saveFile : null,
         ),
         StudioMenuAction(
           id: 'save-as',
           label: _t('Save As…', 'Speichern unter…', 'حفظ باسم…'),
           icon: Icons.save_as_outlined,
           shortcut: _fileShortcut(LogicalKeyboardKey.keyS, shift: true),
-          onSelected: enabled ? _saveFileAs : null,
+          onSelected: hasFile ? _saveFileAs : null,
         ),
         StudioMenuAction(
           id: 'export-pdf',
           label: _t('Export PDF…', 'PDF exportieren…', 'تصدير PDF…'),
           icon: Icons.picture_as_pdf_outlined,
           shortcut: _fileShortcut(LogicalKeyboardKey.keyP),
-          onSelected: enabled ? _exportPdf : null,
+          onSelected: hasFile ? _exportPdf : null,
         ),
         if (_app == SuiteApp.word)
           StudioMenuAction(
@@ -1397,11 +1412,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       <StudioMenuAction>[
         StudioMenuAction(
           id: 'close',
-          label: _t('Close Window', 'Fenster schließen', 'إغلاق النافذة'),
+          label: _t('Close File', 'Datei schließen', 'إغلاق الملف'),
           icon: Icons.close,
-          shortcut: _fileShortcut(LogicalKeyboardKey.keyW),
-          onSelected: enabled && StudioWindow.supported
-              ? StudioWindow.close
+          shortcut: closeBinding?.activator,
+          onSelected: hasFile && !_mailOpen && !_tasksOpen && !_calendarOpen
+              ? _closeActiveFile
               : null,
         ),
       ],
@@ -1519,10 +1534,107 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _active.commands.clear();
       _active.markClean();
     }
-    setState(
-      () => _tab = _app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home,
-    );
+    setState(() {
+      _closedFiles.remove(requestedApp);
+      _tab = _app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
+    });
   }
+
+  Future<void> _closeActiveFile() async {
+    if (_closingFile || !_shortcutAllowed('file.close')) return;
+    _closingFile = true;
+    final app = _app;
+    try {
+      if (app != SuiteApp.pdf) {
+        try {
+          _active.commitPendingEdits();
+        } on StateError catch (error) {
+          if (app != SuiteApp.excel ||
+              _sheet.lastValidationError != error.message) {
+            rethrow;
+          }
+          _toast(
+            _t(
+              'Correct the current cell before closing the file.',
+              'Korrigieren Sie die aktuelle Zelle, bevor Sie die Datei schließen.',
+              'صحّح الخلية الحالية قبل إغلاق الملف.',
+            ),
+          );
+          return;
+        }
+      }
+      if (!await _confirmSaveActiveFile() || !mounted || _app != app) return;
+      final recentAccess = _recentAccess.remove(app);
+      if (recentAccess != null) unawaited(recentAccess.close());
+      switch (app) {
+        case SuiteApp.word:
+          _newWord();
+        case SuiteApp.excel:
+          _newSheet();
+        case SuiteApp.powerpoint:
+          _newSlides();
+        case SuiteApp.pdf:
+          final previous = _pdfController;
+          _pdfController = null;
+          _pdfPath = null;
+          _pdfFindDebounce?.cancel();
+          _pdfFind.clear();
+          if (previous != null) {
+            previous.removeListener(_rebuild);
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => previous.dispose(),
+            );
+          }
+      }
+      if (app != SuiteApp.pdf) {
+        _active.commands.clear();
+        _active.markClean();
+      }
+      _dismissCommentContext();
+      _zoteroHostGeneration++;
+      setState(() {
+        _closedFiles.add(app);
+        _findOpen = false;
+        _showPasteOptions = false;
+      });
+      unawaited(StudioWindow.setTitle(_strings.appTitle));
+    } finally {
+      _closingFile = false;
+    }
+  }
+
+  Widget _closedFileView() => Center(
+    key: const ValueKey<String>('studio-closed-file'),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(_t('No file open', 'Keine Datei geöffnet', 'لا يوجد ملف مفتوح')),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 8,
+          alignment: WrapAlignment.center,
+          children: [
+            FilledButton.icon(
+              autofocus: true,
+              onPressed: _newActiveFile,
+              icon: const Icon(Icons.note_add_outlined),
+              label: Text(_t('New', 'Neu', 'جديد')),
+            ),
+            OutlinedButton.icon(
+              onPressed: _openFile,
+              icon: const Icon(Icons.folder_open),
+              label: Text(_t('Open…', 'Öffnen…', 'فتح…')),
+            ),
+            if (!kIsWeb)
+              TextButton(
+                onPressed: _openRecentFiles,
+                child: Text(_recentFilesLabel),
+              ),
+          ],
+        ),
+      ],
+    ),
+  );
 
   Future<void> _saveFileAs() async {
     if (!_fileActionsAvailable) return;
@@ -1546,8 +1658,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<bool> _confirmSaveActiveFile() async {
-    final bool dirty = _app == SuiteApp.pdf ? _pdf.isDirty : _active.isDirty;
-    if (!dirty) return true;
+    if (!_hasActiveFile) return true;
+    final requestedApp = _app;
+    bool isDirty() =>
+        requestedApp == SuiteApp.pdf ? _pdf.isDirty : _active.isDirty;
+    if (!isDirty()) return true;
     final bool? save = await showDialog<bool>(
       context: _themedContext,
       builder: (BuildContext context) => AlertDialog(
@@ -1577,12 +1692,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
     );
-    if (!mounted || save == null) return false;
-    return !save || await _saveFile();
+    if (!mounted || _app != requestedApp || save == null) return false;
+    if (!save) return true;
+    return await _saveFile() && mounted && _app == requestedApp && !isDirty();
   }
 
   Future<bool> _confirmCloseWorkspace() async {
-    if (_opening || _isSaving) return false;
+    if (_closingFile || _opening || _isSaving) return false;
     final workspaceRoute = ModalRoute.of(context);
     final navigator = Navigator.of(context);
     // Dismiss each route through its own close guard. In particular the Mail
@@ -1623,6 +1739,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
     final SuiteApp previous = _app;
     for (final SuiteApp app in SuiteApp.values) {
+      if (_closedFiles.contains(app)) continue;
       final bool dirty = switch (app) {
         SuiteApp.word => _word.isDirty,
         SuiteApp.excel => _sheet.isDirty,
@@ -1717,7 +1834,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               label: _t('File', 'Datei', 'ملف'),
                               groups: _desktopFileGroups,
                             ),
-                          if (document) _titleQuickAccess(),
+                          if (document && _hasActiveFile) _titleQuickAccess(),
                           Row(
                             children: <Widget>[
                               StudioAppSwitcher(
@@ -1794,7 +1911,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                         : tasks
                                         ? _t('Tasks', 'Aufgaben', 'المهام')
                                         : document
-                                        ? _documentLabel
+                                        ? _chromeTitle
                                         : _strings.mailTitle,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -1943,7 +2060,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  String get _chromeTitle => _documentLabel;
+  String get _chromeTitle =>
+      _hasActiveFile ? _documentLabel : _strings.appTitle;
 
   String get _documentLabel {
     final String name = switch (_app) {
@@ -3448,6 +3566,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     setState(() {
       _pdfPath = null;
       _pdfName = output.name;
+      _closedFiles.remove(SuiteApp.pdf);
       _pdfThumbSyncedPage = -1;
     });
   }
@@ -3499,6 +3618,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       setState(() {
         _pdfPath = file.path;
         _pdfName = sample.fileName;
+        _closedFiles.remove(SuiteApp.pdf);
         _pdfThumbSyncedPage = -1;
         _openProgress = 1;
         _galleryKind = sample.kind;
@@ -7361,6 +7481,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       );
     }
     if (previous != null) unawaited(previous.close());
+    if (_closedFiles.contains(app)) setState(() => _closedFiles.remove(app));
   }
 
   Future<void> _openFile() async {
@@ -7796,7 +7917,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<bool> _saveFile({bool saveAs = false}) async {
-    if (!_fileActionsAvailable) return false;
+    if (!_fileActionsAvailable || !_hasActiveFile) return false;
     final SuiteApp savedApp = _app;
     final OfficeController? controller = savedApp == SuiteApp.pdf
         ? null

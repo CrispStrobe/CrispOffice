@@ -165,7 +165,7 @@ abstract final class StudioShortcutCatalog {
     ),
     StudioShortcutAction(
       id: 'file.close',
-      label: 'Close window',
+      label: 'Close file',
       key: LogicalKeyboardKey.keyW,
     ),
     StudioShortcutAction(

@@ -164,6 +164,54 @@ void main() {
     });
   });
 
+  testWidgets('Cmd+W closes only the active file after the save guard', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    final cell = controller.activeCell;
+    controller.beginCellEdit();
+    _type(controller, 'test draft');
+
+    Future<void> closeWithKeyboard() async {
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.metaLeft);
+      await tester.sendKeyEvent(LogicalKeyboardKey.keyW);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.metaLeft);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+    }
+
+    final closed = find.byKey(const ValueKey<String>('studio-closed-file'));
+    await closeWithKeyboard();
+    expect(find.text('Save changes?'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(controller.sheet.cell(cell).asString, 'test draft');
+    expect(closed, findsNothing);
+
+    await closeWithKeyboard();
+    await tester.tap(find.text('Don’t Save'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(closed, findsOneWidget);
+    expect(find.byType(QudsSheetEditor), findsNothing);
+
+    await tester.tap(find.byTooltip('Documents').first);
+    await tester.pump();
+    expect(find.byType(QudsWordEditor), findsOneWidget);
+    await tester.tap(find.byTooltip('Spreadsheets').first);
+    await tester.pump();
+    expect(closed, findsOneWidget);
+
+    await tester.tap(find.descendant(of: closed, matching: find.text('New')));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(find.byType(QudsSheetEditor), findsOneWidget);
+    expect(controller.sheet.cell(cell).asString, isEmpty);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  }, variant: const TargetPlatformVariant({TargetPlatform.macOS}));
+
   testWidgets('the spreadsheet fx bar edits the active cell as a text field', (
     tester,
   ) async {
