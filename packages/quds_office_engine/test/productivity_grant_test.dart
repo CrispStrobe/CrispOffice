@@ -223,6 +223,124 @@ void main() {
     },
   );
 
+  test(
+    'write suggestions queue immutable review and reject extra destinations',
+    () async {
+      final proposals = ProductivityProposals(ProductivityKind.mail);
+      final grant = await ProductivityGrant.open(
+        isCurrent: () => true,
+        session: ProductivityMcp.live(
+          kind: ProductivityKind.mail,
+          read: () => throw StateError('Unexpected read'),
+          proposals: proposals,
+        ),
+      );
+      addTearDown(grant.revoke);
+      final relay = ProductivityGrantRelay(grant.ticket);
+      addTearDown(relay.close);
+      await _start(relay);
+      Future<Map<String, Object?>?> propose(Map<String, Object?> arguments) =>
+          relay.forward(
+            _request('tools/call', {
+              'name': 'mail_propose_draft',
+              'arguments': arguments,
+            }),
+          );
+      expect(
+        await propose({'title': 'Draft', 'to': 'someone@example.test'}),
+        contains('error'),
+      );
+      expect(proposals.pending, isNull);
+      expect(
+        _result(await propose({'title': 'Draft', 'text': 'Example'}))['status'],
+        'awaiting_review',
+      );
+      final pending = proposals.pending!;
+      expect(pending.text, 'Example');
+      expect(await propose({'title': 'Replacement'}), contains('error'));
+      expect(proposals.resolve(pending, review: true), isTrue);
+      expect(proposals.resolve(pending, review: true), isFalse);
+      expect(
+        _result(
+          await relay.forward(
+            _request('tools/call', {'name': 'productivity_proposal_status'}),
+          ),
+        )['status'],
+        'reviewed',
+      );
+      expect(grant.successfulReads, 1);
+    },
+  );
+
+  test(
+    'mail text handles are grant-local and recheck authority after reading',
+    () async {
+      var allowed = true;
+      var reads = 0;
+      final grant = await ProductivityGrant.open(
+        isCurrent: () => allowed,
+        session: ProductivityMcp.live(
+          kind: ProductivityKind.mail,
+          read: () => throw StateError('Unexpected read'),
+          mailSelection: ProductivityMailSelection(['First'], (index, _) async {
+            reads++;
+            expect(index, 0);
+            allowed = false;
+            return ProductivityMailText(subject: 'First', text: 'Private');
+          }),
+          isCurrent: () => allowed,
+        ),
+      );
+      addTearDown(grant.revoke);
+      final relay = ProductivityGrantRelay(grant.ticket);
+      addTearDown(relay.close);
+      await _start(relay);
+      final handles = await relay.forward(
+        _request('tools/call', {'name': 'mail_list_approved_text'}),
+      );
+      expect(_result(handles)['messages'], [
+        {'handle': 1, 'subject': 'First'},
+      ]);
+      Future<Map<String, Object?>?> read(int handle) => relay.forward(
+        _request('tools/call', {
+          'name': 'mail_read_approved_text',
+          'arguments': {'handle': handle},
+        }),
+      );
+      expect(await read(2), contains('error'));
+      expect(reads, 0);
+      expect(await read(1), contains('error'));
+      expect(reads, 1);
+    },
+  );
+
+  test('calendar proposals reject invalid or reversed UTC times', () {
+    final proposals = ProductivityProposals(ProductivityKind.calendar);
+    expect(
+      () => proposals.propose({
+        'title': 'Event',
+        'start': '2026-02-30T10:00:00Z',
+        'end': '2026-03-02T11:00:00Z',
+      }),
+      throwsFormatException,
+    );
+    expect(
+      () => proposals.propose({
+        'title': 'Event',
+        'start': '2026-11-26T10:00:00Z',
+        'end': '2026-11-26T09:00:00Z',
+      }),
+      throwsFormatException,
+    );
+    expect(proposals.pending, isNull);
+    proposals.propose({
+      'title': 'Event',
+      'start': '2026-11-26T10:00:00Z',
+      'end': '2026-11-26T11:00:00Z',
+    });
+    expect(proposals.pending!.start, DateTime.utc(2026, 11, 26, 10));
+  });
+
   test('grants expire and bound request rates', () async {
     final session = ProductivityMcp.live(
       kind: ProductivityKind.calendar,

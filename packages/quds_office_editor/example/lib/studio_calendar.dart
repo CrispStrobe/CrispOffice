@@ -644,8 +644,13 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     return null;
   }
 
-  Future<void> _editEvent({CalDavEvent? event, DateTime? startsAt}) async {
-    if (_busy) return;
+  Future<void> _editEvent({
+    CalDavEvent? event,
+    DateTime? startsAt,
+    CalDavEvent? draft,
+    bool Function()? canSave,
+  }) async {
+    if (_busy || canSave?.call() == false) return;
     final target = event == null
         ? await _chooseCreationTarget()
         : _eventSources[event] == null
@@ -653,6 +658,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         : _targetFor(_eventSources[event]!);
     if (target == null ||
         !_currentTarget(target) ||
+        canSave?.call() == false ||
         _busy ||
         (event == null
             ? !target.calendar.canCreate
@@ -676,8 +682,16 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                 _sources[_calendarKey(target.calendar)] != null
             ? _sourceName(_sources[_calendarKey(target.calendar)]!)
             : target.calendar.name,
-        event: editable?.event,
-        save: (fields) => _submitEvent(target, editable, fields),
+        event: editable?.event ?? draft,
+        save: (fields) async {
+          if (canSave?.call() == false) {
+            return (
+              message: 'The live grant has expired or was revoked.',
+              retryable: false,
+            );
+          }
+          return _submitEvent(target, editable, fields);
+        },
       ),
     );
   }
@@ -1072,6 +1086,41 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                           }
                           return _eventDisplayRows(events);
                         },
+                        reviewProposal: !canCreate
+                            ? null
+                            : (proposal, current) async {
+                                final start = proposal.start!;
+                                final end = proposal.end!;
+                                if (!current() ||
+                                    start.isBefore(_start) ||
+                                    !start.isBefore(_end) ||
+                                    end.isAfter(_end)) {
+                                  if (mounted && current()) {
+                                    setState(
+                                      () => _notice =
+                                          'The suggestion falls outside the granted date range.',
+                                    );
+                                  }
+                                  return;
+                                }
+                                CalDavDateValue value(DateTime time) =>
+                                    CalDavDateValue.fromTaskDate(
+                                      TaskDateTime(
+                                        time.toIso8601String().substring(0, 19),
+                                        timeZone: 'UTC',
+                                      ),
+                                    );
+                                await _editEvent(
+                                  draft: CalDavEvent(
+                                    uid: '',
+                                    title: proposal.title,
+                                    start: value(start),
+                                    end: value(end),
+                                    description: proposal.text,
+                                  ),
+                                  canSave: current,
+                                );
+                              },
                         enabled: !_busy && _agenda != null,
                       ),
                     ],

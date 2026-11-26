@@ -760,13 +760,17 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     TaskFields? existing, {
     LocalTaskEdit? edit,
     RemoteTask? remote,
+    bool Function()? canSave,
   }) async {
     final list = _selected;
     final value = await showDialog<TaskFields>(
       context: context,
       builder: (_) => StudioTaskFieldsDialog(fields: existing),
     );
-    if (mounted && value != null && list == _selected) {
+    if (mounted &&
+        value != null &&
+        list == _selected &&
+        (canSave?.call() ?? true)) {
       _save(value, edit, remote);
     }
   }
@@ -884,6 +888,18 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       scopeKey: liveScope,
       scopeIsCurrent: () => mounted && liveScope == _liveScope(),
       readRows: () => _taskDisplayRows(exportable),
+      reviewProposal: _selection.list.readOnly
+          ? null
+          : (proposal, current) async {
+              if (!current() || _selection.list.readOnly) return;
+              await _edit(
+                TaskFields(
+                  title: proposal.title,
+                  notes: proposal.text.isEmpty ? null : TaskText(proposal.text),
+                ),
+                canSave: current,
+              );
+            },
       enabled: ready && !busy,
     );
     return Scaffold(

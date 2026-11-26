@@ -559,10 +559,22 @@ The client reads the latest rows that Studio has loaded for the authorized
 mailbox, task list and filter, or calendar selection and date range. It can
 see changes as Studio refreshes that view. The grant does not trigger a
 provider sync or authorize another folder, list, calendar or date range.
-Mail includes a separate opt-in for the bounded plain text of the single
-message open at grant time. It does not share the text of a different
-message opened later. Attachments, raw MIME, HTML and provider credentials
-are excluded. All tools are read-only.
+Mail includes separate opt-ins for the plain text of the open email and, for
+Exchange EWS, Gmail and Microsoft 365, for up to 250 messages already loaded in
+the selected folder when the grant is issued. Use `mail_list_approved_text`
+and `mail_read_approved_text` for those messages. The app checks the exact
+message identity and folder before and after fetching. Attachments, raw MIME,
+HTML and credentials are excluded from tool results. IMAP currently offers
+the open-email option.
+
+To let the client queue suggestions, enable **Allow suggestions for review**
+while granting access. Open **Live MCP access** again and choose **Review
+suggestion** to inspect the content. Dismiss it, or open it in the normal app
+editor. Supported suggestions create an unsent Mail draft with an empty
+recipient field, a new task in a writable list, or an appointment in a
+writable CalDAV calendar within the visible date range. Status reports review
+only. Saving, sending, deleting and issuing invitations require human action
+through the app. A grant has space for one pending suggestion at a time.
 
 Both the grant transport and stdio executable run in native Dart. Studio
 supplies the selected data, consent and revocation. The app binds one private
@@ -582,9 +594,9 @@ The Dart domain and transport layers already handle most of the underlying work.
 
 As with the OOXML engine, a Dart host can supply credentials, HTTP clients,
 database paths and operation leases directly. Snapshot access uses an offline
-file, and live access uses a host-side grant for one view. Sending mail,
-deleting items and issuing invitations still need separate confirmed host
-commands.
+file, and live access uses a host-side grant for one view. The app handles
+proposal review and performs any subsequent user-approved work through its
+normal editor and outbox.
 
 ## MCP security and headless hosting
 

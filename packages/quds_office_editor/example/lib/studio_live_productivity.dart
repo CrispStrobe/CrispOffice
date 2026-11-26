@@ -19,6 +19,8 @@ final class StudioLiveProductivityButton extends StatefulWidget {
     required this.scopeIsCurrent,
     required this.readRows,
     this.openedMail,
+    this.reviewProposal,
+    this.captureMailSelection,
     this.enabled = true,
   });
 
@@ -28,6 +30,9 @@ final class StudioLiveProductivityButton extends StatefulWidget {
   final bool Function() scopeIsCurrent;
   final Iterable<Map<String, Object>> Function() readRows;
   final MailMessage? Function()? openedMail;
+  final Future<void> Function(ProductivityProposal, bool Function())?
+  reviewProposal;
+  final ProductivityMailSelection? Function()? captureMailSelection;
   final bool enabled;
 
   @override
@@ -38,6 +43,7 @@ final class StudioLiveProductivityButton extends StatefulWidget {
 final class _StudioLiveProductivityButtonState
     extends State<StudioLiveProductivityButton> {
   ProductivityGrant? _grant;
+  ProductivityProposals? _proposals;
   bool _opening = false;
 
   @override
@@ -51,6 +57,7 @@ final class _StudioLiveProductivityButtonState
   void _revoke() {
     final grant = _grant;
     _grant = null;
+    _proposals = null;
     if (grant != null) unawaited(grant.revoke());
   }
 
@@ -72,6 +79,9 @@ final class _StudioLiveProductivityButtonState
     bool isCurrent() => mounted && key == widget.scopeKey && scopeIsCurrent();
     final message = widget.openedMail?.call();
     var includeText = false;
+    var allowProposals = false;
+    var includeMailboxText = false;
+    final mailbox = widget.captureMailSelection?.call();
     setState(() => _opening = true);
     try {
       final allowed = await showDialog<bool>(
@@ -87,6 +97,30 @@ final class _StudioLiveProductivityButtonState
                   'Share display fields from $scope for up to 10 minutes. '
                   'The MCP client can copy the returned data.',
                 ),
+                if (widget.reviewProposal != null)
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Allow suggestions for review'),
+                    subtitle: const Text(
+                      'Suggestions wait here until you open them in the editor.',
+                    ),
+                    value: allowProposals,
+                    onChanged: (value) =>
+                        update(() => allowProposals = value ?? false),
+                  ),
+                if (mailbox != null && mailbox.subjects.isNotEmpty)
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text(
+                      'Include plain text from loaded messages',
+                    ),
+                    subtitle: Text(
+                      '${mailbox.subjects.length} messages currently loaded in this folder.',
+                    ),
+                    value: includeMailboxText,
+                    onChanged: (value) =>
+                        update(() => includeMailboxText = value ?? false),
+                  ),
                 if (message?.body.plainText?.isNotEmpty == true)
                   CheckboxListTile(
                     contentPadding: EdgeInsets.zero,
@@ -115,9 +149,15 @@ final class _StudioLiveProductivityButtonState
       );
       if (allowed != true || !isCurrent()) return;
       final kind = widget.kind;
+      final proposals = allowProposals && widget.reviewProposal != null
+          ? ProductivityProposals(kind)
+          : null;
       final grant = await ProductivityGrant.open(
         session: ProductivityMcp.live(
           kind: kind,
+          proposals: proposals,
+          mailSelection: includeMailboxText ? mailbox : null,
+          isCurrent: () => isCurrent() && _grant?.isActive == true,
           read: () => ProductivitySnapshot.capture(
             kind: kind,
             capturedAt: DateTime.now(),
@@ -141,7 +181,10 @@ final class _StudioLiveProductivityButtonState
         await grant.revoke();
         return;
       }
-      setState(() => _grant = grant);
+      setState(() {
+        _grant = grant;
+        _proposals = proposals;
+      });
       await _showTicket(grant);
     } on Object {
       if (mounted) {
@@ -157,7 +200,7 @@ final class _StudioLiveProductivityButtonState
   }
 
   Future<void> _showTicket(ProductivityGrant grant) async {
-    final revoke = await showDialog<bool>(
+    final action = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Live MCP access'),
@@ -168,12 +211,17 @@ final class _StudioLiveProductivityButtonState
           'Successful reads so far: ${grant.successfulReads}',
         ),
         actions: [
+          if (_proposals?.pending != null)
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'review'),
+              child: const Text('Review suggestion'),
+            ),
           TextButton(
-            onPressed: () => Navigator.pop(context, true),
+            onPressed: () => Navigator.pop(context, 'revoke'),
             child: const Text('Revoke access'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, false),
+            onPressed: () => Navigator.pop(context),
             child: const Text('Done'),
           ),
           FilledButton(
@@ -182,15 +230,61 @@ final class _StudioLiveProductivityButtonState
               await Clipboard.setData(
                 ClipboardData(text: grant.ticket.relayCredential),
               );
-              if (context.mounted) Navigator.pop(context, false);
+              if (context.mounted) Navigator.pop(context);
             },
             child: const Text('Copy grant'),
           ),
         ],
       ),
     );
-    if (revoke == true && mounted && identical(_grant, grant)) {
-      setState(_revoke);
+    if (!mounted || !identical(_grant, grant)) return;
+    if (action == 'revoke') setState(_revoke);
+    if (action == 'review') await _review(grant);
+  }
+
+  Future<void> _review(ProductivityGrant grant) async {
+    final proposals = _proposals;
+    final pending = proposals?.pending;
+    if (proposals == null || pending == null || !grant.isActive) return;
+    final review = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Review MCP suggestion'),
+        scrollable: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Scope: ${widget.scope}'),
+            Text(pending.title),
+            if (pending.start case final start?)
+              Text(
+                '${start.toIso8601String()} – ${pending.end!.toIso8601String()}',
+              ),
+            if (pending.text.isNotEmpty) Text(pending.text),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Back'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Dismiss suggestion'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Open in editor'),
+          ),
+        ],
+      ),
+    );
+    bool current() => mounted && identical(_grant, grant) && grant.isActive;
+    final open = widget.reviewProposal;
+    if (review == null || !current() || (review && open == null)) return;
+    if (proposals.resolve(pending, review: review) && review) {
+      await open!(pending, current);
     }
   }
 

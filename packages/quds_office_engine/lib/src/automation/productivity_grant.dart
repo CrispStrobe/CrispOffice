@@ -9,6 +9,7 @@ const _grantPath = '/productivity-grant';
 const _maxRequestBytes = 32 * 1024;
 const _maxResponseBytes = 2 * 1024 * 1024;
 const _wireTimeout = Duration(seconds: 3);
+const _operationTimeout = Duration(seconds: 20);
 
 /// One ephemeral credential for the local relay. The ticket never contains a
 /// provider credential. Keep it out of arguments, logs, and tool results.
@@ -149,7 +150,9 @@ final class ProductivityGrant {
         return;
       }
       final requestData = jsonDecode(utf8.decode(input));
-      final reply = await _session.handleMessage(requestData);
+      final reply = await _session
+          .handleMessage(requestData)
+          .timeout(_operationTimeout);
       if (!isActive) {
         response.statusCode = HttpStatus.forbidden;
         return;
@@ -166,8 +169,13 @@ final class ProductivityGrant {
       response.headers.contentType = ContentType.json;
       response.add(output);
       final result = reply['result'];
+      final params = requestData is Map<String, Object?>
+          ? requestData['params']
+          : null;
       if (requestData is Map<String, Object?> &&
           requestData['method'] == 'tools/call' &&
+          params is Map<String, Object?> &&
+          _session.isReadTool(params['name']) &&
           result is Map<String, Object?> &&
           result['isError'] == false) {
         _successfulReads++;
@@ -246,7 +254,9 @@ final class ProductivityGrantRelay {
       );
       connection.contentLength = body.length;
       connection.add(body);
-      final response = await connection.close().timeout(_wireTimeout);
+      final response = await connection.close().timeout(
+        _operationTimeout + _wireTimeout,
+      );
       final output = await _readBytes(response, _maxResponseBytes);
       return switch (response.statusCode) {
         HttpStatus.noContent => null,

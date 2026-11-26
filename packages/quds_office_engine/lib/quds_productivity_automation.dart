@@ -2,3 +2,4 @@
 library;
 
 export 'src/automation/productivity_snapshot.dart';
+export 'src/automation/productivity_proposal.dart';

@@ -3,6 +3,8 @@ import 'dart:io' as io;
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:quds_office_engine/quds_productivity_automation.dart'
+    show ProductivityMailSelection, ProductivityMailText, ProductivitySnapshot;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
@@ -3280,6 +3282,64 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       ? null
       : (_session, _mailbox!.id);
 
+  ProductivityMailSelection? _captureMcpMailbox() {
+    final provider = _provider;
+    final mailbox = _mailbox;
+    final session = _session;
+    if (provider is! MailMembershipObserver ||
+        mailbox == null ||
+        session == null ||
+        session.isDisposed ||
+        _blocked) {
+      return null;
+    }
+    final headers = _headers.take(ProductivitySnapshot.maxRows).toList();
+    final lease = session.begin();
+    final observer = provider as MailMembershipObserver;
+    return ProductivityMailSelection(
+      headers.map((header) => header.envelope.subject),
+      (index, current) async {
+        bool allowed() =>
+            current() &&
+            mounted &&
+            !_blocked &&
+            _current(provider as MailProvider, lease) &&
+            _mailbox?.id == mailbox.id;
+        if (!allowed()) return null;
+        final header = headers[index];
+        Future<bool> inFolder() async {
+          final membership = await observer.observeMembership(
+            header.remote,
+            lease: lease,
+          );
+          return allowed() &&
+              membership is MailSuccess<MailMembershipObservation> &&
+              membership.value.identity == header.remote &&
+              membership.value.kind == MailMembershipObservationKind.present &&
+              membership.value.mailboxes.contains(mailbox.id);
+        }
+
+        if (!await inFolder()) return null;
+        final result = await (provider as MailProvider).fetchMessage(
+          header.remote,
+          budget: const MailReadBudget(maxRawBytes: 2 * 1024 * 1024),
+          lease: lease,
+        );
+        if (!allowed() ||
+            result is! MailSuccess<MailMessage> ||
+            result.value.remoteIdentity != header.remote ||
+            result.value.body.plainText == null ||
+            !await inFolder()) {
+          return null;
+        }
+        return ProductivityMailText(
+          subject: result.value.envelope.subject,
+          text: result.value.body.plainText!,
+        );
+      },
+    );
+  }
+
   Widget _liveButton() {
     final scope = _liveScope();
     final session = _session;
@@ -3297,7 +3357,19 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         if (_blocked) throw StateError('Mailbox is unavailable');
         return _mailDisplayRows();
       },
+      reviewProposal: (proposal, current) async {
+        if (current()) {
+          await _compose(
+            StudioMailDraft(
+              to: '',
+              subject: proposal.title,
+              body: proposal.text,
+            ),
+          );
+        }
+      },
       openedMail: () => _reader?.result.message,
+      captureMailSelection: _captureMcpMailbox,
       enabled: !_blocked,
     );
   }

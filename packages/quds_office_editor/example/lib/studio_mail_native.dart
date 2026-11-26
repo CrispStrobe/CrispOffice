@@ -5358,6 +5358,17 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               if (_busy) throw StateError('Mailbox is unavailable');
               return _mailDisplayRows();
             },
+            reviewProposal: (proposal, current) async {
+              if (current()) {
+                await _openComposer(
+                  StudioMailDraft(
+                    to: '',
+                    subject: proposal.title,
+                    body: proposal.text,
+                  ),
+                );
+              }
+            },
             openedMail: () => _reader?.result.message,
             enabled: !_busy && !_dialogOpen,
           ),
