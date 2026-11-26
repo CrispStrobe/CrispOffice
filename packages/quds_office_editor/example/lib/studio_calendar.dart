@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
+import 'studio_calendar_editor.dart';
 import 'studio_calendar_grid.dart';
 import 'studio_chrome.dart';
 import 'studio_credential_storage.dart';
@@ -55,6 +57,14 @@ final class StudioCalendarPage extends StatefulWidget {
   State<StudioCalendarPage> createState() => _StudioCalendarPageState();
 }
 
+enum _EventAction { followUp, edit, delete }
+
+typedef _CalendarTarget = ({
+  CalDavCalendarProvider provider,
+  CalDavCalendar calendar,
+  int generation,
+});
+
 final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   late final _storage =
       widget.credentialStorage ?? StudioCredentialStorage.instance;
@@ -63,6 +73,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   int _generation = 0;
   bool _busy = true;
   String? _error;
+  String? _notice;
   Map<TaskAccountId, String> _accounts = {};
   TaskAccountId? _account;
   List<CalDavCalendar> _calendars = [];
@@ -74,6 +85,22 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
 
   DateTime get _start => _period.start(_anchor);
   DateTime get _end => _period.advance(_start, 1);
+
+  _CalendarTarget? get _target {
+    final provider = _provider;
+    final calendar = _calendars
+        .where((item) => item.url == _calendar)
+        .firstOrNull;
+    return provider == null || calendar == null
+        ? null
+        : (provider: provider, calendar: calendar, generation: _generation);
+  }
+
+  bool _currentTarget(_CalendarTarget target) =>
+      mounted &&
+      target.generation == _generation &&
+      identical(_provider, target.provider) &&
+      _calendar == target.calendar.url;
 
   @override
   void initState() {
@@ -100,6 +127,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     setState(() {
       _busy = true;
       _error = null;
+      _notice = null;
       _agenda = null;
     });
     try {
@@ -219,7 +247,11 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   Future<void> _showEvent(CalDavEvent event) async {
     final locale = MaterialLocalizations.of(context);
     final title = event.title.isEmpty ? 'Untitled event' : event.title;
-    final followUp = await showDialog<bool>(
+    final target = _target;
+    final hasRevision =
+        target != null &&
+        target.provider.hasEventRevision(target.calendar, event);
+    final action = await showDialog<_EventAction>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(title),
@@ -257,15 +289,35 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
             onPressed: () => Navigator.pop(context),
             child: const Text('Close'),
           ),
+          if (hasRevision && target.calendar.canDelete)
+            TextButton(
+              onPressed: () => Navigator.pop(context, _EventAction.delete),
+              child: const Text('Delete'),
+            ),
+          if (hasRevision && target.calendar.canUpdate)
+            TextButton(
+              onPressed: () => Navigator.pop(context, _EventAction.edit),
+              child: const Text('Edit'),
+            ),
           FilledButton.icon(
-            onPressed: () => Navigator.pop(context, true),
+            onPressed: () => Navigator.pop(context, _EventAction.followUp),
             icon: const Icon(Icons.add_task_outlined),
             label: const Text('Create follow-up task'),
           ),
         ],
       ),
     );
-    if (!mounted || followUp != true) return;
+    if (!mounted || action == null) return;
+    if (action != _EventAction.followUp) {
+      if (target != null && _currentTarget(target)) {
+        if (action == _EventAction.edit) {
+          await _editEvent(event: event);
+        } else {
+          await _deleteEvent(target, event);
+        }
+      }
+      return;
+    }
     final day = studioCalendarDisplayTime(event.start);
     await createStudioFollowUpTask(
       context,
@@ -273,6 +325,183 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       due: TaskDate(day.year, day.month, day.day),
       notes: event.location,
     );
+  }
+
+  Future<CalDavEditableEvent?> _openEditable(
+    _CalendarTarget target,
+    CalDavEvent event,
+  ) async {
+    setState(() {
+      _busy = true;
+      _notice = null;
+    });
+    try {
+      final result = await target.provider.openEvent(target.calendar, event);
+      if (!_currentTarget(target)) return null;
+      return switch (result) {
+        TaskSuccess(:final value) => value,
+        TaskFailure(:final problem) => _reportUneditable(problem),
+      };
+    } finally {
+      if (_currentTarget(target)) setState(() => _busy = false);
+    }
+  }
+
+  CalDavEditableEvent? _reportUneditable(TaskProblem problem) {
+    _notice = _writeProblem(problem);
+    return null;
+  }
+
+  Future<void> _editEvent({CalDavEvent? event, DateTime? startsAt}) async {
+    final target = _target;
+    if (_busy ||
+        target == null ||
+        (event == null
+            ? !target.calendar.canCreate
+            : !target.calendar.canUpdate)) {
+      return;
+    }
+    final editable = event == null ? null : await _openEditable(target, event);
+    if (!mounted ||
+        !_currentTarget(target) ||
+        (event != null && editable == null)) {
+      return;
+    }
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => StudioCalendarEditor(
+        initial:
+            startsAt ?? DateTime(_anchor.year, _anchor.month, _anchor.day, 9),
+        calendarName: target.calendar.name,
+        event: editable?.event,
+        save: (fields) => _submitEvent(target, editable, fields),
+      ),
+    );
+  }
+
+  Future<StudioCalendarSaveFailure?> _submitEvent(
+    _CalendarTarget target,
+    CalDavEditableEvent? editable,
+    CalDavEventFields fields,
+  ) async {
+    final problem = await _saveEvent(
+      target,
+      () {
+        final timestamp = DateTime.now();
+        if (editable != null) {
+          return target.provider.updateEvent(
+            editable,
+            fields: fields,
+            timestamp: timestamp,
+          );
+        }
+        final random = Random.secure();
+        final id = List.generate(
+          16,
+          (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'),
+        ).join();
+        return target.provider.createEvent(
+          target.calendar,
+          operationId: id,
+          fields: fields,
+          timestamp: timestamp,
+        );
+      },
+      success: editable == null ? 'Event created.' : 'Event saved.',
+      date: studioCalendarDisplayTime(fields.start),
+    );
+    if (problem == null) return null;
+    return (
+      message: _writeProblem(problem),
+      retryable:
+          problem.mutationMayHaveOccurred != true &&
+          (problem.code == TaskProblemCode.invalidInput ||
+              problem.code == TaskProblemCode.throttled),
+    );
+  }
+
+  Future<void> _deleteEvent(_CalendarTarget target, CalDavEvent event) async {
+    if (_busy || !target.calendar.canDelete) return;
+    final editable = await _openEditable(target, event);
+    if (!mounted || !_currentTarget(target) || editable == null) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete event?'),
+        content: Text(
+          editable.event.title.isEmpty
+              ? 'Untitled event'
+              : editable.event.title,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Delete event'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !_currentTarget(target) || _busy) return;
+    final problem = await _saveEvent(
+      target,
+      () => target.provider.deleteEvent(editable),
+      success: 'Event deleted.',
+    );
+    if (_currentTarget(target) && problem != null) {
+      setState(() => _notice = _writeProblem(problem));
+    }
+  }
+
+  Future<TaskProblem?> _saveEvent(
+    _CalendarTarget target,
+    Future<TaskResult<TaskUnit>> Function() operation, {
+    required String success,
+    DateTime? date,
+  }) async {
+    const retired = TaskProblem(TaskProblemCode.staleOperation);
+    if (!_currentTarget(target) || _busy) return retired;
+    setState(() {
+      _busy = true;
+      _notice = null;
+    });
+    try {
+      final result = await operation();
+      if (!_currentTarget(target)) return retired;
+      if (result case TaskFailure(:final problem)) return problem;
+      if (date != null) _anchor = _day(date);
+      await _reload(rediscover: false);
+      if (mounted && _generation == target.generation + 1) {
+        setState(() => _notice = success);
+      }
+      return null;
+    } finally {
+      if (_currentTarget(target)) setState(() => _busy = false);
+    }
+  }
+
+  String _writeProblem(TaskProblem problem) {
+    if (problem.mutationMayHaveOccurred == true) {
+      return 'The server may have applied the change. Refresh the calendar and check before trying again.';
+    }
+    return switch (problem.code) {
+      TaskProblemCode.conflict =>
+        'The event changed on the server. Refresh the calendar.',
+      TaskProblemCode.unsupported =>
+        'This event contains recurrence, invitations or date settings that require a different editor.',
+      TaskProblemCode.permissionDenied =>
+        'This calendar does not allow that change.',
+      TaskProblemCode.invalidInput => 'Check the event title and dates.',
+      TaskProblemCode.throttled => 'The calendar server asked to retry later.',
+      TaskProblemCode.staleOperation =>
+        'The calendar changed while you were editing. Refresh to continue.',
+      TaskProblemCode.authenticationRequired => _problem(problem.code),
+      _ => 'The calendar change could not be completed.',
+    };
   }
 
   String _problem(TaskProblemCode code) => switch (code) {
@@ -321,6 +550,19 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               ),
               child: StudioRibbonStrip(
                 groups: [
+                  StudioRibbonGroup(
+                    id: 'calendar-events',
+                    title: 'Events',
+                    children: [
+                      command(
+                        Icons.add_circle_outline,
+                        'New event',
+                        !_busy && _target?.calendar.canCreate == true
+                            ? _editEvent
+                            : null,
+                      ),
+                    ],
+                  ),
                   StudioRibbonGroup(
                     id: 'calendar-navigation',
                     title: 'Calendar',
@@ -450,6 +692,11 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
           ),
           if (_error case final error?)
             Padding(padding: const EdgeInsets.all(12), child: Text(error)),
+          if (_notice case final notice?)
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Semantics(liveRegion: true, child: Text(notice)),
+            ),
           if (_agenda?.unexpandedSeries case final count? when count > 0)
             Padding(
               padding: const EdgeInsets.all(12),
@@ -465,6 +712,9 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                     events: events,
                     openEvent: _showEvent,
                     openDay: _showDay,
+                    createEvent: !_busy && _target?.calendar.canCreate == true
+                        ? (startsAt) => _editEvent(startsAt: startsAt)
+                        : null,
                   )
                 : !_busy && _error == null && events.isEmpty
                 ? Center(

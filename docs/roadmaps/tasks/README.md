@@ -98,9 +98,17 @@ single resource, added dates, exclusions and explicit moves or cancellations
 are accounted for. Series that need an unresolved named timezone or unsupported
 recurrence rules remain flagged in the agenda.
 
-Calendar milestones include a persistent event cache, conditional CalDAV
-create/edit/delete with conflict handling, recurrence editing, invitations,
-and RSVP. Google and Exchange calendar adapters need their own qualification.
+Calendars that advertise write access offer **New event** in the ribbon and
+on empty Day and Week grid slots. Open a single appointment to edit or delete
+it. The editor supports all-day events and timed events with a UTC start.
+It saves titles, times, locations and descriptions. CalDAV writes use
+conditional requests, and a rejected save keeps the draft visible for
+reference. Invitation-bearing or recurring resources remain outside this
+editor.
+
+Calendar milestones include a persistent event cache, durable sync, recurrence
+editing, invitations, and RSVP. Google and Exchange calendar adapters need
+their own qualification.
 
 ## Backend choices
 

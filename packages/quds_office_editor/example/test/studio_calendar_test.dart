@@ -35,6 +35,7 @@ String _multi(String href, String props) =>
     '</D:multistatus>';
 
 void main() {
+  _writeWorkflow();
   test(
     'connections group matching Mail and DAV accounts without exposing secrets',
     () async {
@@ -164,5 +165,168 @@ void main() {
     expect(find.byType(StudioCalendarGrid), findsNothing);
     expect(reports, hasLength(4));
     await tester.pumpWidget(const SizedBox.shrink());
+  });
+}
+
+void _writeWorkflow() {
+  testWidgets('Calendar creates, edits and confirms deletion of an appointment', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+    final vault = InMemorySecureStorage();
+    await _seedDav(vault);
+    final storage = StudioCredentialStorage(
+      systemStorageFactory: () async => vault,
+    );
+    addTearDown(storage.dispose);
+    String? raw;
+    String? href;
+    var revision = 0;
+    var deletions = 0;
+    var rejectUpdate = false;
+    String tag() => '"v$revision"';
+    final options =
+        '<D:resourcetype><C:calendar/></D:resourcetype>'
+        '<D:displayname>Writable calendar</D:displayname>'
+        '<C:supported-calendar-component-set><C:comp name="VEVENT"/>'
+        '</C:supported-calendar-component-set><D:current-user-privilege-set>'
+        '<D:privilege><D:write/></D:privilege></D:current-user-privilege-set>';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudioCalendarPage(
+          title: 'Calendar',
+          initialDate: DateTime(2026, 11, 25),
+          chromeBuilder: (_) => const SizedBox.shrink(),
+          openConnections: () {},
+          credentialStorage: storage,
+          openDavClient: () => MockClient((request) async {
+            http.Response reply(
+              String body,
+              int status, {
+              Map<String, String> headers = const {},
+            }) =>
+                http.Response(body, status, headers: headers, request: request);
+            switch (request.method) {
+              case 'PROPFIND':
+                return request.url.path == '/'
+                    ? reply(
+                        _multi(
+                          '/',
+                          '<C:calendar-home-set><D:href>/home/</D:href>'
+                              '</C:calendar-home-set>',
+                        ),
+                        207,
+                      )
+                    : reply(_multi('/home/events/', options), 207);
+              case 'REPORT':
+                return reply(
+                  raw == null
+                      ? '<D:multistatus xmlns:D="DAV:"/>'
+                      : _multi(
+                          href!,
+                          '<D:getetag>${tag()}</D:getetag>'
+                          '<C:calendar-data><![CDATA[$raw]]></C:calendar-data>',
+                        ),
+                  207,
+                );
+              case 'PUT':
+                if (raw == null) {
+                  expect(request.headers['if-none-match'], '*');
+                  expect(request.body, contains('DTSTART;VALUE=DATE:20261125'));
+                  expect(request.body, contains('DTEND;VALUE=DATE:20261126'));
+                  href = request.url.path;
+                } else {
+                  expect(request.url.path, href);
+                  expect(request.headers['if-match'], tag());
+                  if (rejectUpdate) return reply('', 412);
+                }
+                raw = request.body;
+                revision++;
+                return reply('', revision == 1 ? 201 : 204);
+              case 'GET':
+                expect(request.url.path, href);
+                return reply(raw!, 200, headers: {'etag': tag()});
+              case 'DELETE':
+                expect(request.url.path, href);
+                expect(request.headers['if-match'], tag());
+                raw = null;
+                deletions++;
+                return reply('', 204);
+              default:
+                throw StateError('Unexpected event workflow request.');
+            }
+          }),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('New event'));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Title'),
+      'Dental check',
+    );
+    await tester.tap(find.widgetWithText(SwitchListTile, 'All day'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Save event'));
+    await tester.pumpAndSettle();
+    expect(find.text('Dental check'), findsOneWidget);
+    expect(find.text('Event created.'), findsOneWidget);
+
+    await tester.tap(find.text('Dental check'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(TextButton, 'Edit'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.widgetWithText(TextField, 'Title'), 'Checkup');
+    await tester.tap(find.text('Save event'));
+    await tester.pumpAndSettle();
+    expect(find.text('Checkup'), findsOneWidget);
+    expect(find.text('Event saved.'), findsOneWidget);
+
+    rejectUpdate = true;
+    await tester.tap(find.text('Checkup'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(TextButton, 'Edit'));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Title'),
+      'Unsaved draft',
+    );
+    await tester.tap(find.text('Save event'));
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(TextField, 'Unsaved draft'), findsOneWidget);
+    expect(
+      find.text('The event changed on the server. Refresh the calendar.'),
+      findsOneWidget,
+    );
+    expect(
+      tester
+          .widget<FilledButton>(find.widgetWithText(FilledButton, 'Save event'))
+          .onPressed,
+      isNull,
+    );
+    await tester.tap(find.widgetWithText(TextButton, 'Close'));
+    await tester.pumpAndSettle();
+    expect(find.text('Checkup'), findsOneWidget);
+
+    Future<void> confirmDelete() async {
+      await tester.tap(find.text('Checkup'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(TextButton, 'Delete'));
+      await tester.pumpAndSettle();
+      expect(find.text('Delete event?'), findsOneWidget);
+    }
+
+    await confirmDelete();
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(deletions, 0);
+    await confirmDelete();
+    await tester.tap(find.text('Delete event'));
+    await tester.pumpAndSettle();
+    expect(deletions, 1);
+    expect(find.text('Checkup'), findsNothing);
+    expect(find.text('Event deleted.'), findsOneWidget);
   });
 }

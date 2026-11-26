@@ -52,6 +52,7 @@ String _collection(String href, String name, String kind) => _row(
 
 void main() {
   _recurrenceTests();
+  _calendarWriteTests();
   test(
     'preserves all-day dates and reads expanded instances without cancelled events',
     () {
@@ -321,4 +322,236 @@ ${parts.$3.isEmpty ? '' : '${parts.$3}\n'}END:VCALENDAR''',
       expect(agenda.events, isEmpty);
     }
   });
+}
+
+void _calendarWriteTests() {
+  final now = DateTime.utc(2026, 11, 25, 8);
+  final from = CalDavDateValue.parse('20261125T090000Z');
+  final to = CalDavDateValue.parse('20261125T100000Z');
+  CalDavEventFields fields(String title) => CalDavEventFields(
+    title: title,
+    start: from,
+    end: to,
+    location: 'Lab; restricted',
+    description: 'First line\nSecond line',
+  );
+
+  test(
+    'appointment edits preserve the resource UID, alarms, and unknown properties',
+    () {
+      final raw =
+          CalDavEventDocument.create(
+            uid: 'fixture-event',
+            fields: fields('Original'),
+            timestamp: now,
+          ).replaceFirst(
+            'END:VEVENT',
+            'X-PROVIDER:opaque\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\n'
+                'TRIGGER:-PT15M\r\nDESCRIPTION:Reminder\r\nEND:VALARM\r\nEND:VEVENT',
+          );
+      final document = CalDavEventDocument.parse(raw);
+      expect(document.update(fields('Original'), timestamp: now), raw);
+      final updated = document.update(fields('Changed, yes'), timestamp: now);
+      expect(updated, contains('UID:fixture-event'));
+      expect(updated, contains('X-PROVIDER:opaque\r\n'));
+      expect(updated, contains('BEGIN:VALARM\r\nACTION:DISPLAY\r\n'));
+      final event = CalDavEventDocument.parse(updated).event;
+      expect(event.title, 'Changed, yes');
+      expect(event.location, 'Lab; restricted');
+      expect(event.description, 'First line\nSecond line');
+      for (final extra in [
+        'RRULE:FREQ=DAILY',
+        'ORGANIZER:mailto:organizer@example.test',
+        'ATTENDEE:mailto:attendee@example.test',
+      ]) {
+        expect(
+          () => CalDavEventDocument.parse(
+            raw.replaceFirst('END:VEVENT', '$extra\r\nEND:VEVENT'),
+          ),
+          throwsUnsupportedError,
+        );
+      }
+    },
+  );
+
+  test(
+    'CalDAV creation, update, and deletion enforce their own preconditions',
+    () async {
+      const path = '/home/events/crispoffice-event-operation.ics';
+      const privileges =
+          '<D:current-user-privilege-set><D:privilege><D:write/>'
+          '</D:privilege></D:current-user-privilege-set>';
+      String? raw;
+      var revision = 0;
+      String tag() => '"v$revision"';
+      var loseWriteResponse = false;
+      final methods = <String>[];
+      final client = MockClient((request) async {
+        final url = request.url.path;
+        final method = request.method;
+        methods.add(method);
+        http.Response response(
+          String body,
+          int status, {
+          Map<String, String> headers = const {},
+        }) => http.Response(body, status, headers: headers, request: request);
+        switch ((method, url)) {
+          case ('PROPFIND', '/'):
+            return response(
+              _multi(
+                _row(
+                  '/',
+                  '<C:calendar-home-set>'
+                      '<D:href>/home/</D:href></C:calendar-home-set>',
+                ),
+              ),
+              207,
+            );
+          case ('PROPFIND', '/home/'):
+            return response(
+              _multi(
+                _row(
+                      '/home/events/',
+                      '<D:resourcetype><C:calendar/></D:resourcetype>'
+                          '<C:supported-calendar-component-set><C:comp name="VEVENT"/>'
+                          '</C:supported-calendar-component-set>$privileges',
+                    ) +
+                    _collection('/home/readonly/', 'Read only', 'VEVENT'),
+              ),
+              207,
+            );
+          case ('REPORT', '/home/events/'):
+            expect(request.body, contains('<D:getetag/>'));
+            return response(
+              _multi(
+                raw == null
+                    ? ''
+                    : _row(
+                        path,
+                        '<D:getetag>${tag()}</D:getetag>'
+                        '<C:calendar-data><![CDATA[$raw]]></C:calendar-data>',
+                      ),
+              ),
+              207,
+            );
+          case ('GET', path):
+            return raw == null
+                ? response('', 404)
+                : response(raw!, 200, headers: {'etag': tag()});
+          case ('PUT', path):
+            if (loseWriteResponse) {
+              throw http.ClientException('lost acknowledgement');
+            }
+            if (raw == null) {
+              expect(request.headers['if-none-match'], '*');
+              raw = request.body.replaceFirst(
+                'END:VEVENT',
+                'X-SERVER:keep\r\nEND:VEVENT',
+              );
+              revision++;
+              return response('', 201);
+            }
+            if (request.headers['if-match'] != tag()) return response('', 412);
+            expect(request.body, contains('X-SERVER:keep'));
+            raw = request.body;
+            revision++;
+            return response('', 204);
+          case ('DELETE', path):
+            if (request.headers['if-match'] != tag()) return response('', 412);
+            raw = null;
+            return response('', 204);
+          default:
+            throw StateError('Unexpected test request.');
+        }
+      });
+      final provider = CalDavCalendarProvider(
+        account: TaskAccountId('calendar', provider: 'caldav'),
+        settings: CalDavConnectionSettings(
+          profile: CalDavServerProfile.generic,
+          username: 'fixture',
+          discoveryUrl: Uri.https('dav.example.test', '/'),
+        ),
+        client: client,
+        appPassword: () async => 'fixture',
+      );
+      final discovered =
+          await provider.discoverCalendars()
+              as TaskSuccess<List<CalDavCalendar>>;
+      final writable = discovered.value.first;
+      final readOnly = discovered.value.last;
+      Future<CalDavEditableEvent> open() async {
+        final agenda =
+            await provider.agenda(
+                  writable,
+                  start: now,
+                  end: now.add(const Duration(days: 1)),
+                )
+                as TaskSuccess<CalDavAgenda>;
+        final event = agenda.value.events.single;
+        expect(provider.hasEventRevision(writable, event), isTrue);
+        expect(provider.hasEventRevision(readOnly, event), isFalse);
+        return (await provider.openEvent(writable, event)
+                as TaskSuccess<CalDavEditableEvent>)
+            .value;
+      }
+
+      expect(readOnly.canCreate, isFalse);
+      final denied =
+          await provider.createEvent(
+                readOnly,
+                operationId: 'operation',
+                fields: fields('Draft'),
+                timestamp: now,
+              )
+              as TaskFailure<TaskUnit>;
+      expect(denied.problem.code, TaskProblemCode.permissionDenied);
+      expect(methods, ['PROPFIND', 'PROPFIND']);
+      final created = await provider.createEvent(
+        writable,
+        operationId: 'operation',
+        fields: fields('Draft'),
+        timestamp: now,
+      );
+      expect(created, isA<TaskSuccess<TaskUnit>>());
+      final stale = await open();
+      expect(stale.event.title, 'Draft');
+
+      expect(
+        await provider.updateEvent(
+          stale,
+          fields: fields('Revised'),
+          timestamp: now,
+        ),
+        isA<TaskSuccess<TaskUnit>>(),
+      );
+      final rejected =
+          await provider.updateEvent(
+                stale,
+                fields: fields('Stale'),
+                timestamp: now,
+              )
+              as TaskFailure<TaskUnit>;
+      expect(rejected.problem.code, TaskProblemCode.conflict);
+      expect(rejected.problem.mutationMayHaveOccurred, isFalse);
+      final staleDelete =
+          await provider.deleteEvent(stale) as TaskFailure<TaskUnit>;
+      expect(staleDelete.problem.code, TaskProblemCode.conflict);
+      final current = await open();
+      expect(current.event.title, 'Revised');
+      expect(await provider.deleteEvent(current), isA<TaskSuccess<TaskUnit>>());
+      expect(raw, isNull);
+
+      loseWriteResponse = true;
+      final failed =
+          await provider.createEvent(
+                writable,
+                operationId: 'operation',
+                fields: fields('Unknown outcome'),
+                timestamp: now,
+              )
+              as TaskFailure<TaskUnit>;
+      expect(failed.problem.mutationMayHaveOccurred, isTrue);
+      expect(methods.where((method) => method == 'PUT'), hasLength(4));
+    },
+  );
 }

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 import 'package:xml/xml.dart';
 
+import 'date_value.dart';
 import 'dav_http.dart';
 import 'dav_uri.dart';
 import 'dav_xml.dart';
@@ -141,19 +142,7 @@ final class CalDavTaskProvider {
 
   CalDavTaskList? _taskList(DavRow row, Uri uri) {
     if (!_supportsComponent(row, 'VTODO')) return null;
-    final privileges = row.property(dav, 'current-user-privilege-set');
-    final names =
-        privileges?.childElements
-            .where((element) => named(element, dav, 'privilege'))
-            .expand((element) => element.childElements)
-            .where((element) => element.namespaceUri == dav)
-            .map((element) => element.name.local)
-            .toSet() ??
-        <String>{};
-    final all = names.contains('all') || names.contains('write');
-    final canCreate = all || names.contains('bind');
-    final canUpdate = all || names.contains('write-content');
-    final canDelete = all || names.contains('unbind');
+    final (canCreate, canUpdate, canDelete) = _writePrivileges(row);
     final reports = row.property(dav, 'supported-report-set');
     final sync =
         reports?.childElements.any(
@@ -807,6 +796,23 @@ bool _supportsComponent(DavRow row, String type) {
               named(element, cal, 'comp') &&
               element.getAttribute('name')?.toUpperCase() == type,
         );
+}
+
+(bool, bool, bool) _writePrivileges(DavRow row) {
+  final privileges = row.property(dav, 'current-user-privilege-set');
+  final names =
+      privileges?.childElements
+          .where((element) => named(element, dav, 'privilege'))
+          .expand((element) => element.childElements)
+          .where((element) => element.namespaceUri == dav)
+          .map((element) => element.name.local)
+          .toSet() ??
+      <String>{};
+  final all = names.contains('all') || names.contains('write');
+  final canCreate = all || names.contains('bind');
+  final canUpdate = all || names.contains('write-content');
+  final canDelete = all || names.contains('unbind');
+  return (canCreate, canUpdate, canDelete);
 }
 
 String _collectionName(DavRow row, Uri uri) {

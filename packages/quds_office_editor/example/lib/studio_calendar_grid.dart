@@ -55,6 +55,7 @@ final class StudioCalendarGrid extends StatefulWidget {
     required this.events,
     required this.openEvent,
     required this.openDay,
+    this.createEvent,
   });
 
   final StudioCalendarPeriod period;
@@ -63,6 +64,7 @@ final class StudioCalendarGrid extends StatefulWidget {
   final List<CalDavEvent> events;
   final ValueChanged<CalDavEvent> openEvent;
   final ValueChanged<DateTime> openDay;
+  final ValueChanged<DateTime>? createEvent;
 
   @override
   State<StudioCalendarGrid> createState() => _StudioCalendarGridState();
@@ -353,6 +355,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         timeLineWidth: 70,
         eventArranger: const SideEventArranger(),
         eventTileBuilder: eventTiles,
+        onDateTap: widget.createEvent,
         fullDayEventBuilder: _eventStrip,
       ),
       StudioCalendarPeriod.week => WeekView<CalDavEvent>(
@@ -376,6 +379,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         fullDayHeaderTitle: 'All day',
         eventArranger: const SideEventArranger(),
         eventTileBuilder: eventTiles,
+        onDateTap: widget.createEvent,
         fullDayEventBuilder: _eventStrip,
       ),
       StudioCalendarPeriod.month => LayoutBuilder(

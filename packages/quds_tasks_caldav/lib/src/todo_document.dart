@@ -6,6 +6,7 @@ import 'codec_limits.dart';
 import 'date_value.dart';
 
 part 'calendar_event.dart';
+part 'calendar_event_document.dart';
 part 'calendar_recurrence.dart';
 
 /// Features that this first codec can preserve and read, but cannot safely edit.

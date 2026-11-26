@@ -116,6 +116,14 @@ expected occurrences within a three-day report and honored the excluded date.
 The disposable calendar was deleted and its absence verified by discovery.
 Named-timezone and more complex rules still depend on server expansion.
 
+On 26 November 2026, two disposable mailbox.org calendars passed appointment
+creation, read-back, update and deletion through the Calendar adapter. One
+used UTC times and one used all-day dates. The server rejected stale updates
+and stale deletes using the earlier ETag, and a fresh revision still allowed
+deletion. Both disposable calendars were removed and their absence verified
+through authenticated discovery. Invitation and recurring-series writes
+remain open.
+
 mailbox.org explicitly documents bidirectional task synchronization over CalDAV.
 Use `https://dav.mailbox.org/` or the exact task-list Properties URL. Recommend a
 dedicated DAV app password; this is required when 2FA is enabled.
