@@ -30,6 +30,8 @@ Future<Uint8List> _paint(
   SmlWorksheet sheet, {
   SmlWorkbook? workbook,
   bool frozen = false,
+  double zoom = 1,
+  bool editing = false,
 }) async {
   await tester.pumpWidget(
     Directionality(
@@ -45,10 +47,17 @@ Future<Uint8List> _paint(
               sheet: sheet,
               workbook: workbook,
               selection: SelectionMatrix(
-                anchor: const SmlCellRef(8, 8),
-                focus: const SmlCellRef(8, 8),
+                anchor: editing
+                    ? const SmlCellRef(0, 0)
+                    : const SmlCellRef(8, 8),
+                focus: editing
+                    ? const SmlCellRef(0, 0)
+                    : const SmlCellRef(8, 8),
               ),
               config: _config,
+              viewport: VirtualViewport(scale: zoom),
+              editing: editing,
+              editText: editing ? sheet.cellA1('A1').asString : '',
               frozenRows: frozen ? 1 : 0,
               frozenCols: frozen ? 1 : 0,
             ),
@@ -152,6 +161,25 @@ void main() {
     final left = meanInkX(await _paint(tester, sheet));
     expect(general, greaterThan(left + 8));
   });
+
+  testWidgets(
+    'worksheet zoom scales cell text in both edit and display modes',
+    (tester) async {
+      final sheet = _sheet(text: 'MM', font: 'E03060');
+      for (final editing in [false, true]) {
+        final small = _pixelsOf(
+          await _paint(tester, sheet, zoom: 0.60, editing: editing),
+          0xE03060,
+        );
+        final large = _pixelsOf(
+          await _paint(tester, sheet, zoom: 1.74, editing: editing),
+          0xE03060,
+        );
+        expect(small, greaterThan(0));
+        expect(large, greaterThan(small * 3), reason: 'editing=$editing');
+      }
+    },
+  );
 
   testWidgets('icon sets visibly paint without mutating values or rules', (
     tester,

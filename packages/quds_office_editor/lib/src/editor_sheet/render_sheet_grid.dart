@@ -986,10 +986,8 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
             dataBarRect: dataBarRect,
             dataBarBackground: dataBarBackground,
             bold: data.fontBold,
-            fontSize: isEdit
-                ? data.fontSize
-                : data.fontSize * 4 / 3 * viewport.scale,
-            fontFamily: isEdit ? null : data.fontFamily,
+            fontSize: _cellTextSize(data),
+            fontFamily: data.fontFamily,
           );
         }
         _paintCellChrome(canvas, cell, textCol, textRow);
@@ -1812,17 +1810,30 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     selection.selectCell(merge.origin);
   }
 
+  double _cellTextSize(SmlCell? cell) =>
+      (cell?.fontSize ?? 11) * 4 / 3 * viewport.scale;
+
   int _hitEditIndex(Offset local, SmlCellRef ref) {
-    final Rect cell = _displayRect(ref.col, ref.row);
-    final TextPainter painter = _textPainter(editText, colored: true)
-      ..layout(maxWidth: cell.width > 12 ? cell.width - 4 : 8);
-    final bool rtl = _rtl || PaintRunText.looksRtl(editText);
-    final double textX = rtl ? cell.right - 2 - painter.width : cell.left + 2;
-    return PaintRunText.hitIndex(
-      painter,
-      Offset(local.dx - textX, 0),
-      editText.length,
-    );
+    final rect = _displayRect(ref.col, ref.row);
+    final origin = sheet.mergeAtRef(ref)?.origin ?? ref;
+    final cell = sheet.cellOrNull(origin);
+    final alignment = cell?.horizontalAlign ?? SmlHAlign.general;
+    final width = rect.width - 4;
+    if (width <= 0) return 0;
+    final painter = _textPainter(
+      editText,
+      colored: true,
+      horizontal: alignment,
+      bold: cell?.fontBold ?? false,
+      fontSize: _cellTextSize(cell),
+      fontFamily: cell?.fontFamily,
+    )..layout(maxWidth: width);
+    try {
+      final offset = _cellTextOffset(rect, painter, editText, alignment);
+      return PaintRunText.hitIndex(painter, local - offset, editText.length);
+    } finally {
+      painter.dispose();
+    }
   }
 
   Rect _displayRect(int col, int row) {
@@ -1894,16 +1905,16 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
               ? const Color(0xFF222222)
               : _theme.chromeText,
         );
+    final family = fontFamily?.isNotEmpty == true
+        ? fontFamily
+        : _theme.fontFamily;
     if (colored && FormulaRefScanner.scan(text).isNotEmpty) {
       return TextPainter(
         text: FormulaRefStyle.textSpan(
           text,
           baseColor: ink,
           fontSize: fontSize,
-          fontFamily: PaintRunText.familyFor(
-            text: text,
-            themeFamily: _theme.fontFamily,
-          ),
+          fontFamily: PaintRunText.familyFor(text: text, themeFamily: family),
           fontFamilyFallback: PaintRunText.fallbacksFor(text),
         ),
         textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
@@ -1915,9 +1926,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       text: text,
       fontSize: fontSize,
       color: ink,
-      themeFamily: fontFamily?.isNotEmpty == true
-          ? fontFamily
-          : _theme.fontFamily,
+      themeFamily: family,
       align: align,
       bold: bold,
     );
@@ -2110,6 +2119,22 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     );
   }
 
+  Offset _cellTextOffset(
+    Rect cell,
+    TextPainter painter,
+    String label,
+    SmlHAlign alignment,
+  ) {
+    final rtl = _rtl || PaintRunText.looksRtl(label);
+    final double x = switch (alignment) {
+      SmlHAlign.center => cell.left + (cell.width - painter.width) / 2,
+      SmlHAlign.right => cell.right - 2 - painter.width,
+      SmlHAlign.left => cell.left + 2,
+      SmlHAlign.general => rtl ? cell.right - 2 - painter.width : cell.left + 2,
+    };
+    return Offset(x, cell.top + (cell.height - painter.height) / 2);
+  }
+
   void _paintCellText(
     Canvas canvas,
     Rect cell,
@@ -2149,15 +2174,9 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       fontSize: fontSize,
       fontFamily: fontFamily,
     )..layout(maxWidth: maxW);
-    final double textY = cell.top + (cell.height - painter.height) / 2;
-    final double textX = switch (align) {
-      SmlHAlign.center => cell.left + (cell.width - painter.width) / 2,
-      SmlHAlign.right => cell.right - 2 - painter.width,
-      SmlHAlign.left || SmlHAlign.general =>
-        (_rtl || PaintRunText.looksRtl(label))
-            ? cell.right - 2 - painter.width
-            : cell.left + 2,
-    };
+    final textOffset = _cellTextOffset(cell, painter, label, align);
+    final textX = textOffset.dx;
+    final textY = textOffset.dy;
     if (isEdit) {
       final int start = editBase < editCaret ? editBase : editCaret;
       final int end = editBase > editCaret ? editBase : editCaret;
@@ -2188,7 +2207,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
           ..addRect(cell)
           ..addRect(dataBarRect.intersect(cell)),
       );
-      painter.paint(canvas, Offset(textX, textY));
+      painter.paint(canvas, textOffset);
       canvas.restore();
       final barPainter = _textPainter(
         label,
@@ -2201,11 +2220,11 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       )..layout(maxWidth: maxW);
       canvas.save();
       canvas.clipRect(dataBarRect);
-      barPainter.paint(canvas, Offset(textX, textY));
+      barPainter.paint(canvas, textOffset);
       canvas.restore();
       barPainter.dispose();
     } else {
-      painter.paint(canvas, Offset(textX, textY));
+      painter.paint(canvas, textOffset);
     }
     if (isEdit && config.showsCaret && hasFocus) {
       final double caretH = painter.height < 2
