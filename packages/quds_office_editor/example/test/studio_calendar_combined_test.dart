@@ -342,7 +342,13 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('One calendar source could not load'), findsOneWidget);
       expect(find.text('Lunch booking'), findsOneWidget);
-      expect(find.text('Revised work meeting'), findsNothing);
+      expect(find.text('Revised work meeting'), findsOneWidget);
+      await tester.tap(find.text('Revised work meeting'));
+      await tester.pumpAndSettle();
+      expect(find.widgetWithText(TextButton, 'Edit'), findsNothing);
+      expect(find.widgetWithText(TextButton, 'Delete'), findsNothing);
+      await tester.tap(find.widgetWithText(TextButton, 'Close'));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('One calendar source could not load'));
       await tester.pumpAndSettle();
       expect(
