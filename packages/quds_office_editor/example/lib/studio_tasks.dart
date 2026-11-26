@@ -5,6 +5,8 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quds_office_engine/quds_productivity_automation.dart'
+    show ProductivityApprovalOutcome;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
@@ -737,11 +739,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     });
   }
 
-  void _save(TaskFields? value, LocalTaskEdit? edit, RemoteTask? remote) {
+  bool _save(TaskFields? value, LocalTaskEdit? edit, RemoteTask? remote) {
     final lease = _selected == studioDeviceTaskList.id
         ? _deviceLease
         : _syncLease;
-    if (lease == null || _selection.list.readOnly) return;
+    if (lease == null || _selection.list.readOnly) return false;
     final outcome = _store!.saveEdit(
       lease,
       _selected,
@@ -754,6 +756,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     }
     _reload();
     if (_selection.sync != null) _refresh();
+    return outcome is TaskSuccess<LocalTaskEdit>;
   }
 
   Future<void> _edit(
@@ -900,6 +903,34 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 canSave: current,
               );
             },
+      approval: !ready || busy || _selection.list.readOnly
+          ? null
+          : (
+              label: 'Approve and add task',
+              destination: _selection.list.name,
+              apply: (proposal, current) async {
+                if (!current() ||
+                    _running != null ||
+                    _store == null ||
+                    _selection.list.readOnly) {
+                  return ProductivityApprovalOutcome.rejected;
+                }
+                final saved = _save(
+                  TaskFields(
+                    title: proposal.title,
+                    notes: proposal.text.isEmpty
+                        ? null
+                        : TaskText(proposal.text),
+                  ),
+                  null,
+                  null,
+                );
+                if (!saved) return ProductivityApprovalOutcome.rejected;
+                return _selected == studioDeviceTaskList.id
+                    ? ProductivityApprovalOutcome.saved
+                    : ProductivityApprovalOutcome.queued;
+              },
+            ),
       enabled: ready && !busy,
     );
     return Scaffold(

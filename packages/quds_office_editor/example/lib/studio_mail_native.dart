@@ -4,7 +4,11 @@ import 'dart:io' as io;
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:quds_office_engine/quds_productivity_automation.dart'
-    show ProductivityMailSelection, ProductivityMailText, ProductivitySnapshot;
+    show
+        ProductivityFolderBrowser,
+        ProductivityMailSelection,
+        ProductivityMailText,
+        ProductivitySnapshot;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -12,6 +16,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_live_productivity.dart';
+import 'studio_mcp_mail_folder.dart';
 import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
 import 'studio_chrome.dart';
@@ -5317,6 +5322,46 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
+  ProductivityFolderBrowser? _captureMcpFolder(bool allowText) {
+    final loader = _messageLoader;
+    final mailbox = _mailbox;
+    final scope = _liveScope();
+    if (loader is! NativeStudioMailMessageLoader ||
+        mailbox == null ||
+        scope == null ||
+        _unreadOnly ||
+        _busy) {
+      return null;
+    }
+    final frozen = mailbox.copyWith();
+    return studioMcpMailFolder(
+      mailbox: MailMailboxId(frozen.path, account: loader.account),
+      allowText: allowText,
+      isScoped: () =>
+          mounted &&
+          !_busy &&
+          identical(_messageLoader, loader) &&
+          scope == _liveScope() &&
+          frozen.uidValidity == _mailbox?.uidValidity,
+      load: (after) => loader.browseMcpFolder(
+        frozen,
+        after: after,
+        limit: ProductivityFolderBrowser.pageSize,
+      ),
+      read: (identity, current) async {
+        if (!current() || identity is! MailImapIdentity) return null;
+        final message = await loader.fetchMcpMessage(frozen, identity);
+        final text = message.body.plainText;
+        return current() && text != null
+            ? ProductivityMailText(
+                subject: message.envelope.subject,
+                text: text,
+              )
+            : null;
+      },
+    );
+  }
+
   Widget _mailChrome(BuildContext context) {
     final liveScope = _liveScope();
     final theme = Theme.of(context);
@@ -5433,6 +5478,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             },
             openedMail: () => _reader?.result.message,
             captureMailSelection: _captureMcpMailbox,
+            captureFolder:
+                !_unreadOnly && _messageLoader is NativeStudioMailMessageLoader
+                ? _captureMcpFolder
+                : null,
             enabled: !_busy && !_dialogOpen,
           ),
           _folderArchiveButton(),

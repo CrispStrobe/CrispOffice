@@ -487,6 +487,71 @@ final class NativeStudioMailMessageLoader
     return identity;
   }
 
+  /// A separate browse chain for an approved local MCP grant. Its cursors and
+  /// headers never replace the foreground view's browse state.
+  Future<MailHeaderPage> browseMcpFolder(
+    mail.Mailbox selectedMailbox, {
+    required String? after,
+    required int limit,
+  }) async {
+    final (mailbox, validity) = _selectedMailbox(selectedMailbox);
+    if (_active != null) {
+      throw const StudioMailMessageLoadException(MailProblemCode.unavailable);
+    }
+    if (limit < 1 || limit > limits.maxPageSize) {
+      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+    }
+    final page = await _run((provider, lease) {
+      if (provider is! MailImapHeaderBrowser) {
+        return Future<MailResult<MailHeaderPage>>.value(
+          const MailFailure(MailProblem(MailProblemCode.unsupported)),
+        );
+      }
+      return (provider as MailImapHeaderBrowser).fetchNewestHeaders(
+        mailbox,
+        uidValidity: validity,
+        cursor: after == null
+            ? null
+            : MailCursor(mailbox: mailbox, value: after),
+        limit: limit,
+        lease: lease,
+      );
+    });
+    if (page.messages.length > limit ||
+        page.messages.any((record) {
+          final identity = record.remote;
+          return identity is! MailImapIdentity ||
+              identity.mailbox != mailbox ||
+              identity.uidValidity != validity;
+        }) ||
+        (page.next != null && page.next!.mailbox != mailbox)) {
+      throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+    }
+    return page;
+  }
+
+  Future<MailMessage> fetchMcpMessage(
+    mail.Mailbox selectedMailbox,
+    MailImapIdentity identity,
+  ) async {
+    final (mailbox, validity) = _selectedMailbox(selectedMailbox);
+    if (_active != null ||
+        identity.mailbox != mailbox ||
+        identity.uidValidity != validity) {
+      throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+    }
+    const readBudget = MailReadBudget(maxRawBytes: 2 * 1024 * 1024);
+    final message = await _run(
+      (provider, lease) =>
+          provider.fetchMessage(identity, budget: readBudget, lease: lease),
+    );
+    if (message.remoteIdentity != identity ||
+        message.raw.length > readBudget.maxRawBytes) {
+      throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+    }
+    return message;
+  }
+
   @override
   Future<StudioMailHeaderPage> fetchHeaders(
     mail.Mailbox selectedMailbox, {

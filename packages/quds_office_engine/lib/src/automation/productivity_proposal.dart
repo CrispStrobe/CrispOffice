@@ -1,7 +1,6 @@
 import 'productivity_snapshot.dart' show ProductivityKind;
 
-/// An immutable suggestion. A proposal can only be handed to the host's
-/// interactive editor after the user reviews it.
+/// An immutable suggestion that must be reviewed by the host user.
 final class ProductivityProposal {
   const ProductivityProposal._(this.title, this.text, this.start, this.end);
 
@@ -11,6 +10,8 @@ final class ProductivityProposal {
   final DateTime? end;
 }
 
+enum ProductivityApprovalOutcome { saved, queued, rejected, unconfirmed }
+
 final class ProductivityProposals {
   ProductivityProposals(this.kind);
 
@@ -19,7 +20,8 @@ final class ProductivityProposals {
   int _serial = 0;
   String _status = 'none';
 
-  ProductivityProposal? get pending => _pending;
+  bool get _applying => _status == 'applying';
+  ProductivityProposal? get pending => _applying ? null : _pending;
   String get tool => switch (kind) {
     ProductivityKind.mail => 'mail_propose_draft',
     ProductivityKind.tasks => 'tasks_propose_create',
@@ -67,9 +69,27 @@ final class ProductivityProposals {
   }
 
   bool resolve(ProductivityProposal proposal, {required bool review}) {
-    if (!identical(_pending, proposal)) return false;
+    if (_applying || !identical(_pending, proposal)) return false;
     _pending = null;
     _status = review ? 'reviewed' : 'dismissed';
+    return true;
+  }
+
+  /// Called by the host only after review. A failed or ambiguous operation
+  /// consumes this approval so it cannot be replayed by another click.
+  Future<bool> apply(
+    ProductivityProposal proposal,
+    Future<ProductivityApprovalOutcome> Function() execute,
+  ) async {
+    if (_applying || !identical(_pending, proposal)) return false;
+    _status = 'applying';
+    try {
+      _status = (await execute()).name;
+    } on Object {
+      _status = ProductivityApprovalOutcome.unconfirmed.name;
+    } finally {
+      _pending = null;
+    }
     return true;
   }
 

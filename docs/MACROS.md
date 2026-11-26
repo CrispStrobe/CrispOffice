@@ -568,14 +568,25 @@ message identity and folder before returning text. IMAP verifies the
 mailbox's UIDVALIDITY and uses a bounded, exact-UID BODY.PEEK read.
 Attachments, raw MIME, HTML and credentials are excluded from tool results.
 
+Enable **Browse the selected folder on the server** to read older headers
+through `mail_browse_folder`. Begin with page 1 and follow `nextPage`. The
+host retains the provider cursor and bounds each page to 50 headers. The
+optional **Include plain text from browsed messages** also enables
+`mail_read_folder_text`. Use the handle and page returned by the browse tool.
+Advancing the page retires its old body handles. Folder or account changes
+invalidate the grant and its cursor.
+
 To let the client queue suggestions, enable **Allow suggestions for review**
 while granting access. Open **Live MCP access** again and choose **Review
 suggestion** to inspect the content. Dismiss it, or open it in the normal app
 editor. Supported suggestions create an unsent Mail draft with an empty
 recipient field, a new task in a writable list, or an appointment in a
-writable CalDAV calendar within the visible date range. Status reports review
-only. Saving, sending, deleting and issuing invitations require human action
-through the app. A grant has space for one pending suggestion at a time.
+writable CalDAV calendar within the visible date range. A writable task list
+and a single selected writable CalDAV calendar also offer direct approval in
+the review dialog. The app shows the destination and exact proposed fields.
+The client can poll to distinguish reviewed, saved, queued and unconfirmed
+outcomes. Sending, deleting and issuing invitations remain manual actions.
+A grant has space for one pending suggestion at a time.
 
 Both the grant transport and stdio executable run in native Dart. Studio
 supplies the selected data, consent and revocation. The app binds one private

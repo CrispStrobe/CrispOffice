@@ -4,7 +4,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:quds_office_engine/quds_productivity_automation.dart'
-    show ProductivityMailSelection, ProductivityMailText, ProductivitySnapshot;
+    show
+        ProductivityFolderBrowser,
+        ProductivityMailSelection,
+        ProductivityMailText,
+        ProductivitySnapshot;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
@@ -12,6 +16,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_live_productivity.dart';
+import 'studio_mcp_mail_folder.dart';
 import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
 import 'studio_mail_account_navigation.dart';
@@ -3306,37 +3311,94 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             _current(provider as MailProvider, lease) &&
             _mailbox?.id == mailbox.id;
         if (!allowed()) return null;
-        final header = headers[index];
-        Future<bool> inFolder() async {
-          final membership = await observer.observeMembership(
-            header.remote,
-            lease: lease,
-          );
-          return allowed() &&
-              membership is MailSuccess<MailMembershipObservation> &&
-              membership.value.identity == header.remote &&
-              membership.value.kind == MailMembershipObservationKind.present &&
-              membership.value.mailboxes.contains(mailbox.id);
-        }
-
-        if (!await inFolder()) return null;
-        final result = await (provider as MailProvider).fetchMessage(
-          header.remote,
-          budget: const MailReadBudget(maxRawBytes: 2 * 1024 * 1024),
-          lease: lease,
-        );
-        if (!allowed() ||
-            result is! MailSuccess<MailMessage> ||
-            result.value.remoteIdentity != header.remote ||
-            result.value.body.plainText == null ||
-            !await inFolder()) {
-          return null;
-        }
-        return ProductivityMailText(
-          subject: result.value.envelope.subject,
-          text: result.value.body.plainText!,
+        return _fetchMcpText(
+          provider as MailProvider,
+          observer,
+          mailbox.id,
+          headers[index].remote,
+          lease,
+          allowed,
         );
       },
+    );
+  }
+
+  Future<ProductivityMailText?> _fetchMcpText(
+    MailProvider provider,
+    MailMembershipObserver observer,
+    MailMailboxId mailbox,
+    MailRemoteIdentity identity,
+    MailOperationLease lease,
+    bool Function() allowed,
+  ) async {
+    if (!allowed()) return null;
+    Future<bool> inFolder() async {
+      final membership = await observer.observeMembership(
+        identity,
+        lease: lease,
+      );
+      return allowed() &&
+          membership is MailSuccess<MailMembershipObservation> &&
+          membership.value.identity == identity &&
+          membership.value.kind == MailMembershipObservationKind.present &&
+          membership.value.mailboxes.contains(mailbox);
+    }
+
+    if (!await inFolder()) return null;
+    final result = await provider.fetchMessage(
+      identity,
+      budget: const MailReadBudget(maxRawBytes: 2 * 1024 * 1024),
+      lease: lease,
+    );
+    if (!allowed() ||
+        result is! MailSuccess<MailMessage> ||
+        result.value.remoteIdentity != identity ||
+        result.value.body.plainText == null ||
+        !await inFolder()) {
+      return null;
+    }
+    return ProductivityMailText(
+      subject: result.value.envelope.subject,
+      text: result.value.body.plainText!,
+    );
+  }
+
+  ProductivityFolderBrowser? _captureMcpFolder(bool allowText) {
+    final provider = _provider;
+    final mailbox = _mailbox;
+    final session = _session;
+    if (provider == null ||
+        mailbox == null ||
+        session == null ||
+        session.isDisposed ||
+        _blocked) {
+      return null;
+    }
+    final id = mailbox.id;
+    final lease = session.begin();
+    final observer = provider is MailMembershipObserver
+        ? provider as MailMembershipObserver
+        : null;
+    return studioMcpMailFolder(
+      mailbox: id,
+      allowText: allowText && observer != null,
+      isScoped: () =>
+          mounted &&
+          !_blocked &&
+          _current(provider, lease) &&
+          _mailbox?.id == id,
+      load: (after) async {
+        final page = await provider.fetchHeaders(
+          id,
+          cursor: after == null ? null : MailCursor(mailbox: id, value: after),
+          limit: ProductivityFolderBrowser.pageSize,
+          lease: lease,
+        );
+        return page is MailSuccess<MailHeaderPage> ? page.value : null;
+      },
+      read: (identity, current) async => observer == null
+          ? null
+          : _fetchMcpText(provider, observer, id, identity, lease, current),
     );
   }
 
@@ -3370,6 +3432,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       },
       openedMail: () => _reader?.result.message,
       captureMailSelection: _captureMcpMailbox,
+      captureFolder: _provider is MailMembershipObserver
+          ? _captureMcpFolder
+          : null,
       enabled: !_blocked,
     );
   }

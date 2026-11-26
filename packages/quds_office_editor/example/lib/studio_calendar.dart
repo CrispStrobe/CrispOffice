@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quds_office_engine/quds_productivity_automation.dart'
+    show ProductivityApprovalOutcome, ProductivityProposal;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
@@ -999,6 +1001,23 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         },
       );
 
+  CalDavEventFields? _mcpFields(ProductivityProposal proposal) {
+    final start = proposal.start!;
+    final end = proposal.end!;
+    if (start.isBefore(_start) || !start.isBefore(_end) || end.isAfter(_end)) {
+      return null;
+    }
+    CalDavDateValue value(DateTime time) => CalDavDateValue.fromTaskDate(
+      TaskDateTime(time.toIso8601String().substring(0, 19), timeZone: 'UTC'),
+    );
+    return CalDavEventFields(
+      title: proposal.title,
+      start: value(start),
+      end: value(end),
+      description: proposal.text,
+    );
+  }
+
   Object? _liveScope() => _selection?.isNotEmpty == true
       ? (_selection, _start, _end, _search.text, _storage.revision)
       : null;
@@ -1024,6 +1043,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     final canCreate =
         !_busy &&
         visible.any((source) => source.dav?.calendar.canCreate == true);
+    final only = visible.singleOrNull;
+    final approvalTarget = canCreate && only != null ? _targetFor(only) : null;
     final period = _period.label.toLowerCase();
     final liveScope = _liveScope();
     StudioCmd command(
@@ -1190,12 +1211,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                   reviewProposal: !canCreate
                       ? null
                       : (proposal, current) async {
-                          final start = proposal.start!;
-                          final end = proposal.end!;
-                          if (!current() ||
-                              start.isBefore(_start) ||
-                              !start.isBefore(_end) ||
-                              end.isAfter(_end)) {
+                          final fields = _mcpFields(proposal);
+                          if (!current() || fields == null) {
                             if (mounted && current()) {
                               setState(
                                 () => _notice =
@@ -1204,24 +1221,40 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                             }
                             return;
                           }
-                          CalDavDateValue value(DateTime time) =>
-                              CalDavDateValue.fromTaskDate(
-                                TaskDateTime(
-                                  time.toIso8601String().substring(0, 19),
-                                  timeZone: 'UTC',
-                                ),
-                              );
                           await _editEvent(
                             draft: CalDavEvent(
                               uid: '',
-                              title: proposal.title,
-                              start: value(start),
-                              end: value(end),
-                              description: proposal.text,
+                              title: fields.title,
+                              start: fields.start,
+                              end: fields.end,
+                              description: fields.description,
                             ),
                             canSave: current,
                           );
                         },
+                  approval: approvalTarget == null || only == null
+                      ? null
+                      : (
+                          label: 'Approve and save appointment',
+                          destination: _sourceName(only),
+                          apply: (proposal, current) async {
+                            final fields = _mcpFields(proposal);
+                            if (!current() ||
+                                fields == null ||
+                                _busy ||
+                                !_currentTarget(approvalTarget)) {
+                              return ProductivityApprovalOutcome.rejected;
+                            }
+                            final failure = await _submitEvent(
+                              approvalTarget,
+                              null,
+                              fields,
+                            );
+                            return failure == null
+                                ? ProductivityApprovalOutcome.saved
+                                : ProductivityApprovalOutcome.unconfirmed;
+                          },
+                        ),
                   enabled: !_busy && _agenda != null,
                 ),
                 if (visible.isNotEmpty)

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -339,6 +340,155 @@ void main() {
       'end': '2026-11-26T11:00:00Z',
     });
     expect(proposals.pending!.start, DateTime.utc(2026, 11, 26, 10));
+  });
+
+  test(
+    'folder pages hide provider cursors and invalidate old body handles',
+    () async {
+      var current = true;
+      final cursors = <String?>[];
+      final browser = ProductivityFolderBrowser(
+        allowText: true,
+        load: (after, _) async {
+          cursors.add(after);
+          return (
+            next: after == null ? 'private-provider-cursor' : null,
+            messages: [
+              ProductivityFolderMessage(
+                subject: after == null ? 'Newer' : 'Older',
+                unread: true,
+                read: (_) async =>
+                    ProductivityMailText(subject: 'Approved', text: 'Text'),
+              ),
+            ],
+          );
+        },
+      );
+      bool scoped() => current;
+      expect(await browser.browse(2, scoped), isNull);
+      final first = await browser.browse(1, scoped);
+      expect(first?['nextPage'], 2);
+      expect(jsonEncode(first), isNot(contains('private-provider-cursor')));
+      expect(await browser.browse(1, scoped), first);
+      expect(cursors, [null]);
+      expect((await browser.read(1, 1, scoped))?.text, 'Text');
+      expect((await browser.browse(2, scoped))?['messages'], [
+        {'handle': 1, 'subject': 'Older', 'unread': true},
+      ]);
+      expect(cursors, [null, 'private-provider-cursor']);
+      expect(await browser.read(1, 1, scoped), isNull);
+      expect(await browser.browse(3, scoped), isNull);
+      current = false;
+      expect(await browser.read(2, 1, scoped), isNull);
+    },
+  );
+
+  test(
+    'folder metadata permission cannot fetch bodies or accept cursor loops',
+    () async {
+      final browser = ProductivityFolderBrowser(
+        allowText: false,
+        load: (_, _) async => (
+          next: 'same-cursor',
+          messages: [
+            ProductivityFolderMessage(
+              subject: 'Approved',
+              read: (_) async => throw StateError('Unexpected body read'),
+            ),
+          ],
+        ),
+      );
+      bool scoped() => true;
+      expect((await browser.browse(1, scoped))?['messages'], [
+        {'subject': 'Approved'},
+      ]);
+      expect(await browser.read(1, 1, scoped), isNull);
+      expect(await browser.browse(2, scoped), isNull);
+      expect((await browser.browse(1, scoped))?['nextPage'], 2);
+    },
+  );
+
+  test(
+    'exact local approval runs once and distinguishes queued from saved',
+    () async {
+      final proposals = ProductivityProposals(ProductivityKind.tasks);
+      proposals.propose({'title': 'Approved task'});
+      final pending = proposals.pending!;
+      final complete = Completer<ProductivityApprovalOutcome>();
+      var calls = 0;
+      Future<ProductivityApprovalOutcome> save() {
+        calls++;
+        return complete.future;
+      }
+
+      final apply = proposals.apply(pending, save);
+      expect(proposals.status['status'], 'applying');
+      expect(proposals.pending, isNull);
+      expect(await proposals.apply(pending, save), isFalse);
+      expect(
+        () => proposals.propose({'title': 'Other task'}),
+        throwsStateError,
+      );
+      complete.complete(ProductivityApprovalOutcome.queued);
+      expect(await apply, isTrue);
+      expect(proposals.status['status'], 'queued');
+      expect(await proposals.apply(pending, save), isFalse);
+      expect(calls, 1);
+    },
+  );
+
+  test('approved folder browsing works through the MCP relay', () async {
+    final grant = await ProductivityGrant.open(
+      isCurrent: () => true,
+      session: ProductivityMcp.live(
+        kind: ProductivityKind.mail,
+        read: () => throw StateError('UI headers are separate'),
+        folderBrowser: ProductivityFolderBrowser(
+          allowText: true,
+          load: (after, _) async => (
+            next: after == null ? 'private' : null,
+            messages: [
+              ProductivityFolderMessage(
+                subject: after == null ? 'First' : 'Older',
+                read: (_) async =>
+                    ProductivityMailText(subject: 'Older', text: 'Approved'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    addTearDown(grant.revoke);
+    final relay = ProductivityGrantRelay(grant.ticket);
+    addTearDown(relay.close);
+    await _start(relay);
+    Future<Map<String, Object?>?> call(
+      String tool,
+      Map<String, Object?> args,
+    ) => relay.forward(
+      _request('tools/call', {'name': tool, 'arguments': args}),
+    );
+    expect(
+      await call('mail_browse_folder', {'page': 1, 'folder': 'Elsewhere'}),
+      contains('error'),
+    );
+    expect(
+      _result(await call('mail_browse_folder', {'page': 1}))['nextPage'],
+      2,
+    );
+    expect(_result(await call('mail_browse_folder', {'page': 2}))['messages'], [
+      {'handle': 1, 'subject': 'Older'},
+    ]);
+    expect(
+      await call('mail_read_folder_text', {'page': 1, 'handle': 1}),
+      contains('error'),
+    );
+    expect(
+      _result(
+        await call('mail_read_folder_text', {'page': 2, 'handle': 1}),
+      )['text'],
+      'Approved',
+    );
   });
 
   test('grants expire and bound request rates', () async {

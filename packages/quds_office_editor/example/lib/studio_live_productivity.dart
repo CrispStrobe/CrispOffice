@@ -8,6 +8,16 @@ import 'package:quds_office_engine/quds_productivity_live.dart';
 
 const studioLiveProductivityLabel = 'Live MCP access';
 
+typedef StudioProductivityApproval = ({
+  String label,
+  String destination,
+  Future<ProductivityApprovalOutcome> Function(
+    ProductivityProposal,
+    bool Function(),
+  )
+  apply,
+});
+
 /// One grant belongs to the mounted view and one exact scope. Its data source
 /// follows the view's latest approved rows, including ordinary refreshes.
 final class StudioLiveProductivityButton extends StatefulWidget {
@@ -20,7 +30,9 @@ final class StudioLiveProductivityButton extends StatefulWidget {
     required this.readRows,
     this.openedMail,
     this.reviewProposal,
+    this.approval,
     this.captureMailSelection,
+    this.captureFolder,
     this.enabled = true,
   });
 
@@ -32,7 +44,9 @@ final class StudioLiveProductivityButton extends StatefulWidget {
   final MailMessage? Function()? openedMail;
   final Future<void> Function(ProductivityProposal, bool Function())?
   reviewProposal;
+  final StudioProductivityApproval? approval;
   final ProductivityMailSelection? Function()? captureMailSelection;
+  final ProductivityFolderBrowser? Function(bool allowText)? captureFolder;
   final bool enabled;
 
   @override
@@ -81,6 +95,8 @@ final class _StudioLiveProductivityButtonState
     var includeText = false;
     var allowProposals = false;
     var includeMailboxText = false;
+    var browseFolder = false;
+    var browseText = false;
     final mailbox = widget.captureMailSelection?.call();
     setState(() => _opening = true);
     try {
@@ -89,6 +105,7 @@ final class _StudioLiveProductivityButtonState
         builder: (context) => StatefulBuilder(
           builder: (context, update) => AlertDialog(
             title: const Text('Grant live read access'),
+            scrollable: true,
             content: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,11 +119,34 @@ final class _StudioLiveProductivityButtonState
                     contentPadding: EdgeInsets.zero,
                     title: const Text('Allow suggestions for review'),
                     subtitle: const Text(
-                      'Suggestions wait here until you open them in the editor.',
+                      'Suggestions wait here for you to review.',
                     ),
                     value: allowProposals,
                     onChanged: (value) =>
                         update(() => allowProposals = value ?? false),
+                  ),
+                if (widget.captureFolder != null)
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text(
+                      'Browse the selected folder on the server',
+                    ),
+                    subtitle: const Text(
+                      'Includes older messages outside this view.',
+                    ),
+                    value: browseFolder,
+                    onChanged: (value) =>
+                        update(() => browseFolder = value ?? false),
+                  ),
+                if (browseFolder)
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text(
+                      'Include plain text from browsed messages',
+                    ),
+                    value: browseText,
+                    onChanged: (value) =>
+                        update(() => browseText = value ?? false),
                   ),
                 if (mailbox != null && mailbox.subjects.isNotEmpty)
                   CheckboxListTile(
@@ -156,6 +196,9 @@ final class _StudioLiveProductivityButtonState
         session: ProductivityMcp.live(
           kind: kind,
           proposals: proposals,
+          folderBrowser: browseFolder
+              ? widget.captureFolder?.call(browseText)
+              : null,
           mailSelection: includeMailboxText ? mailbox : null,
           isCurrent: () => isCurrent() && _grant?.isActive == true,
           read: () => ProductivitySnapshot.capture(
@@ -246,7 +289,8 @@ final class _StudioLiveProductivityButtonState
     final proposals = _proposals;
     final pending = proposals?.pending;
     if (proposals == null || pending == null || !grant.isActive) return;
-    final review = await showDialog<bool>(
+    final approval = widget.approval;
+    final review = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Review MCP suggestion'),
@@ -256,6 +300,7 @@ final class _StudioLiveProductivityButtonState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Scope: ${widget.scope}'),
+            if (approval != null) Text('Destination: ${approval.destination}'),
             Text(pending.title),
             if (pending.start case final start?)
               Text(
@@ -270,11 +315,16 @@ final class _StudioLiveProductivityButtonState
             child: const Text('Back'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, false),
+            onPressed: () => Navigator.pop(context, 'dismiss'),
             child: const Text('Dismiss suggestion'),
           ),
+          if (approval != null)
+            FilledButton.tonal(
+              onPressed: () => Navigator.pop(context, 'apply'),
+              child: Text(approval.label),
+            ),
           FilledButton(
-            onPressed: () => Navigator.pop(context, true),
+            onPressed: () => Navigator.pop(context, 'editor'),
             child: const Text('Open in editor'),
           ),
         ],
@@ -282,9 +332,28 @@ final class _StudioLiveProductivityButtonState
     );
     bool current() => mounted && identical(_grant, grant) && grant.isActive;
     final open = widget.reviewProposal;
-    if (review == null || !current() || (review && open == null)) return;
-    if (proposals.resolve(pending, review: review) && review) {
-      await open!(pending, current);
+    if (review == null || !current()) return;
+    if (review == 'apply' && approval != null) {
+      await proposals.apply(pending, () => approval.apply(pending, current));
+      if (mounted) {
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          SnackBar(
+            content: Text(switch (proposals.status['status']) {
+              'saved' => 'Suggestion saved.',
+              'queued' => 'Task added locally. Sync will run separately.',
+              'rejected' => 'Suggestion could not be saved in this scope.',
+              _ =>
+                'Save outcome could not be confirmed. Refresh before you retry.',
+            }),
+          ),
+        );
+      }
+    } else if (review == 'editor' && open != null) {
+      if (proposals.resolve(pending, review: true)) {
+        await open(pending, current);
+      }
+    } else if (review == 'dismiss') {
+      proposals.resolve(pending, review: false);
     }
   }
 

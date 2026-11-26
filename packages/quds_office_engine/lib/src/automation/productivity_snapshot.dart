@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'mcp_tool_session.dart';
+import 'productivity_folder.dart';
 import 'productivity_proposal.dart';
 
 enum ProductivityKind {
@@ -157,6 +158,7 @@ final class ProductivityMcp {
         null,
         null,
         _unrestricted,
+        null,
       );
 
   ProductivityMcp.live({
@@ -166,6 +168,7 @@ final class ProductivityMcp {
     ProductivityProposals? proposals,
     ProductivityMailSelection? mailSelection,
     bool Function()? isCurrent,
+    ProductivityFolderBrowser? folderBrowser,
   }) : this._(
          kind,
          read,
@@ -174,6 +177,7 @@ final class ProductivityMcp {
          proposals?.kind == kind ? proposals : null,
          kind == ProductivityKind.mail ? mailSelection : null,
          isCurrent ?? _unrestricted,
+         kind == ProductivityKind.mail ? folderBrowser : null,
        );
 
   ProductivityMcp._(
@@ -184,6 +188,7 @@ final class ProductivityMcp {
     this._proposals,
     this._mailSelection,
     this._isCurrent,
+    this._folderBrowser,
   );
 
   final ProductivityKind kind;
@@ -193,6 +198,7 @@ final class ProductivityMcp {
   final ProductivityProposals? _proposals;
   final ProductivityMailSelection? _mailSelection;
   final bool Function() _isCurrent;
+  final ProductivityFolderBrowser? _folderBrowser;
   static bool _unrestricted() => true;
 
   bool isReadTool(Object? name) =>
@@ -200,6 +206,8 @@ final class ProductivityMcp {
       name == _openedMailTool ||
       name == 'mail_list_approved_text' ||
       name == 'mail_read_approved_text' ||
+      name == 'mail_browse_folder' ||
+      name == 'mail_read_folder_text' ||
       name == 'productivity_proposal_status';
   static const _openedMailTool = 'mail_read_opened_text';
 
@@ -260,6 +268,38 @@ final class ProductivityMcp {
           'Read the status of the latest suggestion.',
           {},
         ),
+      ],
+      if (_folderBrowser case final folder?) ...[
+        _tool(
+          'mail_browse_folder',
+          'Read the next page of the user-approved folder. Start with page 1.',
+          {
+            'page': {
+              'type': 'integer',
+              'minimum': 1,
+              'maximum': ProductivityFolderBrowser.maxPages,
+            },
+          },
+          requiredFields: ['page'],
+        ),
+        if (folder.allowText)
+          _tool(
+            'mail_read_folder_text',
+            'Read a message from the current approved page.',
+            {
+              'page': {
+                'type': 'integer',
+                'minimum': 1,
+                'maximum': ProductivityFolderBrowser.maxPages,
+              },
+              'handle': {
+                'type': 'integer',
+                'minimum': 1,
+                'maximum': ProductivityFolderBrowser.pageSize,
+              },
+            },
+            requiredFields: ['page', 'handle'],
+          ),
       ],
       if (_mailSelection != null) ...[
         _tool(
@@ -339,6 +379,32 @@ final class ProductivityMcp {
           );
         }
         return McpToolSession.toolResult(proposals.status);
+      }
+    }
+    if (_folderBrowser case final folder?) {
+      final page = arguments['page'];
+      if (name == 'mail_browse_folder') {
+        if (page is! int || arguments.length != 1) {
+          throw const McpProtocolException(-32602, 'A page number is required');
+        }
+        final data = await folder.browse(page, _isCurrent);
+        if (data == null) {
+          throw const McpProtocolException(
+            -32003,
+            'The requested folder page is unavailable',
+          );
+        }
+        return McpToolSession.toolResult(data);
+      }
+      if (name == 'mail_read_folder_text' && folder.allowText) {
+        final handle = arguments['handle'];
+        if (page is! int || handle is! int || arguments.length != 2) {
+          throw const McpProtocolException(
+            -32602,
+            'Current page and handle are required',
+          );
+        }
+        return _mailText(await folder.read(page, handle, _isCurrent));
       }
     }
     if (_mailSelection case final mailbox?) {
