@@ -159,7 +159,7 @@ void main() {
       await tester.tap(find.text('Close'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('29'));
-      expect(selected, DateTime(2026, 3, 29));
+      expect(selected, DateTime.utc(2026, 3, 29));
     },
   );
 
