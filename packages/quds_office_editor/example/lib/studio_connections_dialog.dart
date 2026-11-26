@@ -136,7 +136,12 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
         throw StateError('Credential storage changed.');
       }
       await saveStudioAccountServices(vault, id, request);
-      if (mounted) setState(() => _accounts = _load());
+      if (mounted) {
+        final accounts = _load();
+        setState(() {
+          _accounts = accounts;
+        });
+      }
     } on Object {
       if (mounted) {
         setState(() => _error = 'The service settings could not be saved.');

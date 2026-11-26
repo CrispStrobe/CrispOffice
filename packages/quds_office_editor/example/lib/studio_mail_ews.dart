@@ -278,7 +278,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (storage == null) return;
     final revision = storage.revision;
     final accounts = StudioMailAccountNavigationTarget.savedExchange(storage);
-    setState(() => _savedExchangeAccounts = accounts);
+    setState(() {
+      _savedExchangeAccounts = accounts;
+    });
     if (active == null) return;
     unawaited(() async {
       final available = await accounts;

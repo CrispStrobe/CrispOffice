@@ -224,10 +224,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   void _reloadSharedExchangeAccounts() {
     if (!mounted) return;
-    setState(
-      () => _sharedExchangeAccounts =
-          StudioMailAccountNavigationTarget.savedExchange(_sharedStorage),
+    final accounts = StudioMailAccountNavigationTarget.savedExchange(
+      _sharedStorage,
     );
+    setState(() {
+      _sharedExchangeAccounts = accounts;
+    });
   }
 
   final _email = TextEditingController();
