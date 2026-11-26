@@ -21,8 +21,6 @@ import 'studio_chrome.dart';
 import 'studio_task_editor.dart';
 import 'studio_device_tasks.dart';
 import 'studio_ews_credentials.dart';
-import 'studio_tasks_ews_sync.dart';
-import 'studio_tasks_google_sync.dart';
 import 'studio_productivity_accounts.dart';
 
 Widget buildStudioTasks(
@@ -395,7 +393,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       for (final list in lists)
         (
           list: list,
-          sync: () => syncStudioEwsTasks(
+          sync: () => syncEwsTasks(
             TaskSyncWorker(_store!),
             lease,
             reader,
@@ -501,7 +499,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
       closeProvider = provider.close;
       fetchLists = (cursor) => provider.lists(session.begin(), cursor: cursor);
       sync = (lease, list) => enableWrites
-          ? syncStudioGoogleTasks(
+          ? syncGoogleTasks(
               TaskSyncWorker(_store!),
               lease,
               provider,

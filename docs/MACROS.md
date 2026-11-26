@@ -540,6 +540,55 @@ uses an offline file grant. Live delegated reads would need a host-side grant
 for each client and scope. Sending mail, deleting items and issuing invitations
 would need a separate confirmed host command.
 
+## MCP security and headless hosting
+
+CrispOffice uses local stdio for both bridges. The trusted launcher chooses the
+input, and the tools have access only to that document or productivity snapshot.
+Neither bridge needs an MCP access token, an Exchange password or a provider
+OAuth token. The document worker isolate limits request duration. OS filesystem,
+environment and network permissions still belong to the launching process.
+A restricted launcher could verify the executable, supply an allowlisted
+environment, and limit filesystem access and network egress. The exported
+productivity JSON is an ordinary file and cannot be revoked after another
+process has read or copied it.
+
+Live automation needs a grant enforced by the Dart host on every request.
+A grant identifies the client, account, permitted folders, lists or calendars,
+operations and expiry. Start with short-lived, revocable read grants. Keep
+provider secrets in the host's credential store. Sensitive writes need approval
+bound to the exact operation and destination, with repeat submissions checked
+against the existing outbox or revision. Use redacted audits, bounded requests,
+and per-client concurrency and rate limits. Treat provider content and tool
+annotations as untrusted data.
+
+A remote deployment would use authenticated Streamable HTTP over TLS with
+origin validation and an OAuth 2.1 resource server. Validate issuer, audience,
+expiry and scopes on every request and use the configured authorization
+server's discovery metadata. Use authorization code with PKCE for interactive
+clients. Access tokens for MCP and tokens for Microsoft Graph or Google have
+different audiences. Provider tokens remain in the host. Token exchange is an
+optional identity-provider flow that issues a new audience-bound token when
+the deployment supports it. Use sender-constrained tokens such as DPoP or mTLS
+where the authorization server and client support them and the deployment
+requires stronger replay protection.
+
+The current bridge negotiates the legacy initialized session lifecycle. The
+2026-07-28 revision uses per-request protocol metadata. Adding it requires
+interoperability tests alongside the existing client behavior.
+
+- [MCP authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [Streamable HTTP](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http)
+- [MCP security guidance](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OAuth token exchange](https://www.rfc-editor.org/info/rfc8693)
+- [DPoP](https://www.rfc-editor.org/info/rfc9449)
+
+Keep provider operations, task synchronization, persistence, authorization
+policy and wire codecs callable through plain Dart. Flutter and a future Dart
+CLI or service can supply their own browser opener, credential store, database
+location, lifecycle and approval UI. The Tasks store exposes
+`syncCalDavTasks`, `syncGraphTasks`, `syncEwsTasks` and `syncGoogleTasks`.
+The host supplies the authenticated provider and current account leases.
+
 ## Host policy and document admission
 
 Default limits are 1,000 operations, 1 MiB native JSON or source, 64 MiB input
