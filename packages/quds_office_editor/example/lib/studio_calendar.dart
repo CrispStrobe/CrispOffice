@@ -9,6 +9,7 @@ import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
 import 'package:quds_tasks_core/quds_tasks_core.dart';
 
 import 'credentials/utils/async_lock.dart';
+import 'studio_productivity_export.dart';
 import 'studio_calendar_editor.dart';
 import 'studio_calendar_grid.dart';
 import 'studio_chrome.dart';
@@ -961,6 +962,25 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     return 'No events this $period.';
   }
 
+  Future<void> _exportEvents(List<CalDavEvent> events) {
+    final generation = _generation;
+    return exportStudioProductivityView(
+      context,
+      kind: ProductivityKind.calendar,
+      scope: 'the currently displayed calendars and date range',
+      isCurrent: () => mounted && generation == _generation,
+      rows: events.map(
+        (event) => {
+          'title': event.title,
+          'start': event.start.value,
+          'startTimeZone': ?event.start.timeZone,
+          'end': ?event.end?.value,
+          'endTimeZone': ?event.end?.timeZone,
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -1023,6 +1043,13 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         Icons.add_circle_outline,
                         'New event',
                         canCreate ? _editEvent : null,
+                      ),
+                      command(
+                        Icons.file_download_outlined,
+                        studioProductivityExportLabel,
+                        _busy || events.isEmpty
+                            ? null
+                            : () => _exportEvents(events),
                       ),
                     ],
                   ),

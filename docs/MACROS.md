@@ -437,7 +437,8 @@ provide nested rollback semantics. This change makes no single-undo claim.
 For a local MCP client, launch one process per explicitly selected document:
 
 ```bash
-dart run tool/macros/office_macro_mcp.dart input.xlsx output.xlsx
+dart run tool/macros/office_macro_mcp.dart input.xlsx
+dart run tool/macros/office_macro_mcp.dart --write input.xlsx output.xlsx
 ```
 
 An example stdio client configuration is:
@@ -450,13 +451,20 @@ An example stdio client configuration is:
       "args": [
         "run",
         "/absolute/path/quds_office_suite/packages/quds_office_engine/tool/macros/office_macro_mcp.dart",
-        "/absolute/path/input.xlsx",
-        "/absolute/path/output.xlsx"
+        "/absolute/path/input.xlsx"
       ]
     }
   }
 }
 ```
+
+The launcher opens documents in inspection and compile mode by default. Use
+`--write` with a distinct output file to enable macro execution and recording.
+A separate Dart isolate handles each document session. The launcher stops the
+session if it misses the 30-second deadline for opening or answering a request.
+The launcher checks the input size before allocating document bytes and caps
+both directions of the stdio wire at 2 MiB. It uses the launching client's
+local process permissions.
 
 For an existing server, embed `OfficeMacroMcp(session)` and route `tools/list`
 and `tools/call` to `listTools` and `callTool`. `handleMessage` additionally
@@ -492,6 +500,45 @@ network listener, and tool calls cannot choose another document or output path.
 The stdio wire format and result conventions follow the
 [MCP tools specification](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
 and [stdio transport specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports).
+
+## Mail, Tasks and Calendar automation
+
+In native CrispOffice, use **Export automation snapshot** in the open mailbox,
+task list or calendar view. Confirm the export and pick a new JSON file. Mail
+includes loaded subjects, dates and unread flags. Tasks includes visible task
+titles, statuses and due days. Calendar includes visible event titles and time
+bounds with timezone identifiers where available. The capture is limited to
+250 rows and 1 MiB. It excludes account IDs, passwords, tokens, recipients,
+message bodies, attachments, task notes and event descriptions.
+
+From `packages/quds_office_engine`, choose the exported file explicitly:
+
+```bash
+dart run tool/macros/productivity_mcp.dart /path/to/snapshot.json
+dart run tool/macros/productivity_mcp.dart --json /path/to/snapshot.json
+```
+
+Use the first command as the MCP client's local stdio launch command. One tool
+matches the file type. It accepts bounded offset and limit arguments and returns
+the capture time with the rows. The second command prints the validated JSON for
+scripts. Both use the same strict snapshot parser. Requests have no filesystem,
+provider, account-selection or mutation arguments. The file is a point-in-time
+copy. Its contents remain readable to anyone who receives a copy after the app
+disconnects.
+
+The Dart domain and transport layers already handle most of the underlying work.
+
+| Area | Dart without Flutter | Flutter host work |
+| --- | --- | --- |
+| Mail | MIME parsing, native IMAP/SMTP and EWS, Gmail and Graph API transports, synchronization runner, SQLite cache and outbox. | Credential store selection, account and folder UI, platform file access and lifecycle. |
+| Tasks | Models, patches, reconciliation, SQLite outbox and sync worker, and CalDAV, Graph, Google Tasks and EWS adapters. | Account and list selection, secure storage, OAuth browser launch and foreground scheduling. |
+| Calendar | CalDAV discovery, ranged reads and conditional writes, event codecs and recurrence expansion, and read-only EWS discovery and ranged reads. | Calendar grid and agenda, event editor, account authorization and visible-range refresh. |
+
+As with the OOXML engine, a Dart host can supply credentials, HTTP clients,
+database paths and operation leases directly. The snapshot bridge deliberately
+uses an offline file grant. Live delegated reads would need a host-side grant
+for each client and scope. Sending mail, deleting items and issuing invitations
+would need a separate confirmed host command.
 
 ## Host policy and document admission
 

@@ -9,6 +9,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
 import 'studio_chrome.dart';
 import 'studio_credential_biometric_strings.dart';
@@ -5215,6 +5216,31 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     await _reloadSelectedCredentialStore();
   }
 
+  Future<void> _exportLoadedMail() {
+    final generation = _mailboxGeneration;
+    final session = _sessionGeneration;
+    final messages = _unreadOnly
+        ? _messages.where((message) => _observedRead(message) == false)
+        : _messages;
+    return exportStudioProductivityView(
+      context,
+      kind: ProductivityKind.mail,
+      scope: 'the loaded headers in this mailbox view',
+      isCurrent: () =>
+          mounted &&
+          generation == _mailboxGeneration &&
+          session == _sessionGeneration,
+      rows: messages.map(
+        (message) => {
+          'subject': message.decodeSubject() ?? '',
+          if (message.decodeDate() case final date?)
+            'date': date.toUtc().toIso8601String(),
+          if (_observedRead(message) case final read?) 'unread': !read,
+        },
+      ),
+    );
+  }
+
   Widget _mailChrome(BuildContext context) {
     final theme = Theme.of(context);
     final Color foreground = theme.colorScheme.onSurface;
@@ -5299,6 +5325,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ? null
                   : _openSynchronization,
             ),
+          command(
+            icon: Icons.file_download_outlined,
+            tooltip: studioProductivityExportLabel,
+            onPressed:
+                _busy || _dialogOpen || _mailbox == null || _messages.isEmpty
+                ? null
+                : _exportLoadedMail,
+          ),
           _folderArchiveButton(),
           if (_pollInboxMailbox != null)
             command(

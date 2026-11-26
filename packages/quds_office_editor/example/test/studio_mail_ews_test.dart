@@ -512,6 +512,15 @@ void main() {
         return provider;
       });
       await _connect(tester);
+      await tester.tap(find.byTooltip('Export automation snapshot'));
+      await _pump(tester);
+      expect(
+        find.textContaining('loaded headers in this mailbox'),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('Cancel'));
+      await _pump(tester);
+      expect(find.text('Choose file'), findsNothing);
       expect(find.text('Search-only result'), findsNothing);
       await tester.tap(_field('studio-mail-open-server-search'));
       await _pump(tester);

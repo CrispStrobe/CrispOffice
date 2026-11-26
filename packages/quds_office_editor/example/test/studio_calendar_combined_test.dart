@@ -351,6 +351,19 @@ void main() {
       expect(find.text('Exchange appointment'), findsOneWidget);
       expect(find.text('Team appointment'), findsOneWidget);
 
+      final share = find.byTooltip('Export automation snapshot');
+      await tester.ensureVisible(share);
+      await tester.tap(share);
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('currently displayed calendars and date range'),
+        findsOneWidget,
+      );
+      expect(find.text('Choose file'), findsOneWidget);
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(find.text('Choose file'), findsNothing);
+
       await tester.tap(find.text('Team appointment'));
       await tester.pumpAndSettle();
       expect(find.text('Meeting room'), findsOneWidget);

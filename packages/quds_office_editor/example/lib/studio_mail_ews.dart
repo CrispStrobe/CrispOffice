@@ -9,6 +9,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
 import 'studio_mail_account_navigation.dart';
 import 'studio_mail_account_navigation_strings.dart';
@@ -3249,6 +3250,29 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     );
   }
 
+  Future<void> _exportLoadedMail() {
+    final generation = _mailboxGeneration;
+    final session = _session;
+    return exportStudioProductivityView(
+      context,
+      kind: ProductivityKind.mail,
+      scope: 'the loaded headers in this mailbox',
+      isCurrent: () =>
+          mounted &&
+          !_routeRetired &&
+          generation == _mailboxGeneration &&
+          identical(_session, session),
+      rows: _headers.map(
+        (header) => {
+          'subject': header.envelope.subject,
+          if (header.envelope.sentAt case final date?)
+            'date': date.toUtc().toIso8601String(),
+          if (_isRead(header) case final read?) 'unread': !read,
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => PopScope<Object?>(
     canPop: _allowPop || _routeRetired,
@@ -3270,6 +3294,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     : _forCurrentConnection(_navigateAccount),
               ),
             if (_connected) ...[
+              IconButton(
+                tooltip: studioProductivityExportLabel,
+                icon: const Icon(Icons.file_download_outlined),
+                onPressed: _blocked || _mailbox == null || _headers.isEmpty
+                    ? null
+                    : _forCurrentConnection(_exportLoadedMail),
+              ),
               if (_provider case final MailProviderSearch searchProvider
                   when searchProvider.searchFields.isNotEmpty)
                 IconButton(

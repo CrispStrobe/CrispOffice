@@ -45,6 +45,15 @@ void main() {
     await tester.tap(find.text('Save task'));
     await tester.pumpAndSettle();
     expect(find.text('Plan the fixture'), findsOneWidget);
+    await tester.tap(find.byTooltip('Export automation snapshot'));
+    await tester.pumpAndSettle();
+    expect(
+      find.textContaining('currently displayed task list and filter'),
+      findsOneWidget,
+    );
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(find.text('Choose file'), findsNothing);
     await tester.tap(find.byType(Checkbox));
     await tester.pumpAndSettle();
     expect(tester.widget<Checkbox>(find.byType(Checkbox)).value, isTrue);

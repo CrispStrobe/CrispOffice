@@ -15,6 +15,7 @@ import 'package:sqlite3/sqlite3.dart' show Database;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'credentials/secure_storage_service.dart';
+import 'studio_productivity_export.dart';
 import 'studio_credential_storage.dart';
 import 'studio_chrome.dart';
 import 'studio_task_editor.dart';
@@ -822,6 +823,27 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     _reload();
   }
 
+  Future<void> _exportTasks(Iterable<TaskFields> tasks) {
+    final list = _selected;
+    final revision = _credentialStorage.revision;
+    return exportStudioProductivityView(
+      context,
+      kind: ProductivityKind.tasks,
+      scope: 'the currently displayed task list and filter',
+      isCurrent: () =>
+          mounted &&
+          _selected == list &&
+          _credentialStorage.revision == revision,
+      rows: tasks.map(
+        (fields) => {
+          'title': fields.title,
+          'status': fields.status.name,
+          if (fields.due case final due?) 'due': studioTaskDueDate(due),
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -846,6 +868,10 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                 _selected != studioDeviceTaskList.id))
           (fields: edit.fields, remote: null, edit: edit),
     ];
+    final exportable = rows.map((row) => row.fields).nonNulls;
+    final export = busy || exportable.isEmpty
+        ? null
+        : () => _exportTasks(exportable);
     return Scaffold(
       backgroundColor: colors.surface,
       appBar: widget.chromeBuilder != null
@@ -858,6 +884,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                   ? null
                   : BackButton(onPressed: widget.onClose),
               actions: [
+                IconButton(
+                  tooltip: studioProductivityExportLabel,
+                  onPressed: export,
+                  icon: const Icon(Icons.file_download_outlined),
+                ),
                 if (connected)
                   TextButton(
                     onPressed: busy ? null : _disconnect,
@@ -886,7 +917,12 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         children: [
           if (widget.chromeBuilder case final chrome?) ...[
             chrome(context),
-            _ribbon(ready: ready, connected: connected, busy: busy),
+            _ribbon(
+              ready: ready,
+              connected: connected,
+              busy: busy,
+              export: export,
+            ),
           ],
           if (busy) const LinearProgressIndicator(),
           if (_notice case final notice?)
@@ -1021,6 +1057,7 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
     required bool ready,
     required bool connected,
     required bool busy,
+    required VoidCallback? export,
   }) {
     final scheme = Theme.of(context).colorScheme;
     Widget command(IconData icon, String label, VoidCallback? action) =>
@@ -1060,6 +1097,11 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                         !ready || _selection.list.readOnly
                             ? null
                             : () => _edit(null),
+                      ),
+                      command(
+                        Icons.file_download_outlined,
+                        studioProductivityExportLabel,
+                        export,
                       ),
                     ],
                   ),
