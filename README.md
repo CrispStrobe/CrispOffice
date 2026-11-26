@@ -1,12 +1,14 @@
-# Quds Office Suite
+# CrispOffice
 
-**A pure-Dart Office engine with Flutter editors for Word, spreadsheets,
-presentations, PDF and band reports.**
+CrispOffice brings documents, spreadsheets, presentations, PDF, mail, tasks, and
+calendar into one desktop workspace. Its pure-Dart engine also powers Flutter
+editor surfaces and band reports and is used by
+[CrispCloud](https://github.com/CrispStrobe/CrispCloud).
 
-This is the CrispStrobe fork used by **CrispOffice Studio** and
-[CrispCloud](https://github.com/CrispStrobe/CrispCloud). The engine has no
-Flutter dependency; the editor surfaces are custom `RenderBox` canvases rather
-than wrapped text fields.
+CrispOffice began as a fork of
+[Quds Office Suite](https://github.com/MohammedAsaadAsaad/quds_office_suite) by
+Mohammed Asaad. The `quds_office_engine` and `quds_office_editor` package
+names identify the engine and editor libraries.
 
 <p align="center">
   <a href="https://pub.dev/packages/quds_office_engine"><img alt="engine" src="https://img.shields.io/pub/v/quds_office_engine.svg?label=quds_office_engine&color=2B579A"/></a>
@@ -18,12 +20,13 @@ than wrapped text fields.
 
 | Area | Capabilities |
 | --- | --- |
-| **Word** | DOCX/DOCM/DOTX editing, paginated layout, BiDi/RTL, comments, tracked changes, review workspace, styles, tables, fields, headers/footers, Zotero citations, proofing, autocorrect and configurable Word/Writer shortcuts |
-| **Spreadsheets** | XLSX/XLSM editing, formula engine, charts, conditional formats, validation, frozen panes, undo/redo, XLS import and ODS import/export |
+| **Documents** | DOCX/DOCM/DOTX editing, paginated layout, rich paste from Word and websites, image paste and drop, BiDi/RTL, comments, tracked changes, styles, tables, fields, Zotero and proofing |
+| **Spreadsheets** | XLSX/XLSM editing, formula engine, charts, conditional formats, validation, frozen panes, multiline cells, XLS import and ODS import/export |
 | **Presentations** | PPTX editing, slide/shape layout, rich text, animations and Morph |
 | **PDF** | Viewer/editor, annotations, forms, page organisation and export |
 | **Reports** | `.qrep` band reports rendered by the engine to PDF, XLSX and DOCX |
 | **Mail** | IMAP, Exchange EWS, Gmail and Microsoft 365; durable plain/rich drafts, Outbox, cached mail, provider search, sender identities and flag journal in the native Studio |
+| **Tasks and Calendar** | Task lists, calendar views, and connected accounts with provider-specific sync capabilities |
 | **Automation** | Native macros/MCP bridge and bounded Excel/Word/PowerPoint VBA subsets |
 
 ## Screenshots
@@ -52,9 +55,9 @@ than wrapped text fields.
 ## Quick start
 
 ```bash
-git clone https://github.com/CrispStrobe/quds_office_suite.git
-cd quds_office_suite
-dart pub get
+git clone https://github.com/CrispStrobe/CrispOffice.git
+cd CrispOffice
+flutter pub get
 
 # CrispOffice Studio
 cd packages/quds_office_editor/example
@@ -90,8 +93,12 @@ Rules:
 
 ## Notable capabilities
 
-- **CrispOffice Studio** is the reference desktop host: ribbons, window chrome,
-  Mail workspace, downloads/font packs and Office editors.
+- **Clipboard** uses Word’s native fragment when it is available and supports
+  HTML and RTF from other applications. Choose **Edit → Paste as Plain Text**
+  or press **Cmd+Shift+V** on Mac (**Ctrl+Shift+V** on Windows and Linux) to
+  paste text alone.
+- **Print and PDF export** share a page preview with paper size, orientation,
+  margins, borders, scaling, and page-range controls.
 - **Proofing** supports German, English and Arabic paths, with Hunspell, Harper,
   spaCy and deterministic rule engines. Adaptive scheduling keeps provider work
   out of active typing.
