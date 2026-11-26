@@ -31,6 +31,7 @@ final class StudioLiveProductivityButton extends StatefulWidget {
     this.openedMail,
     this.reviewProposal,
     this.approval,
+    this.captureActions,
     this.captureMailSelection,
     this.captureFolder,
     this.enabled = true,
@@ -45,6 +46,7 @@ final class StudioLiveProductivityButton extends StatefulWidget {
   final Future<void> Function(ProductivityProposal, bool Function())?
   reviewProposal;
   final StudioProductivityApproval? approval;
+  final ProductivityActions Function()? captureActions;
   final ProductivityMailSelection? Function()? captureMailSelection;
   final ProductivityFolderBrowser? Function(bool allowText)? captureFolder;
   final bool enabled;
@@ -114,7 +116,8 @@ final class _StudioLiveProductivityButtonState
                   'Share display fields from $scope for up to 10 minutes. '
                   'The MCP client can copy the returned data.',
                 ),
-                if (widget.reviewProposal != null)
+                if ((widget.reviewProposal != null ||
+                    widget.captureActions != null))
                   CheckboxListTile(
                     contentPadding: EdgeInsets.zero,
                     title: const Text('Allow suggestions for review'),
@@ -189,13 +192,16 @@ final class _StudioLiveProductivityButtonState
       );
       if (allowed != true || !isCurrent()) return;
       final kind = widget.kind;
-      final proposals = allowProposals && widget.reviewProposal != null
+      final proposals =
+          allowProposals &&
+              (widget.reviewProposal != null || widget.captureActions != null)
           ? ProductivityProposals(kind)
           : null;
       final grant = await ProductivityGrant.open(
         session: ProductivityMcp.live(
           kind: kind,
           proposals: proposals,
+          actions: proposals == null ? null : widget.captureActions?.call(),
           folderBrowser: browseFolder
               ? widget.captureFolder?.call(browseText)
               : null,
@@ -289,7 +295,15 @@ final class _StudioLiveProductivityButtonState
     final proposals = _proposals;
     final pending = proposals?.pending;
     if (proposals == null || pending == null || !grant.isActive) return;
-    final approval = widget.approval;
+    final action = pending.action;
+    final approval = action == null
+        ? widget.approval
+        : (
+            label: action.label,
+            destination: action.destination,
+            apply: (ProductivityProposal _, bool Function() current) =>
+                action.execute(current),
+          );
     final review = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
@@ -323,10 +337,11 @@ final class _StudioLiveProductivityButtonState
               onPressed: () => Navigator.pop(context, 'apply'),
               child: Text(approval.label),
             ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, 'editor'),
-            child: const Text('Open in editor'),
-          ),
+          if (action == null && widget.reviewProposal != null)
+            FilledButton(
+              onPressed: () => Navigator.pop(context, 'editor'),
+              child: const Text('Open in editor'),
+            ),
         ],
       ),
     );
@@ -339,8 +354,9 @@ final class _StudioLiveProductivityButtonState
         ScaffoldMessenger.maybeOf(context)?.showSnackBar(
           SnackBar(
             content: Text(switch (proposals.status['status']) {
-              'saved' => 'Suggestion saved.',
-              'queued' => 'Task added locally. Sync will run separately.',
+              'saved' => 'Approved change saved.',
+              'sent' => 'The mail provider accepted the message.',
+              'queued' => 'Change recorded locally.',
               'rejected' => 'Suggestion could not be saved in this scope.',
               _ =>
                 'Save outcome could not be confirmed. Refresh before you retry.',

@@ -6,7 +6,11 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quds_office_engine/quds_productivity_automation.dart'
-    show ProductivityApprovalOutcome;
+    show
+        ProductivityAction,
+        ProductivityActionPlan,
+        ProductivityActions,
+        ProductivityApprovalOutcome;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
@@ -853,6 +857,140 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
         },
       );
 
+  ProductivityActions _captureTaskActions(
+    Iterable<({TaskFields? fields, RemoteTask? remote, LocalTaskEdit? edit})>
+    rows,
+  ) {
+    final expectedScope = _liveScope();
+    final list = _selection.list;
+    final record = _record;
+    final destination = record == null
+        ? list.name
+        : '${list.name} (${studioTaskAccountLabel(list.id.account, record)})';
+    Iterable<ProductivityAction> actions() sync* {
+      for (final row in rows.take(50)) {
+        final fields = row.fields;
+        final remote = row.remote;
+        final edit = row.edit;
+        if (fields == null ||
+            (remote == null && edit == null) ||
+            (remote != null &&
+                (remote.revision == null || googleTaskIsAssigned(remote))) ||
+            (edit != null &&
+                (edit.state != TaskEditState.pending ||
+                    edit.remoteId != null))) {
+          continue;
+        }
+        bool matches() {
+          if (!mounted ||
+              _running != null ||
+              expectedScope != _liveScope() ||
+              _selection.list.readOnly) {
+            return false;
+          }
+          if (edit != null) {
+            return _edits.any(
+              (candidate) =>
+                  candidate.id == edit.id &&
+                  candidate.revision == edit.revision &&
+                  candidate.state == TaskEditState.pending,
+            );
+          }
+          final original = remote!;
+          return _cached.any(
+                (candidate) =>
+                    candidate.id == original.id &&
+                    candidate.revision == original.revision &&
+                    candidate.fields == original.fields,
+              ) &&
+              !_edits.any((candidate) => candidate.remoteId == original.id);
+        }
+
+        Future<ProductivityApprovalOutcome> save(
+          TaskFields? value,
+          bool Function() current,
+        ) async {
+          if (!current() || !matches() || !_save(value, edit, remote)) {
+            return ProductivityApprovalOutcome.rejected;
+          }
+          return list.id == studioDeviceTaskList.id
+              ? ProductivityApprovalOutcome.saved
+              : ProductivityApprovalOutcome.queued;
+        }
+
+        yield ProductivityAction(
+          label: 'Rename task',
+          destination: destination,
+          subject: fields.title,
+          fields: const {'title': 250},
+          prepare: (args) {
+            final title = args['title']!;
+            if (title.trim().isEmpty ||
+                title.contains(RegExp(r'[\x00-\x1f\x7f]'))) {
+              throw const FormatException('Invalid title');
+            }
+            final updated = TaskPatch(
+              title: TaskFieldPatch.set(title),
+            ).applyTo(fields);
+            return ProductivityActionPlan(
+              label: 'Approve and rename task',
+              destination: destination,
+              subject: fields.title,
+              details: 'New title: $title',
+              execute: (current) => save(updated, current),
+            );
+          },
+        );
+        if (fields.status != TaskStatus.cancelled) {
+          final completed = fields.status == TaskStatus.completed;
+          final label = completed ? 'Reopen task' : 'Complete task';
+          final updated = TaskPatch(
+            status: TaskFieldPatch.set(
+              completed ? TaskStatus.notStarted : TaskStatus.completed,
+            ),
+            completedAt: completed
+                ? const TaskFieldPatch.clear()
+                : const TaskFieldPatch.unchanged(),
+          ).applyTo(fields);
+          yield ProductivityAction(
+            label: label,
+            destination: destination,
+            subject: fields.title,
+            fields: const {},
+            prepare: (_) => ProductivityActionPlan(
+              label: 'Approve and ${label.toLowerCase()}',
+              destination: destination,
+              subject: fields.title,
+              details: completed
+                  ? 'Set the task to not started.'
+                  : 'Set the task to completed.',
+              execute: (current) => save(updated, current),
+            ),
+          );
+        }
+        if (list.id.account.provider != 'ews' ||
+            record?['ewsDeletes'] == true ||
+            (edit != null && edit.remoteId == null)) {
+          yield ProductivityAction(
+            label: 'Delete task',
+            destination: destination,
+            subject: fields.title,
+            fields: const {},
+            prepare: (_) => ProductivityActionPlan(
+              label: 'Approve and delete task',
+              destination: destination,
+              subject: fields.title,
+              details: 'Delete this task.',
+              execute: (current) => save(null, current),
+            ),
+          );
+        }
+      }
+    }
+
+    return ProductivityActions(actions());
+  }
+
   Object _liveScope() =>
       (_selected, _syncLease, _credentialStorage.revision, _query, _view);
 
@@ -931,6 +1069,9 @@ final class _StudioTasksPageState extends State<StudioTasksPage>
                     : ProductivityApprovalOutcome.queued;
               },
             ),
+      captureActions: _selection.list.readOnly
+          ? null
+          : () => _captureTaskActions(rows),
       enabled: ready && !busy,
     );
     return Scaffold(

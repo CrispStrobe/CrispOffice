@@ -1,16 +1,24 @@
+import 'productivity_action.dart';
 import 'productivity_snapshot.dart' show ProductivityKind;
 
 /// An immutable suggestion that must be reviewed by the host user.
 final class ProductivityProposal {
-  const ProductivityProposal._(this.title, this.text, this.start, this.end);
+  const ProductivityProposal._(
+    this.title,
+    this.text,
+    this.start,
+    this.end, {
+    this.action,
+  });
 
   final String title;
   final String text;
   final DateTime? start;
   final DateTime? end;
+  final ProductivityActionPlan? action;
 }
 
-enum ProductivityApprovalOutcome { saved, queued, rejected, unconfirmed }
+enum ProductivityApprovalOutcome { saved, queued, sent, rejected, unconfirmed }
 
 final class ProductivityProposals {
   ProductivityProposals(this.kind);
@@ -57,19 +65,40 @@ final class ProductivityProposals {
         text.contains('\u0000')) {
       throw const FormatException('Invalid proposal title or text');
     }
-    final start = calendar ? _time(arguments['start']) : null;
-    final end = calendar ? _time(arguments['end']) : null;
+    final start = calendar ? parseProductivityUtc(arguments['start']) : null;
+    final end = calendar ? parseProductivityUtc(arguments['end']) : null;
     if (start != null && (end!.isBefore(start) || end == start)) {
       throw const FormatException('Appointment end must follow start');
     }
-    _pending = ProductivityProposal._(title, text, start, end);
+    return _queue(ProductivityProposal._(title, text, start, end));
+  }
+
+  Map<String, Object?> proposeAction(ProductivityActionPlan plan) => _queue(
+    ProductivityProposal._(
+      plan.subject,
+      plan.details,
+      null,
+      null,
+      action: plan,
+    ),
+  );
+
+  Map<String, Object?> _queue(ProductivityProposal proposal) {
+    if (_pending != null) {
+      throw StateError('A proposal is already awaiting review');
+    }
+    _pending = proposal;
     _serial++;
     _status = 'awaiting_review';
     return status;
   }
 
   bool resolve(ProductivityProposal proposal, {required bool review}) {
-    if (_applying || !identical(_pending, proposal)) return false;
+    if (_applying ||
+        !identical(_pending, proposal) ||
+        (review && proposal.action != null)) {
+      return false;
+    }
     _pending = null;
     _status = review ? 'reviewed' : 'dismissed';
     return true;
@@ -92,19 +121,19 @@ final class ProductivityProposals {
     }
     return true;
   }
+}
 
-  static DateTime _time(Object? value) {
-    if (value is! String ||
-        !RegExp(r'^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$').hasMatch(value)) {
-      throw const FormatException('Use UTC date-time with seconds');
-    }
-    final parsed = DateTime.tryParse(value);
-    if (parsed == null ||
-        parsed.year < 1900 ||
-        parsed.year > 2200 ||
-        parsed.toIso8601String() != value.replaceFirst('Z', '.000Z')) {
-      throw const FormatException('Invalid appointment time');
-    }
-    return parsed;
+DateTime parseProductivityUtc(Object? value) {
+  if (value is! String ||
+      !RegExp(r'^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$').hasMatch(value)) {
+    throw const FormatException('Use UTC date-time with seconds');
   }
+  final parsed = DateTime.tryParse(value);
+  if (parsed == null ||
+      parsed.year < 1900 ||
+      parsed.year > 2200 ||
+      parsed.toIso8601String() != value.replaceFirst('Z', '.000Z')) {
+    throw const FormatException('Invalid appointment time');
+  }
+  return parsed;
 }

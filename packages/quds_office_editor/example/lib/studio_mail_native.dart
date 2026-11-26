@@ -5,6 +5,10 @@ import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:quds_office_engine/quds_productivity_automation.dart'
     show
+        ProductivityAction,
+        ProductivityActionPlan,
+        ProductivityActions,
+        ProductivityApprovalOutcome,
         ProductivityFolderBrowser,
         ProductivityMailSelection,
         ProductivityMailText,
@@ -16,6 +20,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_live_productivity.dart';
+import 'studio_mcp_mail_actions.dart';
 import 'studio_mcp_mail_folder.dart';
 import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
@@ -2177,18 +2182,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     if (edited != null && current()) await _openComposer(null);
   });
 
-  Future<void> _sendThroughOutbox(
+  Future<MailOutboxEntry?> _sendThroughOutbox(
     StudioMailDraft draft,
     StudioMailOutboxStore store,
     mail.MailClient client,
     mail.MailAccount account,
-    int generation,
-  ) async {
+    int generation, {
+    bool Function()? allowDispatch,
+  }) async {
     final owner = _draftStore;
     if (owner == null ||
         !identical(owner, store) ||
         !_currentSession(client, generation)) {
-      return;
+      return null;
     }
     final pending = _beginSubmissionStorage(owner);
     final priorUncertainty = _submissionUncertain;
@@ -2202,22 +2208,27 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       final entry = await store.enqueueOutbox(draft, account.email);
       queued = true;
-      if (!_currentSession(client, generation)) return;
+      if (!_currentSession(client, generation)) return null;
       setState(() {
         _draft = null;
         _submissionUncertain = false;
         _notice = widget.strings.sending;
       });
+      if (allowDispatch?.call() == false) {
+        setState(() => _notice = widget.strings.mailQueued);
+        return entry;
+      }
       final completed = await submitStudioMailOutbox(
         store: store,
         entry: entry,
         submit: _outboxSubmit(client, account, store, generation),
         isCurrent: () =>
             _currentSession(client, generation) &&
-            identical(store, _draftStore),
+            identical(store, _draftStore) &&
+            (allowDispatch?.call() ?? true),
         acknowledgeUncertain: priorUncertainty,
       );
-      if (!_currentSession(client, generation)) return;
+      if (!_currentSession(client, generation)) return null;
       setState(() {
         _notice = completed.state == MailOutboxState.submitted
             ? _submissionNotice(completed.result!.sentCopySaved)
@@ -2228,6 +2239,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           _error = widget.strings.mailOutboxUncertainExplanation;
         }
       });
+      return completed;
     } on Object {
       if (_currentSession(client, generation)) {
         setState(() {
@@ -2237,6 +2249,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               : widget.strings.mailQueueFailed;
         });
       }
+      return null;
     } finally {
       _completeSubmissionStorage(pending);
       if (_currentSession(client, generation)) setState(() => _busy = false);
@@ -5362,6 +5375,121 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
+  ProductivityActions _captureMailActions() {
+    final client = _client;
+    final account = _account;
+    final scope = _liveScope();
+    final generation = _sessionGeneration;
+    final mailboxGeneration = _mailboxGeneration;
+    final selected = _selected;
+    final mailbox = _messageMailbox;
+    final loader = _messageLoader;
+    final owner = _draftStore;
+    final actions = <ProductivityAction>[];
+    if (client != null &&
+        account != null &&
+        owner is StudioMailOutboxStore &&
+        owner is StudioMailDraftCatalog &&
+        !_submissionUncertain &&
+        _draft == null) {
+      final outbox = owner as StudioMailOutboxStore;
+      final catalog = owner as StudioMailDraftCatalog;
+      actions.add(
+        studioMcpSendAction(
+          sender: account.email,
+          send: (draft, current) async {
+            bool allowed() =>
+                current() &&
+                mounted &&
+                scope == _liveScope() &&
+                _currentSession(client, generation) &&
+                identical(owner, _draftStore);
+            if (!allowed() ||
+                _draft != null ||
+                _submissionUncertain ||
+                _busy ||
+                _dialogOpen) {
+              return null;
+            }
+            setState(() => _busy = true);
+            final StudioMailStoredDraft created;
+            try {
+              created = await catalog.createDraft(draft);
+              if (!allowed()) return null;
+              setState(() => _draft = created.draft);
+            } finally {
+              if (_currentSession(client, generation)) {
+                setState(() => _busy = false);
+              }
+            }
+            return _sendThroughOutbox(
+              created.draft,
+              outbox,
+              client,
+              account,
+              generation,
+              allowDispatch: allowed,
+            );
+          },
+        ),
+      );
+    }
+    if (selected != null &&
+        mailbox != null &&
+        loader is StudioMailMailboxRecords &&
+        loader is StudioMailMembershipActions &&
+        !selected.isDeleted) {
+      MailRemoteIdentity? identity;
+      try {
+        identity = (loader as StudioMailMailboxRecords)
+            .observedHeader(mailbox, selected)
+            .remote;
+      } on StudioMailMessageLoadException {
+        // No exact observed UID means there is no action to approve.
+      }
+      if (identity != null) {
+        final observed = identity;
+        final subject = selected.decodeSubject() ?? '';
+        actions.add(
+          ProductivityAction(
+            label: 'Mark the open message deleted',
+            destination: mailbox.path,
+            subject: subject,
+            fields: const {},
+            prepare: (_) => ProductivityActionPlan(
+              label: 'Approve marking message deleted',
+              destination: mailbox.path,
+              subject: subject,
+              details: 'Sets the IMAP Deleted flag.',
+              execute: (current) async {
+                if (!current() ||
+                    scope != _liveScope() ||
+                    mailboxGeneration != _mailboxGeneration ||
+                    !identical(_selected, selected) ||
+                    !identical(_messageLoader, loader) ||
+                    (loader as StudioMailMailboxRecords)
+                            .observedHeader(mailbox, selected)
+                            .remote !=
+                        observed) {
+                  return ProductivityApprovalOutcome.rejected;
+                }
+                final before = _bulkReport;
+                await _changeCommands(
+                  MailBulkFlagAction.delete,
+                  [_messageKey(selected)],
+                  mailboxGeneration: mailboxGeneration,
+                  membershipConfirmed: true,
+                );
+                return studioMcpDeleteOutcome(_bulkReport, before, observed);
+              },
+            ),
+          ),
+        );
+      }
+    }
+    return ProductivityActions(actions);
+  }
+
   Widget _mailChrome(BuildContext context) {
     final liveScope = _liveScope();
     final theme = Theme.of(context);
@@ -5478,6 +5606,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             },
             openedMail: () => _reader?.result.message,
             captureMailSelection: _captureMcpMailbox,
+            captureActions: _captureMailActions,
             captureFolder:
                 !_unreadOnly && _messageLoader is NativeStudioMailMessageLoader
                 ? _captureMcpFolder

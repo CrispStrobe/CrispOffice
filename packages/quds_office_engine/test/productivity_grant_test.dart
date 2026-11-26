@@ -491,6 +491,114 @@ void main() {
     );
   });
 
+  test(
+    'existing action requires review and retains its exact fields once',
+    () async {
+      final proposals = ProductivityProposals(ProductivityKind.tasks);
+      var executed = 0;
+      String? appliedTitle;
+      final actions = ProductivityActions([
+        ProductivityAction(
+          label: 'Rename task',
+          destination: 'Approved list',
+          subject: 'Original task',
+          fields: const {'title': 250},
+          prepare: (fields) {
+            final title = fields['title']!;
+            return ProductivityActionPlan(
+              label: 'Approve and rename task',
+              destination: 'Approved list',
+              subject: 'Original task',
+              details: 'New title: $title',
+              execute: (current) async {
+                if (!current()) return ProductivityApprovalOutcome.rejected;
+                appliedTitle = title;
+                executed++;
+                return ProductivityApprovalOutcome.queued;
+              },
+            );
+          },
+        ),
+      ]);
+      final grant = await ProductivityGrant.open(
+        isCurrent: () => true,
+        session: ProductivityMcp.live(
+          kind: ProductivityKind.tasks,
+          read: () => throw StateError('Unexpected read'),
+          proposals: proposals,
+          actions: actions,
+        ),
+      );
+      addTearDown(grant.revoke);
+      final relay = ProductivityGrantRelay(grant.ticket);
+      addTearDown(relay.close);
+      await _start(relay);
+      Future<Map<String, Object?>?> call(
+        String name, [
+        Map<String, Object?>? arguments,
+      ]) => relay.forward(
+        _request('tools/call', {'name': name, 'arguments': ?arguments}),
+      );
+      expect(_result(await call('productivity_list_actions'))['actions'], [
+        {
+          'handle': 1,
+          'action': 'Rename task',
+          'destination': 'Approved list',
+          'subject': 'Original task',
+          'requiredFields': {'title': 250},
+        },
+      ]);
+      expect(
+        await call('productivity_propose_action', {
+          'handle': 1,
+          'fields': {'title': 'New', 'destination': 'Different list'},
+        }),
+        contains('error'),
+      );
+      expect(
+        await call('productivity_propose_action', {
+          'handle': 2,
+          'fields': {'title': 'New'},
+        }),
+        contains('error'),
+      );
+      expect(
+        _result(
+          await call('productivity_propose_action', {
+            'handle': 1,
+            'fields': {'title': 'Approved title'},
+          }),
+        )['status'],
+        'awaiting_review',
+      );
+      expect(await call('productivity_approve_action'), contains('error'));
+      expect(executed, 0);
+      final proposal = proposals.pending!;
+      expect(proposal.action!.details, 'New title: Approved title');
+      expect(proposals.resolve(proposal, review: true), isFalse);
+      expect(
+        await proposals.apply(
+          proposal,
+          () => proposal.action!.execute(() => true),
+        ),
+        isTrue,
+      );
+      expect(
+        await proposals.apply(
+          proposal,
+          () => proposal.action!.execute(() => true),
+        ),
+        isFalse,
+      );
+      expect(executed, 1);
+      expect(appliedTitle, 'Approved title');
+      expect(
+        _result(await call('productivity_proposal_status'))['status'],
+        'queued',
+      );
+    },
+  );
+
   test('grants expire and bound request rates', () async {
     final session = ProductivityMcp.live(
       kind: ProductivityKind.calendar,

@@ -5,6 +5,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:quds_office_engine/quds_productivity_automation.dart'
     show
+        ProductivityAction,
+        ProductivityActionPlan,
+        ProductivityActions,
+        ProductivityApprovalOutcome,
         ProductivityFolderBrowser,
         ProductivityMailSelection,
         ProductivityMailText,
@@ -16,6 +20,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_live_productivity.dart';
+import 'studio_mcp_mail_actions.dart';
 import 'studio_mcp_mail_folder.dart';
 import 'studio_productivity_export.dart';
 import 'studio_device_tasks.dart';
@@ -2350,12 +2355,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (edited != null && current()) await _compose();
   });
 
-  Future<void> _sendThroughOutbox(
+  Future<MailOutboxEntry?> _sendThroughOutbox(
     StudioMailDraft draft,
     StudioMailOutboxStore store,
     MailProvider provider,
-    MailOperationLease lease,
-  ) async {
+    MailOperationLease lease, {
+    bool Function()? allowDispatch,
+  }) async {
     final priorUncertainty = _submissionUncertain;
     final sender = _sender;
     final submission = _submission!;
@@ -2373,12 +2379,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       final entry = await store.enqueueOutbox(draft, sender);
       queued = true;
       storage.markPreserved();
-      if (!_current(provider, lease)) return;
+      if (!_current(provider, lease)) return null;
       setState(() {
         _draft = null;
         _submissionUncertain = false;
         _notice = widget.strings.sending;
       });
+      if (allowDispatch?.call() == false) {
+        setState(() => _notice = widget.strings.mailQueued);
+        return entry;
+      }
       final completed = await submitStudioMailOutbox(
         store: store,
         entry: entry,
@@ -2387,10 +2397,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             !_navigating &&
             accountEpoch == _accountEpoch &&
             _current(provider, lease) &&
-            identical(store, _draftStore),
+            identical(store, _draftStore) &&
+            (allowDispatch?.call() ?? true),
         acknowledgeUncertain: priorUncertainty,
       );
-      if (!_current(provider, lease)) return;
+      if (!_current(provider, lease)) return null;
       setState(() {
         _notice = completed.state == MailOutboxState.submitted
             ? (_cloud
@@ -2403,6 +2414,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           _error = widget.strings.mailOutboxUncertainExplanation;
         }
       });
+      return completed;
     } on Object {
       if (_current(provider, lease)) {
         setState(() {
@@ -2412,6 +2424,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               : widget.strings.mailQueueFailed;
         });
       }
+      return null;
     } finally {
       storage.complete();
       if (identical(_submissionStorage, storage)) _submissionStorage = null;
@@ -3402,6 +3415,121 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     );
   }
 
+  ProductivityActions _captureMailActions() {
+    final session = _session;
+    final provider = _provider;
+    final mailbox = _mailbox;
+    final scope = _liveScope();
+    final sender = _sender;
+    final owner = _draftStore;
+    final header = _selected;
+    final generation = _mailboxGeneration;
+    if (session == null ||
+        session.isDisposed ||
+        provider == null ||
+        mailbox == null ||
+        scope == null) {
+      return ProductivityActions(const []);
+    }
+    final lease = session.begin();
+    bool inScope() =>
+        mounted && scope == _liveScope() && _current(provider, lease);
+    final actions = <ProductivityAction>[];
+    if (owner is StudioMailDraftCatalog &&
+        owner is StudioMailOutboxStore &&
+        _canSend &&
+        _submission != null &&
+        _draft == null &&
+        !_submissionUncertain) {
+      final catalog = owner as StudioMailDraftCatalog;
+      final outbox = owner as StudioMailOutboxStore;
+      actions.add(
+        studioMcpSendAction(
+          sender: sender,
+          send: (draft, current) async {
+            bool allowed() =>
+                current() &&
+                inScope() &&
+                identical(owner, _draftStore) &&
+                _canSend &&
+                _submission != null;
+            if (!allowed() ||
+                _blocked ||
+                _draft != null ||
+                _submissionUncertain) {
+              return null;
+            }
+            setState(() => _busy = true);
+            final StudioMailStoredDraft created;
+            try {
+              created = await catalog.createDraft(draft);
+              if (!allowed()) return null;
+              setState(() => _draft = created.draft);
+            } finally {
+              if (_current(provider, lease)) setState(() => _busy = false);
+            }
+            return _sendThroughOutbox(
+              created.draft,
+              outbox,
+              provider,
+              lease,
+              allowDispatch: allowed,
+            );
+          },
+        ),
+      );
+    }
+    if (header != null &&
+        provider is MailMembershipObserver &&
+        _capabilities.supports(MailCapability.delete)) {
+      final observer = provider as MailMembershipObserver;
+      actions.add(
+        ProductivityAction(
+          label: 'Delete the open message',
+          destination: mailbox.displayName,
+          subject: header.envelope.subject,
+          fields: const {},
+          prepare: (_) => ProductivityActionPlan(
+            label: 'Approve and delete message',
+            destination: mailbox.displayName,
+            subject: header.envelope.subject,
+            details: 'Use this account’s normal Delete action.',
+            execute: (current) async {
+              bool approved() =>
+                  current() &&
+                  inScope() &&
+                  !_blocked &&
+                  !_needsRefresh &&
+                  generation == _mailboxGeneration &&
+                  _selected?.remote == header.remote &&
+                  _capabilities.supports(MailCapability.delete);
+              if (!approved()) return ProductivityApprovalOutcome.rejected;
+              final evidence = await observer.observeMembership(
+                header.remote,
+                lease: lease,
+              );
+              if (!approved() ||
+                  evidence is! MailSuccess<MailMembershipObservation> ||
+                  evidence.value.identity != header.remote ||
+                  !evidence.value.mailboxes.contains(mailbox.id)) {
+                return ProductivityApprovalOutcome.rejected;
+              }
+              final before = _bulkReport;
+              await _apply(
+                MailDelete(
+                  id: 'mcp-delete-${++_serial}',
+                  message: header.remote,
+                ),
+              );
+              return studioMcpDeleteOutcome(_bulkReport, before, header.remote);
+            },
+          ),
+        ),
+      );
+    }
+    return ProductivityActions(actions);
+  }
+
   Widget _liveButton() {
     final scope = _liveScope();
     final session = _session;
@@ -3432,6 +3560,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       },
       openedMail: () => _reader?.result.message,
       captureMailSelection: _captureMcpMailbox,
+      captureActions: _captureMailActions,
       captureFolder: _provider is MailMembershipObserver
           ? _captureMcpFolder
           : null,

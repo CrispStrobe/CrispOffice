@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'mcp_tool_session.dart';
+import 'productivity_action.dart';
 import 'productivity_folder.dart';
 import 'productivity_proposal.dart';
 
@@ -159,6 +160,7 @@ final class ProductivityMcp {
         null,
         _unrestricted,
         null,
+        null,
       );
 
   ProductivityMcp.live({
@@ -169,6 +171,7 @@ final class ProductivityMcp {
     ProductivityMailSelection? mailSelection,
     bool Function()? isCurrent,
     ProductivityFolderBrowser? folderBrowser,
+    ProductivityActions? actions,
   }) : this._(
          kind,
          read,
@@ -178,6 +181,7 @@ final class ProductivityMcp {
          kind == ProductivityKind.mail ? mailSelection : null,
          isCurrent ?? _unrestricted,
          kind == ProductivityKind.mail ? folderBrowser : null,
+         proposals?.kind == kind && actions?.isEmpty == false ? actions : null,
        );
 
   ProductivityMcp._(
@@ -189,6 +193,7 @@ final class ProductivityMcp {
     this._mailSelection,
     this._isCurrent,
     this._folderBrowser,
+    this._actions,
   );
 
   final ProductivityKind kind;
@@ -199,6 +204,7 @@ final class ProductivityMcp {
   final ProductivityMailSelection? _mailSelection;
   final bool Function() _isCurrent;
   final ProductivityFolderBrowser? _folderBrowser;
+  final ProductivityActions? _actions;
   static bool _unrestricted() => true;
 
   bool isReadTool(Object? name) =>
@@ -207,6 +213,7 @@ final class ProductivityMcp {
       name == 'mail_list_approved_text' ||
       name == 'mail_read_approved_text' ||
       name == 'mail_browse_folder' ||
+      name == 'productivity_list_actions' ||
       name == 'mail_read_folder_text' ||
       name == 'productivity_proposal_status';
   static const _openedMailTool = 'mail_read_opened_text';
@@ -239,6 +246,26 @@ final class ProductivityMcp {
           'limit': {'type': 'integer', 'minimum': 1, 'maximum': 50},
         },
       ),
+      if (_actions != null) ...[
+        _tool(
+          'productivity_list_actions',
+          'List the exact targets available for user-approved actions.',
+          {
+            'offset': {'type': 'integer', 'minimum': 0, 'maximum': 150},
+            'limit': {'type': 'integer', 'minimum': 1, 'maximum': 50},
+          },
+        ),
+        _tool(
+          'productivity_propose_action',
+          'Queue an exact action for approval in CrispOffice.',
+          {
+            'handle': {'type': 'integer', 'minimum': 1, 'maximum': 150},
+            'fields': {'type': 'object'},
+          },
+          requiredFields: ['handle'],
+          readOnly: false,
+        ),
+      ],
       if (_proposals case final proposals?) ...[
         _tool(
           proposals.tool,
@@ -358,6 +385,43 @@ final class ProductivityMcp {
     String name,
     Map<String, Object?> arguments,
   ) async {
+    if (_actions case final actions?) {
+      if (name == 'productivity_list_actions') {
+        final (offset, limit) = _pagination(arguments);
+        return McpToolSession.toolResult(
+          actions.list(offset: offset, limit: limit),
+        );
+      }
+      if (name == 'productivity_propose_action') {
+        final handle = arguments['handle'];
+        final fields = arguments.containsKey('fields')
+            ? arguments['fields']
+            : <String, Object?>{};
+        if (handle is! int ||
+            fields is! Map<String, Object?> ||
+            arguments.keys.any((key) => key != 'handle' && key != 'fields')) {
+          throw const McpProtocolException(
+            -32602,
+            'An action handle and its fields are required',
+          );
+        }
+        try {
+          return McpToolSession.toolResult(
+            _proposals!.proposeAction(actions.plan(handle, fields)),
+          );
+        } on FormatException {
+          throw const McpProtocolException(
+            -32602,
+            'Invalid action fields or handle',
+          );
+        } on StateError {
+          throw const McpProtocolException(
+            -32003,
+            'A proposal is already awaiting review',
+          );
+        }
+      }
+    }
     if (_proposals case final proposals?) {
       if (name == proposals.tool) {
         try {

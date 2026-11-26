@@ -585,8 +585,23 @@ writable CalDAV calendar within the visible date range. A writable task list
 and a single selected writable CalDAV calendar also offer direct approval in
 the review dialog. The app shows the destination and exact proposed fields.
 The client can poll to distinguish reviewed, saved, queued and unconfirmed
-outcomes. Sending, deleting and issuing invitations remain manual actions.
-A grant has space for one pending suggestion at a time.
+outcomes. A grant has space for one pending suggestion at a time.
+
+For existing items, use `productivity_list_actions` and submit one handle
+with its exact fields through `productivity_propose_action`. Actions are
+pinned to the item captured when the grant started. CrispOffice shows the
+destination and action details in its review dialog. Actions include
+renaming, completing, reopening and deleting eligible tasks, plus renaming,
+rescheduling and deleting eligible CalDAV appointments. Studio rechecks task
+revisions and CalDAV event revisions before saving.
+
+Mail can propose deletion of the selected open message. On IMAP this sets
+the Deleted flag. For a verified account with a durable Outbox and an empty
+composer, Mail can also propose a plain-text send to one recipient. The
+review shows the sender, recipient, subject and body. The approved message
+uses the existing Outbox, which records delivery or uncertainty. The MCP
+client cannot approve any of these actions itself. Invitations and public
+remote OAuth access remain pending.
 
 Both the grant transport and stdio executable run in native Dart. Studio
 supplies the selected data, consent and revocation. The app binds one private

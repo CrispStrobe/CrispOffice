@@ -4,7 +4,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quds_office_engine/quds_productivity_automation.dart'
-    show ProductivityApprovalOutcome, ProductivityProposal;
+    show
+        ProductivityAction,
+        ProductivityActionPlan,
+        ProductivityActions,
+        ProductivityApprovalOutcome,
+        ProductivityProposal,
+        parseProductivityUtc;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_tasks_caldav/quds_tasks_caldav_native.dart';
@@ -1001,6 +1007,150 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         },
       );
 
+  ProductivityActions _captureCalendarActions(List<CalDavEvent> events) {
+    Iterable<ProductivityAction> actions() sync* {
+      for (final event in events.take(50)) {
+        final source = _eventSources[event];
+        if (source == null) continue;
+        final target = _targetFor(source);
+        if (target == null ||
+            !target.provider.hasEventRevision(target.calendar, event)) {
+          continue;
+        }
+        final destination = _sourceName(source);
+        Future<ProductivityApprovalOutcome> apply(
+          CalDavEventFields Function(CalDavEvent)? patch,
+          bool Function() current,
+        ) async {
+          if (!current() || !_currentTarget(target) || _busy) {
+            return ProductivityApprovalOutcome.rejected;
+          }
+          final editable = await _openEditable(target, event);
+          if (editable == null || !current() || !_currentTarget(target)) {
+            return ProductivityApprovalOutcome.rejected;
+          }
+          if (patch == null) {
+            final problem = await _saveEvent(
+              target,
+              () => target.provider.deleteEvent(editable),
+              success: 'Event deleted.',
+            );
+            return problem == null
+                ? ProductivityApprovalOutcome.saved
+                : problem.mutationMayHaveOccurred == false
+                ? ProductivityApprovalOutcome.rejected
+                : ProductivityApprovalOutcome.unconfirmed;
+          }
+          final failure = await _submitEvent(
+            target,
+            editable,
+            patch(editable.event),
+          );
+          return failure == null
+              ? ProductivityApprovalOutcome.saved
+              : ProductivityApprovalOutcome.unconfirmed;
+        }
+
+        final timing = 'Start: ${studioCalendarDisplayTime(event.start)}';
+        if (target.calendar.canUpdate) {
+          yield ProductivityAction(
+            label: 'Rename appointment',
+            destination: destination,
+            subject: event.title,
+            fields: const {'title': 250},
+            prepare: (args) {
+              final title = args['title']!;
+              if (title.trim().isEmpty ||
+                  title.contains(RegExp(r'[\x00-\x1f\x7f]'))) {
+                throw const FormatException('Invalid title');
+              }
+              return ProductivityActionPlan(
+                label: 'Approve and rename appointment',
+                destination: destination,
+                subject: event.title,
+                details: '$timing\nNew title: $title',
+                execute: (current) => apply(
+                  (old) => CalDavEventFields(
+                    title: title,
+                    start: old.start,
+                    end: old.end,
+                    location: old.location,
+                    description: old.description,
+                  ),
+                  current,
+                ),
+              );
+            },
+          );
+        }
+        if (target.calendar.canUpdate &&
+            event.start.kind == CalDavDateKind.utc) {
+          yield ProductivityAction(
+            label: 'Reschedule appointment',
+            destination: destination,
+            subject: event.title,
+            fields: const {'start': 20, 'end': 20},
+            prepare: (args) {
+              final start = parseProductivityUtc(args['start']);
+              final end = parseProductivityUtc(args['end']);
+              final rangeStart = _start;
+              final rangeEnd = _end;
+              if (!end.isAfter(start) ||
+                  start.isBefore(rangeStart) ||
+                  !start.isBefore(rangeEnd) ||
+                  end.isAfter(rangeEnd)) {
+                throw const FormatException(
+                  'Times are outside the authorized range',
+                );
+              }
+              CalDavDateValue date(DateTime time) =>
+                  CalDavDateValue.fromTaskDate(
+                    TaskDateTime(
+                      time.toIso8601String().substring(0, 19),
+                      timeZone: 'UTC',
+                    ),
+                  );
+              return ProductivityActionPlan(
+                label: 'Approve and reschedule appointment',
+                destination: destination,
+                subject: event.title,
+                details:
+                    '$timing\nNew start: ${start.toIso8601String()}\nNew end: ${end.toIso8601String()}',
+                execute: (current) => apply(
+                  (old) => CalDavEventFields(
+                    title: old.title,
+                    start: date(start),
+                    end: date(end),
+                    location: old.location,
+                    description: old.description,
+                  ),
+                  current,
+                ),
+              );
+            },
+          );
+        }
+        if (target.calendar.canDelete) {
+          yield ProductivityAction(
+            label: 'Delete appointment',
+            destination: destination,
+            subject: event.title,
+            fields: const {},
+            prepare: (_) => ProductivityActionPlan(
+              label: 'Approve and delete appointment',
+              destination: destination,
+              subject: event.title,
+              details: timing,
+              execute: (current) => apply(null, current),
+            ),
+          );
+        }
+      }
+    }
+
+    return ProductivityActions(actions());
+  }
+
   CalDavEventFields? _mcpFields(ProductivityProposal proposal) {
     final start = proposal.start!;
     final end = proposal.end!;
@@ -1255,6 +1405,14 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                                 : ProductivityApprovalOutcome.unconfirmed;
                           },
                         ),
+                  captureActions:
+                      visible.any(
+                        (source) =>
+                            source.dav?.calendar.canUpdate == true ||
+                            source.dav?.calendar.canDelete == true,
+                      )
+                      ? () => _captureCalendarActions(events)
+                      : null,
                   enabled: !_busy && _agenda != null,
                 ),
                 if (visible.isNotEmpty)
