@@ -73,7 +73,11 @@ transfer credentials between protocols or grant additional OAuth scopes.
 
 The native **Calendar** workspace reuses a saved Tasks CalDAV connection and
 discovers its event calendars. An exact task-list URL affects Tasks only. Use
-the Calendar account and calendar pickers to choose a calendar. Select Day,
+the calendar picker to choose calendars from any saved CalDAV account. Apply
+any combination or use **Show all**. Calendars have distinct grid colors and
+event details identify the owning account when several calendars are visible.
+A failed source is listed separately while the other calendars stay visible.
+**Search this range** filters titles, locations and descriptions. Select Day,
 Week, or Month in **Range**. **Show grid** opens the experimental calendar
 layout for the same date range. Select a date number to open that day. Weeks
 start on Monday. Date navigation reuses discovery results for the selected
@@ -99,15 +103,16 @@ are accounted for. Series that need an unresolved named timezone or unsupported
 recurrence rules remain flagged in the agenda.
 
 Calendars that advertise write access offer **New event** in the ribbon and
-on empty Day and Week grid slots. Open a single appointment to edit or delete
-it. The editor supports all-day events and timed events with a UTC start.
+on empty Day and Week grid slots. With multiple writable calendars visible,
+choose the destination before the editor opens. Editing and deleting an
+appointment always use its owning calendar. The editor supports all-day events and timed events with a UTC start.
 It saves titles, times, locations and descriptions. CalDAV writes use
 conditional requests, and a rejected save keeps the draft visible for
 reference. Invitation-bearing or recurring resources remain outside this
 editor.
 
-Calendar milestones include a persistent event cache, durable sync, recurrence
-editing, invitations, and RSVP. Google and Exchange calendar adapters need
+Calendar milestones include remembering calendar sets across launches, a
+persistent event cache, durable sync, recurrence editing, invitations, and RSVP. Google and Exchange calendar adapters need
 their own qualification.
 
 ## Backend choices

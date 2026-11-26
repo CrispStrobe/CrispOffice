@@ -56,6 +56,7 @@ final class StudioCalendarGrid extends StatefulWidget {
     required this.openEvent,
     required this.openDay,
     this.createEvent,
+    this.appearanceOf,
   });
 
   final StudioCalendarPeriod period;
@@ -65,6 +66,7 @@ final class StudioCalendarGrid extends StatefulWidget {
   final ValueChanged<CalDavEvent> openEvent;
   final ValueChanged<DateTime> openDay;
   final ValueChanged<DateTime>? createEvent;
+  final ({String label, Color color})? Function(CalDavEvent)? appearanceOf;
 
   @override
   State<StudioCalendarGrid> createState() => _StudioCalendarGridState();
@@ -196,6 +198,10 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
               final event = rows[index];
               return ListTile(
                 title: Text(_title(event)),
+                subtitle: switch (widget.appearanceOf?.call(event)) {
+                  (:final label, color: _) => Text(label),
+                  null => null,
+                },
                 onTap: () => Navigator.pop(context, event),
               );
             },
@@ -220,30 +226,43 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
 
   Widget _tile(_GridEvent tile) {
     final scheme = Theme.of(context).colorScheme;
+    final event = tile.event!;
+    final appearance = widget.appearanceOf?.call(event);
     final when = tile.isFullDayEvent
         ? 'All day'
         : '${_clock(context, tile.startTime!)} – ${_clock(context, tile.endTime!)}';
     return Padding(
       padding: const EdgeInsetsDirectional.only(end: 2),
       child: Material(
-        color: scheme.primaryContainer,
+        color: appearance == null
+            ? scheme.primaryContainer
+            : Color.alphaBlend(
+                appearance.color.withValues(alpha: 0.25),
+                scheme.surface,
+              ),
         borderRadius: BorderRadius.circular(4),
         clipBehavior: Clip.antiAlias,
         child: Semantics(
           button: true,
           child: InkWell(
-            onTap: () => widget.openEvent(tile.event!),
+            onTap: () => widget.openEvent(event),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   tile.title,
-                  semanticsLabel: '${tile.title}, $when',
+                  semanticsLabel: [
+                    tile.title,
+                    when,
+                    ?appearance?.label,
+                  ].join(', '),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: scheme.onPrimaryContainer,
+                    color: appearance == null
+                        ? scheme.onPrimaryContainer
+                        : scheme.onSurface,
                     fontSize: 12,
                   ),
                 ),

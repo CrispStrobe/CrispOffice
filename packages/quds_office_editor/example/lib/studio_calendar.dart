@@ -59,6 +59,17 @@ final class StudioCalendarPage extends StatefulWidget {
 
 enum _EventAction { followUp, edit, delete }
 
+typedef _CalendarKey = ({TaskAccountId account, Uri url});
+typedef _CalendarSource = ({
+  CalDavCalendarProvider provider,
+  CalDavCalendar calendar,
+  String accountLabel,
+  int colorSlot,
+});
+
+_CalendarKey _calendarKey(CalDavCalendar calendar) =>
+    (account: calendar.account, url: calendar.url);
+
 typedef _CalendarTarget = ({
   CalDavCalendarProvider provider,
   CalDavCalendar calendar,
@@ -69,16 +80,20 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   late final _storage =
       widget.credentialStorage ?? StudioCredentialStorage.instance;
   http.Client? _client;
-  CalDavCalendarProvider? _provider;
   int _generation = 0;
   bool _busy = true;
   String? _error;
   String? _notice;
-  Map<TaskAccountId, String> _accounts = {};
-  TaskAccountId? _account;
-  List<CalDavCalendar> _calendars = [];
-  Uri? _calendar;
+  var _hasAccounts = false;
+  var _discovered = false;
+  Map<_CalendarKey, _CalendarSource> _sources = {};
+  Set<_CalendarKey>? _selection;
+  List<String> _discoveryIssues = [];
+  List<String> _issues = [];
+  Map<CalDavEvent, _CalendarSource> _eventSources = {};
+  final _colorSlots = <_CalendarKey, int>{};
   CalDavAgenda? _agenda;
+  final _search = TextEditingController();
   late DateTime _anchor = _day(widget.initialDate ?? DateTime.now());
   StudioCalendarPeriod _period = StudioCalendarPeriod.week;
   bool _grid = false;
@@ -86,21 +101,37 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   DateTime get _start => _period.start(_anchor);
   DateTime get _end => _period.advance(_start, 1);
 
-  _CalendarTarget? get _target {
-    final provider = _provider;
-    final calendar = _calendars
-        .where((item) => item.url == _calendar)
-        .firstOrNull;
-    return provider == null || calendar == null
-        ? null
-        : (provider: provider, calendar: calendar, generation: _generation);
+  Iterable<_CalendarSource> get _visibleSources => _sources.entries
+      .where((entry) => _selection?.contains(entry.key) == true)
+      .map((entry) => entry.value);
+
+  _CalendarTarget _targetFor(_CalendarSource source) => (
+    provider: source.provider,
+    calendar: source.calendar,
+    generation: _generation,
+  );
+
+  bool _currentTarget(_CalendarTarget target) {
+    final key = _calendarKey(target.calendar);
+    return mounted &&
+        target.generation == _generation &&
+        _selection?.contains(key) == true &&
+        identical(_sources[key]?.provider, target.provider);
   }
 
-  bool _currentTarget(_CalendarTarget target) =>
-      mounted &&
-      target.generation == _generation &&
-      identical(_provider, target.provider) &&
-      _calendar == target.calendar.url;
+  Color _sourceColor(_CalendarSource source, ColorScheme colors) {
+    const accents = [
+      Color(0xff15896c),
+      Color(0xffa83e82),
+      Color(0xffbd591c),
+      Color(0xff6554c6),
+      Color(0xff138595),
+      Color(0xffa33f3f),
+      Color(0xff7e8217),
+    ];
+    final slot = source.colorSlot % (accents.length + 1);
+    return slot == 0 ? colors.primary : accents[slot - 1];
+  }
 
   @override
   void initState() {
@@ -112,6 +143,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   @override
   void dispose() {
     _storage.removeListener(_reload);
+    _search.dispose();
     _client?.close();
     super.dispose();
   }
@@ -128,87 +160,142 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       _busy = true;
       _error = null;
       _notice = null;
+      _issues = rediscover ? [] : _discoveryIssues;
       _agenda = null;
+      _eventSources = {};
     });
     try {
-      if (rediscover || _provider == null) {
-        _provider = null;
+      if (rediscover || !_discovered) {
         _client?.close();
         _client = null;
-        setState(() => _calendars = []);
+        _discovered = false;
+        setState(() => _sources = {});
         final vault = await _storage.storage;
         final catalog = await StudioTaskAccountCatalog.load(vault);
         if (!current()) return;
-        final accounts = {
-          for (final entry in catalog.records.entries)
-            if (entry.key.provider == 'caldav') entry.key: entry.value,
-        };
-        final account = accounts.containsKey(_account)
-            ? _account
-            : accounts.containsKey(catalog.active)
-            ? catalog.active
-            : accounts.keys.firstOrNull;
-        setState(() {
-          _accounts = {
-            for (final entry in accounts.entries)
-              entry.key: studioTaskAccountLabel(entry.key, entry.value),
-          };
-          if (_account != account) _calendar = null;
-          _account = account;
-        });
-        if (account == null) return;
-        final client = _client =
-            widget.openDavClient?.call() ?? createNativeCalDavClient();
-        bool authorized() =>
-            mounted &&
-            identical(_client, client) &&
-            revision == _storage.revision;
-        final provider = CalDavCalendarProvider(
-          account: account,
-          settings: studioDavSettings(
-            accounts[account]!,
-            useTaskCollection: false,
-          ),
-          client: client,
-          appPassword: () async {
-            if (!authorized()) return null;
-            final fresh = await StudioTaskAccountCatalog.load(vault);
-            if (!authorized()) return null;
-            return fresh.records[account]?['secret'] as String?;
-          },
-        );
-        final lists = await provider.discoverCalendars();
-        if (!current()) return;
-        if (lists case TaskFailure(:final problem)) {
-          setState(() => _error = _problem(problem.code));
-          return;
+        final accounts = catalog.records.entries
+            .where((entry) => entry.key.provider == 'caldav')
+            .toList(growable: false);
+        _hasAccounts = accounts.isNotEmpty;
+        final sources = <_CalendarKey, _CalendarSource>{};
+        final issues = <String>[];
+        if (accounts.isNotEmpty) {
+          final client = _client =
+              widget.openDavClient?.call() ?? createNativeCalDavClient();
+          bool authorized() =>
+              mounted &&
+              identical(_client, client) &&
+              revision == _storage.revision;
+
+          final discoveries = await _loadBatches(accounts, (entry) async {
+            final account = entry.key;
+            var label = 'CalDAV account';
+            try {
+              label = studioTaskAccountLabel(account, entry.value);
+              final provider = CalDavCalendarProvider(
+                account: account,
+                settings: studioDavSettings(
+                  entry.value,
+                  useTaskCollection: false,
+                ),
+                client: client,
+                appPassword: () async {
+                  if (!authorized()) return null;
+                  final fresh = await StudioTaskAccountCatalog.load(vault);
+                  if (!authorized()) return null;
+                  return fresh.records[account]?['secret'] as String?;
+                },
+              );
+              final result = await provider.discoverCalendars();
+              return (label: label, provider: provider, result: result);
+            } on Object {
+              return (
+                label: label,
+                provider: null,
+                result: const TaskFailure<List<CalDavCalendar>>(
+                  TaskProblem(TaskProblemCode.invalidInput),
+                ),
+              );
+            }
+          }, current);
+          if (!current()) return;
+          for (final discovery in discoveries) {
+            switch (discovery.result) {
+              case TaskSuccess(:final value):
+                for (final calendar in value) {
+                  final key = _calendarKey(calendar);
+                  sources[key] = (
+                    provider: discovery.provider!,
+                    calendar: calendar,
+                    accountLabel: discovery.label,
+                    colorSlot: _colorSlots.putIfAbsent(
+                      key,
+                      () => _colorSlots.length,
+                    ),
+                  );
+                }
+              case TaskFailure(:final problem):
+                issues.add('${discovery.label} · ${_problem(problem.code)}');
+            }
+          }
         }
-        final calendars = (lists as TaskSuccess<List<CalDavCalendar>>).value;
-        final selected =
-            calendars.where((item) => item.url == _calendar).firstOrNull ??
-            calendars.firstOrNull;
+        if (!current()) return;
+        final initial =
+            sources.keys
+                .where((key) => key.account == catalog.active)
+                .firstOrNull ??
+            sources.keys.firstOrNull;
         setState(() {
-          _provider = provider;
-          _calendars = calendars;
-          _calendar = selected?.url;
+          _discovered = true;
+          _sources = sources;
+          _discoveryIssues = issues;
+          _issues = issues;
+          if (initial != null) _selection ??= {initial};
         });
       }
-      final selected = _calendars
-          .where((item) => item.url == _calendar)
-          .firstOrNull;
-      if (selected == null) return;
-      final result = await _provider!.agenda(
-        selected,
-        start: _start.toUtc(),
-        end: _end.toUtc(),
+
+      final visible = _visibleSources.toList(growable: false);
+      if (visible.isEmpty) return;
+      final start = _start.toUtc();
+      final end = _end.toUtc();
+      final results = await _loadBatches(
+        visible,
+        (source) async => (
+          source: source,
+          result: await source.provider.agenda(
+            source.calendar,
+            start: start,
+            end: end,
+          ),
+        ),
+        current,
       );
       if (!current()) return;
-      setState(() {
-        switch (result) {
+      final eventSources = <CalDavEvent, _CalendarSource>{};
+      final issues = [..._discoveryIssues];
+      var unexpanded = 0;
+      var hasAgenda = false;
+      for (final item in results) {
+        switch (item.result) {
           case TaskSuccess(:final value):
-            _agenda = value;
+            hasAgenda = true;
+            unexpanded += value.unexpandedSeries;
+            for (final event in value.events) {
+              eventSources[event] = item.source;
+            }
           case TaskFailure(:final problem):
-            _error = _problem(problem.code);
+            issues.add(
+              '${_sourceName(item.source)} · ${_problem(problem.code)}',
+            );
+        }
+      }
+      final events = eventSources.keys.toList()
+        ..sort((a, b) => _wallOrder(a.start).compareTo(_wallOrder(b.start)));
+      setState(() {
+        _eventSources = eventSources;
+        _issues = issues;
+        if (hasAgenda) {
+          _agenda = CalDavAgenda(events, unexpandedSeries: unexpanded);
         }
       });
     } on Object {
@@ -217,6 +304,36 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       if (current()) setState(() => _busy = false);
     }
   }
+
+  static Future<List<R>> _loadBatches<T, R>(
+    List<T> items,
+    Future<R> Function(T) fetch,
+    bool Function() current,
+  ) async {
+    const batchSize = 4;
+    final results = <R>[];
+    for (var index = 0; index < items.length && current(); index += batchSize) {
+      results.addAll(
+        await Future.wait(items.skip(index).take(batchSize).map(fetch)),
+      );
+    }
+    return results;
+  }
+
+  static DateTime _wallOrder(CalDavDateValue value) {
+    final date = studioCalendarDisplayTime(value);
+    return DateTime.utc(
+      date.year,
+      date.month,
+      date.day,
+      date.hour,
+      date.minute,
+      date.second,
+    );
+  }
+
+  String _sourceName(_CalendarSource source) =>
+      '${source.calendar.name} (${source.accountLabel})';
 
   void _navigate([int? direction]) {
     _anchor = direction == null
@@ -247,7 +364,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   Future<void> _showEvent(CalDavEvent event) async {
     final locale = MaterialLocalizations.of(context);
     final title = event.title.isEmpty ? 'Untitled event' : event.title;
-    final target = _target;
+    final source = _eventSources[event];
+    final target = source == null ? null : _targetFor(source);
     final hasRevision =
         target != null &&
         target.provider.hasEventRevision(target.calendar, event);
@@ -258,6 +376,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
         content: SingleChildScrollView(
           child: ListBody(
             children: [
+              if (source != null && _visibleSources.length > 1)
+                Text(_sourceName(source)),
               Text(_format(event.start, locale, showLocalZone: true)),
               if (event.end case final end?
                   when end.kind != CalDavDateKind.date)
@@ -353,9 +473,15 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
   }
 
   Future<void> _editEvent({CalDavEvent? event, DateTime? startsAt}) async {
-    final target = _target;
-    if (_busy ||
-        target == null ||
+    if (_busy) return;
+    final target = event == null
+        ? await _chooseCreationTarget()
+        : _eventSources[event] == null
+        ? null
+        : _targetFor(_eventSources[event]!);
+    if (target == null ||
+        !_currentTarget(target) ||
+        _busy ||
         (event == null
             ? !target.calendar.canCreate
             : !target.calendar.canUpdate)) {
@@ -373,11 +499,40 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
       builder: (_) => StudioCalendarEditor(
         initial:
             startsAt ?? DateTime(_anchor.year, _anchor.month, _anchor.day, 9),
-        calendarName: target.calendar.name,
+        calendarName:
+            _visibleSources.length > 1 &&
+                _sources[_calendarKey(target.calendar)] != null
+            ? _sourceName(_sources[_calendarKey(target.calendar)]!)
+            : target.calendar.name,
         event: editable?.event,
         save: (fields) => _submitEvent(target, editable, fields),
       ),
     );
+  }
+
+  Future<_CalendarTarget?> _chooseCreationTarget() async {
+    final writable = _visibleSources
+        .where((source) => source.calendar.canCreate)
+        .toList();
+    if (writable.isEmpty) return null;
+    if (writable.length == 1) return _targetFor(writable.single);
+    final generation = _generation;
+    final source = await showDialog<_CalendarSource>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: const Text('Create in calendar'),
+        children: [
+          for (final calendar in writable)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, calendar),
+              child: Text(_sourceName(calendar)),
+            ),
+        ],
+      ),
+    );
+    return mounted && generation == _generation && source != null
+        ? _targetFor(source)
+        : null;
   }
 
   Future<StudioCalendarSaveFailure?> _submitEvent(
@@ -512,11 +667,143 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
     _ => 'Calendar could not load.',
   };
 
+  Future<void> _chooseCalendars() async {
+    final original = _selection ?? const <_CalendarKey>{};
+    final selected = {...original};
+    final generation = _generation;
+    final colors = Theme.of(context).colorScheme;
+    final byAccount = <TaskAccountId, List<_CalendarSource>>{};
+    for (final source in _sources.values) {
+      byAccount.putIfAbsent(source.calendar.account, () => []).add(source);
+    }
+    final result = await showDialog<Set<_CalendarKey>>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, refresh) => AlertDialog(
+          scrollable: true,
+          title: const Text('Calendars'),
+          content: SizedBox(
+            width: 400,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (final calendars in byAccount.values) ...[
+                  Text(
+                    calendars.first.accountLabel,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  for (final source in calendars)
+                    CheckboxListTile(
+                      contentPadding: EdgeInsets.zero,
+                      secondary: Icon(
+                        Icons.circle,
+                        size: 11,
+                        color: _sourceColor(source, colors),
+                      ),
+                      title: Text(source.calendar.name),
+                      value: selected.contains(_calendarKey(source.calendar)),
+                      onChanged: (checked) => refresh(() {
+                        final key = _calendarKey(source.calendar);
+                        if (checked == true) {
+                          selected.add(key);
+                        } else {
+                          selected.remove(key);
+                        }
+                      }),
+                    ),
+                ],
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () =>
+                  Navigator.pop(context, {...selected, ..._sources.keys}),
+              child: const Text('Show all'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, selected),
+              child: const Text('Apply'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (!mounted ||
+        _busy ||
+        generation != _generation ||
+        result == null ||
+        (result.length == original.length && result.containsAll(original))) {
+      return;
+    }
+    _selection = result;
+    await _reload(rediscover: false);
+  }
+
+  Future<void> _showIssues() => showDialog<void>(
+    context: context,
+    builder: (context) => AlertDialog(
+      scrollable: true,
+      title: const Text('Calendar loading issues'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final issue in _issues)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(issue),
+            ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Close'),
+        ),
+      ],
+    ),
+  );
+
+  String _emptyMessage(bool filtering, int shownCalendars, String period) {
+    if (!_hasAccounts) {
+      return 'Connect a CalDAV account in Tasks to see its calendars here.';
+    }
+    if (_sources.isEmpty) {
+      return _issues.isEmpty
+          ? 'No event calendars found.'
+          : 'Calendar data is unavailable.';
+    }
+    if (shownCalendars == 0) return 'Choose calendars to display.';
+    if (_agenda == null) return 'Calendar data is unavailable.';
+    if (filtering) return 'No events match your search in this range.';
+    return 'No events this $period.';
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final date = MaterialLocalizations.of(context);
-    final events = _agenda?.events ?? const <CalDavEvent>[];
+    final allEvents = _agenda?.events ?? const <CalDavEvent>[];
+    final query = _search.text.trim().toLowerCase();
+    final events = query.isEmpty
+        ? allEvents
+        : allEvents
+              .where(
+                (event) =>
+                    event.title.toLowerCase().contains(query) ||
+                    event.location?.toLowerCase().contains(query) == true ||
+                    event.description?.toLowerCase().contains(query) == true,
+              )
+              .toList(growable: false);
+    final visible = _visibleSources.toList(growable: false);
+    final multiple = visible.length > 1;
+    final canCreate =
+        !_busy && visible.any((source) => source.calendar.canCreate);
     final period = _period.label.toLowerCase();
     StudioCmd command(
       IconData icon,
@@ -557,9 +844,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                       command(
                         Icons.add_circle_outline,
                         'New event',
-                        !_busy && _target?.calendar.canCreate == true
-                            ? _editEvent
-                            : null,
+                        canCreate ? _editEvent : null,
                       ),
                     ],
                   ),
@@ -650,48 +935,57 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                       ? date.formatFullDate(_start)
                       : '${date.formatMediumDate(_start)} – ${date.formatMediumDate(_day(_end, -1))}',
                 ),
-                if (_accounts.isNotEmpty)
-                  DropdownButton<TaskAccountId>(
-                    value: _account,
-                    hint: const Text('Calendar account'),
-                    onChanged: _busy
-                        ? null
-                        : (value) {
-                            _account = value;
-                            _calendar = null;
-                            unawaited(_reload());
-                          },
-                    items: [
-                      for (final entry in _accounts.entries)
-                        DropdownMenuItem(
-                          value: entry.key,
-                          child: Text(entry.value),
-                        ),
-                    ],
+                if (_sources.isNotEmpty)
+                  OutlinedButton.icon(
+                    key: const ValueKey('studio-calendar-picker'),
+                    onPressed: _busy ? null : _chooseCalendars,
+                    icon: const Icon(Icons.calendar_view_month_outlined),
+                    label: Text(
+                      visible.isEmpty
+                          ? 'Choose calendars'
+                          : multiple
+                          ? '${visible.length} calendars'
+                          : visible.single.calendar.name,
+                    ),
                   ),
-                if (_calendars.isNotEmpty)
-                  DropdownButton<Uri>(
-                    value: _calendar,
-                    hint: const Text('Calendar'),
-                    onChanged: _busy
-                        ? null
-                        : (value) {
-                            _calendar = value;
-                            unawaited(_reload(rediscover: false));
-                          },
-                    items: [
-                      for (final calendar in _calendars)
-                        DropdownMenuItem(
-                          value: calendar.url,
-                          child: Text(calendar.name),
-                        ),
-                    ],
+                if (visible.isNotEmpty)
+                  SizedBox(
+                    width: 232,
+                    child: TextField(
+                      controller: _search,
+                      onChanged: (_) => setState(() {}),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        prefixIcon: const Icon(Icons.search),
+                        hintText: 'Search this range',
+                        suffixIcon: _search.text.isEmpty
+                            ? null
+                            : IconButton(
+                                tooltip: 'Clear search',
+                                icon: const Icon(Icons.clear),
+                                onPressed: () => setState(_search.clear),
+                              ),
+                      ),
+                    ),
                   ),
               ],
             ),
           ),
           if (_error case final error?)
             Padding(padding: const EdgeInsets.all(12), child: Text(error)),
+          if (_issues.isNotEmpty)
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton.icon(
+                icon: const Icon(Icons.info_outline),
+                onPressed: _showIssues,
+                label: Text(
+                  _issues.length == 1
+                      ? 'One calendar source could not load'
+                      : '${_issues.length} calendar sources could not load',
+                ),
+              ),
+            ),
           if (_notice case final notice?)
             Padding(
               padding: const EdgeInsets.all(12),
@@ -703,7 +997,8 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
               child: Text('$count recurring series could not be expanded.'),
             ),
           Expanded(
-            child: _grid && _agenda != null
+            child:
+                _grid && _agenda != null && (query.isEmpty || events.isNotEmpty)
                 ? StudioCalendarGrid(
                     key: ValueKey((_period, _start)),
                     period: _period,
@@ -712,18 +1007,25 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                     events: events,
                     openEvent: _showEvent,
                     openDay: _showDay,
-                    createEvent: !_busy && _target?.calendar.canCreate == true
+                    createEvent: canCreate
                         ? (startsAt) => _editEvent(startsAt: startsAt)
+                        : null,
+                    appearanceOf: multiple
+                        ? (event) {
+                            final source = _eventSources[event];
+                            return source == null
+                                ? null
+                                : (
+                                    label: _sourceName(source),
+                                    color: _sourceColor(source, colors),
+                                  );
+                          }
                         : null,
                   )
                 : !_busy && _error == null && events.isEmpty
                 ? Center(
                     child: Text(
-                      _accounts.isEmpty
-                          ? 'Connect a CalDAV account in Tasks to see its calendars here.'
-                          : _calendars.isEmpty
-                          ? 'This account has no event calendars.'
-                          : 'No events this $period.',
+                      _emptyMessage(query.isNotEmpty, visible.length, period),
                     ),
                   )
                 : ListView.builder(
@@ -731,12 +1033,15 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                     itemBuilder: (context, index) {
                       final event = events[index];
                       final when = _format(event.start, date);
+                      final source = _eventSources[event];
                       return ListTile(
                         onTap: () => _showEvent(event),
                         textColor: colors.onSurface,
                         leading: Icon(
                           Icons.event_outlined,
-                          color: colors.onSurfaceVariant,
+                          color: !multiple || source == null
+                              ? colors.onSurfaceVariant
+                              : _sourceColor(source, colors),
                         ),
                         title: Text(
                           event.title.isEmpty ? 'Untitled event' : event.title,
@@ -744,6 +1049,7 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                         subtitle: Text(
                           [
                             when,
+                            if (multiple && source != null) _sourceName(source),
                             if (event.location case final location?
                                 when location.isNotEmpty)
                               location,

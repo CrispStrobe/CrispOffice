@@ -1,0 +1,231 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:quds_office_studio/credentials/secure_storage_service.dart';
+import 'package:quds_office_studio/studio_calendar.dart';
+import 'package:quds_office_studio/studio_calendar_grid.dart';
+import 'package:quds_office_studio/studio_credential_storage.dart';
+import 'package:quds_office_studio/studio_productivity_accounts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+const _collection = '/calendars/appointments/';
+const _resource = '/calendars/appointments/event.ics';
+
+String _row(String href, String props) =>
+    '<D:response><D:href>$href</D:href><D:propstat><D:prop>$props</D:prop>'
+    '<D:status>HTTP/1.1 200 OK</D:status></D:propstat></D:response>';
+
+String _multi(String rows) =>
+    '<D:multistatus xmlns:D="DAV:" xmlns:C="urn:ietf:params:xml:ns:caldav">'
+    '$rows</D:multistatus>';
+
+Map<String, String> _account(String id, String name) => {
+  'id': id,
+  'provider': 'caldav',
+  'url': 'https://dav.example.test/',
+  'login': '$id@example.test',
+  'label': name,
+  'secret': '$id-specific-secret',
+};
+
+String _authorization(String id) =>
+    'Basic ${base64.encode(utf8.encode('$id@example.test:$id-specific-secret'))}';
+
+String _event(String subject, String description) =>
+    'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\n'
+    'UID:same-uid\r\nDTSTART:20261125T090000Z\r\nDTEND:20261125T100000Z\r\n'
+    'SUMMARY:$subject\r\nDESCRIPTION:$description\r\nEND:VEVENT\r\nEND:VCALENDAR';
+
+void main() {
+  testWidgets(
+    'combines accounts with identical DAV paths and routes edits to the owning account',
+    (tester) async {
+      SharedPreferences.setMockInitialValues({});
+      final vault = InMemorySecureStorage();
+      await vault.write(
+        studioTasksAccountsKey,
+        jsonEncode({
+          'active': ['caldav', 'personal'],
+          'accounts': [
+            _account('personal', 'Personal account'),
+            _account('work', 'Work account'),
+          ],
+        }),
+      );
+      final storage = StudioCredentialStorage(
+        systemStorageFactory: () async => vault,
+      );
+      addTearDown(storage.dispose);
+      var personal = _event('Lunch booking', 'Offsite lunch');
+      var work = _event('Team meeting', 'Quarterly agenda');
+      var workTag = '"work-initial"';
+      var workUnavailable = false;
+      var reportCount = 0;
+      final writes = <String>[];
+      final client = MockClient((request) async {
+        final auth = request.headers['authorization'];
+        final isWork = auth == _authorization('work');
+        expect(isWork || auth == _authorization('personal'), isTrue);
+        final source = isWork ? 'work' : 'personal';
+        final event = isWork ? work : personal;
+        final tag = isWork ? workTag : '"personal"';
+        final path = request.url.path;
+        http.Response response(
+          String body,
+          int status, {
+          Map<String, String> headers = const {},
+        }) => http.Response(body, status, headers: headers, request: request);
+        switch ((request.method, path)) {
+          case ('PROPFIND', '/'):
+            return response(
+              _multi(
+                _row(
+                  '/',
+                  '<C:calendar-home-set>'
+                      '<D:href>/calendars/</D:href></C:calendar-home-set>',
+                ),
+              ),
+              207,
+            );
+          case ('PROPFIND', '/calendars/'):
+            return response(
+              _multi(
+                _row(
+                  _collection,
+                  '<D:resourcetype><C:calendar/></D:resourcetype>'
+                  '<D:displayname>Appointments</D:displayname>'
+                  '<C:supported-calendar-component-set><C:comp name="VEVENT"/>'
+                  '</C:supported-calendar-component-set><D:current-user-privilege-set>'
+                  '<D:privilege><D:write/></D:privilege></D:current-user-privilege-set>',
+                ),
+              ),
+              207,
+            );
+          case ('REPORT', _collection):
+            reportCount++;
+            if (isWork && workUnavailable) return response('', 503);
+            return response(
+              _multi(
+                _row(
+                  _resource,
+                  '<D:getetag>$tag</D:getetag>'
+                  '<C:calendar-data><![CDATA[$event]]></C:calendar-data>',
+                ),
+              ),
+              207,
+            );
+          case ('GET', _resource):
+            return response(event, 200, headers: {'etag': tag});
+          case ('PUT', _resource):
+            expect(request.headers['if-match'], tag);
+            writes.add(source);
+            if (isWork) {
+              work = request.body;
+              workTag = '"work-updated"';
+            } else {
+              personal = request.body;
+            }
+            return response('', 204);
+          default:
+            throw StateError('Unexpected fixture request.');
+        }
+      });
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StudioCalendarPage(
+            title: 'Calendar',
+            initialDate: DateTime(2026, 11, 25),
+            chromeBuilder: (_) => const SizedBox.shrink(),
+            openConnections: () {},
+            credentialStorage: storage,
+            openDavClient: () => client,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Lunch booking'), findsOneWidget);
+      expect(find.text('Team meeting'), findsNothing);
+
+      await tester.tap(find.byKey(const ValueKey('studio-calendar-picker')));
+      await tester.pumpAndSettle();
+      expect(find.text('Personal account'), findsOneWidget);
+      expect(find.text('Work account'), findsOneWidget);
+      await tester.tap(find.text('Show all'));
+      await tester.pumpAndSettle();
+      expect(find.text('2 calendars'), findsOneWidget);
+      expect(find.text('Team meeting'), findsOneWidget);
+      expect(find.text('Lunch booking'), findsOneWidget);
+
+      final reportsBeforeFilter = reportCount;
+      await tester.enterText(find.byType(TextField), 'OFFSITE');
+      await tester.pumpAndSettle();
+      expect(find.text('Team meeting'), findsNothing);
+      expect(find.text('Lunch booking'), findsOneWidget);
+      expect(reportCount, reportsBeforeFilter);
+      await tester.tap(find.byTooltip('Clear search'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byTooltip('Show grid'));
+      await tester.pumpAndSettle();
+      final grid = tester.widget<StudioCalendarGrid>(
+        find.byType(StudioCalendarGrid),
+      );
+      final styles = grid.events
+          .map((event) => grid.appearanceOf!(event)!)
+          .toList();
+      expect(styles.map((style) => style.label).toSet(), {
+        'Appointments (Personal account)',
+        'Appointments (Work account)',
+      });
+      expect(styles.map((style) => style.color).toSet(), hasLength(2));
+      await tester.tap(find.byTooltip('Show agenda'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byTooltip('New event'));
+      await tester.pumpAndSettle();
+      expect(find.text('Create in calendar'), findsOneWidget);
+      await tester.tap(
+        find.widgetWithText(SimpleDialogOption, 'Appointments (Work account)'),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Appointments (Work account)'), findsOneWidget);
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(writes, isEmpty);
+
+      await tester.tap(find.text('Team meeting'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(TextButton, 'Edit'));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.widgetWithText(TextField, 'Title'),
+        'Revised work meeting',
+      );
+      await tester.tap(find.text('Save event'));
+      await tester.pumpAndSettle();
+      expect(writes, ['work']);
+      expect(find.text('Revised work meeting'), findsOneWidget);
+      expect(find.text('Lunch booking'), findsOneWidget);
+
+      workUnavailable = true;
+      final refresh = find.byTooltip('Refresh');
+      await tester.ensureVisible(refresh);
+      await tester.pumpAndSettle();
+      await tester.tap(refresh);
+      await tester.pumpAndSettle();
+      expect(find.text('One calendar source could not load'), findsOneWidget);
+      expect(find.text('Lunch booking'), findsOneWidget);
+      expect(find.text('Revised work meeting'), findsNothing);
+      await tester.tap(find.text('One calendar source could not load'));
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('Appointments (Work account)'),
+        findsOneWidget,
+      );
+    },
+  );
+}

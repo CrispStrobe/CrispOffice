@@ -129,4 +129,6 @@ jobs:
         working-directory: packages/quds_office_editor/example
         env:
           TZ: Europe/Berlin
-        run: flutter test --no-pub test/studio_calendar_test.dart test/studio_calendar_grid_test.dart
+        run: >-
+          flutter test --no-pub test/studio_calendar_test.dart
+          test/studio_calendar_grid_test.dart test/studio_calendar_combined_test.dart
