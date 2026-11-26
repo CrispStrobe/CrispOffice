@@ -621,12 +621,17 @@ final class NativeStudioMailMessageLoader
   @override
   Future<MailMessage> fetchMessage(
     mail.Mailbox selectedMailbox,
-    mail.MimeMessage header,
-  ) async {
+    mail.MimeMessage header, {
+    MailReadBudget? readBudget,
+  }) async {
+    final effectiveBudget = readBudget ?? budget;
     final identity = _identity(selectedMailbox, header);
     final message = await _run(
-      (provider, lease) =>
-          provider.fetchMessage(identity, budget: budget, lease: lease),
+      (provider, lease) => provider.fetchMessage(
+        identity,
+        budget: effectiveBudget,
+        lease: lease,
+      ),
     );
     final record = _browsedRecords[header];
     if (message.remoteIdentity != identity ||
@@ -635,7 +640,7 @@ final class NativeStudioMailMessageLoader
             message.localId != record.id) {
       throw const StudioMailMessageLoadException(MailProblemCode.conflict);
     }
-    if (message.raw.length > budget.maxRawBytes) {
+    if (message.raw.length > effectiveBudget.maxRawBytes) {
       throw const StudioMailMessageLoadException(MailProblemCode.quotaExceeded);
     }
     return message;

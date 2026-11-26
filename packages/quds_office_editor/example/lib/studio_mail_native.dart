@@ -3,6 +3,8 @@ import 'dart:io' as io;
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
+import 'package:quds_office_engine/quds_productivity_automation.dart'
+    show ProductivityMailSelection, ProductivityMailText, ProductivitySnapshot;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -5255,6 +5257,66 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           StudioCredentialStorage.instance.revision,
         );
 
+  ProductivityMailSelection? _captureMcpMailbox() {
+    final loader = _messageLoader;
+    final mailbox = _mailbox;
+    final scope = _liveScope();
+    if (loader is! NativeStudioMailMessageLoader ||
+        mailbox == null ||
+        scope == null ||
+        _busy) {
+      return null;
+    }
+    final captured = <(mail.MimeMessage, MailHeaderRecord)>[];
+    for (final header
+        in (_unreadOnly
+                ? _messages.where((message) => _observedRead(message) == false)
+                : _messages)
+            .take(ProductivitySnapshot.maxRows)) {
+      try {
+        captured.add((header, loader.observedHeader(mailbox, header)));
+      } on StudioMailMessageLoadException {
+        // A cached or stale header cannot be used as an approved UID handle.
+      }
+    }
+    return ProductivityMailSelection(
+      captured.map((entry) => entry.$2.envelope.subject),
+      (index, current) async {
+        bool allowed() =>
+            current() &&
+            mounted &&
+            !_busy &&
+            identical(_messageLoader, loader) &&
+            scope == _liveScope();
+        if (!allowed()) return null;
+        final (header, approved) = captured[index];
+        try {
+          if (loader.observedHeader(mailbox, header).remote !=
+              approved.remote) {
+            return null;
+          }
+          final result = await loader.fetchMessage(
+            mailbox,
+            header,
+            readBudget: const MailReadBudget(maxRawBytes: 2 * 1024 * 1024),
+          );
+          final text = result.body.plainText;
+          if (!allowed() ||
+              result.remoteIdentity != approved.remote ||
+              text == null) {
+            return null;
+          }
+          return ProductivityMailText(
+            subject: result.envelope.subject,
+            text: text,
+          );
+        } on StudioMailMessageLoadException {
+          return null;
+        }
+      },
+    );
+  }
+
   Widget _mailChrome(BuildContext context) {
     final liveScope = _liveScope();
     final theme = Theme.of(context);
@@ -5370,6 +5432,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               }
             },
             openedMail: () => _reader?.result.message,
+            captureMailSelection: _captureMcpMailbox,
             enabled: !_busy && !_dialogOpen,
           ),
           _folderArchiveButton(),

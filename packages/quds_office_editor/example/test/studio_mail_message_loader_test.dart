@@ -352,6 +352,23 @@ void main() {
     expect(harness.configuration!.username, 'incoming-user');
   });
 
+  test(
+    'a scoped IMAP body read does not change the normal reader budget',
+    () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      const budget = MailReadBudget(maxRawBytes: 2 * 1024 * 1024);
+      final mailbox = _mailbox();
+      final header = _header();
+      await loader.fetchMessage(mailbox, header, readBudget: budget);
+      await loader.fetch(mailbox, header);
+      expect(harness.requests.first.budget, same(budget));
+      expect(harness.requests.last.budget.maxRawBytes, 32 * 1024 * 1024);
+      expect(harness.requests.first.identity, harness.requests.last.identity);
+    },
+  );
+
   test('full-message budget is the default', () async {
     final harness = _Harness();
     final loader = _loader(harness);

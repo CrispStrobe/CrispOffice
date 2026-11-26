@@ -1074,55 +1074,6 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                             ? null
                             : () => _exportEvents(events),
                       ),
-                      StudioLiveProductivityButton(
-                        kind: ProductivityKind.calendar,
-                        scope: 'the displayed calendars and date range',
-                        scopeKey: liveScope,
-                        scopeIsCurrent: () =>
-                            mounted && liveScope == _liveScope(),
-                        readRows: () {
-                          if (_busy || _agenda == null) {
-                            throw StateError('Calendar is unavailable');
-                          }
-                          return _eventDisplayRows(events);
-                        },
-                        reviewProposal: !canCreate
-                            ? null
-                            : (proposal, current) async {
-                                final start = proposal.start!;
-                                final end = proposal.end!;
-                                if (!current() ||
-                                    start.isBefore(_start) ||
-                                    !start.isBefore(_end) ||
-                                    end.isAfter(_end)) {
-                                  if (mounted && current()) {
-                                    setState(
-                                      () => _notice =
-                                          'The suggestion falls outside the granted date range.',
-                                    );
-                                  }
-                                  return;
-                                }
-                                CalDavDateValue value(DateTime time) =>
-                                    CalDavDateValue.fromTaskDate(
-                                      TaskDateTime(
-                                        time.toIso8601String().substring(0, 19),
-                                        timeZone: 'UTC',
-                                      ),
-                                    );
-                                await _editEvent(
-                                  draft: CalDavEvent(
-                                    uid: '',
-                                    title: proposal.title,
-                                    start: value(start),
-                                    end: value(end),
-                                    description: proposal.text,
-                                  ),
-                                  canSave: current,
-                                );
-                              },
-                        enabled: !_busy && _agenda != null,
-                      ),
                     ],
                   ),
                   StudioRibbonGroup(
@@ -1225,6 +1176,54 @@ final class _StudioCalendarPageState extends State<StudioCalendarPage> {
                           : visible.single.name,
                     ),
                   ),
+                StudioLiveProductivityButton(
+                  kind: ProductivityKind.calendar,
+                  scope: 'the displayed calendars and date range',
+                  scopeKey: liveScope,
+                  scopeIsCurrent: () => mounted && liveScope == _liveScope(),
+                  readRows: () {
+                    if (_busy || _agenda == null) {
+                      throw StateError('Calendar is unavailable');
+                    }
+                    return _eventDisplayRows(events);
+                  },
+                  reviewProposal: !canCreate
+                      ? null
+                      : (proposal, current) async {
+                          final start = proposal.start!;
+                          final end = proposal.end!;
+                          if (!current() ||
+                              start.isBefore(_start) ||
+                              !start.isBefore(_end) ||
+                              end.isAfter(_end)) {
+                            if (mounted && current()) {
+                              setState(
+                                () => _notice =
+                                    'The suggestion falls outside the granted date range.',
+                              );
+                            }
+                            return;
+                          }
+                          CalDavDateValue value(DateTime time) =>
+                              CalDavDateValue.fromTaskDate(
+                                TaskDateTime(
+                                  time.toIso8601String().substring(0, 19),
+                                  timeZone: 'UTC',
+                                ),
+                              );
+                          await _editEvent(
+                            draft: CalDavEvent(
+                              uid: '',
+                              title: proposal.title,
+                              start: value(start),
+                              end: value(end),
+                              description: proposal.text,
+                            ),
+                            canSave: current,
+                          );
+                        },
+                  enabled: !_busy && _agenda != null,
+                ),
                 if (visible.isNotEmpty)
                   SizedBox(
                     width: 232,

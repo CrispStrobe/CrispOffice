@@ -559,13 +559,14 @@ The client reads the latest rows that Studio has loaded for the authorized
 mailbox, task list and filter, or calendar selection and date range. It can
 see changes as Studio refreshes that view. The grant does not trigger a
 provider sync or authorize another folder, list, calendar or date range.
-Mail includes separate opt-ins for the plain text of the open email and, for
-Exchange EWS, Gmail and Microsoft 365, for up to 250 messages already loaded in
-the selected folder when the grant is issued. Use `mail_list_approved_text`
+Mail includes separate opt-ins for the plain text of the open email and for
+up to 250 messages already loaded in the selected folder when the grant is
+issued. The loaded-message option supports verified IMAP headers, Exchange
+EWS, Gmail and Microsoft 365. Use `mail_list_approved_text`
 and `mail_read_approved_text` for those messages. The app checks the exact
-message identity and folder before and after fetching. Attachments, raw MIME,
-HTML and credentials are excluded from tool results. IMAP currently offers
-the open-email option.
+message identity and folder before returning text. IMAP verifies the
+mailbox's UIDVALIDITY and uses a bounded, exact-UID BODY.PEEK read.
+Attachments, raw MIME, HTML and credentials are excluded from tool results.
 
 To let the client queue suggestions, enable **Allow suggestions for review**
 while granting access. Open **Live MCP access** again and choose **Review
