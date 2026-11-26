@@ -232,17 +232,17 @@ class _StudioAboutDialogState extends State<StudioAboutDialog> {
                   ),
                 ),
               ),
-              const SizedBox(height: 18),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text(strings.close),
-                ),
-              ),
             ],
           ),
         ),
       ),
+      actions: [
+        ElevatedButton(
+          key: const ValueKey('studio-about-close'),
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(strings.close),
+        ),
+      ],
     );
   }
 }

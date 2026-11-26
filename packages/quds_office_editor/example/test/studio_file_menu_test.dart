@@ -378,8 +378,11 @@ void main() {
       expect(find.byType(StudioAboutDialog), findsOneWidget);
       expect(windowCalls.where((method) => method == 'show'), hasLength(2));
       expect(windowCalls.where((method) => method == 'focus'), hasLength(2));
-      await tester.tap(find.widgetWithText(ElevatedButton, 'Close'));
+      final close = find.byKey(const ValueKey('studio-about-close'));
+      expect(close.hitTestable(), findsOneWidget);
+      await tester.tap(close);
       await _frames(tester);
+      expect(find.byType(StudioAboutDialog), findsNothing);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.macOS),
   );
