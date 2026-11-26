@@ -309,7 +309,7 @@ else
   FRAMEWORKS="$SIGNED_APP/Contents/Frameworks"
   RESOURCES="$SIGNED_APP/Contents/Resources"
   plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$SIGNED_APP/Contents/Info.plist"
-  cp "$PROFILE" "$SIGNED_APP/Contents/embedded.provisionprofile"
+  install -m 644 "$PROFILE" "$SIGNED_APP/Contents/embedded.provisionprofile"
 fi
 
 if [[ "${QUDS_SKIP_SPACY:-0}" != 1 && "$REBUILD_SPACY" != 1 ]]; then
