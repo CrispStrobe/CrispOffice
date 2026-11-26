@@ -7,6 +7,10 @@ on:
         description: Build only Windows from this release ref
         required: false
         type: string
+      macos_source_ref:
+        description: Build only macOS from this release ref
+        required: false
+        type: string
   push:
     tags: ['crispoffice-v*']
 
@@ -20,10 +24,14 @@ jobs:
   macos:
     if: inputs.windows_source_ref == ''
     name: macOS
-    runs-on: macos-latest
+    runs-on: ${{ inputs.macos_source_ref != '' && 'macos-15' || 'macos-latest' }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.macos_source_ref || github.sha }}
+      - name: Verify source revision
+        run: git rev-parse HEAD
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -62,6 +70,7 @@ jobs:
           retention-days: 14
 
   windows-source:
+    if: inputs.macos_source_ref == ''
     name: Prepare Windows source
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -131,7 +140,7 @@ jobs:
           retention-days: 14
 
   linux:
-    if: inputs.windows_source_ref == ''
+    if: inputs.windows_source_ref == '' && inputs.macos_source_ref == ''
     name: Linux
     runs-on: ubuntu-22.04
     timeout-minutes: 45
@@ -169,7 +178,7 @@ jobs:
           retention-days: 14
 
   android:
-    if: inputs.windows_source_ref == ''
+    if: inputs.windows_source_ref == '' && inputs.macos_source_ref == ''
     name: Android arm64
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -215,7 +224,7 @@ jobs:
           retention-days: 14
 
   web:
-    if: inputs.windows_source_ref == ''
+    if: inputs.windows_source_ref == '' && inputs.macos_source_ref == ''
     name: Web
     runs-on: ubuntu-latest
     timeout-minutes: 30
