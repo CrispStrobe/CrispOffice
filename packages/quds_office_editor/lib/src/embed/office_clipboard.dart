@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:super_clipboard/super_clipboard.dart';
+
+import 'word_html_clipboard.dart';
+import 'word_rtf_clipboard.dart';
 
 /// How pasted content is applied, matching Office paste options.
 enum OfficePasteMode {
@@ -81,6 +87,56 @@ class OfficeClipboardPayload {
     }
     return OfficeClipboardPayload(kind: OfficeClipboardKind.text, plain: text);
   }
+
+  /// Builds an editable fragment from an application's clipboard representations.
+  factory OfficeClipboardPayload.fromWordClipboard({
+    String? plain,
+    String? html,
+    String? rtf,
+  }) {
+    List<WmlBlock> blocks = [];
+    if (html != null) {
+      try {
+        blocks = readWordClipboardHtml(html);
+      } on Exception {
+        // Some native apps advertise a format without a usable fragment.
+      }
+    }
+    if (!_hasClipboardText(blocks) && rtf != null) {
+      try {
+        blocks = readWordClipboardRtf(rtf);
+      } on Exception {
+        // The plain representation remains available.
+      }
+    }
+    if (!_hasClipboardText(blocks)) {
+      return OfficeClipboardPayload.fromPlain(plain ?? '');
+    }
+    final projected = [
+      for (final block in blocks)
+        for (final paragraph in WmlClone.paragraphsOf(block))
+          [
+            for (final inline in paragraph.inlines)
+              if (inline is WmlRun)
+                inline.text
+              else if (inline is WmlBreak)
+                '\n',
+          ].join(),
+    ].join('\n');
+    return OfficeClipboardPayload(
+      kind: OfficeClipboardKind.richText,
+      plain: plain == null || plain.isEmpty ? projected : plain,
+      wordBlocks: blocks,
+    );
+  }
+
+  static bool _hasClipboardText(List<WmlBlock> blocks) => blocks.any(
+    (block) => WmlClone.paragraphsOf(block).any(
+      (para) =>
+          para.text.isNotEmpty ||
+          para.inlines.any((inline) => inline is WmlBreak),
+    ),
+  );
 
   /// kind API.
   final OfficeClipboardKind kind;
@@ -175,13 +231,27 @@ class OfficeClipboard {
   }
 
   /// read API.
-  Future<OfficeClipboardPayload> read() async {
+  Future<OfficeClipboardPayload> read({
+    bool wordFormatting = false,
+    bool preferPlain = false,
+  }) async {
     var system = '';
-    if (useSystem) {
+    if (useSystem && wordFormatting && !preferPlain) {
+      final external = await _readWordClipboard();
+      if (external?.hasWordBlocks == true) return external!;
+      system = external?.plain ?? '';
+    }
+    if (useSystem && system.isEmpty) {
       try {
         system = (await Clipboard.getData(Clipboard.kTextPlain))?.text ?? '';
-      } catch (_) {
-        system = '';
+      } on Object {
+        // Some platforms only expose the richer representation.
+      }
+      if (system.isEmpty && wordFormatting && preferPlain) {
+        final external = await _readWordClipboard();
+        if (external != null && external.plain.isNotEmpty) {
+          return OfficeClipboardPayload.fromPlain(external.plain);
+        }
       }
     }
     final OfficeClipboardPayload? local = _local;
@@ -196,10 +266,124 @@ class OfficeClipboard {
     return local ?? OfficeClipboardPayload.empty();
   }
 
+  Future<OfficeClipboardPayload?> _readWordClipboard() async {
+    try {
+      final reader = await SystemClipboard.instance?.read();
+      if (reader == null) return null;
+      return await readWordRepresentations(reader);
+    } on Object {
+      return null;
+    }
+  }
+
+  /// Reads application-supplied text and rich formats from a clipboard snapshot.
+  static Future<OfficeClipboardPayload?> readWordRepresentations(
+    ClipboardDataReader reader,
+  ) async {
+    final plain = await _readFormat(reader, Formats.plainText);
+    final html =
+        await _readFormat(reader, _windowsHtml) ??
+        await _readFormat(reader, Formats.htmlText);
+    final htmlPayload = OfficeClipboardPayload.fromWordClipboard(
+      plain: plain,
+      html: html,
+    );
+    if (htmlPayload.hasWordBlocks) return htmlPayload;
+    final rtf = await _readFormat(reader, _rtf);
+    if (rtf == null) return htmlPayload.isEmpty ? null : htmlPayload;
+    final rtfPayload = OfficeClipboardPayload.fromWordClipboard(
+      plain: plain,
+      rtf: rtf,
+    );
+    return rtfPayload.isEmpty ? null : rtfPayload;
+  }
+
+  static Future<String?> _readFormat(
+    ClipboardDataReader reader,
+    ValueFormat<String> format,
+  ) async {
+    try {
+      return reader.canProvide(format) ? await reader.readValue(format) : null;
+    } on Object {
+      return null;
+    }
+  }
+
   /// clear API.
   void clear() {
     _local = null;
   }
+}
+
+// Maintain the HTML header and ancestor styles around the selected fragment.
+const _windowsHtml = SimpleValueFormat<String>(
+  windows: SimplePlatformCodec(
+    formats: ['HTML Format'],
+    onDecode: _decodeWindowsHtml,
+  ),
+);
+
+Future<String?> _decodeWindowsHtml(
+  PlatformDataProvider data,
+  String format,
+) async {
+  final bytes = await data.getData(format);
+  if (bytes is! List<int> || bytes.length > wordClipboardLimit) return null;
+  final header = latin1.decode(bytes.take(1024).toList());
+  int? offset(String label) => int.tryParse(
+    RegExp('(?:^|[\\r\\n])$label:[ \t]*([0-9]+)').firstMatch(header)?[1] ?? '',
+  );
+  final startHtml = offset('StartHTML');
+  final endHtml = offset('EndHTML');
+  final startFragment = offset('StartFragment');
+  final endFragment = offset('EndFragment');
+  if (startHtml == null ||
+      endHtml == null ||
+      startFragment == null ||
+      endFragment == null ||
+      startHtml > startFragment ||
+      startFragment >= endFragment ||
+      endFragment > endHtml ||
+      endHtml > bytes.length) {
+    return null;
+  }
+  String decode(int start, int end) =>
+      utf8.decode(bytes.sublist(start, end), allowMalformed: true);
+  final full = decode(startHtml, endHtml);
+  if (full.contains('<!--StartFragment-->') &&
+      full.contains('<!--EndFragment-->')) {
+    return full;
+  }
+  return '${decode(startHtml, startFragment)}<!--StartFragment-->'
+      '${decode(startFragment, endFragment)}<!--EndFragment-->'
+      '${decode(endFragment, endHtml)}';
+}
+
+const _rtf = SimpleValueFormat<String>(
+  ios: SimplePlatformCodec(formats: ['public.rtf'], onDecode: _decodeRtf),
+  macos: SimplePlatformCodec(formats: ['public.rtf'], onDecode: _decodeRtf),
+  windows: SimplePlatformCodec(
+    formats: ['Rich Text Format'],
+    onDecode: _decodeRtf,
+  ),
+  fallback: SimplePlatformCodec(
+    formats: ['text/rtf', 'application/rtf'],
+    onDecode: _decodeRtf,
+  ),
+);
+
+Future<String?> _decodeRtf(PlatformDataProvider data, String format) async {
+  final value = await data.getData(format);
+  final String text;
+  if (value is String && value.length <= wordClipboardLimit) {
+    text = value;
+  } else if (value is List<int> && value.length <= wordClipboardLimit) {
+    text = latin1.decode(value);
+  } else {
+    return null;
+  }
+  final terminator = text.indexOf('\u0000');
+  return terminator < 0 ? text : text.substring(0, terminator);
 }
 
 /// cloneClipboardShape helper.

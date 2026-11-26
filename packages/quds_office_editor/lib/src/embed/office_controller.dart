@@ -3666,12 +3666,16 @@ class WordEditorController extends OfficeController {
     if (!canPaste || !(isCurrent?.call() ?? true)) {
       return;
     }
-    final OfficeClipboardPayload payload = await OfficeClipboard.instance
-        .read();
+    final OfficeClipboardPayload payload = await OfficeClipboard.instance.read(
+      wordFormatting: mode == OfficePasteMode.keepSource,
+    );
     if (!(isCurrent?.call() ?? true) || payload.isEmpty) {
       return;
     }
-    if (payload.visual != null && selectedVisual == null && caret.isCollapsed) {
+    if (mode != OfficePasteMode.keepTextOnly &&
+        payload.visual != null &&
+        selectedVisual == null &&
+        caret.isCollapsed) {
       _pasteWordVisual(payload.visual!);
       return;
     }

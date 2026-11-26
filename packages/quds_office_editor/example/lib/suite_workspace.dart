@@ -928,8 +928,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (!_canMutate) {
       return;
     }
-    await _active.pasteFromClipboard(mode: mode);
-    if (mounted) {
+    final controller = _active;
+    if (controller is WordEditorController) {
+      await controller.pasteFromClipboard(
+        mode: mode,
+        isCurrent: () =>
+            mounted &&
+            _wordRouteIsCurrent &&
+            !_productivityActive &&
+            identical(_active, controller) &&
+            _canMutate,
+      );
+    } else {
+      await controller.pasteFromClipboard(mode: mode);
+    }
+    if (mounted && identical(_active, controller) && !_productivityActive) {
       setState(() => _showPasteOptions = true);
     }
   }
@@ -1573,6 +1586,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       const PasteTextIntent(SelectionChangedCause.keyboard),
       _paste,
     ),
+    'edit.pastePlain': () => _dispatchTextAction(
+      const PasteTextIntent(SelectionChangedCause.keyboard),
+      () => unawaited(_pasteMode(OfficePasteMode.keepTextOnly)),
+    ),
     'edit.selectAll': () => _dispatchTextAction(
       const SelectAllTextIntent(SelectionChangedCause.keyboard),
       _selectAll,
@@ -1806,6 +1823,20 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             onSelected: () => _dispatchTextAction(
               const PasteTextIntent(SelectionChangedCause.keyboard),
               _paste,
+            ),
+          ),
+          StudioMenuAction(
+            id: 'paste-plain',
+            label: _t(
+              'Paste as Plain Text',
+              'Als reinen Text einfügen',
+              'لصق كنص عادي',
+            ),
+            icon: Icons.format_clear,
+            shortcut: _menuBinding('edit.pastePlain'),
+            onSelected: () => _dispatchTextAction(
+              const PasteTextIntent(SelectionChangedCause.keyboard),
+              () => unawaited(_pasteMode(OfficePasteMode.keepTextOnly)),
             ),
           ),
           StudioMenuAction(

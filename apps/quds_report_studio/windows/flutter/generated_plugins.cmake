@@ -3,8 +3,10 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  irondash_engine_context
   printing
   screen_retriever_windows
+  super_native_extensions
   url_launcher_windows
   window_manager
 )

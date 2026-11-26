@@ -213,6 +213,12 @@ abstract final class StudioShortcutCatalog {
       key: LogicalKeyboardKey.keyV,
     ),
     StudioShortcutAction(
+      id: 'edit.pastePlain',
+      label: 'Paste as Plain Text',
+      key: LogicalKeyboardKey.keyV,
+      shift: true,
+    ),
+    StudioShortcutAction(
       id: 'edit.selectAll',
       label: 'Select all',
       key: LogicalKeyboardKey.keyA,
