@@ -735,6 +735,13 @@ class SheetDeserializer {
         }
       }
       if (reader.eventType == XmlEventType.startElement &&
+          reader.depth == 2 &&
+          (reader.localName == 'rowBreaks' ||
+              reader.localName == 'colBreaks') &&
+          reader.namespaceUri == OfficeNamespaces.x) {
+        _readManualPageBreaks(reader, sheet);
+      }
+      if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'printOptions') {
         final setup = ensurePageSetup();
         setup.printHeadings = reader.getAttribute('headings') == '1';
@@ -977,6 +984,21 @@ class SheetDeserializer {
     _readSheetExtras(sheet, package, sheetUri);
     sheet.sourceValidationState = sheet.validationState();
     sheet.sourceConditionalFormatState = sheet.conditionalFormatState();
+  }
+
+  static void _readManualPageBreaks(XmlPullReader reader, SmlWorksheet sheet) {
+    if (reader.isEmptyElement) return;
+    final rows = reader.localName == 'rowBreaks';
+    while (reader.next() && reader.depth >= 2) {
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.depth == 3 &&
+          reader.localName == 'brk' &&
+          reader.namespaceUri == OfficeNamespaces.x &&
+          _readBoolean(reader.getAttribute('man'))) {
+        final index = int.tryParse(reader.getAttribute('id') ?? '');
+        if (index != null) sheet.importManualPageBreak(index, rows: rows);
+      }
+    }
   }
 
   static void _readSheetExtras(

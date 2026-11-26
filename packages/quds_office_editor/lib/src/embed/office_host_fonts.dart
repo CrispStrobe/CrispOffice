@@ -131,6 +131,25 @@ abstract final class OfficeHostFonts {
     return face.$1;
   }
 
+  /// Embeddable faces already registered for this document family.
+  static Iterable<OfficeFontFace> pdfFacesForFamily(String family) sync* {
+    final registered = registeredFamily(family);
+    if (registered == null) return;
+    final faces = _metricFaces[registered.toLowerCase()];
+    if (faces == null) return;
+    for (final face in faces) {
+      if (!face.font.hasTable('glyf')) continue;
+      final actual = face.font.familyName;
+      yield OfficeFontFace(
+        font: face.font,
+        family: actual.isEmpty ? family : actual,
+        weight: face.weight,
+        italic: face.italic,
+        aliases: [family],
+      );
+    }
+  }
+
   /// The loaded paint name for an installed face; other names stay unchanged.
   /// A separate Flutter family prevents an earlier bundled alias from winning
   /// selection after the real installed face becomes available.

@@ -361,6 +361,35 @@ abstract final class StudioFiles {
         );
   }
 
+  static OfficeFontSet exportFontSetForWorkbook(SmlWorkbook workbook) {
+    Iterable<String> texts() sync* {
+      yield 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      for (final sheet in workbook.sheets) {
+        yield sheet.name;
+        for (final cell in sheet.allCells) {
+          yield cell.asString;
+        }
+        for (final drawing in sheet.drawings) {
+          yield drawing.visual.title;
+          for (final point in drawing.visual.points) {
+            yield point.label;
+          }
+        }
+      }
+    }
+
+    final fallback = exportFontSetCovering(texts());
+    final styles = workbook.styles;
+    return OfficeFontSet(
+      primary: fallback.primary,
+      fallbacks: fallback.fallbacks,
+      faces: [
+        for (final family in {...?styles?.fontFamilies})
+          ...OfficeHostFonts.pdfFacesForFamily(family),
+      ],
+    );
+  }
+
   /// Font set for Word → PDF (Latin primary when the doc mixes scripts).
   ///
   /// A run or theme named Cairo embeds Cairo. Otherwise a registered Tajawal

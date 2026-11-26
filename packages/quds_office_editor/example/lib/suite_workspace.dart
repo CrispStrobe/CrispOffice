@@ -8528,17 +8528,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _word.document,
       themeFamily: _officeTheme.fontFamily,
     ),
-    SuiteApp.excel => StudioFiles.exportFontSetCovering(<String>[
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-      for (final SmlWorksheet sheet in _sheet.workbook.sheets) ...<String>[
-        sheet.name,
-        for (final SmlCell cell in sheet.allCells) cell.asString,
-        for (final SmlDrawing drawing in sheet.drawings) ...<String>[
-          drawing.visual.title,
-          for (final ChartPoint point in drawing.visual.points) point.label,
-        ],
-      ],
-    ]),
+    SuiteApp.excel => StudioFiles.exportFontSetForWorkbook(_sheet.workbook),
     SuiteApp.powerpoint => StudioFiles.exportFontSetCovering(<String>[
       for (final PmlSlide slide in _slides.presentation.slides) ...<String>[
         slide.notes,

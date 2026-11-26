@@ -251,9 +251,14 @@ abstract final class OfficePdfExport {
         cps.addAll(SmlCellRef(c, 0).a1.replaceAll(RegExp(r'\d+'), '').runes);
       }
     }
+    final normalDigitPoints = _normalDigitWidthPoints(
+      book.styles?.normalFont,
+      set,
+    );
+    final measuredPixels = ((normalDigitPoints ?? 0) * 96 / 72).round();
     final digitWidth =
         book.columnMetrics?.maximumDigitWidthPx ??
-        _normalDigitWidth(book.styles?.normalFont, set);
+        (measuredPixels > 0 ? measuredPixels : null);
     final _FontPack pack = _FontPack.build(set, cps);
     final PdfDocument pdf = PdfDocument(title: title);
     final _PdfImageBank images = _PdfImageBank();
@@ -281,6 +286,7 @@ abstract final class OfficePdfExport {
         options,
         images,
         digitWidth,
+        normalDigitPoints?.round(),
       );
       if (pdf.pages.length > before) {
         pdf.addOutline(PdfOutlineItem(title: sheet.name, pageIndex: before));
@@ -1189,7 +1195,10 @@ abstract final class OfficePdfExport {
   /// Sheet CSS-pixel sizes → PDF points (96 CSS dpi).
   static double _sheetPxToPt(double px) => px * 72 / 96;
 
-  static int? _normalDigitWidth(SmlNormalFont? normal, OfficeFontSet fonts) {
+  static double? _normalDigitWidthPoints(
+    SmlNormalFont? normal,
+    OfficeFontSet fonts,
+  ) {
     if (normal == null) return null;
     final face = fonts.resolve(
       0x30,
@@ -1212,8 +1221,7 @@ abstract final class OfficePdfExport {
       if (face.font.glyphIdFor(digit) == 0) return null;
       width = math.max(width, metrics.characterWidth(digit));
     }
-    final pixels = (width * 96 / 72).round();
-    return pixels > 0 ? pixels : null;
+    return width.isFinite && width > 0 ? width : null;
   }
 
   static (double, double) _sheetPaper(
@@ -1255,6 +1263,7 @@ abstract final class OfficePdfExport {
     PdfSheetPrintOptions options,
     _PdfImageBank images,
     int? digitWidth,
+    int? digitPoints,
   ) {
     final conditionalFormats = SmlConditionalResolver(
       sheet: sheet,
@@ -1351,12 +1360,20 @@ abstract final class OfficePdfExport {
       maxRow = 12;
     }
 
+    double printColumnWidth(int col) {
+      if (setup != null && digitPoints != null && digitPoints > 0) {
+        // Excel's macOS print layout quantizes the Normal digit in points,
+        // then rounds each native character width in that coordinate space.
+        final native = sheet.unchangedNativeColumnWidth(col);
+        if (native != null) return (native * digitPoints).roundToDouble();
+      }
+      return _sheetPxToPt(
+        sheet.columnWidth(col, projectedDigitWidthPx: digitWidth),
+      );
+    }
+
     final List<double> colPts = <double>[
-      for (int c = minCol; c <= maxCol; c++)
-        math.max(
-          4,
-          _sheetPxToPt(sheet.columnWidth(c, projectedDigitWidthPx: digitWidth)),
-        ),
+      for (int c = minCol; c <= maxCol; c++) math.max(4, printColumnWidth(c)),
     ];
     final List<double> rowPts = <double>[
       for (int r = minRow; r <= maxRow; r++)
@@ -1369,7 +1386,8 @@ abstract final class OfficePdfExport {
     var scale =
         (options.scalePercentOverride ?? setup?.scale ?? 100).clamp(10, 400) /
         100;
-    if (options.fitOverride ?? setup?.fitToPage ?? options.fitToPage) {
+    final fit = options.fitOverride ?? setup?.fitToPage ?? options.fitToPage;
+    if (fit) {
       final needW = colPts.fold<double>(0, (a, b) => a + b);
       final needH = rowPts.fold<double>(0, (a, b) => a + b);
       final fitWidth = options.fitOverride == true ? 1 : setup?.fitToWidth ?? 1;
@@ -1398,6 +1416,10 @@ abstract final class OfficePdfExport {
     for (int i = 0; i < rowPts.length; i++) {
       rowPts[i] *= scale;
     }
+    final columnOffsets = <double>[0];
+    for (final width in colPts) {
+      columnOffsets.add(columnOffsets.last + width);
+    }
 
     final SmlRange? titleRows = sheet.printTitleRows;
     final int titleR0 = titleRows == null
@@ -1420,9 +1442,18 @@ abstract final class OfficePdfExport {
       for (int r = dataMinRow; r <= maxRow; r++) rowPts[r - minRow],
     ];
 
+    // Excel ignores the saved orthogonal span of a manual break and applies
+    // it across the print area. Fit-to-page replaces manual pagination.
+    final useManualBreaks = options.useWorksheetPageSetup && !fit;
+    final firstPackedRow = dataRowPts.isEmpty ? minRow : dataMinRow;
     final List<({int start, int end})> colBands = _packSheetAxis(
       colPts,
       usableW,
+      breaksBefore: useManualBreaks
+          ? sheet.importedColumnPageBreaks
+                .map((column) => column - minCol)
+                .toSet()
+          : const <int>{},
     );
     final double headingReserve = showHeadings
         ? math.max(12.0, rowPts.isEmpty ? 16.0 : rowPts.first)
@@ -1430,6 +1461,11 @@ abstract final class OfficePdfExport {
     final List<({int start, int end})> rowBands = _packSheetAxis(
       dataRowPts.isEmpty ? rowPts : dataRowPts,
       usableH - headingReserve - titleRowsHeight,
+      breaksBefore: useManualBreaks
+          ? sheet.importedRowPageBreaks
+                .map((row) => row - firstPackedRow)
+                .toSet()
+          : const <int>{},
     );
 
     double bandExtent(List<double> sizes, ({int start, int end}) range) {
@@ -1527,23 +1563,19 @@ abstract final class OfficePdfExport {
         final gridRight =
             (rtl ? pageW - right - gutter : pageW - right) - horizontalInset;
         final gridY = top + band + verticalInset;
-
-        double colOffset(int local) {
-          var sum = 0.0;
-          for (int i = cb.start; i < local; i++) {
-            sum += colPts[i];
-          }
-          return sum;
-        }
+        final firstCol = minCol + cb.start;
+        final lastCol = minCol + cb.end;
+        final bandOffset = columnOffsets[cb.start];
+        final printedWidth = math.min(
+          usableW,
+          columnOffsets[cb.end + 1] - bandOffset,
+        );
+        final printedLeft = rtl ? gridRight - printedWidth : gridLeft;
 
         double colX(int absCol) {
           final int local = absCol - minCol;
-          final double w = colPts[local];
-          if (!rtl) {
-            return gridLeft + colOffset(local) - colOffset(cb.start);
-          }
-          final double fromBand = colOffset(local) - colOffset(cb.start);
-          return gridRight - fromBand - w;
+          final offset = columnOffsets[local] - bandOffset;
+          return rtl ? gridRight - offset - colPts[local] : gridLeft + offset;
         }
 
         double colWAt(int absCol) => colPts[absCol - minCol];
@@ -1642,21 +1674,20 @@ abstract final class OfficePdfExport {
                 '595959',
               );
             }
-            for (int c = minCol + cb.start; c <= minCol + cb.end; c++) {
+            for (int c = firstCol; c <= lastCol; c++) {
               final SmlMerge? merge = sheet.mergeAt(c, r);
-              if (merge != null && (merge.c0 != c || merge.r0 != r)) {
+              final anchor = merge?.c0 ?? c;
+              if (merge != null &&
+                  (merge.r0 != r ||
+                      anchor < minCol ||
+                      c != math.max(anchor, firstCol))) {
                 continue;
               }
-              var spanW = colWAt(c);
+              var spanW = colWAt(anchor);
               var spanH = h;
               if (merge != null) {
-                spanW = 0;
-                for (int mc = merge.c0; mc <= merge.c1; mc++) {
-                  if (mc < minCol || mc > maxCol) {
-                    continue;
-                  }
-                  spanW += colPts[mc - minCol];
-                }
+                final end = math.min(merge.c1, maxCol) - minCol + 1;
+                spanW = columnOffsets[end] - columnOffsets[anchor - minCol];
                 spanH = 0;
                 for (int mr = merge.r0; mr <= merge.r1; mr++) {
                   if (mr < minRow || mr > maxRow) {
@@ -1665,19 +1696,28 @@ abstract final class OfficePdfExport {
                   spanH += rowPts[mr - minRow];
                 }
               }
-              final double x = colX(c);
-              final SmlCell? stored = sheet.rows[r]?.cells[c];
-              final conditional = conditionalFormats.resolve(SmlCellRef(c, r));
+              final x = rtl
+                  ? colX(anchor) + colWAt(anchor) - spanW
+                  : colX(anchor);
+              final SmlCell? stored = sheet.rows[r]?.cells[anchor];
+              final conditional = conditionalFormats.resolve(
+                SmlCellRef(anchor, r),
+              );
+              final splitMerge =
+                  merge != null && (anchor < firstCol || merge.c1 > lastCol);
+              if (splitMerge) {
+                sink.canvas.save();
+                sink.canvas.clipRect(printedLeft, y, printedWidth, spanH);
+              }
               paintCellFrame(x, y, spanW, spanH, stored, conditional);
-              if (stored == null) {
+              final shown = stored == null
+                  ? null
+                  : _sheetDisplay(book, sheet, stored);
+              if (shown == null || shown.text.isEmpty) {
+                if (splitMerge) sink.canvas.restore();
                 continue;
               }
-              final ({String text, String color, bool numeric}) shown =
-                  _sheetDisplay(book, sheet, stored);
-              if (shown.text.isEmpty) {
-                continue;
-              }
-              final double size = math.max(4, stored.fontSize * scale);
+              final double size = math.max(4, stored!.fontSize * scale);
               final _TextAlign align = switch (stored.horizontalAlign) {
                 SmlHAlign.left => _TextAlign.left,
                 SmlHAlign.center => _TextAlign.center,
@@ -1724,6 +1764,7 @@ abstract final class OfficePdfExport {
                 italic: book.styles?.italicAt(stored.styleIndex) ?? false,
               );
               sink.canvas.restore();
+              if (splitMerge) sink.canvas.restore();
             }
           }
         }
@@ -1872,8 +1913,9 @@ abstract final class OfficePdfExport {
   /// Packs variable-size axis segments into bands that fit [budget].
   static List<({int start, int end})> _packSheetAxis(
     List<double> sizes,
-    double budget,
-  ) {
+    double budget, {
+    required Set<int> breaksBefore,
+  }) {
     if (sizes.isEmpty) {
       return <({int start, int end})>[(start: 0, end: 0)];
     }
@@ -1883,7 +1925,7 @@ abstract final class OfficePdfExport {
     var used = 0.0;
     for (int i = 0; i < sizes.length; i++) {
       final double next = sizes[i];
-      if (i > start && used + next > limit) {
+      if (i > start && (breaksBefore.contains(i) || used + next > limit)) {
         bands.add((start: start, end: i - 1));
         start = i;
         used = 0;

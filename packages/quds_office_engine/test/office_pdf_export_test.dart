@@ -690,6 +690,125 @@ void main() {
     },
   );
 
+  test('XLSX print uses the Normal digit rounded in points', () {
+    final source = OpcPackage.openBytes(
+      File(
+        'test/fixtures/fidelity/sheet-normal-font-native.xlsx',
+      ).readAsBytesSync(),
+    );
+    final styles = source.getPart('/xl/styles.xml')!;
+    styles.writeText(
+      styles.readText().replaceFirst(
+        '<sz val="24"/><name val="Liberation Mono"/>',
+        '<sz val="10"/><name val="Liberation Sans"/>',
+      ),
+    );
+    final book = SheetDeserializer().read(source);
+    final sheet = book.firstSheet;
+    sheet
+      ..printArea = SmlRange.parse('A1:B1')
+      ..pageSetup = SmlPageSetup(
+        paperWidthIn: 3.2,
+        marginLeftIn: 0,
+        marginRightIn: 0,
+      );
+    sheet.importColumnWidth(0, 20);
+    sheet.importColumnWidth(1, 20);
+    final normal = SfntFont.parse(
+      File(
+        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+      ).readAsBytesSync(),
+    );
+
+    // At 72 dpi the digit rounds to 6 pt and the two columns need 240 pt.
+    // Rounding first at 96 dpi would incorrectly fit them on this 230.4 pt page.
+    expect(_pageCount(OfficePrint.workbook(book, font: normal)), 2);
+    expect(sheet.columnWidth(0), 140);
+    sheet.setColumnWidth(1, 100);
+    expect(_pageCount(OfficePrint.workbook(book, font: normal)), 1);
+  });
+
+  test('XLSX manual page breaks survive saving and guide print pagination', () {
+    final sheet = SmlWorksheet(
+      name: 'Breaks',
+      sheetId: 1,
+      pageSetup: SmlPageSetup(),
+      printArea: SmlRange.parse('B2:E6'),
+    );
+    sheet
+      ..cellA1('B2').value = 'TopLeft'
+      ..cellA1('E2').value = 'TopRight'
+      ..cellA1('B6').value = 'BottomLeft'
+      ..cellA1('E6').value = 'BottomRight';
+    final book = SmlWorkbook(sheets: [sheet]);
+    final package = OpcPackage.openBytes(SheetSerializer().writeBytes(book));
+    final part = package.getPart('/xl/worksheets/sheet1.xml')!;
+    part.writeText(
+      part.readText().replaceFirst('</worksheet>', '''
+<rowBreaks count="3" manualBreakCount="2">
+  <brk id="1" max="4" man="1"/>
+  <brk id="4" max="4" man="true"/>
+  <brk id="5" max="4"/>
+</rowBreaks>
+<colBreaks count="1" manualBreakCount="1">
+  <brk id="3" min="1" max="5" man="1"/>
+</colBreaks></worksheet>'''),
+    );
+    final imported = SheetDeserializer().readBytes(package.save());
+    final reopened = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(imported),
+    );
+
+    final pdf = PdfFile.open(OfficePrint.workbook(reopened));
+    expect(pdf.pageCount, 4);
+    for (final (index, label) in [
+      'TopLeft',
+      'BottomLeft',
+      'TopRight',
+      'BottomRight',
+    ].indexed) {
+      expect(pdf.displayList(index).runs.map((run) => run.text), [label]);
+    }
+    final fit = OfficePrint.workbook(
+      reopened,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        fitOverride: true,
+      ),
+    );
+    expect(_pageCount(fit), 1);
+  });
+
+  test('sheet PDF paints a merged cell across a horizontal page boundary', () {
+    final sheet = SmlWorksheet(
+      name: 'Merged',
+      sheetId: 1,
+      pageSetup: SmlPageSetup(
+        paperWidthIn: 1.5,
+        marginLeftIn: 10 / 72,
+        marginRightIn: 10 / 72,
+      ),
+    );
+    sheet
+      ..setColumnWidth(0, 100)
+      ..setColumnWidth(1, 100)
+      ..cellA1('A1').value = 'Merged label across pages'
+      ..mergeAndCenter(SmlRange.parse('A1:B1'));
+    final bytes = OfficePrint.workbook(SmlWorkbook(sheets: [sheet]));
+    expect(_pageCount(bytes), 2);
+
+    final pages = _inflated(
+      bytes,
+    ).where((stream) => stream.contains('Merged label across pages'));
+    expect(pages, hasLength(2));
+    for (final page in pages) {
+      expect(
+        page,
+        contains(RegExp(r'10(?:\.0+)? [\d.]+ 75(?:\.0+)? [\d.]+ re\s+W n')),
+      );
+    }
+  });
+
   test('workbook print respects the authored order of page bands', () {
     final setup = SmlPageSetup(paperWidthIn: 3, paperHeightIn: 3);
     final sheet = SmlWorksheet(

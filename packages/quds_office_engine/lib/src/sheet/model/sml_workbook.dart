@@ -882,6 +882,23 @@ class SmlWorksheet {
   /// Optional worksheet print layout.
   SmlPageSetup? pageSetup;
 
+  final Set<int> _importedRowPageBreaks = <int>{};
+  final Set<int> _importedColumnPageBreaks = <int>{};
+
+  /// Authored manual breaks before zero-based worksheet rows.
+  Iterable<int> get importedRowPageBreaks => _importedRowPageBreaks;
+
+  /// Authored manual breaks before zero-based worksheet columns.
+  Iterable<int> get importedColumnPageBreaks => _importedColumnPageBreaks;
+
+  /// Records a manual break from the source package for print pagination.
+  /// The original rowBreaks and colBreaks elements remain in the package.
+  void importManualPageBreak(int index, {required bool rows}) {
+    final limit = rows ? excelRowCount : excelColumnCount;
+    if (index <= 0 || index >= limit) return;
+    (rows ? _importedRowPageBreaks : _importedColumnPageBreaks).add(index);
+  }
+
   /// protection API.
   SmlSheetProtection? protection;
 
@@ -1106,19 +1123,27 @@ class SmlWorksheet {
     if (pixels == null) {
       return _defaultColumnWidthForMetric(projectedDigitWidthPx);
     }
-    final native = _importedColumnWidths[col];
-    if (native == null ||
-        pixels !=
-            columnWidthFromExcel(
-              native,
-              maximumDigitWidth: maximumDigitWidthPx,
-            )) {
-      return pixels;
-    }
+    final native = unchangedNativeColumnWidth(col);
+    if (native == null) return pixels;
     return columnWidthFromExcel(
       native,
       maximumDigitWidth: projectedDigitWidthPx,
     );
+  }
+
+  /// Original Excel character width for an untouched column, including the
+  /// authored default where there is no explicit width.
+  double? unchangedNativeColumnWidth(int col) {
+    if (!columnWidths.containsKey(col)) return _nativeDefaultColumnWidth;
+    final native = _importedColumnWidths[col];
+    return native != null &&
+            columnWidths[col] ==
+                columnWidthFromExcel(
+                  native,
+                  maximumDigitWidth: maximumDigitWidthPx,
+                )
+        ? native
+        : null;
   }
 
   /// Hidden row indices. Empty hidden rows remain part of the authored sheet.
