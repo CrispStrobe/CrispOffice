@@ -540,6 +540,30 @@ void main() {
     expect(_ascii(landscape), contains('/MediaBox [0 0 841.890 595.280]'));
   });
 
+  test('workbook print respects imported landscape paper and fit to page', () {
+    final sheet = SmlWorksheet(
+      name: 'Worksheet',
+      sheetId: 1,
+      pageSetup: SmlPageSetup(
+        orientation: SmlPageOrientation.landscape,
+        paperSize: 8,
+        paperWidthIn: 11.69,
+        paperHeightIn: 16.54,
+        fitToPage: true,
+      ),
+    );
+    sheet.cellA1('A1').value = 'Title';
+    sheet.cellA1('Q45').value = 'End';
+    final blank = SmlWorksheet(name: 'Blank', sheetId: 2);
+    final book = SmlWorkbook(sheets: [sheet, blank]);
+
+    final pdf = OfficePrint.workbook(book);
+
+    expect(_ascii(pdf), contains('/MediaBox [0 0 1190.880 841.680]'));
+    expect(_pageCount(pdf), 1);
+    expect(_inflated(pdf).join(), contains('End'));
+  });
+
   test('PowerPoint PDF emits one page per slide including rotation', () {
     final PmlPresentation deck = PmlPresentation(
       slides: <PmlSlide>[

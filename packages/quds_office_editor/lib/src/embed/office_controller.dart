@@ -12487,7 +12487,7 @@ class SheetEditorController extends OfficeController {
   String _formatDisplayedValue(Object? value, int styleIndex) {
     final SmlStyleSheet? styles = workbook.styles;
     if (styles != null) {
-      return styles.format(value, styleIndex);
+      return styles.format(value, styleIndex, locale: workbook.formulaLocale);
     }
     return _formatCellValue(value);
   }

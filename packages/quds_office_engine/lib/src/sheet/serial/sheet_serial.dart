@@ -709,6 +709,13 @@ class SheetDeserializer {
         setup.centerVertically = reader.getAttribute('verticalCentered') == '1';
       }
       if (reader.eventType == XmlEventType.startElement &&
+          reader.localName == 'pageSetUpPr') {
+        final fit = reader.getAttribute('fitToPage');
+        if (fit != null) {
+          ensurePageSetup().fitToPage = fit == '1' || fit == 'true';
+        }
+      }
+      if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'pageMargins') {
         final setup = ensurePageSetup();
         setup.marginLeftIn =

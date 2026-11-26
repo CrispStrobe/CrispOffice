@@ -297,6 +297,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   SheetEditorController _createSheet() {
     final controller = SheetEditorController(
       workbook: widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
+      formulaLocale:
+          widget.initialWorkbook?.workbook.formulaLocale ??
+          WidgetsBinding.instance.platformDispatcher.locale.toString(),
     )..addListener(_rebuild);
     _bindHostActions(controller);
     return controller;

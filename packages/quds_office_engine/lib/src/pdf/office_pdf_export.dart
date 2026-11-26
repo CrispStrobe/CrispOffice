@@ -46,6 +46,7 @@ class PdfSheetPrintOptions {
     this.showGridlines = true,
     this.showHeadings = true,
     this.fitToPage = false,
+    this.useWorksheetPageSetup = false,
   });
 
   /// a4Portrait API.
@@ -76,6 +77,9 @@ class PdfSheetPrintOptions {
 
   /// fitToPage API.
   final bool fitToPage;
+
+  /// Respect the paper, margins and scaling of worksheets that define them.
+  final bool useWorksheetPageSetup;
 }
 
 /// How a deck is paginated — matching PowerPoint's print what.
@@ -238,6 +242,13 @@ abstract final class OfficePdfExport {
     );
     for (int i = from - 1; i < to; i++) {
       final SmlWorksheet sheet = book.sheets[i];
+      if (options.useWorksheetPageSetup &&
+          sheet.allCells.isEmpty &&
+          sheet.drawings.isEmpty &&
+          sheet.merges.isEmpty &&
+          sheet.printArea == null) {
+        continue;
+      }
       final int before = pdf.pages.length;
       printed += _printSheet(pdf, book, sheet, pack, options, images);
       if (pdf.pages.length > before) {
@@ -1148,11 +1159,30 @@ abstract final class OfficePdfExport {
       sheet: sheet,
       workbook: book,
     );
-    final double pageW = options.pageWidth;
-    final double pageH = options.pageHeight;
-    final double margin = options.margin;
-    final double gutter = options.showHeadings ? 28 : 0;
-    const double band = 18;
+    final setup = options.useWorksheetPageSetup ? sheet.pageSetup : null;
+    final landscape = setup?.orientation == SmlPageOrientation.landscape;
+    final pageW = setup == null
+        ? options.pageWidth
+        : (landscape ? setup.paperHeightIn : setup.paperWidthIn) * 72;
+    final pageH = setup == null
+        ? options.pageHeight
+        : (landscape ? setup.paperWidthIn : setup.paperHeightIn) * 72;
+    double margin(double? inches, double extent) =>
+        inches != null &&
+            inches.isFinite &&
+            inches >= 0 &&
+            inches * 72 < extent / 2
+        ? inches * 72
+        : options.margin;
+    final left = margin(setup?.marginLeftIn, pageW);
+    final right = margin(setup?.marginRightIn, pageW);
+    final top = margin(setup?.marginTopIn, pageH);
+    final bottom = margin(setup?.marginBottomIn, pageH);
+    final showHeadings = setup?.printHeadings ?? options.showHeadings;
+    final showGridlines = setup?.printGridlines ?? options.showGridlines;
+    final gutter = showHeadings ? 28.0 : 0.0;
+    final band = setup == null ? 18.0 : 0.0;
+    final headingH = showHeadings ? 14.0 : 0.0;
 
     var minCol = 0;
     var maxCol = 0;
@@ -1225,21 +1255,23 @@ abstract final class OfficePdfExport {
         math.max(4, _sheetPxToPt(sheet.rowHeightAt(r))),
     ];
 
-    final double usableW = pageW - margin * 2 - gutter;
-    final double usableH = pageH - margin * 2 - band - 16;
-    var scale = 1.0;
-    if (options.fitToPage) {
-      final double needW = colPts.fold<double>(
-        0,
-        (double a, double b) => a + b,
-      );
-      final double needH = rowPts.fold<double>(
-        0,
-        (double a, double b) => a + b,
-      );
-      if (needW > 0 && needH > 0) {
-        scale = math.min(1, math.min(usableW / needW, usableH / needH));
+    final double usableW = pageW - left - right - gutter;
+    final double usableH =
+        pageH - top - bottom - band - (setup == null ? 16 : 0);
+    var scale = (setup?.scale ?? 100).clamp(10, 400) / 100;
+    if (setup?.fitToPage == true || setup == null && options.fitToPage) {
+      final needW = colPts.fold<double>(0, (a, b) => a + b);
+      final needH = rowPts.fold<double>(0, (a, b) => a + b);
+      final fitWidth = setup?.fitToWidth ?? 1;
+      final fitHeight = setup?.fitToHeight ?? 1;
+      scale = 1;
+      if (fitWidth > 0 && needW > 0) {
+        scale = math.min(scale, usableW * fitWidth / needW);
       }
+      if (fitHeight > 0 && needH > 0) {
+        scale = math.min(scale, (usableH - headingH) * fitHeight / needH);
+      }
+      scale = math.max(0.01, scale);
     }
     for (int i = 0; i < colPts.length; i++) {
       colPts[i] *= scale;
@@ -1273,7 +1305,7 @@ abstract final class OfficePdfExport {
       colPts,
       usableW,
     );
-    final double headingReserve = options.showHeadings
+    final double headingReserve = showHeadings
         ? math.max(12.0, rowPts.isEmpty ? 16.0 : rowPts.first)
         : 0;
     final List<({int start, int end})> rowBands = _packSheetAxis(
@@ -1306,46 +1338,42 @@ abstract final class OfficePdfExport {
             );
             sink.drawText(
               text,
-              margin,
+              left,
               baseline,
               size,
               '595959',
-              maxWidth: pageW - margin * 2,
+              maxWidth: pageW - left - right,
               align: slots[i],
             );
           }
         }
 
-        if (hf == null ||
-            (hf.headerLeft.isEmpty &&
-                hf.headerCenter.isEmpty &&
-                hf.headerRight.isEmpty)) {
+        if (hf == null && setup == null) {
           sink.drawText(
             '${sheet.name}  -  $pageNo / $totalGuess',
-            margin,
-            margin + 10,
+            left,
+            top + 10,
             9,
             '595959',
           );
-        } else {
+        } else if (hf != null) {
           paintHfBand(
             <String>[hf.headerLeft, hf.headerCenter, hf.headerRight],
-            margin + 10,
+            (setup?.headerMarginIn ?? 0) * 72 + (setup == null ? top + 10 : 9),
             9,
           );
         }
         if (hf != null) {
           paintHfBand(
             <String>[hf.footerLeft, hf.footerCenter, hf.footerRight],
-            pageH - margin,
+            pageH - (setup == null ? bottom : setup.footerMarginIn * 72),
             8,
           );
         }
-        final double rowGutterX = rtl ? pageW - margin - gutter : margin;
-        final double gridLeft = rtl ? margin : margin + gutter;
-        final double gridRight = rtl ? pageW - margin - gutter : pageW - margin;
-        final double gridY = margin + band;
-        final double headingH = options.showHeadings ? 14.0 : 0;
+        final double rowGutterX = rtl ? pageW - right - gutter : left;
+        final double gridLeft = rtl ? left : left + gutter;
+        final double gridRight = rtl ? pageW - right - gutter : pageW - right;
+        final double gridY = top + band;
 
         double colOffset(int local) {
           var sum = 0.0;
@@ -1369,6 +1397,21 @@ abstract final class OfficePdfExport {
 
         double rowHAt(int absRow) => rowPts[absRow - minRow];
 
+        void paintNativeBorder(
+          SmlBorderEdge? edge,
+          double x1,
+          double y1,
+          double x2,
+          double y2,
+        ) {
+          if (edge == null) return;
+          sink.canvas.setStrokeColor(edge.color);
+          sink.canvas.setLineWidth(edge.widthPoints * scale);
+          sink.canvas.moveTo(x1, y1);
+          sink.canvas.lineTo(x2, y2);
+          sink.canvas.stroke();
+        }
+
         void paintCellFrame(
           double x,
           double y,
@@ -1386,8 +1429,41 @@ abstract final class OfficePdfExport {
               stored.borderWidth <= 0 ? 0.75 : stored.borderWidth,
             );
             sink.canvas.strokeRect(x, y, spanW, spanH, stored.borderRgb);
-          } else if (options.showGridlines) {
+          } else if (showGridlines) {
             sink.canvas.strokeRect(x, y, spanW, spanH, 'D0D0D0');
+          }
+        }
+
+        void paintNativeBorders(int r0, int r1, double originY) {
+          final styles = book.styles;
+          if (styles == null) return;
+          var y = originY;
+          for (int r = r0; r <= r1; r++) {
+            final h = rowHAt(r);
+            for (int c = minCol + cb.start; c <= minCol + cb.end; c++) {
+              final cell = sheet.rows[r]?.cells[c];
+              final edges = cell == null
+                  ? null
+                  : styles.bordersAt(cell.styleIndex);
+              if (edges == null) continue;
+              final x = colX(c);
+              final endX = x + colWAt(c);
+              final endY = y + h;
+              final merge = sheet.mergeAt(c, r);
+              if (merge == null || c == (rtl ? merge.c1 : merge.c0)) {
+                paintNativeBorder(edges.left, x, y, x, endY);
+              }
+              if (merge == null || c == (rtl ? merge.c0 : merge.c1)) {
+                paintNativeBorder(edges.right, endX, y, endX, endY);
+              }
+              if (merge == null || r == merge.r0) {
+                paintNativeBorder(edges.top, x, y, endX, y);
+              }
+              if (merge == null || r == merge.r1) {
+                paintNativeBorder(edges.bottom, x, endY, endX, endY);
+              }
+            }
+            y += h;
           }
         }
 
@@ -1400,9 +1476,9 @@ abstract final class OfficePdfExport {
             }
             final double y = yCursor;
             yCursor += h;
-            if (options.showHeadings) {
+            if (showHeadings) {
               sink.canvas.fillRect(rowGutterX, y, gutter, h, 'F2F2F2');
-              if (options.showGridlines) {
+              if (showGridlines) {
                 sink.canvas.strokeRect(rowGutterX, y, gutter, h, 'D0D0D0');
               }
               sink.drawText(
@@ -1475,7 +1551,7 @@ abstract final class OfficePdfExport {
           }
         }
 
-        if (options.showHeadings) {
+        if (showHeadings) {
           if (gutter > 0) {
             sink.canvas.fillRect(rowGutterX, gridY, gutter, headingH, 'F2F2F2');
           }
@@ -1483,7 +1559,7 @@ abstract final class OfficePdfExport {
             final double x = colX(c);
             final double w = colWAt(c);
             sink.canvas.fillRect(x, gridY, w, headingH, 'F2F2F2');
-            if (options.showGridlines) {
+            if (showGridlines) {
               sink.canvas.strokeRect(x, gridY, w, headingH, 'D0D0D0');
             }
             sink.drawText(
@@ -1508,6 +1584,10 @@ abstract final class OfficePdfExport {
             ? minRow + rb.end
             : dataMinRow + rb.end;
         paintRowRange(bandStartAbs, bandEndAbs, bodyY);
+        if (hasTitleRows) {
+          paintNativeBorders(titleR0, titleR1, gridY + headingH);
+        }
+        paintNativeBorders(bandStartAbs, bandEndAbs, bodyY);
 
         for (final SmlDrawing drawing in sheet.drawings) {
           if (drawing.col < minCol + cb.start ||
@@ -1522,8 +1602,8 @@ abstract final class OfficePdfExport {
           }
           final double x = colX(drawing.col);
           final double y = yOff;
-          final double remainW = math.max(36, pageW - margin - x - 4);
-          final double remainH = math.max(36, pageH - margin - y - 4);
+          final double remainW = math.max(36, pageW - right - x - 4);
+          final double remainH = math.max(36, pageH - bottom - y - 4);
           OfficePdfVisuals.paint(
             sink.canvas,
             x,
@@ -1640,7 +1720,11 @@ abstract final class OfficePdfExport {
     final bool numeric = value is num;
     final String ink = cell.fontRgb.isNotEmpty ? cell.fontRgb : '222222';
     if (book.styles != null) {
-      final String formatted = book.styles!.format(value, cell.styleIndex);
+      final String formatted = book.styles!.format(
+        value,
+        cell.styleIndex,
+        locale: book.formulaLocale,
+      );
       if (formatted.startsWith('RED:')) {
         return (
           text: formatted.substring(4),

@@ -740,6 +740,45 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     return -1;
   }
 
+  void _paintNativeBorders(Canvas canvas, int r0, int r1, int c0, int c1) {
+    final styles = workbook?.styles;
+    if (styles == null) return;
+    final paint = ui.Paint()..isAntiAlias = false;
+    void stroke(SmlBorderEdge? edge, Offset from, Offset to) {
+      if (edge == null) return;
+      paint
+        ..color = _rgbColor(edge.color) ?? const Color(0xFF000000)
+        ..strokeWidth = edge.widthPoints * 4 / 3;
+      canvas.drawLine(from, to, paint);
+    }
+
+    for (int row = r0; row < r1; row++) {
+      for (int col = c0; col < c1; col++) {
+        final ref = SmlCellRef(col, row);
+        final cell = sheet.cellOrNull(ref);
+        final border = cell == null ? null : styles.bordersAt(cell.styleIndex);
+        if (border == null) continue;
+        final rect = _cellRect(col, row);
+        if (rect.isEmpty) continue;
+        final merge = sheet.mergeAtRef(ref);
+        final firstCol = sheet.rightToLeft ? merge?.c1 : merge?.c0;
+        final lastCol = sheet.rightToLeft ? merge?.c0 : merge?.c1;
+        if (merge == null || col == firstCol) {
+          stroke(border.left, rect.topLeft, rect.bottomLeft);
+        }
+        if (merge == null || col == lastCol) {
+          stroke(border.right, rect.topRight, rect.bottomRight);
+        }
+        if (merge == null || row == merge.r0) {
+          stroke(border.top, rect.topLeft, rect.topRight);
+        }
+        if (merge == null || row == merge.r1) {
+          stroke(border.bottom, rect.bottomLeft, rect.bottomRight);
+        }
+      }
+    }
+  }
+
   void _paintCellRange(
     Canvas canvas, {
     required int r0,
@@ -834,6 +873,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
         }
       }
     }
+    _paintNativeBorders(canvas, r0, r1, c0, c1);
     if (formulaRefs.isNotEmpty) {
       _paintFormulaRefs(canvas, refs: formulaRefs, borders: false);
       if (editing) {

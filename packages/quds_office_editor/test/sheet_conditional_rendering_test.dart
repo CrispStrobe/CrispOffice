@@ -106,6 +106,27 @@ SmlConditionalRule _rule({
 );
 
 void main() {
+  testWidgets('native cell borders remain visible with gridlines off', (
+    tester,
+  ) async {
+    final sheet = _sheet(text: '');
+    sheet.cellA1('A1').styleIndex = 1;
+    final book = SmlWorkbook(
+      sheets: [sheet],
+      styles: SmlStyleSheet.parse(
+        '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        '<borders count="2"><border/><border>'
+        '<right style="medium"><color rgb="FF8833CC"/></right>'
+        '<bottom style="thin"><color rgb="FF22AA55"/></bottom>'
+        '</border></borders><cellXfs count="2">'
+        '<xf borderId="0"/><xf borderId="1"/></cellXfs></styleSheet>',
+      ),
+    );
+    final pixels = await _paint(tester, sheet, workbook: book);
+    expect(_pixelsOf(pixels, 0x8833CC), greaterThan(10));
+    expect(_pixelsOf(pixels, 0x22AA55), greaterThan(10));
+  });
+
   testWidgets('icon sets visibly paint without mutating values or rules', (
     tester,
   ) async {

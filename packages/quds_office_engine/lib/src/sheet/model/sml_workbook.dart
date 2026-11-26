@@ -399,6 +399,7 @@ class SmlPageSetup {
     this.headerMarginIn = 0.3937,
     this.footerMarginIn = 0.3937,
     this.scale = 100,
+    this.fitToPage = false,
     this.fitToWidth = 1,
     this.fitToHeight = 1,
     this.printGridlines = false,
@@ -443,6 +444,9 @@ class SmlPageSetup {
 
   /// Print scale percentage.
   int scale;
+
+  /// Whether to fit to the requested page counts instead of using [scale].
+  bool fitToPage;
 
   /// Fit-to-width page count (0 means automatic).
   int fitToWidth;
