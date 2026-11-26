@@ -1044,6 +1044,21 @@ void main() {
     expect(opened.firstSheet.printTitleRows?.minRow, 0);
   });
 
+  test('Excel PDF extends an unwrapped label through an empty cell', () {
+    final book = SmlWorkbook();
+    final sheet = book.firstSheet;
+    sheet.printArea = SmlRange.parse('A1:B2');
+    sheet.columnWidths[0] = 64;
+    sheet.columnWidths[1] = 64;
+    sheet.cellA1('A1').value = 'A long overflowing heading';
+    sheet.cellA1('A2').value = 'This label must stop at B2';
+    sheet.cellA1('B2').value = 'Occupied';
+    final body = _inflated(OfficePdfExport.workbook(book)).join();
+
+    expect(body, matches(RegExp(r'94(?:\.0+)? [0-9.]+ re\s+W n')));
+    expect(body, matches(RegExp(r'46(?:\.0+)? [0-9.]+ re\s+W n')));
+  });
+
   test('PPT PDF strokes shapes and emits URI link annots', () {
     final PmlPresentation deck = PmlPresentation(
       slides: <PmlSlide>[

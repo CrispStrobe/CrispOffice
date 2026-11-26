@@ -1532,15 +1532,37 @@ abstract final class OfficePdfExport {
                 SmlHAlign.general =>
                   shown.numeric ? _TextAlign.right : _TextAlign.auto,
               };
+              final wrap =
+                  stored.wrapText ??
+                  book.styles?.wrapAt(stored.styleIndex) ??
+                  false;
+              var textSpan = spanW;
+              if (!rtl &&
+                  merge == null &&
+                  !shown.numeric &&
+                  !wrap &&
+                  (align == _TextAlign.auto || align == _TextAlign.left)) {
+                for (int next = c + 1; next <= minCol + cb.end; next++) {
+                  final neighbor = sheet.rows[r]?.cells[next];
+                  final style = conditionalFormats.resolve(SmlCellRef(next, r));
+                  if (sheet.mergeAt(next, r) != null ||
+                      neighbor?.formula != null ||
+                      (neighbor?.asString.isNotEmpty ?? false) ||
+                      (style.fillRgb ?? neighbor?.fillRgb ?? '').isNotEmpty) {
+                    break;
+                  }
+                  textSpan += colWAt(next);
+                }
+              }
               sink.canvas.save();
-              sink.canvas.clipRect(x + 1, y + 1, spanW - 2, spanH - 2);
+              sink.canvas.clipRect(x + 1, y + 1, textSpan - 2, spanH - 2);
               sink.drawText(
                 shown.text,
                 x + 3,
-                y + spanH - math.max(2, size * 0.28),
+                wrap ? y + size : y + spanH - math.max(2, size * 0.28),
                 size,
                 conditional.fontRgb ?? shown.color,
-                maxWidth: spanW - 6,
+                maxWidth: textSpan - 6,
                 align: align,
                 bold: stored.fontBold,
                 family: book.styles?.familyAt(stored.styleIndex),
