@@ -26,13 +26,10 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
   bool _saving = false;
   String? _error;
 
-  Future<List<StudioProductivityAccount>> _load() async {
+  Future<List<StudioProductivityAccountGroup>> _load() async {
     final revision = _storage.revision;
     final vault = await _storage.storage;
-    final accounts = await loadStudioProductivityAccounts(
-      vault,
-      groupByAddress: false,
-    );
+    final accounts = await loadStudioProductivityAccounts(vault);
     if (_storage.revision != revision) {
       throw StateError('Credential storage changed.');
     }
@@ -51,6 +48,38 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
       },
     };
   }
+
+  Future<void> _editGroup(StudioProductivityAccountGroup group) async {
+    final connections = group.connections
+        .where((connection) => connection.id != null)
+        .toList();
+    if (connections.length == 1) {
+      await _edit(connections.single);
+      return;
+    }
+    final connection = await showDialog<StudioProductivityAccount>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(group.label),
+        children: [
+          for (final row in connections)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, row),
+              child: Text('${row.label} (${_protocol(row)})'),
+            ),
+        ],
+      ),
+    );
+    if (connection != null && mounted) await _edit(connection);
+  }
+
+  String _protocol(StudioProductivityAccount row) => switch (row.id?.provider) {
+    'caldav' => 'CalDAV',
+    'ews' => 'Exchange EWS',
+    'google' => 'Google Tasks',
+    'graph' => 'Microsoft To Do',
+    final value => value ?? 'IMAP/SMTP',
+  };
 
   Future<void> _edit(StudioProductivityAccount row) async {
     final id = row.id;
@@ -122,7 +151,7 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
     title: Text(StudioStrings(widget.language).productivity('Accounts')),
     content: SizedBox(
       width: 460,
-      child: FutureBuilder<List<StudioProductivityAccount>>(
+      child: FutureBuilder<List<StudioProductivityAccountGroup>>(
         future: _accounts,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -138,12 +167,20 @@ class _ConnectionsDialogState extends State<_ConnectionsDialog> {
               for (final row in rows)
                 ListTile(
                   title: Text(row.label),
-                  subtitle: Text(row.services.map(_name).join(' · ')),
-                  trailing: row.id == null
+                  subtitle: Text(
+                    StudioProductivityService.values
+                        .where(row.services.contains)
+                        .map(_name)
+                        .join(' · '),
+                  ),
+                  trailing:
+                      !row.connections.any(
+                        (connection) => connection.id != null,
+                      )
                       ? null
                       : IconButton(
                           tooltip: 'Edit services',
-                          onPressed: _saving ? null : () => _edit(row),
+                          onPressed: _saving ? null : () => _editGroup(row),
                           icon: const Icon(Icons.settings_outlined),
                         ),
                 ),

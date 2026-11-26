@@ -179,48 +179,50 @@ typedef StudioProductivityAccount = ({
   Set<StudioProductivityService> available,
 });
 
-Future<List<StudioProductivityAccount>> loadStudioProductivityAccounts(
-  SecureStorage vault, {
-  bool groupByAddress = true,
-}) async {
+final class StudioProductivityAccountGroup {
+  StudioProductivityAccountGroup(List<StudioProductivityAccount> connections)
+    : connections = List.unmodifiable(connections);
+
+  final List<StudioProductivityAccount> connections;
+
+  String get label => connections.first.label;
+
+  Set<StudioProductivityService> get services => {
+    for (final connection in connections) ...connection.services,
+  };
+}
+
+Future<List<StudioProductivityAccountGroup>> loadStudioProductivityAccounts(
+  SecureStorage vault,
+) async {
   final mail = await StudioMailAccountsStore(
     storage: () async => vault,
   ).loadAccounts();
   if (!mail.isSuccess) throw StateError('Could not read saved mail accounts.');
   final tasks = await StudioTaskAccountCatalog.load(vault);
-  final rows = [
-    for (final row in mail.catalog!.accounts)
-      (
-        label: row.credentials.email.trim(),
-        id: null,
-        services: const {StudioProductivityService.mail},
-        available: const <StudioProductivityService>{},
-      ),
-    for (final MapEntry(:key, :value) in tasks.records.entries)
-      (
-        label: studioTaskAccountLabel(key, value),
-        id: key,
-        services: await studioAccountServices(vault, key, value),
-        available: studioAvailableServices(key, value),
-      ),
-  ];
-  if (!groupByAddress) return List.unmodifiable(rows);
-  final grouped = <String, StudioProductivityAccount>{};
-  for (final row in rows) {
-    final id = row.id;
-    final login = id == null
-        ? row.label
-        : (tasks.records[id]?['login'] as String?)?.trim();
-    final key = login != null && login.contains('@')
-        ? 'email:$login'
-        : 'service:${id?.provider}:${id?.value}';
-    final previous = grouped[key];
-    grouped[key] = (
-      label: previous?.label ?? row.label,
-      id: row.id ?? previous?.id,
-      services: Set.unmodifiable({...?previous?.services, ...row.services}),
-      available: Set.unmodifiable({...?previous?.available, ...row.available}),
-    );
+  final groups = <String, List<StudioProductivityAccount>>{};
+  for (final row in mail.catalog!.accounts) {
+    final email = row.credentials.email.trim();
+    (groups['email:$email'] ??= []).add((
+      label: email,
+      id: null,
+      services: const {StudioProductivityService.mail},
+      available: const <StudioProductivityService>{},
+    ));
   }
-  return List.unmodifiable(grouped.values);
+  for (final MapEntry(:key, :value) in tasks.records.entries) {
+    final login = (value['login'] as String?)?.trim();
+    final group = login != null && login.contains('@')
+        ? 'email:$login'
+        : 'service:${key.provider}:${key.value}';
+    (groups[group] ??= []).add((
+      label: studioTaskAccountLabel(key, value),
+      id: key,
+      services: await studioAccountServices(vault, key, value),
+      available: studioAvailableServices(key, value),
+    ));
+  }
+  return List.unmodifiable(
+    groups.values.map(StudioProductivityAccountGroup.new),
+  );
 }

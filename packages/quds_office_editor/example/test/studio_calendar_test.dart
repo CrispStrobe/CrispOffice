@@ -56,6 +56,21 @@ void main() {
       final result = await loadStudioProductivityAccounts(vault);
       expect(result.single.label, _login);
       expect(result.single.services, StudioProductivityService.values.toSet());
+      final [mail, dav] = result.single.connections;
+      expect(mail.id, isNull);
+      expect(mail.services, {StudioProductivityService.mail});
+      expect(dav.available, {
+        StudioProductivityService.tasks,
+        StudioProductivityService.calendar,
+      });
+      await saveStudioAccountServices(vault, dav.id!, {
+        StudioProductivityService.calendar,
+      });
+      final changed = (await loadStudioProductivityAccounts(vault)).single;
+      expect(changed.services, {
+        StudioProductivityService.mail,
+        StudioProductivityService.calendar,
+      });
       expect(result.toString(), isNot(contains('password')));
       expect(await vault.read(studioTasksLegacyKey), isNotNull);
     },
@@ -76,7 +91,9 @@ void main() {
           'secret': 'shared-secret',
         }),
       );
-      final defaults = (await loadStudioProductivityAccounts(vault)).single;
+      final defaults = (await loadStudioProductivityAccounts(
+        vault,
+      )).single.connections.single;
       expect(defaults.services, {
         StudioProductivityService.tasks,
         StudioProductivityService.calendar,

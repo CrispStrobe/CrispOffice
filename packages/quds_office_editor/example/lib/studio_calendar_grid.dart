@@ -47,6 +47,19 @@ DateTime studioCalendarDisplayTime(CalDavDateValue value) =>
     };
 
 typedef _GridEvent = CalendarEventData<CalDavEvent>;
+typedef _DateSpan = ({
+  CalDavEvent event,
+  DateTime startTime,
+  DateTime first,
+  DateTime end,
+});
+typedef _WeekPlacement = ({CalDavEvent event, int first, int end, int lane});
+
+const _eventHeight = 22.0;
+const _monthDateHeight = 28.0;
+const _weekTimelineWidth = 70.0;
+// calendar_view 2.0 adds 5 logical pixels for its hour-line offset.
+const _weekGutter = _weekTimelineWidth + 5;
 
 final class StudioCalendarGrid extends StatefulWidget {
   const StudioCalendarGrid({
@@ -77,7 +90,7 @@ final class StudioCalendarGrid extends StatefulWidget {
 final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
   final _controller = EventController<CalDavEvent>();
   final _unplaced = <CalDavEvent>{};
-  final _monthEvents = <DateTime, List<_GridEvent>>{};
+  final _spans = <_DateSpan>[];
   final _expandedWeeks = <DateTime>{};
 
   @override
@@ -89,7 +102,8 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
   @override
   void didUpdateWidget(StudioCalendarGrid oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.events != widget.events ||
+    if (oldWidget.period != widget.period ||
+        oldWidget.events != widget.events ||
         oldWidget.start != widget.start ||
         oldWidget.end != widget.end) {
       _project();
@@ -108,7 +122,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
     final tiles = <_GridEvent>[];
     final counts = <DateTime, int>{};
     _unplaced.clear();
-    _monthEvents.clear();
+    _spans.clear();
     for (final event in widget.events) {
       final start = event.start;
       final end = event.end;
@@ -134,15 +148,33 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
       }
       final until = from == to ? from.add(const Duration(minutes: 15)) : to;
       final firstDay = _civil(from);
+      final firstVisible = firstDay.isBefore(first) ? first : firstDay;
+      if (!firstVisible.isBefore(limit) || !firstVisible.isBefore(until)) {
+        continue;
+      }
+      if (widget.period == StudioCalendarPeriod.month ||
+          (widget.period == StudioCalendarPeriod.week && allDay)) {
+        final lastDay = _civil(until);
+        final endDay = lastDay == until
+            ? lastDay
+            : lastDay.add(const Duration(days: 1));
+        _spans.add((
+          event: event,
+          startTime: from,
+          first: firstVisible,
+          end: endDay.isAfter(limit) ? limit : endDay,
+        ));
+        continue;
+      }
       for (
-        var day = firstDay.isBefore(first) ? first : firstDay;
+        var day = firstVisible;
         day.isBefore(limit) && day.isBefore(until);
         day = day.add(const Duration(days: 1))
       ) {
         // Bound the renderer's overlap arrangement and keep dense
         // schedules accessible through the agenda and overflow list.
         final count = counts[day] ?? 0;
-        if (widget.period != StudioCalendarPeriod.month && count == 64) {
+        if (count == 64) {
           _unplaced.add(event);
           continue;
         }
@@ -157,18 +189,15 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         final displayEnd = startMinute == 0 && endMinute == 1440
             ? 1439
             : endMinute.clamp(startMinute + 1, 1440);
-        final tile = CalendarEventData(
-          title: _title(event),
-          date: day,
-          startTime: allDay ? null : day.add(Duration(minutes: startMinute)),
-          endTime: allDay ? null : day.add(Duration(minutes: displayEnd)),
-          event: event,
+        tiles.add(
+          CalendarEventData(
+            title: _title(event),
+            date: day,
+            startTime: allDay ? null : day.add(Duration(minutes: startMinute)),
+            endTime: allDay ? null : day.add(Duration(minutes: displayEnd)),
+            event: event,
+          ),
         );
-        if (widget.period == StudioCalendarPeriod.month) {
-          _monthEvents.putIfAbsent(day, () => []).add(tile);
-        } else {
-          tiles.add(tile);
-        }
       }
     }
     _controller
@@ -232,47 +261,62 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context),
       );
 
-  Widget _tile(_GridEvent tile) {
+  Widget _tile(CalDavEvent event, {bool showStart = false}) {
     final scheme = Theme.of(context).colorScheme;
-    final event = tile.event!;
     final appearance = widget.appearanceOf?.call(event);
-    final when = tile.isFullDayEvent
-        ? 'All day'
-        : '${_clock(context, tile.startTime!)} – ${_clock(context, tile.endTime!)}';
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(end: 2),
-      child: Material(
-        color: appearance == null
-            ? scheme.primaryContainer
-            : Color.alphaBlend(
-                appearance.color.withValues(alpha: 0.25),
-                scheme.surface,
-              ),
-        borderRadius: BorderRadius.circular(4),
-        clipBehavior: Clip.antiAlias,
-        child: Semantics(
-          button: true,
-          child: InkWell(
-            onTap: () => widget.openEvent(event),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  tile.title,
-                  semanticsLabel: [
-                    tile.title,
-                    when,
-                    ?appearance?.label,
-                  ].join(', '),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: appearance == null
-                        ? scheme.onPrimaryContainer
-                        : scheme.onSurface,
-                    fontSize: 12,
-                  ),
+    final allDay = event.start.kind == CalDavDateKind.date;
+    final start = allDay
+        ? null
+        : _clock(context, studioCalendarDisplayTime(event.start));
+    final end = allDay || event.end == null
+        ? null
+        : _clock(context, studioCalendarDisplayTime(event.end!));
+    final title = _title(event);
+    return Material(
+      color: appearance == null
+          ? scheme.primaryContainer
+          : Color.alphaBlend(
+              appearance.color.withValues(alpha: 0.25),
+              scheme.surface,
+            ),
+      borderRadius: BorderRadius.circular(4),
+      clipBehavior: Clip.antiAlias,
+      child: Semantics(
+        button: true,
+        child: InkWell(
+          onTap: () => widget.openEvent(event),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    if (showStart && start != null)
+                      TextSpan(
+                        text: '$start ',
+                        style: const TextStyle(fontSize: 9),
+                      ),
+                    TextSpan(text: title),
+                  ],
+                ),
+                semanticsLabel: [
+                  title,
+                  if (allDay)
+                    'All day'
+                  else if (end == null)
+                    start!
+                  else
+                    '$start – $end',
+                  ?appearance?.label,
+                ].join(', '),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: appearance == null
+                      ? scheme.onPrimaryContainer
+                      : scheme.onSurface,
+                  fontSize: 12,
                 ),
               ),
             ),
@@ -287,7 +331,7 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
     mainAxisSize: MainAxisSize.min,
     children: [
       for (final event in events.take(2))
-        SizedBox(height: 22, child: _tile(event)),
+        SizedBox(height: _eventHeight, child: _tile(event.event!)),
       if (events.length > 2)
         TextButton(
           style: TextButton.styleFrom(
@@ -310,19 +354,9 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
     ],
   );
 
-  Widget _monthCell(
-    DateTime day,
-    DateTime today,
-    List<_GridEvent> events,
-    int slots,
-    VoidCallback toggleWeek,
-    bool expanded,
-  ) {
+  Widget _monthCell(DateTime day, DateTime today) {
     final scheme = Theme.of(context).colorScheme;
     final locale = MaterialLocalizations.of(context);
-    final shown = !expanded && events.length > slots
-        ? math.max(0, slots - 1)
-        : events.length;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: day == today ? scheme.surfaceContainerHighest : scheme.surface,
@@ -333,52 +367,210 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
       ),
       child: day.month != widget.start.month
           ? const SizedBox.expand()
-          : Padding(
-              padding: const EdgeInsets.all(2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        minimumSize: const Size(28, 24),
-                        padding: EdgeInsets.zero,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: () => widget.openDay(day),
+          : Align(
+              alignment: AlignmentDirectional.topStart,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(start: 3, top: 2),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    minimumSize: const Size(28, 24),
+                    padding: EdgeInsets.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  onPressed: () => widget.openDay(day),
+                  child: Text(
+                    locale.formatDecimal(day.day),
+                    semanticsLabel: locale.formatFullDate(day),
+                  ),
+                ),
+              ),
+            ),
+    );
+  }
+
+  List<_WeekPlacement> _placeSpans(DateTime weekStart) {
+    final weekEnd = weekStart.add(const Duration(days: 7));
+    final spans =
+        _spans
+            .where(
+              (span) =>
+                  span.first.isBefore(weekEnd) && span.end.isAfter(weekStart),
+            )
+            .toList()
+          ..sort((a, b) {
+            final first = a.first.compareTo(b.first);
+            if (first != 0) return first;
+            final end = b.end.compareTo(a.end);
+            return end != 0 ? end : a.startTime.compareTo(b.startTime);
+          });
+    final occupancy = <int>[];
+    final nextLane = List.filled(1 << 7, 0);
+    final placements = <_WeekPlacement>[];
+    for (final span in spans) {
+      final first = span.first.difference(weekStart).inDays.clamp(0, 7);
+      final end = span.end.difference(weekStart).inDays.clamp(0, 7);
+      // One bit per day keeps the entire span in the same row.
+      final days = ((1 << (end - first)) - 1) << first;
+      var lane = nextLane[days];
+      while (lane < occupancy.length && (occupancy[lane] & days) != 0) {
+        lane++;
+      }
+      nextLane[days] = lane + 1;
+      if (lane == occupancy.length) {
+        occupancy.add(days);
+      } else {
+        occupancy[lane] |= days;
+      }
+      placements.add((event: span.event, first: first, end: end, lane: lane));
+    }
+    return placements;
+  }
+
+  int _laneCount(List<_WeekPlacement> placements) =>
+      placements.fold(0, (count, item) => math.max(count, item.lane + 1));
+
+  List<Widget> _positionSpans(
+    DateTime weekStart,
+    List<_WeekPlacement> placements, {
+    required double columnWidth,
+    required double top,
+    required int collapsedSlots,
+    required bool expanded,
+  }) {
+    final lanes = _laneCount(placements);
+    final overflow = lanes > collapsedSlots;
+    final visible = expanded || !overflow ? lanes : collapsedSlots - 1;
+    final hiddenByDay = List.filled(7, 0);
+    for (final item in placements.where(
+      (item) => item.lane >= collapsedSlots - 1,
+    )) {
+      for (var day = item.first; day < item.end; day++) {
+        hiddenByDay[day]++;
+      }
+    }
+    final locale = MaterialLocalizations.of(context);
+    return [
+      for (final item in placements.where((item) => item.lane < visible))
+        PositionedDirectional(
+          start: item.first * columnWidth + 2,
+          width: math.max(0, (item.end - item.first) * columnWidth - 4),
+          top: top + item.lane * _eventHeight,
+          height: _eventHeight - 1,
+          child: _tile(
+            item.event,
+            showStart:
+                _civil(studioCalendarDisplayTime(item.event.start)) ==
+                weekStart.add(Duration(days: item.first)),
+          ),
+        ),
+      if (overflow)
+        for (var day = 0; day < 7; day++)
+          if (hiddenByDay[day] > 0)
+            PositionedDirectional(
+              start: day * columnWidth + 2,
+              width: math.max(0, columnWidth - 4),
+              top: top + visible * _eventHeight,
+              height: _eventHeight,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                ),
+                onPressed: () => setState(() {
+                  if (expanded) {
+                    _expandedWeeks.remove(weekStart);
+                  } else {
+                    _expandedWeeks.add(weekStart);
+                  }
+                }),
+                child: Text(
+                  expanded ? '−' : '+${locale.formatDecimal(hiddenByDay[day])}',
+                  semanticsLabel: expanded ? 'Collapse week' : 'Expand week',
+                ),
+              ),
+            ),
+    ];
+  }
+
+  Widget _weekHeader(DateTime date) {
+    final weekStart = _civil(date);
+    final placements = _placeSpans(weekStart);
+    final lanes = _laneCount(placements);
+    const slots = 3;
+    final expanded = _expandedWeeks.contains(weekStart);
+    final shown = expanded && lanes > slots
+        ? lanes + 1
+        : math.min(lanes, slots);
+    final scheme = Theme.of(context).colorScheme;
+    final locale = MaterialLocalizations.of(context);
+    final thursday = weekStart.add(const Duration(days: 3));
+    final week =
+        thursday.difference(DateTime.utc(thursday.year)).inDays ~/ 7 + 1;
+    return Column(
+      children: [
+        ColoredBox(
+          color: scheme.surfaceContainer,
+          child: SizedBox(
+            height: 42,
+            child: Row(
+              children: [
+                SizedBox(
+                  width: _weekGutter,
+                  child: Center(child: Text(locale.formatDecimal(week))),
+                ),
+                for (var day = 0; day < 7; day++)
+                  Expanded(
+                    child: Center(
                       child: Text(
-                        locale.formatDecimal(day.day),
-                        semanticsLabel: locale.formatFullDate(day),
+                        locale.formatMediumDate(
+                          weekStart.add(Duration(days: day)),
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
-                  for (final event in events.take(shown))
-                    SizedBox(height: 22, child: _tile(event)),
-                  if (events.length > slots &&
-                      (shown < events.length || expanded))
-                    SizedBox(
-                      height: 22,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          visualDensity: VisualDensity.compact,
-                        ),
-                        onPressed: toggleWeek,
-                        child: Text(
-                          expanded
-                              ? '−'
-                              : '+${locale.formatDecimal(events.length - shown)}',
-                          semanticsLabel: expanded
-                              ? 'Collapse week'
-                              : 'Expand week',
+              ],
+            ),
+          ),
+        ),
+        if (lanes > 0)
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                width: _weekGutter,
+                height: _eventHeight,
+                child: Center(child: Text('All day')),
+              ),
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (context, constraints) => ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 132),
+                    child: SingleChildScrollView(
+                      primary: false,
+                      child: SizedBox(
+                        height: shown * _eventHeight,
+                        child: Stack(
+                          children: _positionSpans(
+                            weekStart,
+                            placements,
+                            columnWidth: constraints.maxWidth / 7,
+                            top: 0,
+                            collapsedSlots: slots,
+                            expanded: expanded,
+                          ),
                         ),
                       ),
                     ),
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
+          ),
+      ],
     );
   }
 
@@ -394,10 +586,10 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
       final weekCount = (offset + end.difference(start).inDays + 6) ~/ 7;
       final first = start.subtract(Duration(days: offset));
       final rowHeight = math.max(
-        51.0,
+        _monthDateHeight + _eventHeight,
         (constraints.maxHeight - 30) / weekCount,
       );
-      final slots = math.max(1, (rowHeight - 29) ~/ 22);
+      final slots = math.max(1, (rowHeight - _monthDateHeight) ~/ _eventHeight);
       return Column(
         children: [
           ColoredBox(
@@ -429,40 +621,36 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
                   7,
                   (index) => weekStart.add(Duration(days: index)),
                 );
-                final events = days
-                    .map((day) => _monthEvents[day] ?? const <_GridEvent>[])
-                    .toList();
+                final placements = _placeSpans(weekStart);
                 final expanded = _expandedWeeks.contains(weekStart);
-                final maxEvents = events
-                    .map((day) => day.length)
-                    .reduce(math.max);
                 final height = expanded
-                    ? math.max(rowHeight, 29 + 22.0 * (maxEvents + 1))
+                    ? math.max(
+                        rowHeight,
+                        _monthDateHeight +
+                            _eventHeight * (_laneCount(placements) + 1),
+                      )
                     : rowHeight;
                 return SizedBox(
                   height: height,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  child: Stack(
                     children: [
-                      for (var index = 0; index < 7; index++)
-                        Expanded(
-                          child: _monthCell(
-                            days[index],
-                            today,
-                            events[index],
-                            slots,
-                            () {
-                              setState(() {
-                                if (expanded) {
-                                  _expandedWeeks.remove(weekStart);
-                                } else {
-                                  _expandedWeeks.add(weekStart);
-                                }
-                              });
-                            },
-                            expanded,
-                          ),
+                      Positioned.fill(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            for (final day in days)
+                              Expanded(child: _monthCell(day, today)),
+                          ],
                         ),
+                      ),
+                      ..._positionSpans(
+                        weekStart,
+                        placements,
+                        columnWidth: constraints.maxWidth / 7,
+                        top: _monthDateHeight,
+                        collapsedSlots: slots,
+                        expanded: expanded,
+                      ),
                     ],
                   ),
                 );
@@ -477,7 +665,6 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final locale = MaterialLocalizations.of(context);
     final start = widget.start;
     final end = DateTime(widget.end.year, widget.end.month, widget.end.day - 1);
     const paging = NeverScrollableScrollPhysics();
@@ -489,7 +676,18 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
       Rect bounds,
       DateTime from,
       DateTime to,
-    ) => _tile(events.first);
+    ) {
+      final event = events.first.event!;
+      return Padding(
+        padding: const EdgeInsetsDirectional.only(end: 2),
+        child: _tile(
+          event,
+          showStart:
+              _civil(studioCalendarDisplayTime(event.start)) == _civil(day),
+        ),
+      );
+    }
+
     String clock(DateTime value, {DateTime? secondaryDate}) =>
         _clock(context, value);
     final grid = switch (widget.period) {
@@ -516,23 +714,18 @@ final class _StudioCalendarGridState extends State<StudioCalendarGrid> {
         minDay: start,
         maxDay: end,
         pageViewPhysics: paging,
-        weekPageHeaderBuilder: (_, _) => const SizedBox.shrink(),
+        weekPageHeaderBuilder: (firstDay, _) => _weekHeader(firstDay),
+        weekTitleHeight: 0,
+        weekDayBuilder: (_) => const SizedBox.shrink(),
+        weekNumberBuilder: (_) => const SizedBox.shrink(),
         backgroundColor: scheme.surface,
         heightPerMinute: scale,
         scrollOffset: morningOffset,
         timeLineStringBuilder: clock,
-        timeLineWidth: 70,
-        weekDayBuilder: (day) => Center(
-          child: Text(
-            locale.formatMediumDate(day),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        fullDayHeaderTitle: 'All day',
+        timeLineWidth: _weekTimelineWidth,
         eventArranger: const SideEventArranger(),
         eventTileBuilder: eventTiles,
         onDateTap: widget.createEvent,
-        fullDayEventBuilder: _eventStrip,
       ),
       StudioCalendarPeriod.month => _monthGrid(),
     };

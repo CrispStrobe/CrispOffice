@@ -23,6 +23,10 @@ Future<void> _show(
 }) => tester.pumpWidget(
   MaterialApp(
     theme: ThemeData.dark(),
+    builder: (context, child) => MediaQuery(
+      data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+      child: child!,
+    ),
     home: Scaffold(
       body: StudioCalendarGrid(
         period: period,
@@ -55,8 +59,9 @@ void main() {
     await tester.pumpAndSettle();
 
     Finder tile(String name) => find
-        .ancestor(of: find.text(name), matching: find.byType(InkWell))
+        .ancestor(of: find.textContaining(name), matching: find.byType(InkWell))
         .first;
+    expect(find.text('09:00 First overlap'), findsOneWidget);
     final first = tester.getRect(tile('First overlap'));
     final second = tester.getRect(tile('Second overlap'));
     expect(first.bottom, greaterThan(second.top));
@@ -74,67 +79,89 @@ void main() {
     expect(selected, same(events.first));
   });
 
-  testWidgets('month splits exclusive all-day and timed midnight boundaries', (
-    tester,
-  ) async {
-    final events = _events([
-      'SUMMARY:All-day span\nDTSTART;VALUE=DATE:20260328\nDTEND;VALUE=DATE:20260330',
-      'SUMMARY:Overnight\nDTSTART:20260328T223000\nDTEND:20260330T000000',
-      'SUMMARY:Floating gap\nDTSTART:20260329T023000\nDTEND:20260329T031500',
-      'SUMMARY:Other zone\nDTSTART;TZID=America/New_York:20260329T110000\n'
-          'DTEND;TZID=America/New_York:20260329T120000',
-    ]);
-    DateTime? selected;
-    await _show(
-      tester,
-      StudioCalendarPeriod.month,
-      DateTime(2026, 3, 29),
-      events,
-      openDay: (day) => selected = day,
+  for (final period in [
+    StudioCalendarPeriod.month,
+    StudioCalendarPeriod.week,
+  ]) {
+    testWidgets(
+      '${period.name} connects a multi-day event across adjacent days',
+      (tester) async {
+        final events = _events([
+          'SUMMARY:Learning day\nDTSTART;VALUE=DATE:20261125\nDTEND;VALUE=DATE:20261127',
+          'SUMMARY:One day only\nDTSTART;VALUE=DATE:20261126',
+        ]);
+        CalDavEvent? opened;
+        await _show(
+          tester,
+          period,
+          DateTime(2026, 11, 25),
+          events,
+          openEvent: (event) => opened = event,
+        );
+        await tester.pumpAndSettle();
+        final bar = find.ancestor(
+          of: find.text('Learning day'),
+          matching: find.byType(InkWell),
+        );
+        final single = find.ancestor(
+          of: find.text('One day only'),
+          matching: find.byType(InkWell),
+        );
+        expect(bar, findsOneWidget);
+        final span = tester.getRect(bar);
+        final day = tester.getRect(single);
+        expect(span.width, greaterThan(day.width * 2));
+        expect(span.right, closeTo(day.right, 1));
+        expect(span.overlaps(day), isFalse);
+        await tester.tapAt(Offset(day.center.dx, span.center.dy));
+        expect(opened, same(events.first));
+      },
     );
-    await tester.pumpAndSettle();
-    final controller = tester
-        .widget<MonthView<CalDavEvent>>(find.byType(MonthView<CalDavEvent>))
-        .controller!;
-    expect(
-      controller.getFullDayEvent(DateTime(2026, 3, 28)).single.event,
-      same(events[0]),
-    );
-    expect(
-      controller.getFullDayEvent(DateTime(2026, 3, 29)).single.event,
-      same(events[0]),
-    );
-    expect(controller.getEventsOnDay(DateTime(2026, 3, 30)), isEmpty);
+  }
 
-    final overnight = controller.allEvents.where(
-      (tile) => tile.event == events[1],
-    );
-    expect(overnight.map((tile) => tile.date.day), [28, 29]);
-    expect(overnight.every((tile) => !tile.isFullDayEvent), isTrue);
-    final floating = controller.allEvents.singleWhere(
-      (tile) => tile.event == events[2],
-    );
-    expect(floating.startTime?.hour, 2);
-    expect(floating.startTime?.minute, 30);
+  testWidgets(
+    'month keeps exclusive end dates when splitting at a week boundary',
+    (tester) async {
+      final events = _events([
+        'SUMMARY:All-day span\nDTSTART;VALUE=DATE:20260328\nDTEND;VALUE=DATE:20260330',
+        'SUMMARY:Overnight\nDTSTART:20260328T223000\nDTEND:20260330T000000',
+        'SUMMARY:Floating gap\nDTSTART:20260329T023000\nDTEND:20260329T031500',
+        'SUMMARY:Other zone\nDTSTART;TZID=America/New_York:20260329T110000\n'
+            'DTEND;TZID=America/New_York:20260329T120000',
+      ]);
+      DateTime? selected;
+      await tester.binding.setSurfaceSize(const Size(1000, 950));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await _show(
+        tester,
+        StudioCalendarPeriod.month,
+        DateTime(2026, 3, 29),
+        events,
+        openDay: (day) => selected = day,
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('All-day span'), findsNWidgets(2));
+      expect(find.textContaining('Overnight'), findsNWidgets(2));
+      expect(find.text('22:30 Overnight'), findsOneWidget);
+      expect(find.text('02:30 Floating gap'), findsOneWidget);
+      final monday = tester.getCenter(find.text('30')).dx;
+      for (final bar in find.textContaining('Overnight').evaluate()) {
+        final text = find.byWidget(bar.widget);
+        final rect = tester.getRect(
+          find.ancestor(of: text, matching: find.byType(InkWell)),
+        );
+        expect(rect.left <= monday && monday <= rect.right, isFalse);
+      }
 
-    await tester.tap(find.text('Events without a grid position (1)'));
-    await tester.pumpAndSettle();
-    expect(find.text('Other zone'), findsOneWidget);
-    await tester.tap(find.text('Close'));
-    await tester.pumpAndSettle();
-
-    await tester.scrollUntilVisible(
-      find.text('29'),
-      95,
-      scrollable: find.descendant(
-        of: find.byType(GridView),
-        matching: find.byType(Scrollable),
-      ),
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('29'));
-    expect(selected, DateTime(2026, 3, 29));
-  });
+      await tester.tap(find.text('Events without a grid position (1)'));
+      await tester.pumpAndSettle();
+      expect(find.text('Other zone'), findsOneWidget);
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('29'));
+      expect(selected, DateTime(2026, 3, 29));
+    },
+  );
 
   testWidgets('day projects UTC into local clock time across a DST change', (
     tester,
