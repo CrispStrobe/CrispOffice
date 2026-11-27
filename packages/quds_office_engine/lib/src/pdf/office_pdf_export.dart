@@ -2181,6 +2181,16 @@ abstract final class OfficePdfExport {
             }
             final double y = yCursor;
             yCursor += h;
+            // Excel reserves a bottom inset for the tallest font in the row.
+            // Formatting on empty cells and cells on other page bands counts.
+            final double rowFontSize = authoredRows
+                ? sheet.rows[r]?.cells.values.fold<double>(
+                        0,
+                        (largest, cell) => math.max(largest, cell.fontSize),
+                      ) ??
+                      0
+                : 0;
+            final double rowBottomInset = rowFontSize * scale / 4;
             if (showHeadings) {
               sink.canvas.fillRect(rowGutterX, y, gutter, h, 'F2F2F2');
               if (showGridlines) {
@@ -2270,6 +2280,10 @@ abstract final class OfficePdfExport {
               final splitLabel =
                   splitMerge ||
                   (end != null && (anchor < firstCol || end > lastCol));
+              final bottomInset = math.max(
+                math.max(2, size * 0.28),
+                merge == null || merge.r0 == merge.r1 ? rowBottomInset : 0,
+              );
               void paintLabel() {
                 if (splitLabel) {
                   sink.canvas.save();
@@ -2330,7 +2344,11 @@ abstract final class OfficePdfExport {
                       switch (vertical) {
                         SmlVAlign.top => largest,
                         SmlVAlign.center => (spanH + largest * 0.65) / 2,
-                        _ => spanH - math.max(2, largest * 0.28),
+                        _ =>
+                          spanH -
+                              (nativeNumeric
+                                  ? bottomInset
+                                  : math.max(2, largest * 0.28)),
                       };
                   for (final run in runs) {
                     final start = runX;
@@ -2371,7 +2389,7 @@ abstract final class OfficePdfExport {
                         ? y + 1
                         : wrap
                         ? y + size
-                        : y + spanH - math.max(2, size * 0.28),
+                        : y + spanH - bottomInset,
                     size,
                     conditional.fontRgb ?? shown.color,
                     maxWidth: textSpan - 6,

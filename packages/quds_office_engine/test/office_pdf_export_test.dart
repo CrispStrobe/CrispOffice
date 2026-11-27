@@ -1667,6 +1667,32 @@ void main() {
     expect(_pageCount(printSheet()), 1);
   });
 
+  test('a formatted empty cell raises the native row baseline', () {
+    final sheet = SmlWorksheet(name: 'Amounts', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1:B1');
+    sheet.setRowHeight(0, SmlWorksheet.rowHeightFromExcel(23.25));
+    sheet.cellA1('A1')
+      ..value = 7
+      ..fontSize = 10;
+    sheet.cellA1('B1').fontSize = 18;
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final blank = book.firstSheet.cellA1('B1');
+    expect(blank.value, isNull);
+    expect(blank.fontSize, 18);
+
+    double amountTop() {
+      final pdf = PdfFile.open(OfficePrint.workbook(book, font: font));
+      return pdf.displayList(0).runs.singleWhere((run) => run.text == '7').y;
+    }
+
+    final raised = amountTop();
+    blank.fontSize = 10;
+    expect(amountTop() - raised, closeTo(1.7, 0.02));
+  });
+
   test('native wrapped print labels use bottom alignment by default', () {
     final sheet = SmlWorksheet(name: 'Headers', sheetId: 1)
       ..pageSetup = SmlPageSetup()
