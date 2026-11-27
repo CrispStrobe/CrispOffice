@@ -1534,7 +1534,13 @@ abstract final class OfficePdfExport {
           : setup?.fitToHeight ?? 1;
       scale = 1;
       if (fitWidth > 0 && needW > 0) {
-        final width = options.fitOverride == true ? usableW - 0.01 : usableW;
+        // Excel allows a two-point horizontal clearance on each authored
+        // fit-to-page band before rounding the scale to a whole percentage.
+        final width = switch (options.fitOverride) {
+          true => usableW - 0.01,
+          null when authoredFit && fitHeight > 0 => math.max(0.0, usableW - 2),
+          _ => usableW,
+        };
         scale = math.min(scale, width * fitWidth / needW);
       }
       if (fitHeight > 0 && needH > 0) {
