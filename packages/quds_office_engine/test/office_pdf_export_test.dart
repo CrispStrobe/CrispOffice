@@ -1596,6 +1596,13 @@ void main() {
       automatic: true,
     );
     sheet.setRowHeight(1, SmlWorksheet.rowHeightFromExcel(28));
+    const rowLayout = (
+      styleIndex: 0,
+      customFormat: true,
+      thickTop: true,
+      thickBottom: true,
+    );
+    sheet.row(3).nativeLayout = rowLayout;
 
     final book = SheetDeserializer().readBytes(
       SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
@@ -1603,6 +1610,7 @@ void main() {
     final opened = book.firstSheet;
     expect(opened.hasImportedAutomaticRowHeight(0), isTrue);
     expect(opened.hasImportedAutomaticRowHeight(1), isFalse);
+    expect(opened.rows[3]?.nativeLayout, rowLayout);
     Uint8List printSheet() => OfficePrint.workbook(
       book,
       options: const PdfSheetPrintOptions(
@@ -1615,8 +1623,10 @@ void main() {
 
     opened.insertRows(0);
     expect(opened.hasImportedAutomaticRowHeight(1), isTrue);
+    expect(opened.rows[4]?.nativeLayout, rowLayout);
     opened.deleteRows(0);
     expect(opened.hasImportedAutomaticRowHeight(0), isTrue);
+    expect(opened.rows[3]?.nativeLayout, rowLayout);
     opened.setRowHeight(0, SmlWorksheet.rowHeightFromExcel(20));
     expect(opened.hasImportedAutomaticRowHeight(0), isFalse);
     expect(_pageCount(printSheet()), 1);

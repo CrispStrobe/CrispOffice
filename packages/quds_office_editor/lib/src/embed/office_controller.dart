@@ -17143,7 +17143,7 @@ class _HeadingSnap {
 
 class _SheetGridSnap {
   _SheetGridSnap._({
-    required this.rowIndices,
+    required this.rows,
     required this.cells,
     required this.widths,
     required this.heights,
@@ -17153,7 +17153,10 @@ class _SheetGridSnap {
   /// capture API.
   factory _SheetGridSnap.capture(SmlWorksheet sheet) {
     return _SheetGridSnap._(
-      rowIndices: List<int>.of(sheet.rows.keys),
+      rows: [
+        for (final row in sheet.rows.values)
+          (index: row.index, layout: row.nativeLayout),
+      ],
       cells: <({SmlCell target, SmlCell state})>[
         for (final SmlCell cell in sheet.allCells)
           (
@@ -17192,7 +17195,7 @@ class _SheetGridSnap {
   }
 
   // Empty rows are part of the grid even when they contain no cells.
-  final List<int> rowIndices;
+  final List<({int index, SmlNativeRowLayout? layout})> rows;
 
   // Other history commands retain these cell objects. Copy their data without
   // replacing their identities when a grid edit is undone or redone.
@@ -17210,8 +17213,8 @@ class _SheetGridSnap {
   /// restore API.
   void restore(SmlWorksheet sheet) {
     sheet.rows.clear();
-    for (final int index in rowIndices) {
-      sheet.rows[index] = SmlRow(index);
+    for (final row in rows) {
+      sheet.rows[row.index] = SmlRow(row.index, nativeLayout: row.layout);
     }
     for (final ({SmlCell target, SmlCell state}) entry in cells) {
       final SmlCell cell = entry.state;

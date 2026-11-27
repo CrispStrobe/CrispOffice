@@ -314,11 +314,22 @@ class SmlCell {
   }
 }
 
+/// Native XLSX row formatting and border flags used for automatic sizing.
+typedef SmlNativeRowLayout = ({
+  int? styleIndex,
+  bool customFormat,
+  bool thickTop,
+  bool thickBottom,
+});
+
 /// Class SmlRow.
 class SmlRow {
   /// SmlRow API.
-  SmlRow(this.index, {Map<int, SmlCell>? cells})
+  SmlRow(this.index, {Map<int, SmlCell>? cells, this.nativeLayout})
     : cells = cells ?? <int, SmlCell>{};
+
+  /// Imported XLSX row format.
+  SmlNativeRowLayout? nativeLayout;
 
   /// index API.
   final int index;
@@ -1617,7 +1628,7 @@ class SmlWorksheet {
   }
 
   static SmlRow _moveRow(SmlRow source, int newIndex) {
-    final SmlRow moved = SmlRow(newIndex);
+    final SmlRow moved = SmlRow(newIndex, nativeLayout: source.nativeLayout);
     for (final MapEntry<int, SmlCell> e in source.cells.entries) {
       e.value.ref = SmlCellRef(e.key, newIndex);
       moved.cells[e.key] = e.value;

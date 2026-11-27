@@ -872,32 +872,41 @@ class SheetDeserializer {
       if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'row') {
         final int r = (int.tryParse(reader.getAttribute('r') ?? '1') ?? 1) - 1;
-        final double? ht = double.tryParse(reader.getAttribute('ht') ?? '');
-        if (ht != null &&
-            ht.isFinite &&
-            ht >= 0 &&
-            ht <= 409.5 &&
-            r >= 0 &&
-            r < SmlWorksheet.excelRowCount) {
-          final custom = reader.getAttribute('customHeight');
-          sheet.importRowHeight(
-            r,
-            SmlWorksheet.rowHeightFromExcel(ht),
-            automatic: custom != '1' && custom != 'true',
+        if (r >= 0 && r < SmlWorksheet.excelRowCount) {
+          final ht = double.tryParse(reader.getAttribute('ht') ?? '');
+          if (ht != null && ht.isFinite && ht >= 0 && ht <= 409.5) {
+            sheet.importRowHeight(
+              r,
+              SmlWorksheet.rowHeightFromExcel(ht),
+              automatic: !_readBoolean(reader.getAttribute('customHeight')),
+            );
+          }
+          if (_readBoolean(reader.getAttribute('hidden'))) {
+            sheet.hiddenRows.add(r);
+          }
+          final outline = int.tryParse(
+            reader.getAttribute('outlineLevel') ?? '',
           );
-        }
-        final hidden = reader.getAttribute('hidden');
-        if ((hidden == '1' || hidden == 'true') &&
-            r >= 0 &&
-            r < SmlWorksheet.excelRowCount) {
-          sheet.hiddenRows.add(r);
-        }
-        final outline = int.tryParse(reader.getAttribute('outlineLevel') ?? '');
-        if (outline != null &&
-            outline > 0 &&
-            r >= 0 &&
-            r < SmlWorksheet.excelRowCount) {
-          sheet.rowOutlineLevels[r] = outline;
+          if (outline != null && outline > 0) {
+            sheet.rowOutlineLevels[r] = outline;
+          }
+          final style = int.tryParse(reader.getAttribute('s') ?? '');
+          final customFormat = _readBoolean(
+            reader.getAttribute('customFormat'),
+          );
+          final thickTop = _readBoolean(reader.getAttribute('thickTop'));
+          final thickBottom = _readBoolean(reader.getAttribute('thickBot'));
+          if ((style != null && style >= 0) ||
+              customFormat ||
+              thickTop ||
+              thickBottom) {
+            sheet.row(r).nativeLayout = (
+              styleIndex: style != null && style >= 0 ? style : null,
+              customFormat: customFormat,
+              thickTop: thickTop,
+              thickBottom: thickBottom,
+            );
+          }
         }
       }
       if (reader.eventType == XmlEventType.startElement &&
@@ -1970,6 +1979,13 @@ class SheetSerializer {
       final SmlRow row = sheet.rows[r] ?? SmlRow(r);
       w.writeStartElement('row');
       w.writeAttribute('r', '${r + 1}');
+      if (row.nativeLayout case final native?) {
+        final style = native.styleIndex;
+        if (style != null) w.writeAttribute('s', '$style');
+        if (native.customFormat) w.writeAttribute('customFormat', '1');
+        if (native.thickTop) w.writeAttribute('thickTop', '1');
+        if (native.thickBottom) w.writeAttribute('thickBot', '1');
+      }
       if (sheet.hiddenRows.contains(r)) w.writeAttribute('hidden', '1');
       final outline = sheet.rowOutlineLevels[r];
       if (outline != null && outline > 0) {

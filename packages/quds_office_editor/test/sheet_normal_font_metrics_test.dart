@@ -198,7 +198,14 @@ void main() {
     final controller = SheetEditorController.fromBytes(_source());
     addTearDown(controller.dispose);
     final sheet = controller.sheet;
+    const rowLayout = (
+      styleIndex: 0,
+      customFormat: true,
+      thickTop: true,
+      thickBottom: false,
+    );
     sheet.importRowHeight(1, 32, automatic: true);
+    sheet.row(1).nativeLayout = rowLayout;
     controller.previewRowHeight(1, 48);
     controller.commitResize();
     expect(sheet.hasImportedAutomaticRowHeight(1), isFalse);
@@ -209,8 +216,10 @@ void main() {
 
     controller.insertSheetRows(index: 0, after: false);
     expect(sheet.hasImportedAutomaticRowHeight(2), isTrue);
+    expect(sheet.rows[2]?.nativeLayout, rowLayout);
     controller.undo();
     expect(sheet.hasImportedAutomaticRowHeight(1), isTrue);
+    expect(sheet.rows[1]?.nativeLayout, rowLayout);
     expect(sheet.hasImportedAutomaticRowHeight(2), isFalse);
   });
 
