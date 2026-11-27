@@ -39,6 +39,8 @@ import 'pdf_font.dart';
 import 'pdf_image.dart';
 import 'pdf_save_options.dart';
 
+part 'office_pdf_sheet_header.dart';
+
 /// Print layout for worksheet PDF (Office Print defaults to A4 portrait).
 class PdfSheetPrintOptions {
   /// PdfSheetPrintOptions API.
@@ -212,18 +214,21 @@ abstract final class OfficePdfExport {
     return pdf.save(faces: pack.faces, options: saveOptions);
   }
 
-  /// workbook API.
+  /// Print a workbook. [workbookFileName] supplies the basename for &F in
+  /// worksheet headers and footers.
   static Uint8List workbook(
     SmlWorkbook book, {
     SfntFont? font,
     OfficeFontSet? fonts,
     PdfSaveOptions saveOptions = const PdfSaveOptions(),
     String title = 'CrispOffice',
+    String? workbookFileName,
     PdfSheetPrintOptions options = const PdfSheetPrintOptions(),
     int sheetFrom = 1,
     int? sheetTo,
   }) {
     final OfficeFontSet set = fonts ?? OfficeFontSet.single(font);
+    final baseFileName = workbookFileName?.split(RegExp(r'[\\/]')).last ?? '';
     final Set<int> cps = <int>{};
     for (final SmlWorksheet sheet in book.sheets) {
       _collectShaped(sheet.name, cps);
@@ -299,6 +304,7 @@ abstract final class OfficePdfExport {
         images,
         digitWidth,
         normalDigitPoints?.round(),
+        baseFileName,
       );
       plans.add((sheet.name, plan));
       totalPages += plan.pageCount;
@@ -1283,6 +1289,7 @@ abstract final class OfficePdfExport {
     _PdfImageBank images,
     int? digitWidth,
     int? digitPoints,
+    String workbookFileName,
   ) {
     final conditionalFormats = SmlConditionalResolver(
       sheet: sheet,
@@ -1655,6 +1662,7 @@ abstract final class OfficePdfExport {
 
     var pageCount = colBands.length * rowBands.length;
     final SmlHeaderFooter? hf = sheet.headerFooter;
+    final headerFooterFont = hf == null ? null : book.styles?.normalFont;
 
     final pictureTemplates = hf == null
         ? const <String, String>{}
@@ -1669,7 +1677,8 @@ abstract final class OfficePdfExport {
     final pictureToken = RegExp(r'(?:^|[^&])(?:&&)*&G');
     final printPictures = pictureTemplates.values.any(pictureToken.hasMatch)
         ? SheetPrintPictures.read(book.package, sheet.sourcePartUri)
-        : null;
+        : const <SheetPrintPicture>[];
+    final headerFooterScale = hf?.scaleWithDocument == true ? scale : 1.0;
     final placedPictures =
         <
           ({
@@ -1680,41 +1689,38 @@ abstract final class OfficePdfExport {
             double height,
           })
         >[];
-    if (printPictures != null) {
-      final pictureScale = printPictures.scaleWithDocument ? scale : 1.0;
-      for (final picture in printPictures.pictures) {
-        if (!pictureToken.hasMatch(pictureTemplates[picture.slot] ?? '')) {
-          continue;
-        }
-        final raster = PdfImageCodec.decode(picture.part.readBytes());
-        if (raster == null) continue;
-        final width = picture.width * pictureScale;
-        final height = picture.height * pictureScale;
-        final x = switch (picture.slot[0]) {
-          'L' => left,
-          'C' => (left + pageW - right - width) / 2,
-          _ => pageW - right - width,
-        };
-        final y = picture.slot[1] == 'H'
-            ? (setup == null ? top : setup.headerMarginIn * 72)
-            : pageH -
-                  (setup == null ? bottom : setup.footerMarginIn * 72) -
-                  height;
-        placedPictures.add((
-          image: PdfEmbeddedImage(
-            name: images.next(),
-            width: raster.width,
-            height: raster.height,
-            bytes: raster.jpegBytes ?? raster.rgb,
-            jpeg: raster.isJpeg,
-            maskBytes: raster.alpha,
-          ),
-          x: x,
-          y: y,
-          width: width,
-          height: height,
-        ));
+    for (final picture in printPictures) {
+      if (!pictureToken.hasMatch(pictureTemplates[picture.slot] ?? '')) {
+        continue;
       }
+      final raster = PdfImageCodec.decode(picture.part.readBytes());
+      if (raster == null) continue;
+      final width = picture.width * headerFooterScale;
+      final height = picture.height * headerFooterScale;
+      final x = switch (picture.slot[0]) {
+        'L' => left,
+        'C' => (left + pageW - right - width) / 2,
+        _ => pageW - right - width,
+      };
+      final y = picture.slot[1] == 'H'
+          ? (setup == null ? top : setup.headerMarginIn * 72)
+          : pageH -
+                (setup == null ? bottom : setup.footerMarginIn * 72) -
+                height;
+      placedPictures.add((
+        image: PdfEmbeddedImage(
+          name: images.next(),
+          width: raster.width,
+          height: raster.height,
+          bytes: raster.jpegBytes ?? raster.rgb,
+          jpeg: raster.isJpeg,
+          maskBytes: raster.alpha,
+        ),
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+      ));
     }
 
     final acrossThenDown = setup?.printAcrossThenDown ?? true;
@@ -1786,28 +1792,75 @@ abstract final class OfficePdfExport {
             picture.height,
           );
         }
-        void paintHfBand(List<String> sections, double baseline, double size) {
-          const List<_TextAlign> slots = <_TextAlign>[
-            _TextAlign.left,
-            _TextAlign.center,
-            _TextAlign.right,
-          ];
-          for (int i = 0; i < 3; i++) {
-            final String text = _expandSheetTokens(
-              sections[i],
-              sheet.name,
-              pageNo,
-              totalPages,
+        void paintHfBand(
+          List<String> sections,
+          double edge, {
+          required bool footer,
+        }) {
+          final baseSize = headerFooterFont?.sizePoints ?? (footer ? 8.0 : 9.0);
+          final initial = (
+            size: baseSize,
+            color: '000000',
+            family: headerFooterFont?.family,
+            bold: false,
+            italic: false,
+          );
+          final available = pageW - left - right;
+          for (final (slot, template) in sections.indexed) {
+            if (template.isEmpty) continue;
+            final lines = _sheetPrintLines(
+              template,
+              initial,
+              sheetName: sheet.name,
+              fileName: workbookFileName,
+              page: pageNo,
+              pageCount: totalPages,
             );
-            sink.drawText(
-              text,
-              left,
-              baseline,
-              size,
-              '595959',
-              maxWidth: pageW - left - right,
-              align: slots[i],
-            );
+            final heights = [
+              for (final line in lines)
+                line.fold<double>(
+                      line.isEmpty ? baseSize : 0,
+                      (max, run) => math.max(max, run.style.size),
+                    ) *
+                    headerFooterScale,
+            ];
+            var y = footer
+                ? edge - heights.fold(0.0, (sum, height) => sum + height * 1.2)
+                : edge;
+            for (final (index, line) in lines.indexed) {
+              final widths = [
+                for (final run in line)
+                  sink.measureStyled(
+                    run.text,
+                    run.style.size * headerFooterScale,
+                    family: run.style.family,
+                    bold: run.style.bold,
+                    italic: run.style.italic,
+                  ),
+              ];
+              final totalWidth = widths.fold(0.0, (sum, width) => sum + width);
+              var x =
+                  left +
+                  switch (slot) {
+                    1 => (available - totalWidth) / 2,
+                    2 => available - totalWidth,
+                    _ => 0,
+                  };
+              for (final (indexOfRun, run) in line.indexed) {
+                sink.drawText(
+                  run.text,
+                  x,
+                  y + heights[index],
+                  run.style.size * headerFooterScale,
+                  run.style.color,
+                  family: run.style.family,
+                  bold: run.style.bold,
+                  italic: run.style.italic,
+                );
+                x += widths[indexOfRun];
+              }
+              y += heights[index] * 1.2;
+            }
           }
         }
 
@@ -1822,15 +1875,15 @@ abstract final class OfficePdfExport {
         } else if (hf != null) {
           paintHfBand(
             <String>[hf.headerLeft, hf.headerCenter, hf.headerRight],
-            (setup?.headerMarginIn ?? 0) * 72 + (setup == null ? top + 10 : 9),
-            9,
+            setup == null ? top : setup.headerMarginIn * 72,
+            footer: false,
           );
         }
         if (hf != null) {
           paintHfBand(
             <String>[hf.footerLeft, hf.footerCenter, hf.footerRight],
             pageH - (setup == null ? bottom : setup.footerMarginIn * 72),
-            8,
+            footer: true,
           );
         }
         final horizontalInset = setup?.centerHorizontally == true
@@ -2200,63 +2253,6 @@ abstract final class OfficePdfExport {
           : null,
       draw: draw,
     );
-  }
-
-  static String _expandSheetTokens(
-    String template,
-    String sheetName,
-    int page,
-    int pages,
-  ) {
-    final StringBuffer out = StringBuffer();
-    var i = 0;
-    while (i < template.length) {
-      final String ch = template[i];
-      if (ch != '&' || i + 1 >= template.length) {
-        out.write(ch);
-        i++;
-        continue;
-      }
-      final String code = template[i + 1];
-      i += 2;
-      switch (code) {
-        case '&':
-          out.write('&');
-        case 'A':
-          out.write(sheetName);
-        case 'P':
-          out.write('$page');
-        case 'N':
-          out.write('$pages');
-        case 'D':
-          final DateTime now = DateTime.now();
-          out.write('${now.year}-${_two(now.month)}-${_two(now.day)}');
-        case 'T':
-          final DateTime now = DateTime.now();
-          out.write('${_two(now.hour)}:${_two(now.minute)}');
-        case '"':
-          final int close = template.indexOf('"', i);
-          i = close < 0 ? template.length : close + 1;
-        case 'K':
-          i = math.min(template.length, i + 6);
-        default:
-          // Font size digits; B / I / U / S / E / X / Y toggles and the
-          // picture, path, and file codes print nothing.
-          if (_isDigit(code)) {
-            while (i < template.length && _isDigit(template[i])) {
-              i++;
-            }
-          }
-      }
-    }
-    return out.toString().trim();
-  }
-
-  static String _two(int n) => n.toString().padLeft(2, '0');
-
-  static bool _isDigit(String ch) {
-    final int cu = ch.codeUnitAt(0);
-    return cu >= 0x30 && cu <= 0x39;
   }
 
   /// Packs variable-size axis segments into bands that fit [budget].

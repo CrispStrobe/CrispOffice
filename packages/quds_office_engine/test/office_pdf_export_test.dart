@@ -1433,6 +1433,42 @@ void main() {
     expect(body.contains('[<0000>] TJ'), isFalse);
   });
 
+  test('XLSX prints its base filename and scales authored header runs', () {
+    final book = SmlWorkbook();
+    final sheet = book.firstSheet
+      ..pageSetup = SmlPageSetup(scale: 50)
+      ..headerFooter = SmlHeaderFooter(
+        headerLeft: '&20&A\n&10&F',
+        footerRight: '&KFF0000Page &P / &N',
+      );
+    sheet.cellA1('A1').value = 'Body';
+    PdfDisplayList render(SmlWorkbook input) => PdfFile.open(
+      OfficePdfExport.workbook(
+        input,
+        workbookFileName: r'C:\private\budget.xlsx',
+        options: const PdfSheetPrintOptions(useWorksheetPageSetup: true),
+      ),
+    ).displayList(0);
+
+    final scaled = render(book);
+    final filename = scaled.runs.singleWhere(
+      (run) => run.text == 'budget.xlsx',
+    );
+    final sheetName = scaled.runs.singleWhere((run) => run.text == sheet.name);
+    expect(filename.y, greaterThan(sheetName.y));
+    expect(filename.height, lessThan(sheetName.height));
+    expect(scaled.runs.any((run) => run.text.contains('private')), isFalse);
+    expect(scaled.runs.any((run) => run.text == 'Page 1 / 1'), isTrue);
+
+    sheet.headerFooter!.scaleWithDocument = false;
+    final reopened = SheetDeserializer().read(SheetSerializer().write(book));
+    expect(reopened.firstSheet.headerFooter!.scaleWithDocument, isFalse);
+    final actual = render(
+      reopened,
+    ).runs.singleWhere((run) => run.text == 'budget.xlsx');
+    expect(actual.height, closeTo(filename.height * 2, .01));
+  });
+
   test('Excel PDF paints cell borders and header tokens', () {
     final SmlWorkbook book = SmlWorkbook();
     final SmlWorksheet sheet = book.firstSheet;

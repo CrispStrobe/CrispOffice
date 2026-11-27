@@ -71,6 +71,7 @@ class StudioPrintSource {
       bytes = OfficePdfExport.workbook(
         input,
         title: title,
+        workbookFileName: title,
         fonts: fonts,
         sheetFrom: layout.activeSheetOnly ? activeSheet : 1,
         sheetTo: layout.activeSheetOnly ? activeSheet : null,

@@ -489,6 +489,13 @@ class SheetDeserializer {
         sheet.protection = SmlSheetProtection(enabled: true);
       }
       if (reader.eventType == XmlEventType.startElement &&
+          reader.localName == 'headerFooter') {
+        final scale = reader.getAttribute('scaleWithDoc');
+        if (scale == '0' || scale == 'false') {
+          (sheet.headerFooter ??= SmlHeaderFooter()).scaleWithDocument = false;
+        }
+      }
+      if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'oddHeader') {
         sheet.headerFooter ??= SmlHeaderFooter();
         final String text = _elementText(reader);
@@ -2305,6 +2312,7 @@ class SheetSerializer {
     final SmlHeaderFooter? hf = sheet.headerFooter;
     if (hf != null && !hf.isEmpty) {
       w.writeStartElement('headerFooter');
+      if (!hf.scaleWithDocument) w.writeAttribute('scaleWithDoc', '0');
       final String oddHeader = <String>[
         if (hf.headerLeft.isNotEmpty) '&L${hf.headerLeft}',
         if (hf.headerCenter.isNotEmpty) '&C${hf.headerCenter}',
