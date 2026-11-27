@@ -1385,9 +1385,16 @@ abstract final class OfficePdfExport {
     final List<double> colPts = <double>[
       for (int c = minCol; c <= maxCol; c++) math.max(4, printColumnWidth(c)),
     ];
+    final authoredRows = options.useWorksheetPageSetup && book.package != null;
     final List<double> rowPts = <double>[
       for (int r = minRow; r <= maxRow; r++)
-        math.max(4, _sheetPxToPt(sheet.rowHeightAt(r))),
+        math.max(
+          4,
+          authoredRows
+              // Excel for Mac quantizes XLSX row geometry before print scaling.
+              ? (_sheetPxToPt(sheet.rowHeightAt(r)) + 1e-9).floorToDouble()
+              : _sheetPxToPt(sheet.rowHeightAt(r)),
+        ),
     ];
 
     final double usableW = pageW - left - right - gutter;
@@ -1739,6 +1746,7 @@ abstract final class OfficePdfExport {
                   (stored.wrapText ??
                       book.styles?.wrapAt(stored.styleIndex) ??
                       false);
+              final vertical = book.styles?.verticalAlignAt(stored.styleIndex);
               var textSpan = spanW;
               if (!rtl &&
                   merge == null &&
@@ -1762,7 +1770,11 @@ abstract final class OfficePdfExport {
               sink.drawText(
                 shown.text,
                 x + 3,
-                wrap ? y + size : y + spanH - math.max(2, size * 0.28),
+                vertical != null
+                    ? y + 1
+                    : wrap
+                    ? y + size
+                    : y + spanH - math.max(2, size * 0.28),
                 size,
                 conditional.fontRgb ?? shown.color,
                 maxWidth: textSpan - 6,
@@ -1771,6 +1783,9 @@ abstract final class OfficePdfExport {
                 bold: stored.fontBold,
                 family: book.styles?.familyAt(stored.styleIndex),
                 italic: book.styles?.italicAt(stored.styleIndex) ?? false,
+                cellBox: vertical == null
+                    ? null
+                    : (alignment: vertical, height: spanH - 2, wrap: wrap),
               );
               sink.canvas.restore();
               if (splitMerge) sink.canvas.restore();
@@ -3566,27 +3581,55 @@ class _PageSink {
     String? family,
     int? baseLevel,
     double? lineAdvance,
+    ({SmlVAlign alignment, double height, bool wrap})? cellBox,
   }) {
     if (text.isEmpty || size <= 0) {
       return;
     }
     if (pack.layoutFont != null ||
         _needsAuthoredLtr(text, baseLevel) ||
-        lineAdvance != null) {
+        lineAdvance != null ||
+        cellBox != null) {
       final List<BrokenLine> lines = _layoutLines(
         text,
         size,
-        maxWidth: maxWidth ?? 1e9,
+        maxWidth: cellBox?.wrap == false ? 1e9 : maxWidth ?? 1e9,
         bold: bold,
         italic: italic,
         family: family,
         baseLevel: baseLevel,
+        justify: cellBox == null,
       );
+      final advance = lineAdvance ?? size * 1.25;
       var cy = y;
+      if (cellBox != null) {
+        final font = pack.fontFor(
+          0x41,
+          family: family,
+          weight: bold ? 700 : 400,
+          italic: italic,
+        );
+        final metrics = font == null
+            ? null
+            : FontMetrics(font: font, fontSizePoints: size);
+        final ascent = metrics?.typographicAscender ?? size * 0.8;
+        final lineHeight = metrics?.typographicLineHeight ?? size;
+        final slack = math.max(
+          0.0,
+          cellBox.height - lineHeight - math.max(0, lines.length - 1) * advance,
+        );
+        cy +=
+            ascent +
+            switch (cellBox.alignment) {
+              SmlVAlign.top => 0,
+              SmlVAlign.center => slack / 2,
+              SmlVAlign.bottom => slack,
+            };
+      }
       for (int i = 0; i < lines.length; i++) {
         final BrokenLine line = lines[i];
         if (line.glyphs.isEmpty) {
-          cy += lineAdvance ?? size * 1.25;
+          cy += advance;
           continue;
         }
         final bool rtl = line.glyphs.any((ShapedGlyph g) => g.level.isOdd);
@@ -3621,7 +3664,7 @@ class _PageSink {
           cx += g.advance;
         }
         if (logicalText != null) canvas.endActualText();
-        cy += lineAdvance ?? size * 1.25;
+        cy += advance;
       }
       return;
     }

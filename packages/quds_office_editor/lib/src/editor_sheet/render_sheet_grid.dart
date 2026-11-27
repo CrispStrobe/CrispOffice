@@ -981,6 +981,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
                     data.value is num
                 ? SmlHAlign.right
                 : data.horizontalAlign,
+            vertical: workbook?.styles?.verticalAlignAt(data.styleIndex),
             color: _rgbColor(conditional.fontRgb ?? data.fontRgb),
             background: background,
             dataBarRect: dataBarRect,
@@ -1842,6 +1843,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
         painter,
         editText,
         alignment,
+        vertical: workbook?.styles?.verticalAlignAt(cell?.styleIndex ?? 0),
         editing: true,
       );
       return PaintRunText.hitIndex(painter, local - offset, editText.length);
@@ -2140,6 +2142,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     TextPainter painter,
     String label,
     SmlHAlign alignment, {
+    SmlVAlign? vertical,
     bool editing = false,
   }) {
     final rtl = _rtl || PaintRunText.looksRtl(label);
@@ -2149,7 +2152,14 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       SmlHAlign.left => cell.left + 2,
       SmlHAlign.general => rtl ? cell.right - 2 - painter.width : cell.left + 2,
     };
-    var y = cell.top + (cell.height - painter.height) / 2;
+    final slack = cell.height - painter.height;
+    var y =
+        cell.top +
+        switch (vertical) {
+          SmlVAlign.top => 1,
+          SmlVAlign.bottom => slack - 1,
+          SmlVAlign.center || null => slack / 2,
+        };
     if (painter.height > cell.height &&
         painter.computeLineMetrics().length > 1) {
       y = cell.top + 1;
@@ -2174,6 +2184,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
     String label, {
     required bool isEdit,
     SmlHAlign align = SmlHAlign.general,
+    SmlVAlign? vertical,
     Color? color,
     Color? background,
     Rect? dataBarRect,
@@ -2214,6 +2225,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       painter,
       label,
       align,
+      vertical: vertical,
       editing: isEdit,
     );
     if (isEdit) {

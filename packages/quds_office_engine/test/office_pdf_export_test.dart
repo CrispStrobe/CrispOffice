@@ -1332,6 +1332,66 @@ void main() {
     expect(opened.firstSheet.printTitleRows?.minRow, 0);
   });
 
+  test('print quantizes imported row heights before packing a page', () {
+    final sheet = SmlWorksheet(name: 'Rows', sheetId: 1)
+      ..printArea = SmlRange.parse('A1:A3')
+      ..pageSetup = SmlPageSetup();
+    for (var row = 0; row < 3; row++) {
+      sheet.rowHeights[row] = SmlWorksheet.rowHeightFromExcel(20.75);
+      sheet.cell(SmlCellRef(0, row)).value = row;
+    }
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final pdf = OfficePrint.workbook(
+      book,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        paperOverride: (width: 180, height: 81),
+        marginOverride: 10,
+      ),
+    );
+    expect(_pageCount(pdf), 1);
+    expect(
+      SmlWorksheet.rowHeightToExcel(book.firstSheet.rowHeightAt(0)),
+      closeTo(20.75, 0.001),
+    );
+  });
+
+  test('native vertical alignment positions PDF cell text', () {
+    final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <cellStyleXfs count="1"><xf><alignment vertical="top"/></xf></cellStyleXfs>
+  <cellXfs count="3">
+    <xf xfId="0" applyAlignment="0"><alignment vertical="bottom"/></xf>
+    <xf><alignment vertical="center"/></xf>
+    <xf><alignment vertical="bottom"/></xf>
+  </cellXfs>
+</styleSheet>''');
+    final sheet = SmlWorksheet(
+      name: 'Aligned',
+      sheetId: 1,
+      pageSetup: SmlPageSetup(),
+    );
+    sheet.rowHeights[0] = SmlWorksheet.rowHeightFromExcel(60);
+    for (final (column, label) in ['T', 'C', 'B'].indexed) {
+      sheet.cell(SmlCellRef(column, 0))
+        ..styleIndex = column
+        ..value = label;
+    }
+    final book = SmlWorkbook(sheets: [sheet], styles: styles);
+    final pdf = PdfFile.open(OfficePrint.workbook(book));
+    final runs = pdf.displayList(0).runs;
+    double y(String text) => runs.singleWhere((run) => run.text == text).y;
+    expect(y('C') - y('T'), closeTo(23.5, 0.5));
+    expect(y('B') - y('C'), closeTo(23.5, 0.5));
+
+    final derived = styles.xfFor(align: SmlHAlign.center, baseStyleIndex: 0);
+    expect(styles.verticalAlignAt(derived), SmlVAlign.top);
+    final reopened = SmlStyleSheet.parse(styles.toXml());
+    expect(reopened.verticalAlignAt(derived), SmlVAlign.top);
+  });
+
   test('worksheet page tokens count the selected print job', () {
     final first = SmlWorksheet(
       name: 'First',

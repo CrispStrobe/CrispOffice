@@ -6,6 +6,9 @@ import '../../xml/xml_reader.dart';
 /// Horizontal cell alignment (`alignment/@horizontal`).
 enum SmlHAlign { general, left, center, right }
 
+/// Supported authored vertical cell alignment.
+enum SmlVAlign { top, center, bottom }
+
 /// A visible solid edge in a native spreadsheet cell style.
 typedef SmlBorderEdge = ({String color, double widthPoints});
 
@@ -65,6 +68,7 @@ class SmlStyleSheet {
   final Map<int, int> _xfBases = {};
   final List<SmlCellBorders> _borders = [];
   final List<int> _cellXfsBorderIds = [];
+  final List<String?> _verticalAlignments = [];
 
   /// SmlStyleSheet API.
   SmlStyleSheet({
@@ -369,6 +373,12 @@ class SmlStyleSheet {
         bottom: edge(border, 'bottom'),
       ));
     }
+    String? vertical(XmlElement? alignment) =>
+        alignment == null ? null : _attribute(alignment, 'vertical');
+    final baseVertical = [
+      for (final style in entries('cellStyleXfs', 'xf'))
+        vertical(style.firstChild('alignment', namespaceUri: namespace)),
+    ];
     for (final format in entries('cellXfs', 'xf')) {
       sheet._cellXfsBorderIds.add(
         int.tryParse(_attribute(format, 'borderId') ?? '') ?? 0,
@@ -377,6 +387,18 @@ class SmlStyleSheet {
         int.tryParse(_attribute(format, 'numFmtId') ?? '') ?? 0,
       );
       final alignment = format.firstChild('alignment', namespaceUri: namespace);
+      final baseId = int.tryParse(_attribute(format, 'xfId') ?? '');
+      final apply = _attribute(format, 'applyAlignment');
+      final inherited =
+          baseId != null && baseId >= 0 && baseId < baseVertical.length
+          ? baseVertical[baseId]
+          : null;
+      final direct = vertical(alignment);
+      sheet._verticalAlignments.add(
+        alignment != null && apply != '0' && apply != 'false'
+            ? direct
+            : inherited ?? direct,
+      );
       sheet.cellXfsAlign.add(
         parseHAlign(
           alignment == null ? null : _attribute(alignment, 'horizontal'),
@@ -489,6 +511,25 @@ class SmlStyleSheet {
       return cellXfsAlign[styleIndex];
     }
     return SmlHAlign.general;
+  }
+
+  /// Authored vertical placement, including styles derived by unrelated edits.
+  SmlVAlign? verticalAlignAt(int styleIndex) =>
+      switch (_verticalAlignmentNameAt(styleIndex)) {
+        'top' => SmlVAlign.top,
+        'center' => SmlVAlign.center,
+        'bottom' => SmlVAlign.bottom,
+        _ => null,
+      };
+
+  String? _verticalAlignmentNameAt(int styleIndex) {
+    var index = styleIndex;
+    while (index >= _verticalAlignments.length) {
+      final base = _xfBases[index];
+      if (base == null) return null;
+      index = base;
+    }
+    return index < 0 ? null : _verticalAlignments[index];
   }
 
   /// fillAt API.
@@ -725,6 +766,7 @@ class SmlStyleSheet {
       final int xfFormat = i < cellXfsNumFmt.length ? cellXfsNumFmt[i] : 0;
       if (base == null &&
           cellXfsAlign[i] == align &&
+          _verticalAlignmentNameAt(i) == null &&
           xfFill == fillId &&
           xfFont == fontId &&
           cellXfsWrap[i] == desiredWrap &&
@@ -1148,7 +1190,7 @@ class SmlStyleSheet {
                 (base < cellXfsWrap.length ? cellXfsWrap[base] : false);
             if (cellXfsAlign[i] != cellXfsAlign[base] || wrapChanged) {
               _setAttribute(template, 'applyAlignment', '1');
-              final alignment = template.firstChild(
+              var alignment = template.firstChild(
                 'alignment',
                 namespaceUri: namespace,
               );
@@ -1168,7 +1210,7 @@ class SmlStyleSheet {
                   );
                 }
               } else {
-                final alignment = _generatedCopy(
+                alignment = _generatedCopy(
                   XmlElement(localName: 'alignment', namespaceUri: namespace),
                   namespace,
                 );
@@ -1193,6 +1235,10 @@ class SmlStyleSheet {
                   after < 0 ? template.children.length : after,
                   alignment,
                 );
+              }
+              final vertical = _verticalAlignmentNameAt(base);
+              if (vertical != null) {
+                _setAttribute(alignment, 'vertical', vertical);
               }
             }
           }
