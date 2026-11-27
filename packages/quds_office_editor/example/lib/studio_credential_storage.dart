@@ -81,10 +81,10 @@ class StudioCredentialStorage extends ChangeNotifier {
   int get revision => _selectionGeneration;
 
   static Future<SecureStorage> _createSystemStorage() async {
-    // Determine capability before reading credentials. A denied or locked
-    // store still fails explicitly rather than selecting another backend.
-    await PlatformSecureStorage.detectMacOsKeychain();
-    return PlatformSecureStorage();
+    final store = PlatformSecureStorage();
+    // Surface missing entitlements before a read can look like a missing item.
+    if (Platform.isMacOS) await store.verifyAvailable();
+    return store;
   }
 
   String get label => switch (mode) {

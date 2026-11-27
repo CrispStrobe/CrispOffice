@@ -184,6 +184,26 @@ void main() {
       expect(calls, ['initialize']);
     },
   );
+  test('missing entitlement never opens the default file keychain', () async {
+    const channel = MethodChannel('plugins.it_nomads.com/flutter_secure_storage');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    final optionsSeen = <String?>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      final arguments = call.arguments as Map<Object?, Object?>;
+      final options = arguments['options'] as Map<Object?, Object?>;
+      optionsSeen.add(options['useDataProtectionKeyChain'] as String?);
+      throw PlatformException(code: 'Unexpected security result: -34018');
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    await expectLater(
+      StudioCredentialStorage().storage,
+      throwsA(isA<PlatformException>()),
+    );
+    expect(optionsSeen, isNotEmpty);
+    expect(optionsSeen, everyElement('true'));
+  }, skip: !Platform.isMacOS);
+
   test(
     'platform probe selects host options and verifies read-back before deletion',
     () async {
@@ -200,7 +220,7 @@ void main() {
         // The plugin chooses options using dart:io Platform, independently
         // of Flutter's visual platform override used by the custom-store test.
         if (Platform.isMacOS) {
-          expect(options['useDataProtectionKeyChain'], 'false');
+          expect(options['useDataProtectionKeyChain'], 'true');
         } else {
           expect(options.containsKey('useDataProtectionKeyChain'), isFalse);
         }
@@ -218,9 +238,7 @@ void main() {
         throw StateError('Unexpected operation');
       });
       addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
-      await PlatformSecureStorage(
-        useDataProtectionKeyChain: false,
-      ).verifyAvailable();
+      await PlatformSecureStorage().verifyAvailable();
       expect(calls, ['write', 'read', 'delete']);
       expect(saved, isNull);
     },

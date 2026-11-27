@@ -57,29 +57,18 @@ class PlatformSecureStorage extends SecureStorage
   // libsecret (Linux), DPAPI (Windows).
   //
   // Browser startup uses WebEncryptedStorage instead of this implementation.
-  PlatformSecureStorage({bool? useDataProtectionKeyChain})
-    : _useDataProtectionKeyChain =
-          useDataProtectionKeyChain ?? _macOsDataProtection,
-      _storage = FlutterSecureStorage(
-        aOptions: const AndroidOptions(encryptedSharedPreferences: true),
-        iOptions: const IOSOptions(
-          accessibility: KeychainAccessibility.first_unlock,
-        ),
-        mOptions: MacOsOptions(
-          useDataProtectionKeyChain:
-              useDataProtectionKeyChain ?? _macOsDataProtection,
-        ),
+  PlatformSecureStorage()
+    : _storage = const FlutterSecureStorage(
+        aOptions: AndroidOptions(encryptedSharedPreferences: true),
+        iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+        mOptions: MacOsOptions(useDataProtectionKeyChain: true),
       );
 
   final FlutterSecureStorage _storage;
-  final bool _useDataProtectionKeyChain;
 
   @override
   String get credentialStoreName => switch (defaultTargetPlatform) {
-    TargetPlatform.macOS =>
-      _useDataProtectionKeyChain
-          ? 'macOS Data Protection Keychain'
-          : 'macOS default file keychain',
+    TargetPlatform.macOS => 'macOS Data Protection Keychain',
     TargetPlatform.iOS => 'iOS Keychain',
     TargetPlatform.android => 'Android Keystore / encrypted preferences',
     TargetPlatform.windows => 'Windows credential storage',
@@ -122,46 +111,6 @@ class PlatformSecureStorage extends SecureStorage
     }
     if (failure != null) Error.throwWithStackTrace(failure, failureStack!);
   }
-
-  // macOS only: whether this build may use the data-protection keychain.
-  static bool _macOsDataProtection = true;
-
-  /// macOS builds without a provisioning profile (ad-hoc signed nightlies,
-  /// local builds) lack the keychain-access-groups entitlement, so every
-  /// data-protection keychain call fails with errSecMissingEntitlement
-  /// (-34018). Such a build can never have stored anything there, so it uses
-  /// the user's login keychain instead. Locked or denied keychains are NOT
-  /// treated this way; they still surface as unavailable. Call once at
-  /// startup, before any credential is read.
-  static Future<void> detectMacOsKeychain() async {
-    if (kIsWeb || defaultTargetPlatform != TargetPlatform.macOS) return;
-    // A read probe is insufficient: an unentitled build returns item-not-found
-    // rather than -34018. Probe the write path instead, which is the first
-    // operation that actually needs the keychain-access-group entitlement.
-    final probe = PlatformSecureStorage(useDataProtectionKeyChain: true);
-    try {
-      await probe.verifyAvailable();
-      _macOsDataProtection = true;
-    } catch (error) {
-      _macOsDataProtection = !isMissingEntitlementError(error);
-      if (!_macOsDataProtection) {
-        _secureLog.info(
-          'This build is not entitled to the data-protection keychain '
-          '(-34018); using the login keychain.',
-        );
-      }
-      // A locked or denied keychain is not an entitlement failure. Keep the
-      // selected backend so later operations report the real unavailability
-      // instead of silently moving credentials to a different store.
-    }
-  }
-
-  /// Whether the current macOS build uses the data-protection keychain.
-  static bool get usesMacOsDataProtection => _macOsDataProtection;
-
-  /// errSecMissingEntitlement as reported by flutter_secure_storage.
-  static bool isMissingEntitlementError(Object error) =>
-      error.toString().contains('-34018');
 
   /// Probe the OS keychain without exposing a secret. A locked or unavailable
   /// keychain throws/returns false instead of making every later read fail.
