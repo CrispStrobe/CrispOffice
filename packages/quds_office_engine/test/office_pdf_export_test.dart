@@ -1461,6 +1461,65 @@ void main() {
     },
   );
 
+  test('implicit print columns use Normal digits and print padding', () {
+    final book = SheetDeserializer().readBytes(
+      File(
+        'test/fixtures/fidelity/sheet-normal-font-native.xlsx',
+      ).readAsBytesSync(),
+    );
+    final sheet = book.firstSheet;
+    sheet
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1:B1')
+      ..importDefaultColumnWidth();
+    sheet.columnWidths.clear();
+    sheet.importColumnWidth(0, 7);
+    final normal = SfntFont.parse(
+      File(
+        '../quds_office_editor/fonts/LiberationMono-Regular.ttf',
+      ).readAsBytesSync(),
+    );
+    const options = PdfSheetPrintOptions(
+      useWorksheetPageSetup: true,
+      paperOverride: (width: 220, height: 300),
+      marginOverride: 10,
+    );
+    expect(
+      _pageCount(OfficePrint.workbook(book, font: normal, options: options)),
+      2,
+    );
+    sheet.setColumnWidth(1, 40);
+    expect(
+      _pageCount(OfficePrint.workbook(book, font: normal, options: options)),
+      1,
+    );
+  });
+
+  test('trailing blank print pages are omitted from an inferred range', () {
+    final sheet = SmlWorksheet(name: 'Form', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..setColumnWidth(0, 100)
+      ..setColumnWidth(1, 100)
+      ..cellA1('A1').value = 'First'
+      ..cellA1('A3').value = 'Third'
+      ..cellA1('B1').borderRgb = '000000'
+      ..cellA1('B2').fillRgb = 'FFFFFF'
+      ..cellA1('B3').fillRgb = 'FFFFFF';
+    for (var row = 0; row < 3; row++) {
+      sheet.setRowHeight(row, 100);
+    }
+    const options = PdfSheetPrintOptions(
+      useWorksheetPageSetup: true,
+      paperOverride: (width: 140, height: 120),
+      marginOverride: 10,
+    );
+    final book = SmlWorkbook(sheets: [sheet]);
+    expect(_pageCount(OfficePrint.workbook(book, options: options)), 4);
+
+    sheet.printArea = SmlRange.parse('A1:B3');
+    expect(_pageCount(OfficePrint.workbook(book, options: options)), 6);
+  });
+
   test(
     'XLSX line feeds survive round-trip and appear on separate PDF lines',
     () {

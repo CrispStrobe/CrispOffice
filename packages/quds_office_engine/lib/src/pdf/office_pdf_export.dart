@@ -1376,6 +1376,12 @@ abstract final class OfficePdfExport {
         // then rounds each native character width in that coordinate space.
         final native = sheet.unchangedNativeColumnWidth(col);
         if (native != null) return (native * digitPoints).roundToDouble();
+        if (book.package != null &&
+            sheet.nativeBaseColumnWidth == null &&
+            !sheet.columnWidths.containsKey(col)) {
+          // Excel's implicit width is eight Normal digits plus print padding.
+          return (8 * digitPoints + 5).toDouble();
+        }
       }
       return _sheetPxToPt(
         sheet.columnWidth(col, projectedDigitWidthPx: digitWidth),
@@ -1493,13 +1499,60 @@ abstract final class OfficePdfExport {
       return extent;
     }
 
-    final pageCount = colBands.length * rowBands.length;
+    var pageCount = colBands.length * rowBands.length;
     final bool rtl = sheet.rightToLeft;
     final SmlHeaderFooter? hf = sheet.headerFooter;
 
     final acrossThenDown = setup?.printAcrossThenDown ?? true;
     final outerBands = acrossThenDown ? rowBands : colBands;
     final innerBands = acrossThenDown ? colBands : rowBands;
+    if (options.useWorksheetPageSetup &&
+        area == null &&
+        !showHeadings &&
+        !showGridlines &&
+        hf == null &&
+        titleRows == null &&
+        sheet.printTitleCols == null &&
+        sheet.importedRowPageBreaks.isEmpty &&
+        sheet.importedColumnPageBreaks.isEmpty &&
+        sheet.drawings.isEmpty &&
+        pageCount > 1) {
+      var lastMarkedPage = 0;
+      void mark(int col, int row) {
+        final c = _sheetBandIndex(colBands, col - minCol);
+        final r = _sheetBandIndex(rowBands, row - minRow);
+        final index = acrossThenDown
+            ? r * colBands.length + c
+            : c * rowBands.length + r;
+        lastMarkedPage = math.max(lastMarkedPage, index);
+      }
+
+      bool hasInk(SmlCell cell) =>
+          cell.hasContent ||
+          (cell.fillRgb.isNotEmpty && cell.fillRgb.toUpperCase() != 'FFFFFF') ||
+          cell.borderRgb.isNotEmpty ||
+          book.styles?.bordersAt(cell.styleIndex) != null;
+
+      // Preserve every intervening page. Borders and fills on empty cells
+      // count, as do continuation pages of a marked merged cell.
+      for (final cell in sheet.allCells) {
+        if (hasInk(cell)) mark(cell.ref.col, cell.ref.row);
+      }
+      for (final merge in sheet.merges) {
+        final anchor = sheet.cellOrNull(merge.origin);
+        if (anchor != null && hasInk(anchor)) mark(merge.c1, merge.r1);
+      }
+      for (final rule in sheet.conditionalFormats) {
+        final range = rule.range;
+        if (range.maxCol >= minCol &&
+            range.minCol <= maxCol &&
+            range.maxRow >= minRow &&
+            range.minRow <= maxRow) {
+          mark(math.min(range.maxCol, maxCol), math.min(range.maxRow, maxRow));
+        }
+      }
+      pageCount = lastMarkedPage + 1;
+    }
     void draw(int startPage, int totalPages) {
       for (var pageIndex = 0; pageIndex < pageCount; pageIndex++) {
         final outer = outerBands[pageIndex ~/ innerBands.length];
@@ -1963,6 +2016,20 @@ abstract final class OfficePdfExport {
     }
     bands.add((start: start, end: sizes.length - 1));
     return bands;
+  }
+
+  static int _sheetBandIndex(List<({int start, int end})> bands, int offset) {
+    var lo = 0;
+    var hi = bands.length - 1;
+    while (lo < hi) {
+      final mid = (lo + hi) ~/ 2;
+      if (offset > bands[mid].end) {
+        lo = mid + 1;
+      } else {
+        hi = mid;
+      }
+    }
+    return lo;
   }
 
   static ({String text, String color, bool numeric}) _sheetDisplay(
