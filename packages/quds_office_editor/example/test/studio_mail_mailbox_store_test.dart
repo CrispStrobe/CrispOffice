@@ -145,6 +145,58 @@ void main() {
     hasMore: more,
   );
 
+  test(
+    'recent bodies warm once and reopen with current IMAP identity',
+    () async {
+      final store = await open(MailProviderKind.imap);
+      final source = _session('prefetch');
+      final live = capture(store, MailProviderKind.imap, source);
+      final header = _header(MailProviderKind.imap, source);
+      final retired = _header(MailProviderKind.imap, source, validity: 8);
+      await save(live, [header]);
+      var calls = 0;
+      Future<MailResult<MailMessage>> fetch(
+        MailRemoteIdentity remote,
+        MailReadBudget budget,
+        MailOperationLease lease,
+      ) async {
+        calls++;
+        expect(remote, header.remote);
+        expect(lease.account, source);
+        expect(budget.maxRawBytes, 512 * 1024);
+        return MailSuccess(_message(header));
+      }
+
+      await live.prefetchBodies([header], fetch);
+      await live.prefetchBodies([header], fetch);
+      final message = await live.loadMessage(header);
+      expect(calls, 1);
+      expect(message?.body.plainText, 'Offline body مرحبا');
+      expect(message?.remoteIdentity, header.remote);
+      expect(message?.localId, header.id);
+      expect(await live.loadMessage(retired), isNull);
+    },
+  );
+
+  test('leaving a mailbox retires a pending body prefetch', () async {
+    final store = await open(MailProviderKind.imap);
+    final source = _session('cancel');
+    final live = capture(store, MailProviderKind.imap, source);
+    final header = _header(MailProviderKind.imap, source);
+    await save(live, [header]);
+    final requested = Completer<void>();
+    final response = Completer<MailResult<MailMessage>>();
+    final pending = live.prefetchBodies([header], (_, _, _) {
+      requested.complete();
+      return response.future;
+    });
+    await requested.future;
+    live.invalidateView();
+    response.complete(MailSuccess(_message(header)));
+    await pending;
+    expect(await live.loadMessage(header), isNull);
+  });
+
   for (final provider in providers) {
     test(
       '${provider.name} reconnect keeps body identity and exact bytes',

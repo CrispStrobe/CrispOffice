@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:html/dom.dart' as dom;
 
+import 'labels.dart';
 import 'presentation.dart';
 
 /// Rich, inert HTML rendering for an admitted [MailReaderPresentation].
@@ -21,12 +22,16 @@ class MailHtmlMessageBody extends StatelessWidget {
     this.textStyle,
     this.onOpenLink,
     this.onLoadRemoteImages,
+    this.remoteImagesLoading = false,
+    this.labels = const MailReaderLabels(),
   });
 
   final MailReaderPresentation presentation;
   final TextStyle? textStyle;
   final Future<void> Function(Uri target)? onOpenLink;
   final VoidCallback? onLoadRemoteImages;
+  final bool remoteImagesLoading;
+  final MailReaderLabels labels;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +46,9 @@ class MailHtmlMessageBody extends StatelessWidget {
         // replaced instead of keeping the widget captured on first paint.
         key: ValueKey<int>(
           Object.hashAll(<Object>[
+            remoteImagesLoading,
+            onLoadRemoteImages != null,
+            labels.loadExternalImage,
             for (final image in presentation.images) ...[
               image.attachment.partPath,
               identityHashCode(image.attachment),
@@ -67,6 +75,8 @@ class MailHtmlMessageBody extends StatelessWidget {
                 images: images,
                 textStyle: textStyle,
                 onLoadRemoteImages: onLoadRemoteImages,
+                remoteImagesLoading: remoteImagesLoading,
+                labels: labels,
               );
             case 'iframe':
             case 'object':
@@ -110,12 +120,16 @@ class _MailHtmlImage extends StatelessWidget {
     required this.images,
     this.textStyle,
     this.onLoadRemoteImages,
+    this.remoteImagesLoading = false,
+    this.labels = const MailReaderLabels(),
   });
 
   final dom.Element element;
   final _MailHtmlImages images;
   final TextStyle? textStyle;
   final VoidCallback? onLoadRemoteImages;
+  final bool remoteImagesLoading;
+  final MailReaderLabels labels;
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +140,11 @@ class _MailHtmlImage extends StatelessWidget {
     if (image == null) {
       final isRemote = remote != null;
       final label = isRemote
-          ? 'Load external image'
+          ? remoteImagesLoading
+                ? labels.loadingExternalImages
+                : onLoadRemoteImages == null
+                ? labels.externalImageBlocked
+                : labels.loadExternalImage
           : (alt == null || alt.isEmpty ? 'Inline image unavailable' : alt);
       final placeholder = Container(
         constraints: const BoxConstraints(maxWidth: 420),

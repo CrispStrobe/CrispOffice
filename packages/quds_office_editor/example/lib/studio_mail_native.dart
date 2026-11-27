@@ -1362,6 +1362,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
       _mailboxViewSubscription = session.changes.listen(accept);
       await session.select(saved.mailbox.id);
+      if (current() &&
+          mailbox.isInbox &&
+          loader is NativeStudioMailMessageLoader) {
+        unawaited(capture.prefetchBodies(records, loader.fetchForBodyCache));
+      }
     } on Object {
       if (current()) {
         setState(() => _cacheViewWarning = widget.strings.mailCacheSaveFailed);
@@ -1951,88 +1956,97 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   });
 
-  Future<void> _openMessage(mail.MimeMessage message) =>
-      runStudioMailOperation(() async {
-        final client = _client;
-        final loader = _messageLoader;
-        final mailbox = _messageMailbox;
-        if (client == null ||
-            loader == null ||
-            mailbox == null ||
-            _busy ||
-            _dialogOpen) {
-          return;
-        }
-        final generation = _sessionGeneration;
-        setState(() {
-          _busy = true;
-          _error = null;
-          _notice = null;
-        });
+  Future<void> _openMessage(
+    mail.MimeMessage message,
+  ) => runStudioMailOperation(() async {
+    final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
+    if (client == null ||
+        loader == null ||
+        mailbox == null ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      final capture = _mailboxCapture;
+      final records = switch (loader) {
+        StudioMailMailboxRecords value => value,
+        _ => null,
+      };
+      final header = records?.observedHeader(mailbox, message);
+      MailMessage? cached;
+      if (capture != null && header != null) {
         try {
-          final MailMessage? observed;
-          final MailHeaderRecord? header;
-          final records = switch (loader) {
-            StudioMailMailboxRecords value => value,
-            _ => null,
-          };
-          if (records != null) {
-            header = records.observedHeader(mailbox, message);
-            observed = await records.fetchMessage(mailbox, message);
-            if (observed.remoteIdentity != header.remote ||
-                observed.localId != null && observed.localId != header.id) {
-              throw const StudioMailMessageLoadException(
-                MailProblemCode.conflict,
-              );
-            }
-          } else {
-            header = null;
-            observed = null;
-          }
-          final raw =
-              observed?.raw.copyBytes() ?? await loader.fetch(mailbox, message);
-          if (!_currentSession(client, generation)) return;
-          final reader = MailReaderController.fromBytes(
-            raw,
-            codec: const QudsMimeCodec(),
-            preferHtml: false,
-            includeHeaders: false,
-            labels: StudioMailReaderLabels(widget.strings.language),
-          );
-          final previous = _reader;
-          setState(() {
-            _selected = message;
-            _reader = reader;
-            _showCompactMessage = true;
-          });
-          _retireReader(previous);
-          final capture = _mailboxCapture;
-          if (capture != null && header != null && observed != null) {
-            try {
-              await capture.cacheMessage(header, observed);
-              if (_currentSession(client, generation)) {
-                setState(() => _cacheBodyWarning = null);
-              }
-            } on Object {
-              if (_currentSession(client, generation)) {
-                setState(
-                  () => _cacheBodyWarning = widget.strings.mailCacheSaveFailed,
-                );
-              }
-            }
-          }
+          cached = await capture.loadMessage(header);
+        } on StudioMailMailboxStoreException {
+          // A damaged or missing cache can be repaired by a live read.
+        }
+      }
+      if (!_currentSession(client, generation)) return;
+      final observed =
+          cached ??
+          (records == null
+              ? null
+              : await records.fetchMessage(mailbox, message));
+      if (observed != null &&
+          (observed.remoteIdentity != header!.remote ||
+              observed.localId != null && observed.localId != header.id)) {
+        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+      }
+      final result = observed != null
+          ? MailParseResult(status: MailParseStatus.complete, message: observed)
+          : const QudsMimeCodec().parse(await loader.fetch(mailbox, message));
+      if (!_currentSession(client, generation)) return;
+      final reader = MailReaderController(
+        result: result,
+        preferHtml: false,
+        includeHeaders: false,
+        labels: StudioMailReaderLabels(widget.strings.language),
+      );
+      final previous = _reader;
+      setState(() {
+        _selected = message;
+        _reader = reader;
+        _showCompactMessage = true;
+      });
+      _retireReader(previous);
+      if (cached == null &&
+          capture != null &&
+          header != null &&
+          observed != null) {
+        try {
+          await capture.cacheMessage(header, observed);
           if (_currentSession(client, generation)) {
-            setState(() => _busy = false);
+            setState(() => _cacheBodyWarning = null);
           }
         } on Object {
           if (_currentSession(client, generation)) {
-            setState(() {
-              _busy = false;
-              _error = widget.strings.mailMessageFailed;
-            });
+            setState(
+              () => _cacheBodyWarning = widget.strings.mailCacheSaveFailed,
+            );
           }
         }
-      });
+      }
+      if (_currentSession(client, generation)) {
+        setState(() => _busy = false);
+      }
+    } on Object {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _busy = false;
+          _error = widget.strings.mailMessageFailed;
+        });
+      }
+    }
+  });
 
   Future<void> _compose() => _openComposer(null);
 
@@ -2418,6 +2432,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                       MailProblemCode.unavailable,
                     );
                   }
+                  _mailboxCapture?.cancelBodyPrefetch();
                   return mailbox.clearCache();
                 },
           onQueueDraft: outbox != null
@@ -2580,7 +2595,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _error = null;
     });
     try {
-      await loader.loadInto(reader, isCurrent: current);
+      final loaded = await loader.loadInto(reader, isCurrent: current);
+      if (mounted && current()) {
+        showStudioMailImageResult(context, reader, loaded);
+      }
     } finally {
       if (mounted && identical(loader, _remoteImageLoader)) {
         setState(() {
@@ -5725,7 +5743,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     Widget imagesCommand() => command(
       key: const ValueKey('studio-mail-show-images'),
       icon: _remoteImagesLoading ? Icons.hourglass_top : Icons.image_outlined,
-      tooltip: 'Show remote images',
+      tooltip: StudioMailReaderLabels(
+        widget.strings.language,
+      ).loadExternalImage,
       onPressed:
           _reader == null ||
               _remoteImagesLoading ||
@@ -6730,7 +6750,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                                   child: MailMessageView(
                                     controller: _reader!,
                                     richHtml: true,
-                                    onLoadRemoteImages: _loadRemoteImages,
+                                    onLoadRemoteImages: _remoteImagesLoading
+                                        ? null
+                                        : _loadRemoteImages,
+                                    remoteImagesLoading: _remoteImagesLoading,
                                   ),
                                 ),
                               ],
@@ -7366,7 +7389,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               child: MailMessageView(
                 controller: _reader!,
                 richHtml: true,
-                onLoadRemoteImages: _loadRemoteImages,
+                onLoadRemoteImages: _remoteImagesLoading
+                    ? null
+                    : _loadRemoteImages,
+                remoteImagesLoading: _remoteImagesLoading,
               ),
             ),
           ],

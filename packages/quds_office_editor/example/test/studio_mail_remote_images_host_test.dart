@@ -12,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_remote_images.dart';
+import 'package:quds_office_studio/studio_mail_remote_message_view.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_draft_store.dart';
@@ -150,6 +151,48 @@ Future<void> _pump(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('provider and saved reader placeholders load on click', (
+    tester,
+  ) async {
+    final reader = MailReaderController(
+      result: MailParseResult(
+        status: MailParseStatus.complete,
+        message: MailMessage(
+          raw: MailBytes(Uint8List(0)),
+          envelope: MailEnvelope(subject: 'Example'),
+          body: const MailBody(
+            html: '<img src="https://images.invalid/example">',
+          ),
+          attachments: const [],
+        ),
+      ),
+    );
+    addTearDown(reader.dispose);
+    final client = _ImageClient();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: StudioMailRemoteMessageView(
+            controller: reader,
+            imageLoaderFactory: () =>
+                StudioMailRemoteImageLoader(clientFactory: () => client),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(client.requests, isEmpty);
+    await tester.tap(find.text('Load external image'));
+    await tester.pump();
+    expect(find.text('Loading images…'), findsOneWidget);
+    expect(client.requests.single.url.host, 'images.invalid');
+    client.complete();
+    await tester.pumpAndSettle();
+    expect(reader.presentation.images, hasLength(1));
+    expect(find.text('Load external image'), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets(
     'retired image loads cannot block or finish a newer reader action',
     (tester) async {

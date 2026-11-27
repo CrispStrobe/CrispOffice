@@ -87,6 +87,31 @@ class StudioMailReaderLabels extends MailReaderLabels {
     '(لا يوجد نص رسالة مدعوم)',
   );
 
+  @override
+  String get loadExternalImage =>
+      _t('Load external image', 'Externes Bild laden', 'تحميل الصورة الخارجية');
+  @override
+  String get loadingExternalImages =>
+      _t('Loading images…', 'Bilder werden geladen…', 'جارٍ تحميل الصور…');
+  @override
+  String get externalImageBlocked => _t(
+    'External image blocked',
+    'Externes Bild blockiert',
+    'الصورة الخارجية محظورة',
+  );
+  @override
+  String get externalImagesUnavailable => _t(
+    'External images could not be displayed.',
+    'Externe Bilder konnten nicht angezeigt werden.',
+    'تعذر عرض الصور الخارجية.',
+  );
+  @override
+  String get someExternalImagesUnavailable => _t(
+    'Some external images could not be displayed.',
+    'Einige externe Bilder konnten nicht angezeigt werden.',
+    'تعذر عرض بعض الصور الخارجية.',
+  );
+
   /// Full weekday, date and time, e.g. "Thursday, November 19, 2026 09:42".
   @override
   String formatDate(DateTime date) {

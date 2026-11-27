@@ -386,6 +386,16 @@ final class NativeStudioMailMessageLoader
     return record;
   }
 
+  Future<MailResult<MailMessage>> fetchForBodyCache(
+    MailRemoteIdentity identity,
+    MailReadBudget budget,
+    MailOperationLease lease,
+  ) => _providerFactory(
+    configuration: _configuration,
+    credentialStore: _credentials,
+    limits: limits,
+  ).fetchMessage(identity, budget: budget, lease: lease);
+
   static MailProvider _createProvider({
     required MailImapConfiguration configuration,
     required MailCredentialStore credentialStore,

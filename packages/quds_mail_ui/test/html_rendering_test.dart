@@ -113,7 +113,7 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.text('Load external image'), findsOneWidget);
+    expect(find.text('External image blocked'), findsOneWidget);
     final uri = controller.presentation.remoteImageUrls.single;
     expect(
       controller.addImages([
@@ -130,7 +130,7 @@ void main() {
       1,
     );
     await tester.pumpAndSettle();
-    expect(find.text('Load external image'), findsNothing);
+    expect(find.text('External image blocked'), findsNothing);
     expect(find.byType(Image), findsOneWidget);
   });
 

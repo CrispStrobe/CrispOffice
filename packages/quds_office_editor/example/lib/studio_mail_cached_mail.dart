@@ -19,6 +19,7 @@ import 'studio_mail_sync_dialog.dart';
 import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
+import 'studio_mail_remote_message_view.dart';
 
 /// A local mailbox reader with explicit confirmed cleanup of expendable cache.
 /// Opening it never constructs a provider, reads credentials, loads a draft,
@@ -751,7 +752,7 @@ class _StudioMailCachedMailDialogState
 
   Widget _message() {
     if (_reader case final reader?) {
-      return MailMessageView(controller: reader, richHtml: true);
+      return StudioMailRemoteMessageView(controller: reader);
     }
     return Center(
       child: Padding(

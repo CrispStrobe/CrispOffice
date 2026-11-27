@@ -70,6 +70,7 @@ import 'studio_mail_sync_dialog.dart';
 import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
+import 'studio_mail_remote_message_view.dart';
 
 typedef StudioEwsProviderFactory =
     MailEwsProvider Function(
@@ -197,6 +198,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _diagnostics = false;
   MailAccountSession? _session;
   _SessionCredentials? _credentials;
+  MailEwsConfiguration? _bodyPrefetchConfiguration;
   MailCapabilities _capabilities = const MailCapabilities.none();
   List<MailMailbox> _mailboxes = const [];
   MailMailbox? _mailbox;
@@ -729,6 +731,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _submission = provider;
       _session = session;
       _credentials = credentials;
+      _bodyPrefetchConfiguration = widget.providerFactory == null
+          ? configuration
+          : null;
       _draftIdentity = identity;
       _busy = true;
       _error = null;
@@ -1006,6 +1011,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _provider = null;
       _submission = null;
       _credentials = null;
+      _bodyPrefetchConfiguration = null;
       _capabilities = const MailCapabilities.none();
       _connected = false;
       _busy = false;
@@ -1480,6 +1486,25 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
       _mailboxViewSubscription = session.changes.listen(accept);
       await session.select(saved.mailbox.id);
+      final configuration = _bodyPrefetchConfiguration;
+      final credentials = _credentials;
+      if (current() &&
+          mailbox.isInbox &&
+          configuration != null &&
+          credentials != null) {
+        final background = createMailEwsProvider(
+          configuration: configuration,
+          credentialStore: credentials,
+          limits: const MailEwsLimits(maxResponseBytes: 2 * 1024 * 1024),
+        );
+        unawaited(
+          capture.prefetchBodies(
+            headers,
+            (identity, budget, lease) =>
+                background.fetchMessage(identity, budget: budget, lease: lease),
+          ),
+        );
+      }
     } on Object {
       if (current()) {
         setState(() => _cacheViewWarning = widget.strings.mailCacheSaveFailed);
@@ -1699,13 +1724,28 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _notice = null;
     });
     try {
-      final result = await provider.fetchMessage(
-        header.remote,
-        budget: const MailReadBudget(),
-        lease: lease,
-      );
+      final capture = _mailboxCapture;
+      MailMessage? cached;
+      if (capture != null &&
+          header.flags?.isDraft != true &&
+          (_mailbox?.isInbox == true || header.flags != null)) {
+        try {
+          cached = await capture.loadMessage(header);
+        } on StudioMailMailboxStoreException {
+          // Fall back to a live read if the local copy cannot be opened.
+        }
+      }
       if (!_current(provider, lease)) return;
-      final message = _value(result);
+      final message =
+          cached ??
+          _value<MailMessage>(
+            await provider.fetchMessage(
+              header.remote,
+              budget: const MailReadBudget(),
+              lease: lease,
+            ),
+          );
+      if (!_current(provider, lease)) return;
       if (message.remoteIdentity != header.remote ||
           message.localId != null && message.localId != header.id) {
         throw const _EwsUiFailure(MailProblem(MailProblemCode.conflict));
@@ -1726,8 +1766,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _showMessage = true;
       });
       _retire(old);
-      final capture = _mailboxCapture;
-      if (capture != null) {
+      if (cached == null && capture != null) {
         try {
           await capture.cacheMessage(header, message);
           if (_current(provider, lease)) {
@@ -2718,6 +2757,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     MailProblemCode.unavailable,
                   );
                 }
+                _mailboxCapture?.cancelBodyPrefetch();
                 return mailbox.clearCache();
               },
         onQueueDraft: outbox != null && _canSend
@@ -4267,9 +4307,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                       children: [
                         _actions(compact: true),
                         Expanded(
-                          child: MailMessageView(
+                          child: StudioMailRemoteMessageView(
                             controller: _reader!,
-                            richHtml: true,
                           ),
                         ),
                       ],
@@ -4332,9 +4371,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                             children: [
                               _actions(compact: false),
                               Expanded(
-                                child: MailMessageView(
+                                child: StudioMailRemoteMessageView(
                                   controller: _reader!,
-                                  richHtml: true,
                                 ),
                               ),
                             ],

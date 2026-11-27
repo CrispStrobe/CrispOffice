@@ -49,6 +49,14 @@ class MailReaderLabels {
     MailParseStatus.cancelled => 'Message decoding cancelled',
   };
 
+  String get loadExternalImage => 'Load external image';
+  String get loadingExternalImages => 'Loading images…';
+  String get externalImageBlocked => 'External image blocked';
+  String get externalImagesUnavailable =>
+      'External images could not be displayed.';
+  String get someExternalImagesUnavailable =>
+      'Some external images could not be displayed.';
+
   String get displayUnavailable => 'Message display unavailable';
   String get selectAll => 'Select all';
   String get copySelection => 'Copy selection';

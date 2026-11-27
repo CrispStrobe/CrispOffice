@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -11,8 +12,8 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 ///
 /// Callers supply only URLs exposed by the inert reader projection. Downloads
 /// are streamed under byte, pixel, request-count and whole-request deadlines.
-/// Redirects are not followed: loading one embedded URL cannot fetch a second
-/// destination. No cookies, credentials or message text are supplied.
+/// Explicit requests can follow two redirects within the original origin.
+/// No cookies, credentials or message text are supplied.
 final class StudioMailRemoteImageLoader {
   StudioMailRemoteImageLoader({
     http.Client Function()? clientFactory,
@@ -178,17 +179,44 @@ final class StudioMailRemoteImageLoader {
     required int byteLimit,
     required int totalLimit,
   }) async {
-    final request = http.Request('GET', uri)..followRedirects = false;
-    final response = await client.send(request);
+    var target = uri;
+    http.StreamedResponse response;
+    for (var redirects = 0; ; redirects++) {
+      final request = http.Request('GET', target)..followRedirects = false;
+      response = await client.send(request);
+      if (!isCurrent() ||
+          !const {301, 302, 303, 307, 308}.contains(response.statusCode)) {
+        break;
+      }
+      await _discard(response);
+      final location = response.headers['location'];
+      if (redirects == 2 || location == null || location.length > 8192) {
+        return null;
+      }
+      final next = approvedMailLink(target.resolve(location).toString());
+      if (next == null ||
+          next.scheme != uri.scheme ||
+          next.origin != uri.origin) {
+        return null;
+      }
+      target = next;
+    }
     final mediaType = response.headers['content-type']
         ?.split(';')
         .first
         .trim()
         .toLowerCase();
+    final generic =
+        mediaType == null ||
+        mediaType.isEmpty ||
+        mediaType == 'application/octet-stream';
     final declared = response.contentLength;
     if (!isCurrent() ||
         response.statusCode != 200 ||
-        (mediaType != 'image/png' && mediaType != 'image/jpeg') ||
+        (!generic &&
+            mediaType != 'image/png' &&
+            mediaType != 'image/jpeg' &&
+            mediaType != 'image/jpg') ||
         (declared != null &&
             (declared > byteLimit ||
                 declared > totalLimit - _downloadedBytes))) {
@@ -210,16 +238,46 @@ final class StudioMailRemoteImageLoader {
         bytes.add(chunk);
       }
       if (!isCurrent()) return null;
+      final content = bytes.takeBytes();
+      final type = generic
+          ? _rasterMediaType(content)
+          : mediaType == 'image/jpg'
+          ? 'image/jpeg'
+          : mediaType;
+      if (type == null) return null;
       return MailAttachment(
         partPath: 'remote:$uri',
-        mediaType: mediaType!,
+        mediaType: type,
         displayName: 'Image',
-        content: MailBytes(bytes.takeBytes()),
+        content: MailBytes(content),
       );
     } finally {
       if (identical(_body, body)) _body = null;
       unawaited(_cancelBody(body));
     }
+  }
+
+  static String? _rasterMediaType(Uint8List bytes) {
+    if (bytes.length >= 8 &&
+        const [
+          137,
+          80,
+          78,
+          71,
+          13,
+          10,
+          26,
+          10,
+        ].asMap().entries.every((entry) => bytes[entry.key] == entry.value)) {
+      return 'image/png';
+    }
+    if (bytes.length >= 3 &&
+        bytes[0] == 0xff &&
+        bytes[1] == 0xd8 &&
+        bytes[2] == 0xff) {
+      return 'image/jpeg';
+    }
+    return null;
   }
 
   static void _close(http.Client client) {
@@ -245,4 +303,21 @@ final class StudioMailRemoteImageLoader {
       // A backend cancellation failure does not escape the optional action.
     }
   }
+}
+
+void showStudioMailImageResult(
+  BuildContext context,
+  MailReaderController reader,
+  int loaded,
+) {
+  if (reader.presentation.remoteImageUrls.isEmpty) return;
+  ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+    SnackBar(
+      content: Text(
+        loaded == 0
+            ? reader.labels.externalImagesUnavailable
+            : reader.labels.someExternalImagesUnavailable,
+      ),
+    ),
+  );
 }

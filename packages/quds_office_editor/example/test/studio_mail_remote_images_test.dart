@@ -160,6 +160,47 @@ void main() {
   );
 
   test(
+    'accepts a same-origin redirect and a validated binary response',
+    () async {
+      final client = _Client((request) async {
+        if (request.url == a) {
+          return http.StreamedResponse(
+            const Stream.empty(),
+            302,
+            headers: {'location': '/redirected.png'},
+          );
+        }
+        return response(contentType: 'application/octet-stream');
+      });
+      final loader = StudioMailRemoteImageLoader(clientFactory: () => client);
+      final loaded = await loader.load([a], isCurrent: () => true);
+      expect(client.requests.map((request) => request.url.path), [
+        '/a',
+        '/redirected.png',
+      ]);
+      expect(
+        client.requests.every((request) => !request.followRedirects),
+        isTrue,
+      );
+      expect(loaded.single.attachment.partPath, 'remote:$a');
+      expect(loaded.single.attachment.mediaType, 'image/png');
+    },
+  );
+
+  test('a cross-origin image redirect cannot make another request', () async {
+    final client = _Client(
+      (_) async => http.StreamedResponse(
+        const Stream.empty(),
+        302,
+        headers: {'location': 'https://unapproved.invalid/image.png'},
+      ),
+    );
+    final loader = StudioMailRemoteImageLoader(clientFactory: () => client);
+    expect(await loader.load([a], isCurrent: () => true), isEmpty);
+    expect(client.requests.single.url, a);
+  });
+
+  test(
     'redirects and unsupported media never reach raster admission',
     () async {
       var requests = 0;

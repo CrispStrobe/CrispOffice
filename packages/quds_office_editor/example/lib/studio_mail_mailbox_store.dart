@@ -565,6 +565,7 @@ final class StudioMailMailboxCapture {
   final bool Function() _isCurrent;
   final MailAccountSession _session;
   int _windowGeneration = 0;
+  MailCancellationSource? _prefetch;
   MailCachedMailboxView? _savedWindow;
   Map<MailMessageId, MailHeaderRecord> _sources = const {};
   int _projectedRevision = 0;
@@ -577,6 +578,7 @@ final class StudioMailMailboxCapture {
   /// Retires this window before a refresh, folder change or subscription close.
   /// Cached rows cannot become remote command identities by themselves.
   void invalidateView() {
+    cancelBodyPrefetch();
     _windowGeneration++;
     _savedWindow = null;
     _sources = const {};
@@ -731,10 +733,87 @@ final class StudioMailMailboxCapture {
     return saved;
   }
 
+  Future<MailMessage?> loadMessage(MailHeaderRecord header) async {
+    _check();
+    final message = await store.loadMessage(_header(header));
+    _check();
+    if (message == null) return null;
+    return MailMessage(
+      raw: message.raw,
+      envelope: header.envelope,
+      body: message.body,
+      attachments: message.attachments,
+      localId: header.id,
+      remoteIdentity: header.remote,
+    );
+  }
+
+  void cancelBodyPrefetch() {
+    _prefetch?.cancel(MailCancellationReason.accountChanged);
+    _prefetch = null;
+  }
+
+  // Warm the most recent rows without blocking the foreground reader. The
+  // smaller per-message limit keeps large attachments out of automatic fetches.
+  Future<void> prefetchBodies(
+    List<MailHeaderRecord> headers,
+    Future<MailResult<MailMessage>> Function(
+      MailRemoteIdentity,
+      MailReadBudget,
+      MailOperationLease,
+    )
+    fetch,
+  ) async {
+    if (!_isCurrent() || _session.isDisposed) return;
+    cancelBodyPrefetch();
+    final cancellation = MailCancellationSource();
+    _prefetch = cancellation;
+    final session = MailAccountSession(sourceAccount);
+    final lease = session.begin(cancellation: cancellation.token);
+    const budget = MailReadBudget(
+      maxRawBytes: 512 * 1024,
+      maxDecodedBytes: 512 * 1024,
+      maxBodyBytes: 512 * 1024,
+      maxAttachmentBytes: 512 * 1024,
+    );
+    try {
+      for (final header
+          in headers.where((entry) => entry.flags?.isDraft != true).take(12)) {
+        lease.checkCurrent();
+        if (await loadMessage(header) != null) continue;
+        lease.checkCurrent();
+        final result = await fetch(header.remote, budget, lease);
+        lease.checkCurrent();
+        switch (result) {
+          case MailSuccess(:final value):
+            if (value.raw.length <= budget.maxRawBytes) {
+              await cacheMessage(
+                header,
+                value,
+                cancellation: cancellation.token,
+              );
+            }
+          case MailFailure(:final problem):
+            if (problem.code != MailProblemCode.quotaExceeded) {
+              return;
+            }
+        }
+      }
+    } on MailCancelled {
+      // The view or session was retired while an operation was in flight.
+    } on Object {
+      // A failed prefetch leaves foreground and explicit downloads available.
+    } finally {
+      session.dispose();
+      if (identical(_prefetch, cancellation)) _prefetch = null;
+    }
+  }
+
   Future<void> cacheMessage(
     MailHeaderRecord header,
-    MailMessage message,
-  ) async {
+    MailMessage message, {
+    MailCancellationToken? cancellation,
+  }) async {
     _check();
     if (message.remoteIdentity != header.remote ||
         message.localId != null && message.localId != header.id) {
@@ -751,7 +830,7 @@ final class StudioMailMailboxCapture {
         localId: local.id,
         remoteIdentity: local.remote,
       ),
-      lease: _session.begin(),
+      lease: _session.begin(cancellation: cancellation),
     );
     _check();
   }
