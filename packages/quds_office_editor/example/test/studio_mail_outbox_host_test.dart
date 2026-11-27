@@ -476,7 +476,18 @@ void main() {
         final store = fixture.adapters.last;
         expect(client.sent, isEmpty);
         expect(provider?.submissions ?? <MailPreparedMessage>[], isEmpty);
-        await _press(tester, _openOutbox);
+        await _press(
+          tester,
+          find.widgetWithText(ListTile, _strings.mailOutbox),
+        );
+        expect(
+          find.descendant(
+            of: find.byType(StudioMailOutboxDialog),
+            matching: find.byType(Dialog),
+          ),
+          findsNothing,
+        );
+        await _press(tester, _action('folder', frozen));
         await _press(tester, _action('send', frozen));
         await _pump(tester);
 
@@ -502,8 +513,10 @@ void main() {
           expect(persisted.state, MailOutboxState.submitted);
           expect(client.senders, [alias.address]);
           expect(client.appendRequests, [false]);
-          expect(client.recipientLists.single,
-            persisted.prepared.envelope.recipients);
+          expect(
+            client.recipientLists.single,
+            persisted.prepared.envelope.recipients,
+          );
           final wire = client.sent.single.renderMessage();
           expect(ascii.encode(wire), originalWire);
           expect(wire, isNot(contains('hidden@example.test')));
@@ -534,6 +547,7 @@ void main() {
         expect(store.selectedDraftId, SqliteStudioMailDraftStore.draftId);
         final oldEpoch = store.selectionEpoch;
         await _press(tester, _openOutbox);
+        await _press(tester, _action('folder', originalEntry));
         await _press(tester, _action('edit', originalEntry));
         expect(find.text(_strings.mailOutboxEditExplanation), findsOneWidget);
         expect(find.byType(StudioMailComposeDialog), findsNothing);
@@ -645,6 +659,7 @@ void main() {
         final selectedId = store.selectedDraftId;
         final originalEpoch = store.selectionEpoch;
         await _press(tester, _openOutbox);
+        await _press(tester, _action('folder', originalEntry));
         await _press(tester, _action('edit', originalEntry));
         fixture.failNextCheckpoint = MailStoreCheckpoint.afterDraftBlobs;
         await _press(
@@ -852,6 +867,7 @@ void main() {
       expect(client.sent, isEmpty);
       client.onSend = () async =>
           throw StateError('Ambiguous network completion');
+      await _press(tester, _action('folder', frozen));
       await tester.tap(_action('send', frozen));
       await _pump(tester);
       expect(client.sent, hasLength(1));
@@ -1002,6 +1018,7 @@ void main() {
         bool Function()? isCurrentOutbox;
         if (fromOutbox) {
           await _press(tester, _openOutbox);
+          await _press(tester, _action('folder', frozen!));
           final dialog = tester.widget<StudioMailOutboxDialog>(
             find.byType(StudioMailOutboxDialog),
           );
@@ -1212,6 +1229,7 @@ void main() {
           MailOutboxState.submitting,
         );
       };
+      await _press(tester, _action('folder', frozen));
       await tester.tap(_action('send', frozen));
       await _pump(tester);
       expect(firstProvider.submissions, isEmpty);
@@ -1281,6 +1299,7 @@ void main() {
         return replyGate.future;
       };
       await _press(tester, _openOutbox);
+      await _press(tester, _action('folder', frozen));
       final send = tester
           .widget<FilledButton>(_action('send', frozen))
           .onPressed!;

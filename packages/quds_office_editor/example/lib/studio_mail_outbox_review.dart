@@ -18,6 +18,7 @@ class StudioMailOutboxReviewDialog extends StatefulWidget {
     required this.entry,
     required this.strings,
     required this.isCurrent,
+    this.embedded = false,
     this.exporter = exportStudioMailOutboxFile,
   });
 
@@ -25,6 +26,7 @@ class StudioMailOutboxReviewDialog extends StatefulWidget {
   final StudioStrings strings;
   final bool Function() isCurrent;
   final StudioMailOutboxExporter exporter;
+  final bool embedded;
 
   @override
   State<StudioMailOutboxReviewDialog> createState() =>
@@ -140,177 +142,155 @@ class _StudioMailOutboxReviewDialogState
     final content = _content;
     final body = content?.draft.body ?? '';
     final plainPreview = studioMailPlainPreviewText(body);
-    return PopScope(
-      canPop: !_busy,
-      child: Dialog(
-        child: SizedBox(
-          width: 760,
-          height: 660,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        strings.mailOutboxPreview,
-                        style: Theme.of(context).textTheme.titleLarge,
+    final preview = Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  strings.mailOutboxPreview,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              if (!widget.embedded)
+                IconButton(
+                  key: const ValueKey('studio-mail-outbox-review-close'),
+                  tooltip: strings.close,
+                  onPressed: _busy ? null : () => Navigator.pop(context),
+                  icon: const Icon(Icons.close),
+                ),
+            ],
+          ),
+          if (_busy) const LinearProgressIndicator(),
+          if (_notice != null)
+            Text(
+              _notice!,
+              style: _failed
+                  ? TextStyle(color: Theme.of(context).colorScheme.error)
+                  : null,
+            ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(strings.mailOutboxState(entry.state)),
+                  Text(strings.mailOutboxAttempt(entry.attemptNumber)),
+                  if (entry.state == MailOutboxState.closedUncertain)
+                    Text(strings.mailOutboxClosedExplanation)
+                  else if (entry.canBeginAcknowledgedAttempt)
+                    Text(strings.mailOutboxUncertainExplanation),
+                  const SizedBox(height: 12),
+                  Text(strings.mailOutboxPreviewExplanation),
+                  const SizedBox(height: 12),
+                  _field(
+                    strings.mailOutboxSender,
+                    entry.prepared.envelope.sender,
+                    address: true,
+                  ),
+                  if (content == null) ...[
+                    _field(
+                      strings.mailOutboxRecipients,
+                      entry.prepared.envelope.recipients.join(', '),
+                      address: true,
+                    ),
+                    Text(strings.mailOutboxPreviewUnavailable),
+                  ] else ...[
+                    _field(
+                      strings.subject,
+                      content.draft.subject.isEmpty
+                          ? strings.mailOutboxNoSubject
+                          : content.draft.subject,
+                    ),
+                    _field(strings.to, content.draft.to, address: true),
+                    if (content.draft.cc.isNotEmpty)
+                      _field(strings.mailCc, content.draft.cc, address: true),
+                    if (content.draft.bcc.isNotEmpty)
+                      _field(strings.mailBcc, content.draft.bcc, address: true),
+                    if (content.message.envelope.messageId case final id?)
+                      _field(strings.mailOutboxMessageId, id, address: true),
+                    if (content.message.envelope.sentAt case final date?)
+                      _field(
+                        strings.mailOutboxMessageDate,
+                        date.toUtc().toIso8601String(),
+                        address: true,
+                      ),
+                    if (content.draft.richBody case final rich?)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              strings.mailOutboxFormattedBody,
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            StudioMailRichPreview(
+                              body: rich,
+                              truncationNotice: strings.mailOutboxBodyTruncated,
+                            ),
+                          ],
+                        ),
+                      )
+                    else ...[
+                      _field(strings.mailPlainTextBody, plainPreview.text),
+                      if (plainPreview.truncated)
+                        Text(strings.mailOutboxBodyTruncated),
+                    ],
+                    Text(
+                      strings.mailAttachmentSummary(
+                        content.draft.attachments.items.length,
+                        content.draft.attachments.totalBytes,
                       ),
                     ),
-                    IconButton(
-                      key: const ValueKey('studio-mail-outbox-review-close'),
-                      tooltip: strings.close,
-                      onPressed: _busy ? null : () => Navigator.pop(context),
-                      icon: const Icon(Icons.close),
-                    ),
-                  ],
-                ),
-                if (_busy) const LinearProgressIndicator(),
-                if (_notice != null)
-                  Text(
-                    _notice!,
-                    style: _failed
-                        ? TextStyle(color: Theme.of(context).colorScheme.error)
-                        : null,
-                  ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(strings.mailOutboxState(entry.state)),
-                        Text(strings.mailOutboxAttempt(entry.attemptNumber)),
-                        if (entry.state == MailOutboxState.closedUncertain)
-                          Text(strings.mailOutboxClosedExplanation)
-                        else if (entry.canBeginAcknowledgedAttempt)
-                          Text(strings.mailOutboxUncertainExplanation),
-                        const SizedBox(height: 12),
-                        Text(strings.mailOutboxPreviewExplanation),
-                        const SizedBox(height: 12),
-                        _field(
-                          strings.mailOutboxSender,
-                          entry.prepared.envelope.sender,
-                          address: true,
+                    for (final attachment in content.draft.attachments.items)
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: const Icon(Icons.attach_file),
+                        title: Text(attachment.name),
+                        subtitle: Text(
+                          '${attachment.mediaType} · ${strings.mailAttachmentSize(attachment.length)}',
                         ),
-                        if (content == null) ...[
-                          _field(
-                            strings.mailOutboxRecipients,
-                            entry.prepared.envelope.recipients.join(', '),
-                            address: true,
-                          ),
-                          Text(strings.mailOutboxPreviewUnavailable),
-                        ] else ...[
-                          _field(
-                            strings.subject,
-                            content.draft.subject.isEmpty
-                                ? strings.mailOutboxNoSubject
-                                : content.draft.subject,
-                          ),
-                          _field(strings.to, content.draft.to, address: true),
-                          if (content.draft.cc.isNotEmpty)
-                            _field(
-                              strings.mailCc,
-                              content.draft.cc,
-                              address: true,
-                            ),
-                          if (content.draft.bcc.isNotEmpty)
-                            _field(
-                              strings.mailBcc,
-                              content.draft.bcc,
-                              address: true,
-                            ),
-                          if (content.message.envelope.messageId case final id?)
-                            _field(
-                              strings.mailOutboxMessageId,
-                              id,
-                              address: true,
-                            ),
-                          if (content.message.envelope.sentAt case final date?)
-                            _field(
-                              strings.mailOutboxMessageDate,
-                              date.toUtc().toIso8601String(),
-                              address: true,
-                            ),
-                          if (content.draft.richBody case final rich?)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    strings.mailOutboxFormattedBody,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge,
-                                  ),
-                                  StudioMailRichPreview(
-                                    body: rich,
-                                    truncationNotice:
-                                        strings.mailOutboxBodyTruncated,
-                                  ),
-                                ],
-                              ),
-                            )
-                          else ...[
-                            _field(
-                              strings.mailPlainTextBody,
-                              plainPreview.text,
-                            ),
-                            if (plainPreview.truncated)
-                              Text(strings.mailOutboxBodyTruncated),
-                          ],
-                          Text(
-                            strings.mailAttachmentSummary(
-                              content.draft.attachments.items.length,
-                              content.draft.attachments.totalBytes,
-                            ),
-                          ),
-                          for (final attachment
-                              in content.draft.attachments.items)
-                            ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              leading: const Icon(Icons.attach_file),
-                              title: Text(attachment.name),
-                              subtitle: Text(
-                                '${attachment.mediaType} · ${strings.mailAttachmentSize(attachment.length)}',
-                              ),
-                            ),
-                        ],
-                        const SizedBox(height: 16),
-                        Text(strings.mailOutboxExportExplanation),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    FilledButton.icon(
-                      key: const ValueKey('studio-mail-outbox-export-eml'),
-                      onPressed: _busy || !_current
-                          ? null
-                          : () => _export(envelope: false),
-                      icon: const Icon(Icons.download_outlined),
-                      label: Text(strings.mailOutboxExport),
-                    ),
-                    TextButton(
-                      key: const ValueKey('studio-mail-outbox-export-envelope'),
-                      onPressed: _busy || !_current
-                          ? null
-                          : () => _export(envelope: true),
-                      child: Text(strings.mailOutboxExportEnvelope),
-                    ),
+                      ),
                   ],
-                ),
-              ],
+                  const SizedBox(height: 16),
+                  Text(strings.mailOutboxExportExplanation),
+                ],
+              ),
             ),
           ),
-        ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.icon(
+                key: const ValueKey('studio-mail-outbox-export-eml'),
+                onPressed: _busy || !_current
+                    ? null
+                    : () => _export(envelope: false),
+                icon: const Icon(Icons.download_outlined),
+                label: Text(strings.mailOutboxExport),
+              ),
+              TextButton(
+                key: const ValueKey('studio-mail-outbox-export-envelope'),
+                onPressed: _busy || !_current
+                    ? null
+                    : () => _export(envelope: true),
+                child: Text(strings.mailOutboxExportEnvelope),
+              ),
+            ],
+          ),
+        ],
       ),
+    );
+    if (widget.embedded) return preview;
+    return PopScope(
+      canPop: !_busy,
+      child: Dialog(child: SizedBox(width: 760, height: 660, child: preview)),
     );
   }
 }

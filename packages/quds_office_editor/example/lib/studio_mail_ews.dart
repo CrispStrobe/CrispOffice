@@ -208,6 +208,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   MailReaderController? _reader;
   StudioMailDraft? _draft;
   StudioMailDraftStore? _draftStore;
+  StudioMailOutboxDialog? _outboxFolder;
   StudioMailMailboxCapture? _mailboxCapture;
   StudioMailMailboxSession? _mailboxViewSession;
   StreamSubscription<StudioMailMailboxSnapshot>? _mailboxViewSubscription;
@@ -1007,6 +1008,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     _closeCloud();
     final old = _reader;
     setState(() {
+      _outboxFolder = null;
       _session = null;
       _provider = null;
       _submission = null;
@@ -1627,7 +1629,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final lease = session.begin();
     final old = more ? null : _reader;
     final cursor = more ? _next : null;
-    setState(() => _busy = true);
+    setState(() {
+      _outboxFolder = null;
+      _busy = true;
+    });
     try {
       await _stopCachedView();
     } on _AccountOwnerReleaseFailure {
@@ -2439,7 +2444,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         session == null ||
         submission == null ||
         !_connected ||
-        _blocked) {
+        (_blocked || _outboxFolder != null)) {
       return;
     }
     final lease = session.begin();
@@ -2455,14 +2460,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
     final sender = _sender;
     final draftOwner = _draftStore!;
-    final catalog = draftOwner is StudioMailDraftCatalog
-        ? draftOwner as StudioMailDraftCatalog
-        : null;
-    final originalEpoch = catalog?.selectionEpoch;
-    StudioMailDraft? edited;
-    var opened = false;
+    final folderKey = GlobalKey();
     bool current() =>
         _current(provider, lease) && identical(store, _draftStore);
+    bool viewCurrent() => current() && _outboxFolder?.key == folderKey;
     setState(() => _dialogOpen = true);
     try {
       final retained = _draft;
@@ -2473,51 +2474,40 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         );
       }
       if (!mounted || !current()) return;
-      opened = true;
-      edited = await showDialog<StudioMailDraft>(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => StudioMailOutboxDialog(
+      setState(() {
+        _outboxFolder = StudioMailOutboxDialog(
+          key: folderKey,
           strings: widget.strings,
           store: store,
           submit: _outboxSubmit(provider, submission, lease, store, sender),
-          isCurrent: current,
           runSubmission: (action) =>
-              _runOutboxSubmission(draftOwner, current, action),
-        ),
-      );
-      if (!current()) return;
-      if (edited != null || catalog?.selectionEpoch != originalEpoch) {
-        final selected = edited == null
-            ? await draftOwner.load()
-            : StudioMailStoredDraft(draft: edited, submissionUncertain: false);
-        if (!current()) return;
-        setState(() {
-          _draft = selected?.draft;
-          _submissionUncertain = selected?.submissionUncertain ?? false;
-          _error = null;
-          _notice = null;
-        });
-      }
+              _runOutboxSubmission(draftOwner, viewCurrent, action),
+          isCurrent: viewCurrent,
+          onClose: () {
+            if (viewCurrent()) setState(() => _outboxFolder = null);
+          },
+          onBusyChanged: (busy) {
+            if (viewCurrent()) setState(() => _dialogOpen = busy);
+          },
+          onEdited: (draft) {
+            if (!viewCurrent()) return;
+            setState(() {
+              _outboxFolder = null;
+              _dialogOpen = false;
+              _draft = draft;
+              _submissionUncertain = false;
+              _notice = null;
+              _error = null;
+            });
+            unawaited(_compose());
+          },
+        );
+      });
     } on Object {
-      if (current()) {
-        setState(() {
-          _error = widget.strings.mailOutboxFailed;
-          if (opened && catalog?.selectionEpoch != originalEpoch) {
-            _draftStore = null;
-            _draft = null;
-            _submissionUncertain = false;
-          }
-        });
-        if (opened && catalog?.selectionEpoch != originalEpoch) {
-          await _closeDraftStore(draftOwner);
-        }
-      }
-      edited = null;
+      if (current()) setState(() => _error = widget.strings.mailOutboxFailed);
     } finally {
       if (_current(provider, lease)) setState(() => _dialogOpen = false);
     }
-    if (edited != null && current()) await _compose();
   });
 
   Future<MailOutboxEntry?> _sendThroughOutbox(
@@ -4295,6 +4285,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           builder: (context, constraints) {
             final compact = constraints.maxWidth < 1000;
             if (compact) {
+              if (_outboxFolder case final outbox?) return outbox;
               return IndexedStack(
                 index: _reader != null && _showMessage ? 1 : 0,
                 children: [
@@ -4334,10 +4325,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                         Expanded(
                           child: ListView(
                             children: [
+                              if (_draftStore is StudioMailOutboxStore)
+                                ListTile(
+                                  dense: true,
+                                  selected: _outboxFolder != null,
+                                  leading: const Icon(
+                                    Icons.outbox_outlined,
+                                    size: 18,
+                                  ),
+                                  title: Text(widget.strings.mailOutbox),
+                                  onTap: _blocked ? null : _openOutbox,
+                                ),
                               for (final box in _mailboxes)
                                 ListTile(
                                   dense: true,
-                                  selected: box.id == _mailbox?.id,
+                                  selected:
+                                      _outboxFolder == null &&
+                                      box.id == _mailbox?.id,
                                   leading: const Icon(
                                     Icons.folder_outlined,
                                     size: 18,
@@ -4358,26 +4362,30 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     ),
                   ),
                 if (!compact) const VerticalDivider(width: 1),
-                if (compact)
-                  Expanded(child: _messageList(compact: true))
-                else
-                  SizedBox(width: 330, child: _messageList(compact: false)),
-                if (!compact) ...[
-                  const VerticalDivider(width: 1),
-                  Expanded(
-                    child: _reader == null
-                        ? Center(child: Text(widget.strings.noMessage))
-                        : Column(
-                            children: [
-                              _actions(compact: false),
-                              Expanded(
-                                child: StudioMailRemoteMessageView(
-                                  controller: _reader!,
+                if (_outboxFolder case final outbox?)
+                  Expanded(child: outbox)
+                else ...[
+                  if (compact)
+                    Expanded(child: _messageList(compact: true))
+                  else
+                    SizedBox(width: 330, child: _messageList(compact: false)),
+                  if (!compact) ...[
+                    const VerticalDivider(width: 1),
+                    Expanded(
+                      child: _reader == null
+                          ? Center(child: Text(widget.strings.noMessage))
+                          : Column(
+                              children: [
+                                _actions(compact: false),
+                                Expanded(
+                                  child: StudioMailRemoteMessageView(
+                                    controller: _reader!,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                  ),
+                              ],
+                            ),
+                    ),
+                  ],
                 ],
               ],
             );

@@ -13,6 +13,7 @@ import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_outbox_schedule_session.dart';
 import 'studio_mail_schedule_dialog.dart';
 import 'studio_mail_schedule_strings.dart';
+import 'studio_mail_strings.dart';
 import 'studio_strings.dart';
 
 /// A local, account-scoped foreground queue. Opening or refreshing never sends.
@@ -27,6 +28,9 @@ class StudioMailOutboxDialog extends StatefulWidget {
     this.exporter = exportStudioMailOutboxFile,
     this.clock,
     this.elapsed,
+    this.onClose,
+    this.onEdited,
+    this.onBusyChanged,
   });
 
   final StudioStrings strings;
@@ -37,6 +41,9 @@ class StudioMailOutboxDialog extends StatefulWidget {
   final StudioMailOutboxExporter exporter;
   final DateTime Function()? clock;
   final Duration Function()? elapsed;
+  final VoidCallback? onClose;
+  final ValueChanged<StudioMailDraft>? onEdited;
+  final ValueChanged<bool>? onBusyChanged;
 
   @override
   State<StudioMailOutboxDialog> createState() => _StudioMailOutboxDialogState();
@@ -47,6 +54,8 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
   List<MailOutboxEntry> _entries = const [];
   bool _busy = true;
   String? _error;
+  String? _selectedId;
+  bool get _inline => widget.onClose != null;
   final Stopwatch _stopwatch = Stopwatch();
   late final StudioMailOutboxScheduleSession _scheduleSession;
   Timer? _scheduleTimer;
@@ -233,6 +242,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
       _busy = true;
       _error = null;
     });
+    widget.onBusyChanged?.call(true);
     try {
       await action();
     } on Object {
@@ -249,7 +259,10 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
           if (mounted) setState(() => _error = widget.strings.mailOutboxFailed);
         }
       }
-      if (mounted) setState(() => _busy = false);
+      if (mounted) {
+        setState(() => _busy = false);
+        widget.onBusyChanged?.call(false);
+      }
     }
   }
 
@@ -512,7 +525,12 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
     if (mounted && widget.isCurrent()) {
       // The same owner has selected the newly saved draft. Return that exact
       // snapshot so the host never reuses its previous selected-draft content.
-      Navigator.pop<StudioMailDraft>(context, draft);
+      final edited = widget.onEdited;
+      if (edited != null) {
+        edited(draft);
+      } else {
+        Navigator.pop<StudioMailDraft>(context, draft);
+      }
     }
   });
 
@@ -554,217 +572,245 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
     return widget.strings.mailOutboxNoSubject;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _entryCard(MailOutboxEntry entry) {
     final strings = widget.strings;
-    return PopScope(
-      canPop: !_busy,
-      child: Dialog(
-        child: SizedBox(
-          width: 760,
-          height: 620,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Card(
+      key: ValueKey('studio-mail-outbox-${entry.id}'),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              _subject(entry),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            if (entry.sendNotBefore == null ||
+                entry.state != MailOutboxState.queued)
+              Text(strings.mailOutboxState(entry.state)),
+            if (entry.result?.sentCopySaved == false)
+              Text(strings.sentCopyWarning),
+            if (entry.sendNotBefore != null) _scheduleStatus(entry),
+            Text(
+              '${entry.prepared.envelope.sender} · ${strings.mailOutboxAttempt(entry.attemptNumber)}',
+              textDirection: TextDirection.ltr,
+            ),
+            ExpansionTile(
+              title: Text(strings.mailOutboxRecipients),
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        strings.mailOutbox,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                    IconButton(
-                      tooltip: strings.refresh,
-                      onPressed: _busy ? null : _refresh,
-                      icon: const Icon(Icons.refresh),
-                    ),
-                    IconButton(
-                      tooltip: strings.close,
-                      onPressed: _busy ? null : () => Navigator.pop(context),
-                      icon: const Icon(Icons.close),
-                    ),
-                  ],
-                ),
-                Text(strings.mailOutboxExplanation),
-                const SizedBox(height: 12),
-                if (_busy) const LinearProgressIndicator(),
-                if (_error != null)
-                  Text(
-                    _error!,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                    entry.prepared.envelope.recipients.join(', '),
+                    textDirection: TextDirection.ltr,
                   ),
-                Expanded(
-                  child: _entries.isEmpty
-                      ? Center(
-                          child: Text(_busy ? '' : strings.mailOutboxEmpty),
-                        )
-                      : ListView.builder(
-                          itemCount: _entries.length,
-                          itemBuilder: (context, index) {
-                            final entry = _entries[index];
-                            return Card(
-                              key: ValueKey('studio-mail-outbox-${entry.id}'),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      _subject(entry),
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.titleMedium,
-                                    ),
-                                    if (entry.sendNotBefore == null ||
-                                        entry.state != MailOutboxState.queued)
-                                      Text(
-                                        strings.mailOutboxState(entry.state),
-                                      ),
-                                    if (entry.result?.sentCopySaved == false)
-                                      Text(strings.sentCopyWarning),
-                                    if (entry.sendNotBefore != null)
-                                      _scheduleStatus(entry),
-                                    Text(
-                                      '${entry.prepared.envelope.sender} · ${strings.mailOutboxAttempt(entry.attemptNumber)}',
-                                      textDirection: TextDirection.ltr,
-                                    ),
-                                    ExpansionTile(
-                                      title: Text(strings.mailOutboxRecipients),
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8),
-                                          child: Text(
-                                            entry.prepared.envelope.recipients
-                                                .join(', '),
-                                            textDirection: TextDirection.ltr,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    if (entry.state ==
-                                        MailOutboxState.closedUncertain)
-                                      Text(strings.mailOutboxClosedExplanation)
-                                    else if (entry.priorSubmissionUncertain ||
-                                        entry.state ==
-                                            MailOutboxState.uncertain)
-                                      Text(
-                                        strings.mailOutboxUncertainExplanation,
-                                      ),
-                                    Wrap(
-                                      spacing: 8,
-                                      runSpacing: 4,
-                                      children: [
-                                        TextButton.icon(
-                                          key: ValueKey(
-                                            'studio-mail-outbox-review-${entry.id}',
-                                          ),
-                                          onPressed: _busy
-                                              ? null
-                                              : () => _review(entry),
-                                          icon: const Icon(
-                                            Icons.preview_outlined,
-                                          ),
-                                          label: Text(
-                                            strings.mailOutboxPreview,
-                                          ),
-                                        ),
-                                        if (entry.canBeginAttempt ||
-                                            entry.canBeginAcknowledgedAttempt)
-                                          FilledButton.icon(
-                                            key: ValueKey(
-                                              'studio-mail-outbox-send-${entry.id}',
-                                            ),
-                                            onPressed:
-                                                _busy ||
-                                                    (entry.sendNotBefore !=
-                                                            null &&
-                                                        entry.canSchedule &&
-                                                        _scheduling == null)
-                                                ? null
-                                                : () => _send(entry),
-                                            icon: const Icon(
-                                              Icons.send_outlined,
-                                            ),
-                                            label: Text(
-                                              entry.canBeginAcknowledgedAttempt
-                                                  ? strings.mailOutboxCheckRetry
-                                                  : entry.attemptNumber == 0
-                                                  ? strings.mailOutboxSend
-                                                  : strings.mailOutboxRetry,
-                                            ),
-                                          ),
-                                        ..._scheduleActions(entry),
-                                        if (entry.canCancel)
-                                          TextButton(
-                                            key: ValueKey(
-                                              'studio-mail-outbox-cancel-${entry.id}',
-                                            ),
-                                            onPressed: _busy
-                                                ? null
-                                                : () => _cancel(entry),
-                                            child: Text(
-                                              strings.mailOutboxCancel,
-                                            ),
-                                          ),
-                                        if (_management != null &&
-                                            entry.canCancel)
-                                          TextButton.icon(
-                                            key: ValueKey(
-                                              'studio-mail-outbox-edit-${entry.id}',
-                                            ),
-                                            onPressed: _busy
-                                                ? null
-                                                : () => _edit(entry),
-                                            icon: const Icon(
-                                              Icons.edit_outlined,
-                                            ),
-                                            label: Text(strings.mailOutboxEdit),
-                                          ),
-                                        if (_management != null &&
-                                            entry.canCloseUncertain)
-                                          TextButton(
-                                            key: ValueKey(
-                                              'studio-mail-outbox-stop-${entry.id}',
-                                            ),
-                                            onPressed: _busy
-                                                ? null
-                                                : () => _closeUncertain(entry),
-                                            child: Text(
-                                              strings.mailOutboxStopRetrying,
-                                            ),
-                                          ),
-                                        if (entry.canRemove)
-                                          TextButton(
-                                            key: ValueKey(
-                                              'studio-mail-outbox-remove-${entry.id}',
-                                            ),
-                                            onPressed: _busy
-                                                ? null
-                                                : () => _remove(entry),
-                                            child: Text(
-                                              strings.mailOutboxRemove,
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
                 ),
               ],
             ),
-          ),
+            if (entry.state == MailOutboxState.closedUncertain)
+              Text(strings.mailOutboxClosedExplanation)
+            else if (entry.priorSubmissionUncertain ||
+                entry.state == MailOutboxState.uncertain)
+              Text(strings.mailOutboxUncertainExplanation),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                if (!_inline)
+                  TextButton.icon(
+                    key: ValueKey('studio-mail-outbox-review-${entry.id}'),
+                    onPressed: _busy ? null : () => _review(entry),
+                    icon: const Icon(Icons.preview_outlined),
+                    label: Text(strings.mailOutboxPreview),
+                  ),
+                if (entry.canBeginAttempt || entry.canBeginAcknowledgedAttempt)
+                  FilledButton.icon(
+                    key: ValueKey('studio-mail-outbox-send-${entry.id}'),
+                    onPressed:
+                        _busy ||
+                            (entry.sendNotBefore != null &&
+                                entry.canSchedule &&
+                                _scheduling == null)
+                        ? null
+                        : () => _send(entry),
+                    icon: const Icon(Icons.send_outlined),
+                    label: Text(
+                      entry.canBeginAcknowledgedAttempt
+                          ? strings.mailOutboxCheckRetry
+                          : entry.attemptNumber == 0
+                          ? strings.mailOutboxSend
+                          : strings.mailOutboxRetry,
+                    ),
+                  ),
+                ..._scheduleActions(entry),
+                if (entry.canCancel)
+                  TextButton(
+                    key: ValueKey('studio-mail-outbox-cancel-${entry.id}'),
+                    onPressed: _busy ? null : () => _cancel(entry),
+                    child: Text(strings.mailOutboxCancel),
+                  ),
+                if (_management != null && entry.canCancel)
+                  TextButton.icon(
+                    key: ValueKey('studio-mail-outbox-edit-${entry.id}'),
+                    onPressed: _busy ? null : () => _edit(entry),
+                    icon: const Icon(Icons.edit_outlined),
+                    label: Text(strings.mailOutboxEdit),
+                  ),
+                if (_management != null && entry.canCloseUncertain)
+                  TextButton(
+                    key: ValueKey('studio-mail-outbox-stop-${entry.id}'),
+                    onPressed: _busy ? null : () => _closeUncertain(entry),
+                    child: Text(strings.mailOutboxStopRetrying),
+                  ),
+                if (entry.canRemove)
+                  TextButton(
+                    key: ValueKey('studio-mail-outbox-remove-${entry.id}'),
+                    onPressed: _busy ? null : () => _remove(entry),
+                    child: Text(strings.mailOutboxRemove),
+                  ),
+              ],
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _folderContent() {
+    final selected = _entries
+        .where((entry) => entry.id == _selectedId)
+        .firstOrNull;
+    final list = ListView.builder(
+      key: const ValueKey('studio-mail-outbox-folder-list'),
+      itemCount: _entries.length,
+      itemBuilder: (context, index) {
+        final entry = _entries[index];
+        return ListTile(
+          key: ValueKey('studio-mail-outbox-folder-${entry.id}'),
+          selected: entry.id == _selectedId,
+          title: Text(
+            _subject(entry),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: Text(widget.strings.mailOutboxState(entry.state)),
+          onTap: _busy ? null : () => setState(() => _selectedId = entry.id),
+        );
+      },
+    );
+    final details = selected == null
+        ? Center(child: Text(widget.strings.noMessage))
+        : Column(
+            children: [
+              Flexible(
+                flex: 2,
+                child: SingleChildScrollView(child: _entryCard(selected)),
+              ),
+              Expanded(
+                flex: 3,
+                child: StudioMailOutboxReviewDialog(
+                  key: ValueKey(selected),
+                  entry: selected,
+                  strings: widget.strings,
+                  isCurrent: () =>
+                      mounted &&
+                      _selectedId == selected.id &&
+                      widget.isCurrent(),
+                  exporter: widget.exporter,
+                  embedded: true,
+                ),
+              ),
+            ],
+          );
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth >= 620) {
+          return Row(
+            children: [
+              SizedBox(width: 300, child: list),
+              const VerticalDivider(width: 1),
+              Expanded(child: details),
+            ],
+          );
+        }
+        if (selected == null) return list;
+        return Column(
+          children: [
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: IconButton(
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                onPressed: _busy
+                    ? null
+                    : () => setState(() => _selectedId = null),
+                icon: const BackButtonIcon(),
+              ),
+            ),
+            Expanded(child: details),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = widget.strings;
+    final content = Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  strings.mailOutbox,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              IconButton(
+                tooltip: strings.refresh,
+                onPressed: _busy ? null : _refresh,
+                icon: const Icon(Icons.refresh),
+              ),
+              IconButton(
+                tooltip: strings.close,
+                onPressed: _busy
+                    ? null
+                    : widget.onClose ?? () => Navigator.pop(context),
+                icon: const Icon(Icons.close),
+              ),
+            ],
+          ),
+          Text(strings.mailOutboxExplanation),
+          const SizedBox(height: 12),
+          if (_busy) const LinearProgressIndicator(),
+          if (_error != null)
+            Text(
+              _error!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          Expanded(
+            child: _entries.isEmpty
+                ? Center(child: Text(_busy ? '' : strings.mailOutboxEmpty))
+                : _inline
+                ? _folderContent()
+                : ListView.builder(
+                    itemCount: _entries.length,
+                    itemBuilder: (context, index) {
+                      final entry = _entries[index];
+                      return _entryCard(entry);
+                    },
+                  ),
+          ),
+        ],
+      ),
+    );
+    if (_inline) return content;
+    return PopScope(
+      canPop: !_busy,
+      child: Dialog(child: SizedBox(width: 760, height: 620, child: content)),
     );
   }
 }

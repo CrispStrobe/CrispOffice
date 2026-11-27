@@ -349,6 +349,7 @@ void main() {
         final originalEpoch = store.selectionEpoch;
         expect(store.selectedDraftId, SqliteStudioMailDraftStore.draftId);
         await _press(tester, _openOutbox);
+        await _press(tester, _key('studio-mail-outbox-folder-${frozen.id}'));
         await _press(tester, _key('studio-mail-outbox-edit-${frozen.id}'));
         expect(find.text(_strings.mailOutboxEditExplanation), findsOneWidget);
         await _press(tester, _key('studio-mail-outbox-confirm'));
@@ -522,6 +523,10 @@ void main() {
           _sameFrozenContent(attempt.prepared, frozen.prepared);
           durableBeforeProvider = true;
         };
+        await _press(
+          tester,
+          find.byKey(ValueKey('studio-mail-outbox-folder-${frozen.id}')),
+        );
         await tester.tap(_sendQueued(frozen));
         await pumpOutboxWidgets(tester);
         expect(durableBeforeProvider, isTrue);
