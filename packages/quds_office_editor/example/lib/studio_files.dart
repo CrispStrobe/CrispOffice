@@ -379,12 +379,18 @@ abstract final class StudioFiles {
     }
 
     final fallback = exportFontSetCovering(texts());
-    final styles = workbook.styles;
+    final families = <String>{
+      ...?workbook.styles?.fontFamilies,
+      for (final sheet in workbook.sheets)
+        for (final cell in sheet.allCells)
+          for (final run in cell.richString?.runs ?? const <SmlRichStringRun>[])
+            if (run.family case final family? when family.isNotEmpty) family,
+    };
     return OfficeFontSet(
       primary: fallback.primary,
       fallbacks: fallback.fallbacks,
       faces: [
-        for (final family in {...?styles?.fontFamilies})
+        for (final family in families)
           ...OfficeHostFonts.pdfFacesForFamily(family),
       ],
     );

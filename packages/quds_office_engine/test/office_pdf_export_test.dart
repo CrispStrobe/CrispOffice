@@ -1935,6 +1935,37 @@ void main() {
     expect(_pageCount(OfficePrint.workbook(book, options: options)), 1);
   });
 
+  test('XLSX PDF uses the size and underline of each rich text run', () {
+    final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1');
+    sheet.setColumnWidth(0, 200);
+    final rich = SharedStringTable.parse(
+      '<sst xmlns="${OfficeNamespaces.x}"><si>'
+      '<r><t>Ref: </t></r>'
+      '<r><rPr><sz val="8"/><b/><u/></rPr><t>9</t></r>'
+      '</si></sst>',
+    );
+    sheet.cellA1('A1')
+      ..value = rich[0]
+      ..sourceRichString = rich.richAt(0)
+      ..fontSize = 12;
+
+    final bytes = OfficePrint.workbook(
+      SmlWorkbook(sheets: [sheet]),
+      font: font,
+    );
+    final text = PdfFile.open(bytes).displayList(0).runs;
+    final prefix = text.firstWhere((run) => run.text.contains('Ref'));
+    final amount = text.firstWhere((run) => run.text.contains('9'));
+    expect(amount.x, greaterThan(prefix.x));
+    expect(amount.height, lessThan(prefix.height));
+    expect(
+      _inflated(bytes).join(),
+      matches(RegExp(r' m\s+[-.\d]+ [-.\d]+ l\s+S')),
+    );
+  });
+
   test('PPT PDF strokes shapes and emits URI link annots', () {
     final PmlPresentation deck = PmlPresentation(
       slides: <PmlSlide>[

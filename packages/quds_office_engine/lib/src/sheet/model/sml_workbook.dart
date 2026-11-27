@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../../office/office_document_properties.dart';
 import '../../opc/opc_archive.dart';
 import '../../visual/office_visual.dart';
+import '../shared_strings.dart';
 import '../styles/sml_styles.dart';
 import 'sml_analysis.dart';
 import 'sml_sparkline.dart';
@@ -216,6 +217,15 @@ class SmlCell {
 
   /// value API.
   Object? value;
+
+  /// Imported run formatting for the original cell value.
+  SmlRichString? sourceRichString;
+
+  /// Rich formatting when the current value still matches the source text.
+  SmlRichString? get richString {
+    final source = sourceRichString;
+    return formula == null && value == source?.text ? source : null;
+  }
 
   /// formula API.
   String? formula;

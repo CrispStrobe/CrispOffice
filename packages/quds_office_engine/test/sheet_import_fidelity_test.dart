@@ -445,8 +445,50 @@ void main() {
         expect(_cell(book, 'A1').type, SmlCellType.string);
         expect(_cell(book, 'A1').asString, 'Region');
         expect(_cell(book, 'B1').asString, 'Gross margin');
+        final saved = SheetDeserializer().readBytes(
+          SheetSerializer().writeBytes(book),
+        );
+        final cell = _cell(saved, 'B1');
+        expect(cell.asString, 'Gross margin');
+        expect(cell.richString?.runs.last.bold, isTrue);
+        expect(
+          saved.package?.getPart('/xl/sharedStrings.xml')?.readText(),
+          contains('rPh'),
+        );
       },
     );
+
+    test('shared text retains separate run styles and native indices', () {
+      final package = _package(
+        '<row r="1"><c r="A1" t="s"><v>0</v></c>'
+        '<c r="B1" t="s"><v>1</v></c><c r="C1" t="s"><v>2</v></c></row>',
+      );
+      package.createPart(
+        '/xl/sharedStrings.xml',
+        OfficeContentTypes.sheetSharedStrings,
+        utf8.encode(
+          '<sst xmlns="${OfficeNamespaces.x}"><si><t>Same</t></si>'
+          '<si><r><rPr><b/><sz val="8"/><u/></rPr><t>Same</t></r></si>'
+          '<si><t>After</t></si></sst>',
+        ),
+      );
+      final book = SheetDeserializer().read(package);
+      expect(_cell(book, 'A1').richString, isNull);
+      expect(_cell(book, 'B1').richString?.runs.single.size, 8);
+      expect(_cell(book, 'C1').asString, 'After');
+
+      SmlWorkbook resave(SmlWorkbook value) =>
+          SheetDeserializer().readBytes(SheetSerializer().writeBytes(value));
+      final saved = resave(book);
+      expect(_cell(saved, 'A1').asString, 'Same');
+      expect(_cell(saved, 'A1').richString, isNull);
+      expect(_cell(saved, 'B1').richString?.runs.single.underline, 'single');
+      expect(_cell(saved, 'C1').asString, 'After');
+      _cell(saved, 'B1').value = 'Edited';
+      final edited = resave(saved);
+      expect(_cell(edited, 'B1').asString, 'Edited');
+      expect(_cell(edited, 'B1').richString, isNull);
+    });
 
     test('shared formulas expand from the master to every follower', () {
       final SmlWorkbook book = _open(

@@ -948,7 +948,10 @@ class SheetDeserializer {
       if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'is' &&
           current != null) {
-        current.value = _readInlineString(reader);
+        final item = SmlRichString.read(reader);
+        current
+          ..value = item.text
+          ..sourceRichString = item.rich;
       }
       if (reader.eventType == XmlEventType.startElement &&
           (reader.localName == 'v' || reader.localName == 'f') &&
@@ -987,7 +990,10 @@ class SheetDeserializer {
                 : SmlCellType.formula;
           }
         } else if (valueType == 's' && int.tryParse(text) != null) {
-          current.value = sst[int.parse(text)];
+          final index = int.parse(text);
+          current
+            ..value = sst[index]
+            ..sourceRichString = sst.richAt(index);
         } else if (valueType == 'b') {
           current.value = text == '1' || text.toLowerCase() == 'true';
         } else if (valueType == 'str' ||
@@ -1129,35 +1135,6 @@ class SheetDeserializer {
         _ => defaultValue,
       };
 
-  /// Text of an inline string (`<is>`): plain `<t>` or rich-text runs,
-  /// without phonetic (`<rPh>`) readings.
-  static String _readInlineString(XmlPullReader reader) {
-    if (reader.isEmptyElement) {
-      return '';
-    }
-    final StringBuffer buffer = StringBuffer();
-    final int depth = reader.depth;
-    var inText = false;
-    while (reader.next() && reader.depth >= depth) {
-      if (reader.eventType == XmlEventType.startElement) {
-        if (reader.localName == 'rPh') {
-          reader.skip();
-        } else if (reader.localName == 't') {
-          inText = !reader.isEmptyElement;
-        }
-      } else if (reader.eventType == XmlEventType.endElement) {
-        if (reader.localName == 't') {
-          inText = false;
-        }
-      } else if (inText &&
-          (reader.eventType == XmlEventType.characters ||
-              reader.eventType == XmlEventType.cdata)) {
-        buffer.write(reader.text);
-      }
-    }
-    return buffer.toString();
-  }
-
   static String _readText(XmlPullReader reader) {
     if (reader.isEmptyElement) {
       return '';
@@ -1229,7 +1206,7 @@ class SheetSerializer {
     for (final SmlWorksheet sheet in book.sheets) {
       for (final SmlCell cell in sheet.allCells) {
         if (cell.type == SmlCellType.string || cell.value is String) {
-          sst.intern(cell.asString);
+          sst.intern(cell.asString, rich: cell.richString);
         }
       }
     }
@@ -2039,7 +2016,7 @@ class SheetSerializer {
         } else if (cell.type == SmlCellType.string || cell.value is String) {
           w.writeAttribute('t', 's');
           w.writeStartElement('v');
-          w.writeText('${sst.intern(cell.asString)}');
+          w.writeText('${sst.intern(cell.asString, rich: cell.richString)}');
           w.writeEndElement();
         } else if (cell.type == SmlCellType.boolean) {
           w.writeAttribute('t', 'b');

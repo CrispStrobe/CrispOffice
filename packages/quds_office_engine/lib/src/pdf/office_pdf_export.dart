@@ -41,6 +41,16 @@ import 'pdf_save_options.dart';
 
 part 'office_pdf_sheet_header.dart';
 
+typedef _SheetLabelRun = ({
+  String text,
+  double size,
+  String? family,
+  bool bold,
+  bool italic,
+  String color,
+  String underline,
+});
+
 /// Print layout for worksheet PDF (Office Print defaults to A4 portrait).
 class PdfSheetPrintOptions {
   /// PdfSheetPrintOptions API.
@@ -1428,6 +1438,60 @@ abstract final class OfficePdfExport {
         (cell.horizontalAlign == SmlHAlign.general ||
             cell.horizontalAlign == SmlHAlign.left);
 
+    List<_SheetLabelRun> richLabelRuns(
+      SmlCell cell,
+      String text,
+      double scale,
+      String color, {
+      String? conditionalColor,
+    }) {
+      final rich = cell.richString;
+      // For wrapped and bidirectional text, retain the existing paragraph
+      // layout until inline styles can be measured across a whole paragraph.
+      if (rich == null ||
+          rich.runs.isEmpty ||
+          wraps(cell, text) ||
+          !_PageSink._winAnsiOnly(text)) {
+        return const [];
+      }
+      final family = book.styles?.familyAt(cell.styleIndex);
+      final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
+      return [
+        for (final run in rich.runs)
+          if (run.text.isNotEmpty)
+            (
+              text: run.text,
+              size: (run.size ?? cell.fontSize) * scale,
+              family: run.family ?? family,
+              bold: run.bold ?? cell.fontBold,
+              italic: run.italic ?? italic,
+              color: conditionalColor ?? (run.rgb.isEmpty ? color : run.rgb),
+              underline: run.underline,
+            ),
+      ];
+    }
+
+    double labelWidth(
+      String text,
+      double size,
+      String? family,
+      bool bold,
+      bool italic,
+    ) {
+      var width = 0.0;
+      for (final cp in text.runes) {
+        if (cp < 32) continue;
+        width += pack.widthOf(
+          cp,
+          size,
+          family: family,
+          weight: bold ? 700 : 400,
+          italic: italic,
+        );
+      }
+      return width;
+    }
+
     final authoredRows = options.useWorksheetPageSetup && book.package != null;
     String cellFill(int col, int row, SmlCell? cell) =>
         conditionalFormats.resolve(SmlCellRef(col, row)).fillRgb ??
@@ -1463,17 +1527,28 @@ abstract final class OfficePdfExport {
         }
         final family = book.styles?.familyAt(cell.styleIndex);
         final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
-        var remaining = 6.0 - colPts[cell.ref.col - minCol];
-        for (final cp in shown.text.runes) {
-          if (cp < 32) continue;
-          remaining += pack.widthOf(
-            cp,
-            cell.fontSize,
-            family: family,
-            weight: cell.fontBold ? 700 : 400,
-            italic: italic,
-          );
-        }
+        final runs = richLabelRuns(cell, shown.text, 1, shown.color);
+        final width = runs.isEmpty
+            ? labelWidth(
+                shown.text,
+                cell.fontSize,
+                family,
+                cell.fontBold,
+                italic,
+              )
+            : runs.fold<double>(
+                0,
+                (sum, run) =>
+                    sum +
+                    labelWidth(
+                      run.text,
+                      run.size,
+                      run.family,
+                      run.bold,
+                      run.italic,
+                    ),
+              );
+        var remaining = width + 6.0 - colPts[cell.ref.col - minCol];
         if (remaining <= 0) continue;
         final sourceFill = cellFill(cell.ref.col, cell.ref.row, cell);
         var end = cell.ref.col;
@@ -2182,27 +2257,86 @@ abstract final class OfficePdfExport {
                 }
                 sink.canvas.save();
                 sink.canvas.clipRect(x + 1, y + 1, textSpan - 2, spanH - 2);
-                sink.drawText(
+                final rich = richLabelRuns(
+                  stored,
                   shown.text,
-                  x + 3,
-                  vertical != null
-                      ? y + 1
-                      : wrap
-                      ? y + size
-                      : y + spanH - math.max(2, size * 0.28),
-                  size,
-                  conditional.fontRgb ?? shown.color,
-                  maxWidth: textSpan - 6,
-                  align: align,
-                  lineAdvance: wrap ? size * 1.1 : null,
-                  wrapText: !authoredRows || wrap,
-                  bold: stored.fontBold,
-                  family: book.styles?.familyAt(stored.styleIndex),
-                  italic: book.styles?.italicAt(stored.styleIndex) ?? false,
-                  cellBox: vertical == null
-                      ? null
-                      : (alignment: vertical, height: spanH - 2, wrap: wrap),
+                  scale,
+                  shown.color,
+                  conditionalColor: conditional.fontRgb,
                 );
+                if (rich.isNotEmpty) {
+                  final widths = [
+                    for (final run in rich)
+                      labelWidth(
+                        run.text,
+                        run.size,
+                        run.family,
+                        run.bold,
+                        run.italic,
+                      ),
+                  ];
+                  final width = widths.fold(0.0, (sum, part) => sum + part);
+                  final largest = rich.fold(
+                    0.0,
+                    (size, run) => math.max(size, run.size),
+                  );
+                  final slack = textSpan - 6 - width;
+                  var runX =
+                      x +
+                      3 +
+                      switch (align) {
+                        _TextAlign.right => slack,
+                        _TextAlign.center => slack / 2,
+                        _ => 0,
+                      };
+                  final baseline =
+                      y +
+                      switch (vertical) {
+                        SmlVAlign.top => largest,
+                        SmlVAlign.center => (spanH + largest * 0.65) / 2,
+                        _ => spanH - math.max(2, largest * 0.28),
+                      };
+                  for (final (index, run) in rich.indexed) {
+                    sink.drawText(
+                      run.text,
+                      runX,
+                      baseline,
+                      run.size,
+                      run.color,
+                      family: run.family,
+                      bold: run.bold,
+                      italic: run.italic,
+                      wrapText: false,
+                      baseLevel: 0,
+                      lineAdvance: run.size,
+                    );
+                    final next = runX + widths[index];
+                    _paintSheetRunUnderline(sink, run, runX, next, baseline);
+                    runX = next;
+                  }
+                } else {
+                  sink.drawText(
+                    shown.text,
+                    x + 3,
+                    vertical != null
+                        ? y + 1
+                        : wrap
+                        ? y + size
+                        : y + spanH - math.max(2, size * 0.28),
+                    size,
+                    conditional.fontRgb ?? shown.color,
+                    maxWidth: textSpan - 6,
+                    align: align,
+                    lineAdvance: wrap ? size * 1.1 : null,
+                    wrapText: !authoredRows || wrap,
+                    bold: stored.fontBold,
+                    family: book.styles?.familyAt(stored.styleIndex),
+                    italic: book.styles?.italicAt(stored.styleIndex) ?? false,
+                    cellBox: vertical == null
+                        ? null
+                        : (alignment: vertical, height: spanH - 2, wrap: wrap),
+                  );
+                }
                 sink.canvas.restore();
                 if (splitLabel) sink.canvas.restore();
               }
@@ -2366,6 +2500,30 @@ abstract final class OfficePdfExport {
           : null,
       draw: draw,
     );
+  }
+
+  static void _paintSheetRunUnderline(
+    _PageSink sink,
+    _SheetLabelRun run,
+    double from,
+    double to,
+    double baseline,
+  ) {
+    final lines = switch (run.underline) {
+      'single' || 'singleAccounting' => 1,
+      'double' || 'doubleAccounting' => 2,
+      _ => 0,
+    };
+    if (lines == 0 || to <= from) return;
+    sink.canvas.setStrokeColor(run.color);
+    sink.canvas.setLineWidth(math.max(0.3, run.size / 18));
+    final offset = math.max(0.65, run.size / 8);
+    for (var line = 1; line <= lines; line++) {
+      final at = baseline + offset * line;
+      sink.canvas.moveTo(from, at);
+      sink.canvas.lineTo(to, at);
+      sink.canvas.stroke();
+    }
   }
 
   /// Packs variable-size axis segments into bands that fit [budget].
