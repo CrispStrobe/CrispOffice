@@ -153,24 +153,30 @@ class SmlStyleSheet {
   /// Theme Latin faces keyed by `major` or `minor`.
   final Map<String, String> themeFontFamilies;
 
-  /// Native Normal-font selection follows builtinId, not a localized name or
-  /// cellXfs[0]. Ambiguous or malformed native style links remain unresolved.
+  /// Uses the built-in Normal identity, with the conventional untagged name
+  /// as a fallback for producers that omit builtinId.
   SmlNormalFont? get normalFont {
     final root = _source?.root;
     if (root == null) return null;
     final styles = root
         .firstChild('cellStyles', namespaceUri: root.namespaceUri)
         ?.childrenNamed('cellStyle', namespaceUri: root.namespaceUri);
-    final normal = styles
-        ?.where(
-          (style) =>
-              int.tryParse(
-                style.getAttribute('builtinId', namespaceUri: '') ?? '',
-              ) ==
-              0,
+    if (styles == null) return null;
+    final builtIn = styles
+        .where(
+          (style) => int.tryParse(_attribute(style, 'builtinId') ?? '') == 0,
         )
         .toList();
-    if (normal == null || normal.length != 1) return null;
+    final normal = builtIn.isNotEmpty
+        ? builtIn
+        : styles
+              .where(
+                (style) =>
+                    _attribute(style, 'builtinId') == null &&
+                    _attribute(style, 'name') == 'Normal',
+              )
+              .toList();
+    if (normal.length != 1) return null;
     final xfId = int.tryParse(
       normal.single.getAttribute('xfId', namespaceUri: '') ?? '',
     );

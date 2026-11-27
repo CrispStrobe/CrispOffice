@@ -103,6 +103,10 @@ const List<(String file, String family, int weight, bool italic)> _faces =
       ('Calibriz.ttf', 'Calibri', 700, true),
       ('calibril.ttf', 'Calibri Light', 300, false),
       ('calibrili.ttf', 'Calibri Light', 300, true),
+      ('Carlito-Regular.ttf', 'Carlito', 400, false),
+      ('Carlito-Bold.ttf', 'Carlito', 700, false),
+      ('Carlito-Italic.ttf', 'Carlito', 400, true),
+      ('Carlito-BoldItalic.ttf', 'Carlito', 700, true),
       ('Aptos.ttf', 'Aptos', 400, false),
       ('Aptos-Bold.ttf', 'Aptos', 700, false),
       ('Aptos-Italic.ttf', 'Aptos', 400, true),
@@ -144,6 +148,7 @@ Future<List<OfficeSystemFontFace>> load({
           '/Library/Fonts',
           if (Platform.environment['HOME'] case final home?)
             '$home/Library/Fonts',
+          '/Applications/LibreOffice.app/Contents/Resources/fonts/truetype',
         ],
         'windows' => <String>[
           r'C:\Program Files\Microsoft Office\root\vfs\Fonts\private',
@@ -152,6 +157,8 @@ Future<List<OfficeSystemFontFace>> load({
         ],
         _ => <String>[
           '/usr/share/fonts/truetype/msttcorefonts',
+          '/usr/share/fonts/truetype/crosextra',
+          '/usr/share/fonts/truetype/carlito',
           '/usr/share/fonts',
         ],
       };
