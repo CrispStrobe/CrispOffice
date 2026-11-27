@@ -1519,7 +1519,7 @@ void main() {
       book,
       options: const PdfSheetPrintOptions(
         useWorksheetPageSetup: true,
-        paperOverride: (width: 180, height: 81),
+        paperOverride: (width: 55, height: 81),
         marginOverride: 10,
       ),
     );
@@ -1529,6 +1529,36 @@ void main() {
       closeTo(20.75, 0.001),
     );
   });
+
+  test(
+    'XLSX print preserves an explicitly sized worksheet-wide row height',
+    () {
+      final sheet = SmlWorksheet(name: 'Rows', sheetId: 1)
+        ..printArea = SmlRange.parse('A1:A3')
+        ..pageSetup = SmlPageSetup(scale: 90)
+        ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(20.75)
+        ..importedDefaultRowHeightIsCustom = true;
+      for (var row = 0; row < 3; row++) {
+        sheet.rowHeights[row] = SmlWorksheet.rowHeightFromExcel(20.75);
+        sheet.cell(SmlCellRef(0, row)).value = row;
+      }
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+      );
+      expect(book.firstSheet.importedDefaultRowHeightIsCustom, isTrue);
+      final pdf = OfficePrint.workbook(
+        book,
+        options: const PdfSheetPrintOptions(
+          useWorksheetPageSetup: true,
+          paperOverride: (width: 55, height: 75),
+          marginOverride: 10,
+        ),
+      );
+      // Three 20.75pt rows at 90% need 56.025pt. Flooring the rows first
+      // would fit all three within 55pt and lose the continuation page.
+      expect(_pageCount(pdf), 2);
+    },
+  );
 
   test('native vertical alignment positions PDF cell text', () {
     final styles = SmlStyleSheet.parse('''
@@ -1740,6 +1770,35 @@ void main() {
     expect(body, matches(RegExp(r'94(?:\.0+)? [0-9.]+ re\s+W n')));
     expect(body, matches(RegExp(r'46(?:\.0+)? [0-9.]+ re\s+W n')));
   });
+
+  test(
+    'XLSX prints unwrapped labels over adjacent empty cells of the same fill',
+    () {
+      final book = SmlWorkbook();
+      final sheet = book.firstSheet..printArea = SmlRange.parse('A1:C1');
+      for (var column = 0; column < 3; column++) {
+        sheet.columnWidths[column] = 64;
+      }
+      sheet.cellA1('A1')
+        ..value = 'Unwrapped heading'
+        ..fillRgb = 'FFFF00';
+      sheet.cellA1('B1').fillRgb = 'FFFF00';
+      sheet.cellA1('C1').fillRgb = '00FF00';
+      final reopened = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(book),
+      );
+      final bytes = OfficePrint.workbook(reopened);
+      final content = _inflated(bytes).join();
+      expect(content, matches(RegExp(r'94(?:\.0+)? [0-9.]+ re\s+W n')));
+      final text = PdfFile.open(bytes).displayList(0).runs;
+      expect(text.any((run) => run.text == 'Unwrapped heading'), isTrue);
+      expect(content, contains('0 1 0 rg'));
+      expect(
+        content.indexOf('0 1 0 rg'),
+        lessThan(content.indexOf('Unwrapped heading')),
+      );
+    },
+  );
 
   test('PPT PDF strokes shapes and emits URI link annots', () {
     final PmlPresentation deck = PmlPresentation(

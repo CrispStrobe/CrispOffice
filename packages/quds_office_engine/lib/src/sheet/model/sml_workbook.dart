@@ -673,6 +673,9 @@ class SmlWorksheet {
   /// Authored default row height in CSS pixels, before per-row overrides.
   double? importedDefaultRowHeightPx;
 
+  /// Whether Excel marks the worksheet-wide default as explicitly sized.
+  bool importedDefaultRowHeightIsCustom = false;
+
   double get effectiveDefaultRowHeightPx =>
       importedDefaultRowHeightPx ?? defaultRowHeightPx;
 

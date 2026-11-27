@@ -1428,15 +1428,19 @@ abstract final class OfficePdfExport {
         (cell.horizontalAlign == SmlHAlign.general ||
             cell.horizontalAlign == SmlHAlign.left);
 
-    bool blocksOverflow(int col, int row) {
+    final authoredRows = options.useWorksheetPageSetup && book.package != null;
+    String cellFill(int col, int row, SmlCell? cell) =>
+        conditionalFormats.resolve(SmlCellRef(col, row)).fillRgb ??
+        cell?.fillRgb ??
+        '';
+
+    bool blocksOverflow(int col, int row, String sourceFill) {
       final neighbor = sheet.rows[row]?.cells[col];
+      final fill = cellFill(col, row, neighbor);
       return neighbor?.formula != null ||
           (neighbor?.asString.isNotEmpty ?? false) ||
           sheet.mergeAt(col, row) != null ||
-          (conditionalFormats.resolve(SmlCellRef(col, row)).fillRgb ??
-                  neighbor?.fillRgb ??
-                  '')
-              .isNotEmpty;
+          (fill.isNotEmpty && (!authoredRows || fill != sourceFill));
     }
 
     final List<double> colPts = <double>[
@@ -1477,12 +1481,16 @@ abstract final class OfficePdfExport {
         if (remaining <= colEnds.last - colEnds[cell.ref.col - minCol]) {
           continue;
         }
+        final sourceFill = cellFill(cell.ref.col, cell.ref.row, cell);
         for (
           var col = cell.ref.col;
           col < SmlWorksheet.excelColumnCount;
           col++
         ) {
-          if (col != cell.ref.col && blocksOverflow(col, cell.ref.row)) break;
+          if (col != cell.ref.col &&
+              blocksOverflow(col, cell.ref.row, sourceFill)) {
+            break;
+          }
           if (col > maxCol) {
             final width = math.max(4.0, printColumnWidth(col));
             colPts.add(width);
@@ -1494,24 +1502,30 @@ abstract final class OfficePdfExport {
         }
       }
     }
-    final authoredRows = options.useWorksheetPageSetup && book.package != null;
-    final List<double> rowPts = <double>[
-      for (int r = minRow; r <= maxRow; r++)
-        math.max(
-          4,
-          authoredRows
-              // Excel for Mac quantizes XLSX row geometry before print scaling.
-              ? (_sheetPxToPt(sheet.rowHeightAt(r)) + 1e-9).floorToDouble()
-              : _sheetPxToPt(sheet.rowHeightAt(r)),
-        ),
+    final fixedPrintPercent =
+        options.scalePercentOverride ?? setup?.scale ?? 100;
+    double printRowHeight(int row) {
+      final pixels = sheet.rowHeightAt(row);
+      final points = _sheetPxToPt(pixels);
+      final usesCustomDefault =
+          sheet.importedDefaultRowHeightIsCustom &&
+          (pixels - sheet.effectiveDefaultRowHeightPx).abs() < 1e-8;
+      // A worksheet-wide custom row height is an authored dimension.
+      // Preserve it before print scaling, including explicit matching rows.
+      return !authoredRows || usesCustomDefault
+          ? points
+          : (points + 1e-9).floorToDouble();
+    }
+
+    final rowPts = [
+      for (int row = minRow; row <= maxRow; row++)
+        math.max(4.0, printRowHeight(row)),
     ];
 
     final double usableW = pageW - left - right - gutter;
     final double usableH =
         pageH - top - bottom - band - (setup == null ? 16 : 0);
-    var scale =
-        (options.scalePercentOverride ?? setup?.scale ?? 100).clamp(10, 400) /
-        100;
+    var scale = fixedPrintPercent.clamp(10, 400) / 100;
     if (fit) {
       final authoredFit =
           authoredRows &&
@@ -2026,6 +2040,7 @@ abstract final class OfficePdfExport {
                 '595959',
               );
             }
+            final overflowingLabels = <void Function()>[];
             for (int c = firstCol; c <= lastCol; c++) {
               final SmlMerge? merge = sheet.mergeAt(c, r);
               final anchor = merge?.c0 ?? c;
@@ -2062,13 +2077,11 @@ abstract final class OfficePdfExport {
                 sink.canvas.clipRect(printedLeft, y, printedWidth, spanH);
               }
               paintCellFrame(x, y, spanW, spanH, stored, conditional);
+              if (splitMerge) sink.canvas.restore();
               final shown = stored == null
                   ? null
                   : _sheetDisplay(book, sheet, stored);
-              if (shown == null || shown.text.isEmpty) {
-                if (splitMerge) sink.canvas.restore();
-                continue;
-              }
+              if (shown == null || shown.text.isEmpty) continue;
               final double size = math.max(4, stored!.fontSize * scale);
               final _TextAlign align = switch (stored.horizontalAlign) {
                 SmlHAlign.left => _TextAlign.left,
@@ -2081,35 +2094,54 @@ abstract final class OfficePdfExport {
               final vertical = book.styles?.verticalAlignAt(stored.styleIndex);
               var textSpan = spanW;
               if (merge == null && canOverflow(stored, shown.numeric, wrap)) {
+                final sourceFill = conditional.fillRgb ?? stored.fillRgb;
                 for (int next = c + 1; next <= minCol + cb.end; next++) {
-                  if (blocksOverflow(next, r)) break;
+                  if (blocksOverflow(next, r, sourceFill)) break;
                   textSpan += colWAt(next);
                 }
               }
-              sink.canvas.save();
-              sink.canvas.clipRect(x + 1, y + 1, textSpan - 2, spanH - 2);
-              sink.drawText(
-                shown.text,
-                x + 3,
-                vertical != null
-                    ? y + 1
-                    : wrap
-                    ? y + size
-                    : y + spanH - math.max(2, size * 0.28),
-                size,
-                conditional.fontRgb ?? shown.color,
-                maxWidth: textSpan - 6,
-                align: align,
-                lineAdvance: wrap ? size * 1.1 : null,
-                bold: stored.fontBold,
-                family: book.styles?.familyAt(stored.styleIndex),
-                italic: book.styles?.italicAt(stored.styleIndex) ?? false,
-                cellBox: vertical == null
-                    ? null
-                    : (alignment: vertical, height: spanH - 2, wrap: wrap),
-              );
-              sink.canvas.restore();
-              if (splitMerge) sink.canvas.restore();
+              void paintLabel() {
+                if (splitMerge) {
+                  sink.canvas.save();
+                  sink.canvas.clipRect(printedLeft, y, printedWidth, spanH);
+                }
+                sink.canvas.save();
+                sink.canvas.clipRect(x + 1, y + 1, textSpan - 2, spanH - 2);
+                sink.drawText(
+                  shown.text,
+                  x + 3,
+                  vertical != null
+                      ? y + 1
+                      : wrap
+                      ? y + size
+                      : y + spanH - math.max(2, size * 0.28),
+                  size,
+                  conditional.fontRgb ?? shown.color,
+                  maxWidth: textSpan - 6,
+                  align: align,
+                  lineAdvance: wrap ? size * 1.1 : null,
+                  wrapText: !authoredRows || wrap,
+                  bold: stored.fontBold,
+                  family: book.styles?.familyAt(stored.styleIndex),
+                  italic: book.styles?.italicAt(stored.styleIndex) ?? false,
+                  cellBox: vertical == null
+                      ? null
+                      : (alignment: vertical, height: spanH - 2, wrap: wrap),
+                );
+                sink.canvas.restore();
+                if (splitMerge) sink.canvas.restore();
+              }
+
+              // Neighboring fills must be painted before text that spills
+              // across them.
+              if (textSpan > spanW) {
+                overflowingLabels.add(paintLabel);
+              } else {
+                paintLabel();
+              }
+            }
+            for (final paint in overflowingLabels) {
+              paint();
             }
           }
         }
@@ -3920,6 +3952,7 @@ class _PageSink {
     String? family,
     int? baseLevel,
     double? lineAdvance,
+    bool wrapText = true,
     ({SmlVAlign alignment, double height, bool wrap})? cellBox,
   }) {
     if (text.isEmpty || size <= 0) {
@@ -3932,7 +3965,7 @@ class _PageSink {
       final List<BrokenLine> lines = _layoutLines(
         text,
         size,
-        maxWidth: cellBox?.wrap == false ? 1e9 : maxWidth ?? 1e9,
+        maxWidth: !wrapText || cellBox?.wrap == false ? 1e9 : maxWidth ?? 1e9,
         bold: bold,
         italic: italic,
         family: family,

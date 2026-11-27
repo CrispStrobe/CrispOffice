@@ -824,6 +824,9 @@ class SheetDeserializer {
           sheet.importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(
             height,
           );
+          final custom = reader.getAttribute('customHeight');
+          sheet.importedDefaultRowHeightIsCustom =
+              custom == '1' || custom == 'true';
         }
         final width = double.tryParse(
           reader.getAttribute('defaultColWidth') ?? '',
@@ -2488,6 +2491,7 @@ class SheetSerializer {
       'sheetFormatPr',
       attributes: <String, String>{
         'defaultRowHeight': '${sheet.effectiveDefaultRowHeightPx * 72 / 96}',
+        if (sheet.importedDefaultRowHeightIsCustom) 'customHeight': '1',
         if (width != null) 'defaultColWidth': '$width',
         if (base != null) 'baseColWidth': '$base',
       },
