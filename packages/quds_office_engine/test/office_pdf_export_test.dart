@@ -1332,6 +1332,75 @@ void main() {
     expect(opened.firstSheet.printTitleRows?.minRow, 0);
   });
 
+  test('worksheet page tokens count the selected print job', () {
+    final first = SmlWorksheet(
+      name: 'First',
+      sheetId: 1,
+      pageSetup: SmlPageSetup(firstPageNumber: 3, useFirstPageNumber: true),
+      headerFooter: SmlHeaderFooter(footerCenter: 'Page &P of &N'),
+    );
+    first
+      ..cellA1('A1').value = 'First page'
+      ..cellA1('A2').value = 'Second page'
+      ..importManualPageBreak(1, rows: true);
+    final blank = SmlWorksheet(name: 'Blank', sheetId: 2);
+    final last = SmlWorksheet(
+      name: 'Last',
+      sheetId: 3,
+      pageSetup: SmlPageSetup(firstPageNumber: 7, useFirstPageNumber: true),
+      headerFooter: SmlHeaderFooter(footerCenter: 'Page &P of &N'),
+    )..cellA1('A1').value = 'Last page';
+    final book = SmlWorkbook(sheets: [first, blank, last]);
+
+    final all = PdfFile.open(OfficePrint.workbook(book));
+    expect(all.pageCount, 3);
+    for (var i = 0; i < all.pageCount; i++) {
+      expect(
+        all.displayList(i).runs.map((run) => run.text),
+        contains('Page ${i + 3} of 3'),
+      );
+    }
+    final selected = PdfFile.open(
+      OfficePrint.workbook(
+        book,
+        settings: const OfficePrintSettings(pageFrom: 3, pageTo: 3),
+      ),
+    );
+    expect(selected.pageCount, 1);
+    expect(
+      selected.displayList(0).runs.map((run) => run.text),
+      contains('Page 7 of 1'),
+    );
+  });
+
+  test(
+    'sheet print includes empty fills and borders within the print area',
+    () {
+      final sheet = SmlWorksheet(
+        name: 'Template',
+        sheetId: 1,
+        pageSetup: SmlPageSetup(
+          paperWidthIn: 2.5,
+          marginLeftIn: 15 / 72,
+          marginRightIn: 15 / 72,
+        ),
+      );
+      sheet
+        ..cellA1('A1').value = 'Form'
+        ..cellA1('B1').fillRgb = 'FFFF00'
+        ..cellA1('C1').borderRgb = '000000'
+        ..cellA1('D1').fontBold = true;
+      for (var col = 0; col < 4; col++) {
+        sheet.setColumnWidth(col, 120);
+      }
+      final book = SmlWorkbook(sheets: [sheet]);
+      expect(_pageCount(OfficePrint.workbook(book)), 3);
+
+      sheet.printArea = SmlRange.parse('A1:B1');
+      expect(_pageCount(OfficePrint.workbook(book)), 2);
+    },
+  );
+
   test(
     'XLSX line feeds survive round-trip and appear on separate PDF lines',
     () {

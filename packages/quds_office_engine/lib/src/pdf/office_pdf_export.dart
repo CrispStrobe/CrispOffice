@@ -262,7 +262,8 @@ abstract final class OfficePdfExport {
     final _FontPack pack = _FontPack.build(set, cps);
     final PdfDocument pdf = PdfDocument(title: title);
     final _PdfImageBank images = _PdfImageBank();
-    var printed = 0;
+    final plans = <(String, _WorksheetPrintPlan)>[];
+    var totalPages = 0;
     final int from = sheetFrom.clamp(1, math.max(1, book.sheets.length));
     final int to = (sheetTo ?? book.sheets.length).clamp(
       from,
@@ -277,8 +278,7 @@ abstract final class OfficePdfExport {
           sheet.printArea == null) {
         continue;
       }
-      final int before = pdf.pages.length;
-      printed += _printSheet(
+      final plan = _planWorksheetPrint(
         pdf,
         book,
         sheet,
@@ -288,11 +288,18 @@ abstract final class OfficePdfExport {
         digitWidth,
         normalDigitPoints?.round(),
       );
-      if (pdf.pages.length > before) {
-        pdf.addOutline(PdfOutlineItem(title: sheet.name, pageIndex: before));
-      }
+      plans.add((sheet.name, plan));
+      totalPages += plan.pageCount;
     }
-    if (printed == 0) {
+    // The first printed worksheet can set the starting number for the job.
+    var pageNumber = plans.firstOrNull?.$2.startPage ?? 1;
+    for (final (sheetName, plan) in plans) {
+      final pageIndex = pdf.pages.length;
+      plan.draw(pageNumber, totalPages);
+      pdf.addOutline(PdfOutlineItem(title: sheetName, pageIndex: pageIndex));
+      pageNumber += plan.pageCount;
+    }
+    if (totalPages == 0) {
       final (width, height) = _sheetPaper(options, null);
       final canvas = PdfCanvas(width, height);
       if (options.pageBorder) {
@@ -1255,7 +1262,7 @@ abstract final class OfficePdfExport {
     return (pageW, pageH);
   }
 
-  static int _printSheet(
+  static _WorksheetPrintPlan _planWorksheetPrint(
     PdfDocument pdf,
     SmlWorkbook book,
     SmlWorksheet sheet,
@@ -1312,8 +1319,11 @@ abstract final class OfficePdfExport {
       any = true;
     } else {
       for (final SmlCell cell in sheet.allCells) {
-        if ((cell.value == null || cell.asString.isEmpty) &&
-            (cell.formula == null || cell.formula!.isEmpty)) {
+        if (!cell.hasContent &&
+            !(options.useWorksheetPageSetup &&
+                (cell.fillRgb.isNotEmpty ||
+                    cell.borderRgb.isNotEmpty ||
+                    book.styles?.bordersAt(cell.styleIndex) != null))) {
           continue;
         }
         if (!any) {
@@ -1476,19 +1486,18 @@ abstract final class OfficePdfExport {
       return extent;
     }
 
-    var pages = 0;
-    var pageNo = setup?.useFirstPageNumber == true
-        ? setup?.firstPageNumber ?? 1
-        : 1;
-    final int totalGuess = math.max(1, colBands.length * rowBands.length);
+    final pageCount = colBands.length * rowBands.length;
     final bool rtl = sheet.rightToLeft;
     final SmlHeaderFooter? hf = sheet.headerFooter;
 
     final acrossThenDown = setup?.printAcrossThenDown ?? true;
     final outerBands = acrossThenDown ? rowBands : colBands;
     final innerBands = acrossThenDown ? colBands : rowBands;
-    for (final outer in outerBands) {
-      for (final inner in innerBands) {
+    void draw(int startPage, int totalPages) {
+      for (var pageIndex = 0; pageIndex < pageCount; pageIndex++) {
+        final outer = outerBands[pageIndex ~/ innerBands.length];
+        final inner = innerBands[pageIndex % innerBands.length];
+        final pageNo = startPage + pageIndex;
         final rb = acrossThenDown ? outer : inner;
         final cb = acrossThenDown ? inner : outer;
         final _PageSink sink = _PageSink(pageW, pageH, pack, images);
@@ -1504,7 +1513,7 @@ abstract final class OfficePdfExport {
               sections[i],
               sheet.name,
               pageNo,
-              totalGuess,
+              totalPages,
             );
             sink.drawText(
               text,
@@ -1520,7 +1529,7 @@ abstract final class OfficePdfExport {
 
         if (hf == null && setup == null) {
           sink.drawText(
-            '${sheet.name}  -  $pageNo / $totalGuess',
+            '${sheet.name}  -  ${pageIndex + 1} / $pageCount',
             left,
             top + 10,
             9,
@@ -1846,11 +1855,16 @@ abstract final class OfficePdfExport {
           );
         }
         sink.finish(pdf);
-        pages++;
-        pageNo++;
       }
     }
-    return pages;
+
+    return (
+      pageCount: pageCount,
+      startPage: setup?.useFirstPageNumber == true
+          ? setup?.firstPageNumber
+          : null,
+      draw: draw,
+    );
   }
 
   static String _expandSheetTokens(
@@ -3127,6 +3141,12 @@ abstract final class OfficePdfExport {
     return (0.299 * r + 0.587 * g + 0.114 * b) < 140 ? 'FFFFFF' : '1A1A1A';
   }
 }
+
+typedef _WorksheetPrintPlan = ({
+  int pageCount,
+  int? startPage,
+  void Function(int startPage, int totalPages) draw,
+});
 
 enum _ArrowDirection { down, up, left, right }
 
