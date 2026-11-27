@@ -251,6 +251,17 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     }),
   );
 
+  Future<MailResult<bool>> hasCachedMessage(
+    MailAccountId account,
+    MailMessageId id,
+  ) => _run(() async {
+    await _account(account);
+    return (await _rows(
+      'SELECT 1 FROM cached_messages WHERE account=? AND message=? LIMIT 1',
+      [account.value, id.value],
+    )).isNotEmpty;
+  });
+
   Future<MailResult<MailMessage?>> loadCachedMessage(
     MailAccountId account,
     MailMessageId id,

@@ -111,6 +111,11 @@ abstract interface class StudioMailMailboxStore {
   Future<MailCacheCleanupReport> clearCache();
 }
 
+/// Lightweight cache presence for background prefetch checks.
+abstract interface class StudioMailCachedBodyPresence {
+  Future<bool> hasCachedBody(MailHeaderRecord header);
+}
+
 /// Durable synchronization is separate from a saved foreground browse window.
 /// The draft owner keeps the same exclusive repository lease for both ports.
 abstract interface class StudioMailSyncStore implements MailSyncRepository {
@@ -178,6 +183,7 @@ typedef StudioMailStorageQueue =
 final class SqliteStudioMailMailboxStore
     implements
         StudioMailMailboxStore,
+        StudioMailCachedBodyPresence,
         StudioMailMailboxWatchStore,
         StudioMailCachedHeaderSearchStore,
         StudioMailScopedHeaderSearchStore,
@@ -510,6 +516,12 @@ final class SqliteStudioMailMailboxStore
   });
 
   @override
+  Future<bool> hasCachedBody(MailHeaderRecord header) => _serialize(() async {
+    _scope(header.remote.account);
+    return _value(await _repository.hasCachedMessage(account, header.id));
+  });
+
+  @override
   Future<MailMessage?> loadMessage(MailHeaderRecord header) =>
       _serialize(() async {
         _scope(header.remote.account);
@@ -780,7 +792,13 @@ final class StudioMailMailboxCapture {
       for (final header
           in headers.where((entry) => entry.flags?.isDraft != true).take(12)) {
         lease.checkCurrent();
-        if (await loadMessage(header) != null) continue;
+        final retained = switch (store) {
+          StudioMailCachedBodyPresence presence => await presence.hasCachedBody(
+            _header(header),
+          ),
+          _ => await loadMessage(header) != null,
+        };
+        if (retained) continue;
         lease.checkCurrent();
         final result = await fetch(header.remote, budget, lease);
         lease.checkCurrent();
