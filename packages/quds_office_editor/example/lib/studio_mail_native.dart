@@ -2181,8 +2181,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         account == null ||
         _busy ||
         _dialogOpen ||
-        _outboxFolder != null)
+        _outboxFolder != null) {
       return;
+    }
     final generation = _sessionGeneration;
     if (!await _restoreDraftStore(client, account, generation)) return;
     if (!mounted || !_currentSession(client, generation)) return;
@@ -2241,8 +2242,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     } on Object {
       if (current()) setState(() => _error = widget.strings.mailOutboxFailed);
     } finally {
-      if (_currentSession(client, generation))
+      if (_currentSession(client, generation)) {
         setState(() => _dialogOpen = false);
+      }
     }
   });
 

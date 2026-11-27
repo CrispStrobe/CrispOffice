@@ -13,7 +13,6 @@ import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_outbox_schedule_session.dart';
 import 'studio_mail_schedule_dialog.dart';
 import 'studio_mail_schedule_strings.dart';
-import 'studio_mail_strings.dart';
 import 'studio_strings.dart';
 
 /// A local, account-scoped foreground queue. Opening or refreshing never sends.
