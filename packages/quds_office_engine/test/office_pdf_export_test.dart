@@ -1582,6 +1582,41 @@ void main() {
     expect(_pageCount(pdf), 2);
   });
 
+  test('automatic print rows round without thick horizontal borders', () {
+    final sheet = SmlWorksheet(name: 'Rows', sheetId: 1)
+      ..printArea = SmlRange.parse('A1:A3')
+      ..pageSetup = SmlPageSetup();
+    for (var row = 0; row < 3; row++) {
+      sheet.cell(SmlCellRef(0, row)).value = row;
+      sheet.importRowHeight(
+        row,
+        SmlWorksheet.rowHeightFromExcel(23.25),
+        automatic: true,
+      );
+    }
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    Uint8List printSheet() => OfficePrint.workbook(
+      book,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        paperOverride: (width: 70, height: 100),
+        marginOverride: 15,
+      ),
+    );
+    expect(_pageCount(printSheet()), 1);
+    for (final row in book.firstSheet.rows.values) {
+      row.nativeLayout = (
+        styleIndex: null,
+        customFormat: false,
+        thickTop: false,
+        thickBottom: true,
+      );
+    }
+    expect(_pageCount(printSheet()), 2);
+  });
+
   test('automatic row height survives save and refits wrapped print text', () {
     final sheet = SmlWorksheet(name: 'Auto rows', sheetId: 1)
       ..printArea = SmlRange.parse('A1:A2')
@@ -1871,6 +1906,34 @@ void main() {
       );
     },
   );
+
+  test('fixed-scale XLSX print carries overflow onto continuation pages', () {
+    final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
+      ..pageSetup = SmlPageSetup();
+    const label = 'One long heading with an allocation reference and a clerk';
+    sheet.cellA1('A1').value = label;
+    for (var col = 0; col < 8; col++) {
+      sheet.setColumnWidth(col, 64);
+    }
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    const options = PdfSheetPrintOptions(
+      useWorksheetPageSetup: true,
+      paperOverride: (width: 150, height: 200),
+      marginOverride: 15,
+    );
+    final bytes = OfficePrint.workbook(book, options: options);
+    final pdf = PdfFile.open(bytes);
+    expect(pdf.pageCount, greaterThan(1));
+    expect(
+      pdf.displayList(pdf.pageCount - 1).runs.map((run) => run.text).join(),
+      contains('clerk'),
+    );
+
+    book.firstSheet.printArea = SmlRange.parse('A1');
+    expect(_pageCount(OfficePrint.workbook(book, options: options)), 1);
+  });
 
   test('PPT PDF strokes shapes and emits URI link annots', () {
     final PmlPresentation deck = PmlPresentation(

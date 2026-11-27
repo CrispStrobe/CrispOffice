@@ -1483,7 +1483,10 @@ String applyNumberFormat(
     if (value is num && value == value.roundToDouble()) {
       return value.round().toString();
     }
-    return value.toString();
+    final text = value.toString();
+    return code == 'General' && value is num
+        ? text.replaceFirst('.', displayDecimalSeparator ?? decimalSeparator)
+        : text;
   }
 
   /// n API.

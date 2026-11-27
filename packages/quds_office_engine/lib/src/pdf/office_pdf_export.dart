@@ -1446,17 +1446,13 @@ abstract final class OfficePdfExport {
     final List<double> colPts = <double>[
       for (int c = minCol; c <= maxCol; c++) math.max(4, printColumnWidth(c)),
     ];
+    final labelOverflow = <int, Map<int, int>>{};
     if (options.useWorksheetPageSetup &&
         area == null &&
-        fit &&
-        fitWidth > 0 &&
-        !rtl) {
-      // In automatic print areas, unwrapped labels can occupy empty cells
-      // beyond the final populated column and take part in width fitting.
-      final colEnds = <double>[0];
-      for (final width in colPts) {
-        colEnds.add(colEnds.last + width);
-      }
+        !rtl &&
+        (authoredRows || (fit && fitWidth > 0))) {
+      // Unwrapped labels in an inferred print area can extend the printable
+      // range. This applies to both fitted and fixed-scale worksheet jobs.
       for (final cell in sheet.allCells) {
         if (!cell.hasContent) continue;
         final shown = _sheetDisplay(book, sheet, cell);
@@ -1467,7 +1463,7 @@ abstract final class OfficePdfExport {
         }
         final family = book.styles?.familyAt(cell.styleIndex);
         final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
-        var remaining = 6.0;
+        var remaining = 6.0 - colPts[cell.ref.col - minCol];
         for (final cp in shown.text.runes) {
           if (cp < 32) continue;
           remaining += pack.widthOf(
@@ -1478,27 +1474,21 @@ abstract final class OfficePdfExport {
             italic: italic,
           );
         }
-        if (remaining <= colEnds.last - colEnds[cell.ref.col - minCol]) {
-          continue;
-        }
+        if (remaining <= 0) continue;
         final sourceFill = cellFill(cell.ref.col, cell.ref.row, cell);
-        for (
-          var col = cell.ref.col;
-          col < SmlWorksheet.excelColumnCount;
-          col++
-        ) {
-          if (col != cell.ref.col &&
-              blocksOverflow(col, cell.ref.row, sourceFill)) {
-            break;
-          }
+        var end = cell.ref.col;
+        while (remaining > 0 && end + 1 < SmlWorksheet.excelColumnCount) {
+          final col = end + 1;
+          if (blocksOverflow(col, cell.ref.row, sourceFill)) break;
           if (col > maxCol) {
-            final width = math.max(4.0, printColumnWidth(col));
-            colPts.add(width);
-            colEnds.add(colEnds.last + width);
+            colPts.add(math.max(4, printColumnWidth(col)));
             maxCol = col;
           }
           remaining -= colPts[col - minCol];
-          if (remaining <= 0) break;
+          end = col;
+        }
+        if (end > cell.ref.col) {
+          (labelOverflow[cell.ref.row] ??= {})[cell.ref.col] = end;
         }
       }
     }
@@ -1506,8 +1496,16 @@ abstract final class OfficePdfExport {
         options.scalePercentOverride ?? setup?.scale ?? 100;
     final rowMeasure = _PageSink(0, 0, pack, images);
     double automaticRowHeight(int row, double stored) {
-      var needed = stored.floorToDouble() + 1;
-      final cells = sheet.rows[row]?.cells;
+      final sourceRow = sheet.rows[row];
+      final layout = sourceRow?.nativeLayout;
+      final hasThickBorder =
+          (layout?.thickTop ?? false) || (layout?.thickBottom ?? false);
+      // Automatic rows round to the nearest point. A thick horizontal
+      // border reserves space up to the next whole point.
+      var needed = hasThickBorder
+          ? (stored + 1e-9).floorToDouble() + 1
+          : stored.roundToDouble();
+      final cells = sourceRow?.cells;
       if (cells == null) return needed;
       for (final cell in cells.values) {
         final col = cell.ref.col;
@@ -1838,6 +1836,11 @@ abstract final class OfficePdfExport {
         final anchor = sheet.cellOrNull(merge.origin);
         if (anchor != null && hasInk(anchor)) mark(merge.c1, merge.r1);
       }
+      for (final row in labelOverflow.entries) {
+        for (final end in row.value.values) {
+          mark(end, row.key);
+        }
+      }
       for (final rule in sheet.conditionalFormats) {
         final range = rule.range;
         if (range.maxCol >= minCol &&
@@ -2097,7 +2100,12 @@ abstract final class OfficePdfExport {
               );
             }
             final overflowingLabels = <void Function()>[];
-            for (int c = firstCol; c <= lastCol; c++) {
+            final rowOverflow = labelOverflow[r] ?? const <int, int>{};
+            for (final c in [
+              for (final spill in rowOverflow.entries)
+                if (spill.key < firstCol && spill.value >= firstCol) spill.key,
+              for (var col = firstCol; col <= lastCol; col++) col,
+            ]) {
               final SmlMerge? merge = sheet.mergeAt(c, r);
               final anchor = merge?.c0 ?? c;
               if (merge != null &&
@@ -2132,7 +2140,9 @@ abstract final class OfficePdfExport {
                 sink.canvas.save();
                 sink.canvas.clipRect(printedLeft, y, printedWidth, spanH);
               }
-              paintCellFrame(x, y, spanW, spanH, stored, conditional);
+              if (c >= firstCol) {
+                paintCellFrame(x, y, spanW, spanH, stored, conditional);
+              }
               if (splitMerge) sink.canvas.restore();
               final shown = stored == null
                   ? null
@@ -2148,16 +2158,25 @@ abstract final class OfficePdfExport {
               };
               final wrap = wraps(stored, shown.text);
               final vertical = book.styles?.verticalAlignAt(stored.styleIndex);
+              final end = rowOverflow[anchor];
               var textSpan = spanW;
-              if (merge == null && canOverflow(stored, shown.numeric, wrap)) {
+              if (end != null) {
+                textSpan =
+                    columnOffsets[end - minCol + 1] -
+                    columnOffsets[anchor - minCol];
+              } else if (merge == null &&
+                  canOverflow(stored, shown.numeric, wrap)) {
                 final sourceFill = conditional.fillRgb ?? stored.fillRgb;
-                for (int next = c + 1; next <= minCol + cb.end; next++) {
+                for (int next = c + 1; next <= lastCol; next++) {
                   if (blocksOverflow(next, r, sourceFill)) break;
                   textSpan += colWAt(next);
                 }
               }
+              final splitLabel =
+                  splitMerge ||
+                  (end != null && (anchor < firstCol || end > lastCol));
               void paintLabel() {
-                if (splitMerge) {
+                if (splitLabel) {
                   sink.canvas.save();
                   sink.canvas.clipRect(printedLeft, y, printedWidth, spanH);
                 }
@@ -2185,7 +2204,7 @@ abstract final class OfficePdfExport {
                       : (alignment: vertical, height: spanH - 2, wrap: wrap),
                 );
                 sink.canvas.restore();
-                if (splitMerge) sink.canvas.restore();
+                if (splitLabel) sink.canvas.restore();
               }
 
               // Neighboring fills must be painted before text that spills

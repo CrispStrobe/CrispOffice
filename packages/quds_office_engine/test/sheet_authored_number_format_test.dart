@@ -17,6 +17,15 @@ void main() {
     expect(styles.format(-1234.5, 0, locale: 'de_DE'), '-1.234,50 €');
   });
 
+  test('localizes General numbers without formatting text as numbers', () {
+    final styles = SmlStyleSheet();
+    expect(styles.format(3489.75, 0, locale: 'de_DE'), '3489,75');
+    expect(styles.format(3489.75, 0, locale: 'en_US'), '3489.75');
+    expect(styles.format(1.23e-7, 0, locale: 'de_DE'), '1,23e-7');
+    expect(styles.format(3489, 0, locale: 'de_DE'), '3489');
+    expect(styles.format('3489.75', 0, locale: 'de_DE'), '3489.75');
+  });
+
   test('an authored custom number format is written and reloads', () async {
     final book = SmlWorkbook(
       sheets: [SmlWorksheet(name: 'Sheet1', sheetId: 1)],
