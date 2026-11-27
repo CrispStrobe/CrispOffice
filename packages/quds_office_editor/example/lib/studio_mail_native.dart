@@ -19,6 +19,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_diagnostics.dart';
 import 'studio_live_productivity.dart';
 import 'studio_mcp_mail_actions.dart';
 import 'studio_mcp_mail_folder.dart';
@@ -359,6 +360,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   @override
   void initState() {
     super.initState();
+    recordStudioDiagnostic(StudioDiagnosticEvent.mailMounted);
     WidgetsBinding.instance.addObserver(this);
     _credentials = widget.credentialStore ?? StudioMailCredentialStore();
     _accountCatalogStore = switch (_credentials) {
@@ -390,7 +392,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _sharedStorage,
       );
     }
-    unawaited(_loadCredentials());
+    recordStudioDiagnostic(StudioDiagnosticEvent.mailCredentialLoadStarted);
+    unawaited(
+      _loadCredentials().then((_) {
+        recordStudioDiagnostic(
+          StudioDiagnosticEvent.mailCredentialLoadFinished,
+        );
+      }),
+    );
   }
 
   void _settingsEdited() {
@@ -413,6 +422,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       saved = await _credentials.load();
     } on Object {
+      recordStudioDiagnostic(StudioDiagnosticEvent.mailCredentialLoadFailed);
       // Missing or locked keychains do not prevent explicit account setup.
       return;
     }
@@ -562,6 +572,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           !_accountNavigationPending &&
           _client == null;
       if (!result.isSuccess) {
+        recordStudioDiagnostic(StudioDiagnosticEvent.mailCredentialLoadFailed);
         if (current) {
           _credentialError = widget.strings.mailAccountsLoadFailed;
           // An encrypted vault is intentionally locked on process start.

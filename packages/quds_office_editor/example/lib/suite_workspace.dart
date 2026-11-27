@@ -27,6 +27,7 @@ import 'studio_ribbon_preferences.dart';
 import 'studio_settings.dart';
 import 'studio_shortcuts.dart';
 import 'studio_desktop_menu.dart';
+import 'studio_diagnostics.dart';
 import 'studio_files.dart';
 import 'studio_fonts.dart';
 import 'studio_recent_files.dart';
@@ -2905,6 +2906,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _openMail() async {
+    recordStudioDiagnostic(StudioDiagnosticEvent.mailRequested);
     _zoteroHostGeneration++;
     await StudioWindow.setTitle('${_strings.mailTitle} — CrispOffice');
     if (!mounted) return;
