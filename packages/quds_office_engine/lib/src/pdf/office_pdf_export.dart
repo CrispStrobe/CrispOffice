@@ -2127,8 +2127,12 @@ abstract final class OfficePdfExport {
               sink.canvas,
               0,
               0,
-              math.max(40, width / scale),
-              math.max(40, height / scale),
+              drawing.visual.isPicture
+                  ? width / scale
+                  : math.max(40, width / scale),
+              drawing.visual.isPicture
+                  ? height / scale
+                  : math.max(40, height / scale),
               drawing.visual,
               sink.images,
               drawText: sink.drawText,
