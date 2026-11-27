@@ -43,7 +43,14 @@ class StudioPdfSurface extends StatelessWidget {
       onViewCreated: sink?.viewCreated,
       onLoadComplete: sink?.loadComplete,
       onPageChanged: sink?.pageChanged,
-      onRender: sink?.render,
+      onRender: sink == null
+          ? null
+          : (page) => sink.render(
+              page,
+              issues: page >= 0 && page < controller.lists.length
+                  ? controller.lists[page].issues
+                  : const {},
+            ),
       onError: sink?.error,
       onPageError: sink?.pageError,
       onLinkHandle: (PdfLinkAction action) {

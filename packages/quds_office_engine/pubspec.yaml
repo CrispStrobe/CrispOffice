@@ -50,6 +50,7 @@ environment:
   sdk: ^3.12.0
 
 dependencies:
+  archive: ^4.6.0
   intl: ^0.20.2
   legacy_doc_parser:
     path: ../legacy_doc_parser
@@ -60,7 +61,6 @@ dependencies:
   jbig2: 1.0.0
 
 dev_dependencies:
-  archive: ^4.0.0
   covfuzz: ^0.1.1
   lints: ^6.0.0
   test: ^1.26.0

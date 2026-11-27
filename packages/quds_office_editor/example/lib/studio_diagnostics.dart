@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:quds_office_engine/pdf_file.dart';
 
 import 'studio_diagnostics_sink.dart'
     if (dart.library.io) 'studio_diagnostics_sink_io.dart';
@@ -39,6 +40,24 @@ void installStudioDiagnostics() {
 
 void recordStudioDiagnostic(StudioDiagnosticEvent event) {
   if (_installed) writeStudioDiagnostic(<String, Object>{'event': event.name});
+}
+
+void recordStudioPdfDiagnostic({
+  required String stage,
+  int? page,
+  Object? error,
+  Iterable<PdfPageRenderIssue> issues = const [],
+}) {
+  if (!_installed || _errorsRemaining == 0) return;
+  _errorsRemaining--;
+  final type = error?.runtimeType.toString();
+  writeStudioDiagnostic(<String, Object>{
+    'event': 'pdf',
+    'stage': stage,
+    if (page != null) 'page': page + 1,
+    if (type != null && _safeType.hasMatch(type)) 'type': type,
+    if (issues.isNotEmpty) 'issues': [for (final issue in issues) issue.name],
+  });
 }
 
 final _safeType = RegExp(r'^[A-Za-z_][A-Za-z_0-9]{0,79}$');

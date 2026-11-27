@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'studio_diagnostics.dart';
+
 /// Host-only helper: open a PDF path into a [PdfViewerController].
 ///
 /// The engine stays on [Uint8List]; this reads the file in the example app.
@@ -61,6 +63,7 @@ class StudioPdfViewerEvents {
   int? lastPage;
   int pageCount = 0;
   int renderCount = 0;
+  final _reportedPages = <int>{};
 
   void _mark(String message) {
     last = message;
@@ -72,6 +75,7 @@ class StudioPdfViewerEvents {
   }
 
   void loadComplete(int count) {
+    _reportedPages.clear();
     pageCount = count;
     _mark('loadComplete($count)');
   }
@@ -82,17 +86,26 @@ class StudioPdfViewerEvents {
     _mark('pageChanged(${page + 1}/$total)');
   }
 
-  void render(int page) {
+  void render(int page, {Set<PdfPageRenderIssue> issues = const {}}) {
+    if (issues.isNotEmpty && _reportedPages.add(page)) {
+      recordStudioPdfDiagnostic(
+        stage: 'pageRender',
+        page: page,
+        issues: issues,
+      );
+    }
     renderCount++;
     last = 'onRender(${page + 1})';
     // Avoid a setState storm while tiles decode; pageChanged still refreshes.
   }
 
   void error(Object error) {
+    recordStudioPdfDiagnostic(stage: 'open', error: error);
     _mark('onError: $error');
   }
 
   void pageError(int page, Object error) {
+    recordStudioPdfDiagnostic(stage: 'pageRender', page: page, error: error);
     _mark('onPageError(${page + 1}): $error');
   }
 
