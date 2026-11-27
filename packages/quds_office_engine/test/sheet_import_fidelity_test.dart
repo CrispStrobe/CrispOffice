@@ -185,6 +185,23 @@ void main() {
   });
 
   group('FormulaRefShift', () {
+    test(
+      'moves only the relative axis of whole-row and whole-column ranges',
+      () {
+        expect(
+          FormulaRefShift.shift(r"SUM('Data'!$A:B,2:$4)", rows: 1, columns: 2),
+          r"SUM('Data'!$A:D,3:$4)",
+        );
+        expect(
+          FormulaRefShift.shift('SUM(A:A,1:1)', rows: -1, columns: -1),
+          'SUM(#REF!,#REF!)',
+        );
+        final references = FormulaRefScanner.scan('=SUM(E:E,3:3)');
+        expect(references.map((span) => span.lexeme), ['E:E', '3:3']);
+        expect(references.first.range.maxRow, SmlWorksheet.excelRowCount - 1);
+        expect(references.last.range.maxCol, SmlWorksheet.excelColumnCount - 1);
+      },
+    );
     test('moves relative parts and keeps absolute ones', () {
       expect(
         FormulaRefShift.shift(r'SUM(A1:B2)+$C$1+C$1+$D2', rows: 2, columns: 1),
