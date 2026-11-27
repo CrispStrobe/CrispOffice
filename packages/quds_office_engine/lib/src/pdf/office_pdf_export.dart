@@ -1451,6 +1451,7 @@ abstract final class OfficePdfExport {
       if (rich == null ||
           rich.runs.isEmpty ||
           wraps(cell, text) ||
+          text.contains('\r') ||
           !_PageSink._winAnsiOnly(text)) {
         return const [];
       }
@@ -1493,6 +1494,26 @@ abstract final class OfficePdfExport {
     }
 
     final authoredRows = options.useWorksheetPageSetup && book.package != null;
+    double richAdvance(_SheetLabelRun run, int codePoint, double scale) {
+      final width = pack.widthOf(
+        codePoint,
+        authoredRows ? run.size / scale : run.size,
+        family: run.family,
+        weight: run.bold ? 700 : 400,
+        italic: run.italic,
+      );
+      // Excel rounds the unscaled glyph advance before applying print zoom.
+      return authoredRows ? width.roundToDouble() * scale : width;
+    }
+
+    double richWidth(_SheetLabelRun run, double scale) {
+      var width = 0.0;
+      for (final codePoint in run.text.runes) {
+        if (codePoint >= 32) width += richAdvance(run, codePoint, scale);
+      }
+      return width;
+    }
+
     String cellFill(int col, int row, SmlCell? cell) =>
         conditionalFormats.resolve(SmlCellRef(col, row)).fillRgb ??
         cell?.fillRgb ??
@@ -1536,19 +1557,9 @@ abstract final class OfficePdfExport {
                 cell.fontBold,
                 italic,
               )
-            : runs.fold<double>(
-                0,
-                (sum, run) =>
-                    sum +
-                    labelWidth(
-                      run.text,
-                      run.size,
-                      run.family,
-                      run.bold,
-                      run.italic,
-                    ),
-              );
-        var remaining = width + 6.0 - colPts[cell.ref.col - minCol];
+            : runs.fold<double>(0, (sum, run) => sum + richWidth(run, 1));
+        final padding = authoredRows && runs.isNotEmpty ? 4.0 : 6.0;
+        var remaining = width + padding - colPts[cell.ref.col - minCol];
         if (remaining <= 0) continue;
         final sourceFill = cellFill(cell.ref.col, cell.ref.row, cell);
         var end = cell.ref.col;
@@ -2265,25 +2276,19 @@ abstract final class OfficePdfExport {
                   conditionalColor: conditional.fontRgb,
                 );
                 if (rich.isNotEmpty) {
-                  final widths = [
-                    for (final run in rich)
-                      labelWidth(
-                        run.text,
-                        run.size,
-                        run.family,
-                        run.bold,
-                        run.italic,
-                      ),
-                  ];
-                  final width = widths.fold(0.0, (sum, part) => sum + part);
-                  final largest = rich.fold(
-                    0.0,
+                  final width = rich.fold<double>(
+                    0,
+                    (sum, run) => sum + richWidth(run, scale),
+                  );
+                  final largest = rich.fold<double>(
+                    0,
                     (size, run) => math.max(size, run.size),
                   );
-                  final slack = textSpan - 6 - width;
+                  final padding = authoredRows ? math.max(1.0, 2 * scale) : 3.0;
+                  final slack = textSpan - padding * 2 - width;
                   var runX =
                       x +
-                      3 +
+                      padding +
                       switch (align) {
                         _TextAlign.right => slack,
                         _TextAlign.center => slack / 2,
@@ -2296,23 +2301,26 @@ abstract final class OfficePdfExport {
                         SmlVAlign.center => (spanH + largest * 0.65) / 2,
                         _ => spanH - math.max(2, largest * 0.28),
                       };
-                  for (final (index, run) in rich.indexed) {
-                    sink.drawText(
-                      run.text,
-                      runX,
-                      baseline,
-                      run.size,
-                      run.color,
-                      family: run.family,
-                      bold: run.bold,
-                      italic: run.italic,
-                      wrapText: false,
-                      baseLevel: 0,
-                      lineAdvance: run.size,
-                    );
-                    final next = runX + widths[index];
-                    _paintSheetRunUnderline(sink, run, runX, next, baseline);
-                    runX = next;
+                  for (final run in rich) {
+                    final start = runX;
+                    for (final codePoint in run.text.runes) {
+                      if (codePoint < 32) continue;
+                      final advance = richAdvance(run, codePoint, scale);
+                      sink._emit(
+                        oldGid: 0,
+                        codePoint: codePoint,
+                        x: runX,
+                        y: baseline,
+                        size: run.size,
+                        color: run.color,
+                        family: run.family,
+                        bold: run.bold,
+                        italic: run.italic,
+                        advance: advance,
+                      );
+                      runX += advance;
+                    }
+                    _paintSheetRunUnderline(sink, run, start, runX, baseline);
                   }
                 } else {
                   sink.drawText(

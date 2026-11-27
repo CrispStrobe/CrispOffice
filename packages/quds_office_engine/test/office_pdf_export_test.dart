@@ -1951,14 +1951,16 @@ void main() {
       ..sourceRichString = rich.richAt(0)
       ..fontSize = 12;
 
-    final bytes = OfficePrint.workbook(
-      SmlWorkbook(sheets: [sheet]),
-      font: font,
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
     );
+    final bytes = OfficePrint.workbook(book, font: font);
     final text = PdfFile.open(bytes).displayList(0).runs;
-    final prefix = text.firstWhere((run) => run.text.contains('Ref'));
+    final prefix = text.firstWhere((run) => run.text.contains('R'));
     final amount = text.firstWhere((run) => run.text.contains('9'));
-    expect(amount.x, greaterThan(prefix.x));
+    final advance = amount.x - prefix.x;
+    expect(advance, isPositive);
+    expect(advance, closeTo(advance.round(), 0.01));
     expect(amount.height, lessThan(prefix.height));
     expect(
       _inflated(bytes).join(),
