@@ -672,6 +672,62 @@ void main() {
     expect(PdfFile.open(bytes).displayList(0).error, isNull);
   });
 
+  test('fit to page tolerates floating-point width accumulation', () {
+    final sheet = SmlWorksheet(
+      name: 'Exact width',
+      sheetId: 1,
+      printArea: SmlRange.parse('A1:F1'),
+    );
+    for (var col = 0; col < 6; col++) {
+      sheet.setColumnWidth(col, 40);
+    }
+    sheet.cellA1('F1').value = 'Last column';
+    final bytes = OfficePdfExport.workbook(
+      SmlWorkbook(sheets: [sheet]),
+      options: const PdfSheetPrintOptions(
+        pageWidth: 100,
+        pageHeight: 200,
+        margin: 0,
+        showHeadings: false,
+        fitToPage: true,
+      ),
+    );
+    expect(_pageCount(bytes), 1);
+    expect(_inflated(bytes).join(), contains('Last column'));
+  });
+
+  test('a native two-cell drawing continues across both page breaks', () {
+    final sheet =
+        SmlWorksheet(name: 'Drawing', sheetId: 1, pageSetup: SmlPageSetup())
+          ..setColumnWidth(0, 120)
+          ..setRowHeight(0, 120)
+          ..importManualPageBreak(1, rows: false)
+          ..importManualPageBreak(1, rows: true);
+    sheet.drawings.add(
+      SmlDrawing(
+        col: 0,
+        row: 0,
+        offsetX: 16,
+        offsetY: 20,
+        importedEndMarker: (col: 1, row: 1, colEmu: 508000, rowEmu: 508000),
+        visual: OfficeVisual(
+          kind: OfficeVisualKind.chartColumn,
+          title: 'Across pages',
+          points: OfficeVisual.sampleSeries(),
+        ),
+      ),
+    );
+
+    final bytes = OfficePrint.workbook(SmlWorkbook(sheets: [sheet]));
+    final pdf = PdfFile.open(bytes);
+    expect(pdf.pageCount, 4);
+    for (var index = 0; index < pdf.pageCount; index++) {
+      final content = pdf.store.streamBytes(pdf.pageDict(index)['Contents'])!;
+      expect(String.fromCharCodes(content), contains('W n'));
+      expect(pdf.displayList(index).error, isNull);
+    }
+  });
+
   test('workbook print respects imported landscape paper and fit to page', () {
     final sheet = SmlWorksheet(
       name: 'Worksheet',

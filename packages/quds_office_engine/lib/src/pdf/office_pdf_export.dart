@@ -19,6 +19,7 @@ import '../sheet/serial/sheet_serial.dart';
 import '../sheet/styles/sml_styles.dart';
 import '../slide/model/pml_presentation.dart';
 import '../slide/serial/slide_serial.dart';
+import '../visual/drawingml_visual_io.dart';
 import '../visual/office_visual.dart';
 import '../word/layout/word_layout.dart';
 import '../word/math/omml_layout.dart';
@@ -1343,8 +1344,15 @@ abstract final class OfficePdfExport {
           minRow = maxRow = drawing.row;
           any = true;
         }
-        maxCol = math.max(maxCol, drawing.col + 4);
-        maxRow = math.max(maxRow, drawing.row + 8);
+        final end = drawing.twoCellEnd;
+        final lastCol = end == null
+            ? drawing.col + 4
+            : math.max(drawing.col, end.col - (end.colEmu == 0 ? 1 : 0));
+        final lastRow = end == null
+            ? drawing.row + 8
+            : math.max(drawing.row, end.row - (end.rowEmu == 0 ? 1 : 0));
+        maxCol = math.max(maxCol, lastCol);
+        maxRow = math.max(maxRow, lastRow);
         minCol = math.min(minCol, drawing.col);
         minRow = math.min(minRow, drawing.row);
       }
@@ -1442,6 +1450,49 @@ abstract final class OfficePdfExport {
     final columnOffsets = <double>[0];
     for (final width in colPts) {
       columnOffsets.add(columnOffsets.last + width);
+    }
+
+    final rowOffsets = <double>[0];
+    if (sheet.drawings.any((drawing) => drawing.twoCellEnd != null)) {
+      for (final height in rowPts) {
+        rowOffsets.add(rowOffsets.last + height);
+      }
+    }
+    final nativeDrawings =
+        <SmlDrawing, ({double x, double y, double right, double bottom})>{};
+    for (final drawing in sheet.drawings) {
+      final end = drawing.twoCellEnd;
+      if (end == null) continue;
+      // A custom print area may omit the starting or ending cell. Project
+      // out-of-area markers from the nearest edge so the visible slice prints.
+      double markerPosition(
+        int cell,
+        int first,
+        List<double> offsets,
+        double Function(int) gridPosition,
+      ) {
+        final index = cell - first;
+        final edge = index.clamp(0, offsets.length - 1);
+        return offsets[edge] +
+            _sheetPxToPt(gridPosition(cell) - gridPosition(first + edge)) *
+                scale;
+      }
+
+      final x =
+          markerPosition(drawing.col, minCol, columnOffsets, sheet.columnLeft) +
+          _sheetPxToPt(drawing.offsetX) * scale;
+      final y =
+          markerPosition(drawing.row, minRow, rowOffsets, sheet.rowTop) +
+          _sheetPxToPt(drawing.offsetY) * scale;
+      final right =
+          markerPosition(end.col, minCol, columnOffsets, sheet.columnLeft) +
+          DrawingmlVisualIo.emuToPoints(end.colEmu) * scale;
+      final bottom =
+          markerPosition(end.row, minRow, rowOffsets, sheet.rowTop) +
+          DrawingmlVisualIo.emuToPoints(end.rowEmu) * scale;
+      if (right > x && bottom > y) {
+        nativeDrawings[drawing] = (x: x, y: y, right: right, bottom: bottom);
+      }
     }
 
     final SmlRange? titleRows = sheet.printTitleRows;
@@ -1885,6 +1936,49 @@ abstract final class OfficePdfExport {
         paintNativeBorders(bandStartAbs, bandEndAbs, bodyY);
 
         for (final SmlDrawing drawing in sheet.drawings) {
+          final native = nativeDrawings[drawing];
+          if (native != null) {
+            final x = rtl
+                ? gridRight + bandOffset - native.right
+                : gridLeft + native.x - bandOffset;
+            final y = bodyY + native.y - rowOffsets[bandStartAbs - minRow];
+            final width = native.right - native.x;
+            final height = native.bottom - native.y;
+            final clipLeft = math.max(x, printedLeft);
+            final clipTop = math.max(y, bodyY);
+            final clipRight = math.min(x + width, printedLeft + printedWidth);
+            final clipBottom = math.min(
+              y + height,
+              math.min(
+                pageH - bottom,
+                bodyY +
+                    rowOffsets[bandEndAbs - minRow + 1] -
+                    rowOffsets[bandStartAbs - minRow],
+              ),
+            );
+            if (clipRight <= clipLeft || clipBottom <= clipTop) continue;
+            sink.canvas.save();
+            sink.canvas.clipRect(
+              clipLeft,
+              clipTop,
+              clipRight - clipLeft,
+              clipBottom - clipTop,
+            );
+            sink.canvas.translateScale(x, y, scale);
+            OfficePdfVisuals.paint(
+              sink.canvas,
+              0,
+              0,
+              math.max(40, width / scale),
+              math.max(40, height / scale),
+              drawing.visual,
+              sink.images,
+              drawText: sink.drawText,
+              nextImageName: sink.nextImageName,
+            );
+            sink.canvas.restore();
+            continue;
+          }
           if (drawing.col < minCol + cb.start ||
               drawing.col > minCol + cb.end ||
               drawing.row < bandStartAbs ||
@@ -2014,7 +2108,10 @@ abstract final class OfficePdfExport {
     var used = 0.0;
     for (int i = 0; i < sizes.length; i++) {
       final double next = sizes[i];
-      if (i > start && (breaksBefore.contains(i) || used + next > limit)) {
+      // A fit calculation scales each segment independently. Its accumulated
+      // width can exceed the same budget by a fraction of a point.
+      if (i > start &&
+          (breaksBefore.contains(i) || used + next > limit + 1e-7)) {
         bands.add((start: start, end: i - 1));
         start = i;
         used = 0;
