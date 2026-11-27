@@ -13774,19 +13774,9 @@ class SheetEditorController extends OfficeController {
   }
 
   Map<int, SmlColumnSnapshot>? _resizeFromCols;
-  Map<int, double?>? _resizeFromRows;
+  Map<int, SmlRowHeightSnapshot>? _resizeFromRows;
   SmlWorksheet? _columnResizeSheet;
   SmlWorksheet? _rowResizeSheet;
-
-  void _restoreRowResize(SmlWorksheet target, Map<int, double?> values) {
-    for (final entry in values.entries) {
-      if (entry.value == null) {
-        target.rowHeights.remove(entry.key);
-      } else {
-        target.rowHeights[entry.key] = entry.value!;
-      }
-    }
-  }
 
   void _cancelResize() {
     final columns = _resizeFromCols;
@@ -13798,7 +13788,9 @@ class SheetEditorController extends OfficeController {
     }
     final rows = _resizeFromRows;
     final rowTarget = _rowResizeSheet;
-    if (rows != null && rowTarget != null) _restoreRowResize(rowTarget, rows);
+    if (rows != null && rowTarget != null) {
+      rows.forEach(rowTarget.restoreRowHeight);
+    }
     _resizeFromCols = null;
     _resizeFromRows = null;
     _columnResizeSheet = null;
@@ -13833,10 +13825,10 @@ class SheetEditorController extends OfficeController {
       commitResize();
     }
     final List<int> rows = _rowsForResize(row);
-    final original = _resizeFromRows ??= <int, double?>{};
+    final original = _resizeFromRows ??= <int, SmlRowHeightSnapshot>{};
     _rowResizeSheet = target;
     for (final int r in rows) {
-      original.putIfAbsent(r, () => target.rowHeights[r]);
+      original.putIfAbsent(r, () => target.captureRowHeight(r));
       target.setRowHeight(r, px);
     }
     notifyListeners();
@@ -13898,24 +13890,24 @@ class SheetEditorController extends OfficeController {
         return;
       }
       final from = _resizeFromRows!;
-      final to = <int, double?>{
-        for (final int r in from.keys) r: target.rowHeights[r],
+      final to = <int, SmlRowHeightSnapshot>{
+        for (final int r in from.keys) r: target.captureRowHeight(r),
       };
       _resizeFromRows = null;
       _rowResizeSheet = null;
       final changed = from.keys.any(
         (r) =>
-            ((to[r] ?? SmlWorksheet.defaultRowHeightPx) -
-                    (from[r] ?? SmlWorksheet.defaultRowHeightPx))
+            ((to[r]!.pixels ?? target.effectiveDefaultRowHeightPx) -
+                    (from[r]!.pixels ?? target.effectiveDefaultRowHeightPx))
                 .abs() >=
             0.5,
       );
-      _restoreRowResize(target, from);
+      from.forEach(target.restoreRowHeight);
       if (!changed) return;
       commands.commit(
         _CallbackCommand(
-          executeFn: () => _restoreRowResize(target, to),
-          undoFn: () => _restoreRowResize(target, from),
+          executeFn: () => to.forEach(target.restoreRowHeight),
+          undoFn: () => from.forEach(target.restoreRowHeight),
         ),
       );
     }
@@ -17174,12 +17166,14 @@ class _SheetGridSnap {
               styleIndex: cell.styleIndex,
               hasExplicitStyleIndex: cell.hasExplicitStyleIndex,
               horizontalAlign: cell.horizontalAlign,
+              wrapText: cell.wrapText,
               fillRgb: cell.fillRgb,
               hasExplicitFillColorEdit: cell.hasExplicitFillColorEdit,
               fontRgb: cell.fontRgb,
               hasExplicitFontColorEdit: cell.hasExplicitFontColorEdit,
               fontBold: cell.fontBold,
               fontSize: cell.fontSize,
+              fontFamily: cell.fontFamily,
               borderRgb: cell.borderRgb,
               borderWidth: cell.borderWidth,
               locked: cell.locked,
@@ -17187,7 +17181,10 @@ class _SheetGridSnap {
           ),
       ],
       widths: sheet.captureColumns(),
-      heights: Map<int, double>.from(sheet.rowHeights),
+      heights: {
+        for (final row in sheet.rowHeights.keys)
+          row: sheet.captureRowHeight(row),
+      },
       merges: <SmlMerge>[
         for (final SmlMerge merge in sheet.merges) merge.copy(),
       ],
@@ -17205,7 +17202,7 @@ class _SheetGridSnap {
   final Map<int, SmlColumnSnapshot> widths;
 
   /// heights API.
-  final Map<int, double> heights;
+  final Map<int, SmlRowHeightSnapshot> heights;
 
   /// merges API.
   final List<SmlMerge> merges;
@@ -17241,9 +17238,7 @@ class _SheetGridSnap {
       sheet.row(cell.ref.row).cells[cell.ref.col] = target;
     }
     sheet.restoreColumns(widths);
-    sheet.rowHeights
-      ..clear()
-      ..addAll(heights);
+    sheet.restoreRowHeights(heights);
     sheet.merges
       ..clear()
       ..addAll(merges.map((SmlMerge merge) => merge.copy()));

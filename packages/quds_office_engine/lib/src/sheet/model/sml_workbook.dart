@@ -508,6 +508,9 @@ class SmlPageSetup {
   }
 }
 
+/// Height metadata captured for worksheet resize and grid undo.
+typedef SmlRowHeightSnapshot = ({double? pixels, bool automatic});
+
 /// Reversible column state, retaining imported width precision and the metric
 /// under which its pixel projection was captured.
 class SmlColumnSnapshot {
@@ -860,8 +863,47 @@ class SmlWorksheet {
     _maximumDigitWidthPx = maximumDigitWidth;
   }
 
-  /// Custom row heights in CSS pixels, keyed by 0-based row index.
+  /// Stored row heights in CSS pixels, keyed by 0-based row index.
   final Map<int, double> rowHeights;
+  final Map<int, double> _importedAutomaticRowHeights = {};
+
+  /// Retains a native height cache separately from manually sized rows.
+  void importRowHeight(int row, double pixels, {required bool automatic}) {
+    rowHeights[row] = pixels;
+    if (automatic) {
+      _importedAutomaticRowHeights[row] = pixels;
+    } else {
+      _importedAutomaticRowHeights.remove(row);
+    }
+  }
+
+  /// Whether the native automatic height is still in effect.
+  bool hasImportedAutomaticRowHeight(int row) {
+    final height = _importedAutomaticRowHeights[row];
+    return height != null && height == rowHeights[row];
+  }
+
+  /// Captures the stored height and its sizing mode.
+  SmlRowHeightSnapshot captureRowHeight(int row) =>
+      (pixels: rowHeights[row], automatic: hasImportedAutomaticRowHeight(row));
+
+  /// Restores a row height after undo or a canceled resize.
+  void restoreRowHeight(int row, SmlRowHeightSnapshot snapshot) {
+    final pixels = snapshot.pixels;
+    if (pixels != null) {
+      importRowHeight(row, pixels, automatic: snapshot.automatic);
+    } else {
+      rowHeights.remove(row);
+      _importedAutomaticRowHeights.remove(row);
+    }
+  }
+
+  /// Replaces the stored heights after a structural sheet edit is undone.
+  void restoreRowHeights(Map<int, SmlRowHeightSnapshot> snapshots) {
+    rowHeights.clear();
+    _importedAutomaticRowHeights.clear();
+    snapshots.forEach(restoreRowHeight);
+  }
 
   /// Merged cell rectangles (`mergeCells`).
   final List<SmlMerge> merges;
@@ -1207,6 +1249,7 @@ class SmlWorksheet {
     if (row < 0 || row >= excelRowCount) {
       return;
     }
+    _importedAutomaticRowHeights.remove(row);
     final double v = px.clamp(minRowHeightPx, maxRowHeightPx);
     if ((v - effectiveDefaultRowHeightPx).abs() < 0.5) {
       rowHeights.remove(row);
@@ -1516,6 +1559,7 @@ class SmlWorksheet {
       ..clear()
       ..addAll(next);
     _shiftKeyedMap(rowHeights, index, count, remove: false);
+    _shiftKeyedMap(_importedAutomaticRowHeights, index, count, remove: false);
     _shiftMerges(row: true, index: index, count: count, remove: false);
   }
 
@@ -1554,6 +1598,7 @@ class SmlWorksheet {
       ..clear()
       ..addAll(next);
     _shiftKeyedMap(rowHeights, index, count, remove: true);
+    _shiftKeyedMap(_importedAutomaticRowHeights, index, count, remove: true);
     _shiftMerges(row: true, index: index, count: count, remove: true);
   }
 

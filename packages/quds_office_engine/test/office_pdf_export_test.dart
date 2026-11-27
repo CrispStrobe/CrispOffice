@@ -1560,6 +1560,68 @@ void main() {
     },
   );
 
+  test('print rounds an automatic worksheet default row height', () {
+    final sheet = SmlWorksheet(name: 'Default rows', sheetId: 1)
+      ..printArea = SmlRange.parse('A1:A4')
+      ..pageSetup = SmlPageSetup()
+      ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(12.8);
+    for (var row = 0; row < 4; row++) {
+      sheet.cell(SmlCellRef(0, row)).value = row;
+    }
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final pdf = OfficePrint.workbook(
+      book,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        paperOverride: (width: 70, height: 81),
+        marginOverride: 15,
+      ),
+    );
+    expect(_pageCount(pdf), 2);
+  });
+
+  test('automatic row height survives save and refits wrapped print text', () {
+    final sheet = SmlWorksheet(name: 'Auto rows', sheetId: 1)
+      ..printArea = SmlRange.parse('A1:A2')
+      ..pageSetup = SmlPageSetup();
+    sheet.cellA1('A1')
+      ..value = 'First\nSecond\nThird'
+      ..wrapText = true;
+    sheet.cellA1('A2').value = 'Next row';
+    sheet.importRowHeight(
+      0,
+      SmlWorksheet.rowHeightFromExcel(20),
+      automatic: true,
+    );
+    sheet.setRowHeight(1, SmlWorksheet.rowHeightFromExcel(28));
+
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final opened = book.firstSheet;
+    expect(opened.hasImportedAutomaticRowHeight(0), isTrue);
+    expect(opened.hasImportedAutomaticRowHeight(1), isFalse);
+    Uint8List printSheet() => OfficePrint.workbook(
+      book,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        paperOverride: (width: 70, height: 84),
+        marginOverride: 10,
+      ),
+    );
+    expect(_pageCount(printSheet()), 2);
+
+    opened.insertRows(0);
+    expect(opened.hasImportedAutomaticRowHeight(1), isTrue);
+    opened.deleteRows(0);
+    expect(opened.hasImportedAutomaticRowHeight(0), isTrue);
+    opened.setRowHeight(0, SmlWorksheet.rowHeightFromExcel(20));
+    expect(opened.hasImportedAutomaticRowHeight(0), isFalse);
+    expect(_pageCount(printSheet()), 1);
+  });
+
   test('native vertical alignment positions PDF cell text', () {
     final styles = SmlStyleSheet.parse('''
 <styleSheet xmlns="${OfficeNamespaces.x}">

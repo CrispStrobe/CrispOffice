@@ -873,8 +873,18 @@ class SheetDeserializer {
           reader.localName == 'row') {
         final int r = (int.tryParse(reader.getAttribute('r') ?? '1') ?? 1) - 1;
         final double? ht = double.tryParse(reader.getAttribute('ht') ?? '');
-        if (ht != null && r >= 0 && r < SmlWorksheet.excelRowCount) {
-          sheet.rowHeights[r] = SmlWorksheet.rowHeightFromExcel(ht);
+        if (ht != null &&
+            ht.isFinite &&
+            ht >= 0 &&
+            ht <= 409.5 &&
+            r >= 0 &&
+            r < SmlWorksheet.excelRowCount) {
+          final custom = reader.getAttribute('customHeight');
+          sheet.importRowHeight(
+            r,
+            SmlWorksheet.rowHeightFromExcel(ht),
+            automatic: custom != '1' && custom != 'true',
+          );
         }
         final hidden = reader.getAttribute('hidden');
         if ((hidden == '1' || hidden == 'true') &&
@@ -1968,7 +1978,9 @@ class SheetSerializer {
       final double? ht = sheet.rowHeights[r];
       if (ht != null) {
         w.writeAttribute('ht', '${SmlWorksheet.rowHeightToExcel(ht)}');
-        w.writeAttribute('customHeight', '1');
+        if (!sheet.hasImportedAutomaticRowHeight(r)) {
+          w.writeAttribute('customHeight', '1');
+        }
       }
       final List<int> cols = row.cells.keys.toList()..sort();
       for (final int c in cols) {

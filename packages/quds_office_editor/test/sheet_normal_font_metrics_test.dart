@@ -194,6 +194,26 @@ void main() {
     );
   });
 
+  test('undo restores automatic row height after resizing and inserting', () {
+    final controller = SheetEditorController.fromBytes(_source());
+    addTearDown(controller.dispose);
+    final sheet = controller.sheet;
+    sheet.importRowHeight(1, 32, automatic: true);
+    controller.previewRowHeight(1, 48);
+    controller.commitResize();
+    expect(sheet.hasImportedAutomaticRowHeight(1), isFalse);
+
+    controller.undo();
+    expect(sheet.rowHeightAt(1), 32);
+    expect(sheet.hasImportedAutomaticRowHeight(1), isTrue);
+
+    controller.insertSheetRows(index: 0, after: false);
+    expect(sheet.hasImportedAutomaticRowHeight(2), isTrue);
+    controller.undo();
+    expect(sheet.hasImportedAutomaticRowHeight(1), isTrue);
+    expect(sheet.hasImportedAutomaticRowHeight(2), isFalse);
+  });
+
   for (final column in [true, false]) {
     test(
       '${column ? "column" : "row"} resize stays with preview sheet across tab changes',

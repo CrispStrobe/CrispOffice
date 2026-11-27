@@ -1504,17 +1504,73 @@ abstract final class OfficePdfExport {
     }
     final fixedPrintPercent =
         options.scalePercentOverride ?? setup?.scale ?? 100;
+    final rowMeasure = _PageSink(0, 0, pack, images);
+    double automaticRowHeight(int row, double stored) {
+      var needed = stored.floorToDouble() + 1;
+      final cells = sheet.rows[row]?.cells;
+      if (cells == null) return needed;
+      for (final cell in cells.values) {
+        final col = cell.ref.col;
+        if (col < minCol || col > maxCol || !cell.hasContent) continue;
+        final merge = sheet.mergeAtRef(cell.ref);
+        if (merge != null && (merge.r0 != merge.r1 || merge.c0 != col)) {
+          continue;
+        }
+        final shown = _sheetDisplay(book, sheet, cell);
+        if (shown.text.isEmpty || !wraps(cell, shown.text)) continue;
+        var width = colPts[col - minCol];
+        if (merge != null) {
+          for (var next = col + 1; next <= math.min(merge.c1, maxCol); next++) {
+            width += colPts[next - minCol];
+          }
+        }
+        final family = book.styles?.familyAt(cell.styleIndex);
+        final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
+        final lines = rowMeasure.lineCount(
+          shown.text,
+          cell.fontSize,
+          maxWidth: math.max(1.0, width - 6),
+          family: family,
+          bold: cell.fontBold,
+          italic: italic,
+          forceLayout: true,
+        );
+        final lineHeight = rowMeasure.lineHeight(
+          cell.fontSize,
+          family: family,
+          bold: cell.fontBold,
+          italic: italic,
+        );
+        // Leave clearance for ascenders and descenders on each printed line.
+        final lineBox = (lineHeight + 3).ceil();
+        needed = math.max(needed, (lines * lineBox).toDouble());
+      }
+      return math.min(409.5, needed);
+    }
+
     double printRowHeight(int row) {
       final pixels = sheet.rowHeightAt(row);
       final points = _sheetPxToPt(pixels);
-      final usesCustomDefault =
-          sheet.importedDefaultRowHeightIsCustom &&
+      if (authoredRows &&
+          pixels > 0 &&
+          sheet.hasImportedAutomaticRowHeight(row)) {
+        return automaticRowHeight(row, points);
+      }
+      final usesSheetDefault =
           (pixels - sheet.effectiveDefaultRowHeightPx).abs() < 1e-8;
       // A worksheet-wide custom row height is an authored dimension.
       // Preserve it before print scaling, including explicit matching rows.
-      return !authoredRows || usesCustomDefault
-          ? points
-          : (points + 1e-9).floorToDouble();
+      if (!authoredRows ||
+          (usesSheetDefault && sheet.importedDefaultRowHeightIsCustom)) {
+        return points;
+      }
+      // Excel rounds the automatic worksheet default to whole print points.
+      if (usesSheetDefault &&
+          sheet.importedDefaultRowHeightPx != null &&
+          !sheet.rowHeights.containsKey(row)) {
+        return points.roundToDouble();
+      }
+      return (points + 1e-9).floorToDouble();
     }
 
     final rowPts = [
