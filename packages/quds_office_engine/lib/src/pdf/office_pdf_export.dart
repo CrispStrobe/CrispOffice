@@ -1897,19 +1897,26 @@ abstract final class OfficePdfExport {
           }
           final double x = colX(drawing.col);
           final double y = yOff;
-          final double remainW = math.max(36, pageW - right - x - 4);
-          final double remainH = math.max(36, pageH - bottom - y - 4);
+          final double remainW = pageW - right - x;
+          final double remainH = pageH - bottom - y;
+          if (remainW <= 0 || remainH <= 0) continue;
+
+          // The chart renderer reserves 40 points for its frame and labels.
+          // Clip that minimum-sized frame if the anchor is near a page edge.
+          sink.canvas.save();
+          sink.canvas.clipRect(x, y, remainW, remainH);
           OfficePdfVisuals.paint(
             sink.canvas,
             x,
             y,
-            drawing.visual.width.clamp(40, remainW),
-            drawing.visual.height.clamp(40, remainH),
+            drawing.visual.width.clamp(40, math.max(40, remainW - 4)),
+            drawing.visual.height.clamp(40, math.max(40, remainH - 4)),
             drawing.visual,
             sink.images,
             drawText: sink.drawText,
             nextImageName: sink.nextImageName,
           );
+          sink.canvas.restore();
         }
         if (options.pageBorder) {
           final x = math.max(6.0, left);

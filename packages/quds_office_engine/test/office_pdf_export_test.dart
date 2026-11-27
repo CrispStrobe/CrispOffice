@@ -630,6 +630,48 @@ void main() {
     expect(_ascii(landscape), contains('/MediaBox [0 0 841.890 595.280]'));
   });
 
+  test('worksheet charts at either printable edge are clipped safely', () {
+    final sheet = SmlWorksheet(name: 'Charts', sheetId: 1)
+      ..printArea = const SmlRange(SmlCellRef(0, 0), SmlCellRef(1, 1))
+      ..setColumnWidth(0, 164)
+      ..setColumnWidth(1, 40)
+      ..setRowHeight(0, 140)
+      ..setRowHeight(1, 24);
+    for (final (col, row, title) in [
+      (1, 0, 'Right edge'),
+      (0, 1, 'Bottom edge'),
+    ]) {
+      sheet.drawings.add(
+        SmlDrawing(
+          visual: OfficeVisual(
+            kind: OfficeVisualKind.chartColumn,
+            title: title,
+            points: OfficeVisual.sampleSeries(),
+          ),
+          col: col,
+          row: row,
+        ),
+      );
+    }
+
+    final bytes = OfficePdfExport.workbook(
+      SmlWorkbook(sheets: [sheet]),
+      options: const PdfSheetPrintOptions(
+        pageWidth: 200,
+        pageHeight: 200,
+        margin: 20,
+        showGridlines: false,
+        showHeadings: false,
+      ),
+    );
+    expect(_pageCount(bytes), 1);
+    final body = _inflated(bytes).join();
+    expect(body, contains('Right edge'));
+    expect(body, contains('Bottom edge'));
+    expect(RegExp(r'W n').allMatches(body), hasLength(2));
+    expect(PdfFile.open(bytes).displayList(0).error, isNull);
+  });
+
   test('workbook print respects imported landscape paper and fit to page', () {
     final sheet = SmlWorksheet(
       name: 'Worksheet',
