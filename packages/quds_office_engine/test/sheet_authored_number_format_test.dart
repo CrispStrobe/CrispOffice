@@ -26,6 +26,16 @@ void main() {
     expect(styles.format('3489.75', 0, locale: 'de_DE'), '3489.75');
   });
 
+  test('General display suppresses floating-point artifacts', () {
+    final styles = SmlStyleSheet();
+    final total = 3898.19 + 357;
+    expect(styles.format(total, 0, locale: 'de_DE'), '4255,19');
+    expect(styles.format(total, 0, locale: 'en_US'), '4255.19');
+    expect(styles.format(1.234567890123456, 0), '1.23456789012346');
+    expect(styles.format(123456789012345.0, 0), '123456789012345');
+    expect(styles.format(-0.0, 0), '0');
+  });
+
   test('an authored custom number format is written and reloads', () async {
     final book = SmlWorkbook(
       sheets: [SmlWorksheet(name: 'Sheet1', sheetId: 1)],

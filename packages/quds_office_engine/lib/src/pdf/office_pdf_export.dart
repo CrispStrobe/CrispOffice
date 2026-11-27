@@ -1494,7 +1494,11 @@ abstract final class OfficePdfExport {
     }
 
     final authoredRows = options.useWorksheetPageSetup && book.package != null;
-    double richAdvance(_SheetLabelRun run, int codePoint, double scale) {
+    double worksheetGlyphAdvance(
+      _SheetLabelRun run,
+      int codePoint,
+      double scale,
+    ) {
       final width = pack.widthOf(
         codePoint,
         authoredRows ? run.size / scale : run.size,
@@ -1506,10 +1510,12 @@ abstract final class OfficePdfExport {
       return authoredRows ? width.roundToDouble() * scale : width;
     }
 
-    double richWidth(_SheetLabelRun run, double scale) {
+    double worksheetRunWidth(_SheetLabelRun run, double scale) {
       var width = 0.0;
       for (final codePoint in run.text.runes) {
-        if (codePoint >= 32) width += richAdvance(run, codePoint, scale);
+        if (codePoint >= 32) {
+          width += worksheetGlyphAdvance(run, codePoint, scale);
+        }
       }
       return width;
     }
@@ -1557,7 +1563,10 @@ abstract final class OfficePdfExport {
                 cell.fontBold,
                 italic,
               )
-            : runs.fold<double>(0, (sum, run) => sum + richWidth(run, 1));
+            : runs.fold<double>(
+                0,
+                (sum, run) => sum + worksheetRunWidth(run, 1),
+              );
         final padding = authoredRows && runs.isNotEmpty ? 4.0 : 6.0;
         var remaining = width + padding - colPts[cell.ref.col - minCol];
         if (remaining <= 0) continue;
@@ -2268,23 +2277,45 @@ abstract final class OfficePdfExport {
                 }
                 sink.canvas.save();
                 sink.canvas.clipRect(x + 1, y + 1, textSpan - 2, spanH - 2);
-                final rich = richLabelRuns(
-                  stored,
-                  shown.text,
-                  scale,
-                  shown.color,
-                  conditionalColor: conditional.fontRgb,
-                );
-                if (rich.isNotEmpty) {
-                  final width = rich.fold<double>(
+                final nativeNumeric =
+                    authoredRows &&
+                    shown.numeric &&
+                    align == _TextAlign.right &&
+                    vertical == null &&
+                    !wrap &&
+                    _PageSink._winAnsiOnly(shown.text);
+                final runs = nativeNumeric
+                    ? [
+                        (
+                          text: shown.text,
+                          size: size,
+                          color: conditional.fontRgb ?? shown.color,
+                          family: book.styles?.familyAt(stored.styleIndex),
+                          bold: stored.fontBold,
+                          italic:
+                              book.styles?.italicAt(stored.styleIndex) ?? false,
+                          underline: 'none',
+                        ),
+                      ]
+                    : richLabelRuns(
+                        stored,
+                        shown.text,
+                        scale,
+                        shown.color,
+                        conditionalColor: conditional.fontRgb,
+                      );
+                if (runs.isNotEmpty) {
+                  final width = runs.fold<double>(
                     0,
-                    (sum, run) => sum + richWidth(run, scale),
+                    (sum, run) => sum + worksheetRunWidth(run, scale),
                   );
-                  final largest = rich.fold<double>(
+                  final largest = runs.fold<double>(
                     0,
                     (size, run) => math.max(size, run.size),
                   );
-                  final padding = authoredRows ? math.max(1.0, 2 * scale) : 3.0;
+                  final padding = authoredRows
+                      ? math.max(1.0, (nativeNumeric ? 3 : 2) * scale)
+                      : 3.0;
                   final slack = textSpan - padding * 2 - width;
                   var runX =
                       x +
@@ -2301,11 +2332,15 @@ abstract final class OfficePdfExport {
                         SmlVAlign.center => (spanH + largest * 0.65) / 2,
                         _ => spanH - math.max(2, largest * 0.28),
                       };
-                  for (final run in rich) {
+                  for (final run in runs) {
                     final start = runX;
                     for (final codePoint in run.text.runes) {
                       if (codePoint < 32) continue;
-                      final advance = richAdvance(run, codePoint, scale);
+                      final advance = worksheetGlyphAdvance(
+                        run,
+                        codePoint,
+                        scale,
+                      );
                       sink._emit(
                         oldGid: 0,
                         codePoint: codePoint,
@@ -2323,10 +2358,16 @@ abstract final class OfficePdfExport {
                     _paintSheetRunUnderline(sink, run, start, runX, baseline);
                   }
                 } else {
+                  final textVertical =
+                      vertical ??
+                      (authoredRows && wrap ? SmlVAlign.bottom : null);
+                  final lineAdvance = authoredRows
+                      ? (stored.fontSize * 1.25).ceil() * scale
+                      : size * 1.1;
                   sink.drawText(
                     shown.text,
                     x + 3,
-                    vertical != null
+                    textVertical != null
                         ? y + 1
                         : wrap
                         ? y + size
@@ -2335,14 +2376,18 @@ abstract final class OfficePdfExport {
                     conditional.fontRgb ?? shown.color,
                     maxWidth: textSpan - 6,
                     align: align,
-                    lineAdvance: wrap ? size * 1.1 : null,
+                    lineAdvance: wrap ? lineAdvance : null,
                     wrapText: !authoredRows || wrap,
                     bold: stored.fontBold,
                     family: book.styles?.familyAt(stored.styleIndex),
                     italic: book.styles?.italicAt(stored.styleIndex) ?? false,
-                    cellBox: vertical == null
+                    cellBox: textVertical == null
                         ? null
-                        : (alignment: vertical, height: spanH - 2, wrap: wrap),
+                        : (
+                            alignment: textVertical,
+                            height: spanH - 2,
+                            wrap: wrap,
+                          ),
                   );
                 }
                 sink.canvas.restore();

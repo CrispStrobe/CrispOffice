@@ -1479,14 +1479,16 @@ String applyNumberFormat(
   if (value == null) {
     return '';
   }
-  if (code == 'General' || code == '@') {
-    if (value is num && value == value.roundToDouble()) {
+  if (code == 'General') {
+    return value is num
+        ? _generalNumber(value, displayDecimalSeparator ?? decimalSeparator)
+        : value.toString();
+  }
+  if (code == '@') {
+    if (value is num && value.isFinite && value == value.roundToDouble()) {
       return value.round().toString();
     }
-    final text = value.toString();
-    return code == 'General' && value is num
-        ? text.replaceFirst('.', displayDecimalSeparator ?? decimalSeparator)
-        : text;
+    return value.toString();
   }
 
   /// n API.
@@ -1528,6 +1530,23 @@ String applyNumberFormat(
     return 'RED:$out';
   }
   return out;
+}
+
+String _generalNumber(num value, String decimalSeparator) {
+  if (value is int || !value.isFinite) return value.toString();
+  if (value == 0) return '0';
+  // Limit the displayed precision to suppress binary calculation artifacts
+  // while keeping the numeric value used by formulas and XLSX caches intact.
+  final parts = value.toStringAsPrecision(15).split('e');
+  var mantissa = parts.first;
+  if (mantissa.contains('.')) {
+    mantissa = mantissa.replaceFirst(RegExp(r'0+$'), '');
+    if (mantissa.endsWith('.')) {
+      mantissa = mantissa.substring(0, mantissa.length - 1);
+    }
+  }
+  final localized = mantissa.replaceFirst('.', decimalSeparator);
+  return parts.length == 1 ? localized : '${localized}e${parts.last}';
 }
 
 // A literal semicolon must not turn one authored format into extra sections.

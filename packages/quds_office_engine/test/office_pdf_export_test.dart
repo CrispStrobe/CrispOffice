@@ -1667,6 +1667,26 @@ void main() {
     expect(_pageCount(printSheet()), 1);
   });
 
+  test('native wrapped print labels use bottom alignment by default', () {
+    final sheet = SmlWorksheet(name: 'Headers', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1:B1');
+    sheet.setRowHeight(0, 80);
+    sheet.cellA1('A1')
+      ..value = 'X\nY'
+      ..wrapText = true;
+    sheet.cellA1('B1').value = 'Z';
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final pdf = PdfFile.open(OfficePrint.workbook(book, font: font));
+    final positions = {
+      for (final run in pdf.displayList(0).runs) run.text.trim(): run.y,
+    };
+    expect(positions['Y']! - positions['X']!, closeTo(14, 0.02));
+    expect((positions['Y']! - positions['Z']!).abs(), lessThan(2));
+  });
+
   test('native vertical alignment positions PDF cell text', () {
     final styles = SmlStyleSheet.parse('''
 <styleSheet xmlns="${OfficeNamespaces.x}">
