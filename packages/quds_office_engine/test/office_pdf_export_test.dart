@@ -2295,10 +2295,12 @@ void main() {
     final bytes = OfficePrint.workbook(book, options: options);
     final pdf = PdfFile.open(bytes);
     expect(pdf.pageCount, greaterThan(1));
-    expect(
-      pdf.displayList(pdf.pageCount - 1).runs.map((run) => run.text).join(),
-      contains('clerk'),
-    );
+    String pageText(int index) =>
+        pdf.displayList(index).runs.map((run) => run.text).join();
+    expect(pageText(0), contains('One long'));
+    expect(pageText(0), isNot(contains('clerk')));
+    expect(pageText(pdf.pageCount - 1), contains('clerk'));
+    expect(pageText(pdf.pageCount - 1), isNot(contains('One long')));
 
     book.firstSheet.printArea = SmlRange.parse('A1');
     expect(_pageCount(OfficePrint.workbook(book, options: options)), 1);

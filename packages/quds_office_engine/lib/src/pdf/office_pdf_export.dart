@@ -2584,21 +2584,27 @@ abstract final class OfficePdfExport {
                                   ? bottomInset
                                   : math.max(2, largest * 0.28)),
                       };
-                  final preserveLabel = nativePlain && shown.number == null;
+                  // A continuation page owns only its visible glyphs. A
+                  // full ActualText span would repeat the entire label there.
+                  final preserveLabel =
+                      nativePlain && shown.number == null && !splitLabel;
+                  final clipLeft = math.max(x + 1, printedLeft);
+                  final clipRight = math.min(
+                    x + textSpan - 1,
+                    printedLeft + printedWidth,
+                  );
                   if (preserveLabel) sink.canvas.beginActualText(shown.text);
                   for (final run in runs) {
                     final start = runX;
-                    for (final codePoint in run.text.runes) {
-                      if (codePoint < 32) continue;
-                      final advance = worksheetGlyphAdvance(
-                        run,
-                        codePoint,
-                        scale,
-                      );
+                    final fragment =
+                        nativePlain && splitLabel && shown.number == null
+                        ? <({int codePoint, double x, double advance})>[]
+                        : null;
+                    void emit(int codePoint, double x, double advance) {
                       sink._emit(
                         oldGid: 0,
                         codePoint: codePoint,
-                        x: runX,
+                        x: x,
                         y: baseline + run.baselineOffset,
                         size: run.size,
                         color: run.color,
@@ -2607,7 +2613,48 @@ abstract final class OfficePdfExport {
                         italic: run.italic,
                         advance: advance,
                       );
+                    }
+
+                    for (final codePoint in run.text.runes) {
+                      if (codePoint < 32) continue;
+                      final advance = worksheetGlyphAdvance(
+                        run,
+                        codePoint,
+                        scale,
+                      );
+                      final x = runX;
                       runX += advance;
+                      if (splitLabel &&
+                          !sink._sheetGlyphIntersects(
+                            run,
+                            codePoint,
+                            x,
+                            advance,
+                            clipLeft,
+                            clipRight,
+                          )) {
+                        continue;
+                      }
+                      if (fragment == null) {
+                        emit(codePoint, x, advance);
+                      } else {
+                        fragment.add((
+                          codePoint: codePoint,
+                          x: x,
+                          advance: advance,
+                        ));
+                      }
+                    }
+                    if (fragment != null && fragment.isNotEmpty) {
+                      sink.canvas.beginActualText(
+                        String.fromCharCodes(
+                          fragment.map((glyph) => glyph.codePoint),
+                        ),
+                      );
+                      for (final glyph in fragment) {
+                        emit(glyph.codePoint, glyph.x, glyph.advance);
+                      }
+                      sink.canvas.endActualText();
                     }
                     _paintSheetRunUnderline(sink, run, start, runX, baseline);
                   }
@@ -4524,6 +4571,53 @@ class _PageSink {
         destY: dest.y,
       ),
     );
+  }
+
+  bool _sheetGlyphIntersects(
+    _SheetLabelRun run,
+    int codePoint,
+    double x,
+    double advance,
+    double left,
+    double right,
+  ) {
+    if (right <= left) return false;
+    if (x >= left && x + advance <= right) return true;
+    final face = pack.set.resolve(
+      codePoint,
+      family: run.family,
+      weight: run.bold ? 700 : 400,
+      italic: run.italic,
+    );
+    if (face != null) {
+      final font = face.font;
+      final glyph = font.glyphIdFor(codePoint);
+      final glyf = font.tables['glyf'];
+      final offsets = font.glyphOffsets;
+      if (glyf != null && glyph + 1 < offsets.length && font.unitsPerEm > 0) {
+        final start = offsets[glyph];
+        final end = offsets[glyph + 1];
+        if (end == start) return x < right && x + advance > left;
+        if (start >= 0 && end - start >= 10 && end <= glyf.length) {
+          final bounds = ByteData.sublistView(
+            font.bytes,
+            glyf.offset + start,
+            glyf.offset + start + 10,
+          );
+          final shear = run.italic && !face.italic ? 0.25 : 0.0;
+          final units = run.size / font.unitsPerEm;
+          final min = (bounds.getInt16(2) + shear * bounds.getInt16(4)) * units;
+          final max = (bounds.getInt16(6) + shear * bounds.getInt16(8)) * units;
+          final bold = run.bold && face.weight < 600
+              ? math.max(0.35, run.size * 0.05)
+              : 0.0;
+          return x + min < right && x + max + bold > left;
+        }
+      }
+    }
+    // Keep nearby overhang when an installed glyph's bounds are unavailable.
+    final allowance = run.size * 0.25;
+    return x - allowance < right && x + advance + allowance > left;
   }
 
   /// drawGlyph API.
