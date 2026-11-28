@@ -490,6 +490,27 @@ class SmlStyleSheet {
   String numberFormatCodeAt(int styleIndex) =>
       numFmts[_numberFormatIdAt(styleIndex)] ?? 'General';
 
+  /// Character whose width the selected numeric section reserves at its end.
+  String? numberFormatTrailingSpacer(num value, int styleIndex) {
+    final code = numberFormatCodeAt(styleIndex);
+    if (!code.contains('_')) return null;
+    final sections = _numberFormatSections(code);
+    final section = sections[_numberFormatSectionIndex(sections, value)];
+    final tail = section.length - 2;
+    if (tail < 0 || section[tail] != '_') return null;
+    var quoted = false;
+    for (var i = 0; i <= tail; i++) {
+      final ch = section[i];
+      if (ch == '"') {
+        quoted = !quoted;
+      } else if (!quoted && (ch == r'\' || ch == '*' || ch == '_')) {
+        if (i == tail && ch == '_') return section[i + 1];
+        i++;
+      }
+    }
+    return null;
+  }
+
   /// format API.
   String format(Object? value, int styleIndex, {String? locale}) {
     final int numFmtId = _numberFormatIdAt(styleIndex);
@@ -1567,16 +1588,10 @@ String applyNumberFormat(
   }
 
   final List<String> sections = _numberFormatSections(code);
-  // Sections: positive; negative; zero. A negative section prints its own
-  // sign (e.g. parentheses), so the value is formatted without one.
-  var section = sections.first;
-  var shown = n;
-  if (n < 0 && sections.length > 1 && sections[1].isNotEmpty) {
-    section = sections[1];
-    shown = -n;
-  } else if (n == 0 && sections.length > 2 && sections[2].isNotEmpty) {
-    section = sections[2];
-  }
+  final sectionIndex = _numberFormatSectionIndex(sections, n);
+  final section = sections[sectionIndex];
+  // A negative section owns its sign or enclosing parentheses.
+  final shown = sectionIndex == 1 ? -n : n;
   final bool negativeRed = section.contains('[Red]');
   final String clean = section.replaceAll('[Red]', '');
 
@@ -1614,6 +1629,12 @@ String _generalNumber(num value, String decimalSeparator) {
   }
   final localized = mantissa.replaceFirst('.', decimalSeparator);
   return parts.length == 1 ? localized : '${localized}e${parts.last}';
+}
+
+int _numberFormatSectionIndex(List<String> sections, num value) {
+  if (value < 0 && sections.length > 1 && sections[1].isNotEmpty) return 1;
+  if (value == 0 && sections.length > 2 && sections[2].isNotEmpty) return 2;
+  return 0;
 }
 
 // A literal semicolon must not turn one authored format into extra sections.

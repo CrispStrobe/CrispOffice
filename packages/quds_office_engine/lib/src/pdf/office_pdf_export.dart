@@ -1627,7 +1627,7 @@ abstract final class OfficePdfExport {
         if (!cell.hasContent || sheet.isColumnHidden(cell.ref.col)) continue;
         final shown = _sheetDisplay(book, sheet, cell);
         if (shown.text.isEmpty ||
-            !canOverflow(cell, shown.numeric, wraps(cell, shown.text)) ||
+            !canOverflow(cell, shown.number != null, wraps(cell, shown.text)) ||
             sheet.mergeAtRef(cell.ref) != null) {
           continue;
         }
@@ -2433,7 +2433,7 @@ abstract final class OfficePdfExport {
                 SmlHAlign.center => _TextAlign.center,
                 SmlHAlign.right => _TextAlign.right,
                 SmlHAlign.general =>
-                  shown.numeric ? _TextAlign.right : _TextAlign.auto,
+                  shown.number != null ? _TextAlign.right : _TextAlign.auto,
               };
               final wrap = wraps(stored, shown.text);
               final indent = indentation(stored) * scale;
@@ -2447,7 +2447,7 @@ abstract final class OfficePdfExport {
                     columnOffsets[end - minCol + 1] -
                     columnOffsets[anchor - minCol];
               } else if (merge == null &&
-                  canOverflow(stored, shown.numeric, wrap)) {
+                  canOverflow(stored, shown.number != null, wrap)) {
                 final sourceFill = conditional.fillRgb ?? stored.fillRgb;
                 for (int next = c + 1; next <= lastCol; next++) {
                   if (blocksOverflow(next, r, sourceFill)) break;
@@ -2491,7 +2491,9 @@ abstract final class OfficePdfExport {
                 final nativePlain =
                     rich.isEmpty && nativeInlineLabel(stored, shown.text);
                 final nativeNumeric =
-                    nativePlain && shown.numeric && align == _TextAlign.right;
+                    nativePlain &&
+                    shown.number != null &&
+                    align == _TextAlign.right;
                 var runs = nativePlain
                     ? [plainLabelRun(stored, shown.text, size, color)]
                     : rich;
@@ -2514,6 +2516,24 @@ abstract final class OfficePdfExport {
                       : 3.0;
                   var available = textSpan - padding * 2 - indent;
                   final styles = book.styles;
+                  if (nativeNumeric) {
+                    final spacer = styles?.numberFormatTrailingSpacer(
+                      shown.number!,
+                      stored.styleIndex,
+                    );
+                    if (spacer != null) {
+                      final run = runs.single;
+                      // The formatted text contains a regular space for this
+                      // placeholder. Reserve the authored glyph's width.
+                      available +=
+                          worksheetGlyphAdvance(run, 0x20, scale) -
+                          worksheetGlyphAdvance(
+                            run,
+                            spacer.runes.single,
+                            scale,
+                          );
+                    }
+                  }
                   if (nativeNumeric &&
                       width > available &&
                       styles != null &&
@@ -2564,7 +2584,7 @@ abstract final class OfficePdfExport {
                                   ? bottomInset
                                   : math.max(2, largest * 0.28)),
                       };
-                  final preserveLabel = nativePlain && !shown.numeric;
+                  final preserveLabel = nativePlain && shown.number == null;
                   if (preserveLabel) sink.canvas.beginActualText(shown.text);
                   for (final run in runs) {
                     final start = runX;
@@ -2924,7 +2944,7 @@ abstract final class OfficePdfExport {
     return text;
   }
 
-  static ({String text, String color, bool numeric}) _sheetDisplay(
+  static ({String text, String color, num? number}) _sheetDisplay(
     SmlWorkbook book,
     SmlWorksheet sheet,
     SmlCell cell,
@@ -2933,9 +2953,9 @@ abstract final class OfficePdfExport {
         ? FormulaEvaluator.evaluateCell(book, sheet, cell)
         : cell.value;
     if (value == null) {
-      return (text: '', color: '222222', numeric: false);
+      return (text: '', color: '222222', number: null);
     }
-    final bool numeric = value is num;
+    final num? number = value is num ? value : null;
     final String ink = cell.fontRgb.isNotEmpty ? cell.fontRgb : '222222';
     if (book.styles != null) {
       final String formatted = book.styles!.format(
@@ -2944,21 +2964,17 @@ abstract final class OfficePdfExport {
         locale: book.formulaLocale,
       );
       if (formatted.startsWith('RED:')) {
-        return (
-          text: formatted.substring(4),
-          color: 'C00000',
-          numeric: numeric,
-        );
+        return (text: formatted.substring(4), color: 'C00000', number: number);
       }
-      return (text: formatted, color: ink, numeric: numeric);
+      return (text: formatted, color: ink, number: number);
     }
     if (value is num) {
       if (value == value.roundToDouble()) {
-        return (text: '${value.round()}', color: ink, numeric: true);
+        return (text: '${value.round()}', color: ink, number: value);
       }
-      return (text: value.toStringAsFixed(2), color: ink, numeric: true);
+      return (text: value.toStringAsFixed(2), color: ink, number: value);
     }
-    return (text: value.toString(), color: ink, numeric: false);
+    return (text: value.toString(), color: ink, number: null);
   }
 
   static void _paintShape(

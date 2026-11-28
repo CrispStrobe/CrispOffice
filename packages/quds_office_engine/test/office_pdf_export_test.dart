@@ -2449,6 +2449,54 @@ void main() {
     },
   );
 
+  test(
+    'native Accounting print reserves the width of a trailing format glyph',
+    () {
+      final face = SfntFont.parse(
+        File(
+          '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+        ).readAsBytesSync(),
+      );
+      final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <numFmts count="2">
+    <numFmt numFmtId="170" formatCode="#,##0.00 &quot;€&quot;"/>
+    <numFmt numFmtId="171" formatCode="#,##0.00 &quot;€&quot;_-;(#,##0.00 &quot;€&quot;);&quot;-&quot;_)"/>
+  </numFmts>
+  <cellXfs count="2"><xf numFmtId="170"/><xf numFmtId="171"/></cellXfs>
+</styleSheet>''');
+      expect(styles.numberFormatTrailingSpacer(1, 1), '-');
+      expect(styles.numberFormatTrailingSpacer(-1, 1), isNull);
+      expect(styles.numberFormatTrailingSpacer(0, 1), ')');
+
+      final sheet = SmlWorksheet(name: 'Print', sheetId: 1)
+        ..pageSetup = SmlPageSetup()
+        ..printArea = SmlRange.parse('A1:A2');
+      sheet.setColumnWidth(0, 140);
+      sheet.cellA1('A1').value = 123.45;
+      sheet.cellA1('A2')
+        ..value = 123.45
+        ..styleIndex = 1;
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(
+          SmlWorkbook(sheets: [sheet], styles: styles),
+        ),
+      );
+      final pdf = PdfFile.open(OfficePrint.workbook(book, font: face));
+      final euros = pdf
+          .displayList(0)
+          .runs
+          .where((run) => run.text == '€')
+          .toList();
+      final dash = FontMetrics(
+        font: face,
+        fontSizePoints: 11,
+      ).characterWidth(0x2d);
+      expect(euros, hasLength(2));
+      expect(euros.first.x - euros.last.x, closeTo(dash.round(), 0.01));
+    },
+  );
+
   test('native numeric print inset grows with larger fonts', () {
     final sheet = SmlWorksheet(name: 'Amounts', sheetId: 1)
       ..pageSetup = SmlPageSetup(scale: 85)
