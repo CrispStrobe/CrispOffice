@@ -1615,6 +1615,12 @@ abstract final class OfficePdfExport {
     final fixedPrintPercent =
         options.scalePercentOverride ?? setup?.scale ?? 100;
     final rowMeasure = _PageSink(0, 0, pack, images);
+    int nativeLineAdvance(SmlCell cell) => (cell.fontSize * 1.25).ceil();
+    bool nativeBottomLines(SmlCell cell, String text) =>
+        authoredRows &&
+        text.contains('\n') &&
+        book.styles?.verticalAlignAt(cell.styleIndex) == null;
+
     double automaticRowHeight(int row, double stored) {
       final sourceRow = sheet.rows[row];
       final layout = sourceRow?.nativeLayout;
@@ -1627,6 +1633,28 @@ abstract final class OfficePdfExport {
           : stored.roundToDouble();
       final cells = sourceRow?.cells;
       if (cells == null) return needed;
+      var largestPopulatedFont = 0.0;
+      SmlCell? largestBlank;
+      for (final cell in cells.values) {
+        if (cell.hasContent) {
+          largestPopulatedFont = math.max(largestPopulatedFont, cell.fontSize);
+        } else if (cell.fontSize > (largestBlank?.fontSize ?? 0)) {
+          largestBlank = cell;
+        }
+      }
+      if (largestPopulatedFont > 0 &&
+          largestBlank != null &&
+          largestBlank.fontSize > largestPopulatedFont) {
+        final style = largestBlank.styleIndex;
+        final blankHeight = rowMeasure.lineHeight(
+          largestBlank.fontSize,
+          family: book.styles?.familyAt(style),
+          bold: largestBlank.fontBold,
+          italic: book.styles?.italicAt(style) ?? false,
+        );
+        // A taller styled blank can set the row's minimum height.
+        needed = math.max(needed, (blankHeight + 2).ceilToDouble());
+      }
       for (final cell in cells.values) {
         final col = cell.ref.col;
         if (col < minCol || col > maxCol || !cell.hasContent) continue;
@@ -1659,9 +1687,16 @@ abstract final class OfficePdfExport {
           bold: cell.fontBold,
           italic: italic,
         );
-        // Leave clearance for ascenders and descenders on each printed line.
         final lineBox = (lineHeight + 3).ceil();
-        needed = math.max(needed, (lines * lineBox).toDouble());
+        // Explicit lines at the default bottom alignment share the print
+        // baseline spacing. The first line carries the row's outside padding.
+        final explicitLines =
+            nativeBottomLines(cell, shown.text) &&
+            lines == '\n'.allMatches(shown.text).length + 1;
+        final measured = explicitLines
+            ? lineBox + (lines - 1) * nativeLineAdvance(cell)
+            : lines * lineBox;
+        needed = math.max(needed, measured.toDouble());
       }
       return math.min(409.5, needed);
     }
@@ -2401,8 +2436,14 @@ abstract final class OfficePdfExport {
                       vertical ??
                       (authoredRows && wrap ? SmlVAlign.bottom : null);
                   final lineAdvance = authoredRows
-                      ? (stored.fontSize * 1.25).ceil() * scale
+                      ? nativeLineAdvance(stored) * scale
                       : size * 1.1;
+                  final authoredLineBottom =
+                      nativeBottomLines(stored, shown.text) &&
+                          sheet.hasImportedAutomaticRowHeight(r) &&
+                          (merge == null || merge.r0 == merge.r1)
+                      ? y + spanH - math.max(1.0, rowBottomInset)
+                      : null;
                   sink.drawText(
                     shown.text,
                     x + 3,
@@ -2416,6 +2457,7 @@ abstract final class OfficePdfExport {
                     maxWidth: textSpan - 6,
                     align: align,
                     lineAdvance: wrap ? lineAdvance : null,
+                    authoredLineBottom: authoredLineBottom,
                     wrapText: !authoredRows || wrap,
                     bold: stored.fontBold,
                     family: book.styles?.familyAt(stored.styleIndex),
@@ -4277,6 +4319,7 @@ class _PageSink {
     String? family,
     int? baseLevel,
     double? lineAdvance,
+    double? authoredLineBottom,
     bool wrapText = true,
     ({SmlVAlign alignment, double height, bool wrap})? cellBox,
   }) {
@@ -4299,7 +4342,10 @@ class _PageSink {
       );
       final advance = lineAdvance ?? size * 1.25;
       var cy = y;
-      if (cellBox != null) {
+      if (authoredLineBottom != null &&
+          lines.length == '\n'.allMatches(text).length + 1) {
+        cy = authoredLineBottom - (lines.length - 1) * advance;
+      } else if (cellBox != null) {
         final font = pack.fontFor(
           0x41,
           family: family,

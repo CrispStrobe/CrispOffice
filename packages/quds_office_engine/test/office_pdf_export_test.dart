@@ -1713,6 +1713,71 @@ void main() {
     expect((positions['Y']! - positions['Z']!).abs(), lessThan(2));
   });
 
+  group('native automatic row heights at a page boundary', () {
+    final printFont = SfntFont.parse(
+      File(
+        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+      ).readAsBytesSync(),
+    );
+
+    SmlWorksheet makeSheet(double storedHeight, double nextHeight) {
+      final sheet = SmlWorksheet(name: 'Print', sheetId: 1)
+        ..pageSetup = SmlPageSetup()
+        ..printArea = SmlRange.parse('A1:A2')
+        ..setColumnWidth(0, 100);
+      sheet.importRowHeight(
+        0,
+        SmlWorksheet.rowHeightFromExcel(storedHeight),
+        automatic: true,
+      );
+      sheet.setRowHeight(1, SmlWorksheet.rowHeightFromExcel(nextHeight));
+      sheet.cellA1('A2').value = 'Next';
+      return sheet;
+    }
+
+    PdfFile printSheet(SmlWorksheet sheet) {
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+      );
+      return PdfFile.open(
+        OfficePrint.workbook(
+          book,
+          font: printFont,
+          options: const PdfSheetPrintOptions(
+            useWorksheetPageSetup: true,
+            paperOverride: (width: 140, height: 100),
+            landscapeOverride: true,
+            marginOverride: 30,
+          ),
+        ),
+      );
+    }
+
+    test('hard line breaks share the row padding', () {
+      final sheet = makeSheet(25.5, 12);
+      sheet.cellA1('A1')
+        ..value = 'First\nSecond'
+        ..fontSize = 10
+        ..wrapText = true;
+      final pdf = printSheet(sheet);
+      expect(pdf.pageCount, 1);
+      final positions = {
+        for (final run in pdf.displayList(0).runs) run.text.trim(): run.y,
+      };
+      expect(positions['S']! - positions['F']!, closeTo(13, 0.02));
+    });
+
+    test('a larger blank font outside the print area can grow the row', () {
+      final sheet = makeSheet(15, 25);
+      sheet.cellA1('A1')
+        ..value = 'Label'
+        ..fontSize = 11;
+      expect(printSheet(sheet).pageCount, 1);
+      sheet.cellA1('B1').fontSize = 12;
+      expect(printSheet(sheet).pageCount, 2);
+    });
+  });
+
   test('native vertical alignment positions PDF cell text', () {
     final styles = SmlStyleSheet.parse('''
 <styleSheet xmlns="${OfficeNamespaces.x}">
