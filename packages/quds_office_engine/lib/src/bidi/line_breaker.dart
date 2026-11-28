@@ -193,6 +193,9 @@ abstract final class LineBreaker {
 
     /// Optional width for the first line. When supplied, wrapping is greedy.
     double? firstLineWidth,
+
+    /// Keep the empty line introduced by a final hard break.
+    bool preserveFinalEmptyLine = false,
   }) {
     if (text.isEmpty) {
       return <BrokenLine>[
@@ -259,7 +262,7 @@ abstract final class LineBreaker {
             measureLine: measureLine,
           ),
         );
-      } else if (hard || (atEnd && lines.isEmpty)) {
+      } else if (hard || (atEnd && (lines.isEmpty || preserveFinalEmptyLine))) {
         lines.add(
           BrokenLine(
             glyphs: const <ShapedGlyph>[],

@@ -1746,6 +1746,7 @@ abstract final class OfficePdfExport {
           italic: italic,
           forceLayout: true,
           richRuns: rich,
+          preserveFinalEmptyLine: true,
         );
         var lineHeight = rowMeasure.lineHeight(
           cell.fontSize,
@@ -1814,6 +1815,10 @@ abstract final class OfficePdfExport {
               italic == normalFont?.italic)) {
         return null;
       }
+      // The authored Arial Narrow default includes row spacing beyond the
+      // embedded font's line box. Use the imported height for that default.
+      final stored = _sheetPxToPt(sheet.effectiveDefaultRowHeightPx);
+      if (family == 'arial narrow') return stored.roundToDouble();
       final face = pack.set.resolve(
         65,
         family: family,
@@ -1821,7 +1826,7 @@ abstract final class OfficePdfExport {
         italic: italic,
       );
       if (face?.family.trim().toLowerCase() != family) {
-        return _sheetPxToPt(sheet.effectiveDefaultRowHeightPx).roundToDouble();
+        return stored.roundToDouble();
       }
       return rowMeasure
           .lineHeight(size, family: family, bold: bold, italic: italic)
@@ -4729,6 +4734,7 @@ class _PageSink {
         justify: cellBox == null,
         runStyles: styles,
         nativeScale: nativeScale,
+        preserveFinalEmptyLine: cellBox?.wrap == true,
       );
       final advance = lineAdvance ?? size * 1.25;
       var cy = y;
@@ -4998,6 +5004,7 @@ class _PageSink {
     bool justify = true,
     List<_SheetLabelRun> runStyles = const [],
     double? nativeScale,
+    bool preserveFinalEmptyLine = false,
   }) {
     final bool anchor = runStyles.isEmpty && _needsAuthoredLtr(text, baseLevel);
     final SfntFont? layoutFont = pack.layoutFont;
@@ -5046,6 +5053,7 @@ class _PageSink {
       justify: anchor ? false : justify,
       balanceLines: runStyles.isEmpty && nativeScale == null,
       breakLongWords: anchor,
+      preserveFinalEmptyLine: preserveFinalEmptyLine,
       markAttachOf: layoutFont == null
           ? null
           : GposMarkToBase.fnFor(
@@ -5116,6 +5124,7 @@ class _PageSink {
     bool forceLayout = false,
     double? nativeScale,
     List<_SheetLabelRun> richRuns = const [],
+    bool preserveFinalEmptyLine = false,
   }) {
     if (!forceLayout &&
         richRuns.isEmpty &&
@@ -5136,6 +5145,7 @@ class _PageSink {
         runStyles: _sheetRunStyles(richRuns),
         justify: richRuns.isEmpty && nativeScale == null,
         nativeScale: nativeScale,
+        preserveFinalEmptyLine: preserveFinalEmptyLine,
       ).length,
     );
   }

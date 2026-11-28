@@ -1754,15 +1754,16 @@ void main() {
     expect(inferred.y - explicit.y, closeTo(30, 0.01));
   });
 
-  test('Aptos Narrow print derives automatic rows from the Normal size', () {
+  test('native print uses worksheet defaults for automatic row heights', () {
     final styles = SmlStyleSheet.parse('''
 <styleSheet xmlns="${OfficeNamespaces.x}">
-  <fonts count="2">
+  <fonts count="3">
     <font><sz val="12"/><name val="Aptos Narrow"/></font>
     <font><sz val="11"/><name val="Liberation Sans"/></font>
+    <font><sz val="11"/><name val="Arial Narrow"/></font>
   </fonts>
   <cellStyleXfs count="1"><xf fontId="0"/></cellStyleXfs>
-  <cellXfs count="2"><xf xfId="0" fontId="0"/><xf xfId="0" fontId="1" applyFont="1"/></cellXfs>
+  <cellXfs count="3"><xf xfId="0" fontId="0"/><xf xfId="0" fontId="1" applyFont="1"/><xf xfId="0" fontId="2" applyFont="1"/></cellXfs>
   <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
 </styleSheet>''');
     final sheet = SmlWorksheet(name: 'Default rows', sheetId: 1)
@@ -1789,7 +1790,10 @@ void main() {
       ).readAsBytesSync(),
     );
     final fonts = OfficeFontSet(
-      faces: [OfficeFontFace(font: columnFace, family: 'Liberation Sans')],
+      faces: [
+        OfficeFontFace(font: columnFace, family: 'Liberation Sans'),
+        OfficeFontFace(font: columnFace, family: 'Arial Narrow'),
+      ],
     );
     double rowGap() {
       final pdf = PdfFile.open(OfficePrint.workbook(book, fonts: fonts));
@@ -1813,6 +1817,12 @@ void main() {
 
     book.firstSheet.importedDefaultRowHeightIsCustom = true;
     expect(rowGap(), closeTo(16, 0.01));
+
+    book.firstSheet
+      ..importedDefaultRowHeightIsCustom = false
+      ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(14);
+    columns.updateAll((_, _) => const {'style': '2'});
+    expect(rowGap(), closeTo(14, 0.01));
   });
 
   test(
@@ -2293,6 +2303,31 @@ void main() {
         content.indexOf('0 1 0 rg'),
         lessThan(content.indexOf('/ActualText')),
       );
+    },
+  );
+
+  test(
+    'native print reserves the blank line after a final cell line break',
+    () {
+      final sheet = SmlWorksheet(name: 'Wrapped labels', sheetId: 1)
+        ..pageSetup = SmlPageSetup();
+      sheet
+        ..setColumnWidth(0, 100)
+        ..setColumnWidth(1, 100)
+        ..setRowHeight(0, 96);
+      sheet.cellA1('A1').value = 'Alpha\nBeta';
+      sheet.cellA1('B1').value = 'Gamma\nDelta\n';
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+      );
+      final pdf = PdfFile.open(OfficePrint.workbook(book));
+      final runs = pdf.displayList(0).runs;
+      final left = runs.where((run) => run.x < 110).toList();
+      final right = runs.where((run) => run.x >= 110).toList();
+      expect(left.map((run) => run.text).join(), 'AlphaBeta');
+      expect(right.map((run) => run.text).join(), 'GammaDelta');
+      expect(left.first.y - right.first.y, closeTo(14, 0.01));
+      expect(left.last.y - right.last.y, closeTo(14, 0.01));
     },
   );
 
