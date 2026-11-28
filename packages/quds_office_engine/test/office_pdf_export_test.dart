@@ -2231,6 +2231,54 @@ void main() {
     expect(runs.map((run) => run.y).toSet(), hasLength(2));
   });
 
+  test('native indent uses three Normal font spaces per level', () {
+    final face = SfntFont.parse(
+      File(
+        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+      ).readAsBytesSync(),
+    );
+    final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <fonts count="2">
+    <font><sz val="10"/><name val="Liberation Sans"/></font>
+    <font><sz val="8"/><name val="Liberation Sans"/></font>
+  </fonts>
+  <cellStyleXfs count="1"><xf fontId="0"/></cellStyleXfs>
+  <cellXfs count="4">
+    <xf fontId="1"><alignment horizontal="left" wrapText="1"/></xf>
+    <xf fontId="1"><alignment horizontal="left" wrapText="1" indent="1"/></xf>
+    <xf fontId="1"><alignment horizontal="right"/></xf>
+    <xf fontId="1"><alignment horizontal="right" indent="2"/></xf>
+  </cellXfs>
+  <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>''');
+    final sheet = SmlWorksheet(name: 'Indent', sheetId: 1)
+      ..pageSetup = SmlPageSetup(scale: 80)
+      ..printArea = SmlRange.parse('A1:A4');
+    sheet.setColumnWidth(0, 150);
+    for (var i = 0; i < 4; i++) {
+      final cell = sheet.cell(SmlCellRef(0, i))
+        ..value = 'X'
+        ..styleIndex = i
+        ..fontSize = 8
+        ..horizontalAlign = i < 2 ? SmlHAlign.left : SmlHAlign.right
+        ..wrapText = i < 2;
+      if (i == 1) cell.fillRgb = 'EEEEEE';
+    }
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(
+        SmlWorkbook(sheets: [sheet], styles: styles),
+      ),
+    );
+    final editedStyle = book.firstSheet.cellA1('A2').styleIndex;
+    expect(book.styles!.indentationAt(editedStyle), 1);
+    final print = PdfFile.open(OfficePrint.workbook(book, font: face));
+    final runs = print.displayList(0).runs.where((r) => r.text == 'X').toList();
+    expect(runs, hasLength(4));
+    expect(runs[1].x - runs[0].x, closeTo(7.2, 0.01));
+    expect(runs[2].x - runs[3].x, closeTo(14.4, 0.01));
+  });
+
   test('native numeric print inset grows with larger fonts', () {
     final sheet = SmlWorksheet(name: 'Amounts', sheetId: 1)
       ..pageSetup = SmlPageSetup(scale: 85)

@@ -9,6 +9,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 
 import '../core/virtual_viewport.dart';
 import '../embed/office_context_menu.dart';
+import '../embed/office_host_fonts.dart';
 import '../embed/office_theme.dart';
 import '../editor_word/caret_engine.dart';
 import '../editor_word/paint_run_text.dart';
@@ -979,7 +980,7 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
           }
           _paintCellText(
             canvas,
-            textCell,
+            _indentedTextRect(textCell, data),
             label,
             isEdit: isEdit,
             align:
@@ -1825,10 +1826,36 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
   double _cellTextSize(SmlCell? cell) =>
       (cell?.fontSize ?? 11) * 4 / 3 * viewport.scale;
 
+  Rect _indentedTextRect(Rect rect, SmlCell? cell) {
+    final align = cell?.horizontalAlign;
+    if (align != SmlHAlign.left && align != SmlHAlign.right) return rect;
+    final styles = workbook?.styles;
+    final level = styles?.indentationAt(cell!.styleIndex) ?? 0;
+    if (level == 0) return rect;
+    final normal = styles?.normalFont;
+    final metrics = normal == null
+        ? null
+        : OfficeHostFonts.paintMetrics(
+            normal.family,
+            normal.sizePoints,
+            codePoint: 0x20,
+            weight: normal.bold ? 700 : 400,
+            italic: normal.italic,
+          );
+    final space = metrics?.characterWidth(0x20) ?? 3;
+    final inset = math.min(rect.width, 4 * level * space * viewport.scale);
+    return Rect.fromLTRB(
+      rect.left + (align == SmlHAlign.left ? inset : 0),
+      rect.top,
+      rect.right - (align == SmlHAlign.right ? inset : 0),
+      rect.bottom,
+    );
+  }
+
   int _hitEditIndex(Offset local, SmlCellRef ref) {
-    final rect = _displayRect(ref.col, ref.row);
     final origin = sheet.mergeAtRef(ref)?.origin ?? ref;
     final cell = sheet.cellOrNull(origin);
+    final rect = _indentedTextRect(_displayRect(ref.col, ref.row), cell);
     final alignment = cell?.horizontalAlign ?? SmlHAlign.general;
     final width = rect.width - 4;
     if (width <= 0) return 0;

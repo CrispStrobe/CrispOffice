@@ -1445,6 +1445,28 @@ abstract final class OfficePdfExport {
             cell.horizontalAlign == SmlHAlign.left);
 
     final authoredRows = options.useWorksheetPageSetup && book.package != null;
+    final normalFont = book.styles?.normalFont;
+    // Each indent level is three whole-point spaces in Excel's Normal font.
+    final indentStep =
+        3 *
+        pack
+            .widthOf(
+              0x20,
+              normalFont?.sizePoints ?? 11,
+              family: normalFont?.family,
+              weight: normalFont?.bold == true ? 700 : 400,
+              italic: normalFont?.italic ?? false,
+            )
+            .round();
+    double indentation(SmlCell cell) {
+      if (cell.horizontalAlign != SmlHAlign.left &&
+          cell.horizontalAlign != SmlHAlign.right) {
+        return 0;
+      }
+      return ((book.styles?.indentationAt(cell.styleIndex) ?? 0) * indentStep)
+          .toDouble();
+    }
+
     bool nativeWrappedLabel(String text) =>
         authoredRows && _PageSink._winAnsiOnly(text);
 
@@ -1621,7 +1643,8 @@ abstract final class OfficePdfExport {
                 (sum, run) => sum + worksheetRunWidth(run, 1),
               );
         final padding = authoredRows && runs.isNotEmpty ? 4.0 : 6.0;
-        var remaining = width + padding - colPts[cell.ref.col - minCol];
+        var remaining =
+            width + padding + indentation(cell) - colPts[cell.ref.col - minCol];
         if (remaining <= 0) continue;
         final sourceFill = cellFill(cell.ref.col, cell.ref.row, cell);
         var end = cell.ref.col;
@@ -1703,10 +1726,13 @@ abstract final class OfficePdfExport {
         final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
         final rich = richLabelRuns(cell, shown.text, 1, shown.color);
         final native = nativeWrappedLabel(shown.text);
+        final padding = native
+            ? (cell.horizontalAlign == SmlHAlign.right ? 5 : 4)
+            : 6;
         final lines = rowMeasure.lineCount(
           shown.text,
           cell.fontSize,
-          maxWidth: math.max(1.0, width - (native ? 4 : 6)),
+          maxWidth: math.max(1.0, width - padding - indentation(cell)),
           nativeScale: native ? 1 : null,
           family: family,
           bold: cell.fontBold,
@@ -2387,6 +2413,9 @@ abstract final class OfficePdfExport {
                   shown.numeric ? _TextAlign.right : _TextAlign.auto,
               };
               final wrap = wraps(stored, shown.text);
+              final indent = indentation(stored) * scale;
+              final leadingIndent = align == _TextAlign.left ? indent : 0.0;
+              final trailingIndent = align == _TextAlign.right ? indent : 0.0;
               final vertical = book.styles?.verticalAlignAt(stored.styleIndex);
               final end = rowOverflow[anchor];
               var textSpan = spanW;
@@ -2402,6 +2431,7 @@ abstract final class OfficePdfExport {
                   textSpan += colWAt(next);
                 }
               }
+              if (indent > 0 && indent >= textSpan - 2) continue;
               final splitLabel =
                   splitMerge ||
                   (end != null && (anchor < firstCol || end > lastCol));
@@ -2448,10 +2478,11 @@ abstract final class OfficePdfExport {
                   final padding = authoredRows
                       ? math.max(1.0, inset * scale)
                       : 3.0;
-                  final slack = textSpan - padding * 2 - width;
+                  final slack = textSpan - padding * 2 - indent - width;
                   var runX =
                       x +
                       padding +
+                      leadingIndent +
                       switch (align) {
                         _TextAlign.right => slack,
                         _TextAlign.center => slack / 2,
@@ -2517,10 +2548,15 @@ abstract final class OfficePdfExport {
                       ? y + spanH - math.max(1.0, rowBottomInset)
                       : null;
                   final native = wrap && nativeWrappedLabel(shown.text);
-                  final inset = native ? 2 * scale : 3.0;
+                  final leftInset = (native ? 2 * scale : 3.0) + leadingIndent;
+                  final rightInset =
+                      (native
+                          ? (align == _TextAlign.right ? 3 : 2) * scale
+                          : 3.0) +
+                      trailingIndent;
                   sink.drawText(
                     shown.text,
-                    x + inset,
+                    x + leftInset,
                     textVertical != null
                         ? y + 1
                         : wrap
@@ -2528,7 +2564,7 @@ abstract final class OfficePdfExport {
                         : y + spanH - bottomInset,
                     size,
                     conditional.fontRgb ?? shown.color,
-                    maxWidth: textSpan - inset * 2,
+                    maxWidth: textSpan - leftInset - rightInset,
                     nativeScale: native ? scale : null,
                     align: align,
                     lineAdvance: wrap ? lineAdvance : null,

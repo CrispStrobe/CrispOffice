@@ -72,6 +72,7 @@ class SmlStyleSheet {
   final List<SmlCellBorders> _borders = [];
   final List<int> _cellXfsBorderIds = [];
   final List<String?> _verticalAlignments = [];
+  final List<int> _indentations = [];
 
   /// SmlStyleSheet API.
   SmlStyleSheet({
@@ -390,9 +391,12 @@ class SmlStyleSheet {
     }
     String? vertical(XmlElement? alignment) =>
         alignment == null ? null : _attribute(alignment, 'vertical');
-    final baseVertical = [
+    int? indent(XmlElement? alignment) => alignment == null
+        ? null
+        : int.tryParse(_attribute(alignment, 'indent') ?? '')?.clamp(0, 250);
+    final baseAlignments = [
       for (final style in entries('cellStyleXfs', 'xf'))
-        vertical(style.firstChild('alignment', namespaceUri: namespace)),
+        style.firstChild('alignment', namespaceUri: namespace),
     ];
     for (final format in entries('cellXfs', 'xf')) {
       sheet._cellXfsBorderIds.add(
@@ -405,14 +409,20 @@ class SmlStyleSheet {
       final baseId = int.tryParse(_attribute(format, 'xfId') ?? '');
       final apply = _attribute(format, 'applyAlignment');
       final inherited =
-          baseId != null && baseId >= 0 && baseId < baseVertical.length
-          ? baseVertical[baseId]
+          baseId != null && baseId >= 0 && baseId < baseAlignments.length
+          ? baseAlignments[baseId]
           : null;
-      final direct = vertical(alignment);
+      final usesDirect = alignment != null && apply != '0' && apply != 'false';
       sheet._verticalAlignments.add(
-        alignment != null && apply != '0' && apply != 'false'
-            ? direct
-            : inherited ?? direct,
+        usesDirect
+            ? vertical(alignment)
+            : vertical(inherited) ?? vertical(alignment),
+      );
+      sheet._indentations.add(
+        (usesDirect
+                ? indent(alignment)
+                : indent(inherited) ?? indent(alignment)) ??
+            0,
       );
       sheet.cellXfsAlign.add(
         parseHAlign(
@@ -554,6 +564,17 @@ class SmlStyleSheet {
       index = base;
     }
     return index < 0 ? null : _verticalAlignments[index];
+  }
+
+  /// Authored cell indent in three-space levels.
+  int indentationAt(int styleIndex) {
+    var index = styleIndex;
+    while (index >= _indentations.length) {
+      final base = _xfBases[index];
+      if (base == null) return 0;
+      index = base;
+    }
+    return index < 0 ? 0 : _indentations[index];
   }
 
   /// fillAt API.

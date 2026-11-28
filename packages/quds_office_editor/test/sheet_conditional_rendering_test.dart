@@ -171,6 +171,41 @@ void main() {
     );
   });
 
+  testWidgets('cell indent offsets text from its aligned edge', (tester) async {
+    final sheet = _sheet(text: 'Test', font: 'E03060')..setColumnWidth(0, 120);
+    final book = SmlWorkbook(
+      sheets: [sheet],
+      styles: SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <cellXfs count="2"><xf/><xf><alignment indent="1"/></xf></cellXfs>
+</styleSheet>'''),
+    );
+    final cell = sheet.cellA1('A1');
+    Future<double> inkX(int style) async {
+      cell.styleIndex = style;
+      final pixels = await _paint(tester, sheet, workbook: book);
+      int sum = 0;
+      int count = 0;
+      for (var i = 0; i < pixels.length; i += 4) {
+        if (pixels[i] == 0xE0 &&
+            pixels[i + 1] == 0x30 &&
+            pixels[i + 2] == 0x60) {
+          sum += (i ~/ 4) % 256;
+          count++;
+        }
+      }
+      expect(count, greaterThan(0));
+      return sum / count;
+    }
+
+    cell.horizontalAlign = SmlHAlign.left;
+    final leftNormal = await inkX(0);
+    expect(await inkX(1), closeTo(leftNormal + 12, 0.1));
+    cell.horizontalAlign = SmlHAlign.right;
+    final rightNormal = await inkX(0);
+    expect(await inkX(1), closeTo(rightNormal - 12, 0.1));
+  });
+
   testWidgets('general numbers align right while explicit left wins', (
     tester,
   ) async {
