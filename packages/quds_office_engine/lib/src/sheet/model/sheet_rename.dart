@@ -85,7 +85,13 @@ class SheetRenameEdit {
       for (final rule in sheet.validations) rule,
       for (final rule in sheet.conditionalFormats) rule,
       for (final cell in sheet.allCells)
-        if (cell.formula != null) ...[cell, cell.ref.a1, cell.formula],
+        if (cell.formula != null ||
+            cell.hyperlink?.startsWith('#') == true) ...[
+          cell,
+          cell.ref.a1,
+          cell.formula,
+          cell.hyperlink,
+        ],
       for (final pivot in sheet.pivots) ...[
         pivot,
         pivot.sourceSheetName,
@@ -323,6 +329,12 @@ abstract final class SheetRename {
         final formula = cell.formula;
         if (formula != null) {
           change(formula, rewrite(formula), (v) => cell.formula = v);
+        }
+        final hyperlink = cell.hyperlink;
+        if (hyperlink != null && hyperlink.startsWith('#')) {
+          change(hyperlink, '#${rewrite(hyperlink.substring(1))}', (v) {
+            cell.hyperlink = v;
+          });
         }
       }
       for (final rule in tab.validations) {
@@ -724,7 +736,10 @@ abstract final class SheetRename {
         final location =
             x &&
             !foreign &&
-            ((node.localName == 'hyperlink' && attr.localName == 'location') ||
+            ((node.localName == 'hyperlink' &&
+                    attr.localName == 'location' &&
+                    node.getAttribute('id', namespaceUri: OfficeNamespaces.r) ==
+                        null) ||
                 (node.localName == 'worksheetSource' &&
                     attr.localName == 'name'));
         if (sheetOwner && !foreign && matches(attr.value)) {
@@ -784,7 +799,10 @@ abstract final class SheetRename {
         return true;
       }
       if (node.localName == 'hyperlink' &&
-          <String>{'display', 'tooltip'}.contains(attr.localName)) {
+          (<String>{'display', 'tooltip'}.contains(attr.localName) ||
+              (attr.localName == 'location' &&
+                  node.getAttribute('id', namespaceUri: OfficeNamespaces.r) !=
+                      null))) {
         return true;
       }
     }

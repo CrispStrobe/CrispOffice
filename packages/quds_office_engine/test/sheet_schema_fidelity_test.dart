@@ -26,6 +26,67 @@ void _assertDrawingSchema(OpcPackage package) {
 }
 
 void main() {
+  test('projects and updates native single-cell hyperlinks', () {
+    const uri = '/xl/worksheets/sheet1.xml';
+    const x = OfficeNamespaces.x;
+    const r = OfficeNamespaces.r;
+    final sheet = SmlWorksheet(name: 'Links', sheetId: 1);
+    sheet.cellA1('A1').value = 'Link label';
+    final source = SheetSerializer().write(SmlWorkbook(sheets: [sheet]));
+    final rel = source
+        .relationshipsFor(uri)
+        .add(
+          type: RelationshipTypes.hyperlink,
+          target: 'https://example.test/article',
+          targetMode: RelationshipTargetMode.external,
+        );
+    final part = source.getPart(uri)!;
+    part.writeText(
+      part.readText().replaceFirst('</worksheet>', '''
+<hyperlinks xmlns:links="$r">
+  <hyperlink ref="A1" links:id="${rel.id}" location="section" display="Authored" tooltip="Help"/>
+  <hyperlink ref="A2" location="Links!A1"/>
+  <hyperlink ref="A3" links:id="${rel.id}" location="Links!A1"/>
+  <hyperlink ref="A5:A6" location="Links!A1"/>
+</hyperlinks></worksheet>'''),
+    );
+    final book = SheetDeserializer().read(source);
+    final linkSheet = book.firstSheet;
+    expect(linkSheet.cellA1('A1').value, 'Link label');
+    expect(
+      linkSheet.cellA1('A1').hyperlink,
+      'https://example.test/article#section',
+    );
+    expect(linkSheet.cellA1('A2').hyperlink, '#Links!A1');
+
+    SheetRename.rename(book, linkSheet, 'New links');
+    expect(linkSheet.cellA1('A2').hyperlink, "#'New links'!A1");
+    expect(
+      linkSheet.cellA1('A3').hyperlink,
+      'https://example.test/article#Links!A1',
+    );
+    linkSheet.cellA1('A1').hyperlink = 'https://example.test/edited';
+    linkSheet.cellA1('A3').hyperlink = null;
+    linkSheet.cellA1('A4').hyperlink = 'mailto:test@example.test';
+
+    final saved = OpcPackage.openBytes(SheetSerializer().writeBytes(book));
+    final root = XmlDocument.parse(saved.getPart(uri)!.readText()).root!;
+    final nodes = root
+        .firstChild('hyperlinks', namespaceUri: x)!
+        .childrenNamed('hyperlink', namespaceUri: x);
+    final byRef = {for (final node in nodes) node.getAttribute('ref'): node};
+    expect(byRef.keys, unorderedEquals(['A1', 'A2', 'A4', 'A5:A6']));
+    expect(byRef['A1']!.getAttribute('display'), 'Authored');
+    expect(byRef['A1']!.getAttribute('tooltip'), 'Help');
+    expect(byRef['A5:A6']!.getAttribute('location'), "'New links'!A1");
+
+    final reopened = SheetDeserializer().read(saved).firstSheet;
+    expect(reopened.cellA1('A1').hyperlink, 'https://example.test/edited');
+    expect(reopened.cellA1('A2').hyperlink, "#'New links'!A1");
+    expect(reopened.cellA1('A3').hyperlink, isNull);
+    expect(reopened.cellA1('A4').hyperlink, 'mailto:test@example.test');
+  });
+
   test('retains only a valid internal printer settings link in page setup', () {
     const sheetUri = '/xl/worksheets/sheet1.xml';
     const settingsUri = '/xl/printerSettings/printerSettings1.bin';

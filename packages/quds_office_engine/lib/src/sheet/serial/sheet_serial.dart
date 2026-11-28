@@ -1043,6 +1043,19 @@ class SheetDeserializer {
           sheet.merges.add(SmlMerge.parse(ref));
         }
       }
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.depth == 3 &&
+          reader.namespaceUri == OfficeNamespaces.x &&
+          reader.localName == 'hyperlink') {
+        final ref = _worksheetHyperlinkRef(reader.getAttribute('ref'));
+        if (ref == null) continue;
+        final target = _worksheetHyperlinkTarget(
+          package.relationshipsFor(sheetUri),
+          id: reader.getAttribute('id', namespaceUri: OfficeNamespaces.r),
+          location: reader.getAttribute('location'),
+        );
+        if (target != null) sheet.cell(ref).hyperlink = target;
+      }
     }
     if (pageSetup != null) {
       sheet.pageSetup = pageSetup;
@@ -1975,13 +1988,7 @@ class SheetSerializer {
     w.writeStartDocument();
     w.writeStartElement('worksheet');
     w.writeAttribute('xmlns', OfficeNamespaces.x);
-    if (printerSettingsId != null ||
-        sheet.drawings.isNotEmpty ||
-        sheet.rows.values.any(
-          (row) => row.cells.values.any(
-            (cell) => cell.hyperlink?.contains('://') ?? false,
-          ),
-        )) {
+    if (printerSettingsId != null || sheet.drawings.isNotEmpty) {
       w.writeNamespace('r', OfficeNamespaces.r);
     }
     final writeFitToPage = sheet.pageSetup?.fitToPage == true;
@@ -2370,7 +2377,6 @@ class SheetSerializer {
       }
       w.writeEndElement();
     }
-    _writeHyperlinks(w, sheet, package, sheetUri);
     _writePageSetup(w, sheet, printerSettingsId);
     final SmlHeaderFooter? hf = sheet.headerFooter;
     if (hf != null && !hf.isEmpty) {
@@ -2412,21 +2418,36 @@ class SheetSerializer {
       }
     }
     w.writeEndElement();
-    return _preserveSheetParts(sourceXml, w.toXml(), {
-      'sheetViews',
-      'cols',
-      'sheetData',
-      'sheetProtection',
-      'autoFilter',
-      if (!preserveConditional) 'conditionalFormatting',
-      if (!preserveValidations) 'dataValidations',
-      'mergeCells',
-      if (sheet.pageSetup != null) 'printOptions',
-      if (sheet.pageSetup != null) 'pageMargins',
-      if (sheet.pageSetup != null) 'pageSetup',
-      'headerFooter',
-      'drawing',
-    }, _worksheetOrder);
+    final hasHyperlinks =
+        sourceXml != null ||
+        sheet.allCells.any((cell) => cell.hyperlink?.isNotEmpty == true);
+    return _preserveSheetParts(
+      sourceXml,
+      w.toXml(),
+      {
+        'sheetViews',
+        'cols',
+        'sheetData',
+        'sheetProtection',
+        'autoFilter',
+        if (!preserveConditional) 'conditionalFormatting',
+        if (!preserveValidations) 'dataValidations',
+        'mergeCells',
+        if (sheet.pageSetup != null) 'printOptions',
+        if (sheet.pageSetup != null) 'pageMargins',
+        if (sheet.pageSetup != null) 'pageSetup',
+        'headerFooter',
+        'drawing',
+      },
+      _worksheetOrder,
+      update: hasHyperlinks
+          ? (root) => _updateWorksheetHyperlinks(
+              root,
+              sheet,
+              package.relationshipsFor(sheetUri),
+            )
+          : null,
+    );
   }
 
   static void _writePageSetup(
@@ -2481,56 +2502,6 @@ class SheetSerializer {
         'r:id': ?printerSettingsId,
       },
     );
-  }
-
-  static void _writeHyperlinks(
-    XmlWriter w,
-    SmlWorksheet sheet,
-    OpcPackage package,
-    String sheetUri,
-  ) {
-    final linked = <SmlCell>[
-      for (final row in sheet.rows.values)
-        for (final cell in row.cells.values)
-          if (cell.hyperlink case final link? when link.isNotEmpty) cell,
-    ];
-    if (linked.isEmpty) return;
-    final rels = package.relationshipsFor(sheetUri);
-    w.writeStartElement('hyperlinks');
-    for (final cell in linked) {
-      final link = cell.hyperlink!;
-      w.writeStartElement('hyperlink');
-      w.writeAttribute('ref', cell.ref.a1);
-      final external =
-          link.contains('://') ||
-          link.startsWith('mailto:') ||
-          link.startsWith('ftp:');
-      if (external) {
-        final existing = rels.items
-            .where(
-              (rel) =>
-                  rel.type == RelationshipTypes.hyperlink &&
-                  rel.targetMode == RelationshipTargetMode.external &&
-                  rel.target == link,
-            )
-            .firstOrNull;
-        final rel =
-            existing ??
-            rels.add(
-              type: RelationshipTypes.hyperlink,
-              target: link,
-              targetMode: RelationshipTargetMode.external,
-            );
-        w.writeAttribute('r:id', rel.id);
-      } else {
-        w.writeAttribute(
-          'location',
-          link.startsWith('#') ? link.substring(1) : link,
-        );
-      }
-      w.writeEndElement();
-    }
-    w.writeEndElement();
   }
 
   static void _writeSheetFormat(

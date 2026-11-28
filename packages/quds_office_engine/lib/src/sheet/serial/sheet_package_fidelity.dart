@@ -136,9 +136,15 @@ String _preserveSheetParts(
   String? source,
   String generated,
   Set<String> modeled,
-  List<String> order,
-) {
-  if (source == null || source.trim().isEmpty) return generated;
+  List<String> order, {
+  void Function(XmlElement)? update,
+}) {
+  if (source == null || source.trim().isEmpty) {
+    if (update == null) return generated;
+    final doc = XmlDocument.parse(generated);
+    update(doc.root!);
+    return doc.toXmlString();
+  }
   final old = XmlDocument.parse(source);
   final current = XmlDocument.parse(generated);
   final root = old.root!;
@@ -187,7 +193,148 @@ String _preserveSheetParts(
   for (final elements in replacements.values) {
     root.children.addAll(elements);
   }
+  update?.call(root);
   return old.toXmlString();
+}
+
+// Hyperlink ranges remain in native XML. The cell model projects single cells
+// without expanding a range across an entire worksheet.
+SmlCellRef? _worksheetHyperlinkRef(String? ref) {
+  if (ref == null ||
+      !RegExp(r'^\$?[A-Za-z]{1,3}\$?[1-9][0-9]{0,6}$').hasMatch(ref)) {
+    return null;
+  }
+  final cell = SmlCellRef.parse(ref);
+  return cell.col < SmlWorksheet.excelColumnCount &&
+          cell.row < SmlWorksheet.excelRowCount
+      ? cell
+      : null;
+}
+
+String? _worksheetHyperlinkTarget(
+  RelationshipCollection relationships, {
+  String? id,
+  String? location,
+}) {
+  if (id == null) {
+    return location == null || location.isEmpty ? null : '#$location';
+  }
+  final link = relationships.byId(id);
+  if (link == null ||
+      link.type != RelationshipTypes.hyperlink ||
+      link.targetMode != RelationshipTargetMode.external ||
+      link.target.isEmpty) {
+    return null;
+  }
+  if (location == null || location.isEmpty) return link.target;
+  return "${link.target.split('#').first}#$location";
+}
+
+void _updateWorksheetHyperlinks(
+  XmlElement worksheet,
+  SmlWorksheet sheet,
+  RelationshipCollection relationships,
+) {
+  const x = OfficeNamespaces.x;
+  final pending = <String, String>{
+    for (final cell in sheet.allCells)
+      if (cell.hyperlink case final target? when target.isNotEmpty)
+        cell.ref.a1: target,
+  };
+  var hyperlinks = worksheet.firstChild('hyperlinks', namespaceUri: x);
+  if (hyperlinks == null) {
+    if (pending.isEmpty) return;
+    hyperlinks = XmlElement(localName: 'hyperlinks', namespaceUri: x)
+      ..parent = worksheet;
+    final rank = _worksheetOrder.indexOf('hyperlinks');
+    final next = worksheet.children.indexWhere(
+      (node) =>
+          node is XmlElement &&
+          node.namespaceUri == x &&
+          _worksheetOrder.indexOf(node.localName) > rank,
+    );
+    worksheet.children.insert(
+      next < 0 ? worksheet.children.length : next,
+      hyperlinks,
+    );
+  }
+
+  for (final node
+      in hyperlinks.childrenNamed('hyperlink', namespaceUri: x).toList()) {
+    final ref = _worksheetHyperlinkRef(node.getAttribute('ref'));
+    if (ref == null) continue;
+    final id = node.getAttribute('id', namespaceUri: OfficeNamespaces.r);
+    final previous = _worksheetHyperlinkTarget(
+      relationships,
+      id: id,
+      location: node.getAttribute('location'),
+    );
+    final target = pending.remove(ref.a1);
+    if (previous == null && target == null) continue;
+    if (target == null) {
+      hyperlinks.children.remove(node);
+    } else if (target != previous) {
+      _setWorksheetHyperlink(
+        node,
+        relationships,
+        target,
+        wasExternal: id != null,
+      );
+    }
+  }
+
+  for (final entry in pending.entries) {
+    final node = XmlElement(localName: 'hyperlink', namespaceUri: x)
+      ..setAttribute('ref', entry.key);
+    _setWorksheetHyperlink(node, relationships, entry.value);
+    hyperlinks.addChild(node);
+  }
+
+  if (hyperlinks.childElements.isEmpty) worksheet.children.remove(hyperlinks);
+}
+
+void _setWorksheetHyperlink(
+  XmlElement node,
+  RelationshipCollection relationships,
+  String target, {
+  bool wasExternal = false,
+}) {
+  const r = OfficeNamespaces.r;
+  node.removeAttribute('id', namespaceUri: r);
+  node.removeAttribute('location', namespaceUri: '');
+  final external =
+      !target.startsWith('#') &&
+      (Uri.tryParse(target)?.hasScheme == true ||
+          wasExternal && !target.contains('!'));
+  if (!external) {
+    node.setAttribute(
+      'location',
+      target.startsWith('#') ? target.substring(1) : target,
+    );
+    return;
+  }
+
+  final link =
+      relationships
+          .byType(RelationshipTypes.hyperlink)
+          .where(
+            (link) =>
+                link.targetMode == RelationshipTargetMode.external &&
+                link.target == target,
+          )
+          .firstOrNull ??
+      relationships.add(
+        type: RelationshipTypes.hyperlink,
+        target: target,
+        targetMode: RelationshipTargetMode.external,
+      );
+  node.setAttribute(
+    'r',
+    r,
+    prefix: 'xmlns',
+    namespaceUri: 'http://www.w3.org/2000/xmlns/',
+  );
+  node.setAttribute('id', link.id, prefix: 'r', namespaceUri: r);
 }
 
 void _readPivots(SmlWorksheet sheet, OpcPackage package, String sheetUri) {
