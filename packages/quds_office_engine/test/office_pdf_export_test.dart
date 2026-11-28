@@ -2239,6 +2239,39 @@ void main() {
     );
   });
 
+  test('wrapped XLSX PDF text retains and measures each rich run', () {
+    final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1');
+    sheet.setColumnWidth(0, 86);
+    sheet.setRowHeight(0, 120);
+    final rich = SharedStringTable.parse(
+      '<sst xmlns="${OfficeNamespaces.x}"><si>'
+      '<r><t>Ref:\n</t></r>'
+      '<r><rPr><sz val="16"/><u/></rPr><t>Wide Wide Wide</t></r>'
+      '</si></sst>',
+    );
+    sheet.cellA1('A1')
+      ..value = rich[0]
+      ..sourceRichString = rich.richAt(0)
+      ..fontSize = 8
+      ..wrapText = true;
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final bytes = OfficePrint.workbook(book, font: font);
+    final text = PdfFile.open(bytes).displayList(0).runs;
+    final prefix = text.firstWhere((run) => run.text == 'R');
+    final wide = text.where((run) => run.text.startsWith('W')).toList();
+    expect(wide, hasLength(3));
+    expect(wide.map((run) => run.y).toSet(), hasLength(3));
+    expect(wide.first.height, greaterThan(prefix.height * 1.5));
+    expect(
+      RegExp(r' m\s+[-.\d]+ [-.\d]+ l\s+S').allMatches(_inflated(bytes).join()),
+      hasLength(3),
+    );
+  });
+
   test('PPT PDF strokes shapes and emits URI link annots', () {
     final PmlPresentation deck = PmlPresentation(
       slides: <PmlSlide>[

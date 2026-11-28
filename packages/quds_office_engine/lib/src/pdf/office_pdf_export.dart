@@ -1477,9 +1477,12 @@ abstract final class OfficePdfExport {
       String? conditionalColor,
     }) {
       final rich = cell.richString;
-      // For wrapped and bidirectional text, retain the existing paragraph
-      // layout until inline styles can be measured across a whole paragraph.
-      if (rich == null || rich.runs.isEmpty || !simpleInlineLabel(cell, text)) {
+      if (rich == null ||
+          rich.runs.isEmpty ||
+          (wraps(cell, text)
+              ? !_PageSink._winAnsiOnly(text)
+              : !simpleInlineLabel(cell, text)) ||
+          rich.runs.map((run) => run.text).join() != text) {
         return const [];
       }
       final family = book.styles?.familyAt(cell.styleIndex);
@@ -1619,7 +1622,7 @@ abstract final class OfficePdfExport {
     final fixedPrintPercent =
         options.scalePercentOverride ?? setup?.scale ?? 100;
     final rowMeasure = _PageSink(0, 0, pack, images);
-    int nativeLineAdvance(SmlCell cell) => (cell.fontSize * 1.25).ceil();
+    int nativeLineAdvance(double size) => (size * 1.25 - 1e-9).ceil();
     bool nativeBottomLines(SmlCell cell, String text) =>
         authoredRows &&
         text.contains('\n') &&
@@ -1677,6 +1680,7 @@ abstract final class OfficePdfExport {
         }
         final family = book.styles?.familyAt(cell.styleIndex);
         final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
+        final rich = richLabelRuns(cell, shown.text, 1, shown.color);
         final lines = rowMeasure.lineCount(
           shown.text,
           cell.fontSize,
@@ -1685,13 +1689,27 @@ abstract final class OfficePdfExport {
           bold: cell.fontBold,
           italic: italic,
           forceLayout: true,
+          richRuns: rich,
         );
-        final lineHeight = rowMeasure.lineHeight(
+        var lineHeight = rowMeasure.lineHeight(
           cell.fontSize,
           family: family,
           bold: cell.fontBold,
           italic: italic,
         );
+        var largest = cell.fontSize;
+        for (final run in rich) {
+          largest = math.max(largest, run.size);
+          lineHeight = math.max(
+            lineHeight,
+            rowMeasure.lineHeight(
+              run.size,
+              family: run.family,
+              bold: run.bold,
+              italic: run.italic,
+            ),
+          );
+        }
         final lineBox = (lineHeight + 3).ceil();
         // Explicit lines at the default bottom alignment share the print
         // baseline spacing. The first line carries the row's outside padding.
@@ -1699,7 +1717,7 @@ abstract final class OfficePdfExport {
             nativeBottomLines(cell, shown.text) &&
             lines == '\n'.allMatches(shown.text).length + 1;
         final measured = explicitLines
-            ? lineBox + (lines - 1) * nativeLineAdvance(cell)
+            ? lineBox + (lines - 1) * nativeLineAdvance(largest)
             : lines * lineBox;
         needed = math.max(needed, measured.toDouble());
       }
@@ -2372,7 +2390,7 @@ abstract final class OfficePdfExport {
                 final runs = nativePlain
                     ? [plainLabelRun(stored, shown.text, size, color)]
                     : rich;
-                if (runs.isNotEmpty) {
+                if (!wrap && runs.isNotEmpty) {
                   final width = runs.fold<double>(
                     0,
                     (sum, run) => sum + worksheetRunWidth(run, scale),
@@ -2441,9 +2459,16 @@ abstract final class OfficePdfExport {
                   final textVertical =
                       vertical ??
                       (authoredRows && wrap ? SmlVAlign.bottom : null);
+                  final largest = rich.fold<double>(
+                    stored.fontSize * scale,
+                    (largest, run) => math.max(largest, run.size),
+                  );
                   final lineAdvance = authoredRows
-                      ? nativeLineAdvance(stored) * scale
-                      : size * 1.1;
+                      ? nativeLineAdvance(
+                              rich.isEmpty ? stored.fontSize : largest / scale,
+                            ) *
+                            scale
+                      : math.max(size, largest) * 1.1;
                   final authoredLineBottom =
                       nativeBottomLines(stored, shown.text) &&
                           sheet.hasImportedAutomaticRowHeight(r) &&
@@ -2464,6 +2489,7 @@ abstract final class OfficePdfExport {
                     align: align,
                     lineAdvance: wrap ? lineAdvance : null,
                     authoredLineBottom: authoredLineBottom,
+                    richRuns: rich,
                     wrapText: !authoredRows || wrap,
                     bold: stored.fontBold,
                     family: book.styles?.familyAt(stored.styleIndex),
@@ -4326,6 +4352,7 @@ class _PageSink {
     int? baseLevel,
     double? lineAdvance,
     double? authoredLineBottom,
+    List<_SheetLabelRun> richRuns = const [],
     bool wrapText = true,
     ({SmlVAlign alignment, double height, bool wrap})? cellBox,
   }) {
@@ -4335,7 +4362,9 @@ class _PageSink {
     if (pack.layoutFont != null ||
         _needsAuthoredLtr(text, baseLevel) ||
         lineAdvance != null ||
-        cellBox != null) {
+        cellBox != null ||
+        richRuns.isNotEmpty) {
+      final styles = _sheetRunStyles(richRuns);
       final List<BrokenLine> lines = _layoutLines(
         text,
         size,
@@ -4345,6 +4374,7 @@ class _PageSink {
         family: family,
         baseLevel: baseLevel,
         justify: cellBox == null,
+        runStyles: styles,
       );
       final advance = lineAdvance ?? size * 1.25;
       var cy = y;
@@ -4361,8 +4391,27 @@ class _PageSink {
         final metrics = font == null
             ? null
             : FontMetrics(font: font, fontSizePoints: size);
-        final ascent = metrics?.typographicAscender ?? size * 0.8;
-        final lineHeight = metrics?.typographicLineHeight ?? size;
+        var ascent = metrics?.typographicAscender ?? size * 0.8;
+        var lineHeight = metrics?.typographicLineHeight ?? size;
+        for (final run in richRuns) {
+          final face = pack.fontFor(
+            0x41,
+            family: run.family,
+            weight: run.bold ? 700 : 400,
+            italic: run.italic,
+          );
+          final runMetrics = face == null
+              ? null
+              : FontMetrics(font: face, fontSizePoints: run.size);
+          ascent = math.max(
+            ascent,
+            runMetrics?.typographicAscender ?? run.size * 0.8,
+          );
+          lineHeight = math.max(
+            lineHeight,
+            runMetrics?.typographicLineHeight ?? run.size,
+          );
+        }
         final slack = math.max(
           0.0,
           cellBox.height - lineHeight - math.max(0, lines.length - 1) * advance,
@@ -4394,23 +4443,46 @@ class _PageSink {
         }
         final logicalText = _brokenLineActualText(text, line, first: i == 0);
         if (logicalText != null) canvas.beginActualText(logicalText);
-        for (final ShapedGlyph g in line.glyphs) {
-          if (g.codePoint < 32) {
-            continue;
+        _SheetLabelRun? active;
+        var runStart = cx;
+        for (final g in line.glyphs) {
+          if (g.codePoint < 32) continue;
+          final style = styles.isEmpty ? null : styles[g.logicalIndex];
+          if (style != active) {
+            if (active != null) {
+              OfficePdfExport._paintSheetRunUnderline(
+                this,
+                active,
+                runStart,
+                cx,
+                cy,
+              );
+            }
+            active = style;
+            runStart = cx;
           }
           _emit(
             oldGid: g.glyphId,
             codePoint: g.codePoint,
             x: cx + g.paintDx,
             y: cy - g.paintDy,
-            size: size,
-            color: color,
-            bold: bold,
-            italic: italic,
-            family: family,
+            size: style?.size ?? size,
+            color: style?.color ?? color,
+            bold: style?.bold ?? bold,
+            italic: style?.italic ?? italic,
+            family: style?.family ?? family,
             advance: g.advance,
           );
           cx += g.advance;
+        }
+        if (active != null) {
+          OfficePdfExport._paintSheetRunUnderline(
+            this,
+            active,
+            runStart,
+            cx,
+            cy,
+          );
         }
         if (logicalText != null) canvas.endActualText();
         cy += advance;
@@ -4548,6 +4620,12 @@ class _PageSink {
   static bool _needsAuthoredLtr(String text, int? baseLevel) =>
       baseLevel == 0 && !_letters.hasMatch(text);
 
+  // The line breaker reports authored UTF-16 offsets after wrapping.
+  static List<_SheetLabelRun> _sheetRunStyles(List<_SheetLabelRun> runs) => [
+    for (final run in runs)
+      for (var offset = 0; offset < run.text.length; offset++) run,
+  ];
+
   /// Use one line plan for numeric drawing, wrapping, alignment and height.
   /// A nonpainting LTR override keeps explicitly LTR number groups in authored
   /// order; the breaker otherwise resolves their separating spaces as RTL.
@@ -4562,8 +4640,9 @@ class _PageSink {
     String? family,
     int? baseLevel,
     bool justify = true,
+    List<_SheetLabelRun> runStyles = const [],
   }) {
-    final bool anchor = _needsAuthoredLtr(text, baseLevel);
+    final bool anchor = runStyles.isEmpty && _needsAuthoredLtr(text, baseLevel);
     final SfntFont? layoutFont = pack.layoutFont;
     final List<BrokenLine> lines = LineBreaker.breakLines(
       text: anchor ? '\u202d$text' : text,
@@ -4582,9 +4661,22 @@ class _PageSink {
         weight: bold ? 700 : 400,
         italic: italic,
       ),
+      widthAt: runStyles.isEmpty
+          ? null
+          : (cp, offset) {
+              final style = runStyles[offset];
+              return pack.widthOf(
+                cp,
+                style.size,
+                family: style.family,
+                weight: style.bold ? 700 : 400,
+                italic: style.italic,
+              );
+            },
       // These slide paragraphs are left/center/right aligned, not justified.
       // Their measured width must match the advances that are actually drawn.
       justify: anchor ? false : justify,
+      balanceLines: runStyles.isEmpty,
       breakLongWords: anchor,
       markAttachOf: layoutFont == null
           ? null
@@ -4654,8 +4746,10 @@ class _PageSink {
     String? family,
     int? baseLevel,
     bool forceLayout = false,
+    List<_SheetLabelRun> richRuns = const [],
   }) {
     if (!forceLayout &&
+        richRuns.isEmpty &&
         pack.layoutFont == null &&
         !_needsAuthoredLtr(text, baseLevel)) {
       return math.max(1, text.split('\n').length);
@@ -4670,6 +4764,8 @@ class _PageSink {
         italic: italic,
         family: family,
         baseLevel: baseLevel,
+        runStyles: _sheetRunStyles(richRuns),
+        justify: richRuns.isEmpty,
       ).length,
     );
   }
