@@ -722,6 +722,12 @@ class SmlWorksheet {
   /// default cell style, bestFit and phonetic. Width/min/max are modeled apart.
   final Map<int, Map<String, String>> columnProperties;
 
+  /// Whether the worksheet explicitly hides this column.
+  bool isColumnHidden(int col) => switch (columnProperties[col]?['hidden']) {
+    '1' || 'true' => true,
+    _ => false,
+  };
+
   // Preserve original character widths when an import is saved unchanged:
   // several stored widths can map to the same integral pixel width.
   final Map<int, double> _importedColumnWidths = <int, double>{};
@@ -1833,6 +1839,7 @@ class SmlWorkbook {
             sheetName(sheet.name),
             range(sheet.printTitleRows),
             range(sheet.printTitleCols),
+            range(sheet.printArea),
           ],
       ],
     ]);

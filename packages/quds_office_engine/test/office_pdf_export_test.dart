@@ -710,6 +710,99 @@ void main() {
     expect(_pageCount(printSheet()), 2);
   });
 
+  test('whole-row print area limits a full-width merged row to the sheet', () {
+    final sheet = SmlWorksheet(name: "Year's report", sheetId: 1)
+      ..pageSetup = SmlPageSetup(fitToPage: true)
+      ..printArea = const SmlRange(
+        SmlCellRef(0, 1),
+        SmlCellRef(SmlWorksheet.excelColumnCount - 1, 4),
+      );
+    sheet.cellA1('A1').value = 'X';
+    sheet.cellA1('A3').value = 'M';
+    sheet.cellA1('D4').value = 'L';
+    sheet.cellA1('XFD6').value = 'Y';
+    sheet.merges.add(SmlMerge.parse('A3:XFD3'));
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    expect(book.firstSheet.printArea?.minRow, 1);
+    expect(book.firstSheet.printArea?.maxRow, 4);
+    expect(
+      book.firstSheet.printArea?.maxCol,
+      SmlWorksheet.excelColumnCount - 1,
+    );
+
+    final bytes = OfficePrint.workbook(book);
+    expect(_pageCount(bytes), 1);
+    final contents = PdfFile.open(
+      bytes,
+    ).displayList(0).runs.map((run) => run.text);
+    expect(contents, contains('M'));
+    expect(contents, contains('L'));
+    expect(contents, isNot(contains('X')));
+    expect(contents, isNot(contains('Y')));
+  });
+
+  test('whole-column print area survives edits and bounds exported rows', () {
+    final sheet = SmlWorksheet(name: 'Report', sheetId: 1)
+      ..pageSetup = SmlPageSetup(fitToPage: true)
+      ..printArea = SmlRange.parse('A1:C6');
+    sheet.cellA1('B3').value = 'I';
+    sheet.cellA1('A1048576').value = 'X';
+    final serializer = SheetSerializer();
+    final book = SheetDeserializer().readBytes(
+      serializer.writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    book.firstSheet.printArea = const SmlRange(
+      SmlCellRef(1, 0),
+      SmlCellRef(2, SmlWorksheet.excelRowCount - 1),
+    );
+    final reopened = SheetDeserializer().readBytes(serializer.writeBytes(book));
+    expect(reopened.firstSheet.printArea?.minCol, 1);
+    expect(reopened.firstSheet.printArea?.maxCol, 2);
+    expect(
+      reopened.firstSheet.printArea?.maxRow,
+      SmlWorksheet.excelRowCount - 1,
+    );
+    final bytes = OfficePrint.workbook(reopened);
+    expect(_pageCount(bytes), 1);
+    final contents = PdfFile.open(
+      bytes,
+    ).displayList(0).runs.map((run) => run.text);
+    expect(contents, contains('I'));
+    expect(contents, isNot(contains('X')));
+  });
+
+  test('hidden columns do not take space or expose their values in PDF', () {
+    final sheet = SmlWorksheet(name: 'Report', sheetId: 1)
+      ..pageSetup = SmlPageSetup(marginLeftIn: 0, marginRightIn: 0)
+      ..printArea = SmlRange.parse('A1:C1');
+    for (var col = 0; col < 3; col++) {
+      sheet.setColumnWidth(col, 100);
+    }
+    sheet.columnProperties[1] = {'hidden': '1'};
+    sheet.cellA1('A1').value = 'F';
+    sheet.cellA1('B1').value = 'H';
+    sheet.cellA1('C1').value = 'L';
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final bytes = OfficePrint.workbook(
+      book,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        paperOverride: (width: 160, height: 200),
+      ),
+    );
+    expect(_pageCount(bytes), 1);
+    final contents = PdfFile.open(
+      bytes,
+    ).displayList(0).runs.map((run) => run.text);
+    expect(contents, contains('F'));
+    expect(contents, contains('L'));
+    expect(contents, isNot(contains('H')));
+  });
+
   test('fit to page tolerates floating-point width accumulation', () {
     final sheet = SmlWorksheet(
       name: 'Exact width',
@@ -2087,6 +2180,30 @@ void main() {
     final text = pdf.displayList(0).runs;
     expect(text.first.x, closeTo(12, 0.02));
     expect(text.map((run) => run.text).join(), 'Heading');
+  });
+
+  test('native single-line worksheet headings keep their underline', () {
+    final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <fonts count="2"><font/><font><u/><sz val="11"/><name val="Arial"/></font></fonts>
+  <cellXfs count="2"><xf fontId="0"/><xf fontId="1"/></cellXfs>
+</styleSheet>''');
+    final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1');
+    sheet.cellA1('A1')
+      ..value = 'Heading'
+      ..styleIndex = 1;
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(
+        SmlWorkbook(sheets: [sheet], styles: styles),
+      ),
+    );
+    final bytes = OfficePrint.workbook(book);
+    expect(
+      _inflated(bytes).join(),
+      matches(RegExp(r' m\s+[-.\d]+ [-.\d]+ l\s+S')),
+    );
   });
 
   test('XLSX PDF uses the size and underline of each rich text run', () {

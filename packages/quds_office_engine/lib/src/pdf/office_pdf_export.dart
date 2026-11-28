@@ -1334,84 +1334,87 @@ abstract final class OfficePdfExport {
     final band = setup == null ? 18.0 : 0.0;
     final headingH = showHeadings ? 14.0 : 0.0;
 
-    var minCol = 0;
-    var maxCol = 0;
-    var minRow = 0;
-    var maxRow = 0;
-    var any = false;
-    final SmlRange? area = sheet.printArea;
-    if (area != null) {
-      minCol = area.minCol;
-      maxCol = area.maxCol;
-      minRow = area.minRow;
-      maxRow = area.maxRow;
-      any = true;
-    } else {
-      for (final SmlCell cell in sheet.allCells) {
-        if (!cell.hasContent &&
-            !(options.useWorksheetPageSetup &&
+    final area = sheet.printArea;
+    final fixedCols =
+        area != null &&
+        (area.minCol != 0 || area.maxCol != SmlWorksheet.excelColumnCount - 1);
+    final fixedRows =
+        area != null &&
+        (area.minRow != 0 || area.maxRow != SmlWorksheet.excelRowCount - 1);
+    var minCol = area?.minCol ?? 0;
+    var maxCol = fixedCols ? area.maxCol : 0;
+    var minRow = area?.minRow ?? 0;
+    var maxRow = fixedRows ? area.maxRow : 0;
+    if (!fixedCols || !fixedRows) {
+      var found = false;
+      void include(int c0, int r0, int c1, int r1) {
+        if (fixedCols && (c1 < minCol || c0 > maxCol) ||
+            fixedRows && (r1 < minRow || r0 > maxRow)) {
+          return;
+        }
+        if (!fixedCols) {
+          minCol = !found && area == null ? c0 : math.min(minCol, c0);
+          maxCol = math.max(maxCol, c1);
+        }
+        if (!fixedRows) {
+          minRow = !found && area == null ? r0 : math.min(minRow, r0);
+          maxRow = math.max(maxRow, r1);
+        }
+        found = true;
+      }
+
+      for (final cell in sheet.allCells) {
+        if (sheet.isColumnHidden(cell.ref.col)) continue;
+        if (cell.hasContent ||
+            (options.useWorksheetPageSetup &&
                 (cell.fillRgb.isNotEmpty ||
                     cell.borderRgb.isNotEmpty ||
                     book.styles?.bordersAt(cell.styleIndex) != null))) {
-          continue;
-        }
-        if (!any) {
-          minCol = maxCol = cell.ref.col;
-          minRow = maxRow = cell.ref.row;
-          any = true;
-        } else {
-          minCol = math.min(minCol, cell.ref.col);
-          maxCol = math.max(maxCol, cell.ref.col);
-          minRow = math.min(minRow, cell.ref.row);
-          maxRow = math.max(maxRow, cell.ref.row);
+          include(cell.ref.col, cell.ref.row, cell.ref.col, cell.ref.row);
         }
       }
-      for (final SmlDrawing drawing in sheet.drawings) {
-        if (!any) {
-          minCol = maxCol = drawing.col;
-          minRow = maxRow = drawing.row;
-          any = true;
-        }
+      for (final drawing in sheet.drawings) {
         final end = drawing.twoCellEnd;
-        final lastCol = end == null
-            ? drawing.col + 4
-            : math.max(drawing.col, end.col - (end.colEmu == 0 ? 1 : 0));
-        final lastRow = end == null
-            ? drawing.row + 8
-            : math.max(drawing.row, end.row - (end.rowEmu == 0 ? 1 : 0));
-        maxCol = math.max(maxCol, lastCol);
-        maxRow = math.max(maxRow, lastRow);
-        minCol = math.min(minCol, drawing.col);
-        minRow = math.min(minRow, drawing.row);
+        include(
+          drawing.col,
+          drawing.row,
+          end == null
+              ? drawing.col + 4
+              : math.max(drawing.col, end.col - (end.colEmu == 0 ? 1 : 0)),
+          end == null
+              ? drawing.row + 8
+              : math.max(drawing.row, end.row - (end.rowEmu == 0 ? 1 : 0)),
+        );
       }
-      for (final SmlMerge merge in sheet.merges) {
-        if (!any) {
-          minCol = merge.c0;
-          maxCol = merge.c1;
-          minRow = merge.r0;
-          maxRow = merge.r1;
-          any = true;
-        } else {
-          minCol = math.min(minCol, merge.c0);
-          maxCol = math.max(maxCol, merge.c1);
-          minRow = math.min(minRow, merge.r0);
-          maxRow = math.max(maxRow, merge.r1);
-        }
+      for (final merge in sheet.merges) {
+        // A merge across an entire axis paints within the occupied extent.
+        // Its far edge should not pull the whole grid into a print job.
+        include(
+          merge.c0,
+          merge.r0,
+          merge.c0 == 0 && merge.c1 == SmlWorksheet.excelColumnCount - 1
+              ? merge.c0
+              : merge.c1,
+          merge.r0 == 0 && merge.r1 == SmlWorksheet.excelRowCount - 1
+              ? merge.r0
+              : merge.r1,
+        );
       }
-    }
-    if (!any) {
-      minCol = 0;
-      maxCol = 4;
-      minRow = 0;
-      maxRow = 12;
+      if (!found && area == null) {
+        maxCol = 4;
+        maxRow = 12;
+      }
     }
 
     double printColumnWidth(int col) {
+      if (sheet.isColumnHidden(col)) return 0;
       if (setup != null && digitPoints != null && digitPoints > 0) {
         // Excel's macOS print layout quantizes the Normal digit in points,
         // then rounds each native character width in that coordinate space.
         final native = sheet.unchangedNativeColumnWidth(col);
-        if (native != null) return (native * digitPoints).roundToDouble();
+        if (native != null) {
+          return math.max(4, (native * digitPoints).roundToDouble());
+        }
         if (book.package != null &&
             sheet.nativeBaseColumnWidth == null &&
             !sheet.columnWidths.containsKey(col)) {
@@ -1419,8 +1422,9 @@ abstract final class OfficePdfExport {
           return (8 * digitPoints + 5).toDouble();
         }
       }
-      return _sheetPxToPt(
-        sheet.columnWidth(col, projectedDigitWidthPx: digitWidth),
+      return math.max(
+        4,
+        _sheetPxToPt(sheet.columnWidth(col, projectedDigitWidthPx: digitWidth)),
       );
     }
 
@@ -1462,7 +1466,7 @@ abstract final class OfficePdfExport {
       family: book.styles?.familyAt(cell.styleIndex),
       bold: cell.fontBold,
       italic: book.styles?.italicAt(cell.styleIndex) ?? false,
-      underline: 'none',
+      underline: book.styles?.underlineAt(cell.styleIndex) ?? 'none',
     );
 
     List<_SheetLabelRun> richLabelRuns(
@@ -1557,7 +1561,7 @@ abstract final class OfficePdfExport {
     }
 
     final List<double> colPts = <double>[
-      for (int c = minCol; c <= maxCol; c++) math.max(4, printColumnWidth(c)),
+      for (int c = minCol; c <= maxCol; c++) printColumnWidth(c),
     ];
     final labelOverflow = <int, Map<int, int>>{};
     if (options.useWorksheetPageSetup &&
@@ -1567,7 +1571,7 @@ abstract final class OfficePdfExport {
       // Unwrapped labels in an inferred print area can extend the printable
       // range. This applies to both fitted and fixed-scale worksheet jobs.
       for (final cell in sheet.allCells) {
-        if (!cell.hasContent) continue;
+        if (!cell.hasContent || sheet.isColumnHidden(cell.ref.col)) continue;
         final shown = _sheetDisplay(book, sheet, cell);
         if (shown.text.isEmpty ||
             !canOverflow(cell, shown.numeric, wraps(cell, shown.text)) ||
@@ -1601,7 +1605,7 @@ abstract final class OfficePdfExport {
           final col = end + 1;
           if (blocksOverflow(col, cell.ref.row, sourceFill)) break;
           if (col > maxCol) {
-            colPts.add(math.max(4, printColumnWidth(col)));
+            colPts.add(printColumnWidth(col));
             maxCol = col;
           }
           remaining -= colPts[col - minCol];
@@ -1658,6 +1662,7 @@ abstract final class OfficePdfExport {
       for (final cell in cells.values) {
         final col = cell.ref.col;
         if (col < minCol || col > maxCol || !cell.hasContent) continue;
+        if (sheet.isColumnHidden(col)) continue;
         final merge = sheet.mergeAtRef(cell.ref);
         if (merge != null && (merge.r0 != merge.r1 || merge.c0 != col)) {
           continue;
@@ -1743,7 +1748,7 @@ abstract final class OfficePdfExport {
       var repeatedWidth = 0.0;
       if (sheet.printTitleCols case final titles? when authoredFit) {
         for (var col = titles.minCol; col <= titles.maxCol; col++) {
-          repeatedWidth += math.max(4, printColumnWidth(col));
+          repeatedWidth += printColumnWidth(col);
         }
       }
       // Excel reserves the title strip on each fitted horizontal page.
@@ -1985,7 +1990,9 @@ abstract final class OfficePdfExport {
       // Preserve every intervening page. Borders and fills on empty cells
       // count, as do continuation pages of a marked merged cell.
       for (final cell in sheet.allCells) {
-        if (hasInk(cell)) mark(cell.ref.col, cell.ref.row);
+        if (hasInk(cell) && !sheet.isColumnHidden(cell.ref.col)) {
+          mark(cell.ref.col, cell.ref.row);
+        }
       }
       for (final merge in sheet.merges) {
         final anchor = sheet.cellOrNull(merge.origin);
@@ -2210,7 +2217,7 @@ abstract final class OfficePdfExport {
               final edges = cell == null
                   ? null
                   : styles.bordersAt(cell.styleIndex);
-              if (edges == null) continue;
+              if (edges == null || colWAt(c) <= 0) continue;
               final x = colX(c);
               final endX = x + colWAt(c);
               final endY = y + h;
@@ -2285,13 +2292,12 @@ abstract final class OfficePdfExport {
                 final end = math.min(merge.c1, maxCol) - minCol + 1;
                 spanW = columnOffsets[end] - columnOffsets[anchor - minCol];
                 spanH = 0;
-                for (int mr = merge.r0; mr <= merge.r1; mr++) {
-                  if (mr < minRow || mr > maxRow) {
-                    continue;
-                  }
+                final endRow = math.min(merge.r1, maxRow);
+                for (var mr = r; mr <= endRow; mr++) {
                   spanH += rowPts[mr - minRow];
                 }
               }
+              if (spanW <= 0) continue;
               final x = rtl
                   ? colX(anchor) + colWAt(anchor) - spanW
                   : colX(anchor);

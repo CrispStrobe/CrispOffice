@@ -662,6 +662,14 @@ class SmlStyleSheet {
     return enabled == null || enabled == '1' || enabled.toLowerCase() == 'true';
   }
 
+  /// Underline from the retained native cell font.
+  String underlineAt(int styleIndex) {
+    final font = _nativeFontAt(styleIndex);
+    final underline = font?.firstChild('u', namespaceUri: font.namespaceUri);
+    if (underline == null) return 'none';
+    return underline.getAttribute('val', namespaceUri: '') ?? 'single';
+  }
+
   XmlElement? _nativeFontAt(int styleIndex) {
     if (styleIndex < 0 || styleIndex >= cellXfsFontId.length) return null;
     return _nativeFontById(cellXfsFontId[styleIndex]);

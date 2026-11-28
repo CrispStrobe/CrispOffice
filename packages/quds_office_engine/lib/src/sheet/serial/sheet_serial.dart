@@ -344,7 +344,31 @@ class SheetDeserializer {
     if (sheet == null) return;
     final ref = raw.substring(bang + 1).replaceAll('\$', '').trim();
     try {
-      sheet.printArea = SmlRange.parse(ref);
+      final rows = RegExp(r'^([0-9]+):([0-9]+)$').firstMatch(ref);
+      final cols = RegExp(r'^([A-Za-z]+):([A-Za-z]+)$').firstMatch(ref);
+      final SmlRange area;
+      if (rows != null) {
+        area = SmlRange(
+          SmlCellRef(0, int.parse(rows[1]!) - 1),
+          SmlCellRef(
+            SmlWorksheet.excelColumnCount - 1,
+            int.parse(rows[2]!) - 1,
+          ),
+        );
+      } else if (cols != null) {
+        area = SmlRange(
+          SmlCellRef.parse('${cols[1]}1'),
+          SmlCellRef.parse('${cols[2]}${SmlWorksheet.excelRowCount}'),
+        );
+      } else {
+        area = SmlRange.parse(ref);
+      }
+      if (area.minCol >= 0 &&
+          area.maxCol < SmlWorksheet.excelColumnCount &&
+          area.minRow >= 0 &&
+          area.maxRow < SmlWorksheet.excelRowCount) {
+        sheet.printArea = area;
+      }
     } on FormatException {
       // Leave an unparseable print area untouched.
     }
@@ -1853,9 +1877,20 @@ class SheetSerializer {
             (match) => '\$${match[1]}\$${match[2]}',
           );
           final area = sheet.printArea!;
-          final ref = area.isSingleCell
-              ? absolute(area.start)
-              : '${absolute(area.start)}:${absolute(area.end)}';
+          final String ref;
+          if (area.minCol == 0 &&
+              area.maxCol == SmlWorksheet.excelColumnCount - 1) {
+            ref = '\$${area.minRow + 1}:\$${area.maxRow + 1}';
+          } else if (area.minRow == 0 &&
+              area.maxRow == SmlWorksheet.excelRowCount - 1) {
+            String col(int index) =>
+                SmlCellRef(index, 0).a1.replaceFirst('1', '');
+            ref = '\$${col(area.minCol)}:\$${col(area.maxCol)}';
+          } else {
+            ref = area.isSingleCell
+                ? absolute(area.start)
+                : '${absolute(area.start)}:${absolute(area.end)}';
+          }
           w.writeStartElement('definedName');
           w.writeAttribute('name', '_xlnm.Print_Area');
           w.writeAttribute('localSheetId', '$i');
