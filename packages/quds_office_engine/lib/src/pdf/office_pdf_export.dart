@@ -1781,6 +1781,56 @@ abstract final class OfficePdfExport {
       return math.min(409.5, needed);
     }
 
+    double? columnDefaultRowHeight() {
+      final styles = book.styles;
+      final columns = sheet.columnProperties;
+      if (styles == null || columns.length != SmlWorksheet.excelColumnCount) {
+        return null;
+      }
+      final style = int.tryParse(columns[0]?['style'] ?? '');
+      if (style == null || style < 0 || style >= styles.cellXfsFontId.length) {
+        return null;
+      }
+      final fontId = styles.cellXfsFontId[style];
+      for (var col = 1; col < SmlWorksheet.excelColumnCount; col++) {
+        final other = int.tryParse(columns[col]?['style'] ?? '');
+        if (other == null ||
+            other < 0 ||
+            other >= styles.cellXfsFontId.length ||
+            styles.cellXfsFontId[other] != fontId) {
+          return null;
+        }
+      }
+      // When all columns inherit the same font, Excel uses that font's
+      // metrics for default-height rows, including empty rows.
+      final family = styles.familyAt(style)?.trim().toLowerCase();
+      final size = styles.sizeAt(style);
+      final bold = styles.boldAt(style);
+      final italic = styles.italicAt(style);
+      if (family == null ||
+          (family == normalFont?.family.trim().toLowerCase() &&
+              size == normalFont?.sizePoints &&
+              bold == normalFont?.bold &&
+              italic == normalFont?.italic)) {
+        return null;
+      }
+      final face = pack.set.resolve(
+        65,
+        family: family,
+        weight: bold ? 700 : 400,
+        italic: italic,
+      );
+      if (face?.family.trim().toLowerCase() != family) {
+        return _sheetPxToPt(sheet.effectiveDefaultRowHeightPx).roundToDouble();
+      }
+      return rowMeasure
+          .lineHeight(size, family: family, bold: bold, italic: italic)
+          .roundToDouble();
+    }
+
+    final styledDefaultRowHeight = authoredRows
+        ? columnDefaultRowHeight()
+        : null;
     // Excel lays out automatic Aptos Narrow rows from the Normal font,
     // independent of the cached default height stored for the worksheet grid.
     final aptosDefaultRowHeight =
@@ -1807,7 +1857,9 @@ abstract final class OfficePdfExport {
       if (usesSheetDefault &&
           sheet.importedDefaultRowHeightPx != null &&
           !sheet.rowHeights.containsKey(row)) {
-        return aptosDefaultRowHeight ?? points.roundToDouble();
+        return styledDefaultRowHeight ??
+            aptosDefaultRowHeight ??
+            points.roundToDouble();
       }
       return (points + 1e-9).floorToDouble();
     }

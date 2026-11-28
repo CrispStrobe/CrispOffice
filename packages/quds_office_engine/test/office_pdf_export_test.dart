@@ -1757,9 +1757,12 @@ void main() {
   test('Aptos Narrow print derives automatic rows from the Normal size', () {
     final styles = SmlStyleSheet.parse('''
 <styleSheet xmlns="${OfficeNamespaces.x}">
-  <fonts count="1"><font><sz val="12"/><name val="Aptos Narrow"/></font></fonts>
+  <fonts count="2">
+    <font><sz val="12"/><name val="Aptos Narrow"/></font>
+    <font><sz val="11"/><name val="Liberation Sans"/></font>
+  </fonts>
   <cellStyleXfs count="1"><xf fontId="0"/></cellStyleXfs>
-  <cellXfs count="1"><xf xfId="0" fontId="0"/></cellXfs>
+  <cellXfs count="2"><xf xfId="0" fontId="0"/><xf xfId="0" fontId="1" applyFont="1"/></cellXfs>
   <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
 </styleSheet>''');
     final sheet = SmlWorksheet(name: 'Default rows', sheetId: 1)
@@ -1780,8 +1783,16 @@ void main() {
       closeTo(16, 0.01),
     );
 
+    final columnFace = SfntFont.parse(
+      File(
+        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+      ).readAsBytesSync(),
+    );
+    final fonts = OfficeFontSet(
+      faces: [OfficeFontFace(font: columnFace, family: 'Liberation Sans')],
+    );
     double rowGap() {
-      final pdf = PdfFile.open(OfficePrint.workbook(book));
+      final pdf = PdfFile.open(OfficePrint.workbook(book, fonts: fonts));
       final marks = pdf
           .displayList(0)
           .runs
@@ -1791,6 +1802,15 @@ void main() {
     }
 
     expect(rowGap(), closeTo(15, 0.01));
+    const columnStyle = {'style': '1'};
+    final columns = book.firstSheet.columnProperties;
+    columns[0] = columnStyle;
+    expect(rowGap(), closeTo(15, 0.01));
+    for (var col = 1; col < SmlWorksheet.excelColumnCount; col++) {
+      columns[col] = columnStyle;
+    }
+    expect(rowGap(), closeTo(13, 0.01));
+
     book.firstSheet.importedDefaultRowHeightIsCustom = true;
     expect(rowGap(), closeTo(16, 0.01));
   });
