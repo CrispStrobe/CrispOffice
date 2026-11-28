@@ -12,8 +12,8 @@ enum SmlHAlign { general, left, center, right }
 /// Supported authored vertical cell alignment.
 enum SmlVAlign { top, center, bottom }
 
-/// A visible solid edge in a native spreadsheet cell style.
-typedef SmlBorderEdge = ({String color, double widthPoints});
+/// A visible edge in a native spreadsheet cell style.
+typedef SmlBorderEdge = ({String color, double widthPoints, bool isDouble});
 
 /// Physical edges of a cell. Each side can use an independent style.
 typedef SmlCellBorders = ({
@@ -362,16 +362,22 @@ class SmlStyleSheet {
     SmlBorderEdge? edge(XmlElement border, String side) {
       final node = border.firstChild(side, namespaceUri: namespace);
       if (node == null) return null;
-      final width = switch (_attribute(node, 'style')) {
+      final style = _attribute(node, 'style');
+      final width = switch (style) {
         'hair' => 0.35,
         'thin' => 0.75,
+        'double' => 1.0,
         'medium' => 1.5,
         'thick' => 2.25,
         _ => null,
       };
       if (width == null) return null;
       final rgb = color(node.firstChild('color', namespaceUri: namespace));
-      return (color: rgb.isEmpty ? '000000' : rgb, widthPoints: width);
+      return (
+        color: rgb.isEmpty ? '000000' : rgb,
+        widthPoints: width,
+        isDouble: style == 'double',
+      );
     }
 
     for (final border in entries('borders', 'border')) {
@@ -495,7 +501,7 @@ class SmlStyleSheet {
     );
   }
 
-  /// Returns the solid borders associated with a native cell style.
+  /// Returns the visible borders associated with a native cell style.
   SmlCellBorders? bordersAt(int styleIndex) {
     var index = styleIndex;
     // A font/fill edit can derive several xfs from the same native style.

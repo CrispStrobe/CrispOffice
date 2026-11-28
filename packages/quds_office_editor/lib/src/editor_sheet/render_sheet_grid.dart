@@ -749,7 +749,14 @@ class RenderSheetGrid extends RenderBox implements MouseTrackerAnnotation {
       paint
         ..color = _rgbColor(edge.color) ?? const Color(0xFF000000)
         ..strokeWidth = edge.widthPoints * 4 / 3;
-      canvas.drawLine(from, to, paint);
+      if (edge.isDouble) {
+        final width = paint.strokeWidth;
+        final offset = from.dx == to.dx ? Offset(width, 0) : Offset(0, width);
+        canvas.drawLine(from - offset, to - offset, paint);
+        canvas.drawLine(from + offset, to + offset, paint);
+      } else {
+        canvas.drawLine(from, to, paint);
+      }
     }
 
     for (int row = r0; row < r1; row++) {

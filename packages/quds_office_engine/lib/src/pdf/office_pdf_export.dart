@@ -1445,6 +1445,9 @@ abstract final class OfficePdfExport {
             cell.horizontalAlign == SmlHAlign.left);
 
     final authoredRows = options.useWorksheetPageSetup && book.package != null;
+    bool nativeWrappedLabel(String text) =>
+        authoredRows && _PageSink._winAnsiOnly(text);
+
     bool simpleInlineLabel(SmlCell cell, String text) =>
         !wraps(cell, text) &&
         !text.contains('\r') &&
@@ -1699,10 +1702,12 @@ abstract final class OfficePdfExport {
         final family = book.styles?.familyAt(cell.styleIndex);
         final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
         final rich = richLabelRuns(cell, shown.text, 1, shown.color);
+        final native = nativeWrappedLabel(shown.text);
         final lines = rowMeasure.lineCount(
           shown.text,
           cell.fontSize,
-          maxWidth: math.max(1.0, width - 6),
+          maxWidth: math.max(1.0, width - (native ? 4 : 6)),
+          nativeScale: native ? 1 : null,
           family: family,
           bold: cell.fontBold,
           italic: italic,
@@ -2222,9 +2227,19 @@ abstract final class OfficePdfExport {
         ) {
           if (edge == null) return;
           sink.canvas.setStrokeColor(edge.color);
-          sink.canvas.setLineWidth(edge.widthPoints * scale);
-          sink.canvas.moveTo(x1, y1);
-          sink.canvas.lineTo(x2, y2);
+          final width = edge.widthPoints * scale;
+          sink.canvas.setLineWidth(width);
+          if (edge.isDouble) {
+            final dx = x1 == x2 ? width : 0.0;
+            final dy = y1 == y2 ? width : 0.0;
+            sink.canvas.moveTo(x1 - dx, y1 - dy);
+            sink.canvas.lineTo(x2 - dx, y2 - dy);
+            sink.canvas.moveTo(x1 + dx, y1 + dy);
+            sink.canvas.lineTo(x2 + dx, y2 + dy);
+          } else {
+            sink.canvas.moveTo(x1, y1);
+            sink.canvas.lineTo(x2, y2);
+          }
           sink.canvas.stroke();
         }
 
@@ -2501,9 +2516,11 @@ abstract final class OfficePdfExport {
                           (merge == null || merge.r0 == merge.r1)
                       ? y + spanH - math.max(1.0, rowBottomInset)
                       : null;
+                  final native = wrap && nativeWrappedLabel(shown.text);
+                  final inset = native ? 2 * scale : 3.0;
                   sink.drawText(
                     shown.text,
-                    x + 3,
+                    x + inset,
                     textVertical != null
                         ? y + 1
                         : wrap
@@ -2511,7 +2528,8 @@ abstract final class OfficePdfExport {
                         : y + spanH - bottomInset,
                     size,
                     conditional.fontRgb ?? shown.color,
-                    maxWidth: textSpan - 6,
+                    maxWidth: textSpan - inset * 2,
+                    nativeScale: native ? scale : null,
                     align: align,
                     lineAdvance: wrap ? lineAdvance : null,
                     authoredLineBottom: authoredLineBottom,
@@ -4378,6 +4396,7 @@ class _PageSink {
     int? baseLevel,
     double? lineAdvance,
     double? authoredLineBottom,
+    double? nativeScale,
     List<_SheetLabelRun> richRuns = const [],
     bool wrapText = true,
     ({SmlVAlign alignment, double height, bool wrap})? cellBox,
@@ -4401,6 +4420,7 @@ class _PageSink {
         baseLevel: baseLevel,
         justify: cellBox == null,
         runStyles: styles,
+        nativeScale: nativeScale,
       );
       final advance = lineAdvance ?? size * 1.25;
       var cy = y;
@@ -4669,20 +4689,32 @@ class _PageSink {
     int? baseLevel,
     bool justify = true,
     List<_SheetLabelRun> runStyles = const [],
+    double? nativeScale,
   }) {
     final bool anchor = runStyles.isEmpty && _needsAuthoredLtr(text, baseLevel);
     final SfntFont? layoutFont = pack.layoutFont;
+    double advance(
+      int cp,
+      double size,
+      String? family,
+      bool bold,
+      bool italic,
+    ) {
+      final width = pack.widthOf(
+        cp,
+        size / (nativeScale ?? 1),
+        family: family,
+        weight: bold ? 700 : 400,
+        italic: italic,
+      );
+      return nativeScale == null ? width : width.roundToDouble() * nativeScale;
+    }
+
     final List<BrokenLine> lines = LineBreaker.breakLines(
       text: anchor ? '\u202d$text' : text,
       baseLevel: baseLevel,
       maxWidth: maxWidth,
-      widthOf: (int cp) => pack.widthOf(
-        cp,
-        size,
-        family: family,
-        weight: bold ? 700 : 400,
-        italic: italic,
-      ),
+      widthOf: (cp) => advance(cp, size, family, bold, italic),
       glyphIdOf: (int cp) => pack.glyphIdOf(
         cp,
         family: family,
@@ -4693,18 +4725,18 @@ class _PageSink {
           ? null
           : (cp, offset) {
               final style = runStyles[offset];
-              return pack.widthOf(
+              return advance(
                 cp,
                 style.size,
-                family: style.family,
-                weight: style.bold ? 700 : 400,
-                italic: style.italic,
+                style.family,
+                style.bold,
+                style.italic,
               );
             },
       // These slide paragraphs are left/center/right aligned, not justified.
       // Their measured width must match the advances that are actually drawn.
       justify: anchor ? false : justify,
-      balanceLines: runStyles.isEmpty,
+      balanceLines: runStyles.isEmpty && nativeScale == null,
       breakLongWords: anchor,
       markAttachOf: layoutFont == null
           ? null
@@ -4774,6 +4806,7 @@ class _PageSink {
     String? family,
     int? baseLevel,
     bool forceLayout = false,
+    double? nativeScale,
     List<_SheetLabelRun> richRuns = const [],
   }) {
     if (!forceLayout &&
@@ -4793,7 +4826,8 @@ class _PageSink {
         family: family,
         baseLevel: baseLevel,
         runStyles: _sheetRunStyles(richRuns),
-        justify: richRuns.isEmpty,
+        justify: richRuns.isEmpty && nativeScale == null,
+        nativeScale: nativeScale,
       ).length,
     );
   }

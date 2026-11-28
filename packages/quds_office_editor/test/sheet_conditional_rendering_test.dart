@@ -136,6 +136,41 @@ void main() {
     expect(_pixelsOf(pixels, 0x22AA55), greaterThan(10));
   });
 
+  testWidgets('native double borders paint two lines with a visible gap', (
+    tester,
+  ) async {
+    final sheet = _sheet(text: '');
+    sheet.cellA1('A1').styleIndex = 1;
+    final book = SmlWorkbook(
+      sheets: [sheet],
+      styles: SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <borders count="2"><border/><border>
+    <right style="double"><color rgb="FF008800"/></right>
+  </border></borders>
+  <cellXfs count="2"><xf borderId="0"/><xf borderId="1"/></cellXfs>
+</styleSheet>'''),
+    );
+    final pixels = await _paint(tester, sheet, workbook: book, zoom: 2);
+    final columns = <int>[];
+    for (var x = 0; x < 256; x++) {
+      final pixel = (10 * 256 + x) * 4;
+      if (pixels[pixel] == 0 &&
+          pixels[pixel + 1] == 0x88 &&
+          pixels[pixel + 2] == 0) {
+        columns.add(x);
+      }
+    }
+    expect(columns, hasLength(greaterThanOrEqualTo(2)));
+    expect(
+      List.generate(
+        columns.length - 1,
+        (i) => columns[i + 1] - columns[i],
+      ).where((gap) => gap > 1),
+      hasLength(1),
+    );
+  });
+
   testWidgets('general numbers align right while explicit left wins', (
     tester,
   ) async {

@@ -1629,6 +1629,32 @@ void main() {
     expect(opened.firstSheet.printTitleRows?.minRow, 0);
   });
 
+  test('an XLSX double border prints two parallel colored strokes', () {
+    final sheet = SmlWorksheet(name: 'Data', sheetId: 1)
+      ..pageSetup = SmlPageSetup(scale: 80)
+      ..printArea = SmlRange.parse('A1');
+    sheet.cellA1('A1')
+      ..value = 2025
+      ..styleIndex = 1;
+    final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <borders count="2"><border/><border>
+    <bottom style="double"><color rgb="FF008800"/></bottom>
+  </border></borders>
+  <cellXfs count="2"><xf borderId="0"/><xf borderId="1"/></cellXfs>
+</styleSheet>''');
+    final book = SheetDeserializer().read(
+      SheetSerializer().write(SmlWorkbook(sheets: [sheet], styles: styles)),
+    );
+    expect(book.styles!.bordersAt(1)?.bottom?.isDouble, isTrue);
+    final pdf = PdfFile.open(OfficePrint.workbook(book));
+    final stroke = pdf.displayList(0).ops.whereType<PdfStrokePath>().single;
+    expect(stroke.color, 0xFF008800);
+    expect(stroke.width, closeTo(0.8, 0.01));
+    expect(stroke.points, hasLength(4));
+    expect((stroke.points[2].y - stroke.points[0].y).abs(), closeTo(1.6, 0.02));
+  });
+
   test('print quantizes imported row heights before packing a page', () {
     final sheet = SmlWorksheet(name: 'Rows', sheetId: 1)
       ..printArea = SmlRange.parse('A1:A3')
@@ -2169,6 +2195,40 @@ void main() {
 
     book.firstSheet.printArea = SmlRange.parse('A1');
     expect(_pageCount(OfficePrint.workbook(book, options: options)), 1);
+  });
+
+  test('wrapped native labels use whole-point advances before zoom', () {
+    final face = SfntFont.parse(
+      File(
+        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+      ).readAsBytesSync(),
+    );
+    final metrics = FontMetrics(font: face, fontSizePoints: 11);
+    const label = 'kkkk kkkk kkkk';
+    var exact = 0.0;
+    var rounded = 0.0;
+    for (final cp in label.runes) {
+      final advance = metrics.characterWidth(cp);
+      exact += advance;
+      rounded += advance.round();
+    }
+    expect(rounded, greaterThan(exact + 3));
+    final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
+      ..pageSetup = SmlPageSetup(scale: 85)
+      ..printArea = SmlRange.parse('A1');
+    final width = ((exact + rounded) / 2 + 4) * 4 / 3;
+    sheet.setColumnWidth(0, width);
+    sheet.setRowHeight(0, 60);
+    sheet.cellA1('A1')
+      ..value = label
+      ..fontSize = 11
+      ..wrapText = true;
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final pdf = PdfFile.open(OfficePrint.workbook(book, font: face));
+    final runs = pdf.displayList(0).runs;
+    expect(runs.map((run) => run.y).toSet(), hasLength(2));
   });
 
   test('native numeric print inset grows with larger fonts', () {
