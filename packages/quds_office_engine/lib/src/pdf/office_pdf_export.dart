@@ -2536,6 +2536,15 @@ abstract final class OfficePdfExport {
                 ),
                 merge == null || merge.r0 == merge.r1 ? rowBottomInset : 0,
               );
+              final clip = splitLabel
+                  ? (
+                      left: math.max(x + 1, printedLeft),
+                      right: math.min(
+                        x + textSpan - 1,
+                        printedLeft + printedWidth,
+                      ),
+                    )
+                  : null;
               void paintLabel() {
                 if (splitLabel) {
                   sink.canvas.save();
@@ -2651,11 +2660,6 @@ abstract final class OfficePdfExport {
                   // full ActualText span would repeat the entire label there.
                   final preserveLabel =
                       nativePlain && shown.number == null && !splitLabel;
-                  final clipLeft = math.max(x + 1, printedLeft);
-                  final clipRight = math.min(
-                    x + textSpan - 1,
-                    printedLeft + printedWidth,
-                  );
                   if (preserveLabel) sink.canvas.beginActualText(shown.text);
                   for (final run in runs) {
                     final start = runX;
@@ -2687,14 +2691,16 @@ abstract final class OfficePdfExport {
                       );
                       final x = runX;
                       runX += advance;
-                      if (splitLabel &&
+                      if (clip != null &&
                           !sink._sheetGlyphIntersects(
-                            run,
                             codePoint,
                             x,
                             advance,
-                            clipLeft,
-                            clipRight,
+                            clip,
+                            size: run.size,
+                            family: run.family,
+                            bold: run.bold,
+                            italic: run.italic,
                           )) {
                         continue;
                       }
@@ -2765,6 +2771,7 @@ abstract final class OfficePdfExport {
                     lineAdvance: wrap ? lineAdvance : null,
                     authoredLineBottom: authoredLineBottom,
                     richRuns: rich,
+                    sheetClip: clip,
                     wrapText: !authoredRows || wrap,
                     bold: stored.fontBold,
                     family: book.styles?.familyAt(stored.styleIndex),
@@ -4394,6 +4401,30 @@ String? _brokenLineActualText(
   return text == painted ? null : text;
 }
 
+// Preserve logical source order for visible shaped glyphs. Avoid taking a
+// single substring across bidi runs, which can contain off-page characters.
+String? _sheetFragmentActualText(String source, Iterable<ShapedGlyph> glyphs) {
+  final ordered = glyphs.toList();
+  final painted = String.fromCharCodes(ordered.map((glyph) => glyph.codePoint));
+  ordered.sort((a, b) => a.logicalIndex.compareTo(b.logicalIndex));
+  final text = StringBuffer();
+  var end = 0;
+  for (final glyph in ordered) {
+    final start = glyph.logicalIndex;
+    if (start < 0 || start >= source.length || glyph.isDiscretionaryHyphen) {
+      continue;
+    }
+    final cp = source.codeUnitAt(start);
+    final length = glyph.sourceLength ?? (cp >= 0xd800 && cp <= 0xdbff ? 2 : 1);
+    final next = math.min(source.length, start + length);
+    if (next <= end) continue;
+    text.write(source.substring(math.max(start, end), next));
+    end = next;
+  }
+  final logical = text.toString();
+  return logical.isEmpty || logical == painted ? null : logical;
+}
+
 bool _invisibleSourceRange(String source, int start, int end) =>
     start >= 0 &&
     end >= start &&
@@ -4638,20 +4669,24 @@ class _PageSink {
   }
 
   bool _sheetGlyphIntersects(
-    _SheetLabelRun run,
     int codePoint,
     double x,
     double advance,
-    double left,
-    double right,
-  ) {
+    ({double left, double right}) clip, {
+    required double size,
+    required String? family,
+    required bool bold,
+    required bool italic,
+  }) {
+    final left = clip.left;
+    final right = clip.right;
     if (right <= left) return false;
     if (x >= left && x + advance <= right) return true;
     final face = pack.set.resolve(
       codePoint,
-      family: run.family,
-      weight: run.bold ? 700 : 400,
-      italic: run.italic,
+      family: family,
+      weight: bold ? 700 : 400,
+      italic: italic,
     );
     if (face != null) {
       final font = face.font;
@@ -4668,19 +4703,22 @@ class _PageSink {
             glyf.offset + start,
             glyf.offset + start + 10,
           );
-          final shear = run.italic && !face.italic ? 0.25 : 0.0;
-          final units = run.size / font.unitsPerEm;
+          final shear = italic && !face.italic ? 0.25 : 0.0;
+          final units = size / font.unitsPerEm;
           final min = (bounds.getInt16(2) + shear * bounds.getInt16(4)) * units;
           final max = (bounds.getInt16(6) + shear * bounds.getInt16(8)) * units;
-          final bold = run.bold && face.weight < 600
-              ? math.max(0.35, run.size * 0.05)
+          final embolden = bold && face.weight < 600
+              ? math.max(0.35, size * 0.05)
               : 0.0;
-          return x + min < right && x + max + bold > left;
+          // Leave room for rasterizers to round a glyph touching the clip.
+          const edgeAllowance = 0.5;
+          return x + min < right + edgeAllowance &&
+              x + max + embolden > left - edgeAllowance;
         }
       }
     }
     // Keep nearby overhang when an installed glyph's bounds are unavailable.
-    final allowance = run.size * 0.25;
+    final allowance = size * 0.25;
     return x - allowance < right && x + advance + allowance > left;
   }
 
@@ -4718,6 +4756,7 @@ class _PageSink {
     double? nativeScale,
     List<_SheetLabelRun> richRuns = const [],
     bool wrapText = true,
+    ({double left, double right})? sheetClip,
     ({SmlVAlign alignment, double height, bool wrap})? cellBox,
   }) {
     if (text.isEmpty || size <= 0) {
@@ -4727,6 +4766,7 @@ class _PageSink {
         _needsAuthoredLtr(text, baseLevel) ||
         lineAdvance != null ||
         cellBox != null ||
+        sheetClip != null ||
         richRuns.isNotEmpty) {
       final styles = _sheetRunStyles(richRuns);
       final List<BrokenLine> lines = _layoutLines(
@@ -4809,7 +4849,35 @@ class _PageSink {
             _TextAlign.right => slack,
           };
         }
-        final logicalText = _brokenLineActualText(text, line, first: i == 0);
+        Set<ShapedGlyph>? hidden;
+        if (sheetClip != null) {
+          var glyphX = cx;
+          for (final glyph in line.glyphs) {
+            if (glyph.codePoint < 32) continue;
+            final style = styles.isEmpty ? null : styles[glyph.logicalIndex];
+            if (!_sheetGlyphIntersects(
+              glyph.codePoint,
+              glyphX + glyph.paintDx,
+              glyph.advance,
+              sheetClip,
+              size: style?.size ?? size,
+              family: style?.family ?? family,
+              bold: style?.bold ?? bold,
+              italic: style?.italic ?? italic,
+            )) {
+              (hidden ??= {}).add(glyph);
+            }
+            glyphX += glyph.advance;
+          }
+        }
+        final logicalText = hidden == null
+            ? _brokenLineActualText(text, line, first: i == 0)
+            : _sheetFragmentActualText(
+                text,
+                line.glyphs.where(
+                  (glyph) => glyph.codePoint >= 32 && !hidden!.contains(glyph),
+                ),
+              );
         if (logicalText != null) canvas.beginActualText(logicalText);
         _SheetLabelRun? active;
         var runStart = cx;
@@ -4829,18 +4897,20 @@ class _PageSink {
             active = style;
             runStart = cx;
           }
-          _emit(
-            oldGid: g.glyphId,
-            codePoint: g.codePoint,
-            x: cx + g.paintDx,
-            y: cy - g.paintDy + (style?.baselineOffset ?? 0),
-            size: style?.size ?? size,
-            color: style?.color ?? color,
-            bold: style?.bold ?? bold,
-            italic: style?.italic ?? italic,
-            family: style?.family ?? family,
-            advance: g.advance,
-          );
+          if (hidden?.contains(g) != true) {
+            _emit(
+              oldGid: g.glyphId,
+              codePoint: g.codePoint,
+              x: cx + g.paintDx,
+              y: cy - g.paintDy + (style?.baselineOffset ?? 0),
+              size: style?.size ?? size,
+              color: style?.color ?? color,
+              bold: style?.bold ?? bold,
+              italic: style?.italic ?? italic,
+              family: style?.family ?? family,
+              advance: g.advance,
+            );
+          }
           cx += g.advance;
         }
         if (active != null) {

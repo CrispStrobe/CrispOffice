@@ -1008,7 +1008,7 @@ void main() {
     expect(_pageCount(fit), 1);
   });
 
-  test('sheet PDF paints a merged cell across a horizontal page boundary', () {
+  test('merged PDF labels emit only visible text on horizontal pages', () {
     final sheet = SmlWorksheet(
       name: 'Merged',
       sheetId: 1,
@@ -1021,20 +1021,31 @@ void main() {
     sheet
       ..setColumnWidth(0, 100)
       ..setColumnWidth(1, 100)
-      ..cellA1('A1').value = 'Merged label across pages'
+      ..setRowHeight(0, 64)
       ..mergeAndCenter(SmlRange.parse('A1:B1'));
-    final bytes = OfficePrint.workbook(SmlWorkbook(sheets: [sheet]));
-    expect(_pageCount(bytes), 2);
+    final cell = sheet.cellA1('A1')..horizontalAlign = SmlHAlign.left;
+    final book = SmlWorkbook(sheets: [sheet]);
+    final clip = RegExp(r'10(?:\.0+)? [\d.]+ 75(?:\.0+)? [\d.]+ re\s+W n');
 
-    final pages = _inflated(
-      bytes,
-    ).where((stream) => stream.contains('Merged label across pages'));
-    expect(pages, hasLength(2));
-    for (final page in pages) {
-      expect(
-        page,
-        contains(RegExp(r'10(?:\.0+)? [\d.]+ 75(?:\.0+)? [\d.]+ re\s+W n')),
-      );
+    for (final label in [
+      'Merged label across pages',
+      'Merged label across pages\nSecond line',
+    ]) {
+      cell.value = label;
+      final bytes = OfficePrint.workbook(book);
+      expect(_inflated(bytes).where(clip.hasMatch), hasLength(2));
+      final pdf = PdfFile.open(bytes);
+      expect(pdf.pageCount, 2);
+      String page(int index) =>
+          pdf.displayList(index).runs.map((run) => run.text).join();
+      expect(page(0), contains('Merged'));
+      expect(page(0), isNot(contains('pages')));
+      expect(page(1), contains('pages'));
+      expect(page(1), isNot(contains('Merged')));
+      if (label.contains('\n')) {
+        expect(page(0), contains('Second line'));
+        expect(page(1), isNot(contains('Second')));
+      }
     }
   });
 
