@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../../xml/xml_node.dart';
@@ -469,11 +472,20 @@ class SmlStyleSheet {
         : 0;
     final String code = numFmts[numFmtId] ?? 'General';
     if (locale == null) return applyNumberFormat(value, code);
-    final verified = Intl.verifiedLocale(
-      locale,
-      NumberFormat.localeExists,
-      onFailure: (_) => 'en_US',
-    );
+    final verified =
+        Intl.verifiedLocale(
+          locale,
+          NumberFormat.localeExists,
+          onFailure: (_) => 'en_US',
+        ) ??
+        'en_US';
+    if (numFmtId == 14 && code == _builtIn[14]) {
+      return value is num && value.isFinite
+          ? _regionalShortDate(
+              verified,
+            ).format(excelSerialToDate(value.toDouble()))
+          : value?.toString() ?? '';
+    }
     final symbols = NumberFormat.decimalPattern(verified).symbols;
     return applyNumberFormat(
       value,
@@ -1466,6 +1478,19 @@ class SmlStyleSheet {
     return '$r$g$b'.toUpperCase();
   }
 }
+
+final _shortDateFormats = <String, DateFormat>{};
+
+DateFormat _regionalShortDate(String locale) =>
+    _shortDateFormats.putIfAbsent(locale, () {
+      if (_shortDateFormats.isEmpty) {
+        // Bundled Intl date data installs synchronously.
+        unawaited(initializeDateFormatting());
+      }
+      final regional = DateFormat(null, locale);
+      // CLDR's short style includes regional padding as well as field order.
+      return DateFormat(regional.dateSymbols.DATEFORMATS.last, regional.locale);
+    });
 
 /// ECMA-376 §18.8.30 number formats (common subset).
 String applyNumberFormat(

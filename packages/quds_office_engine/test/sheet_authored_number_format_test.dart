@@ -17,6 +17,23 @@ void main() {
     expect(styles.format(-1234.5, 0, locale: 'de_DE'), '-1.234,50 €');
   });
 
+  test(
+    'localizes the built-in short date while preserving authored patterns',
+    () {
+      final styles = SmlStyleSheet(cellXfsNumFmt: [14, 164, 165]);
+      styles.numFmts[164] = 'yyyy-mm-dd';
+      styles.numFmts[165] = 'mm-dd-yy';
+      expect(styles.format(45084, 0, locale: 'de_DE'), '07.06.23');
+      expect(styles.format(45084.75, 0, locale: 'de_DE'), '07.06.23');
+      expect(styles.format(45084, 0, locale: 'en_US'), '6/7/23');
+      expect(styles.format(45084, 0, locale: 'fr_FR'), '07/06/2023');
+      expect(styles.format(45084, 0), '06-07-23');
+      expect(styles.format(45084, 1, locale: 'de_DE'), '2023-06-07');
+      expect(styles.format(45084, 2, locale: 'de_DE'), '06-07-23');
+      expect(styles.format('45084', 0, locale: 'de_DE'), '45084');
+    },
+  );
+
   test('localizes General numbers without formatting text as numbers', () {
     final styles = SmlStyleSheet();
     expect(styles.format(3489.75, 0, locale: 'de_DE'), '3489,75');
