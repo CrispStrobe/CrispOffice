@@ -94,6 +94,8 @@ class SmlDataValidation {
     this.errorTitle = '',
     this.error = '',
     this.errorStyle = 'stop',
+    this.showInputMessage,
+    this.showErrorMessage,
     this.listSourceRange,
     this.listSourceSheet,
   });
@@ -130,6 +132,12 @@ class SmlDataValidation {
 
   /// Excel error style: stop, warning or information.
   String errorStyle;
+
+  /// Native XLSX input-message visibility, when explicitly configured.
+  bool? showInputMessage;
+
+  /// Native XLSX error-alert visibility, when explicitly configured.
+  bool? showErrorMessage;
 
   /// Optional range-backed list source retained for native ODF links.
   SmlRange? listSourceRange;

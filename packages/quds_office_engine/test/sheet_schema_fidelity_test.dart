@@ -26,6 +26,58 @@ void _assertDrawingSchema(OpcPackage package) {
 }
 
 void main() {
+  test(
+    'saves validation prompt and operator edits with native alert settings',
+    () {
+      const uri = '/xl/worksheets/sheet1.xml';
+      final sheet = SmlWorksheet(name: 'Rules', sheetId: 1);
+      final source = SheetSerializer().write(SmlWorkbook(sheets: [sheet]));
+      final part = source.getPart(uri)!;
+      part.writeText(
+        part.readText().replaceFirst('</worksheet>', '''
+<dataValidations count="2">
+  <dataValidation type="list" sqref="A1" allowBlank="false"
+      showInputMessage="true" showErrorMessage="false" promptTitle="Choices"
+      prompt="Pick one" errorTitle="Invalid" error="Use the list" errorStyle="warning">
+    <formula1>"Red,Blue"</formula1>
+  </dataValidation>
+  <dataValidation type="whole" sqref="A2" operator="greaterThan"
+      showErrorMessage="1" errorTitle="Too small">
+    <formula1>0</formula1>
+  </dataValidation>
+</dataValidations></worksheet>'''),
+      );
+      var book = SheetDeserializer().read(source);
+      final original = book.firstSheet.validations.first;
+      expect(original.allowBlank, isFalse);
+      expect(original.showInputMessage, isTrue);
+      expect(original.showErrorMessage, isFalse);
+      expect(original.errorTitle, 'Invalid');
+      expect(original.error, 'Use the list');
+
+      original.prompt = 'Pick a colour';
+      book = SheetDeserializer().readBytes(SheetSerializer().writeBytes(book));
+      final rules = book.firstSheet.validations;
+      expect(rules.first.prompt, 'Pick a colour');
+      expect(rules.first.promptTitle, 'Choices');
+      expect(rules.first.listItems, ['Red', 'Blue']);
+      expect(rules.first.showInputMessage, isTrue);
+      expect(rules.first.showErrorMessage, isFalse);
+      expect(rules.first.errorTitle, 'Invalid');
+      expect(rules.first.error, 'Use the list');
+      expect(rules.first.errorStyle, 'warning');
+      expect(rules.last.showInputMessage, isNull);
+      expect(rules.last.showErrorMessage, isTrue);
+
+      rules.last.operator = SmlValidationOperator.greaterThanOrEqual;
+      book = SheetDeserializer().readBytes(SheetSerializer().writeBytes(book));
+      expect(
+        book.firstSheet.validations.last.operator,
+        SmlValidationOperator.greaterThanOrEqual,
+      );
+    },
+  );
+
   test('projects and updates native single-cell hyperlinks', () {
     const uri = '/xl/worksheets/sheet1.xml';
     const x = OfficeNamespaces.x;

@@ -618,7 +618,7 @@ class SmlWorksheet {
   String? sourceValidationState;
   String? sourceConditionalFormatState;
 
-  /// Snapshot of every editable validation property, optionally rewriting refs.
+  /// Snapshot of editable XLSX validation settings, optionally rewriting refs.
   String validationState([String Function(String)? rewrite]) => jsonEncode([
     for (final rule in validations)
       [
@@ -627,9 +627,15 @@ class SmlWorksheet {
         rule.kind.name,
         rewrite?.call(rule.formula1) ?? rule.formula1,
         rewrite?.call(rule.formula2) ?? rule.formula2,
+        rule.operator.name,
         rule.allowBlank,
+        rule.promptTitle,
+        rule.prompt,
         rule.errorTitle,
         rule.error,
+        rule.errorStyle,
+        rule.showInputMessage,
+        rule.showErrorMessage,
       ],
   ]);
 

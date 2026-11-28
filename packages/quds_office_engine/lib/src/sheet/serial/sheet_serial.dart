@@ -573,10 +573,21 @@ class SheetDeserializer {
                 'lessThanOrEqual' => SmlValidationOperator.lessThanOrEqual,
                 _ => SmlValidationOperator.between,
               },
-              allowBlank: reader.getAttribute('allowBlank') != '0',
+              allowBlank: _readBoolean(
+                reader.getAttribute('allowBlank'),
+                defaultValue: true,
+              ),
               promptTitle: reader.getAttribute('promptTitle') ?? '',
               prompt: reader.getAttribute('prompt') ?? '',
+              errorTitle: reader.getAttribute('errorTitle') ?? '',
+              error: reader.getAttribute('error') ?? '',
               errorStyle: reader.getAttribute('errorStyle') ?? 'stop',
+              showInputMessage: _readOptionalBoolean(
+                reader.getAttribute('showInputMessage'),
+              ),
+              showErrorMessage: _readOptionalBoolean(
+                reader.getAttribute('showErrorMessage'),
+              ),
             ),
           );
         }
@@ -1179,6 +1190,9 @@ class SheetDeserializer {
         '0' || 'false' => false,
         _ => defaultValue,
       };
+
+  static bool? _readOptionalBoolean(String? value) =>
+      value == null ? null : _readBoolean(value);
 
   static String _readText(XmlPullReader reader) {
     if (reader.isEmptyElement) {
@@ -2153,6 +2167,12 @@ class SheetSerializer {
           '${rule.range.start.a1}:${rule.range.end.a1}',
         );
         w.writeAttribute('allowBlank', rule.allowBlank ? '1' : '0');
+        if (rule.showInputMessage case final show?) {
+          w.writeAttribute('showInputMessage', show ? '1' : '0');
+        }
+        if (rule.showErrorMessage case final show?) {
+          w.writeAttribute('showErrorMessage', show ? '1' : '0');
+        }
         if (rule.promptTitle.isNotEmpty) {
           w.writeAttribute('promptTitle', rule.promptTitle);
         }
