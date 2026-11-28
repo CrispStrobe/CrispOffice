@@ -2340,8 +2340,13 @@ abstract final class OfficePdfExport {
                     0,
                     (size, run) => math.max(size, run.size),
                   );
+                  // The right inset grows with the numeric cell font before
+                  // print zoom. Normal-sized amounts keep the existing inset.
+                  final inset = nativeNumeric
+                      ? math.max(3, (stored.fontSize / 6 + 0.5).ceil())
+                      : 2;
                   final padding = authoredRows
-                      ? math.max(1.0, (nativeNumeric ? 3 : 2) * scale)
+                      ? math.max(1.0, inset * scale)
                       : 3.0;
                   final slack = textSpan - padding * 2 - width;
                   var runX =

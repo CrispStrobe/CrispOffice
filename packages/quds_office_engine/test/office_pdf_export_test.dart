@@ -1981,6 +1981,27 @@ void main() {
     expect(_pageCount(OfficePrint.workbook(book, options: options)), 1);
   });
 
+  test('native numeric print inset grows with larger fonts', () {
+    final sheet = SmlWorksheet(name: 'Amounts', sheetId: 1)
+      ..pageSetup = SmlPageSetup(scale: 85)
+      ..printArea = SmlRange.parse('A1:A3');
+    sheet.setColumnWidth(0, 100);
+    for (final (index, size) in [10.0, 15.0, 18.0].indexed) {
+      sheet.setRowHeight(index, 40);
+      sheet.cell(SmlCellRef(0, index))
+        ..value = index + 1
+        ..fontSize = size;
+    }
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final bytes = OfficePrint.workbook(book);
+    final text = PdfFile.open(bytes).displayList(0).runs;
+    double x(String digit) => text.singleWhere((run) => run.text == digit).x;
+    expect(x('1') - x('2'), closeTo(1.7, 0.02));
+    expect(x('1') - x('3'), closeTo(4.25, 0.02));
+  });
+
   test('native unwrapped print labels use the worksheet text inset', () {
     final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
       ..pageSetup = SmlPageSetup()
