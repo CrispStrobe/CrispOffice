@@ -261,6 +261,38 @@ void annotationAndAuthoredDateTests() {
 
 /// Synthetic LibreOffice-generated ODS (values, formulas, styles, merge).
 void main() {
+  test(
+    'ODS export preserves far column settings without blank cell expansion',
+    () {
+      const farColumn = 4095;
+      final sheet = SmlWorksheet(name: 'Wide settings', sheetId: 1);
+      for (var col = 0; col <= farColumn; col++) {
+        sheet.setColumnWidth(col, 96);
+      }
+      sheet.columnProperties[farColumn] = {'hidden': '1'};
+      sheet.cellA1('B1')
+        ..value = 'Label'
+        ..hyperlink = 'https://example.test/article';
+      sheet.cellA1('B150').value = 'Last row';
+      sheet.cellA1('D150')
+        ..fillRgb = 'FF00FF'
+        ..styleIndex = 1;
+      final book = SmlWorkbook(sheets: [sheet]);
+      final bytes = OdsSheetWriter.writeBytes(book);
+      final content = ZipDecoder().decodeBytes(bytes).findFile('content.xml')!;
+      expect(
+        utf8.decode(content.content as List<int>),
+        contains('style:column-width="1.0000in"'),
+      );
+      final reopened = OdsSheetReader.readBytes(bytes).firstSheet;
+      expect(reopened.columnWidths[farColumn], isNotNull);
+      expect(reopened.isColumnHidden(farColumn), isTrue);
+      expect(reopened.cellA1('B1').hyperlink, 'https://example.test/article');
+      expect(reopened.cellA1('B150').value, 'Last row');
+      expect(reopened.cellA1('D150').fillRgb, 'FF00FF');
+    },
+  );
+
   annotationAndAuthoredDateTests();
   edgeTests();
   defaultAndTimeTests();

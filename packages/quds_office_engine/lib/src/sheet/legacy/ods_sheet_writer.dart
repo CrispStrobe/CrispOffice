@@ -290,14 +290,15 @@ abstract final class OdsSheetWriter {
       if (row > maxRow) maxRow = row;
     }
 
-    for (final col in sheet.columnWidths.keys) {
-      includeColumn(col);
+    for (final row in sheet.rows.values) {
+      includeRow(row.index);
+      for (final col in row.cells.keys) {
+        includeColumn(col);
+      }
     }
-    for (final col in sheet.columnProperties.keys) {
-      includeColumn(col);
-    }
-    for (final row in sheet.rows.keys) {
-      includeRow(row);
+    for (final comment in sheet.comments) {
+      includeRow(comment.ref.row);
+      includeColumn(comment.ref.col);
     }
     for (final row in sheet.rowHeights.keys) {
       includeRow(row);
@@ -317,7 +318,15 @@ abstract final class OdsSheetWriter {
         includeRow(validation.range.maxRow);
       }
     }
-    for (var col = 0; col <= maxCol; col++) {
+    // Column declarations do not require empty cells on every worksheet row.
+    var lastDeclaredColumn = maxCol;
+    for (final col in sheet.columnWidths.keys) {
+      if (col > lastDeclaredColumn) lastDeclaredColumn = col;
+    }
+    for (final col in sheet.columnProperties.keys) {
+      if (col > lastDeclaredColumn) lastDeclaredColumn = col;
+    }
+    for (var col = 0; col <= lastDeclaredColumn; col++) {
       w.writeStartElement('table-column', prefix: 'table');
       w.writeAttribute('table:default-cell-style-name', 'Default');
       if (layout.columnStyles[index].containsKey(col)) {
@@ -832,21 +841,23 @@ class _OdsLayout {
     for (var sheetIndex = 0; sheetIndex < book.sheets.length; sheetIndex++) {
       final sheet = book.sheets[sheetIndex];
       final columnStyles = <int, String>{};
+      final columnStylesByWidth = <String, String>{};
       final rowStyles = <int, String>{};
       for (var col = 0; col < SmlWorksheet.excelColumnCount; col++) {
         if (!sheet.columnWidths.containsKey(col) &&
             !sheet.columnProperties.containsKey(col)) {
           continue;
         }
-        final name = 'co${columnStyles.length + 1}_$sheetIndex';
-        final width = sheet.columnWidth(col);
-        final widthIn = width * 72 / 96 / 72;
-        columnStyles[col] = name;
-        columnStyleBuffers.add(
-          '<style:style style:name="$name" style:family="table-column">'
-          '<style:table-column-properties style:column-width="${widthIn.toStringAsFixed(4)}in"/>'
-          '</style:style>',
-        );
+        final widthIn = (sheet.columnWidth(col) / 96).toStringAsFixed(4);
+        columnStyles[col] = columnStylesByWidth.putIfAbsent(widthIn, () {
+          final name = 'co${columnStylesByWidth.length + 1}_$sheetIndex';
+          columnStyleBuffers.add(
+            '<style:style style:name="$name" style:family="table-column">'
+            '<style:table-column-properties style:column-width="${widthIn}in"/>'
+            '</style:style>',
+          );
+          return name;
+        });
       }
       for (var row = 0; row < SmlWorksheet.excelRowCount; row++) {
         if (!sheet.rowHeights.containsKey(row)) continue;
