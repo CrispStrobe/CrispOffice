@@ -1562,6 +1562,38 @@ void main() {
     expect(actual.height, closeTo(filename.height * 2, .01));
   });
 
+  test('XLSX headers and footers can use independent horizontal margins', () {
+    final book = SmlWorkbook();
+    final sheet = book.firstSheet
+      ..pageSetup = SmlPageSetup(marginLeftIn: 0.35, marginRightIn: 0.4)
+      ..headerFooter = SmlHeaderFooter(
+        headerLeft: 'Left marker',
+        footerRight: 'Right marker',
+        alignWithMargins: false,
+      );
+    sheet.cellA1('A1').value = 'Body';
+    final reopened = SheetDeserializer().read(SheetSerializer().write(book));
+    final footer = reopened.firstSheet.headerFooter!;
+    expect(footer.alignWithMargins, isFalse);
+    expect(footer.copy().alignWithMargins, isFalse);
+
+    ({double left, double right}) positions() {
+      final pdf = PdfFile.open(OfficePrint.workbook(reopened));
+      final runs = pdf.displayList(0).runs;
+      return (
+        left: runs.singleWhere((r) => r.text == 'Left marker').x,
+        right: runs.singleWhere((r) => r.text == 'Right marker').x,
+      );
+    }
+
+    final independent = positions();
+    expect(independent.left, closeTo(54, 0.01));
+    footer.alignWithMargins = true;
+    final aligned = positions();
+    expect(aligned.left, closeTo(25.2, 0.01));
+    expect(aligned.right - independent.right, closeTo(25.2, 0.01));
+  });
+
   test('Excel PDF paints cell borders and header tokens', () {
     final SmlWorkbook book = SmlWorkbook();
     final SmlWorksheet sheet = book.firstSheet;
@@ -2270,6 +2302,45 @@ void main() {
       RegExp(r' m\s+[-.\d]+ [-.\d]+ l\s+S').allMatches(_inflated(bytes).join()),
       hasLength(3),
     );
+  });
+
+  test('XLSX rich text prints smaller raised and lowered scripts', () {
+    final sheet = SmlWorksheet(name: 'Scripts', sheetId: 1)
+      ..pageSetup = SmlPageSetup(scale: 80)
+      ..printArea = SmlRange.parse('A1:A1');
+    sheet.setColumnWidth(0, 160);
+    sheet.setRowHeight(0, 64);
+    final rich = SharedStringTable.parse(
+      '<sst xmlns="${OfficeNamespaces.x}"><si>'
+      '<r><t>A</t></r>'
+      '<r><rPr><vertAlign val="superscript"/></rPr><t>B</t></r>'
+      '<r><rPr><vertAlign val="subscript"/></rPr><t>C</t></r>'
+      '</si></sst>',
+    );
+    sheet.cellA1('A1')
+      ..value = rich[0]
+      ..sourceRichString = rich.richAt(0)
+      ..fontSize = 11;
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+
+    for (final wrap in [false, true]) {
+      book.firstSheet.cellA1('A1').wrapText = wrap;
+      final bytes = OfficePrint.workbook(book, font: font);
+      final positions = {
+        for (final run in PdfFile.open(bytes).displayList(0).runs)
+          run.text: run,
+      };
+      final normal = positions['A']!;
+      final raised = positions['B']!;
+      final lowered = positions['C']!;
+      expect(raised.x, greaterThan(normal.x));
+      expect(lowered.x, greaterThan(raised.x));
+      expect(raised.height / normal.height, closeTo(7 / 11, 0.01));
+      expect(lowered.height, closeTo(raised.height, 0.01));
+      expect(lowered.y - raised.y, closeTo(5.6, 0.02));
+    }
   });
 
   test('PPT PDF strokes shapes and emits URI link annots', () {

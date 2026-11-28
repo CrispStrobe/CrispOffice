@@ -17,6 +17,7 @@ import '../sheet/model/sml_conditional_format.dart';
 import '../sheet/model/sml_workbook.dart';
 import '../sheet/serial/sheet_print_pictures.dart';
 import '../sheet/serial/sheet_serial.dart';
+import '../sheet/shared_strings.dart';
 import '../sheet/styles/sml_styles.dart';
 import '../slide/model/pml_presentation.dart';
 import '../slide/serial/slide_serial.dart';
@@ -49,6 +50,7 @@ typedef _SheetLabelRun = ({
   bool italic,
   String color,
   String underline,
+  double baselineOffset,
 });
 
 /// Print layout for worksheet PDF (Office Print defaults to A4 portrait).
@@ -1467,6 +1469,7 @@ abstract final class OfficePdfExport {
       bold: cell.fontBold,
       italic: book.styles?.italicAt(cell.styleIndex) ?? false,
       underline: book.styles?.underlineAt(cell.styleIndex) ?? 'none',
+      baselineOffset: 0,
     );
 
     List<_SheetLabelRun> richLabelRuns(
@@ -1487,19 +1490,34 @@ abstract final class OfficePdfExport {
       }
       final family = book.styles?.familyAt(cell.styleIndex);
       final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
-      return [
-        for (final run in rich.runs)
-          if (run.text.isNotEmpty)
-            (
-              text: run.text,
-              size: (run.size ?? cell.fontSize) * scale,
-              family: run.family ?? family,
-              bold: run.bold ?? cell.fontBold,
-              italic: run.italic ?? italic,
-              color: conditionalColor ?? (run.rgb.isEmpty ? color : run.rgb),
-              underline: run.underline,
-            ),
-      ];
+      final runs = <_SheetLabelRun>[];
+      for (final run in rich.runs) {
+        if (run.text.isEmpty) continue;
+        final base = run.size ?? cell.fontSize;
+        final position = run.verticalPosition;
+        // Excel reduces and positions scripts in whole points before zoom.
+        final scriptSize = math.max(1.0, (base * 2 / 3).floorToDouble());
+        final offset = switch (position) {
+          SmlRunVerticalPosition.superscript => -(base / 2).floorToDouble(),
+          SmlRunVerticalPosition.subscript => (base / 5).floorToDouble(),
+          SmlRunVerticalPosition.baseline => 0.0,
+        };
+        runs.add((
+          text: run.text,
+          size:
+              (position == SmlRunVerticalPosition.baseline
+                  ? base
+                  : scriptSize) *
+              scale,
+          family: run.family ?? family,
+          bold: run.bold ?? cell.fontBold,
+          italic: run.italic ?? italic,
+          color: conditionalColor ?? (run.rgb.isEmpty ? color : run.rgb),
+          underline: run.underline,
+          baselineOffset: offset * scale,
+        ));
+      }
+      return runs;
     }
 
     double labelWidth(
@@ -1703,11 +1721,12 @@ abstract final class OfficePdfExport {
           lineHeight = math.max(
             lineHeight,
             rowMeasure.lineHeight(
-              run.size,
-              family: run.family,
-              bold: run.bold,
-              italic: run.italic,
-            ),
+                  run.size,
+                  family: run.family,
+                  bold: run.bold,
+                  italic: run.italic,
+                ) +
+                run.baselineOffset.abs(),
           );
         }
         final lineBox = (lineHeight + 3).ceil();
@@ -1931,6 +1950,13 @@ abstract final class OfficePdfExport {
         ? SheetPrintPictures.read(book.package, sheet.sourcePartUri)
         : const <SheetPrintPicture>[];
     final headerFooterScale = hf?.scaleWithDocument == true ? scale : 1.0;
+    // Excel uses its standard three-quarter-inch horizontal margins when
+    // headers and footers are independent of the worksheet margins.
+    final independentMargin = math.min(54.0, pageW / 2);
+    final headerLeft = hf?.alignWithMargins == false ? independentMargin : left;
+    final headerRight = hf?.alignWithMargins == false
+        ? independentMargin
+        : right;
     final placedPictures =
         <
           ({
@@ -1950,9 +1976,9 @@ abstract final class OfficePdfExport {
       final width = picture.width * headerFooterScale;
       final height = picture.height * headerFooterScale;
       final x = switch (picture.slot[0]) {
-        'L' => left,
-        'C' => (left + pageW - right - width) / 2,
-        _ => pageW - right - width,
+        'L' => headerLeft,
+        'C' => (headerLeft + pageW - headerRight - width) / 2,
+        _ => pageW - headerRight - width,
       };
       final y = picture.slot[1] == 'H'
           ? (setup == null ? top : setup.headerMarginIn * 72)
@@ -2064,7 +2090,7 @@ abstract final class OfficePdfExport {
             bold: false,
             italic: false,
           );
-          final available = pageW - left - right;
+          final available = pageW - headerLeft - headerRight;
           for (final (slot, template) in sections.indexed) {
             if (template.isEmpty) continue;
             final lines = _sheetPrintLines(
@@ -2099,7 +2125,7 @@ abstract final class OfficePdfExport {
               ];
               final totalWidth = widths.fold(0.0, (sum, width) => sum + width);
               var x =
-                  left +
+                  headerLeft +
                   switch (slot) {
                     1 => (available - totalWidth) / 2,
                     2 => available - totalWidth,
@@ -2442,7 +2468,7 @@ abstract final class OfficePdfExport {
                         oldGid: 0,
                         codePoint: codePoint,
                         x: runX,
-                        y: baseline,
+                        y: baseline + run.baselineOffset,
                         size: run.size,
                         color: run.color,
                         family: run.family,
@@ -2685,7 +2711,7 @@ abstract final class OfficePdfExport {
     sink.canvas.setLineWidth(math.max(0.3, run.size / 18));
     final offset = math.max(0.65, run.size / 8);
     for (var line = 1; line <= lines; line++) {
-      final at = baseline + offset * line;
+      final at = baseline + run.baselineOffset + offset * line;
       sink.canvas.moveTo(from, at);
       sink.canvas.lineTo(to, at);
       sink.canvas.stroke();
@@ -4405,11 +4431,13 @@ class _PageSink {
               : FontMetrics(font: face, fontSizePoints: run.size);
           ascent = math.max(
             ascent,
-            runMetrics?.typographicAscender ?? run.size * 0.8,
+            (runMetrics?.typographicAscender ?? run.size * 0.8) -
+                run.baselineOffset,
           );
           lineHeight = math.max(
             lineHeight,
-            runMetrics?.typographicLineHeight ?? run.size,
+            (runMetrics?.typographicLineHeight ?? run.size) +
+                run.baselineOffset.abs(),
           );
         }
         final slack = math.max(
@@ -4465,7 +4493,7 @@ class _PageSink {
             oldGid: g.glyphId,
             codePoint: g.codePoint,
             x: cx + g.paintDx,
-            y: cy - g.paintDy,
+            y: cy - g.paintDy + (style?.baselineOffset ?? 0),
             size: style?.size ?? size,
             color: style?.color ?? color,
             bold: style?.bold ?? bold,

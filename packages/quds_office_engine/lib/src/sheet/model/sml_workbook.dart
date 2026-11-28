@@ -363,6 +363,7 @@ class SmlHeaderFooter {
     this.footerCenter = '',
     this.footerRight = '',
     this.scaleWithDocument = true,
+    this.alignWithMargins = true,
   });
 
   /// headerLeft API.
@@ -386,6 +387,9 @@ class SmlHeaderFooter {
   /// Applies the worksheet print scale to header/footer text and pictures.
   bool scaleWithDocument;
 
+  /// Uses the worksheet's horizontal margins for headers and footers.
+  bool alignWithMargins;
+
   /// True when any section has text.
   bool get isEmpty =>
       headerLeft.isEmpty &&
@@ -404,6 +408,7 @@ class SmlHeaderFooter {
     footerCenter: footerCenter,
     footerRight: footerRight,
     scaleWithDocument: scaleWithDocument,
+    alignWithMargins: alignWithMargins,
   );
 }
 

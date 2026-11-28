@@ -53,6 +53,9 @@ class SmlRichString {
   }
 }
 
+/// Native baseline position of an XLSX text run.
+enum SmlRunVerticalPosition { baseline, superscript, subscript }
+
 /// A font override for one segment of an XLSX cell.
 class SmlRichStringRun {
   SmlRichStringRun._(this.text, XmlElement? properties)
@@ -61,6 +64,13 @@ class SmlRichStringRun {
       bold = _readFlag(properties, 'b'),
       italic = _readFlag(properties, 'i'),
       underline = _readUnderline(properties),
+      verticalPosition = switch (properties
+          ?.firstChild('vertAlign')
+          ?.getAttribute('val')) {
+        'superscript' => SmlRunVerticalPosition.superscript,
+        'subscript' => SmlRunVerticalPosition.subscript,
+        _ => SmlRunVerticalPosition.baseline,
+      },
       rgb = SmlStyleSheet.normalizeRgb(
         properties?.firstChild('color')?.getAttribute('rgb') ?? '',
       );
@@ -71,6 +81,7 @@ class SmlRichStringRun {
   final bool? bold;
   final bool? italic;
   final String underline;
+  final SmlRunVerticalPosition verticalPosition;
   final String rgb;
 
   static double? _readSize(XmlElement? properties) {

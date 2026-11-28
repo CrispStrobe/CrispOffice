@@ -518,6 +518,10 @@ class SheetDeserializer {
         if (scale == '0' || scale == 'false') {
           (sheet.headerFooter ??= SmlHeaderFooter()).scaleWithDocument = false;
         }
+        final align = reader.getAttribute('alignWithMargins');
+        if (align == '0' || align == 'false') {
+          (sheet.headerFooter ??= SmlHeaderFooter()).alignWithMargins = false;
+        }
       }
       if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'oddHeader') {
@@ -2356,6 +2360,7 @@ class SheetSerializer {
     if (hf != null && !hf.isEmpty) {
       w.writeStartElement('headerFooter');
       if (!hf.scaleWithDocument) w.writeAttribute('scaleWithDoc', '0');
+      if (!hf.alignWithMargins) w.writeAttribute('alignWithMargins', '0');
       final String oddHeader = <String>[
         if (hf.headerLeft.isNotEmpty) '&L${hf.headerLeft}',
         if (hf.headerCenter.isNotEmpty) '&C${hf.headerCenter}',
