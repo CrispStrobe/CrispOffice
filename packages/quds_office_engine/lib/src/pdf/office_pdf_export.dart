@@ -3061,6 +3061,7 @@ abstract final class OfficePdfExport {
         value,
         cell.styleIndex,
         locale: book.formulaLocale,
+        uses1904Dates: book.uses1904Dates,
       );
       if (formatted.startsWith('RED:')) {
         return (text: formatted.substring(4), color: 'C00000', number: number);

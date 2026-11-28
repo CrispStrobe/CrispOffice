@@ -512,10 +512,17 @@ class SmlStyleSheet {
   }
 
   /// format API.
-  String format(Object? value, int styleIndex, {String? locale}) {
+  String format(
+    Object? value,
+    int styleIndex, {
+    String? locale,
+    bool uses1904Dates = false,
+  }) {
     final int numFmtId = _numberFormatIdAt(styleIndex);
     final String code = numFmts[numFmtId] ?? 'General';
-    if (locale == null) return applyNumberFormat(value, code);
+    if (locale == null) {
+      return applyNumberFormat(value, code, uses1904Dates: uses1904Dates);
+    }
     final verified =
         Intl.verifiedLocale(
           locale,
@@ -525,9 +532,7 @@ class SmlStyleSheet {
         'en_US';
     if (numFmtId == 14 && code == _builtIn[14]) {
       return value is num && value.isFinite
-          ? _regionalShortDate(
-              verified,
-            ).format(excelSerialToDate(value.toDouble()))
+          ? _formatRegionalShortDate(value.toDouble(), verified, uses1904Dates)
           : value?.toString() ?? '';
     }
     final symbols = NumberFormat.decimalPattern(verified).symbols;
@@ -536,6 +541,7 @@ class SmlStyleSheet {
       code,
       displayDecimalSeparator: symbols.DECIMAL_SEP,
       displayGroupSeparator: symbols.GROUP_SEP,
+      uses1904Dates: uses1904Dates,
     );
   }
 
@@ -1555,6 +1561,55 @@ DateFormat _regionalShortDate(String locale) =>
       return DateFormat(regional.dateSymbols.DATEFORMATS.last, regional.locale);
     });
 
+String _formatRegionalShortDate(
+  double serial,
+  String locale,
+  bool uses1904Dates,
+) {
+  final format = _regionalShortDate(locale);
+  final calendar = _numberFormatCalendar(serial.floorToDouble(), uses1904Dates);
+  final day = calendar.day;
+  if (day == null) return format.format(calendar.date);
+
+  // Intl supplies regional field order, separators and padding. Its DateTime
+  // input cannot represent Excel's day zero or February 29, 1900.
+  final pattern = format.pattern!.replaceAllMapped(
+    RegExp(r"'(?:[^']|'')*'|d{1,2}"),
+    (field) {
+      final token = field[0]!;
+      if (token.startsWith("'")) return token;
+      final literal = NumberFormat(
+        '0' * token.length,
+        format.locale,
+      ).format(day);
+      return "'$literal'";
+    },
+  );
+  return DateFormat(pattern, format.locale).format(calendar.date);
+}
+
+({DateTime date, int? day, int? weekday}) _numberFormatCalendar(
+  double serial,
+  bool uses1904Dates,
+) {
+  if (uses1904Dates) {
+    // January 1, 1904 is serial 1462 in the 1900 system.
+    return (date: excelSerialToDate(serial + 1462), day: null, weekday: null);
+  }
+  final days = serial.floor();
+  final early = days >= 0 && days < 60;
+  final date = excelSerialToDate(early ? serial + 1 : serial);
+  return (
+    date: days == 0 ? date.add(const Duration(days: 1)) : date,
+    day: switch (days) {
+      0 => 0,
+      60 => 29,
+      _ => null,
+    },
+    weekday: early ? (date.weekday + 5) % 7 + 1 : null,
+  );
+}
+
 /// ECMA-376 §18.8.30 number formats (common subset).
 String applyNumberFormat(
   Object? value,
@@ -1563,6 +1618,7 @@ String applyNumberFormat(
   String groupSeparator = ',',
   String? displayDecimalSeparator,
   String? displayGroupSeparator,
+  bool uses1904Dates = false,
 }) {
   if (value == null) {
     return '';
@@ -1597,7 +1653,15 @@ String applyNumberFormat(
 
   String out;
   if (_isDateFormat(clean) && !RegExp(r'[0#?]').hasMatch(_literalFree(clean))) {
-    out = formatExcelDate(excelSerialToDate(shown), clean);
+    if (!shown.isFinite) return value.toString();
+    final calendar = _numberFormatCalendar(shown, uses1904Dates);
+    out = formatExcelDate(
+      calendar.date,
+      clean,
+      serial: shown,
+      calendarDay: calendar.day,
+      calendarWeekday: calendar.weekday,
+    );
   } else {
     out = _formatNumberSection(
       shown,

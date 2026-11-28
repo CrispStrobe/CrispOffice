@@ -34,6 +34,25 @@ void main() {
     },
   );
 
+  test('cell formats use the workbook date system and Excel early dates', () {
+    final styles = SmlStyleSheet(cellXfsNumFmt: [14, 164]);
+    styles.numFmts[164] = 'yyyy-mm-dd hh:mm';
+    expect(styles.format(0, 0, locale: 'de_DE'), '00.01.00');
+    expect(styles.format(0.75, 0, locale: 'en_US'), '1/0/00');
+    expect(styles.format(1, 0, locale: 'de_DE'), '01.01.00');
+    expect(styles.format(59, 0, locale: 'de_DE'), '28.02.00');
+    expect(styles.format(60, 0, locale: 'de_DE'), '29.02.00');
+    expect(styles.format(61, 0, locale: 'de_DE'), '01.03.00');
+    expect(styles.format(0.75, 1), '1900-01-00 18:00');
+    expect(styles.format(60, 1), '1900-02-29 00:00');
+    expect(
+      styles.format(0, 0, locale: 'de_DE', uses1904Dates: true),
+      '01.01.04',
+    );
+    expect(styles.format(0.75, 1, uses1904Dates: true), '1904-01-01 18:00');
+    expect(applyNumberFormat(1.5, '[h]:mm', uses1904Dates: true), '36:00');
+  });
+
   test('localizes General numbers without formatting text as numbers', () {
     final styles = SmlStyleSheet();
     expect(styles.format(3489.75, 0, locale: 'de_DE'), '3489,75');
