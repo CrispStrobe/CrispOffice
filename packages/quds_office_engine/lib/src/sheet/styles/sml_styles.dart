@@ -481,11 +481,18 @@ class SmlStyleSheet {
     return colors;
   }
 
+  int _numberFormatIdAt(int styleIndex) =>
+      styleIndex >= 0 && styleIndex < cellXfsNumFmt.length
+      ? cellXfsNumFmt[styleIndex]
+      : 0;
+
+  /// The number format code associated with this cell style.
+  String numberFormatCodeAt(int styleIndex) =>
+      numFmts[_numberFormatIdAt(styleIndex)] ?? 'General';
+
   /// format API.
   String format(Object? value, int styleIndex, {String? locale}) {
-    final int numFmtId = styleIndex >= 0 && styleIndex < cellXfsNumFmt.length
-        ? cellXfsNumFmt[styleIndex]
-        : 0;
+    final int numFmtId = _numberFormatIdAt(styleIndex);
     final String code = numFmts[numFmtId] ?? 'General';
     if (locale == null) return applyNumberFormat(value, code);
     final verified =

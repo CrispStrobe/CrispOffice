@@ -1425,11 +1425,11 @@ abstract final class OfficePdfExport {
         if (native != null) {
           return math.max(4, (native * digitPoints).roundToDouble());
         }
-        if (book.package != null &&
-            sheet.nativeBaseColumnWidth == null &&
-            !sheet.columnWidths.containsKey(col)) {
-          // Excel's implicit width is eight Normal digits plus print padding.
-          return (8 * digitPoints + 5).toDouble();
+        if (book.package != null && !sheet.columnWidths.containsKey(col)) {
+          // Excel adds five print points after measuring the base width in
+          // whole-point Normal digits. The worksheet grid uses pixel padding.
+          final digits = sheet.nativeBaseColumnWidth ?? 8;
+          return (digits * digitPoints + 5).toDouble();
         }
       }
       return math.max(
@@ -2231,10 +2231,20 @@ abstract final class OfficePdfExport {
                     2,
               )
             : 0.0;
+        // At actual size the native worksheet grid starts on a whole point
+        // inside the authored left margin.
+        final printLeft =
+            useGridOrigin &&
+                scale == 1 &&
+                options.marginOverride == null &&
+                !setup.centerHorizontally &&
+                !rtl
+            ? (left - 1e-9).ceilToDouble()
+            : left;
         final rowGutterX =
-            (rtl ? pageW - right - gutter : left) +
+            (rtl ? pageW - right - gutter : printLeft) +
             (rtl ? -horizontalInset : horizontalInset);
-        final gridLeft = (rtl ? left : left + gutter) + horizontalInset;
+        final gridLeft = (rtl ? left : printLeft + gutter) + horizontalInset;
         final gridRight =
             (rtl ? pageW - right - gutter : pageW - right) - horizontalInset;
         final gridY = top + band + verticalInset;
@@ -2448,8 +2458,19 @@ abstract final class OfficePdfExport {
               final splitLabel =
                   splitMerge ||
                   (end != null && (anchor < firstCol || end > lastCol));
+              final rawInset = size * 0.28;
+              // Aptos Narrow's native single-line baseline uses a whole-point
+              // inset before scaling, including the regular and bold faces.
+              final roundInset =
+                  authoredRows &&
+                  !wrap &&
+                  book.styles?.familyAt(stored.styleIndex)?.toLowerCase() ==
+                      'aptos narrow';
               final bottomInset = math.max(
-                math.max(2, size * 0.28),
+                math.max(
+                  2,
+                  roundInset ? (rawInset / scale).round() * scale : rawInset,
+                ),
                 merge == null || merge.r0 == merge.r1 ? rowBottomInset : 0,
               );
               void paintLabel() {
@@ -2471,11 +2492,11 @@ abstract final class OfficePdfExport {
                     rich.isEmpty && nativeInlineLabel(stored, shown.text);
                 final nativeNumeric =
                     nativePlain && shown.numeric && align == _TextAlign.right;
-                final runs = nativePlain
+                var runs = nativePlain
                     ? [plainLabelRun(stored, shown.text, size, color)]
                     : rich;
                 if (!wrap && runs.isNotEmpty) {
-                  final width = runs.fold<double>(
+                  var width = runs.fold<double>(
                     0,
                     (sum, run) => sum + worksheetRunWidth(run, scale),
                   );
@@ -2491,7 +2512,23 @@ abstract final class OfficePdfExport {
                   final padding = authoredRows
                       ? math.max(1.0, inset * scale)
                       : 3.0;
-                  final slack = textSpan - padding * 2 - indent - width;
+                  final available = textSpan - padding * 2 - indent;
+                  if (nativeNumeric &&
+                      width > available &&
+                      book.styles?.numberFormatCodeAt(stored.styleIndex) ==
+                          'General') {
+                    final fitted = _fitSheetGeneralDecimal(
+                      shown.text,
+                      available,
+                      (candidate) => worksheetRunWidth(
+                        plainLabelRun(stored, candidate, size, color),
+                        scale,
+                      ),
+                    );
+                    runs = [plainLabelRun(stored, fitted, size, color)];
+                    width = worksheetRunWidth(runs.single, scale);
+                  }
+                  final slack = available - width;
                   var runX =
                       x +
                       padding +
@@ -2826,6 +2863,31 @@ abstract final class OfficePdfExport {
       }
     }
     return lo;
+  }
+
+  static final _plainSheetDecimal = RegExp(r'^-?[0-9]+([.,])([0-9]+)$');
+
+  static String _fitSheetGeneralDecimal(
+    String text,
+    double available,
+    double Function(String) measure,
+  ) {
+    final decimal = _plainSheetDecimal.firstMatch(text);
+    if (decimal == null) return text;
+    final separator = decimal[1]!;
+    final value = double.parse(text.replaceFirst(separator, '.'));
+    // Keep as much fractional precision as the column allows. This changes
+    // only the printed representation. The workbook value is untouched.
+    for (var digits = decimal[2]!.length - 1; digits >= 0; digits--) {
+      final fixed = value.toStringAsFixed(digits);
+      final trimmed = digits == 0
+          ? fixed
+          : fixed.replaceFirst(RegExp(r'\.?0+$'), '');
+      if (trimmed == '0' || trimmed == '-0') break;
+      final candidate = trimmed.replaceFirst('.', separator);
+      if (measure(candidate) <= available + 1e-9) return candidate;
+    }
+    return text;
   }
 
   static ({String text, String color, bool numeric}) _sheetDisplay(

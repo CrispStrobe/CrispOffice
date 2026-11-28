@@ -1795,6 +1795,51 @@ void main() {
     expect(rowGap(), closeTo(16, 0.01));
   });
 
+  test(
+    'native print sizes implicit columns in points and snaps the grid origin',
+    () {
+      final face = SfntFont.parse(
+        File(
+          '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+        ).readAsBytesSync(),
+      );
+      final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <fonts count="1"><font><sz val="12"/><name val="Aptos Narrow"/></font></fonts>
+  <cellStyleXfs count="1"><xf fontId="0"/></cellStyleXfs>
+  <cellXfs count="1"><xf xfId="0" fontId="0"/></cellXfs>
+  <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>''');
+      final sheet = SmlWorksheet(name: 'Print', sheetId: 1)
+        ..pageSetup = SmlPageSetup(marginLeftIn: 0.7, marginTopIn: 0.75)
+        ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(16);
+      sheet.importDefaultColumnWidth(baseCharacters: 10);
+      sheet.cellA1('A1').value = 'X';
+      sheet.cellA1('B1').value = 'Y';
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(
+          SmlWorkbook(sheets: [sheet], styles: styles),
+        ),
+      );
+      final fontSet = OfficeFontSet(
+        primary: face,
+        faces: [OfficeFontFace(font: face, family: 'Aptos Narrow')],
+      );
+      final bytes = OfficePrint.workbook(book, fonts: fontSet);
+      final runs = PdfFile.open(bytes).displayList(0).runs;
+      final x = runs.singleWhere((run) => run.text == 'X').x;
+      final y = runs.singleWhere((run) => run.text == 'Y').x;
+      final digit = FontMetrics(
+        font: face,
+        fontSizePoints: 12,
+      ).characterWidth(0x30).round();
+      expect(x, closeTo(53, 0.01));
+      expect(y - x, closeTo(10 * digit + 5, 0.01));
+      // Top margin 54pt + automatic row 15pt - whole-point bottom inset 3pt.
+      expect(_inflated(bytes).join(), contains('1 0 0 -1 53 66 Tm'));
+    },
+  );
+
   test('automatic print rows round without thick horizontal borders', () {
     final sheet = SmlWorksheet(name: 'Rows', sheetId: 1)
       ..printArea = SmlRange.parse('A1:A3')
@@ -2340,6 +2385,33 @@ void main() {
     expect(runs[1].x - runs[0].x, closeTo(7.2, 0.01));
     expect(runs[2].x - runs[3].x, closeTo(14.4, 0.01));
   });
+
+  test(
+    'native print fits a localized General decimal without changing the value',
+    () {
+      final sheet = SmlWorksheet(name: 'Print', sheetId: 1)
+        ..pageSetup = SmlPageSetup()
+        ..printArea = SmlRange.parse('A1');
+      sheet.setColumnWidth(0, 56);
+      const original = 12.3456789;
+      sheet.cellA1('A1').value = original;
+      final styles = SmlStyleSheet.parse(
+        '<styleSheet xmlns="${OfficeNamespaces.x}">'
+        '<cellXfs count="1"><xf numFmtId="0"/></cellXfs></styleSheet>',
+      );
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(
+          SmlWorkbook(sheets: [sheet], styles: styles),
+        ),
+      )..formulaLocale = 'de_DE';
+      final bytes = OfficePrint.workbook(book);
+      final text = PdfFile.open(
+        bytes,
+      ).displayList(0).runs.map((r) => r.text).join();
+      expect(text, '12,346');
+      expect(book.firstSheet.cellA1('A1').value, original);
+    },
+  );
 
   test('native numeric print inset grows with larger fonts', () {
     final sheet = SmlWorksheet(name: 'Amounts', sheetId: 1)
