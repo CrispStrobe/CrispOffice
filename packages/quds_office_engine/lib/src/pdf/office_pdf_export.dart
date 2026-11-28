@@ -1336,6 +1336,10 @@ abstract final class OfficePdfExport {
     final band = setup == null ? 18.0 : 0.0;
     final headingH = showHeadings ? 14.0 : 0.0;
 
+    final authoredRows = options.useWorksheetPageSetup && book.package != null;
+    // An inferred native print range starts at A1, including empty leading
+    // rows and columns. An explicit print area supplies its own origin.
+    final useGridOrigin = authoredRows && setup != null;
     final area = sheet.printArea;
     final fixedCols =
         area != null &&
@@ -1355,11 +1359,15 @@ abstract final class OfficePdfExport {
           return;
         }
         if (!fixedCols) {
-          minCol = !found && area == null ? c0 : math.min(minCol, c0);
+          minCol = !found && area == null && !useGridOrigin
+              ? c0
+              : math.min(minCol, c0);
           maxCol = math.max(maxCol, c1);
         }
         if (!fixedRows) {
-          minRow = !found && area == null ? r0 : math.min(minRow, r0);
+          minRow = !found && area == null && !useGridOrigin
+              ? r0
+              : math.min(minRow, r0);
           maxRow = math.max(maxRow, r1);
         }
         found = true;
@@ -1444,7 +1452,6 @@ abstract final class OfficePdfExport {
         (cell.horizontalAlign == SmlHAlign.general ||
             cell.horizontalAlign == SmlHAlign.left);
 
-    final authoredRows = options.useWorksheetPageSetup && book.package != null;
     final normalFont = book.styles?.normalFont;
     // Each indent level is three whole-point spaces in Excel's Normal font.
     final indentStep =
@@ -1774,6 +1781,12 @@ abstract final class OfficePdfExport {
       return math.min(409.5, needed);
     }
 
+    // Excel lays out automatic Aptos Narrow rows from the Normal font,
+    // independent of the cached default height stored for the worksheet grid.
+    final aptosDefaultRowHeight =
+        normalFont?.family.trim().toLowerCase() == 'aptos narrow'
+        ? (normalFont!.sizePoints * 1.25).roundToDouble()
+        : null;
     double printRowHeight(int row) {
       final pixels = sheet.rowHeightAt(row);
       final points = _sheetPxToPt(pixels);
@@ -1794,7 +1807,7 @@ abstract final class OfficePdfExport {
       if (usesSheetDefault &&
           sheet.importedDefaultRowHeightPx != null &&
           !sheet.rowHeights.containsKey(row)) {
-        return points.roundToDouble();
+        return aptosDefaultRowHeight ?? points.roundToDouble();
       }
       return (points + 1e-9).floorToDouble();
     }

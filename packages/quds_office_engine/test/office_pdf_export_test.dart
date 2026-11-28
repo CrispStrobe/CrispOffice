@@ -1733,6 +1733,68 @@ void main() {
     expect(_pageCount(pdf), 2);
   });
 
+  test('inferred native print areas retain the leading worksheet space', () {
+    final sheet = SmlWorksheet(name: 'Leading space', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(15);
+    sheet.setColumnWidth(0, 80);
+    sheet.cellA1('B3').value = 'X';
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+
+    PdfTextRun renderMarker() => PdfFile.open(
+      OfficePrint.workbook(book),
+    ).displayList(0).runs.singleWhere((run) => run.text == 'X');
+
+    final inferred = renderMarker();
+    book.firstSheet.printArea = SmlRange.parse('B3');
+    final explicit = renderMarker();
+    expect(inferred.x - explicit.x, closeTo(60, 1));
+    expect(inferred.y - explicit.y, closeTo(30, 0.01));
+  });
+
+  test('Aptos Narrow print derives automatic rows from the Normal size', () {
+    final styles = SmlStyleSheet.parse('''
+<styleSheet xmlns="${OfficeNamespaces.x}">
+  <fonts count="1"><font><sz val="12"/><name val="Aptos Narrow"/></font></fonts>
+  <cellStyleXfs count="1"><xf fontId="0"/></cellStyleXfs>
+  <cellXfs count="1"><xf xfId="0" fontId="0"/></cellXfs>
+  <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>''');
+    final sheet = SmlWorksheet(name: 'Default rows', sheetId: 1)
+      ..printArea = SmlRange.parse('A1:A2')
+      ..pageSetup = SmlPageSetup()
+      ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(16);
+    sheet.cellA1('A1').value = 'X';
+    sheet.cellA1('A2').value = 'X';
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(
+        SmlWorkbook(sheets: [sheet], styles: styles),
+      ),
+    );
+    expect(
+      SmlWorksheet.rowHeightToExcel(
+        book.firstSheet.effectiveDefaultRowHeightPx,
+      ),
+      closeTo(16, 0.01),
+    );
+
+    double rowGap() {
+      final pdf = PdfFile.open(OfficePrint.workbook(book));
+      final marks = pdf
+          .displayList(0)
+          .runs
+          .where((r) => r.text == 'X')
+          .toList();
+      return marks[1].y - marks[0].y;
+    }
+
+    expect(rowGap(), closeTo(15, 0.01));
+    book.firstSheet.importedDefaultRowHeightIsCustom = true;
+    expect(rowGap(), closeTo(16, 0.01));
+  });
+
   test('automatic print rows round without thick horizontal borders', () {
     final sheet = SmlWorksheet(name: 'Rows', sheetId: 1)
       ..printArea = SmlRange.parse('A1:A3')
