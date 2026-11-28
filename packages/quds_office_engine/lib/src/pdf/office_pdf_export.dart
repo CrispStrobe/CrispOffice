@@ -1815,10 +1815,23 @@ abstract final class OfficePdfExport {
               italic == normalFont?.italic)) {
         return null;
       }
-      // The authored Arial Narrow default includes row spacing beyond the
-      // embedded font's line box. Use the imported height for that default.
       final stored = _sheetPxToPt(sheet.effectiveDefaultRowHeightPx);
-      if (family == 'arial narrow') return stored.roundToDouble();
+      if (family == 'arial narrow') {
+        // Excel's automatic print heights for these font sizes, in points.
+        // The cached grid height can differ from the printed row height.
+        const heights = <num, double>{
+          8: 11,
+          9: 12,
+          10: 13,
+          11: 14,
+          12: 16,
+          13: 17,
+          14: 18,
+          15: 19,
+          16: 20,
+        };
+        return heights[size] ?? stored.roundToDouble();
+      }
       final face = pack.set.resolve(
         65,
         family: family,
@@ -2295,13 +2308,13 @@ abstract final class OfficePdfExport {
             !rtl) {
           if (scale == 1) {
             printLeft = (left - 1e-9).ceilToDouble();
-          } else if (!fit &&
-              options.scalePercentOverride == null &&
-              (fixedPrintPercent == 85 || fixedPrintPercent == 90)) {
-            // Excel's fixed 85% and 90% layouts quantize the whole printer
-            // margin in scaled grid coordinates.
-            final marginPoints = (left + 1e-9).floor();
-            printLeft = ((marginPoints / scale + 1e-9).floor() + 1) * scale;
+          } else if (!fit && options.scalePercentOverride == null) {
+            if (fixedPrintPercent == 85 || fixedPrintPercent == 90) {
+              final marginPoints = (left + 1e-9).floor();
+              printLeft = ((marginPoints / scale + 1e-9).floor() + 1) * scale;
+            } else if (fixedPrintPercent == 95) {
+              printLeft = (left / scale + 1e-9).floor() * scale;
+            }
           }
         }
         final rowGutterX =

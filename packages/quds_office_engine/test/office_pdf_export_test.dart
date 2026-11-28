@@ -1831,9 +1831,11 @@ void main() {
 
     book.firstSheet
       ..importedDefaultRowHeightIsCustom = false
-      ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(14);
+      ..importedDefaultRowHeightPx = SmlWorksheet.rowHeightFromExcel(16.5);
     columns.updateAll((_, _) => const {'style': '2'});
     expect(rowGap(), closeTo(14, 0.01));
+    book.firstSheet.importedDefaultRowHeightIsCustom = true;
+    expect(rowGap(), closeTo(16.5, 0.01));
   });
 
   test(
@@ -1884,6 +1886,9 @@ void main() {
         (85, 56.9, 57.8),
         (85, 57.0, 59.5),
         (90, 56.9, 58.5),
+        (95, 55.1, 57.0),
+        (95, 56.9, 57.95),
+        (95, 58.4, 59.85),
       ]) {
         book.firstSheet.pageSetup!
           ..scale = scale
