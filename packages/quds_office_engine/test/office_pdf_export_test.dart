@@ -2413,6 +2413,42 @@ void main() {
     },
   );
 
+  test(
+    'General print fits long integers with localized scientific notation',
+    () {
+      final sheet = SmlWorksheet(name: 'Print', sheetId: 1)
+        ..pageSetup = SmlPageSetup()
+        ..printArea = SmlRange.parse('A1:A2');
+      sheet.setColumnWidth(0, 65 * 4 / 3);
+      sheet.cellA1('A1').value = 1234567890;
+      sheet.cellA1('A2').value = 123456789012345;
+      final styles = SmlStyleSheet.parse(
+        '<styleSheet xmlns="${OfficeNamespaces.x}">'
+        '<cellXfs count="1"><xf numFmtId="0"/></cellXfs></styleSheet>',
+      );
+      final book = SheetDeserializer().readBytes(
+        SheetSerializer().writeBytes(
+          SmlWorkbook(sheets: [sheet], styles: styles),
+        ),
+      )..formulaLocale = 'de_DE';
+      final face = SfntFont.parse(
+        File(
+          '../quds_office_editor/fonts/LiberationSans-Regular.ttf',
+        ).readAsBytesSync(),
+      );
+      final pdf = PdfFile.open(OfficePrint.workbook(book, font: face));
+      final rows = <double, StringBuffer>{};
+      for (final run in pdf.displayList(0).runs) {
+        rows.putIfAbsent(run.y, StringBuffer.new).write(run.text);
+      }
+      expect(rows.values.map((row) => row.toString()), [
+        '1234567890',
+        '1,2346E+14',
+      ]);
+      expect(book.firstSheet.cellA1('A2').value, 123456789012345);
+    },
+  );
+
   test('native numeric print inset grows with larger fonts', () {
     final sheet = SmlWorksheet(name: 'Amounts', sheetId: 1)
       ..pageSetup = SmlPageSetup(scale: 85)

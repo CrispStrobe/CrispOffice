@@ -241,7 +241,7 @@ abstract final class OfficePdfExport {
   }) {
     final OfficeFontSet set = fonts ?? OfficeFontSet.single(font);
     final baseFileName = workbookFileName?.split(RegExp(r'[\\/]')).last ?? '';
-    final Set<int> cps = <int>{};
+    final Set<int> cps = <int>{0x2b, 0x2d, 0x2e, 0x2c};
     for (final SmlWorksheet sheet in book.sheets) {
       _collectShaped(sheet.name, cps);
       for (final SmlCell cell in sheet.allCells) {
@@ -2512,21 +2512,36 @@ abstract final class OfficePdfExport {
                   final padding = authoredRows
                       ? math.max(1.0, inset * scale)
                       : 3.0;
-                  final available = textSpan - padding * 2 - indent;
+                  var available = textSpan - padding * 2 - indent;
+                  final styles = book.styles;
                   if (nativeNumeric &&
                       width > available &&
-                      book.styles?.numberFormatCodeAt(stored.styleIndex) ==
+                      styles != null &&
+                      styles.numberFormatCodeAt(stored.styleIndex) ==
                           'General') {
-                    final fitted = _fitSheetGeneralDecimal(
-                      shown.text,
-                      available,
-                      (candidate) => worksheetRunWidth(
-                        plainLabelRun(stored, candidate, size, color),
-                        scale,
-                      ),
-                    );
-                    runs = [plainLabelRun(stored, fitted, size, color)];
-                    width = worksheetRunWidth(runs.single, scale);
+                    // A whole number can use the last point of the usual
+                    // right inset before General switches to an exponent.
+                    if (_sheetGeneralInteger.hasMatch(shown.text) &&
+                        width <= available + scale + 1e-9) {
+                      available += scale;
+                    } else {
+                      final decimalExample = styles.format(
+                        0.5,
+                        stored.styleIndex,
+                        locale: book.formulaLocale,
+                      );
+                      final fitted = _fitSheetGeneralNumber(
+                        shown.text,
+                        decimalExample.substring(1, decimalExample.length - 1),
+                        available,
+                        (candidate) => worksheetRunWidth(
+                          plainLabelRun(stored, candidate, size, color),
+                          scale,
+                        ),
+                      );
+                      runs = [plainLabelRun(stored, fitted, size, color)];
+                      width = worksheetRunWidth(runs.single, scale);
+                    }
                   }
                   final slack = available - width;
                   var runX =
@@ -2865,26 +2880,45 @@ abstract final class OfficePdfExport {
     return lo;
   }
 
-  static final _plainSheetDecimal = RegExp(r'^-?[0-9]+([.,])([0-9]+)$');
+  static final _sheetGeneralInteger = RegExp(r'^-?\d+$');
+  static final _sheetGeneralDecimal = RegExp(r'^-?[0-9]+\.(\d+)$');
+  static final _sheetFractionZeros = RegExp(r'\.?0+$');
 
-  static String _fitSheetGeneralDecimal(
+  static String _fitSheetGeneralNumber(
     String text,
+    String separator,
     double available,
     double Function(String) measure,
   ) {
-    final decimal = _plainSheetDecimal.firstMatch(text);
-    if (decimal == null) return text;
-    final separator = decimal[1]!;
-    final value = double.parse(text.replaceFirst(separator, '.'));
-    // Keep as much fractional precision as the column allows. This changes
-    // only the printed representation. The workbook value is untouched.
-    for (var digits = decimal[2]!.length - 1; digits >= 0; digits--) {
-      final fixed = value.toStringAsFixed(digits);
-      final trimmed = digits == 0
-          ? fixed
-          : fixed.replaceFirst(RegExp(r'\.?0+$'), '');
-      if (trimmed == '0' || trimmed == '-0') break;
-      final candidate = trimmed.replaceFirst('.', separator);
+    final invariant = text.replaceFirst(separator, '.');
+    final value = double.tryParse(invariant);
+    if (value == null || !value.isFinite || value == 0) return text;
+    // Keep as much precision as the column allows. Print formatting leaves
+    // the stored value intact.
+    final decimal = _sheetGeneralDecimal.firstMatch(invariant);
+    if (decimal != null) {
+      for (var digits = decimal[1]!.length - 1; digits >= 0; digits--) {
+        final fixed = value.toStringAsFixed(digits);
+        final trimmed = digits == 0
+            ? fixed
+            : fixed.replaceFirst(_sheetFractionZeros, '');
+        if (trimmed == '0' || trimmed == '-0') break;
+        final candidate = trimmed.replaceFirst('.', separator);
+        if (measure(candidate) <= available + 1e-9) return candidate;
+      }
+    }
+    // Integers that are too wide, or decimals that would round to zero,
+    // can use General's narrower scientific notation.
+    for (var digits = 14; digits >= 0; digits--) {
+      final parts = value.toStringAsExponential(digits).split('e');
+      final coefficient = digits == 0
+          ? parts.first
+          : parts.first.replaceFirst(_sheetFractionZeros, '');
+      final exponent = int.parse(parts.last);
+      final sign = exponent < 0 ? '-' : '+';
+      final magnitude = exponent.abs().toString().padLeft(2, '0');
+      final candidate =
+          '${coefficient.replaceFirst('.', separator)}E$sign$magnitude';
       if (measure(candidate) <= available + 1e-9) return candidate;
     }
     return text;
