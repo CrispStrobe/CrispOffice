@@ -1438,6 +1438,33 @@ abstract final class OfficePdfExport {
         (cell.horizontalAlign == SmlHAlign.general ||
             cell.horizontalAlign == SmlHAlign.left);
 
+    final authoredRows = options.useWorksheetPageSetup && book.package != null;
+    bool simpleInlineLabel(SmlCell cell, String text) =>
+        !wraps(cell, text) &&
+        !text.contains('\r') &&
+        !text.contains('\u00ad') &&
+        _PageSink._winAnsiOnly(text);
+
+    bool nativeInlineLabel(SmlCell cell, String text) =>
+        authoredRows &&
+        simpleInlineLabel(cell, text) &&
+        book.styles?.verticalAlignAt(cell.styleIndex) == null;
+
+    _SheetLabelRun plainLabelRun(
+      SmlCell cell,
+      String text,
+      double size,
+      String color,
+    ) => (
+      text: text,
+      size: size,
+      color: color,
+      family: book.styles?.familyAt(cell.styleIndex),
+      bold: cell.fontBold,
+      italic: book.styles?.italicAt(cell.styleIndex) ?? false,
+      underline: 'none',
+    );
+
     List<_SheetLabelRun> richLabelRuns(
       SmlCell cell,
       String text,
@@ -1448,11 +1475,7 @@ abstract final class OfficePdfExport {
       final rich = cell.richString;
       // For wrapped and bidirectional text, retain the existing paragraph
       // layout until inline styles can be measured across a whole paragraph.
-      if (rich == null ||
-          rich.runs.isEmpty ||
-          wraps(cell, text) ||
-          text.contains('\r') ||
-          !_PageSink._winAnsiOnly(text)) {
+      if (rich == null || rich.runs.isEmpty || !simpleInlineLabel(cell, text)) {
         return const [];
       }
       final family = book.styles?.familyAt(cell.styleIndex);
@@ -1493,7 +1516,6 @@ abstract final class OfficePdfExport {
       return width;
     }
 
-    final authoredRows = options.useWorksheetPageSetup && book.package != null;
     double worksheetGlyphAdvance(
       _SheetLabelRun run,
       int codePoint,
@@ -1554,7 +1576,10 @@ abstract final class OfficePdfExport {
         }
         final family = book.styles?.familyAt(cell.styleIndex);
         final italic = book.styles?.italicAt(cell.styleIndex) ?? false;
-        final runs = richLabelRuns(cell, shown.text, 1, shown.color);
+        final rich = richLabelRuns(cell, shown.text, 1, shown.color);
+        final runs = rich.isEmpty && nativeInlineLabel(cell, shown.text)
+            ? [plainLabelRun(cell, shown.text, cell.fontSize, shown.color)]
+            : rich;
         final width = runs.isEmpty
             ? labelWidth(
                 shown.text,
@@ -2291,33 +2316,21 @@ abstract final class OfficePdfExport {
                 }
                 sink.canvas.save();
                 sink.canvas.clipRect(x + 1, y + 1, textSpan - 2, spanH - 2);
+                final color = conditional.fontRgb ?? shown.color;
+                final rich = richLabelRuns(
+                  stored,
+                  shown.text,
+                  scale,
+                  shown.color,
+                  conditionalColor: conditional.fontRgb,
+                );
+                final nativePlain =
+                    rich.isEmpty && nativeInlineLabel(stored, shown.text);
                 final nativeNumeric =
-                    authoredRows &&
-                    shown.numeric &&
-                    align == _TextAlign.right &&
-                    vertical == null &&
-                    !wrap &&
-                    _PageSink._winAnsiOnly(shown.text);
-                final runs = nativeNumeric
-                    ? [
-                        (
-                          text: shown.text,
-                          size: size,
-                          color: conditional.fontRgb ?? shown.color,
-                          family: book.styles?.familyAt(stored.styleIndex),
-                          bold: stored.fontBold,
-                          italic:
-                              book.styles?.italicAt(stored.styleIndex) ?? false,
-                          underline: 'none',
-                        ),
-                      ]
-                    : richLabelRuns(
-                        stored,
-                        shown.text,
-                        scale,
-                        shown.color,
-                        conditionalColor: conditional.fontRgb,
-                      );
+                    nativePlain && shown.numeric && align == _TextAlign.right;
+                final runs = nativePlain
+                    ? [plainLabelRun(stored, shown.text, size, color)]
+                    : rich;
                 if (runs.isNotEmpty) {
                   final width = runs.fold<double>(
                     0,
@@ -2346,10 +2359,12 @@ abstract final class OfficePdfExport {
                         SmlVAlign.center => (spanH + largest * 0.65) / 2,
                         _ =>
                           spanH -
-                              (nativeNumeric
+                              (nativePlain
                                   ? bottomInset
                                   : math.max(2, largest * 0.28)),
                       };
+                  final preserveLabel = nativePlain && !shown.numeric;
+                  if (preserveLabel) sink.canvas.beginActualText(shown.text);
                   for (final run in runs) {
                     final start = runX;
                     for (final codePoint in run.text.runes) {
@@ -2375,6 +2390,7 @@ abstract final class OfficePdfExport {
                     }
                     _paintSheetRunUnderline(sink, run, start, runX, baseline);
                   }
+                  if (preserveLabel) sink.canvas.endActualText();
                 } else {
                   final textVertical =
                       vertical ??

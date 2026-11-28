@@ -1948,7 +1948,7 @@ void main() {
       expect(content, contains('0 1 0 rg'));
       expect(
         content.indexOf('0 1 0 rg'),
-        lessThan(content.indexOf('Unwrapped heading')),
+        lessThan(content.indexOf('/ActualText')),
       );
     },
   );
@@ -1979,6 +1979,28 @@ void main() {
 
     book.firstSheet.printArea = SmlRange.parse('A1');
     expect(_pageCount(OfficePrint.workbook(book, options: options)), 1);
+  });
+
+  test('native unwrapped print labels use the worksheet text inset', () {
+    final sheet = SmlWorksheet(name: 'Labels', sheetId: 1)
+      ..pageSetup = SmlPageSetup()
+      ..printArea = SmlRange.parse('A1');
+    sheet.cellA1('A1').value = 'Heading';
+    final book = SheetDeserializer().readBytes(
+      SheetSerializer().writeBytes(SmlWorkbook(sheets: [sheet])),
+    );
+    final bytes = OfficePrint.workbook(
+      book,
+      options: const PdfSheetPrintOptions(
+        useWorksheetPageSetup: true,
+        paperOverride: (width: 200, height: 300),
+        marginOverride: 10,
+      ),
+    );
+    final pdf = PdfFile.open(bytes);
+    final text = pdf.displayList(0).runs;
+    expect(text.first.x, closeTo(12, 0.02));
+    expect(text.map((run) => run.text).join(), 'Heading');
   });
 
   test('XLSX PDF uses the size and underline of each rich text run', () {
