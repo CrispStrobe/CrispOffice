@@ -817,6 +817,10 @@ class SheetDeserializer {
       if (reader.eventType == XmlEventType.startElement &&
           reader.localName == 'pageSetup') {
         final setup = ensurePageSetup();
+        setup.importedPrinterSettingsRelationshipId = reader.getAttribute(
+          'id',
+          namespaceUri: OfficeNamespaces.r,
+        );
         setup.orientation = reader.getAttribute('orientation') == 'landscape'
             ? SmlPageOrientation.landscape
             : SmlPageOrientation.portrait;
@@ -1950,6 +1954,17 @@ class SheetSerializer {
     String sheetUri,
   ) {
     final sourceXml = package.getPart(sheetUri)?.readText();
+    String? printerSettingsId;
+    if (sheet.pageSetup?.importedPrinterSettingsRelationshipId case final id?) {
+      final relationships = package.relationshipsFor(sheetUri);
+      final link = relationships.byId(id);
+      if (link != null &&
+          link.type == RelationshipTypes.printerSettings &&
+          link.targetMode == RelationshipTargetMode.internal &&
+          package.getPart(relationships.resolve(link)) != null) {
+        printerSettingsId = id;
+      }
+    }
     final preserveValidations =
         sheet.sourceValidationState != null &&
         sheet.sourceValidationState == sheet.validationState();
@@ -1960,7 +1975,8 @@ class SheetSerializer {
     w.writeStartDocument();
     w.writeStartElement('worksheet');
     w.writeAttribute('xmlns', OfficeNamespaces.x);
-    if (sheet.drawings.isNotEmpty ||
+    if (printerSettingsId != null ||
+        sheet.drawings.isNotEmpty ||
         sheet.rows.values.any(
           (row) => row.cells.values.any(
             (cell) => cell.hyperlink?.contains('://') ?? false,
@@ -2355,7 +2371,7 @@ class SheetSerializer {
       w.writeEndElement();
     }
     _writeHyperlinks(w, sheet, package, sheetUri);
-    _writePageSetup(w, sheet);
+    _writePageSetup(w, sheet, printerSettingsId);
     final SmlHeaderFooter? hf = sheet.headerFooter;
     if (hf != null && !hf.isEmpty) {
       w.writeStartElement('headerFooter');
@@ -2413,7 +2429,11 @@ class SheetSerializer {
     }, _worksheetOrder);
   }
 
-  static void _writePageSetup(XmlWriter w, SmlWorksheet sheet) {
+  static void _writePageSetup(
+    XmlWriter w,
+    SmlWorksheet sheet,
+    String? printerSettingsId,
+  ) {
     final setup = sheet.pageSetup;
     if (setup == null) return;
     if (setup.printGridlines ||
@@ -2458,6 +2478,7 @@ class SheetSerializer {
           'firstPageNumber': '${setup.firstPageNumber}',
         if (setup.blackAndWhite) 'blackAndWhite': '1',
         if (setup.draft) 'draft': '1',
+        'r:id': ?printerSettingsId,
       },
     );
   }

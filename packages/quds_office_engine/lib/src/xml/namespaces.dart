@@ -299,6 +299,9 @@ abstract final class RelationshipTypes {
   static const String drawing =
       'http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing';
 
+  /// Native worksheet printer-settings part.
+  static const String printerSettings = '${OfficeNamespaces.r}/printerSettings';
+
   /// footnotes API.
   static const String footnotes =
       'http://schemas.openxmlformats.org/officeDocument/2006/relationships/footnotes';

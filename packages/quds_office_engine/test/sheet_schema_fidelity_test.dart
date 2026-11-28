@@ -26,6 +26,54 @@ void _assertDrawingSchema(OpcPackage package) {
 }
 
 void main() {
+  test('retains only a valid internal printer settings link in page setup', () {
+    const sheetUri = '/xl/worksheets/sheet1.xml';
+    const settingsUri = '/xl/printerSettings/printerSettings1.bin';
+    const settingsType =
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.printerSettings';
+    for (final mode in RelationshipTargetMode.values) {
+      final sheet = SmlWorksheet(name: 'Print', sheetId: 1)
+        ..pageSetup = SmlPageSetup();
+      final source = SheetSerializer().write(SmlWorkbook(sheets: [sheet]));
+      source.createPart(settingsUri, settingsType, [1, 2, 3]);
+      final link = source
+          .relationshipsFor(sheetUri)
+          .add(
+            type: RelationshipTypes.printerSettings,
+            target: mode == RelationshipTargetMode.internal
+                ? settingsUri
+                : 'https://example.invalid/printerSettings.bin',
+            targetMode: mode,
+          );
+      final part = source.getPart(sheetUri)!;
+      part.writeText(
+        part.readText().replaceFirst(
+          '<pageSetup ',
+          '<pageSetup xmlns:settings="${OfficeNamespaces.r}" settings:id="${link.id}" ',
+        ),
+      );
+      final book = SheetDeserializer().read(source);
+      book.firstSheet.pageSetup!.scale = 85;
+      final saved = OpcPackage.openBytes(SheetSerializer().writeBytes(book));
+      final setup = XmlDocument.parse(
+        saved.getPart(sheetUri)!.readText(),
+      ).root!.firstChild('pageSetup', namespaceUri: OfficeNamespaces.x)!;
+      expect(setup.getAttribute('scale'), '85');
+      expect(
+        setup.getAttribute('id', namespaceUri: OfficeNamespaces.r),
+        mode == RelationshipTargetMode.internal ? link.id : isNull,
+      );
+      if (mode == RelationshipTargetMode.internal) {
+        final rels = saved.relationshipsFor(sheetUri);
+        expect(saved.getPart(rels.resolve(rels.byId(link.id)!))!.readBytes(), [
+          1,
+          2,
+          3,
+        ]);
+      }
+    }
+  });
+
   test('absolute drawing targets remain a single relationship on save', () {
     var book = SheetDeserializer().read(_nativePackage());
     for (var cycle = 1; cycle <= 3; cycle++) {

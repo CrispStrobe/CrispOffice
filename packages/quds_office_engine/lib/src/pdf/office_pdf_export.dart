@@ -2288,16 +2288,22 @@ abstract final class OfficePdfExport {
                     2,
               )
             : 0.0;
-        // At actual size the native worksheet grid starts on a whole point
-        // inside the authored left margin.
-        final printLeft =
-            useGridOrigin &&
-                scale == 1 &&
-                options.marginOverride == null &&
-                !setup.centerHorizontally &&
-                !rtl
-            ? (left - 1e-9).ceilToDouble()
-            : left;
+        var printLeft = left;
+        if (useGridOrigin &&
+            options.marginOverride == null &&
+            !setup.centerHorizontally &&
+            !rtl) {
+          if (scale == 1) {
+            printLeft = (left - 1e-9).ceilToDouble();
+          } else if (!fit &&
+              options.scalePercentOverride == null &&
+              (fixedPrintPercent == 85 || fixedPrintPercent == 90)) {
+            // Excel's fixed 85% and 90% layouts quantize the whole printer
+            // margin in scaled grid coordinates.
+            final marginPoints = (left + 1e-9).floor();
+            printLeft = ((marginPoints / scale + 1e-9).floor() + 1) * scale;
+          }
+        }
         final rowGutterX =
             (rtl ? pageW - right - gutter : printLeft) +
             (rtl ? -horizontalInset : horizontalInset);

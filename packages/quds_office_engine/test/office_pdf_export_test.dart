@@ -1867,6 +1867,23 @@ void main() {
       expect(y - x, closeTo(10 * digit + 5, 0.01));
       // Top margin 54pt + automatic row 15pt - whole-point bottom inset 3pt.
       expect(_inflated(bytes).join(), contains('1 0 0 -1 53 66 Tm'));
+
+      for (final (scale, margin, expectedX) in [
+        (85, 51.0, 53.55),
+        (85, 56.9, 57.8),
+        (85, 57.0, 59.5),
+        (90, 56.9, 58.5),
+      ]) {
+        book.firstSheet.pageSetup!
+          ..scale = scale
+          ..marginLeftIn = margin / 72;
+        final scaled = PdfFile.open(OfficePrint.workbook(book, fonts: fontSet));
+        final label = scaled
+            .displayList(0)
+            .runs
+            .singleWhere((r) => r.text == 'X');
+        expect(label.x, closeTo(expectedX, 0.01));
+      }
     },
   );
 

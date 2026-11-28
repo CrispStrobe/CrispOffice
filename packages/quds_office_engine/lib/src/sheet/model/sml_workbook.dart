@@ -513,6 +513,9 @@ class SmlPageSetup {
   /// Print in draft quality.
   bool draft;
 
+  /// Relationship to the source XLSX worksheet's native printer settings.
+  String? importedPrinterSettingsRelationshipId;
+
   /// Applies a known Excel paper code while retaining unfamiliar codes.
   void setExcelPaperSize(int code) {
     paperSize = code;
